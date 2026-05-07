@@ -76,7 +76,6 @@ frontend/out/
 
 # Next.js build output
 frontend/.next/static/
-frontend/public/sw.js
 frontend/public/workbox-*.js
 frontend/public/worker-*.js
 frontend/public/fallback-*.js
@@ -196,3 +195,5 @@ chatbot_service/data/speech_finetuning/indic-seamless/
 # Frontend ONNX model placeholders (0-byte; commit real weights when ready)
 frontend/public/models/maarg-risk.onnx
 frontend/public/models/yolov8n_pothole.onnx
+
+.vercel

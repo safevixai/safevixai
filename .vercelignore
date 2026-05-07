@@ -1,0 +1,7 @@
+backend/.venv/
+chatbot_service/.venv/
+chatbot_service/pytest-cache-files-*/
+**/.pytest_cache/
+**/__pycache__/
+**/*.pyc
+*.log
