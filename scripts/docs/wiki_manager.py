@@ -36,7 +36,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 WIKI_CONTENT = ROOT / "docs" / "wiki" / "content"
 WIKI_META = ROOT / "docs" / "wiki" / "meta" / "repowiki-metadata.json"
 DOCS_DIR = ROOT / "docs"

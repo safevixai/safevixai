@@ -12,7 +12,7 @@ from docx.shared import Pt, RGBColor, Inches, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DOCS_DIR = os.path.join(ROOT, "docs")
 OUTPUT = os.path.join(DOCS_DIR, "SafeVixAI_MASTER.docx")
 

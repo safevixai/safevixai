@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 WIKI_CONTENT = ROOT / "docs" / "wiki" / "content"
 
 # ── Email Alert ─────────────────────────────────────────────────────────────

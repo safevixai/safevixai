@@ -54,7 +54,7 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode || 'full' }}"
           echo "=== Running wiki_manager.py in '$MODE' mode ==="
-          python scripts/wiki_manager.py "$MODE"
+          python scripts/docs/wiki_manager.py "$MODE"
 
       - name: Post-run integrity check
         run: |

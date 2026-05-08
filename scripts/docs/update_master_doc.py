@@ -49,7 +49,7 @@ SERVICES = {
 }
 
 MASTER_DOC_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
     "docs",
     "SafeVixAI_MASTER.docx",
 )
@@ -463,7 +463,7 @@ def update_part_c(doc_path: str):
 
     # ── Section 8: Wiki Documentation Stats ─────────────────────────────
     add_colored_heading(doc, "Auto-Generated Wiki Documentation", 2)
-    wiki_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs", "wiki", "content")
+    wiki_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "docs", "wiki", "content")
     wiki_count = 0
     mermaid_count = 0
     if os.path.isdir(wiki_dir):
