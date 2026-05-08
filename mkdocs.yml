@@ -1,0 +1,80 @@
+site_name: SafeVixAI
+site_description: Enterprise AI-Powered Road Safety Platform Documentation
+site_author: SafeVixAI Team
+repo_url: https://github.com/SafeVixAI/SafeVixAI
+repo_name: SafeVixAI/SafeVixAI
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+
+nav:
+  - Overview: index.md
+  - Getting Started:
+      - Setup Guide: SETUP.md
+      - Architecture: Architecture.md
+      - Features: Features.md
+  - AI & Agents:
+      - Agent System: AGENTS.md
+      - Chatbot Pipeline: AI_Instructions.md
+      - Capabilities: SKILL.md
+      - Tools & Intents: Agent.md
+      - Offline Architecture: Offline_Architecture.md
+  - Engineering:
+      - Tech Stack: TechStack.md
+      - API Reference: API.md
+      - Database Schema: Database.md
+      - Security: Security.md
+      - Environment: Environment.md
+  - Design & UX:
+      - Design System: DESIGN.md
+      - UI/UX Specs: UIUX.md
+  - Operations:
+      - Deployment: Deployment.md
+      - Data Sources: DataSources.md
+      - Dataset Placement: DATASET_PLACEMENT.md
+      - Roadmap: Roadmap.md
+      - Contributing: Contributing.md
+      - Resource Checklist: Complete_Project_Resource_Checklist.md

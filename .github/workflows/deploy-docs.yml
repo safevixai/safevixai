@@ -1,0 +1,41 @@
+name: Deploy Enterprise Docs
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+      - 'mkdocs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install MkDocs Material
+        run: pip install mkdocs-material
+
+      - name: Inject Root Documents
+        run: |
+          # Copy root markdown files into docs/ so MkDocs can build them
+          cp README.md docs/index.md
+          cp SETUP.md docs/SETUP.md
+          cp DESIGN.md docs/DESIGN.md
+          cp AGENTS.md docs/AGENTS.md
+          cp SKILL.md docs/SKILL.md
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
