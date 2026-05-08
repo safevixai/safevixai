@@ -66,6 +66,7 @@ jobs:
         working-directory: ./frontend
         env:
           NEXT_PUBLIC_API_URL: http://localhost:8000
+          NEXT_PUBLIC_CHATBOT_URL: http://localhost:8001
         run: npm run build
 
       - name: Run SOS flow
