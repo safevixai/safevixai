@@ -254,8 +254,10 @@ def update_part_c(doc_path: str):
 
     # ── Find PART C marker and clear everything after it ────────────────
     part_c_idx = None
-    for i, para in enumerate(doc.paragraphs):
-        if "PART C" in para.text and "LIVE" in para.text.upper():
+    # Iterate backwards so we hit the actual heading instead of the Table of Contents
+    for i in range(len(doc.paragraphs) - 1, -1, -1):
+        para = doc.paragraphs[i]
+        if "PART C" in para.text and "LIVE" in para.text.upper() and para.style.name.startswith("Heading"):
             part_c_idx = i
             break
 
