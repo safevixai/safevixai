@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import logging
+import sys
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -15,6 +18,12 @@ from models.schemas import (
     RouteProfile,
 )
 from services.exceptions import ExternalServiceError, ServiceValidationError
+
+# alert_service.py at project root
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+from alert_service import get_alert_service
+
+logger = logging.getLogger("safevixai.backend.routing")
 
 
 class RoutingService:
@@ -84,6 +93,12 @@ class RoutingService:
                     headers={'Authorization': self.settings.openrouteservice_api_key},
                 )
             except httpx.HTTPError as exc:
+                get_alert_service().alert_external_api_failed(
+                    service_name="OpenRouteService (Routing)",
+                    endpoint=url,
+                    status_code=0,
+                    error_msg=str(exc),
+                )
                 raise ExternalServiceError('Unable to reach ORS routing provider.') from exc
         else:
             # OSRM — free, no API key needed
@@ -102,6 +117,12 @@ class RoutingService:
             try:
                 response = await self._client.get(url, params=params)
             except httpx.HTTPError as exc:
+                get_alert_service().alert_external_api_failed(
+                    service_name="OSRM (Routing)",
+                    endpoint=url,
+                    status_code=0,
+                    error_msg=str(exc),
+                )
                 raise ExternalServiceError('Unable to reach OSRM routing provider.') from exc
 
         data = response.json()

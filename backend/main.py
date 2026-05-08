@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+import logging
+import sys
 from contextlib import asynccontextmanager
+from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from api.v1 import api_router
@@ -22,6 +26,12 @@ from services.llm_service import LLMService
 from services.overpass_service import OverpassService
 from services.roadwatch_service import RoadWatchService
 from services.routing_service import RoutingService
+
+# alert_service.py is at project root
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from alert_service import get_alert_service
+
+logger = logging.getLogger("safevixai.backend")
 
 
 def create_app() -> FastAPI:
@@ -87,6 +97,21 @@ def create_app() -> FastAPI:
     )
     app.mount('/uploads', StaticFiles(directory=settings.upload_dir), name='uploads')
 
+    # ── Global unhandled exception handler with alerting ─────────────────
+    @app.exception_handler(Exception)
+    async def _unhandled_exception_handler(request: Request, exc: Exception):
+        logger.error("Unhandled exception on %s %s: %s", request.method, request.url.path, exc)
+        get_alert_service().alert_external_api_failed(
+            service_name="Backend Unhandled Error",
+            endpoint=f"{request.method} {request.url.path}",
+            status_code=500,
+            error_msg=str(exc),
+        )
+        return JSONResponse(
+            status_code=500,
+            content={"detail": "Internal server error. The team has been notified."},
+        )
+
     @app.get('/', tags=['System'])
     async def root() -> dict:
         return {
@@ -137,7 +162,11 @@ def create_app() -> FastAPI:
             version=settings.version,
         )
         if not database_available:
-            from fastapi.responses import JSONResponse
+            # Alert on database failure
+            get_alert_service().alert_supabase_failed(
+                operation="Health check — database unreachable",
+                error_msg="PostgreSQL connection failed during /health endpoint",
+            )
             return JSONResponse(status_code=503, content=resp.model_dump())
         return resp
 

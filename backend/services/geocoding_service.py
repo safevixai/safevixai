@@ -1,7 +1,10 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import asyncio
+import logging
+import sys
 import time
+from pathlib import Path
 from urllib.parse import quote_plus
 
 import httpx
@@ -10,6 +13,12 @@ from core.config import Settings
 from core.redis_client import CacheHelper
 from models.schemas import GeocodeResult
 from services.exceptions import ExternalServiceError
+
+# alert_service.py at project root
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+from alert_service import get_alert_service
+
+logger = logging.getLogger("safevixai.backend.geocoding")
 
 
 class GeocodingError(ExternalServiceError):
@@ -39,7 +48,16 @@ class GeocodingService:
         try:
             result = await self._reverse_photon(lat=lat, lon=lon)
         except GeocodingError:
-            result = await self._reverse_nominatim(lat=lat, lon=lon)
+            try:
+                result = await self._reverse_nominatim(lat=lat, lon=lon)
+            except GeocodingError:
+                get_alert_service().alert_external_api_failed(
+                    service_name="Geocoding (Photon + Nominatim)",
+                    endpoint=f"reverse lat={lat} lon={lon}",
+                    status_code=0,
+                    error_msg="Both Photon and Nominatim failed for reverse geocoding",
+                )
+                raise
 
         await self.cache.set_json(cache_key, result.model_dump(mode='json'), self.settings.geocode_cache_ttl_seconds)
         return result
@@ -53,7 +71,16 @@ class GeocodingService:
         try:
             results = await self._search_photon(query)
         except GeocodingError:
-            results = await self._search_nominatim(query)
+            try:
+                results = await self._search_nominatim(query)
+            except GeocodingError:
+                get_alert_service().alert_external_api_failed(
+                    service_name="Geocoding (Photon + Nominatim)",
+                    endpoint=f"search q={query[:50]}",
+                    status_code=0,
+                    error_msg="Both Photon and Nominatim failed for forward geocoding",
+                )
+                raise
 
         await self.cache.set_json(
             cache_key,

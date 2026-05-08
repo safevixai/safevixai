@@ -1,10 +1,16 @@
 from __future__ import annotations
 
 import logging
+import sys
+from pathlib import Path
 
 import httpx
 
 from config import Settings
+
+# alert_service.py is at project root
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+from alert_service import get_alert_service
 
 logger = logging.getLogger("safevixai.chatbot.tools")
 
@@ -26,10 +32,24 @@ class BackendToolClient:
             response.raise_for_status()
             return response.json()
         except httpx.HTTPStatusError as exc:
-            logger.warning("Backend GET %s failed with HTTP %s", path, exc.response.status_code)
+            status = exc.response.status_code
+            logger.warning("Backend GET %s failed with HTTP %s", path, status)
+            if status >= 500:
+                get_alert_service().alert_external_api_failed(
+                    service_name="Backend API",
+                    endpoint=f"GET {path}",
+                    status_code=status,
+                    error_msg=str(exc),
+                )
             return None
-        except httpx.RequestError:
+        except httpx.RequestError as exc:
             logger.exception("Backend GET %s request failed", path)
+            get_alert_service().alert_external_api_failed(
+                service_name="Backend API",
+                endpoint=f"GET {path}",
+                status_code=0,
+                error_msg=f"Connection error: {exc}",
+            )
             return None
         except ValueError:
             logger.exception("Backend GET %s returned invalid JSON", path)
@@ -41,10 +61,24 @@ class BackendToolClient:
             response.raise_for_status()
             return response.json()
         except httpx.HTTPStatusError as exc:
-            logger.warning("Backend POST %s failed with HTTP %s", path, exc.response.status_code)
+            status = exc.response.status_code
+            logger.warning("Backend POST %s failed with HTTP %s", path, status)
+            if status >= 500:
+                get_alert_service().alert_external_api_failed(
+                    service_name="Backend API",
+                    endpoint=f"POST {path}",
+                    status_code=status,
+                    error_msg=str(exc),
+                )
             return None
-        except httpx.RequestError:
+        except httpx.RequestError as exc:
             logger.exception("Backend POST %s request failed", path)
+            get_alert_service().alert_external_api_failed(
+                service_name="Backend API",
+                endpoint=f"POST {path}",
+                status_code=0,
+                error_msg=f"Connection error: {exc}",
+            )
             return None
         except ValueError:
             logger.exception("Backend POST %s returned invalid JSON", path)

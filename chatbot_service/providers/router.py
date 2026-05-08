@@ -32,6 +32,11 @@ from providers.sarvam_provider import (
 )
 from providers.together_provider import TogetherProvider
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent.parent))
+from alert_service import get_alert_service
+
 
 logger = logging.getLogger("safevixai.chatbot.providers")
 
@@ -186,6 +191,7 @@ class ProviderRouter:
                 raise
 
             # Try fallback chain
+            failed_providers = [primary]
             for fallback_name in self._fallback_chain:
                 if fallback_name == primary:
                     continue
@@ -194,14 +200,28 @@ class ProviderRouter:
                     result = await self._generate_with_timeout(fallback, request)
                     result.provider_used = fallback_name  # type: ignore[attr-defined]
                     result.fallback_from = primary  # type: ignore[attr-defined]
+                    logger.info(
+                        "Fallback success: %s → %s",
+                        primary, fallback_name,
+                    )
                     return result
                 except Exception as fallback_err:
+                    failed_providers.append(fallback_name)
                     logger.warning(
                         "LLM fallback provider %s failed: %s",
                         fallback_name,
                         fallback_err,
                     )
                     continue
+
+            # ALL providers failed — send alert email
+            alerts = get_alert_service()
+            alerts.alert_all_providers_failed(
+                primary_provider=primary,
+                failed_providers=failed_providers,
+                error_msg=str(primary_err),
+                user_message=request.message or "",
+            )
 
             raise RuntimeError(
                 f"All providers exhausted. Primary error: {primary_err}"

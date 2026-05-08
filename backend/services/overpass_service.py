@@ -1,14 +1,23 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 import math
+import sys
 from dataclasses import dataclass
+from pathlib import Path
 
 import httpx
 
 from core.config import Settings
 from models.schemas import EmergencyServiceItem
 from services.exceptions import ExternalServiceError
+
+# alert_service.py at project root
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+from alert_service import get_alert_service
+
+logger = logging.getLogger("safevixai.backend.overpass")
 
 
 @dataclass(slots=True)
@@ -129,8 +138,16 @@ class OverpassService:
                 return response.json()
             except httpx.HTTPError as exc:
                 last_error = exc
+                logger.warning("Overpass mirror %s failed: %s", url, exc)
                 if index < len(self.settings.overpass_urls) - 1:
                     await asyncio.sleep(self.settings.upstream_retry_backoff_seconds)
+        # All mirrors exhausted — alert the team
+        get_alert_service().alert_external_api_failed(
+            service_name="Overpass API (Emergency Locator)",
+            endpoint=f"POST {self.settings.overpass_urls}",
+            status_code=0,
+            error_msg=f"All {len(self.settings.overpass_urls)} mirrors failed: {last_error}",
+        )
         raise ExternalServiceError('Overpass API unavailable') from last_error
 
     def _build_service_query(self, *, lat: float, lon: float, radius: int) -> str:
