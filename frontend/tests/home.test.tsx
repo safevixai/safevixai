@@ -10,15 +10,15 @@ jest.mock('next/link', () => {
 })
 
 describe('Home Page structural verification', () => {
-  it('renders the main heading', () => {
+  it('renders the SafeVixAI app shell', () => {
     render(<Page />)
-    const heading = screen.getByText(/AI Emergency Navigator/i)
-    expect(heading).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/Ask Maps or Search/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Enable Location/i).length).toBeGreaterThan(0)
   })
 
-  it('renders the core modules', () => {
+  it('renders the emergency protocol surface', () => {
     render(<Page />)
-    expect(screen.getByText(/Emergency/i)).toBeInTheDocument()
-    expect(screen.getByText(/AI Chat/i)).toBeInTheDocument()
+    expect(screen.getByText(/Emergency Protocols/i)).toBeInTheDocument()
+    expect(screen.getAllByTitle(/Geolocation not supported/i).length).toBeGreaterThan(0)
   })
 })

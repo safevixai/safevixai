@@ -9,6 +9,7 @@ import {
   Wifi, WifiOff
 } from 'lucide-react';
 import { PUBLIC_API_BASE_URL } from '@/lib/public-env';
+import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { useAppStore } from '@/lib/store';
 
 const API_URL = PUBLIC_API_BASE_URL;
@@ -53,6 +54,26 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
+      const supabase = getSupabaseBrowserClient();
+      if (supabase) {
+        const { data, error: supabaseError } = await supabase.auth.signInWithPassword({
+          email: email.trim().toLowerCase(),
+          password,
+        });
+
+        if (!supabaseError && data.session?.access_token) {
+          const displayName =
+            (data.user?.user_metadata?.name as string | undefined) ??
+            data.user?.email ??
+            'SafeVixAI User';
+          setAuth(data.session.access_token, displayName);
+          setUserProfile({ name: displayName });
+          setSuccess(`Welcome, ${displayName}`);
+          setTimeout(() => router.replace('/'), 1200);
+          return;
+        }
+      }
+
       const res = await fetch(`${API_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

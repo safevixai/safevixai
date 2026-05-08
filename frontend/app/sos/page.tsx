@@ -195,6 +195,7 @@ export default function EmergencyPage() {
 
             {/* Main SOS Button */}
             <button 
+              aria-label={activated ? 'Emergency SOS dispatched' : 'Activate emergency SOS'}
               onPointerDown={startHold}
               onPointerUp={cancelHold}
               onPointerLeave={cancelHold}
