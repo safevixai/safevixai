@@ -46,10 +46,12 @@ jobs:
           CHATBOT_HEALTH_URL: https://safevixai-chatbot-service.onrender.com/health
           FRONTEND_URL: https://safevixai.vercel.app
 
-      - name: Commit and push if changed
-        run: |
-          git config user.name 'SafeVixAI Bot'
-          git config user.email 'bot@safevixai.vercel.app'
-          git add docs/SafeVixAI_MASTER.docx
-          git diff --staged --quiet || git commit -m "docs: auto-update master doc [$(date +%Y-%m-%d)]"
-          git push
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "docs: auto-update master doc"
+          title: "docs: Auto-update Master Document"
+          body: "Automated update of SafeVixAI_MASTER.docx with live repository statistics and alerting metrics."
+          branch: "docs-auto-update"
+          base: "main"
+          add-paths: "docs/SafeVixAI_MASTER.docx"
