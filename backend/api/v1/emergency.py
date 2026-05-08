@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
 from core.limiter import limiter
+from core.security import get_current_user_optional
 from models.schemas import EmergencyNumbersResponse, EmergencyResponse, SosResponse
 from services.emergency_locator import EMERGENCY_NUMBERS, EmergencyLocatorService
 from services.exceptions import ExternalServiceError
@@ -62,11 +63,20 @@ async def create_sos_incident(
     lon: float = Query(..., ge=-180, le=180),
     db: AsyncSession = Depends(get_db),
     emergency_service: EmergencyLocatorService = Depends(get_emergency_service),
+    current_user: dict | None = Depends(get_current_user_optional),
 ) -> SosResponse:
     try:
         await db.execute(
-            text("INSERT INTO sos_incidents (lat, lon, user_agent) VALUES (:lat, :lon, :ua)"),
-            {"lat": lat, "lon": lon, "ua": request.headers.get('user-agent', '')[:255]},
+            text(
+                "INSERT INTO sos_incidents (user_id, lat, lon, user_agent) "
+                "VALUES (:user_id, :lat, :lon, :ua)"
+            ),
+            {
+                "user_id": str(current_user["sub"]) if current_user else None,
+                "lat": lat,
+                "lon": lon,
+                "ua": request.headers.get('user-agent', '')[:255],
+            },
         )
         await db.commit()
         return await emergency_service.build_sos_payload(db=db, lat=lat, lon=lon)
