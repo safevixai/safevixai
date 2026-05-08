@@ -672,3 +672,36 @@ These are already enterprise-grade — leave them:
 | AI assistant label | SafeVixAI | SafeVision AI (with space) |
 | Brand ID badge | SVA-XXXX-X | SVA2024-X |
 | Emergency number header | "SAFEVIXAI SENTINEL" | "ROADOS SENTINEL" |
+
+---
+
+## 13. Production Monitoring & Alerting
+
+The platform uses `alert_service.py` (project root) to send email notifications when critical systems fail. This ensures the team can respond quickly to outages.
+
+### What Gets Monitored
+
+| Service | Monitored By | Trigger |
+|---|---|---|
+| 9 LLM providers (Groq, Gemini, etc.) | `chatbot_service/providers/router.py` | All providers in fallback chain fail |
+| Backend external APIs (Overpass, Nominatim, OSRM) | `chatbot_service/tools/__init__.py` | HTTP 5xx or connection timeout |
+| PostgreSQL / PostGIS database | `backend/main.py` health endpoint | `/health` returns `database_available: false` |
+| Supabase Auth | `backend/main.py` exception handler | Supabase connection failure |
+| Unhandled backend errors | `backend/main.py` global handler | Any unhandled 500 |
+| Wiki documentation generation | `scripts/wiki_manager.py` | 5+ consecutive LLM failures |
+
+### Alert Email Format
+
+Every alert includes:
+1. **Subject**: Prefixed with emoji severity (`🚨` critical, `⚠️` warning, `🔴` infra)
+2. **Details**: Service name, endpoint, HTTP status, error message
+3. **3 solutions**: Specific, actionable steps (check keys, check rate limits, check status page)
+4. **Cooldown**: 5 minutes between same-type alerts to prevent inbox flooding
+
+### Setup
+
+```bash
+ALERT_EMAIL=your-gmail@gmail.com
+ALERT_EMAIL_PASSWORD=abcd efgh ijkl mnop   # Gmail App Password
+ALERT_EMAIL_TO=team-lead@gmail.com
+```

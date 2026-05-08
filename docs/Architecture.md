@@ -1,4 +1,4 @@
-# SafeVixAI — Architecture
+﻿# SafeVixAI — Architecture
 
 ## System Architecture Overview
 
@@ -27,7 +27,7 @@ graph TD
     H -->|proxy| CS
 
     CS --> CS1[ChatEngine - Agentic RAG]
-    CS --> CS2[11-Provider LLM Fallback Chain]
+    CS --> CS2[9-provider LLM Fallback Chain]
     CS --> CS3[13 Agent Tools]
     CS --> CS4[Sarvam AI - Indian Language Routing]
     CS --> CS5[ChromaDB RAG Vectorstore]
@@ -53,7 +53,7 @@ SafeVixAI runs as **three independent services**:
 | Service | Port | Tech | Purpose |
 |---------|------|------|---------|
 | **Backend** | 8000 | FastAPI + PostGIS + Redis | Emergency locator, challan calc, road reporting, geocoding |
-| **Chatbot Service** | 8010 | FastAPI + ChromaDB + 11 LLMs | Agentic RAG chatbot, Indian language AI, speech |
+| **Chatbot Service** | 8010 | FastAPI + ChromaDB + 9 LLMs | Agentic RAG chatbot, Indian language AI, speech |
 | **Frontend** | 3000 | Next.js 15 + React 19 PWA | UI, maps (MapLibre GL), offline AI (WebLLM, DuckDB-Wasm) |
 
 > **Critical:** Backend and Chatbot Service have **separate** `.venv`, `.env`, `requirements.txt`, and `Dockerfile`. Never mix their dependencies.
@@ -74,7 +74,7 @@ flowchart TD
     CS --> CS1[IntentDetector - classify query]
     CS --> CS2[ContextAssembler - call 13 agent tools]
     CS --> CS3[ChromaDB RAG - top 5 law/medical chunks]
-    CS --> CS4[ProviderRouter - 11 LLM fallback chain]
+    CS --> CS4[ProviderRouter - 9 LLM fallback chain]
     CS4 --> CS5{Indian language?}
     CS5 -->|YES| CS6[Sarvam AI 30B/105B]
     CS5 -->|NO| CS7[Groq → Cerebras → Gemini → ...]
@@ -92,7 +92,7 @@ flowchart TD
 
 | Aspect | Online — Layer 1 | Offline — Layer 2 |
 |---|---|---|
-| LLM | 11-provider chain (Groq primary) | WebLLM Phi-3-mini-4k (4-bit) |
+| LLM | 9-provider chain (Groq primary) | WebLLM Phi-3-mini-4k (4-bit) |
 | Indian Languages | Sarvam AI (30B/105B) | English only |
 | Runs on | Cloud (Groq/Gemini/etc.) | User's browser (WebGPU) |
 | RAG | ChromaDB on chatbot service | HNSWlib.js in browser |
@@ -102,7 +102,7 @@ flowchart TD
 
 ---
 
-## 11-Provider LLM Fallback Chain
+## 9-provider LLM Fallback Chain
 
 ```mermaid
 flowchart LR

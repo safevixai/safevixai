@@ -343,7 +343,7 @@ Returns nearby women's safety resources (police stations, helplines, safe spaces
 | 422 | Validation error (e.g., lat out of range -90 to 90) |
 | 429 | Rate limited (slowapi: 5/min chat, 10/min emergency, 8/min roadwatch) |
 | 500 | Internal server error |
-| 503 | LLM service unavailable (All 11 providers down — use offline fallback) |
+| 503 | LLM service unavailable (All 9 providers down — use offline fallback) |
 
 ---
 
@@ -361,7 +361,7 @@ Returns nearby women's safety resources (police stations, helplines, safe spaces
 
 | Service | Limit | Our Handling |
 |---|---|---|
-| Main LLM APIs | Varies per provider | 11-provider fallback chain + offline AI |
+| Main LLM APIs | Varies per provider | 9-provider fallback chain + offline AI |
 | Nominatim geocoder | 1 req/sec | Redis cache (86400s TTL) + rate limiter |
 | Overpass API | Fair use ~1 req/sec | Redis cache (3600s TTL) per coordinate |
 | Upstash Redis | 10,000 commands/day | Efficient cache keys, no redundant writes |

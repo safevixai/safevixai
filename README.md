@@ -73,7 +73,7 @@ Verify: http://localhost:3000
 ```
 SafeVixAI/
 ├── backend/           FastAPI Python 3.11 + PostgreSQL/PostGIS (port 8000)
-├── chatbot_service/   FastAPI Agentic RAG Chatbot + 11 LLM Providers (port 8010)
+├── chatbot_service/   FastAPI Agentic RAG Chatbot + 9 LLM providers (port 8010)
 ├── frontend/          Next.js 15 + React 19 TypeScript PWA (port 3000)
 ├── docs/              Complete technical documentation
 ├── chatbot_docs/      Documentation specifically for Chatbot Service
@@ -127,7 +127,7 @@ Read `docs/Agent.md` first — it gives a complete overview of the entire applic
 
 **Backend:** FastAPI, SQLAlchemy, PostGIS, Redis, DuckDB, Overpass/Nominatim
 
-**Chatbot Service:** FastAPI, ChromaDB, LangChain, 11 LLM Providers (Groq, Gemini, Sarvam AI, etc.), IndicSeamless Speech
+**Chatbot Service:** FastAPI, ChromaDB, LangChain, 9 LLM providers (Groq, Gemini, Sarvam AI, etc.), IndicSeamless Speech
 
 **Frontend:** Next.js 15, React 19, TypeScript, Tailwind CSS, MapLibre GL, WebLLM, DuckDB-Wasm, Transformers.js
 

@@ -95,7 +95,7 @@ cp chatbot_service/.env.example chatbot_service/.env
 | Variable | Description | Default |
 |---|---|---|
 | `CHROMA_PERSIST_DIR` | Path to ChromaDB vectorstore | `./data/chroma_db` |
-| `EMBEDDING_MODEL` | Sentence-transformers model name | `sentence-transformers/all-MiniLM-L6-v2` |
+| `EMBEDDING_MODEL` | hash-based embeddings model name | `LocalHashEmbeddingFunction (zero-dependency)` |
 
 ### Other Services
 

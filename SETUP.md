@@ -77,7 +77,7 @@ pip install -r requirements.txt
 - **ChromaDB** — vector store for RAG
 - **SQLAlchemy + asyncpg** — async database ORM
 - **GeoAlchemy2** — PostGIS geometry support
-- **sentence-transformers** - embeddings config (runtime uses hash-based `LocalHashEmbeddingFunction`)
+- **hash-based embeddings** - embeddings config (runtime uses hash-based `LocalHashEmbeddingFunction`)
 - **DuckDB** — SQL engine for offline challan calculator
 - **Redis (hiredis)** — cache client
 - **httpx** — async HTTP for Overpass/Nominatim
@@ -147,6 +147,15 @@ cp .env.example .env
 ```
 
 Edit `chatbot_service/.env` with your API keys (Gemini, Groq, Twilio if needed).
+
+**Optional but recommended — Email alerts for production failures:**
+```bash
+# In chatbot_service/.env — add these for failure notifications:
+ALERT_EMAIL=your-gmail@gmail.com
+ALERT_EMAIL_PASSWORD=abcd efgh ijkl mnop   # Gmail App Password, NOT your regular password
+ALERT_EMAIL_TO=team-lead@gmail.com         # Recipient (defaults to ALERT_EMAIL)
+```
+> 💡 **Get a Gmail App Password:** Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) → Select "Mail" → "Other" → Name it "SafeVixAI" → Copy the 16-char code.
 
 ---
 

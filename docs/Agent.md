@@ -9,7 +9,7 @@
 **SafeVixAI** is a full-stack, AI-powered road safety Progressive Web App (PWA) built for the IIT Madras Road Safety Hackathon 2026. It is one unified application that solves three problem statements:
 
 1. **Emergency Locator**  Find the nearest hospital, police station, ambulance, towing service using GPS. Works offline for 25 Indian cities.
-2. **AI Chatbot**  Answer questions about traffic laws (Motor Vehicles Act 2019) and first aid. Uses 11-Provider online fallback, Phi-3 Mini entirely in the browser when offline.
+2. **AI Chatbot**  Answer questions about traffic laws (Motor Vehicles Act 2019) and first aid. Uses 9-provider online fallback, Phi-3 Mini entirely in the browser when offline.
 3. **Challan Calculator**  Calculate exact traffic fines under MVA 2019 with state-specific overrides. Deterministic SQL  never hallucinates.
 4. **Road Reporter**  Let citizens report potholes, flooding, broken roads. Automatically routes the complaint to the correct government authority (NHAI, State PWD, District Collector, PMGSY).
 
@@ -31,7 +31,7 @@
 
 **Frontend**: Next.js 15 (TypeScript) + Tailwind CSS + MapLibre GL (maps) + WebLLM (offline AI) + DuckDB-Wasm (offline SQL) + Transformers.js (browser vision)  
 **Backend**: FastAPI (Python 3.11) + PostgreSQL with PostGIS + Redis + DuckDB  
-**Chatbot Service**: FastAPI (Python 3.11) + ChromaDB + 11 LLM Providers (Groq, Sarvam AI, Gemini, etc.) + IndicSeamless Speech  
+**Chatbot Service**: FastAPI (Python 3.11) + ChromaDB + 9 LLM providers (Groq, Sarvam AI, Gemini, etc.) + IndicSeamless Speech  
 **Infra**: Vercel (frontend) + Render.com (backend + chatbot) + Supabase (DB) + Upstash (Redis)
 
 ---
@@ -43,7 +43,7 @@ SafeVixAI/
 
  chatbot_service/             Standalone FastAPI AI Chatbot Service (port 8010)
     agent/                   ChatEngine, IntentDetector, SafetyChecker, ContextAssembler
-    providers/               11 LLM providers + ProviderRouter (auto-fallback chain)
+    providers/               9 LLM providers + ProviderRouter (auto-fallback chain)
     rag/                     LocalVectorStore (ChromaDB), Retriever, document_loader
     tools/                   13 tools: SOS, Emergency, Challan, Legal, FirstAid, Weather, OpenMeteo, RoadInfra, RoadIssues, SubmitReport, Geocoding, DrugInfo, What3Words
     memory/                  Redis conversation memory with session TTL

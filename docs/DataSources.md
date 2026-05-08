@@ -1,4 +1,4 @@
-# SafeVixAI  Data Sources
+﻿# SafeVixAI  Data Sources
 
 ## Overview
 
@@ -145,13 +145,13 @@ States covered: TN (Tamil Nadu), KA (Karnataka), MH (Maharashtra), DL (Delhi), A
 
 ---
 
-## 7. WebLLM Model Weights  Hugging Face Hub
+## 7. WebLLM Model Weights  CDN
 
 | Model | HF Repo | Size | Download |
 |---|---|---|---|
 | Phi-3 Mini 4-bit | `microsoft/Phi-3-mini-4k-instruct` | ~2.2GB | Auto via WebLLM |
 | Gemma 2B 4-bit | `google/gemma-2b-it` | ~1.4GB | Auto via WebLLM |
-| all-MiniLM-L6-v2 (browser) | `Xenova/all-MiniLM-l6-v2` | ~25MB | Auto via Transformers.js |
+| LocalHashEmbeddingFunction (browser) | `Xenova/LocalHashEmbeddingFunction` | ~25MB | Auto via Transformers.js |
 | YOLOv8n (browser) | `Xenova/yolov8n` | ~15MB | Auto via Transformers.js |
 
 WebLLM fetches directly from Hugging Face CDN and caches in browser Cache Storage. Users do not need a Hugging Face account.

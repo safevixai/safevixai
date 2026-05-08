@@ -25,7 +25,7 @@ Total infra cost: ₹0. All free/open-source.
 ┌──────────────▼─────────┐  ┌─────────────▼──────────────────┐
 │  backend/              │  │  chatbot_service/              │
 │  FastAPI :8000         │  │  FastAPI :8010                  │
-│  PostgreSQL + PostGIS  │◄─┤  11-provider LLM fallback      │
+│  PostgreSQL + PostGIS  │◄─┤  9-provider LLM fallback      │
 │  Redis cache           │  │  ChromaDB RAG vectorstore       │
 │  DuckDB (challan SQL)  │  │  13 agent tools                 │
 │  Overpass/Nominatim    │  │  Redis conversation memory      │
@@ -60,6 +60,7 @@ Verify: `GET http://localhost:8000/health` and `GET http://localhost:8010/health
 
 ```
 SafeVixAI/
+├── alert_service.py         📧 Production email alerting (LLM/API/Supabase failures → 3 solutions)
 ├── backend/                 FastAPI :8000
 │   ├── main.py              App factory (create_app → lifespan → services)
 │   ├── api/v1/              13 route modules (auth, challan, chat, emergency, geocode, live_tracking, mcp_server, offline, roadwatch, routing, tracking, user, waze_feed)
@@ -74,7 +75,7 @@ SafeVixAI/
 ├── chatbot_service/         FastAPI :8010 — Agentic RAG Chatbot
 │   ├── main.py              App factory (create_app → lifespan → ChatEngine)
 │   ├── agent/               ChatEngine graph, IntentDetector (9 intent classes), SafetyChecker, ContextAssembler
-│   ├── providers/           9 LLM providers + TemplateProvider + ProviderRouter (auto-fallback chain)
+│   ├── providers/           9 LLM providers + TemplateProvider + ProviderRouter (auto-fallback chain + email alerts)
 │   ├── rag/                 LocalVectorStore (ChromaDB), Retriever, document_loader, embeddings
 │   ├── tools/               13 agent tools: SOS, Challan, LegalSearch, FirstAid, Weather, OpenMeteo, RoadInfra, RoadIssues, SubmitReport, Geocoding, DrugInfo, What3Words, Emergency
 │   ├── memory/              Redis conversation memory with session TTL
@@ -88,11 +89,12 @@ SafeVixAI/
 │   ├── lib/                 28+ modules: api.ts, store.ts, public-env.ts, safety-constants.ts, offline-ai.ts, duckdb-challan.ts, geolocation.ts, offline-sos-queue.ts, crash-detection.ts, live-tracking.ts, client-logger.ts, etc.
 │   └── public/              manifest.json, theme-init.js, icons/ (8 PWA sizes), offline-data/ (GeoJSON, CSV for DuckDB-Wasm)
 │
-├── scripts/                 Root-level data pipeline scripts
+├── scripts/                 Root-level data pipeline + wiki automation
 │   ├── app/                 3 DB seeders (seed_emergency, seed_nhp_hospitals, seed_healthsites)
-│   └── data/                16 standalone fetchers/extractors (Overpass, Kaggle, PDF extraction, restore_data)
+│   ├── data/                16 standalone fetchers/extractors (Overpass, Kaggle, PDF extraction, restore_data)
+│   └── wiki_manager.py      LLM-powered wiki generator (OpenRouter → Mistral → Gemini)
 │
-├── docs/                    18+ markdown docs — START with docs/Agent.md (includes Offline_Architecture.md)
+├── docs/                    18+ markdown docs + wiki/ (231 auto-generated API docs)
 ├── docker-compose.yml       5 services: postgres (PostGIS 16), redis 7, backend, chatbot, frontend
 └── SETUP.md                 Complete install guide with exact commands
 ```
@@ -151,7 +153,7 @@ SafeVixAI/
 | `DEFAULT_LLM_MODEL` | Yes | Model ID for the chosen provider |
 | `HF_TOKEN` | No | HuggingFace token — used as Sarvam fallback + Shuka/BharatGen/Whisper via HF Inference API. Not needed for core chatbot flow |
 | `CHROMA_PERSIST_DIR` | No | Default: `./data/chroma_db` |
-| `EMBEDDING_MODEL` | No | Config hint: `sentence-transformers/all-MiniLM-L6-v2` — runtime uses `LocalHashEmbeddingFunction` |
+| `EMBEDDING_MODEL` | No | Config hint: `LocalHashEmbeddingFunction (zero-dependency)` — runtime uses `LocalHashEmbeddingFunction` |
 | `REDIS_URL` | No | Falls back to in-memory store |
 | `MAIN_BACKEND_BASE_URL` | Yes | Default: `http://localhost:8000` |
 | `OPENWEATHER_API_KEY` | No | For weather tool in agent |
@@ -335,9 +337,10 @@ Both use the same `violations_seed.csv` and `state_overrides.csv` source data.
 - **Separate Python app** — its own `.venv`, `.env`, `requirements.txt`
 - **Heavy dependencies:** `torch`, `torchaudio`, `transformers`, `datasets` (for speech)
 - **Config:** Vanilla `dataclass` + `os.getenv()` in `config.py` — NOT pydantic-settings (despite `pydantic-settings` being in requirements.txt, it's unused here)
-- **Embedding model:** Hash-based 384-dim vectors (LocalHashEmbeddingFunction) with ChromaDB cosine similarity; config references `all-MiniLM-L6-v2` for future upgrade
+- **Embedding model:** Hash-based 384-dim vectors (LocalHashEmbeddingFunction) with ChromaDB cosine similarity; config references `LocalHashEmbeddingFunction` for future upgrade
 - **ChromaDB path:** `chatbot_service/data/chroma_db/` — this is committed (Render needs it)
 - **Port:** 8010 (not 8001 as some docs may say — trust `config.py`)
+- **Email Alerts:** When all 9 LLM providers fail, `alert_service.py` (project root) sends email with 3 diagnostic solutions. Configured via `ALERT_EMAIL` + `ALERT_EMAIL_PASSWORD` env vars. 5-min cooldown prevents inbox flooding.
 
 ---
 
@@ -351,6 +354,8 @@ Both use the same `violations_seed.csv` and `state_overrides.csv` source data.
 | `e2e.yml` | Full stack E2E | ubuntu-latest | Integration tests |
 | `security.yml` | Security scanning | ubuntu-latest | Dependency audits |
 | `system.yml` | System-level checks | ubuntu-latest | Cross-service validation |
+| `sync-wiki.yml` | `backend/**`, `chatbot_service/**` etc. | ubuntu-latest, Python 3.11 | LLM wiki generation (OpenRouter → Mistral → Gemini) |
+| `update-master-doc.yml` | `docs/**`, root `.md` changes (on push) | ubuntu-latest, Python 3.11 | Auto-generate DOCX master document |
 
 ---
 
@@ -359,7 +364,7 @@ Both use the same `violations_seed.csv` and `state_overrides.csv` source data.
 | Decision | Why |
 |----------|-----|
 | Two separate FastAPI services | Chatbot has heavy ML deps (torch ~2GB); backend stays lightweight |
-| 11-provider LLM fallback | Zero downtime — if one API rate-limits, next takes over |
+| 9-provider LLM fallback | Zero downtime — if one API rate-limits, next takes over |
 | Sarvam AI for Indian languages | Trained on 4 trillion Indic tokens; best Hindi/Tamil legal accuracy |
 | DuckDB for challans (not LLM) | Deterministic SQL; LLMs hallucinate fine amounts |
 | ChromaDB committed to git | Render cold-starts need pre-built vectorstore; rebuild takes 10 min |

@@ -9,7 +9,7 @@
 | Chatbot Service | Render.com | `safevixai-chatbot.onrender.com` | FastAPI :8010, Agentic RAG AI |
 | Database | Supabase | `[project].supabase.co` | PostgreSQL + PostGIS |
 | Cache | Upstash | `[host].upstash.io` | Redis, 10K commands/day |
-| LLM APIs | Groq + 10 more | Various | 11-provider fallback chain |
+| LLM APIs | Groq + 10 more | Various | 9-provider fallback chain |
 | Model CDN | Hugging Face | `huggingface.co` | WebLLM weights |
 | CI/CD | GitHub Actions | | Auto-deploy on push |
 
@@ -309,7 +309,7 @@ MAIN_BACKEND_BASE_URL=http://localhost:8000
 
 # RAG
 CHROMA_PERSIST_DIR=./data/chroma_db
-EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2  # Config hint — actual runtime uses LocalHashEmbeddingFunction (hash-based, zero ML dep)
+EMBEDDING_MODEL=LocalHashEmbeddingFunction (zero-dependency)  # Config hint — actual runtime uses LocalHashEmbeddingFunction (hash-based, zero ML dep)
 
 # Cache
 REDIS_URL=rediss://default:[TOKEN]@[HOST].upstash.io:6379

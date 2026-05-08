@@ -9,7 +9,7 @@ Layer            Technology                          Cost
 
 Frontend         Next.js 15 + React 19 + Tailwind    Free (Vercel)
 Backend          FastAPI + Python 3.11 + Uvicorn     Free (Render.com)
-Chatbot Service  FastAPI + 11 LLM providers + RAG    Free (Render.com)
+Chatbot Service  FastAPI + 9 LLM providers + RAG    Free (Render.com)
 Online LLM       Groq / Gemini / Sarvam AI (chain)   Free (multi-provider)
 Offline LLM      WebLLM Phi-3 Mini 4-bit (WebGPU)   Free (device compute)
 Vector Store     ChromaDB (local persistent)         Free (server disk)
@@ -96,7 +96,7 @@ Total                                                ₹ 0
 | **pypdf** | 4.3.1 | Legacy PDF utility |
 | **LangChain** | 0.3.1 | Legacy memory format support |
 | **ChromaDB** | 0.5.3 | Legacy API connector |
-| **sentence-transformers** | 3.0.1 | Legacy config compatibility (runtime uses hash-based LocalHashEmbeddingFunction) |
+| **hash-based embeddings** | 3.0.1 | Legacy config compatibility (runtime uses hash-based LocalHashEmbeddingFunction) |
 
 ---
 
@@ -124,7 +124,7 @@ A **separate FastAPI service** with its own Python environment & heavy ML depend
 | **Pydantic / python-dotenv** | Various | Config and data validation |
 | **pytest / pytest-asyncio** | Various | Service testing suite |
 
-### 11-Provider LLM Fallback Chain
+### 9-provider LLM Fallback Chain
 
 | Provider | Model | Speed | Use Case |
 |----------|-------|-------|----------|
@@ -150,7 +150,7 @@ A **separate FastAPI service** with its own Python environment & heavy ML depend
 | `Phi-3-mini-4k-instruct-q4f16_1-MLC` | 3.8B | ~2.2GB | WebGPU | Offline chatbot — primary |
 | `gemma-2b-it-q4f16_1-MLC` | 2B | ~1.4GB | WebAssembly | Offline chatbot — CPU fallback |
 | `LocalHashEmbeddingFunction` | N/A | 0 MB | Server CPU | Hash-based 384-dim embeddings for ChromaDB |
-| `Xenova/all-MiniLM-L6-v2` | 22M | ~25MB | Browser Wasm | Browser-side embeddings for offline RAG |
+| `Xenova/LocalHashEmbeddingFunction` | 22M | ~25MB | Browser Wasm | Browser-side embeddings for offline RAG |
 | `Xenova/yolov8n` | ~6M | ~15MB | Browser Wasm | In-browser pothole detection from photos |
 | `ai4bharat/indic-seamless` | Large | ~7GB | Server GPU/CPU | Indian language speech (ASR/TTS) |
 
@@ -176,7 +176,7 @@ A **separate FastAPI service** with its own Python environment & heavy ML depend
 | Chatbot hosting | Render.com | 750 hrs/month | FastAPI (port 8010) |
 | Database | Supabase | 500MB PostgreSQL | All tables |
 | Cache | Upstash | 10K commands/day | Redis |
-| LLM APIs | Groq + 10 more | Free tiers | 11-provider chain |
+| LLM APIs | Groq + 10 more | Free tiers | 9-provider chain |
 | Model CDN | Hugging Face | Unlimited public | WebLLM weights |
 | Maps | MapLibre GL + OSM | Free (open source) | Vector map tiles |
 | Geocoding | Nominatim | 1 req/sec | Address lookup |

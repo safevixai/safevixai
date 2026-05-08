@@ -1,0 +1,55 @@
+name: Update Master Document
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'AGENTS.md'
+      - 'README.md'
+      - 'DESIGN.md'
+      - 'SETUP.md'
+      - 'SKILL.md'
+      - 'scripts/update_master_doc.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+  issues: read
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade requests python-docx
+
+      - name: Update master document
+        run: python scripts/update_master_doc.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          BACKEND_HEALTH_URL: https://safevixai-api.onrender.com/health
+          CHATBOT_HEALTH_URL: https://safevixai-chatbot-service.onrender.com/health
+          FRONTEND_URL: https://safevixai.vercel.app
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name 'SafeVixAI Bot'
+          git config user.email 'bot@safevixai.vercel.app'
+          git add docs/SafeVixAI_MASTER.docx
+          git diff --staged --quiet || git commit -m "docs: auto-update master doc [$(date +%Y-%m-%d)]"
+          git push

@@ -72,7 +72,7 @@
 
 ### F2.2 — Online RAG Chatbot
 - Custom **ChatEngine** with ContextAssembler + ProviderRouter
-- Model: 11-provider fallback chain (Groq primary, 300+ tok/s)
+- Model: 9-provider fallback chain (Groq primary, 300+ tok/s)
 - Indian languages auto-routed to **Sarvam AI** (30B general, 105B legal)
 - Retriever: ChromaDB MMR search, top-5 chunks
 - Knowledge base: MV Act 1988 + MV Amendment Act 2019 + WHO Trauma Care Guidelines

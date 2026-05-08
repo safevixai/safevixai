@@ -1,4 +1,4 @@
-# SafeVixAI Complete Project Resource Checklist
+﻿# SafeVixAI Complete Project Resource Checklist
 
 Generated from:
 - [SafeVixAI_Complete_Resources_main.docx](C:/Hackathons/IITM/SafeVixAI_Complete_Resources_main.docx)
@@ -222,8 +222,8 @@ Keep raw training datasets outside git if possible.
 
 | Item | Source | Local save path | Env variable name | Status | Priority |
 |---|---|---|---|---|---|
-| all-MiniLM-L6-v2 embeddings | `sentence-transformers/all-MiniLM-L6-v2` on Hugging Face | `chatbot_service/.env` plus future `chatbot_service/rag/embeddings.py` | `EMBEDDING_MODEL` | Future phase | Critical |
-| multilingual MiniLM embeddings | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` | Future `chatbot_service/rag/embeddings.py` | `EMBEDDING_MODEL` or upgrade path | Future phase | High |
+| LocalHashEmbeddingFunction embeddings | `LocalHashEmbeddingFunction (zero-dependency)` on Hugging Face | `chatbot_service/.env` plus future `chatbot_service/rag/embeddings.py` | `EMBEDDING_MODEL` | Future phase | Critical |
+| multilingual MiniLM embeddings | `hash-based embeddings/paraphrase-multilingual-MiniLM-L12-v2` | Future `chatbot_service/rag/embeddings.py` | `EMBEDDING_MODEL` or upgrade path | Future phase | High |
 | Gemma 4 E2B | `google/gemma-4-E2B-it` | [frontend/lib/edge-ai.ts](C:/Hackathons/IITM/SafeVixAI/frontend/lib/edge-ai.ts) | N/A | Future phase | Critical |
 | Gemma 4 E4B | `google/gemma-4-E4B-it` | [frontend/lib/edge-ai.ts](C:/Hackathons/IITM/SafeVixAI/frontend/lib/edge-ai.ts) or future offline vision module | N/A | Future phase | High |
 | Gemma 4 26B A4B | `google/gemma-4-26B-A4B-it` | Future server-side inference path only | N/A | Future phase | Low |
@@ -273,7 +273,7 @@ Keep raw training datasets outside git if possible.
 |---|---|---|---|---|---|
 | India PMTiles extract | Protomaps / PMTiles downloads | `frontend/public/maps/india.pmtiles` | N/A | Future phase | Medium |
 | Gemma 4 browser runtime assets | Hugging Face / Transformers.js runtime cache | Runtime browser cache only | N/A | Future phase | Medium |
-| all-MiniLM browser embedding model | Xenova / Transformers.js | Runtime browser cache or future local cache | N/A | Future phase | Medium |
+| LocalHashEmbeddingFunction (zero-dependency) | Xenova / Transformers.js | Runtime browser cache or future local cache | N/A | Future phase | Medium |
 | YOLOv8n browser ONNX | Xenova/yolov8n or your fine-tuned ONNX export | `frontend/public/models/yolov8n.onnx` or `frontend/public/models/pothole-yolov8n.onnx` | N/A | Future phase | High |
 
 ## 14. Mobile-only future references from the document

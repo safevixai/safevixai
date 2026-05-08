@@ -6,13 +6,13 @@ SafeVixAI uses AI at **five distinct layers** — each with a specific purpose a
 
 ---
 
-## AI Layer 1: Online LLM — 11-Provider Agentic RAG (Server-Side)
+## AI Layer 1: Online LLM — 9-provider Agentic RAG (Server-Side)
 
 ### What It Does
 Answers user questions about traffic laws, first aid, and emergency services using an **agentic RAG pipeline** running on the separate chatbot service (port 8010). Every answer is grounded in actual documents + 13 agent tools — not model training data.
 
-### 11-Provider Fallback Chain
-Instead of relying on a single LLM, the chatbot cascades through 11 providers for zero downtime:
+### 9-provider Fallback Chain
+Instead of relying on a single LLM, the chatbot cascades through 9 providers for zero downtime:
 
 ```
 Groq → Cerebras → Gemini → GitHub Models → NVIDIA NIM → OpenRouter → Mistral → Together → Template
@@ -135,7 +135,7 @@ async function selectModel(): Promise<string> {
 1. At first offline chat activation:
    - Load first-aid.json (20 WHO-based articles, pre-bundled with PWA)
    - Generate 384-dim embeddings for each article using Transformers.js
-     (Xenova/all-MiniLM-L6-v2, 25MB, runs in browser)
+     (Xenova/LocalHashEmbeddingFunction, 25MB, runs in browser)
    - Build HNSWlib.js HNSW graph index in IndexedDB
    - This setup takes ~30 seconds on first use, milliseconds after
 
@@ -262,7 +262,7 @@ The chatbot service uses a **hash-based embedding function** (`LocalHashEmbeddin
 ```python
 # rag/embeddings.py — deterministic 384-dim vectors via SHA-256 token hashing
 # Zero ML dependency, compatible with ChromaDB cosine similarity
-# Config references all-MiniLM-L6-v2 for future neural upgrade
+# Config references LocalHashEmbeddingFunction for future neural upgrade
 ```
 
 | Model | Params | Size | Runtime | Use Case |
