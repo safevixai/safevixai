@@ -48,6 +48,7 @@ class Settings:
     chroma_persist_dir: Path
     rag_data_dir: Path
     embedding_model: str
+    rag_min_score: float
     top_k_retrieval: int
     default_llm_provider: str
     default_llm_model: str
@@ -91,6 +92,7 @@ def get_settings() -> Settings:
             default=ROOT_DIR / 'data',
         ),
         embedding_model=os.getenv('EMBEDDING_MODEL', 'sentence-transformers/all-MiniLM-L6-v2'),
+        rag_min_score=float(os.getenv('RAG_MIN_SCORE', '0.28')),
         top_k_retrieval=int(os.getenv('TOP_K_RETRIEVAL', '5')),
         default_llm_provider=os.getenv('DEFAULT_LLM_PROVIDER', 'template').strip().lower(),
         default_llm_model=os.getenv('DEFAULT_LLM_MODEL', 'deterministic-rag'),

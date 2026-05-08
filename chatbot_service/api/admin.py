@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import os
-
 from fastapi import APIRouter, Depends, Header, HTTPException, Request
 
 from agent.graph import ChatEngine
@@ -29,14 +27,19 @@ def _require_admin(x_admin_key: str = Header(default='')) -> None:
         raise HTTPException(status_code=403, detail='Invalid admin key.')
 
 
-@router.get('/health')
+@router.get('/admin/health')
 async def health(
+    _: None = Depends(_require_admin),
     engine: ChatEngine = Depends(get_engine),
     memory_store: ConversationMemoryStore = Depends(get_memory),
 ) -> dict:
+    index = engine.stats()
     return {
         'status': 'ok',
-        'index': engine.stats(),
+        'chunks': index.get('chunks', 0),
+        'categories': index.get('categories', 0),
+        'chroma_chunks': index.get('chroma_chunks', 0),
+        'embedding_model': index.get('embedding_model'),
         'memory_backend': memory_store.backend_name,
         'memory_available': await memory_store.ping(),
     }

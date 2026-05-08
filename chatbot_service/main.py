@@ -48,8 +48,16 @@ def create_app() -> FastAPI:
             settings.redis_url,
             session_ttl_seconds=settings.session_ttl_seconds,
         )
-        vectorstore = LocalVectorStore(settings.chroma_persist_dir, settings.rag_data_dir)
-        retriever = Retriever(vectorstore, default_top_k=settings.top_k_retrieval)
+        vectorstore = LocalVectorStore(
+            settings.chroma_persist_dir,
+            settings.rag_data_dir,
+            embedding_model=settings.embedding_model,
+        )
+        retriever = Retriever(
+            vectorstore,
+            default_top_k=settings.top_k_retrieval,
+            min_score=settings.rag_min_score,
+        )
         weather_tool = WeatherTool(settings)
         speech_service = IndicSeamlessService(settings)
         w3w_tool = What3WordsTool(api_key=settings.w3w_api_key)
@@ -146,10 +154,11 @@ def create_app() -> FastAPI:
                 'chat_history':  'GET  /api/v1/chat/history/{session_id} (admin)',
                 'chat_health':   'GET  /api/v1/chat/health',
                 'speech_status': 'GET  /speech/status',
-                'rebuild_index': 'POST /admin/rebuild-index',
+                'index_health':   'GET  /admin/health',
+                'rebuild_index':  'POST /admin/rebuild-index',
             },
             'rag_index': {
-                'note': 'Hit /health for live chunk count and memory backend info',
+                'note': 'Hit /admin/health for live chunk count and memory backend info',
             },
             'built_for': 'IIT Madras Road Safety Hackathon 2026',
         }

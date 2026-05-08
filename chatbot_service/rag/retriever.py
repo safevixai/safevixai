@@ -15,9 +15,16 @@ class RetrievalResult:
 
 
 class Retriever:
-    def __init__(self, vectorstore: LocalVectorStore, *, default_top_k: int = 5) -> None:
+    def __init__(
+        self,
+        vectorstore: LocalVectorStore,
+        *,
+        default_top_k: int = 5,
+        min_score: float = 0.0,
+    ) -> None:
         self.vectorstore = vectorstore
         self.default_top_k = default_top_k
+        self.min_score = min_score
 
     def retrieve(
         self,
@@ -36,4 +43,5 @@ class Retriever:
                 score=score,
             )
             for chunk, score in matches
+            if score >= self.min_score
         ]

@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 import math
 import hashlib
+from typing import Any
 
 
 TOKEN_PATTERN = re.compile(r'[a-zA-Z][a-zA-Z0-9_]{1,}')
@@ -70,3 +71,56 @@ class LocalHashEmbeddingFunction:
 
     def is_legacy(self) -> bool:
         return False
+
+
+class SentenceTransformerEmbeddingFunction:
+    """Chroma embedding function backed by a real sentence-transformers model."""
+
+    def __init__(self, model_name: str) -> None:
+        self.model_name = model_name
+        self._model: Any | None = None
+
+    def _load_model(self):
+        if self._model is None:
+            from sentence_transformers import SentenceTransformer
+
+            self._model = SentenceTransformer(self.model_name)
+        return self._model
+
+    def __call__(self, input: list[str]) -> list[list[float]]:
+        model = self._load_model()
+        encoded = model.encode(
+            input,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        )
+        return encoded.tolist()
+
+    @staticmethod
+    def name() -> str:
+        return 'safevixai-sentence-transformer'
+
+    @staticmethod
+    def build_from_config(config: dict[str, str]) -> 'SentenceTransformerEmbeddingFunction':
+        return SentenceTransformerEmbeddingFunction(
+            model_name=config.get('model_name', 'sentence-transformers/all-MiniLM-L6-v2')
+        )
+
+    def get_config(self) -> dict[str, str]:
+        return {'model_name': self.model_name}
+
+    def default_space(self) -> str:
+        return 'cosine'
+
+    def supported_spaces(self) -> list[str]:
+        return ['cosine']
+
+    def is_legacy(self) -> bool:
+        return False
+
+
+def build_embedding_function(model_name: str):
+    normalized = model_name.strip() or 'sentence-transformers/all-MiniLM-L6-v2'
+    if normalized in {'safevixai-local-hash', 'local-hash', 'hash'}:
+        return LocalHashEmbeddingFunction()
+    return SentenceTransformerEmbeddingFunction(normalized)

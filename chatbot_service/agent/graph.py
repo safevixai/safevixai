@@ -56,6 +56,24 @@ class ChatEngine:
             history=history,
         )
 
+        if not context.retrieved and not context.tools and intent != 'general':
+            response = (
+                'I do not know from the SafeVixAI knowledge base. '
+                'Please share more details or try a different road-safety question.'
+            )
+            await self.memory_store.append_message(
+                session_id,
+                'assistant',
+                response,
+                metadata={'intent': intent, 'sources': ['policy:weak-retrieval']},
+            )
+            return ChatResponse(
+                response=response,
+                intent=intent,
+                sources=['policy:weak-retrieval'],
+                session_id=session_id,
+            )
+
         provider_result = await self.provider_router.generate(
             ProviderRequest(
                 message=payload.message,
@@ -89,11 +107,11 @@ class ChatEngine:
     async def get_history(self, session_id: str) -> list[dict]:
         return await self.memory_store.get_history(session_id, limit=30)
 
-    def rebuild_index(self) -> dict[str, int]:
+    def rebuild_index(self) -> dict[str, int | str]:
         self.vectorstore.build_index(force=True)
         return self.vectorstore.stats()
 
-    def stats(self) -> dict[str, int]:
+    def stats(self) -> dict[str, int | str]:
         return self.vectorstore.stats()
 
     @staticmethod

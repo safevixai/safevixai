@@ -54,21 +54,28 @@ class FakeConversationMemoryStore:
 
 
 class FakeVectorStore:
-    def __init__(self, persist_dir, data_dir) -> None:
+    def __init__(self, persist_dir, data_dir, **kwargs) -> None:
         self.persist_dir = persist_dir
         self.data_dir = data_dir
+        self.embedding_model = kwargs.get('embedding_model', 'test-embedding-model')
 
     def build_index(self, *, force: bool = False) -> list:
         return []
 
-    def stats(self) -> dict[str, int]:
-        return {'chunks': 1, 'categories': 1}
+    def stats(self) -> dict[str, int | str]:
+        return {
+            'chunks': 1,
+            'categories': 1,
+            'chroma_chunks': 1,
+            'embedding_model': self.embedding_model,
+        }
 
 
 class FakeRetriever:
-    def __init__(self, vectorstore, *, default_top_k: int = 5) -> None:
+    def __init__(self, vectorstore, *, default_top_k: int = 5, min_score: float = 0.0) -> None:
         self.vectorstore = vectorstore
         self.default_top_k = default_top_k
+        self.min_score = min_score
 
     def retrieve(self, query: str, *, top_k: int | None = None, scopes: set[str] | None = None) -> list:
         source = 'kb:emergency' if scopes else 'kb:general'

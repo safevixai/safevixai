@@ -6,12 +6,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from rag.document_loader import LoadedDocument, load_documents
-from rag.embeddings import LocalHashEmbeddingFunction, normalize_text, score_query
-
-try:
-    import chromadb
-except Exception:  # pragma: no cover - exercised only when optional dependency is unavailable
-    chromadb = None
+from rag.embeddings import build_embedding_function, normalize_text, score_query
 
 logger = logging.getLogger(__name__)
 
@@ -26,12 +21,21 @@ class DocumentChunk:
 
 
 class LocalVectorStore:
-    def __init__(self, persist_dir: Path, data_dir: Path) -> None:
+    def __init__(
+        self,
+        persist_dir: Path,
+        data_dir: Path,
+        *,
+        embedding_model: str = 'sentence-transformers/all-MiniLM-L6-v2',
+        use_chroma: bool = True,
+    ) -> None:
         self.persist_dir = persist_dir
         self.data_dir = data_dir
         self.index_path = persist_dir / 'simple_index.json'
         self._chunks: list[DocumentChunk] = []
-        self._embedding_function = LocalHashEmbeddingFunction()
+        self.embedding_model = embedding_model
+        self.use_chroma = use_chroma
+        self._embedding_function = build_embedding_function(embedding_model)
         self._collection = None
 
     def ensure_index(self) -> list[DocumentChunk]:
@@ -97,7 +101,7 @@ class LocalVectorStore:
         scored.sort(key=lambda item: item[1], reverse=True)
         return scored[:top_k]
 
-    def stats(self) -> dict[str, int]:
+    def stats(self) -> dict[str, int | str]:
         chunks = self.ensure_index()
         categories = {chunk.category for chunk in chunks}
         chroma_chunks = 0
@@ -107,14 +111,21 @@ class LocalVectorStore:
                 chroma_chunks = collection.count()
             except Exception as exc:
                 logger.warning('Unable to count Chroma chunks: %s', exc)
-        return {'chunks': len(chunks), 'categories': len(categories), 'chroma_chunks': chroma_chunks}
+        return {
+            'chunks': len(chunks),
+            'categories': len(categories),
+            'chroma_chunks': chroma_chunks,
+            'embedding_model': self.embedding_model,
+        }
 
     def _get_collection(self):
-        if chromadb is None:
+        if not self.use_chroma:
             return None
         if self._collection is not None:
             return self._collection
         try:
+            import chromadb
+
             self.persist_dir.mkdir(parents=True, exist_ok=True)
             client = chromadb.PersistentClient(path=str(self.persist_dir))
             self._collection = client.get_or_create_collection(
