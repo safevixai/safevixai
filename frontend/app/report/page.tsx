@@ -20,10 +20,9 @@ import {
   Upload,
 } from 'lucide-react';
 
-import BottomNav from '@/components/dashboard/BottomNav';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
 import TopSearch from '@/components/dashboard/TopSearch';
-import SystemHeader from '@/components/dashboard/SystemHeader';
+import { TerminalHeader } from '@/components/ui/TerminalHeader';
+import { SurfaceCard } from '@/components/ui/SurfaceCard';
 import HazardViewfinder from '@/components/report/HazardViewfinder';
 import {
   type AuthorityPreviewResponse,
@@ -84,19 +83,6 @@ function normalizeExternalUrl(url: string | null | undefined) {
   return `https://${url}`;
 }
 
-function SurfaceCard({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div
-      className={cx(
-        'rounded-[2rem] border border-slate-300 bg-white/82 p-5 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl',
-        'dark:border-slate-800/80 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.92),rgba(2,6,23,0.9))] dark:shadow-[0_30px_120px_rgba(2,6,23,0.52)]',
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-}
 
 export default function ReportPage() {
   const [mounted, setMounted] = useState(false);
@@ -179,7 +165,7 @@ export default function ReportPage() {
       } else {
         setAuthorityPreview(null);
         nextError =
-          nextError ??
+          nextError 
           extractApiError(
             authorityResult.reason,
             'Road ownership lookup is temporarily unavailable.'
@@ -191,7 +177,7 @@ export default function ReportPage() {
       } else {
         setInfrastructure(null);
         nextError =
-          nextError ??
+          nextError 
           extractApiError(
             infrastructureResult.reason,
             'Road infrastructure data could not be loaded right now.'
@@ -277,13 +263,11 @@ export default function ReportPage() {
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] hidden h-[38rem] w-[38rem] rounded-full bg-cyan-500/10 blur-[150px] dark:block" />
         <div className="absolute left-[22%] top-[4%] hidden h-[20rem] w-[20rem] rounded-full bg-violet-500/8 blur-[120px] dark:block" />
-        <div className="absolute bottom-[-16%] left-[-8%] hidden h-[28rem] w-[28rem] rounded-full bg-[#1A5C38]/80/12 blur-[140px] dark:block" />
+        <div className="absolute bottom-[-16%] left-[-8%] hidden h-[28rem] w-[28rem] rounded-full bg-[#1A5C38]/12 blur-[140px] dark:block" />
       </div>
 
-      <SystemSidebar />
-
       {/* ── Unified Tactical Navigation Header ── */}
-      <SystemHeader title="Hazard Dispatch Terminal" showBack={false} />
+      <TerminalHeader title="Hazard Dispatch Terminal" subtitle="REPORT LIVE ROAD INCIDENT" />
       
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
@@ -294,7 +278,7 @@ export default function ReportPage() {
         {/* ── Dispatch Hero Section ── */}
         <section className="mt-4 flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex w-fit items-center gap-2 rounded-full border border-[#1A5C38]/20 bg-[#1A5C38]/10 px-3 py-1 dark:border-[#1A5C38]/40/15 dark:bg-[#1A5C38]/80/12">
+            <div className="flex w-fit items-center gap-2 rounded-full border border-[#1A5C38]/20 bg-[#1A5C38]/10 px-3 py-1 dark:border-[#1A5C38]/15 dark:bg-[#1A5C38]/12">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1A5C38]/80 animate-pulse"></span>
               <span className="text-[10px] font-semibold text-[#1A5C38] dark:text-[#00C896] uppercase tracking-widest">Dispatch Sentinel</span>
             </div>
@@ -316,7 +300,7 @@ export default function ReportPage() {
         </section>
         <div className="grid gap-6">
           <section className="space-y-6">
-            <SurfaceCard className="overflow-hidden p-0">
+            <SurfaceCard padding="none" className="overflow-hidden">
               <div className="min-h-[360px] sm:min-h-[420px]">
                 <HazardViewfinder imageSrc={photoBlobUrl} isDetecting={contextLoading || submitting} confidence={submittedReport ? 99.4 : contextLoading ? 96.2 : 97.8} statusLabel={submittedReport ? 'Dispatch confirmed' : contextLoading ? 'Syncing live road intel' : photoFile ? 'Photo attached and ready' : 'Live hazard viewport'} signalLabel={accuracyLabel ?? (locating ? 'Acquiring GPS' : 'Awaiting GPS')} locationLabel={gpsLocation ? `${gpsLocation.lat.toFixed(5)}, ${gpsLocation.lon.toFixed(5)}` : 'Awaiting live coordinates'} viewportId={submittedReport ? submittedReport.uuid : 'RW-LIVE-REPORT-01'} />
               </div>
@@ -329,7 +313,7 @@ export default function ReportPage() {
                     <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Location Lock</div>
                     <h2 className="mt-2 text-xl font-black tracking-tight text-slate-900 dark:text-slate-100">{locationLabel}</h2>
                   </div>
-                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 transition hover:border-[#1A5C38]/20 hover:bg-[#1A5C38]/8 hover:text-[#1A5C38] active:scale-95 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200 dark:hover:border-[#1A5C38]/40/20 dark:hover:bg-[#1A5C38]/10 dark:hover:text-white" aria-label="Refresh location">
+                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 transition hover:border-[#1A5C38]/20 hover:bg-[#1A5C38]/8 hover:text-[#1A5C38] active:scale-95 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200 dark:hover:border-[#1A5C38]/20 dark:hover:bg-[#1A5C38]/10 dark:hover:text-white" aria-label="Refresh location">
                     {locating ? <Loader2 size={18} className="animate-spin" /> : <RefreshCcw size={18} />}
                   </button>
                 </div>
@@ -355,14 +339,14 @@ export default function ReportPage() {
                   </div>
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200"><Camera size={18} /></div>
                 </div>
-                <label htmlFor="hazard-photo" className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center transition hover:border-[#1A5C38]/30 hover:bg-[#1A5C38]/8/70 dark:border-slate-800/80 dark:bg-slate-950/45 dark:hover:border-[#1A5C38]/40/20 dark:hover:bg-[#1A5C38]/10 relative overflow-hidden group">
+                <label htmlFor="hazard-photo" className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center transition hover:border-[#1A5C38]/30 hover:bg-[#1A5C38]/70 dark:border-slate-800/80 dark:bg-slate-950/45 dark:hover:border-[#1A5C38]/20 dark:hover:bg-[#1A5C38]/10 relative overflow-hidden group">
                   {photoBlobUrl && (
                     <div className="absolute inset-0 w-full h-full bg-black/60 z-0">
                       <Image src={photoBlobUrl} alt="Preview" fill unoptimized className="object-cover opacity-60 group-hover:opacity-40 transition" />
                     </div>
                   )}
                   <div className="relative z-10 flex flex-col items-center">
-                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-[#1A5C38]/15 text-[#1A5C38] dark:bg-[#1A5C38]/80/16 dark:text-white shadow-sm"><Upload size={22} /></div>
+                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-[#1A5C38]/15 text-[#1A5C38] dark:bg-[#1A5C38]/16 dark:text-white shadow-sm"><Upload size={22} /></div>
                     <div className={`mt-4 text-sm font-semibold uppercase tracking-[0.18em] ${photoBlobUrl ? 'text-white' : 'text-slate-800 dark:text-slate-100'}`}>{photoFile ? 'Replace photo' : 'Attach road image'}</div>
                     <p className={`mt-2 max-w-xs text-sm ${photoBlobUrl ? 'text-slate-200' : 'text-slate-500 dark:text-slate-400'}`}>{photoHint}</p>
                   </div>
@@ -393,7 +377,7 @@ export default function ReportPage() {
                           'border-amber-200 bg-amber-50 text-amber-950 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-50',
                           'border-orange-200 bg-orange-50 text-orange-950 dark:border-orange-400/20 dark:bg-orange-500/10 dark:text-orange-50',
                           'border-cyan-200 bg-cyan-50 text-cyan-950 dark:border-cyan-400/20 dark:bg-cyan-500/10 dark:text-cyan-50',
-                          'border-[#1A5C38]/20 bg-[#1A5C38]/8 text-[#0A0E14] dark:border-[#1A5C38]/40/20 dark:bg-[#1A5C38]/10 dark:text-blue-50',
+                          'border-[#1A5C38]/20 bg-[#1A5C38]/8 text-[#0A0E14] dark:border-[#1A5C38]/20 dark:bg-[#1A5C38]/10 dark:text-blue-50',
                           'border-violet-200 bg-violet-50 text-violet-950 dark:border-violet-400/20 dark:bg-violet-500/10 dark:text-violet-50',
                           'border-rose-200 bg-rose-50 text-rose-950 dark:border-rose-400/20 dark:bg-rose-500/10 dark:text-rose-50',
                         ][index];
@@ -430,7 +414,7 @@ export default function ReportPage() {
                       <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Notes for the authority desk</div>
                       <div className="text-xs font-semibold text-slate-400 dark:text-slate-500">{notes.trim().length}/480</div>
                     </div>
-                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder="Describe lane blockage, vehicle risk, traffic density, or how the hazard presents on the road." className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-medium text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#1A5C38]/40 focus:bg-white dark:border-slate-800/80 dark:bg-slate-950/45 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#1A5C38]/40/40 dark:focus:bg-slate-950/75" />
+                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder="Describe lane blockage, vehicle risk, traffic density, or how the hazard presents on the road." className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-medium text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#1A5C38]/40 focus:bg-white dark:border-slate-800/80 dark:bg-slate-950/45 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#1A5C38]/40 dark:focus:bg-slate-950/75" />
                   </div>
 
                   {submitError ? <div className="rounded-[1.5rem] border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-900 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-100">{submitError}</div> : null}
@@ -440,7 +424,7 @@ export default function ReportPage() {
                       {submitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                       {submitting ? 'Submitting...' : 'Submit live report'}
                     </button>
-                    <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-3 rounded-[1.6rem] border border-slate-200 bg-slate-100 px-5 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-slate-300 hover:bg-white dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200 dark:hover:border-slate-700 dark:hover:bg-slate-950/80">
+                    <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-3 rounded-[1.6rem] border border-slate-200 bg-slate-100 px-5 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-slate-300 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20 dark:hover:bg-white/10">
                       <RefreshCcw size={18} />Reset
                     </button>
                   </div>
@@ -549,7 +533,6 @@ export default function ReportPage() {
         </Link>
       </div>
 
-      <BottomNav />
     </div>
   );
 }

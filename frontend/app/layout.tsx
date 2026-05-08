@@ -4,7 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { PageShell } from '@/components/PageShell';
+import { AppFrame } from '@/components/ui/AppFrame';
 import { AnalyticsProvider } from '@/lib/analytics-provider';
 import { EnterpriseClientAppHooks } from '@/components/EnterpriseClientAppHooks';
 
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider>
             <ConnectivityProvider>
               <EnterpriseClientAppHooks />
-              <PageShell>{children}</PageShell>
+              <AppFrame>{children}</AppFrame>
             </ConnectivityProvider>
           </ThemeProvider>
         </AnalyticsProvider>

@@ -9,8 +9,6 @@ import {
   Wifi, WifiOff, BookOpen, Wind, Activity, Lock, Cpu, Navigation, Signal, ArrowRight, ShieldAlert
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
-import BottomNav from '@/components/dashboard/BottomNav';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 
@@ -146,7 +144,6 @@ export default function EmergencyProtocolsPage() {
             </div>
           </div>
         </main>
-        <BottomNav />
       </div>
     );
   }
@@ -160,9 +157,6 @@ export default function EmergencyProtocolsPage() {
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
-
-      <SystemSidebar />
-
       {/* ── Main Protocol Hub ── */}
       <main className="flex-1 w-full max-w-7xl mx-auto pt-28 lg:pt-24 pb-52 px-5 sm:px-12 flex flex-col lg:grid lg:grid-cols-[1.2fr,2fr] lg:gap-14 lg:items-start transition-all duration-500">
         
@@ -397,9 +391,6 @@ export default function EmergencyProtocolsPage() {
           </div>
         </div>
       </main>
-
-      <BottomNav />
-
       {/* Floating Tactical SOS */}
       <a href="tel:112" className="fixed bottom-[110px] right-6 sm:right-12 z-50">
         <motion.button 

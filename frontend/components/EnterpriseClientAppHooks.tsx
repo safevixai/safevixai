@@ -33,8 +33,8 @@ export function EnterpriseClientAppHooks() {
         return
       }
       const displayName =
-        (session.user.user_metadata?.name as string | undefined) ??
-        session.user.email ??
+        (session.user.user_metadata?.name as string | undefined) 
+        session.user.email 
         'SafeVixAI User'
       store.setAuth(session.access_token, displayName)
       store.setUserProfile({ name: displayName })

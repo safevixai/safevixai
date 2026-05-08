@@ -10,8 +10,6 @@ import {
 } from 'lucide-react';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
-import BottomNav from '@/components/dashboard/BottomNav';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
 import { logClientError } from '@/lib/client-logger';
 
 interface Message {
@@ -252,9 +250,6 @@ export default function FirstAidPage() {
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
-
-      <SystemSidebar />
-
       <main className="flex-1 overflow-y-auto px-4 sm:px-6 pt-32 lg:pt-28 pb-44">
         <div className="max-w-7xl mx-auto">
           {/* ── Premium HUD Header ── */}
@@ -486,8 +481,8 @@ export default function FirstAidPage() {
                 {/* Center Crosshair */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
                   <div className="w-24 h-24 border border-[#1A5C38]/10 rounded-full animate-ping opacity-20" />
-                  <div className="w-16 h-px bg-[#1A5C38]/80/30" />
-                  <div className="h-16 w-px bg-[#1A5C38]/80/30" />
+                  <div className="w-16 h-px bg-[#1A5C38]/30" />
+                  <div className="h-16 w-px bg-[#1A5C38]/30" />
                 </div>
 
                 <div className="flex justify-between items-end">
@@ -507,8 +502,6 @@ export default function FirstAidPage() {
         </section>
       </div>
     </main>
-
-      <BottomNav />
 
       {/* ── Active Guide Modal: Survival HUD ── */}
       <AnimatePresence>

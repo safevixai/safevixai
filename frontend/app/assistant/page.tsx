@@ -10,9 +10,8 @@ import {
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import TopSearch from '@/components/dashboard/TopSearch';
-import BottomNav from '@/components/dashboard/BottomNav';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
-import SystemHeader from '@/components/dashboard/SystemHeader';
+import { TerminalHeader } from '@/components/ui/TerminalHeader';
+import { SurfaceCard } from '@/components/ui/SurfaceCard';
 import PureMultimodalInput, { Attachment } from '@/components/chat/multimodal-ai-chat-input';
 import { useGeolocation } from '@/lib/geolocation';
 import { logClientError } from '@/lib/client-logger';
@@ -202,14 +201,11 @@ export default function ChatPage() {
       </div>
 
       {/* ── Unified Tactical Navigation Header ── */}
-      <SystemHeader title="AI Assistant HUD" showBack={false} />
+      <TerminalHeader title="AI Assistant HUD" subtitle="LEGAL & EMERGENCY QUERY" />
 
       <div className="lg:hidden relative z-40">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
-
-      <SystemSidebar />
-      <BottomNav />
 
       {/* ── Toast Notification ── */}
       <AnimatePresence>
@@ -274,7 +270,7 @@ export default function ChatPage() {
                     className="self-start max-w-[90%] sm:max-w-[85%]"
                   >
                     <div className="flex flex-col items-start gap-2 w-full">
-                      <div className="bg-white/90 dark:bg-[#1a2133]/60 backdrop-blur-xl rounded-lg rounded-tl-sm p-5 sm:p-6 shadow-md shadow-slate-200/50 dark:shadow-none border border-slate-200/80 dark:border-white/5">
+                      <SurfaceCard padding="lg" className="rounded-tl-sm shadow-md shadow-slate-200/50 dark:shadow-none bg-white/90 dark:bg-[#1a2133]/60 backdrop-blur-xl border-slate-200/80 dark:border-white/5">
                         <div className="flex items-center gap-2 mb-3">
                           <div className="p-1.5 rounded-lg bg-emerald-50 dark:bg-[#1A5C38]/20 text-emerald-600 dark:text-[#00C896]">
                             <ShieldCheck size={16} />
@@ -295,7 +291,7 @@ export default function ChatPage() {
                             ))}
                           </div>
                         )}
-                      </div>
+                      </SurfaceCard>
 
                       <div className="flex items-center gap-4 ml-2 mb-1">
                         <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-slate-400 dark:text-slate-500 font-medium tracking-wide">{msg.timestamp} • SafeVixAI</time>
@@ -400,11 +396,11 @@ export default function ChatPage() {
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 className="self-start max-w-[90%] sm:max-w-[85%]"
               >
-                <div className="bg-white/80 dark:bg-[#111520]/60 backdrop-blur-xl rounded-lg rounded-tl-sm px-6 py-5 shadow-sm border border-slate-200/60 dark:border-white/5 flex gap-1.5 items-center w-fit">
+                <SurfaceCard padding="lg" className="rounded-tl-sm shadow-sm bg-white/80 dark:bg-[#111520]/60 backdrop-blur-xl border-slate-200/60 dark:border-white/5 flex gap-1.5 items-center w-fit">
                   <span className="w-2.5 h-2.5 bg-emerald-500/70 dark:bg-[#00C896]/70 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
                   <span className="w-2.5 h-2.5 bg-emerald-500/70 dark:bg-[#00C896]/70 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
                   <span className="w-2.5 h-2.5 bg-emerald-500/70 dark:bg-[#00C896]/70 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
-                </div>
+                </SurfaceCard>
               </motion.div>
             )}
 

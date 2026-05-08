@@ -5,8 +5,6 @@ import dynamic from 'next/dynamic';
 import TopSearch from '../components/dashboard/TopSearch';
 import FloatingSidebarControls from '../components/dashboard/FloatingSidebarControls';
 import RecentAlertsOverlay from '../components/dashboard/RecentAlertsOverlay';
-import BottomNav from '../components/dashboard/BottomNav';
-import SystemSidebar from '../components/dashboard/SystemSidebar';
 import DashboardMapBootstrap from '../components/dashboard/DashboardMapBootstrap';
 import { useAppStore } from '../lib/store';
 import {
@@ -80,10 +78,8 @@ export default function V2Dashboard() {
         <DashboardMapBootstrap />
         <MapBackground />
         <TopSearch isMapPage={true} />
-        <SystemSidebar />
         <FloatingSidebarControls />
         <RecentAlertsOverlay />
-        <BottomNav />
       </div>
 
       {/* ── Desktop Right Panel (Collapsible) ── */}
@@ -141,7 +137,7 @@ export default function V2Dashboard() {
 
               {/* Stats Row */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/8">
+                <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
                   <div className="flex items-center gap-1.5">
                     <Navigation size={12} className="text-[#1A5C38] dark:text-[#00C896]" />
                     <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest">Services</span>
@@ -149,7 +145,7 @@ export default function V2Dashboard() {
                   <p className="text-2xl font-black text-slate-900 dark:text-white">{serviceCount}</p>
                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Nearby Found</p>
                 </div>
-                <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/8">
+                <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
                   <div className="flex items-center gap-1.5">
                     <AlertTriangle size={12} className="text-amber-500" />
                     <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest">Hazards</span>
@@ -168,7 +164,7 @@ export default function V2Dashboard() {
                   {nearbyRoadIssues.slice(0, 4).map((issue) => (
                     <div
                       key={issue.uuid}
-                      className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/8 hover:border-amber-500/30 transition-colors"
+                      className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-amber-500/30 transition-colors"
                     >
                       <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <AlertTriangle size={14} className="text-amber-500" />

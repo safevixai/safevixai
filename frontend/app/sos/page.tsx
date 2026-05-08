@@ -8,8 +8,6 @@ import { enqueueSOS } from '@/lib/offline-sos-queue';
 import { generateSosWhatsAppLink, generateSosSmsLink } from '@/lib/sos-share';
 import { startFamilyTracking, beginLocationBroadcast, notifyContactsViaWhatsApp } from '@/lib/live-tracking';
 import TopSearch from '@/components/dashboard/TopSearch';
-import BottomNav from '@/components/dashboard/BottomNav';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { motion, AnimatePresence } from 'motion/react';
 import { Loader2 } from 'lucide-react';
@@ -177,8 +175,6 @@ export default function EmergencyPage() {
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
 
-      <SystemSidebar />
-
       {/* -- Main Tactical HUD Canvas -- */}
       <main className="flex-1 w-full max-w-2xl mx-auto pt-28 lg:pt-24 pb-52 px-6 space-y-8 relative z-10 transition-all duration-500">
         
@@ -238,9 +234,9 @@ export default function EmergencyPage() {
                 )}
                 {(dispatchState === 'failed' || dispatchState === 'idle') && (
                   <>
-                    <span className="text-orange-500 font-black tracking-[0.1em] uppercase text-xs">SOS Activated � Use Share Links</span>
+                    <span className="text-orange-500 font-black tracking-[0.1em] uppercase text-xs">SOS Activated ?? Use Share Links</span>
                     <p className="text-slate-500 dark:text-[#e4bebc] text-xs mt-1 font-medium">
-                      {!isOnline ? 'Offline mode � share your location via WhatsApp or SMS below.' : 'Backend unreachable � share your location manually using the links below.'}
+                      {!isOnline ? 'Offline mode ?? share your location via WhatsApp or SMS below.' : 'Backend unreachable ?? share your location manually using the links below.'}
                     </p>
                   </>
                 )}
@@ -369,7 +365,7 @@ export default function EmergencyPage() {
               <div>
                 <p className="text-slate-500 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Blood Group</p>
                 <p className="text-xl font-black text-red-600 dark:text-[#ffb4aa]">
-                  {userProfile.bloodGroup || <span className="text-slate-400 text-sm font-bold normal-case">Not set � add in Profile</span>}
+                  {userProfile.bloodGroup || <span className="text-slate-400 text-sm font-bold normal-case">Not set ?? add in Profile</span>}
                 </p>
               </div>
               <div>
@@ -401,8 +397,6 @@ export default function EmergencyPage() {
           </div>
         </section>
       </main>
-
-      <BottomNav />
     </div>
   );
 }

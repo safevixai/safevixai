@@ -8,10 +8,8 @@ import {
   ChevronRight, Scale, History, MapPin, 
   ArrowRight, Activity, Zap, FileText, Info
 } from 'lucide-react';
-import BottomNav from '@/components/dashboard/BottomNav';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
 import { useTheme } from '@/components/ThemeProvider';
 import { useAppStore } from '@/lib/store';
 import useSWR from 'swr';
@@ -90,9 +88,6 @@ export default function ChallanPage() {
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
-
-      <SystemSidebar />
-
       <main className="flex-1 w-full max-w-7xl mx-auto pt-28 lg:pt-24 pb-44 px-5 sm:px-12 flex flex-col lg:grid lg:grid-cols-[1.2fr,2fr] lg:gap-14 lg:items-start transition-all duration-500">
         
         {/* ── Left Column: System Summary & Real-time Quote ── */}
@@ -312,8 +307,6 @@ export default function ChallanPage() {
            </div>
         </div>
       </main>
-
-      <BottomNav />
     </div>
   );
 }

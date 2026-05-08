@@ -255,7 +255,7 @@ const TopSearch = memo(function TopSearch({
                 data-active={isActive}
                 aria-pressed={isActive}
               >
-                <div className={`${isActive ? 'bg-[#1A5C38]/80/15' : chip.bg} p-1 rounded-full flex items-center justify-center`}>
+                <div className={`${isActive ? 'bg-[#1A5C38]/15' : chip.bg} p-1 rounded-full flex items-center justify-center`}>
                   <span
                     className={`material-symbols-outlined text-[16px] ${isActive ? 'text-[#1A5C38] dark:text-[#00C896]' : chip.color}`}
                     style={{ fontVariationSettings: "'FILL' 1" }}

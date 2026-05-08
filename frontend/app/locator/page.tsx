@@ -25,9 +25,7 @@ import {
 
 import { EmergencyMap } from '@/components/EmergencyMap';
 import { useTheme } from '@/components/ThemeProvider';
-import BottomNav from '@/components/dashboard/BottomNav';
 import DashboardMapBootstrap from '@/components/dashboard/DashboardMapBootstrap';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { fetchRoutePreview, RouteOption, RoutePreviewResponse } from '@/lib/api';
@@ -319,7 +317,7 @@ function RouteStatusCard({
 
   if (loadingLabel) {
     return (
-      <div className="rounded-lg border border-[#1A5C38]/20 bg-[#1A5C38]/8/90 p-4 shadow-sm dark:border-[#1A5C38]/20 dark:bg-[#1A5C38]/10">
+      <div className="rounded-lg border border-[#1A5C38]/20 bg-[#1A5C38]/90 p-4 shadow-sm dark:border-[#1A5C38]/20 dark:bg-[#1A5C38]/10">
         <div className="flex items-center gap-3 text-[#1A5C38] dark:text-[#00C896]">
           <Loader2 size={16} className="animate-spin" />
           <div>
@@ -487,7 +485,7 @@ function MobileLocator({
     : null;
 
   return (
-    <div className="min-h-dvh pb-48 bg-slate-50 dark:bg-[#0D1117] text-slate-900 dark:text-[#d7e3fc] font-['Inter'] selection:bg-[#1A5C38]/80/30 relative overflow-x-hidden w-full">
+    <div className="min-h-dvh pb-48 bg-slate-50 dark:bg-[#0D1117] text-slate-900 dark:text-[#d7e3fc] font-['Inter'] selection:bg-[#1A5C38]/30 relative overflow-x-hidden w-full">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Subtle Grid Pattern */}
         <div
@@ -501,7 +499,6 @@ function MobileLocator({
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={true} forceShow={true} showBack={false} />
       </div>
-      <BottomNav />
 
       <div className="pt-24 lg:pt-0 px-5 flex items-center justify-between relative z-10 hide-on-short-screen">
         <div>
@@ -622,7 +619,7 @@ function MobileLocator({
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   className={`group relative rounded-lg p-5 backdrop-blur-xl shadow-sm transition-all ${selectedServiceId === service.id
-                      ? 'border border-[#1A5C38]/30 bg-[#1A5C38]/8/90 dark:border-[#1A5C38]/40 dark:bg-[#0D1117]/70'
+                      ? 'border border-[#1A5C38]/30 bg-[#1A5C38]/90 dark:border-[#1A5C38]/40 dark:bg-[#0D1117]/70'
                       : 'border border-slate-200 bg-white/80 dark:border-white/5 dark:bg-[#1a2133]/40 hover:bg-white dark:hover:bg-[#1f283d]/60'
                     }`}
                 >
@@ -1182,8 +1179,6 @@ export default function LocatorPage() {
   return (
     <div className="w-full h-full min-h-dvh flex flex-col overflow-hidden">
       <DashboardMapBootstrap />
-      <SystemSidebar />
-
       <div className="lg:hidden flex-1 flex flex-col">
         <MobileLocator
           coords={coords}

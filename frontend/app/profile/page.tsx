@@ -11,10 +11,11 @@ import {
   Heart, Star, Edit3, Save, X, Bell
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
-import BottomNav from '@/components/dashboard/BottomNav';
 import TopSearch from '@/components/dashboard/TopSearch';
-import SystemHeader from '@/components/dashboard/SystemHeader';
-import SystemSidebar from '@/components/dashboard/SystemSidebar';
+import { TerminalHeader } from '@/components/ui/TerminalHeader';
+import { SurfaceCard } from '@/components/ui/SurfaceCard';
+import { SettingRow } from '@/components/ui/SettingRow';
+import Toggle from '@/components/dashboard/Toggle';
 import QREmergencyCard from '@/components/profile/QREmergencyCard';
 
 export default function ProfilePage() {
@@ -79,14 +80,11 @@ export default function ProfilePage() {
     <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#0A0E14] text-slate-800 dark:text-[#d7e3fc] overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
       
       {/* ── Unified Tactical Navigation Header ── */}
-      <SystemHeader title="Operator Identity Matrix" showBack={false} />
+      <TerminalHeader title="Operator Identity Matrix" subtitle="PROFILE & SETTINGS" />
       
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
-
-      <SystemSidebar />
-
       <main className="flex-1 w-full max-w-2xl mx-auto pt-28 lg:pt-24 pb-44 px-6 space-y-12 relative z-10">
         
         {/* ── Save Flash Banner ── */}
@@ -185,7 +183,7 @@ export default function ProfilePage() {
 
           {/* Vitals HUD Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-6 rounded-[2rem] bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 shadow-sm flex flex-col gap-4">
+            <SurfaceCard padding="md" className="flex flex-col gap-4">
                <div className="flex items-center justify-between">
                   <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Active Vessel</p>
                   <Car size={16} className="text-emerald-500" />
@@ -206,9 +204,9 @@ export default function ProfilePage() {
                   )}
                   <span className="text-[10px] font-bold text-slate-400 uppercase mt-1">VEHICLE_REGISTRATION</span>
                </div>
-            </div>
+            </SurfaceCard>
             
-            <div className="p-6 rounded-[2rem] bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 shadow-sm flex flex-col gap-4">
+            <SurfaceCard padding="md" className="flex flex-col gap-4">
                <div className="flex items-center justify-between">
                   <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Bio Signature</p>
                   <Heart size={16} className="text-red-500" />
@@ -229,10 +227,10 @@ export default function ProfilePage() {
                   )}
                   <span className="text-[10px] font-bold text-slate-400 uppercase mt-1">EMERGENCY_BROADCAST_ON</span>
                </div>
-            </div>
+            </SurfaceCard>
 
             {/* Emergency Contact — full width */}
-            <div className="sm:col-span-2 p-6 rounded-[2rem] bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 shadow-sm flex flex-col gap-4">
+            <SurfaceCard padding="md" className="sm:col-span-2 flex flex-col gap-4">
                <div className="flex items-center justify-between">
                   <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Emergency Contact</p>
                   <Shield size={16} className="text-[#1A5C38] dark:text-[#00C896]" />
@@ -253,7 +251,7 @@ export default function ProfilePage() {
                   )}
                   <span className="text-[10px] font-bold text-slate-400 uppercase mt-1">SOS_DISPATCH_CONTACT</span>
                </div>
-            </div>
+            </SurfaceCard>
           </div>
         </section>
 
@@ -263,29 +261,21 @@ export default function ProfilePage() {
         {/* ── Section 2: Operational Protocols ── */}
         <section className="flex flex-col gap-6">
           <h3 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-400 font-space px-2">Mission Protocol</h3>
-          <div className="flex flex-col gap-3">
+          <SurfaceCard padding="md">
              {[
                { id: 'offline', icon: <CloudOff size={18} />, label: 'V8 Offline Mode', sub: 'Process locally, no network leakage', state: offlineMode, toggle: setOfflineMode },
                { id: 'crash', icon: <ShieldAlert size={18} />, label: 'Crash Detection', sub: 'Instant satellite SOS engagement', state: crashDetectionEnabled, toggle: setCrashDetectionEnabled },
                { id: 'notify', icon: <Bell size={18} />, label: 'Push Hub', sub: 'Critical hazard & P0 alerts', state: pushNotifs, toggle: setPushNotifs },
              ].map(item => (
-               <label key={item.id} className="group flex items-center justify-between p-6 rounded-[2rem] bg-white dark:bg-white/5 border border-slate-300 dark:border-white/5 shadow-sm hover:border-emerald-500/20 transition-all cursor-pointer">
-                  <div className="flex items-center gap-5">
-                     <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${item.state ? 'bg-emerald-500/10 text-emerald-500' : 'bg-slate-50 dark:bg-white/10 text-slate-400'}`}>
-                        {item.icon}
-                     </div>
-                     <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tight">{item.label}</span>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{item.sub}</span>
-                     </div>
-                  </div>
-                  <div className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" className="sr-only peer" checked={item.state} onChange={e => item.toggle(e.target.checked)} aria-label={`Toggle ${item.label}`} />
-                    <div className="w-12 h-6 bg-slate-200 dark:bg-white/10 rounded-full peer peer-focus:ring-2 peer-focus:ring-emerald-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
-                  </div>
-               </label>
+                <SettingRow
+                  key={item.id}
+                  icon={<div className={item.state ? 'text-emerald-500' : 'text-slate-400'}>{item.icon}</div>}
+                  title={item.label}
+                  description={item.sub}
+                  rightElement={<Toggle checked={item.state} onChange={item.toggle} ariaLabel={`Toggle ${item.label}`} />}
+                />
              ))}
-          </div>
+          </SurfaceCard>
         </section>
 
         {/* ── Section 3: Achievements & Legacy ── */}
@@ -297,7 +287,7 @@ export default function ProfilePage() {
                 { title: 'First Responder', score: 'Trained', bgColor: 'bg-amber-500/10', iconColor: 'text-amber-500' },
                 { title: 'AI Master', score: 'SafeVixAI', bgColor: 'bg-[#1A5C38]/10', iconColor: 'text-[#1A5C38] dark:text-[#00C896]' },
               ].map(badge => (
-                <div key={badge.title} className="flex-shrink-0 w-40 p-6 rounded-[2.5rem] bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex flex-col items-center gap-3">
+                <SurfaceCard key={badge.title} padding="md" className="flex-shrink-0 w-40 flex flex-col items-center gap-3">
                    <div className={`p-4 rounded-xl ${badge.bgColor}`}>
                       <Star size={24} className={badge.iconColor} />
                    </div>
@@ -305,7 +295,7 @@ export default function ProfilePage() {
                      <p className="text-[10px] font-semibold text-slate-900 dark:text-white uppercase tracking-tight leading-none">{badge.title}</p>
                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{badge.score}</p>
                    </div>
-                </div>
+                </SurfaceCard>
               ))}
            </div>
         </section>
@@ -336,8 +326,6 @@ export default function ProfilePage() {
         </section>
 
       </main>
-
-      <BottomNav />
     </div>
   );
 }

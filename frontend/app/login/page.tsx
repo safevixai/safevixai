@@ -63,8 +63,8 @@ export default function LoginPage() {
 
         if (!supabaseError && data.session?.access_token) {
           const displayName =
-            (data.user?.user_metadata?.name as string | undefined) ??
-            data.user?.email ??
+            (data.user?.user_metadata?.name as string | undefined) 
+            data.user?.email 
             'SafeVixAI User';
           setAuth(data.session.access_token, displayName);
           setUserProfile({ name: displayName });
