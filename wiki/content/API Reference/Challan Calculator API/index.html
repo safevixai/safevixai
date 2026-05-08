@@ -1,0 +1,2567 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Challan Calculator API - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#challan-calculator-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Challan Calculator API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-router-and-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Router and Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challanservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChallanService
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-specific-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State-Specific Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challanservice-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChallanService Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ChallanService Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-normalization-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Normalization and Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-matching-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule Matching Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-loading-and-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Loading and Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Responses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-calculate-challan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint: Calculate Challan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint: Calculate Challan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#success-response-200-ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Response (200 OK)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-response-422-unprocessable-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Response (422 Unprocessable Entity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-models_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challanquery-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChallanQuery Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ChallanQuery Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-legal-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Legal Databases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with Legal Databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motor-vehicles-act-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Vehicles Act Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-specific-law-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State-Specific Law Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legal-reference-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legal Reference System
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-challan-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Challan Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeat-offense-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeat Offense Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-specific-override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State-Specific Override
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Issues and Solutions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invalid-violation-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalid Violation Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-vehicle-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalid Vehicle Class
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-state-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalid State Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculation-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calculation Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing and Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="challan-calculator-api">Challan Calculator API</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/api/v1/challan.py">challan.py</a>
+- <a href="file://backend/services/challan_service.py">challan_service.py</a>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/models/challan.py">challan.py</a>
+- <a href="file://backend/main.py">main.py</a>
+- <a href="file://backend/tests/test_challan.py">test_challan.py</a>
+- <a href="file://backend/scripts/data/seed_violations.py">seed_violations.py</a>
+- <a href="file://chatbot_service/data/state_overrides.csv">state_overrides.csv</a>
+- <a href="file://frontend/public/offline-data/violations.csv">violations.csv</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv">state_overrides.csv</a>
+- <a href="file://frontend/app/challan/page.tsx">page.tsx</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx">ChallanCalculator.tsx</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#api-reference">API Reference</a></li>
+<li><a href="#data-models">Data Models</a></li>
+<li><a href="#integration-with-legal-databases">Integration with Legal Databases</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>The Challan Calculator API provides real-time traffic challan calculation services for Indian road users. This API calculates penalties for traffic violations based on violation codes, vehicle classes, and state-specific regulations, integrating with the Motor Vehicles Act (MVA) 1988 and state-specific traffic laws.</p>
+<p>The system supports both online calculation using centralized data and offline calculation using preloaded datasets for environments without internet connectivity. It provides standardized fine calculations, legal references, and compliance guidance for traffic violations across all Indian states and union territories.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The Challan Calculator API is built as part of the SafeVixAI ecosystem, which combines AI-powered road safety services with traditional traffic enforcement systems. The API follows a modular architecture with clear separation between presentation, business logic, and data layers.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Frontend Layer"
+FC[Frontend Components]
+UI[Challan Calculator UI]
+end
+subgraph "API Layer"
+Router[FastAPI Router]
+Endpoint[Calculate Endpoint]
+end
+subgraph "Business Logic"
+Service[ChallanService]
+Rules[Default Rules]
+Overrides[State Overrides]
+end
+subgraph "Data Layer"
+CSV[CSV Datasets]
+Seed[Seed Scripts]
+Models[Data Models]
+end
+subgraph "External Systems"
+MVA[MVA Database]
+States[State Laws]
+Legal[Legal References]
+end
+FC --&gt; Router
+UI --&gt; Router
+Router --&gt; Service
+Service --&gt; Rules
+Service --&gt; Overrides
+Service --&gt; CSV
+Service --&gt; Models
+Rules --&gt; MVA
+Overrides --&gt; States
+CSV --&gt; Legal</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/challan.py#L10-L25">challan.py:10-25</a>
+- <a href="file://backend/services/challan_service.py#L96-L101">challan_service.py:96-101</a>
+- <a href="file://backend/main.py#L35-L50">main.py:35-50</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/challan.py#L1-L26">challan.py:1-26</a>
+- <a href="file://backend/services/challan_service.py#L1-L314">challan_service.py:1-314</a>
+- <a href="file://backend/main.py#L24-L64">main.py:24-64</a></p>
+<h2 id="core-components">Core Components</h2>
+<p>The Challan Calculator system consists of several interconnected components that work together to provide accurate and state-compliant traffic fine calculations.</p>
+<h3 id="api-router-and-endpoints">API Router and Endpoints</h3>
+<p>The API exposes a single primary endpoint <code>/api/v1/challan/calculate</code> that accepts violation details and returns calculated penalties. The router handles request validation, service dependency injection, and error response formatting.</p>
+<h3 id="challanservice">ChallanService</h3>
+<p>The core business logic component that processes violation calculations, applies state-specific overrides, and manages data loading from multiple sources including default rules, CSV files, and external datasets.</p>
+<h3 id="data-models">Data Models</h3>
+<p>Pydantic models define the request/response schemas for Challan calculations, ensuring type safety and validation across the entire API stack.</p>
+<h3 id="state-specific-integration">State-Specific Integration</h3>
+<p>The system integrates with state-specific traffic laws through configurable override mechanisms that allow individual states to modify base fines according to their regulations.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a>
+- <a href="file://backend/services/challan_service.py#L96-L149">challan_service.py:96-149</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The Challan Calculator API follows a layered architecture pattern with clear separation of concerns and dependency injection for testability and maintainability.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client Application"
+participant API as "FastAPI Router"
+participant Service as "ChallanService"
+participant Data as "Data Sources"
+participant Legal as "Legal Database"
+Client-&gt;&gt;API : POST /api/v1/challan/calculate
+API-&gt;&gt;Service : calculate(payload)
+Service-&gt;&gt;Service : validate inputs
+Service-&gt;&gt;Service : normalize violation code
+Service-&gt;&gt;Service : normalize vehicle class
+Service-&gt;&gt;Service : normalize state code
+Service-&gt;&gt;Data : load rules
+Service-&gt;&gt;Data : load overrides
+Service-&gt;&gt;Legal : apply state laws
+Service-&gt;&gt;Service : calculate base fine
+Service-&gt;&gt;Service : apply repeat offense logic
+Service-&gt;&gt;Service : apply state overrides
+Service--&gt;&gt;API : ChallanResponse
+API--&gt;&gt;Client : JSON Response
+Note over Service,Legal : State-specific overrides applied
+Note over Client,API : Validation errors return 422</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a>
+- <a href="file://backend/services/challan_service.py#L103-L149">challan_service.py:103-149</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a></p>
+<p>The architecture supports multiple data loading strategies:
+- Built-in default rules for core violations
+- CSV-based rule sets for customization
+- State-specific override configurations
+- Frontend offline datasets for disconnected operation</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L151-L166">challan_service.py:151-166</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L419-L478">seed_violations.py:419-478</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="challanservice-implementation">ChallanService Implementation</h3>
+<p>The ChallanService class encapsulates all business logic for traffic violation calculations, implementing sophisticated rule matching and state-specific override application.</p>
+<pre class="mermaid"><code>classDiagram
+class ChallanService {
++Settings settings
++ChallanRule[] rules
++StateChallanOverride[] state_overrides
++__init__(settings)
++calculate(query) ChallanResponse
++_load_optional_files() void
++_find_rule(violation_code) ChallanRule
++_find_override(state_code, violation_code, vehicle_class) StateChallanOverride
++_normalize_violation_code(value) str
++_normalize_vehicle_class(value) str
++_normalize_state_code(value) str
++_extract_fines(row, prefix) dict
++_parse_money(value) int
+}
+class ChallanRule {
++str violation_code
++str section
++str description
++dict~str,int~ base_fines
++dict~str,int~ repeat_fines
++tuple~str~ aliases
++matches(candidate) bool
++fine_for_vehicle(vehicle_class) int
++repeat_fine_for_vehicle(vehicle_class) int
+}
+class StateChallanOverride {
++str state_code
++str violation_code
++str vehicle_class
++int base_fine
++int repeat_fine
++str section
++str description
++str note
++matches(state_code, violation_code, vehicle_class) bool
+}
+ChallanService --&gt; ChallanRule : "manages"
+ChallanService --&gt; StateChallanOverride : "applies"
+ChallanRule --&gt; StateChallanOverride : "overrides"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/challan_service.py#L96-L314">challan_service.py:96-314</a>
+- <a href="file://backend/models/challan.py#L6-L53">challan.py:6-53</a></p>
+<h4 id="input-normalization-and-validation">Input Normalization and Validation</h4>
+<p>The service implements comprehensive input normalization to handle various input formats and edge cases:</p>
+<ul>
+<li><strong>Violation Code Normalization</strong>: Removes special characters and converts to uppercase</li>
+<li><strong>Vehicle Class Normalization</strong>: Supports aliases like "2W", "LMV", "HTV" and converts to canonical forms</li>
+<li><strong>State Code Normalization</strong>: Handles full names, abbreviations, and postal codes</li>
+</ul>
+<h4 id="rule-matching-algorithm">Rule Matching Algorithm</h4>
+<p>The rule matching system supports multiple violation code formats including aliases and variations:</p>
+<pre class="mermaid"><code>flowchart TD
+Start([Input Received]) --&gt; Normalize["Normalize Inputs"]
+Normalize --&gt; LoadRules["Load Available Rules"]
+LoadRules --&gt; FindRule["Find Matching Rule"]
+FindRule --&gt; RuleFound{"Rule Found?"}
+RuleFound --&gt; |No| ValidationError["Raise Validation Error"]
+RuleFound --&gt; |Yes| GetBaseFine["Get Base Fine"]
+GetBaseFine --&gt; CheckRepeat{"Is Repeat Offense?"}
+CheckRepeat --&gt; |Yes| GetRepeatFine["Get Repeat Fine"]
+CheckRepeat --&gt; |No| SkipRepeat["Skip Repeat Logic"]
+GetRepeatFine --&gt; ApplyOverrides["Apply State Overrides"]
+SkipRepeat --&gt; ApplyOverrides
+ApplyOverrides --&gt; CalculateAmount["Calculate Final Amount"]
+CalculateAmount --&gt; ReturnResult["Return Response"]
+ValidationError --&gt; End([End])
+ReturnResult --&gt; End</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/challan_service.py#L103-L149">challan_service.py:103-149</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L290-L314">challan_service.py:290-314</a>
+- <a href="file://backend/services/challan_service.py#L240-L260">challan_service.py:240-260</a></p>
+<h3 id="data-loading-and-management">Data Loading and Management</h3>
+<p>The system supports multiple data sources with precedence and fallback mechanisms:</p>
+<pre class="mermaid"><code>graph TD
+subgraph "Data Sources"
+BuiltIn[Default Rules]
+CSV[CSV Files]
+Frontend[Frontend Datasets]
+Backend[Backend Datasets]
+end
+subgraph "Loading Priority"
+Priority1[Built-in Defaults]
+Priority2[CSV Files]
+Priority3[Frontend Offline]
+Priority4[Backend Datasets]
+end
+BuiltIn --&gt; Priority1
+CSV --&gt; Priority2
+Frontend --&gt; Priority3
+Backend --&gt; Priority4
+Priority1 --&gt; Merge[Rule Merging]
+Priority2 --&gt; Merge
+Priority3 --&gt; Merge
+Priority4 --&gt; Merge
+Merge --&gt; Service[Service Ready]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/challan_service.py#L151-L166">challan_service.py:151-166</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L140-L151">seed_violations.py:140-151</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L168-L238">challan_service.py:168-238</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L237-L408">seed_violations.py:237-408</a></p>
+<h2 id="api-reference">API Reference</h2>
+<h3 id="base-url">Base URL</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/api/v1/challan
+</span></code></pre></div>
+<h3 id="authentication">Authentication</h3>
+<p>No authentication required for challan calculation endpoints.</p>
+<h3 id="rate-limiting">Rate Limiting</h3>
+<p>Not implemented at this time. Production deployments should implement appropriate rate limiting.</p>
+<h3 id="error-responses">Error Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Error Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid JSON payload</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Unprocessable Entity</td>
+<td>Validation errors for required fields</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Unexpected server errors</td>
+</tr>
+</tbody>
+</table>
+<h3 id="endpoint-calculate-challan">Endpoint: Calculate Challan</h3>
+<p><strong>HTTP Method</strong>: <code>POST</code>
+<strong>URL</strong>: <code>/api/v1/challan/calculate</code></p>
+<h4 id="request-schema">Request Schema</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>violation_code</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Traffic violation code</td>
+<td><code>"183"</code></td>
+</tr>
+<tr>
+<td><code>vehicle_class</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Vehicle classification</td>
+<td><code>"2W"</code></td>
+</tr>
+<tr>
+<td><code>state_code</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>State/UT code</td>
+<td><code>"TN"</code></td>
+</tr>
+<tr>
+<td><code>is_repeat</code></td>
+<td>boolean</td>
+<td>No</td>
+<td>Repeat offense flag</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-schema">Response Schema</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>violation_code</code></td>
+<td>string</td>
+<td>Original violation code</td>
+<td><code>"183"</code></td>
+</tr>
+<tr>
+<td><code>vehicle_class</code></td>
+<td>string</td>
+<td>Normalized vehicle class</td>
+<td><code>"two_wheeler"</code></td>
+</tr>
+<tr>
+<td><code>state_code</code></td>
+<td>string</td>
+<td>Normalized state code</td>
+<td><code>"TN"</code></td>
+</tr>
+<tr>
+<td><code>base_fine</code></td>
+<td>integer</td>
+<td>Base penalty amount</td>
+<td><code>1000</code></td>
+</tr>
+<tr>
+<td><code>repeat_fine</code></td>
+<td>integer | null</td>
+<td>Repeat offense penalty</td>
+<td><code>2000</code></td>
+</tr>
+<tr>
+<td><code>amount_due</code></td>
+<td>integer</td>
+<td>Final amount to pay</td>
+<td><code>1000</code></td>
+</tr>
+<tr>
+<td><code>section</code></td>
+<td>string</td>
+<td>Legal section reference</td>
+<td><code>"Section 183"</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Violation description</td>
+<td><code>"Speeding beyond the notified limit."</code></td>
+</tr>
+<tr>
+<td><code>state_override</code></td>
+<td>string | null</td>
+<td>State-specific override note</td>
+<td><code>"TN override applied"</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="success-response-200-ok">Success Response (200 OK)</h4>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;183&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;vehicle_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;two_wheeler&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;base_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;repeat_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;amount_due&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;section&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Section 183&quot;</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Speeding beyond the notified limit.&quot;</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">&quot;state_override&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="error-response-422-unprocessable-entity">Error Response (422 Unprocessable Entity)</h4>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Unsupported violation code \&quot;XYZ\&quot;. Known examples include 183, 185, 181, 194D, 194B, and 179.&quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a>
+- <a href="file://backend/tests/test_challan.py#L45-L58">test_challan.py:45-58</a></p>
+<h2 id="data-models_1">Data Models</h2>
+<h3 id="challanquery-model">ChallanQuery Model</h3>
+<p>The request model defines the input parameters for challan calculations:</p>
+<pre class="mermaid"><code>classDiagram
+class ChallanQuery {
++string violation_code
++string vehicle_class
++string state_code
++bool is_repeat
+}
+class ChallanResponse {
++string violation_code
++string vehicle_class
++string state_code
++int base_fine
++int repeat_fine
++int amount_due
++string section
++string description
++string state_override
+}
+ChallanQuery --&gt; ChallanResponse : "produces"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a></p>
+<h4 id="validation-rules">Validation Rules</h4>
+<p>The models implement strict validation rules:
+- All string fields have minimum and maximum length constraints
+- Vehicle class and state code are required
+- Violation code must match specific patterns
+- Repeat flag defaults to false</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a></p>
+<h2 id="integration-with-legal-databases">Integration with Legal Databases</h2>
+<h3 id="motor-vehicles-act-integration">Motor Vehicles Act Integration</h3>
+<p>The API integrates with the Motor Vehicles Act (MVA) 1988, which serves as the primary legal framework for traffic violations in India. The system maintains references to specific sections and provides legal descriptions for each violation.</p>
+<h3 id="state-specific-law-integration">State-Specific Law Integration</h3>
+<p>Each state and union territory can customize fine amounts and descriptions through override mechanisms:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Code</th>
+<th>Override Type</th>
+<th>Effective Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tamil Nadu</td>
+<td>TN</td>
+<td>Helmet violation</td>
+<td>2022-10-20</td>
+</tr>
+<tr>
+<td>Delhi</td>
+<td>DL</td>
+<td>Emergency vehicle violation</td>
+<td>2019-09-01</td>
+</tr>
+<tr>
+<td>Karnataka</td>
+<td>KA</td>
+<td>Helmet violation</td>
+<td>2019-09-01</td>
+</tr>
+<tr>
+<td>Kerala</td>
+<td>KL</td>
+<td>Helmet violation</td>
+<td>2019-12-05</td>
+</tr>
+<tr>
+<td>Maharashtra</td>
+<td>MH</td>
+<td>Speeding (Mumbai)</td>
+<td>2020-01-01</td>
+</tr>
+<tr>
+<td>Gujarat</td>
+<td>GJ</td>
+<td>Drunk driving</td>
+<td>2019-09-02</td>
+</tr>
+<tr>
+<td>Andhra Pradesh</td>
+<td>AP</td>
+<td>Helmet violation</td>
+<td>2019-10-01</td>
+</tr>
+<tr>
+<td>Telangana</td>
+<td>TS</td>
+<td>Motorcycle safety</td>
+<td>2019-09-01</td>
+</tr>
+<tr>
+<td>West Bengal</td>
+<td>WB</td>
+<td>Dangerous driving</td>
+<td>2019-09-01</td>
+</tr>
+<tr>
+<td>Uttar Pradesh</td>
+<td>UP</td>
+<td>Driving without license</td>
+<td>2019-09-01</td>
+</tr>
+</tbody>
+</table>
+<h3 id="legal-reference-system">Legal Reference System</h3>
+<p>The API maintains comprehensive legal references for each violation:</p>
+<ul>
+<li><strong>Section Numbers</strong>: Specific MVA sections violated</li>
+<li><strong>Descriptions</strong>: Clear violation descriptions</li>
+<li><strong>Maximum Penalties</strong>: Upper limits for each violation type</li>
+<li><strong>Imprisonment Terms</strong>: Potential jail time for serious offenses</li>
+<li><strong>License Points</strong>: Offense severity indicators</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a></p>
+<h2 id="examples">Examples</h2>
+<h3 id="basic-challan-calculation">Basic Challan Calculation</h3>
+<p><strong>Request</strong>:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;183&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;vehicle_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;car&quot;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN&quot;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;is_repeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p><strong>Response</strong>:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;183&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;vehicle_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;light_motor_vehicle&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;base_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">&quot;repeat_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">&quot;amount_due&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">&quot;section&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Section 183&quot;</span><span class="p">,</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Speeding beyond the notified limit.&quot;</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="nt">&quot;state_override&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h3 id="repeat-offense-calculation">Repeat Offense Calculation</h3>
+<p><strong>Request</strong>:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;185&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;vehicle_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2W&quot;</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KA&quot;</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">&quot;is_repeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p><strong>Response</strong>:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;185&quot;</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;vehicle_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;two_wheeler&quot;</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KA&quot;</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">&quot;base_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">&quot;repeat_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="p">,</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">&quot;amount_due&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="p">,</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nt">&quot;section&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Section 185&quot;</span><span class="p">,</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Driving under the influence of alcohol or drugs.&quot;</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="nt">&quot;state_override&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h3 id="state-specific-override">State-Specific Override</h3>
+<p><strong>Request</strong>:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;194D&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;vehicle_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2W&quot;</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN&quot;</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">&quot;is_repeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p><strong>Response</strong>:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;194D&quot;</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">&quot;vehicle_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;two_wheeler&quot;</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN&quot;</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">&quot;base_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="nt">&quot;repeat_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="nt">&quot;amount_due&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="nt">&quot;section&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sections 129/194D&quot;</span><span class="p">,</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Failure to wear a helmet or seat belt as required.&quot;</span><span class="p">,</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="nt">&quot;state_override&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN override applied&quot;</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/tests/test_challan.py#L6-L24">test_challan.py:6-24</a>
+- <a href="file://backend/tests/test_challan.py#L26-L43">test_challan.py:26-43</a></p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<h3 id="common-issues-and-solutions">Common Issues and Solutions</h3>
+<h4 id="invalid-violation-code">Invalid Violation Code</h4>
+<p><strong>Problem</strong>: <code>Unsupported violation code "XYZ"</code>
+<strong>Solution</strong>: Use valid MVA violation codes (e.g., "183", "185", "181", "194D", "194B", "179")</p>
+<h4 id="invalid-vehicle-class">Invalid Vehicle Class</h4>
+<p><strong>Problem</strong>: <code>vehicle_class is required</code>
+<strong>Solution</strong>: Use supported vehicle classes:
+- <code>"2W"</code> or <code>"two_wheeler"</code> for motorcycles/scooters
+- <code>"4W"</code> or <code>"light_motor_vehicle"</code> for cars/SUVs
+- <code>"HTV"</code> or <code>"heavy_vehicle"</code> for trucks
+- <code>"BUS"</code> or <code>"bus"</code> for public transport</p>
+<h4 id="invalid-state-code">Invalid State Code</h4>
+<p><strong>Problem</strong>: <code>state_code is required</code>
+<strong>Solution</strong>: Use valid state codes (e.g., "TN", "KA", "MH", "DL", "UP", "WB")</p>
+<h4 id="calculation-errors">Calculation Errors</h4>
+<p><strong>Problem</strong>: Unexpected penalty amounts
+<strong>Solution</strong>: Verify state-specific overrides are properly loaded and check for repeat offense flags</p>
+<h3 id="testing-and-validation">Testing and Validation</h3>
+<p>The API includes comprehensive test coverage for:
+- Default rule calculations
+- Input normalization and validation
+- State-specific override application
+- Error handling scenarios</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/tests/test_challan.py#L45-L58">test_challan.py:45-58</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Challan Calculator API provides a robust, scalable solution for traffic fine calculations across all Indian states and union territories. Its modular architecture, comprehensive legal integration, and flexible data loading mechanisms make it suitable for both online and offline deployment scenarios.</p>
+<p>Key strengths include:
+- <strong>Legal Compliance</strong>: Integration with MVA 1988 and state-specific laws
+- <strong>Flexibility</strong>: Support for multiple data sources and override mechanisms
+- <strong>Scalability</strong>: Stateless design enabling horizontal scaling
+- <strong>Maintainability</strong>: Clear separation of concerns and comprehensive testing</p>
+<p>The API serves as a foundation for broader road safety initiatives, supporting emergency services, driver education, and compliance monitoring systems throughout India's transportation infrastructure.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

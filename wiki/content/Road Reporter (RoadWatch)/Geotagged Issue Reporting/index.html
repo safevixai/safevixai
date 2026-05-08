@@ -1,0 +1,1949 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Geotagged Issue Reporting - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#geotagged-issue-reporting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Geotagged Issue Reporting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-report-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Report Page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gps-and-location-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPS and Location Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-geocoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse Geocoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-api-and-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend API and Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#photo-upload-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Photo Upload Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-data-processing-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial Data Processing Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="geotagged-issue-reporting">Geotagged Issue Reporting</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/app/report/page.tsx">page.tsx</a>
+- <a href="file://frontend/components/ReportForm.tsx">ReportForm.tsx</a>
+- <a href="file://frontend/lib/geolocation.ts">geolocation.ts</a>
+- <a href="file://frontend/lib/reverse-geocode.ts">reverse-geocode.ts</a>
+- <a href="file://frontend/lib/api.ts">api.ts</a>
+- <a href="file://frontend/lib/location-utils.ts">location-utils.ts</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://frontend/components/report/HazardViewfinder.tsx">HazardViewfinder.tsx</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/services/roadwatch_service.py">roadwatch_service.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/core/config.py">config.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the geotagged issue reporting system that captures real-time road hazards using GPS coordinates, allows users to select hazard types and severity ratings, optionally attach photos, and dispatch reports to the appropriate road authority. The system integrates frontend location detection, reverse geocoding, and backend validation and persistence to deliver a seamless reporting experience.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The reporting system spans the frontend Next.js application and the backend FastAPI service:
+- Frontend: A dedicated report page with a form, GPS integration, reverse geocoding, and photo upload handling.
+- Backend: API endpoints for issuing reports, authority and infrastructure lookups, and robust validation and storage.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Frontend"
+RP["Report Page&lt;br/&gt;page.tsx"]
+GF["GPS Hook&lt;br/&gt;geolocation.ts"]
+RG["Reverse Geocode&lt;br/&gt;reverse-geocode.ts"]
+API["API Client&lt;br/&gt;api.ts"]
+LU["Location Utils&lt;br/&gt;location-utils.ts"]
+HF["Hazard Viewfinder&lt;br/&gt;HazardViewfinder.tsx"]
+ST["Global Store&lt;br/&gt;store.ts"]
+end
+subgraph "Backend"
+RWP["RoadWatch API&lt;br/&gt;roadwatch.py"]
+RWS["RoadWatch Service&lt;br/&gt;roadwatch_service.py"]
+DB["PostgreSQL Models&lt;br/&gt;road_issue.py"]
+SCH["Pydantic Schemas&lt;br/&gt;schemas.py"]
+CFG["Settings &amp; Config&lt;br/&gt;config.py"]
+end
+RP --&gt; GF
+RP --&gt; API
+RP --&gt; LU
+RP --&gt; HF
+GF --&gt; ST
+API --&gt; RWP
+RWP --&gt; RWS
+RWS --&gt; DB
+RWS --&gt; SCH
+RWS --&gt; CFG</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L101-L557">page.tsx:101-557</a>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/reverse-geocode.ts#L25-L48">reverse-geocode.ts:25-48</a>
+- <a href="file://frontend/lib/api.ts#L654-L750">api.ts:654-750</a>
+- <a href="file://frontend/lib/location-utils.ts#L1-L57">location-utils.ts:1-57</a>
+- <a href="file://frontend/components/report/HazardViewfinder.tsx#L17-L105">HazardViewfinder.tsx:17-105</a>
+- <a href="file://frontend/lib/store.ts#L129-L226">store.ts:129-226</a>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">roadwatch.py:73-97</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a>
+- <a href="file://backend/models/road_issue.py#L14-L66">road_issue.py:14-66</a>
+- <a href="file://backend/models/schemas.py#L142-L161">schemas.py:142-161</a>
+- <a href="file://backend/core/config.py#L55-L63">config.py:55-63</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L101-L557">page.tsx:101-557</a>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/api.ts#L654-L750">api.ts:654-750</a>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">roadwatch.py:73-97</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Report page form: Collects hazard type, severity, notes, and optional photo; displays real-time GPS status and accuracy; submits via API.</li>
+<li>GPS hook: Handles browser geolocation permissions, accuracy thresholds, and continuous updates.</li>
+<li>Reverse geocoding: Converts coordinates to human-readable labels client-side.</li>
+<li>API client: Encapsulates backend endpoints for authority preview, infrastructure data, reverse geocoding, and report submission.</li>
+<li>Backend service: Validates inputs, resolves road authority and infrastructure, persists reports, and manages photo uploads.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L46-L61">page.tsx:46-61</a>
+- <a href="file://frontend/app/report/page.tsx#L101-L272">page.tsx:101-272</a>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/reverse-geocode.ts#L25-L48">reverse-geocode.ts:25-48</a>
+- <a href="file://frontend/lib/api.ts#L654-L750">api.ts:654-750</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The system follows a client-server pattern:
+- Frontend captures GPS coordinates and optional photo, then posts to backend.
+- Backend validates inputs, enriches with authority and infrastructure data, stores the report, and returns a structured response.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant User as "User"
+participant Page as "Report Page&lt;br/&gt;page.tsx"
+participant GPS as "GPS Hook&lt;br/&gt;geolocation.ts"
+participant API as "API Client&lt;br/&gt;api.ts"
+participant Router as "RoadWatch API&lt;br/&gt;roadwatch.py"
+participant Service as "RoadWatch Service&lt;br/&gt;roadwatch_service.py"
+participant DB as "Models&lt;br/&gt;road_issue.py"
+User-&gt;&gt;Page : Select hazard type, severity, notes
+Page-&gt;&gt;GPS : Request location
+GPS--&gt;&gt;Page : Coordinates + accuracy
+Page-&gt;&gt;API : submitReport(formData)
+API-&gt;&gt;Router : POST /api/v1/roads/report
+Router-&gt;&gt;Service : submit_report(...)
+Service-&gt;&gt;Service : Validate inputs, normalize data
+Service-&gt;&gt;DB : Insert RoadIssue record
+DB--&gt;&gt;Service : Persisted issue
+Service--&gt;&gt;Router : RoadReportResponse
+Router--&gt;&gt;API : Response
+API--&gt;&gt;Page : Submitted report details
+Page--&gt;&gt;User : Success screen with authority info</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L232-L258">page.tsx:232-258</a>
+- <a href="file://frontend/lib/geolocation.ts#L30-L108">geolocation.ts:30-108</a>
+- <a href="file://frontend/lib/api.ts#L723-L750">api.ts:723-750</a>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">roadwatch.py:73-97</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a>
+- <a href="file://backend/models/road_issue.py#L14-L40">road_issue.py:14-40</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="frontend-report-page">Frontend Report Page</h3>
+<p>The report page orchestrates the entire workflow:
+- Hazard type selection: six predefined categories (pothole, debris, waterlogging, signage, streetlight, collision scene).
+- Severity rating: 1–5 scale with contextual labels.
+- Notes: Up to 480 characters for additional context.
+- Photo upload: Optional JPEG/PNG/WebP with client-side hints.
+- GPS integration: Real-time location with accuracy indicators and approximate location warnings.
+- Authority and infrastructure preview: Loaded concurrently with reverse geocoding.
+- Submission: Validates presence of coordinates and hazard type, then posts to backend.</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["Open Report Page"]) --&gt; LoadGPS["Initialize GPS Hook"]
+LoadGPS --&gt; WaitCoords{"Coordinates Available?"}
+WaitCoords --&gt; |No| ShowGPS["Show GPS Status &amp; Accuracy"]
+WaitCoords --&gt; |Yes| FetchContext["Fetch Authority + Infrastructure + Reverse Geocode"]
+FetchContext --&gt; UpdateUI["Update Location Label, Accuracy, Road Info"]
+UpdateUI --&gt; Ready["Form Ready"]
+Ready --&gt; SelectType["Select Hazard Type"]
+Ready --&gt; SetSeverity["Set Severity (1-5)"]
+Ready --&gt; AddNotes["Add Notes (optional)"]
+Ready --&gt; AttachPhoto["Attach Photo (optional)"]
+SelectType --&gt; Submit["Submit Report"]
+SetSeverity --&gt; Submit
+AddNotes --&gt; Submit
+AttachPhoto --&gt; Submit
+Submit --&gt; Validate{"Valid Inputs?"}
+Validate --&gt; |No| ShowError["Show Validation Error"]
+Validate --&gt; |Yes| PostAPI["POST /api/v1/roads/report"]
+PostAPI --&gt; Success["Show Success Screen"]
+ShowError --&gt; Ready</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L101-L272">page.tsx:101-272</a>
+- <a href="file://frontend/app/report/page.tsx#L232-L258">page.tsx:232-258</a>
+- <a href="file://frontend/lib/geolocation.ts#L30-L108">geolocation.ts:30-108</a>
+- <a href="file://frontend/lib/api.ts#L723-L750">api.ts:723-750</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L46-L61">page.tsx:46-61</a>
+- <a href="file://frontend/app/report/page.tsx#L101-L272">page.tsx:101-272</a>
+- <a href="file://frontend/app/report/page.tsx#L232-L258">page.tsx:232-258</a></p>
+<h3 id="gps-and-location-utilities">GPS and Location Utilities</h3>
+<ul>
+<li>GPS hook requests high-accuracy location with timeouts and watches for continuous updates.</li>
+<li>Location utilities compute approximate location thresholds, format accuracy labels, and derive display labels.</li>
+<li>The store maintains global GPS state and errors.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Init["useGeolocation() init"] --&gt; CheckEnv["Check secure context"]
+CheckEnv --&gt; HasPerm["Check browser permissions"]
+HasPerm --&gt; |Denied| SetError["Set GPS error"]
+HasPerm --&gt; |Allowed| GetCurrent["getCurrentPosition()"]
+GetCurrent --&gt; Watch["watchPosition() with intervals"]
+Watch --&gt; UpdateStore["Update store gpsLocation/gpsError"]
+UpdateStore --&gt; Format["Format labels via location-utils"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L30-L108">geolocation.ts:30-108</a>
+- <a href="file://frontend/lib/location-utils.ts#L17-L56">location-utils.ts:17-56</a>
+- <a href="file://frontend/lib/store.ts#L63-L68">store.ts:63-68</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/location-utils.ts#L1-L57">location-utils.ts:1-57</a>
+- <a href="file://frontend/lib/store.ts#L129-L226">store.ts:129-226</a></p>
+<h3 id="reverse-geocoding">Reverse Geocoding</h3>
+<ul>
+<li>The frontend uses a client-side reverse geocoder to convert coordinates to a readable address without hitting the backend.</li>
+<li>The API client wraps this to return a normalized response.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Page as "Report Page"
+participant API as "API Client"
+participant RG as "Reverse Geocode"
+Page-&gt;&gt;API : reverseGeocode({lat, lon})
+API-&gt;&gt;RG : getAddressFromGPS(lat, lon)
+RG--&gt;&gt;API : {displayAddress, city, state}
+API--&gt;&gt;Page : ReverseGeocodeResponse</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/api.ts#L654-L671">api.ts:654-671</a>
+- <a href="file://frontend/lib/reverse-geocode.ts#L25-L48">reverse-geocode.ts:25-48</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/api.ts#L654-L671">api.ts:654-671</a>
+- <a href="file://frontend/lib/reverse-geocode.ts#L25-L48">reverse-geocode.ts:25-48</a></p>
+<h3 id="backend-api-and-service">Backend API and Service</h3>
+<ul>
+<li>API endpoint validates coordinates, severity range, and issue type; accepts optional photo.</li>
+<li>Service layer:</li>
+<li>Normalizes inputs and validates content types and sizes.</li>
+<li>Resolves authority and infrastructure data.</li>
+<li>Persists the report with a generated complaint reference and optional photo URL.</li>
+<li>Returns a standardized response.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class RoadWatchAPI {
++POST /api/v1/roads/report
++GET /api/v1/roads/authority
++GET /api/v1/roads/infrastructure
+}
+class RoadWatchService {
++submit_report(lat, lon, issue_type, severity, description, photo)
++get_authority(lat, lon)
++get_infrastructure(lat, lon)
+-_save_photo(issue_uuid, photo)
+}
+class RoadIssue {
++uuid
++issue_type
++severity
++location (POINT)
++location_address
++road_name
++road_type
++road_number
++photo_url
++authority_name
++authority_phone
++complaint_ref
++status
+}
+RoadWatchAPI --&gt; RoadWatchService : "calls"
+RoadWatchService --&gt; RoadIssue : "creates/persists"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">roadwatch.py:73-97</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a>
+- <a href="file://backend/models/road_issue.py#L14-L40">road_issue.py:14-40</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">roadwatch.py:73-97</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a>
+- <a href="file://backend/models/road_issue.py#L14-L40">road_issue.py:14-40</a>
+- <a href="file://backend/models/schemas.py#L142-L161">schemas.py:142-161</a></p>
+<h3 id="photo-upload-validation">Photo Upload Validation</h3>
+<ul>
+<li>Frontend enforces file type and size constraints before submission.</li>
+<li>Backend validates content type via magic bytes and enforces maximum size.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Choose["User selects photo"] --&gt; CheckType{"JPEG/PNG/WebP?"}
+CheckType --&gt; |No| RejectType["Reject: Unsupported type"]
+CheckType --&gt; |Yes| CheckSize{"&lt;= 5MB?"}
+CheckSize --&gt; |No| RejectSize["Reject: Too large"]
+CheckSize --&gt; |Yes| Upload["Upload to backend"]
+Upload --&gt; Magic["Validate magic bytes"]
+Magic --&gt; |Invalid| RejectMagic["Reject: Not a valid image"]
+Magic --&gt; |Valid| Save["Save to uploads dir"]
+Save --&gt; Done["Return photo_url"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ReportForm.tsx#L9-L10">ReportForm.tsx:9-10</a>
+- <a href="file://frontend/components/ReportForm.tsx#L28-L65">ReportForm.tsx:28-65</a>
+- <a href="file://backend/core/config.py#L59-L63">config.py:59-63</a>
+- <a href="file://backend/services/roadwatch_service.py#L275-L324">roadwatch_service.py:275-324</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ReportForm.tsx#L9-L10">ReportForm.tsx:9-10</a>
+- <a href="file://frontend/components/ReportForm.tsx#L28-L65">ReportForm.tsx:28-65</a>
+- <a href="file://backend/core/config.py#L59-L63">config.py:59-63</a>
+- <a href="file://backend/services/roadwatch_service.py#L275-L324">roadwatch_service.py:275-324</a></p>
+<h3 id="spatial-data-processing-workflow">Spatial Data Processing Workflow</h3>
+<ul>
+<li>Coordinate capture: High-accuracy GPS with continuous watching.</li>
+<li>Reverse geocoding: Client-side conversion to readable address.</li>
+<li>Authority and infrastructure matching: Backend resolves road ownership and asset metadata near the point.</li>
+<li>Persistence: Report stored with geometry and enriched attributes.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+GPS["GPS Coordinates"] --&gt; Acc["Accuracy Threshold"]
+Acc --&gt; RG["Reverse Geocode"]
+GPS --&gt; Auth["Authority Lookup"]
+GPS --&gt; Infra["Infrastructure Lookup"]
+RG --&gt; Enrich["Enriched Location"]
+Auth --&gt; Enrich
+Infra --&gt; Enrich
+Enrich --&gt; Save["Persist RoadIssue"]
+Save --&gt; Response["Return RoadReportResponse"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L74-L85">geolocation.ts:74-85</a>
+- <a href="file://frontend/lib/api.ts#L654-L721">api.ts:654-721</a>
+- <a href="file://backend/services/roadwatch_service.py#L70-L125">roadwatch_service.py:70-125</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L74-L85">geolocation.ts:74-85</a>
+- <a href="file://frontend/lib/api.ts#L654-L721">api.ts:654-721</a>
+- <a href="file://backend/services/roadwatch_service.py#L70-L125">roadwatch_service.py:70-125</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Frontend depends on:</li>
+<li>GPS hook for location acquisition.</li>
+<li>API client for backend communication.</li>
+<li>Location utilities for UX labeling.</li>
+<li>Store for shared state.</li>
+<li>Backend depends on:</li>
+<li>Pydantic schemas for request/response validation.</li>
+<li>SQLAlchemy models for persistence.</li>
+<li>Settings for configuration (upload limits, allowed types).</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+Page["page.tsx"] --&gt; Geo["geolocation.ts"]
+Page --&gt; API["api.ts"]
+Page --&gt; LU["location-utils.ts"]
+API --&gt; RWP["roadwatch.py"]
+RWP --&gt; RWS["roadwatch_service.py"]
+RWS --&gt; DB["road_issue.py"]
+RWS --&gt; SCH["schemas.py"]
+RWS --&gt; CFG["config.py"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L101-L557">page.tsx:101-557</a>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/api.ts#L654-L750">api.ts:654-750</a>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">roadwatch.py:73-97</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a>
+- <a href="file://backend/models/road_issue.py#L14-L40">road_issue.py:14-40</a>
+- <a href="file://backend/models/schemas.py#L142-L161">schemas.py:142-161</a>
+- <a href="file://backend/core/config.py#L59-L63">config.py:59-63</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/report/page.tsx#L101-L557">page.tsx:101-557</a>
+- <a href="file://frontend/lib/api.ts#L654-L750">api.ts:654-750</a>
+- <a href="file://backend/services/roadwatch_service.py#L186-L253">roadwatch_service.py:186-253</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Concurrency: The frontend fetches authority, infrastructure, and reverse geocoding in parallel to minimize latency.</li>
+<li>Caching: Backend caches authority and infrastructure lookups to reduce repeated computations.</li>
+<li>Image handling: Backend validates magic bytes and enforces size limits early to prevent wasted I/O.</li>
+<li>GPS accuracy: Users with approximate locations are warned; sharper fixes improve road ownership matching.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and resolutions:
+- GPS permission denied: Prompt users to enable location in browser settings; the hook surfaces explicit error messages.
+- Low accuracy: Approximate location warnings are shown; advise moving to an open area for better satellite reception.
+- Photo rejected:
+  - Unsupported type: Ensure JPEG/PNG/WebP.
+  - Too large: Reduce image size to under 5 MB.
+  - Invalid image: Verify the file is a valid image and not corrupted.
+- Backend validation errors: Ensure hazard type length and severity range are valid; check network connectivity and CORS settings.
+- Authority/infrastructure not found: Occasional upstream service delays; retry after a moment.</p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L63-L71">geolocation.ts:63-71</a>
+- <a href="file://frontend/lib/location-utils.ts#L17-L19">location-utils.ts:17-19</a>
+- <a href="file://frontend/components/ReportForm.tsx#L28-L38">ReportForm.tsx:28-38</a>
+- <a href="file://backend/core/config.py#L59-L63">config.py:59-63</a>
+- <a href="file://backend/services/roadwatch_service.py#L275-L324">roadwatch_service.py:275-324</a>
+- <a href="file://backend/api/v1/roadwatch.py#L95-L96">roadwatch.py:95-96</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The geotagged issue reporting system combines precise GPS capture, real-time reverse geocoding, and robust backend validation to deliver accurate, actionable reports. Its modular frontend and backend components ensure scalability, maintainability, and a smooth user experience across devices and connection states.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

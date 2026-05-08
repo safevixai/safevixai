@@ -1,0 +1,2041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Emergency Service Discovery - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#emergency-service-discovery" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Emergency Service Discovery
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tiered-radius-fallback-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tiered Radius Fallback System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-with-overpass-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with Overpass API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-categorization-and-sub-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Categorization and Sub-categories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-numbers-database-and-frontend-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Numbers Database and Frontend Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-emergency-locator-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend Emergency Locator Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-indexing-query-optimization-and-distance-calculations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial Indexing, Query Optimization, and Distance Calculations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-availability-checking-and-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-time Availability Checking and Filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-preference-handling-and-frontend-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Preference Handling and Frontend Protocols
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-seeding-and-overpass-fetching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Seeding and Overpass Fetching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="emergency-service-discovery">Emergency Service Discovery</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/services/emergency_locator.py">emergency_locator.py</a>
+- <a href="file://backend/services/overpass_service.py">overpass_service.py</a>
+- <a href="file://backend/services/local_emergency_catalog.py">local_emergency_catalog.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/core/config.py">config.py</a>
+- <a href="file://chatbot_service/data/emergency_numbers.json">emergency_numbers.json</a>
+- <a href="file://frontend/lib/emergency-numbers.ts">emergency_numbers.ts</a>
+- <a href="file://frontend/components/EmergencyNumbers.tsx">EmergencyNumbers.tsx</a>
+- <a href="file://frontend/app/emergency/page.tsx">page.tsx</a>
+- <a href="file://backend/tests/test_emergency.py">test_emergency.py</a>
+- <a href="file://scripts/data/fetch_hospitals.py">fetch_hospitals.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the Emergency Service Discovery system that locates nearby emergency services around a user’s coordinates. It covers the tiered radius fallback mechanism, integration with OpenStreetMap via Overpass API, service categorization, emergency numbers database, backend locator service, spatial indexing and query optimization, real-time availability checks, filtering, distance calculation, and user preference handling.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The Emergency Service Discovery spans backend APIs, services, models, configuration, and frontend components:
+- Backend API exposes endpoints for nearby services, SOS payloads, and emergency numbers.
+- Services implement the emergency locator, Overpass integration, and local catalog loading.
+- Models define the emergency service entity and Pydantic schemas for requests/responses.
+- Configuration controls radius steps, caching, timeouts, and Overpass endpoints.
+- Frontend integrates emergency numbers and displays protocols.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Backend"
+API["API: /api/v1/emergency/*"]
+Locator["EmergencyLocatorService"]
+Overpass["OverpassService"]
+Local["LocalEmergencyCatalog"]
+DB[("PostgreSQL&lt;br/&gt;GeoAlchemy2")]
+Redis["Redis Cache"]
+end
+subgraph "Frontend"
+FE_UI["Emergency Protocols UI"]
+FE_Num["Emergency Numbers List"]
+end
+API --&gt; Locator
+Locator --&gt; DB
+Locator --&gt; Local
+Locator --&gt; Overpass
+Locator --&gt; Redis
+FE_UI --&gt; API
+FE_Num --&gt; API</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L82">emergency.py:19-82</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/services/overpass_service.py#L24-L249">overpass_service.py:24-249</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L25-L243">local_emergency_catalog.py:25-243</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a>
+- <a href="file://backend/core/config.py#L26-L108">config.py:26-108</a>
+- <a href="file://frontend/app/emergency/page.tsx#L109-L418">page.tsx:109-418</a>
+- <a href="file://frontend/components/EmergencyNumbers.tsx#L7-L41">EmergencyNumbers.tsx:7-41</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L82">emergency.py:19-82</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/services/overpass_service.py#L24-L249">overpass_service.py:24-249</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L25-L243">local_emergency_catalog.py:25-243</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a>
+- <a href="file://backend/core/config.py#L26-L108">config.py:26-108</a>
+- <a href="file://frontend/app/emergency/page.tsx#L109-L418">page.tsx:109-418</a>
+- <a href="file://frontend/components/EmergencyNumbers.tsx#L7-L41">EmergencyNumbers.tsx:7-41</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>EmergencyLocatorService orchestrates the search across database, local CSV catalog, and Overpass fallback, with tiered radius expansion and merging results.</li>
+<li>OverpassService queries OpenStreetMap for hospitals, police, fire stations, ambulances, towing, and pharmacies.</li>
+<li>LocalEmergencyCatalog loads curated local entries from CSV files.</li>
+<li>EmergencyService model stores point geometry and attributes for services.</li>
+<li>Pydantic schemas define request/response contracts for emergency endpoints.</li>
+<li>Configuration defines radius steps, limits, timeouts, and cache TTL.</li>
+<li>Emergency numbers are loaded from JSON and exposed via API and rendered in the frontend.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/services/overpass_service.py#L24-L249">overpass_service.py:24-249</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L25-L243">local_emergency_catalog.py:25-243</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a>
+- <a href="file://backend/models/schemas.py#L36-L66">schemas.py:36-66</a>
+- <a href="file://backend/core/config.py#L26-L108">config.py:26-108</a>
+- <a href="file://chatbot_service/data/emergency_numbers.json#L1-L70">emergency_numbers.json:1-70</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The backend API delegates to EmergencyLocatorService, which:
+- Parses categories and builds radius steps from configuration.
+- Queries the spatial database with ST_DWithin and distance ordering.
+- Merges with local catalog results and optionally falls back to OverpassService.
+- Returns a unified list with source attribution and radius used.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client"
+participant API as "FastAPI /api/v1/emergency"
+participant Locator as "EmergencyLocatorService"
+participant DB as "PostgreSQL (EmergencyService)"
+participant Local as "LocalEmergencyCatalog"
+participant Overpass as "OverpassService"
+Client-&gt;&gt;API : GET /nearby?lat&amp;lon&amp;categories&amp;radius&amp;limit
+API-&gt;&gt;Locator : find_nearby(lat, lon, categories, radius, limit)
+Locator-&gt;&gt;DB : ST_DWithin + order by distance
+DB--&gt;&gt;Locator : services[]
+alt Found sufficient results
+Locator--&gt;&gt;API : EmergencyResponse(count, services, radius_used, source)
+else Merge local catalog
+Locator-&gt;&gt;Local : search_local_catalog(...)
+Local--&gt;&gt;Locator : services[]
+Locator-&gt;&gt;Locator : merge_results(database, local)
+else Fallback to Overpass
+Locator-&gt;&gt;Overpass : search_services(...)
+Overpass--&gt;&gt;Locator : services[]
+Locator-&gt;&gt;Locator : merge_results(database, overpass)
+end
+Locator--&gt;&gt;API : EmergencyResponse
+API--&gt;&gt;Client : JSON response</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L40">emergency.py:19-40</a>
+- <a href="file://backend/services/emergency_locator.py#L187-L374">emergency_locator.py:187-374</a>
+- <a href="file://backend/services/overpass_service.py#L35-L79">overpass_service.py:35-79</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L429-L447">local_emergency_catalog.py:429-447</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L40">emergency.py:19-40</a>
+- <a href="file://backend/services/emergency_locator.py#L187-L374">emergency_locator.py:187-374</a>
+- <a href="file://backend/services/overpass_service.py#L35-L79">overpass_service.py:35-79</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L429-L447">local_emergency_catalog.py:429-447</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="tiered-radius-fallback-system">Tiered Radius Fallback System</h3>
+<ul>
+<li>Radius steps are configured and can be capped by the caller’s radius parameter.</li>
+<li>The service iterates increasing radii until a minimum threshold of results is met.</li>
+<li>Results from each step are merged, prioritizing services with trauma/icu availability and 24-hour status, then distance.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Start find_nearby"]) --&gt; Parse["Parse categories&lt;br/&gt;Build radius steps"]
+Parse --&gt; Loop{"For each radius step"}
+Loop --&gt; QueryDB["Query database with ST_DWithin"]
+QueryDB --&gt; Enough{"Enough results?"}
+Enough --&gt; |Yes| Stop["Stop loop"]
+Enough --&gt; |No| Next["Next radius step"]
+Next --&gt; Loop
+Stop --&gt; MergeLocal["Merge with local catalog if needed"]
+MergeLocal --&gt; MergeOverpass["Fallback to Overpass if still insufficient"]
+MergeOverpass --&gt; Return["Return EmergencyResponse"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L178-L185">emergency_locator.py:178-185</a>
+- <a href="file://backend/services/emergency_locator.py#L316-L329">emergency_locator.py:316-329</a>
+- <a href="file://backend/services/emergency_locator.py#L330-L364">emergency_locator.py:330-364</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L178-L185">emergency_locator.py:178-185</a>
+- <a href="file://backend/services/emergency_locator.py#L316-L364">emergency_locator.py:316-364</a>
+- <a href="file://backend/core/config.py#L26-L32">config.py:26-32</a></p>
+<h3 id="integration-with-overpass-api">Integration with Overpass API</h3>
+<ul>
+<li>OverpassService constructs queries for amenities and emergency facilities around a point.</li>
+<li>It parses OSM elements, classifies categories, computes distances, and enriches attributes like trauma/icu/24h.</li>
+<li>It retries across multiple Overpass endpoints with backoff and raises a typed external service error on failure.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Locator as "EmergencyLocatorService"
+participant Overpass as "OverpassService"
+Locator-&gt;&gt;Overpass : search_services(lat, lon, radius, categories, limit)
+Overpass-&gt;&gt;Overpass : Build query (around : radius)
+Overpass-&gt;&gt;Overpass : Execute POST to Overpass endpoint
+Overpass--&gt;&gt;Overpass : JSON elements
+Overpass-&gt;&gt;Overpass : Classify tags -&gt; category
+Overpass-&gt;&gt;Overpass : Compute Haversine distance
+Overpass--&gt;&gt;Locator : List&lt;EmergencyServiceItem&gt;</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/overpass_service.py#L35-L79">overpass_service.py:35-79</a>
+- <a href="file://backend/services/overpass_service.py#L136-L151">overpass_service.py:136-151</a>
+- <a href="file://backend/services/overpass_service.py#L24-L34">overpass_service.py:24-34</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/overpass_service.py#L35-L79">overpass_service.py:35-79</a>
+- <a href="file://backend/services/overpass_service.py#L136-L151">overpass_service.py:136-151</a>
+- <a href="file://backend/services/overpass_service.py#L24-L34">overpass_service.py:24-34</a></p>
+<h3 id="service-categorization-and-sub-categories">Service Categorization and Sub-categories</h3>
+<ul>
+<li>Supported categories include hospital, police, ambulance, fire, towing, pharmacy, puncture, showroom.</li>
+<li>Sub-categories are derived from tags (e.g., trauma_centre, icu, healthcare type).</li>
+<li>Sorting prioritizes trauma availability, ICU presence, 24-hour operation, then distance.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class EmergencyServiceItem {
++string id
++string name
++string category
++string? sub_category
++float lat
++float lon
++float distance_meters
++bool has_trauma
++bool has_icu
++bool is_24hr
++string? address
++string source
+}
+class Categories {
++set supported
++sub_category mapping
+}
+EmergencyServiceItem --&gt; Categories : "category/sub_category"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py#L36-L51">schemas.py:36-51</a>
+- <a href="file://backend/services/emergency_locator.py#L28-L37">emergency_locator.py:28-37</a>
+- <a href="file://backend/services/overpass_service.py#L204-L211">overpass_service.py:204-211</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py#L10-L12">schemas.py:10-12</a>
+- <a href="file://backend/services/emergency_locator.py#L28-L37">emergency_locator.py:28-37</a>
+- <a href="file://backend/services/overpass_service.py#L184-L211">overpass_service.py:184-211</a></p>
+<h3 id="emergency-numbers-database-and-frontend-integration">Emergency Numbers Database and Frontend Integration</h3>
+<ul>
+<li>Emergency numbers are loaded from JSON and validated into a typed response.</li>
+<li>The backend exposes a static endpoint returning the numbers.</li>
+<li>Frontend renders a primary bar of emergency numbers and links to call directly.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+JSON["emergency_numbers.json"] --&gt; Loader["_load_emergency_numbers()"]
+Loader --&gt; API["GET /api/v1/emergency/numbers"]
+API --&gt; FE["EmergencyNumbers.tsx / emergency-numbers.ts"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L134-L158">emergency_locator.py:134-158</a>
+- <a href="file://chatbot_service/data/emergency_numbers.json#L1-L70">emergency_numbers.json:1-70</a>
+- <a href="file://backend/api/v1/emergency.py#L73-L75">emergency.py:73-75</a>
+- <a href="file://frontend/components/EmergencyNumbers.tsx#L7-L41">EmergencyNumbers.tsx:7-41</a>
+- <a href="file://frontend/lib/emergency-numbers.ts#L10-L124">emergency_numbers.ts:10-124</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L134-L158">emergency_locator.py:134-158</a>
+- <a href="file://chatbot_service/data/emergency_numbers.json#L1-L70">emergency_numbers.json:1-70</a>
+- <a href="file://backend/api/v1/emergency.py#L73-L75">emergency.py:73-75</a>
+- <a href="file://frontend/components/EmergencyNumbers.tsx#L7-L41">EmergencyNumbers.tsx:7-41</a>
+- <a href="file://frontend/lib/emergency-numbers.ts#L10-L124">emergency_numbers.ts:10-124</a></p>
+<h3 id="backend-emergency-locator-service">Backend Emergency Locator Service</h3>
+<ul>
+<li>Parses categories, normalizes to supported set.</li>
+<li>Builds cache key and returns cached results when available.</li>
+<li>Executes spatial query using Geography type and ST_Distance/ST_DWithin.</li>
+<li>Merges results across database, local catalog, and Overpass with deduplication and sorting.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class EmergencyLocatorService {
++parse_categories(categories) str[]
++build_radius_steps(radius) int[]
++find_nearby(db,lat,lon,categories,radius,limit) EmergencyResponse
++build_sos_payload(db,lat,lon) SosResponse
++build_city_bundle(db,city) dict
+-_find_nearby_uncached(...) EmergencyResponse
+-_query_database(...) EmergencyServiceItem[]
+-_search_local_catalog(...) EmergencyServiceItem[]
+-_merge_results(a,b,limit) EmergencyServiceItem[]
+-_distance_meters(lat1,lon1,lat2,lon2) float
+}
+class OverpassService {
++search_services(lat,lon,radius,categories,limit) EmergencyServiceItem[]
+}
+class LocalEmergencyEntry {
++id
++name
++category
++lat
++lon
++phone?
++phone_emergency?
++sub_category?
++address?
++has_trauma
++has_icu
++is_24hr
++source
+}
+EmergencyLocatorService --&gt; OverpassService : "fallback"
+EmergencyLocatorService --&gt; LocalEmergencyEntry : "uses"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/services/overpass_service.py#L24-L249">overpass_service.py:24-249</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L8-L23">local_emergency_catalog.py:8-23</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/services/overpass_service.py#L24-L249">overpass_service.py:24-249</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L8-L23">local_emergency_catalog.py:8-23</a></p>
+<h3 id="spatial-indexing-query-optimization-and-distance-calculations">Spatial Indexing, Query Optimization, and Distance Calculations</h3>
+<ul>
+<li>The EmergencyService model uses a Point geometry with a spatial index enabled.</li>
+<li>Queries leverage ST_DWithin for radius filtering and ST_Distance for accurate meters.</li>
+<li>Results are ordered by availability flags and distance to surface nearest, most capable services.</li>
+<li>Local catalog uses Haversine distance computation for fallback results.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+A["Input: lat, lon, radius_meters"] --&gt; B["ST_SetSRID(ST_MakePoint(lon,lat),4326)"]
+B --&gt; C["Cast to Geography"]
+C --&gt; D["ST_DWithin(service_geography, point_geography, radius)"]
+D --&gt; E["Order by has_trauma desc, is_24hr desc, distance asc"]
+E --&gt; F["Limit results"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/emergency.py#L26-L29">emergency.py:26-29</a>
+- <a href="file://backend/services/emergency_locator.py#L384-L398">emergency_locator.py:384-398</a>
+- <a href="file://backend/services/emergency_locator.py#L468-L479">emergency_locator.py:468-479</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/emergency.py#L26-L29">emergency.py:26-29</a>
+- <a href="file://backend/services/emergency_locator.py#L384-L398">emergency_locator.py:384-398</a>
+- <a href="file://backend/services/emergency_locator.py#L468-L479">emergency_locator.py:468-479</a></p>
+<h3 id="real-time-availability-checking-and-filtering">Real-time Availability Checking and Filtering</h3>
+<ul>
+<li>Availability flags (has_trauma, has_icu, is_24hr) are extracted from tags or dataset fields.</li>
+<li>OverpassService infers 24/7 from opening_hours and classifies sub-categories from tags.</li>
+<li>Local catalog parsing detects trauma/icu keywords and 24-hour mentions.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/overpass_service.py#L232-L237">overpass_service.py:232-237</a>
+- <a href="file://backend/services/overpass_service.py#L204-L211">overpass_service.py:204-211</a>
+- <a href="file://backend/services/local_emergency_catalog.py#L76-L87">local_emergency_catalog.py:76-87</a></p>
+<h3 id="user-preference-handling-and-frontend-protocols">User Preference Handling and Frontend Protocols</h3>
+<ul>
+<li>Frontend organizes emergency protocols by categories (Medical, Fire, Accident, Criminal).</li>
+<li>Users can filter and expand protocol cards; primary emergency numbers are prominently displayed.</li>
+<li>The SOS UI provides quick access to emergency numbers and calls.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/emergency/page.tsx#L17-L107">page.tsx:17-107</a>
+- <a href="file://frontend/components/EmergencyNumbers.tsx#L7-L41">EmergencyNumbers.tsx:7-41</a>
+- <a href="file://frontend/lib/emergency-numbers.ts#L10-L124">emergency_numbers.ts:10-124</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>API depends on EmergencyLocatorService and SQLAlchemy session.</li>
+<li>EmergencyLocatorService depends on Settings, CacheHelper, OverpassService, and local catalog loader.</li>
+<li>OverpassService depends on Settings and httpx client.</li>
+<li>Models depend on GeoAlchemy2 for Geography and spatial index.</li>
+<li>Tests validate radius fallback, merging, and error handling.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+API["API Router"] --&gt; Locator["EmergencyLocatorService"]
+Locator --&gt; Settings["Settings"]
+Locator --&gt; Cache["CacheHelper"]
+Locator --&gt; Overpass["OverpassService"]
+Locator --&gt; Local["LocalEmergencyCatalog"]
+Locator --&gt; DB["EmergencyService (ORM)"]
+Overpass --&gt; Config["Settings (HTTP/OA)"]
+Tests["Unit Tests"] --&gt; Locator
+Tests --&gt; Overpass</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L15-L16">emergency.py:15-16</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L166">emergency_locator.py:161-166</a>
+- <a href="file://backend/core/config.py#L38-L48">config.py:38-48</a>
+- <a href="file://backend/services/overpass_service.py#L25-L30">overpass_service.py:25-30</a>
+- <a href="file://backend/tests/test_emergency.py#L125-L222">test_emergency.py:125-222</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L15-L16">emergency.py:15-16</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L166">emergency_locator.py:161-166</a>
+- <a href="file://backend/core/config.py#L38-L48">config.py:38-48</a>
+- <a href="file://backend/services/overpass_service.py#L25-L30">overpass_service.py:25-30</a>
+- <a href="file://backend/tests/test_emergency.py#L125-L222">test_emergency.py:125-222</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Spatial index on the point geometry ensures efficient ST_DWithin and distance computations.</li>
+<li>Caching reduces repeated database and Overpass calls; cache TTL is configurable.</li>
+<li>Radius steps avoid overly broad queries initially; results are merged incrementally.</li>
+<li>Limiting results per step and merging with deduplication prevents excessive downstream processing.</li>
+<li>Overpass retries and backoff mitigate upstream failures and improve resilience.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and mitigations:
+- Overpass API unavailability: The service raises a typed external error; fallback merges previous results if any; otherwise, callers receive an error response.
+- Insufficient results: Verify radius steps and minimum result thresholds; increase radius or adjust categories.
+- Cache connectivity: Memory cache is used as fallback; ensure cache backend is reachable or accept degraded performance.
+- Local catalog missing: Ensure CSV files exist under the chatbot data directory; otherwise, local results are omitted.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/overpass_service.py#L123-L134">overpass_service.py:123-134</a>
+- <a href="file://backend/services/emergency_locator.py#L351-L354">emergency_locator.py:351-354</a>
+- <a href="file://backend/tests/test_emergency.py#L173-L222">test_emergency.py:173-222</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Emergency Service Discovery system combines spatial database queries, a local catalog, and Overpass fallback to deliver robust, tiered results. It supports flexible categories, real-time availability signals, and user-friendly presentation of emergency numbers and protocols. Configuration enables tuning of radius steps, limits, and caching to balance accuracy and performance.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="api-endpoints">API Endpoints</h3>
+<ul>
+<li>GET /api/v1/emergency/nearby: Returns nearby emergency services with radius-used and source attribution.</li>
+<li>GET /api/v1/emergency/sos: Builds an SOS payload including nearby services and emergency numbers.</li>
+<li>GET /api/v1/emergency/numbers: Returns emergency numbers database.</li>
+<li>GET /api/v1/emergency/safe-spaces: Returns nearby safe public spaces for women safety.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L82">emergency.py:19-82</a></p>
+<h3 id="data-seeding-and-overpass-fetching">Data Seeding and Overpass Fetching</h3>
+<ul>
+<li>Scripts exist to fetch hospitals and clinics from Overpass and normalize to CSV for ingestion.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://scripts/data/fetch_hospitals.py#L22-L34">fetch_hospitals.py:22-34</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

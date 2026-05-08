@@ -1,0 +1,2728 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+        <link rel="prev" href="../Architecture/">
+      
+      
+        <link rel="next" href="../AGENTS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Features - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#safevixai-features-specification" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Features
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-1-emergency-locator-safevixai-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 1: Emergency Locator (SafeVixAI Core)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 1: Emergency Locator (SafeVixAI Core)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f11-gps-auto-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.1 GPS Auto-Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f12-nearby-emergency-services-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.2 — Nearby Emergency Services Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f13-tiered-radius-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.3 Tiered Radius Fallback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f14-sos-whatsapp-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.4 SOS WhatsApp Share
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f15-emergency-numbers-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.5 Emergency Numbers Bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f16-crash-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.6 Crash Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f17-offline-emergency-map-25-cities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.7 Offline Emergency Map (25 Cities)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f18-first-aid-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.8 First Aid Guidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-2-ai-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 2: AI Chatbot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 2: AI Chatbot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f21-intent-detection-9-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.1 Intent Detection (9 Classes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f22-online-rag-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.2 — Online RAG Chatbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f23-offline-chatbot-webllm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.3 Offline Chatbot (WebLLM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f24-multilingual-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.4 — Multilingual Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f25-voice-inputoutput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.5 Voice Input/Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f26-conversation-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.6 — Conversation Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-3-challan-calculator-drivelegal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 3: Challan Calculator (DriveLegal)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 3: Challan Calculator (DriveLegal)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f31-fine-calculation-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F3.1 Fine Calculation Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f32-mva-ai-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F3.2 MVA AI Assistant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f33-global-traffic-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F3.3 Global Traffic Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-4-road-reporter-roadwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 4: Road Reporter (RoadWatch)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 4: Road Reporter (RoadWatch)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f41-geotagged-issue-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.1 Geotagged Issue Reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f42-in-browser-pothole-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.2 In-Browser Pothole Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f43-automatic-authority-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.3 Automatic Authority Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f44-road-infrastructure-transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.4 Road Infrastructure Transparency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f45-offline-report-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.5 Offline Report Queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f46-community-issues-map-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.6 Community Issues Map Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bonus Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f51-user-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.1 User Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f52-driving-safety-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.2 Driving Safety Score
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f53-accident-blackspot-heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.3 — Accident Blackspot Heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f54-document-expiry-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.4 Document Expiry Reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f55-non-emergency-roadside-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.5 Non-Emergency Roadside Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-6-v2-features-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 6: V2 Features (Built)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 6: V2 Features (Built)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f61-bystander-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.1 Bystander Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f62-family-live-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.2 Family Live Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f63-sharereceive-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.3 Share/Receive Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f64-mcp-server-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.4 MCP Server Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f65-waze-cifs-feed-osm-contribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.5 — Waze CIFS Feed + OSM Contribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f66-turn-by-turn-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.6 Turn-by-Turn Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f67-enhanced-chatbot-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.7 Enhanced Chatbot Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-1-emergency-locator-safevixai-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 1: Emergency Locator (SafeVixAI Core)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 1: Emergency Locator (SafeVixAI Core)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f11-gps-auto-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.1 GPS Auto-Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f12-nearby-emergency-services-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.2 — Nearby Emergency Services Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f13-tiered-radius-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.3 Tiered Radius Fallback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f14-sos-whatsapp-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.4 SOS WhatsApp Share
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f15-emergency-numbers-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.5 Emergency Numbers Bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f16-crash-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.6 Crash Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f17-offline-emergency-map-25-cities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.7 Offline Emergency Map (25 Cities)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f18-first-aid-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F1.8 First Aid Guidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-2-ai-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 2: AI Chatbot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 2: AI Chatbot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f21-intent-detection-9-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.1 Intent Detection (9 Classes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f22-online-rag-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.2 — Online RAG Chatbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f23-offline-chatbot-webllm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.3 Offline Chatbot (WebLLM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f24-multilingual-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.4 — Multilingual Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f25-voice-inputoutput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.5 Voice Input/Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f26-conversation-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F2.6 — Conversation Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-3-challan-calculator-drivelegal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 3: Challan Calculator (DriveLegal)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 3: Challan Calculator (DriveLegal)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f31-fine-calculation-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F3.1 Fine Calculation Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f32-mva-ai-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F3.2 MVA AI Assistant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f33-global-traffic-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F3.3 Global Traffic Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-4-road-reporter-roadwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 4: Road Reporter (RoadWatch)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 4: Road Reporter (RoadWatch)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f41-geotagged-issue-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.1 Geotagged Issue Reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f42-in-browser-pothole-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.2 In-Browser Pothole Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f43-automatic-authority-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.3 Automatic Authority Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f44-road-infrastructure-transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.4 Road Infrastructure Transparency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f45-offline-report-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.5 Offline Report Queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f46-community-issues-map-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F4.6 Community Issues Map Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bonus Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f51-user-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.1 User Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f52-driving-safety-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.2 Driving Safety Score
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f53-accident-blackspot-heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.3 — Accident Blackspot Heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f54-document-expiry-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.4 Document Expiry Reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f55-non-emergency-roadside-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F5.5 Non-Emergency Roadside Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-6-v2-features-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module 6: V2 Features (Built)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 6: V2 Features (Built)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f61-bystander-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.1 Bystander Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f62-family-live-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.2 Family Live Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f63-sharereceive-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.3 Share/Receive Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f64-mcp-server-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.4 MCP Server Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f65-waze-cifs-feed-osm-contribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.5 — Waze CIFS Feed + OSM Contribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f66-turn-by-turn-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.6 Turn-by-Turn Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f67-enhanced-chatbot-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F6.7 Enhanced Chatbot Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="safevixai-features-specification">SafeVixAI  Features Specification</h1>
+<h2 id="module-1-emergency-locator-safevixai-core">Module 1: Emergency Locator (SafeVixAI Core)</h2>
+<h3 id="f11-gps-auto-detection">F1.1  GPS Auto-Detection</h3>
+<ul>
+<li>Uses <code>navigator.geolocation.getCurrentPosition</code> with <code>enableHighAccuracy: true</code></li>
+<li>10-second timeout, cached for 30 seconds (maximumAge)</li>
+<li>On deny: clear error screen with instructions to enable GPS in browser settings</li>
+<li><code>watchPosition</code> auto-refreshes nearby list when user moves &gt; 500m</li>
+</ul>
+<h3 id="f12-nearby-emergency-services-map">F1.2 — Nearby Emergency Services Map</h3>
+<ul>
+<li>MapLibre GL with dark vector tiles (free, no API key)</li>
+<li>Color-coded circle markers: hospitals (red), police (blue), ambulance (red+cross), fire (orange-red), towing (amber), puncture (green)</li>
+<li>Each marker popup: name, distance, phone, <strong>Tap-to-Call</strong> button, <strong>Directions</strong> (Google Maps deep link)</li>
+<li>Services sorted: has_trauma first → is_24hr → distance ASC</li>
+<li>Each marker popup: name, distance, phone, <strong>Tap-to-Call</strong> button, <strong>Directions</strong> (Google Maps deep link)</li>
+<li>Services sorted: has_trauma first  is_24hr  distance ASC</li>
+</ul>
+<h3 id="f13-tiered-radius-fallback">F1.3  Tiered Radius Fallback</h3>
+<ul>
+<li>Sequence: 500m  1km  5km  10km  25km  50km</li>
+<li>If PostGIS &lt; 3 results: expand radius automatically</li>
+<li>If DB still sparse at 50km: Overpass API live fallback</li>
+<li>UI badge shows actual search radius used: "Showing services within 25km"</li>
+</ul>
+<h3 id="f14-sos-whatsapp-share">F1.4  SOS WhatsApp Share</h3>
+<ul>
+<li>Fixed red SOS button (bottom-right, always visible)</li>
+<li>Generated message includes: Google Maps link, GPS coordinates, nearest hospital + phone, nearest police + phone, 112/102 numbers</li>
+<li>Optional: blood group from user profile, vehicle number from user profile</li>
+<li>Opens via <code>wa.me</code> deep link  no WhatsApp API key needed</li>
+</ul>
+<h3 id="f15-emergency-numbers-bar">F1.5  Emergency Numbers Bar</h3>
+<ul>
+<li>Fixed bottom bar on every page: 112, 102, 100, 1033</li>
+<li>Standard <code>tel:</code> href  opens phone dialer instantly</li>
+<li>Long-press 3-second confirmation with countdown animation before dialling (prevents accidental calls)</li>
+</ul>
+<h3 id="f16-crash-detection">F1.6  Crash Detection</h3>
+<ul>
+<li>DeviceMotion API at ~60Hz</li>
+<li>Thresholds: Minor 6G, Moderate 15G, Severe 30G (multi-tier)</li>
+<li>Speed gate: GPS speed must be &gt; 15 km/h (prevents phone-drop false positives)</li>
+<li>Duration gate: high-G must last &lt; 500ms (crash is instantaneous, drop is prolonged)</li>
+<li>Confirmation: waits 2s for GPS speed drop corroboration</li>
+<li>20-second "Are you okay? Cancel" countdown with progress circle + haptic vibration</li>
+<li>If no cancel: auto-sends SOS + starts family tracking + opens emergency page</li>
+</ul>
+<h3 id="f17-offline-emergency-map-25-cities">F1.7  Offline Emergency Map (25 Cities)</h3>
+<ul>
+<li><code>india-emergency.geojson</code> cached by Service Worker on first load</li>
+<li><code>Turf.js nearestPoint()</code> for haversine distance filtering</li>
+<li>Orange "Offline  Cached Data" banner</li>
+<li>Cities covered: Chennai, Mumbai, Delhi, Bengaluru, Hyderabad, Kolkata, Pune, Ahmedabad, Jaipur, Lucknow, Chandigarh, Bhopal, Patna, Kochi, Coimbatore, Nagpur, Visakhapatnam, Surat, Indore, Bhubaneswar, Thiruvananthapuram, Madurai, Vadodara, Agra, Varanasi</li>
+</ul>
+<h3 id="f18-first-aid-guidance">F1.8  First Aid Guidance</h3>
+<ul>
+<li>Dedicated <code>/first-aid</code> page with 8 static scenario cards (no AI needed)</li>
+<li>Scenarios: Severe Bleeding, Unconscious Person, Suspected Fracture, Burn, Choking, Cardiac Arrest, Head Injury, Snake Bite</li>
+<li>Numbered WHO-based steps  works fully offline, zero latency</li>
+</ul>
+<hr />
+<h2 id="module-2-ai-chatbot">Module 2: AI Chatbot</h2>
+<h3 id="f21-intent-detection-9-classes">F2.1  Intent Detection (9 Classes)</h3>
+<table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>Trigger Examples</th>
+<th>Tools Called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FIND_HOSPITAL</td>
+<td>"nearest hospital", "accident injury"</td>
+<td>PostGIS + Overpass</td>
+</tr>
+<tr>
+<td>FIND_POLICE</td>
+<td>"police station", "file FIR"</td>
+<td>PostGIS + Overpass</td>
+</tr>
+<tr>
+<td>FIND_AMBULANCE</td>
+<td>"ambulance number", "102"</td>
+<td>PostGIS + Overpass</td>
+</tr>
+<tr>
+<td>FIND_TOW</td>
+<td>"towing", "car broke down"</td>
+<td>PostGIS + Overpass</td>
+</tr>
+<tr>
+<td>FIRST_AID_INFO</td>
+<td>"bleeding", "unconscious", "fracture"</td>
+<td>ChromaDB WHO RAG</td>
+</tr>
+<tr>
+<td>CHALLAN_QUERY</td>
+<td>"fine", "penalty", "drunk driving cost"</td>
+<td>DuckDB SQL</td>
+</tr>
+<tr>
+<td>ROAD_REPORT</td>
+<td>"pothole", "broken road"</td>
+<td>Overpass + Matrix</td>
+</tr>
+<tr>
+<td>LEGAL_INFO</td>
+<td>"speed limit", "Section 184"</td>
+<td>ChromaDB MV Act RAG</td>
+</tr>
+<tr>
+<td>OTHER</td>
+<td>"hello", "what can you do"</td>
+<td>Direct LLM</td>
+</tr>
+</tbody>
+</table>
+<h3 id="f22-online-rag-chatbot">F2.2 — Online RAG Chatbot</h3>
+<ul>
+<li>Custom <strong>ChatEngine</strong> with ContextAssembler + ProviderRouter</li>
+<li>Model: 9-provider fallback chain (Groq primary, 300+ tok/s)</li>
+<li>Indian languages auto-routed to <strong>Sarvam AI</strong> (30B general, 105B legal)</li>
+<li>Retriever: ChromaDB MMR search, top-5 chunks</li>
+<li>Knowledge base: MV Act 1988 + MV Amendment Act 2019 + WHO Trauma Care Guidelines</li>
+<li>Embeddings: Hash-based 384-dim vectors (<code>LocalHashEmbeddingFunction</code>) with ChromaDB cosine similarity</li>
+</ul>
+<h3 id="f23-offline-chatbot-webllm">F2.3  Offline Chatbot (WebLLM)</h3>
+<ul>
+<li>Primary model: <code>Phi-3-mini-4k-instruct-q4f16_1-MLC</code> (3.8B, ~2.2GB, WebGPU)</li>
+<li>Fallback model: <code>gemma-2b-it-q4f16_1-MLC</code> (2B, ~1.4GB, WebAssembly CPU)</li>
+<li>Runtime detection: <code>navigator.gpu.requestAdapter()</code></li>
+<li>Offline RAG: HNSWlib.js + IndexedDB with 20 pre-bundled first-aid articles</li>
+<li>Response time: 3-5s (WebGPU) or 8-15s (WebAssembly)</li>
+</ul>
+<h3 id="f24-multilingual-support">F2.4 — Multilingual Support</h3>
+<ul>
+<li>Auto-detect input language (regex-based Unicode script ranges)</li>
+<li>Indian language queries routed to <strong>Sarvam AI</strong> (trained on 4 trillion Indic tokens)</li>
+<li>English queries use default Groq/Cerebras provider</li>
+<li>Supported: English, Hindi, Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi, Gujarati, Punjabi</li>
+<li>System prompt: "Respond in the same language the user wrote in"</li>
+</ul>
+<h3 id="f25-voice-inputoutput">F2.5  Voice Input/Output</h3>
+<ul>
+<li>Input: Web Speech API (Chrome, Edge, Samsung Internet)</li>
+<li>Mic button turns red + pulses when recording, auto-stops after 5s silence</li>
+<li>Output: Web Speech Synthesis API (speaker icon per bot message)</li>
+<li>Graceful degradation: mic disabled with tooltip on Safari/Firefox</li>
+</ul>
+<h3 id="f26-conversation-memory">F2.6 — Conversation Memory</h3>
+<ul>
+<li>Redis-backed <code>ConversationMemoryStore</code> with configurable window</li>
+<li>Session TTL: 24 hours, key: <code>chat:memory:{session_id}</code></li>
+</ul>
+<hr />
+<h2 id="module-3-challan-calculator-drivelegal">Module 3: Challan Calculator (DriveLegal)</h2>
+<h3 id="f31-fine-calculation-engine">F3.1  Fine Calculation Engine</h3>
+<ul>
+<li>DuckDB SQL with LEFT JOIN: national fines + state overrides</li>
+<li><code>COALESCE(state_overrides.override_fine, violations.base_fine_inr)</code></li>
+<li>22+ MVA sections, 5 vehicle types: 2-Wheeler, LMV, Auto, Commercial, Bus</li>
+<li>Online: FastAPI <code>/api/v1/challan/calculate</code></li>
+<li>Offline: DuckDB-Wasm in browser against cached <code>violations.csv</code></li>
+</ul>
+<h3 id="f32-mva-ai-assistant">F3.2  MVA AI Assistant</h3>
+<ul>
+<li>RAG grounded in full MV Act text  section numbers always in answer</li>
+<li>Common queries: speed limits, BAC limits, documents required, helmet rules</li>
+</ul>
+<h3 id="f33-global-traffic-law">F3.3  Global Traffic Law</h3>
+<ul>
+<li>WHO Global Status Report 2023 (100+ countries) indexed in ChromaDB</li>
+<li>Answers international traffic law questions</li>
+</ul>
+<hr />
+<h2 id="module-4-road-reporter-roadwatch">Module 4: Road Reporter (RoadWatch)</h2>
+<h3 id="f41-geotagged-issue-reporting">F4.1  Geotagged Issue Reporting</h3>
+<ul>
+<li>Issue types: pothole, flooding, broken road, accident-prone zone, missing signage, no lighting</li>
+<li>Severity: 1 (minor crack) to 5 (road impassable)</li>
+<li>GPS mandatory, auto-filled; photo optional</li>
+</ul>
+<h3 id="f42-in-browser-pothole-detection">F4.2  In-Browser Pothole Detection</h3>
+<ul>
+<li>Model: <code>Xenova/yolov8n</code> ONNX (15MB, Transformers.js)</li>
+<li>Shows bounding box SVG overlay + confidence badge</li>
+<li>Detection result stored as JSONB in <code>road_issues.ai_detection</code></li>
+</ul>
+<h3 id="f43-automatic-authority-routing">F4.3  Automatic Authority Routing</h3>
+<ul>
+<li>Overpass API identifies <code>highway</code> OSM tag at report GPS coordinates</li>
+<li>Deterministic routing matrix: NHNHAI, SHState PWD, MDRDistrict Collector, villagePMGSY, urbanMunicipal Corporation</li>
+</ul>
+<h3 id="f44-road-infrastructure-transparency">F4.4  Road Infrastructure Transparency</h3>
+<ul>
+<li>Shows: contractor name, budget sanctioned/spent, exec engineer + phone, last relayed date, next maintenance</li>
+<li>Sources: data.gov.in NHAI + PMGSY OMMAS</li>
+<li>Overdue maintenance flagged in red with months overdue</li>
+</ul>
+<h3 id="f45-offline-report-queue">F4.5  Offline Report Queue</h3>
+<ul>
+<li>Report serialized to IndexedDB on submit while offline</li>
+<li>Service Worker Background Sync auto-posts on reconnect</li>
+<li>Toast: "Saved  will submit when connected"</li>
+</ul>
+<h3 id="f46-community-issues-map-layer">F4.6  Community Issues Map Layer</h3>
+<ul>
+<li>Toggle: shows all open/acknowledged road issues near user</li>
+<li>Yellow = open, Orange = acknowledged, Grey = resolved</li>
+<li>Waze-inspired: toast notification "Pothole reported 200m ahead"</li>
+</ul>
+<hr />
+<h2 id="bonus-features">Bonus Features</h2>
+<h3 id="f51-user-profile">F5.1  User Profile</h3>
+<ul>
+<li>Blood group, allergies, medical conditions (IndexedDB only  never uploaded without consent)</li>
+<li>Emergency contacts (up to 3 with names and phones)</li>
+<li>Vehicle number (included in SOS WhatsApp message)</li>
+</ul>
+<h3 id="f52-driving-safety-score">F5.2  Driving Safety Score</h3>
+<ul>
+<li>Activates when GPS speed &gt; 10 kmph</li>
+<li>Score 0-100, decrements on phone taps + overspeeding + hard braking</li>
+<li>Shareable as WhatsApp status</li>
+</ul>
+<h3 id="f53-accident-blackspot-heatmap">F5.3 — Accident Blackspot Heatmap</h3>
+<ul>
+<li>Anonymised crash detection GPS events aggregated</li>
+<li>MapLibre GL heatmap layer shows red clusters of dangerous road segments</li>
+</ul>
+<h3 id="f54-document-expiry-reminders">F5.4  Document Expiry Reminders</h3>
+<ul>
+<li>Insurance expiry, PUC certificate, driving licence renewal</li>
+<li>Browser Notification API alerts at 30 days and 7 days before expiry</li>
+</ul>
+<h3 id="f55-non-emergency-roadside-services">F5.5  Non-Emergency Roadside Services</h3>
+<ul>
+<li>Petrol pumps (amenity=fuel), ATMs, pharmacies, rest areas via Overpass API</li>
+<li>Separate "Roadside Services" tab on emergency page  creates daily active users</li>
+</ul>
+<hr />
+<h2 id="module-6-v2-features-built">Module 6: V2 Features (Built)</h2>
+<h3 id="f61-bystander-mode">F6.1  Bystander Mode</h3>
+<ul>
+<li>Route: <code>/bystander</code> — witnesses an accident and wants to help</li>
+<li>Flow: GPS auto-captured → calls 108/112 → shows first-aid steps → marks location on map</li>
+<li>No login required — accessible via QR code scan</li>
+<li>Turns every bystander into a trained first responder</li>
+</ul>
+<h3 id="f62-family-live-tracking">F6.2  Family Live Tracking</h3>
+<ul>
+<li>Route: <code>/track/[sessionId]</code> — family opens tracking link in browser</li>
+<li>Backend: <code>live_tracking</code> table in Supabase with Realtime subscriptions</li>
+<li>Victim's GPS updates every 5 seconds via <code>lib/live-tracking.ts</code></li>
+<li>Family sees: live map, speed, battery %, blood group, vehicle number</li>
+<li>Auto-expires after 4 hours for privacy</li>
+</ul>
+<h3 id="f63-sharereceive-location">F6.3  Share/Receive Location</h3>
+<ul>
+<li>Route: <code>/share-receive</code> — deep link for sharing exact location</li>
+<li>Uses <code>lib/deep-link.ts</code> + <code>lib/share.ts</code> (Web Share API)</li>
+<li>Works cross-platform without app install</li>
+</ul>
+<h3 id="f64-mcp-server-integration">F6.4  MCP Server Integration</h3>
+<ul>
+<li>Backend: <code>api/v1/mcp_server.py</code> (24KB) — exposes tools for external AI agents</li>
+<li>Allows MCP-compatible agents to query emergency services, submit reports, calculate fines</li>
+<li>Enables future integrations with Claude, GPT, and other agent frameworks</li>
+</ul>
+<h3 id="f65-waze-cifs-feed-osm-contribution">F6.5 — Waze CIFS Feed + OSM Contribution</h3>
+<ul>
+<li>Backend: <code>api/v1/waze_feed.py</code> (193 lines) — <strong>full CIFS spec compliance</strong> (Closure and Incident Feed Specification)</li>
+<li>Waze polls this endpoint every 2 minutes → reports appear as live hazard pins in <strong>both Waze AND Google Maps</strong></li>
+<li>Maps RoadWatch issue types to CIFS types/subtypes (HAZARD_ON_ROAD, ACCIDENT, ROAD_CLOSED, CONSTRUCTION)</li>
+<li>Backend: <code>services/osm_contributor.py</code> (288 lines) — pushes verified reports to OpenStreetMap via API v0.6</li>
+<li>OSM contribution flow: open changeset → create hazard node with tags → close changeset</li>
+<li>Auto-attribution: <code>created_by=SafeVixAI RoadWatch v1.0</code></li>
+</ul>
+<h3 id="f66-turn-by-turn-navigation">F6.6  Turn-by-Turn Navigation</h3>
+<ul>
+<li><code>lib/navigation-launch.ts</code> — multi-app navigation launcher</li>
+<li>Supports: Google Maps, Apple Maps, Waze, OSRM web</li>
+<li>Auto-selects best available navigation app on user's device</li>
+</ul>
+<h3 id="f67-enhanced-chatbot-tools">F6.7  Enhanced Chatbot Tools</h3>
+<ul>
+<li><code>DrugInfoTool</code> — Open FDA medical/drug information</li>
+<li><code>GeocodingTool</code> — Photon/BigDataCloud zero-key geocoding</li>
+<li><code>OpenMeteoTool</code> — Free weather with visibility/precipitation data</li>
+<li><code>What3WordsTool</code> — 3-meter precision location for emergency dispatch</li>
+</ul>
+<hr />
+<p><em>Document version: 1.1 | IIT Madras Road Safety Hackathon 2026 | Updated: May 2026</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

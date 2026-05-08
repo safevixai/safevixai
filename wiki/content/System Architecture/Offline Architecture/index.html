@@ -1,0 +1,1903 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Offline Architecture - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#offline-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Offline Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layer-1-app-shell-with-service-worker-precache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 1: App Shell with Service Worker Precache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-2-emergency-poi-data-with-geojson-and-turfjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 2: Emergency POI Data with GeoJSON and Turf.js
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-3-challan-calculator-with-duckdb-wasm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 3: Challan Calculator with DuckDB-Wasm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-4-ai-chatbot-with-webllm-phi-3-mini-and-hnswlibjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 4: AI Chatbot with WebLLM Phi-3 Mini and HNSWlib.js
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-5-road-reports-with-indexeddb-and-background-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 5: Road Reports with IndexedDB and Background Sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#appendix-a-offline-data-bundles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Offline Data Bundles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-b-offline-architecture-vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: Offline Architecture Vision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="offline-architecture">Offline Architecture</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://docs/Offline_Architecture.md">Offline_Architecture.md</a>
+- <a href="file://frontend/lib/offline-ai.ts">offline-ai.ts</a>
+- <a href="file://frontend/lib/offline-rag.ts">offline-rag.ts</a>
+- <a href="file://frontend/lib/duckdb-challan.ts">duckdb-challan.ts</a>
+- <a href="file://frontend/public/offline-data/violations.csv">violations.csv</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv">state_overrides.csv</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts">offline-sos-queue.ts</a>
+- <a href="file://frontend/next.config.js">next.config.js</a>
+- <a href="file://frontend/package.json">package.json</a>
+- <a href="file://frontend/components/OfflineChat.tsx">OfflineChat.tsx</a>
+- <a href="file://frontend/app/emergency/page.tsx">page.tsx (Emergency)</a>
+- <a href="file://frontend/app/challan/page.tsx">page.tsx (Challan)</a>
+- <a href="file://frontend/app/report/page.tsx">page.tsx (Report)</a>
+- <a href="file://frontend/lib/emergency-numbers.ts">emergency-numbers.ts</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document explains SafeVixAI’s five-layer offline-first architecture designed to remain fully functional in disconnected environments. It covers:
+- Layer 1: App shell with service worker precache
+- Layer 2: Emergency POI data with GeoJSON and Turf.js
+- Layer 3: Challan calculator backed by DuckDB-Wasm and cached CSV datasets
+- Layer 4: AI chatbot with WebLLM Phi-3 Mini and HNSWlib.js
+- Layer 5: Road reports with IndexedDB and background sync</p>
+<p>We also describe progressive enhancement, service worker integration, IndexedDB storage strategies, offline AI capabilities, vector search approaches, and performance considerations for offline scenarios.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>SafeVixAI’s frontend is a Next.js application with offline-focused libraries and data bundles. The offline architecture spans:
+- Frontend runtime and build configuration enabling WebAssembly and Web Workers
+- Local data assets for emergency numbers, challan datasets, and offline AI models
+- IndexedDB-backed offline queues for SOS events
+- UI pages orchestrating offline experiences for emergency protocols, challan estimation, and road reporting</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Frontend Runtime"
+Next["Next.js App Shell"]
+SW["Service Worker"]
+IDB["IndexedDB"]
+end
+subgraph "Offline Data Layers"
+Geo["Emergency POIs (GeoJSON)"]
+CSV["Challan Datasets (CSV)"]
+AIModel["Offline AI Models"]
+Vector["Vector Index (HNSW)"]
+end
+subgraph "UI Pages"
+Emerg["Emergency Protocols Page"]
+Challan["Challan Calculator Page"]
+Report["Road Report Page"]
+end
+Next --&gt; SW
+Next --&gt; IDB
+Next --&gt; Geo
+Next --&gt; CSV
+Next --&gt; AIModel
+Next --&gt; Vector
+Emerg --&gt; Geo
+Challan --&gt; CSV
+Report --&gt; IDB</code></pre>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a>
+- <a href="file://frontend/package.json#L14-L52">package.json:14-52</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>App shell and service worker precache: Ensures critical assets are cached for offline readiness.</li>
+<li>Emergency POI rendering: Uses GeoJSON sources and Turf.js for proximity and spatial operations.</li>
+<li>Challan calculator: Leverages DuckDB-Wasm and cached CSV datasets for offline calculations.</li>
+<li>AI chatbot: Integrates WebLLM Phi-3 Mini with HNSWlib.js for vector search and local model execution.</li>
+<li>Road reports: IndexedDB stores SOS events and triggers background sync when connectivity returns.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-L51">duckdb-challan.ts:1-51</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L1-L138">offline-sos-queue.ts:1-138</a>
+- <a href="file://frontend/app/emergency/page.tsx#L109-L107">page.tsx (Emergency):109-107</a>
+- <a href="file://frontend/app/challan/page.tsx#L45-L320">page.tsx (Challan):45-320</a>
+- <a href="file://frontend/app/report/page.tsx#L101-L557">page.tsx (Report):101-557</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The offline-first architecture progressively enhances capabilities:
+- Layer 1: Precached app shell and critical assets via service worker
+- Layer 2: Cached emergency POIs and spatial operations
+- Layer 3: Cached challan datasets and DuckDB-Wasm for calculations
+- Layer 4: WebLLM Phi-3 Mini and HNSWlib.js for offline vector search and reasoning
+- Layer 5: IndexedDB queues and background sync for road reports</p>
+<pre class="mermaid"><code>graph TB
+A["Layer 1: App Shell + Service Worker"] --&gt; B["Layer 2: Emergency POIs + Turf.js"]
+B --&gt; C["Layer 3: Challan Calculator (DuckDB-Wasm + CSV)"]
+C --&gt; D["Layer 4: AI Chatbot (WebLLM + HNSW)"]
+D --&gt; E["Layer 5: Road Reports (IndexedDB + Background Sync)"]
+subgraph "Offline Data"
+POI["POI GeoJSON"]
+CSV["violations.csv + state_overrides.csv"]
+HNSW["HNSW Index"]
+end
+B --- POI
+C --- CSV
+D --- HNSW</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-L51">duckdb-challan.ts:1-51</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L1-L138">offline-sos-queue.ts:1-138</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="layer-1-app-shell-with-service-worker-precache">Layer 1: App Shell with Service Worker Precache</h3>
+<ul>
+<li>Purpose: Cache critical assets to enable instant startup and offline browsing.</li>
+<li>Implementation highlights:</li>
+<li>Next.js Webpack configuration enables Async WebAssembly and worker loaders required by offline AI and DuckDB.</li>
+<li>Remote image hosts are whitelisted for reliable asset delivery.</li>
+<li>Progressive enhancement: If service worker is unavailable, the app still functions with cached HTML/CSS/JS.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["App Load"]) --&gt; CheckSW["Check Service Worker Support"]
+CheckSW --&gt; |Available| Precache["Precache Critical Assets"]
+CheckSW --&gt; |Unavailable| Fallback["Run Without Precache"]
+Precache --&gt; Ready(["App Ready Offline"])
+Fallback --&gt; Ready</code></pre>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a>
+- <a href="file://frontend/next.config.js#L4-L14">next.config.js:4-14</a></p>
+<h3 id="layer-2-emergency-poi-data-with-geojson-and-turfjs">Layer 2: Emergency POI Data with GeoJSON and Turf.js</h3>
+<ul>
+<li>Purpose: Display cached emergency points-of-interest (POIs) near the user’s location.</li>
+<li>Implementation highlights:</li>
+<li>POIs are rendered as a GeoJSON source and styled via MapLibre GL layers.</li>
+<li>Turf.js is used for spatial operations (e.g., distance calculations) to filter nearby facilities.</li>
+<li>UI page renders emergency protocols and SOS actions alongside POI overlays.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant UI as "Emergency Page"
+participant Map as "MapLibre Source"
+participant API as "Backend API"
+participant Turf as "Turf.js"
+UI-&gt;&gt;API : GET /api/v1/emergency/safe-spaces?lat&amp;lon&amp;radius
+API--&gt;&gt;UI : [{name,type,lat,lon}]
+UI-&gt;&gt;Map : setData(FeatureCollection)
+UI-&gt;&gt;Turf : Calculate distances/radius
+Map--&gt;&gt;UI : Render POI circles</code></pre>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/emergency/page.tsx#L19-L61">page.tsx (Emergency):19-61</a>
+- <a href="file://frontend/app/emergency/page.tsx#L19-L61">page.tsx (Emergency):19-61</a></p>
+<h3 id="layer-3-challan-calculator-with-duckdb-wasm">Layer 3: Challan Calculator with DuckDB-Wasm</h3>
+<ul>
+<li>Purpose: Compute challan fines offline using cached datasets and DuckDB-Wasm.</li>
+<li>Implementation highlights:</li>
+<li>Challan datasets are served as CSV files in the public folder.</li>
+<li>DuckDB-Wasm is initialized to query the dataset and compute penalties.</li>
+<li>UI integrates with the calculator to present results instantly.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Init["Init DuckDB-Wasm"] --&gt; LoadCSV["Load violations.csv + state_overrides.csv"]
+LoadCSV --&gt; Query["Query fine by violation + vehicle class + state"]
+Query --&gt; Result["Return base/repeat fine + section"]</code></pre>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-L51">duckdb-challan.ts:1-51</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a>
+- <a href="file://frontend/app/challan/page.tsx#L45-L320">page.tsx (Challan):45-320</a></p>
+<h3 id="layer-4-ai-chatbot-with-webllm-phi-3-mini-and-hnswlibjs">Layer 4: AI Chatbot with WebLLM Phi-3 Mini and HNSWlib.js</h3>
+<ul>
+<li>Purpose: Enable offline AI reasoning and retrieval augmented generation (RAG) for road safety queries.</li>
+<li>Implementation highlights:</li>
+<li>WebLLM loads Phi-3 Mini with progress callbacks.</li>
+<li>HNSWlib.js powers vector similarity search for local documents.</li>
+<li>Offline fallback responds deterministically using keyword matching.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant UI as "Chat UI"
+participant WebLLM as "WebLLM Engine"
+participant HNSW as "HNSWlib.js"
+participant OfflineAI as "Offline AI Engine"
+UI-&gt;&gt;WebLLM : Create engine with Phi-3 Mini
+UI-&gt;&gt;HNSW : Build/load vector index
+UI-&gt;&gt;OfflineAI : askOfflineAI(prompt, audio?)
+OfflineAI--&gt;&gt;UI : Response (model/system fallback)</code></pre>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/OfflineChat.tsx#L6-L21">OfflineChat.tsx:6-21</a>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L18-L34">offline-rag.ts:18-34</a></p>
+<h3 id="layer-5-road-reports-with-indexeddb-and-background-sync">Layer 5: Road Reports with IndexedDB and Background Sync</h3>
+<ul>
+<li>Purpose: Queue and persist SOS and report events while offline; sync when connectivity returns.</li>
+<li>Implementation highlights:</li>
+<li>IndexedDB stores SOS entries with timestamps and indexes.</li>
+<li>Background sync attempts to transmit queued events when online.</li>
+<li>UI pages coordinate offline submission and recovery.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant User as "User"
+participant UI as "Report Page"
+participant IDB as "IndexedDB"
+participant SW as "Service Worker"
+participant API as "Backend API"
+User-&gt;&gt;UI : Submit SOS/report offline
+UI-&gt;&gt;IDB : enqueueSOS(...)
+UI-&gt;&gt;SW : Request background sync
+SW--&gt;&gt;IDB : Read queued items
+SW-&gt;&gt;API : Transmit queued requests
+API--&gt;&gt;SW : Acknowledge
+SW-&gt;&gt;IDB : Delete synced items</code></pre>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L25-L138">offline-sos-queue.ts:25-138</a>
+- <a href="file://frontend/app/report/page.tsx#L232-L258">page.tsx (Report):232-258</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Build-time dependencies:</li>
+<li>@duckdb/duckdb-wasm, @huggingface/transformers, hnswlib-wasm, @mlc-ai/web-llm</li>
+<li>idb for IndexedDB</li>
+<li>@turf/turf for spatial operations</li>
+<li>Runtime dependencies:</li>
+<li>Next.js Webpack configuration enabling Async WebAssembly and worker loaders</li>
+<li>Remote image host whitelisting for asset delivery</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+Pkg["package.json deps"] --&gt; DuckDB["@duckdb/duckdb-wasm"]
+Pkg --&gt; HF["@huggingface/transformers"]
+Pkg --&gt; HNSW["hnswlib-wasm"]
+Pkg --&gt; WebLLM["@mlc-ai/web-llm"]
+Pkg --&gt; IDB["idb"]
+Pkg --&gt; Turf["@turf/turf"]
+NextCfg["next.config.js"] --&gt; WASM["Async WebAssembly + Workers"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/package.json#L14-L52">package.json:14-52</a>
+- <a href="file://frontend/next.config.js#L23-L36">next.config.js:23-36</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/package.json#L14-L52">package.json:14-52</a>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Offline AI model size and caching:</li>
+<li>Transformers.js model (~1.3 GB) is cached via browser cache storage to avoid repeated downloads.</li>
+<li>Prefer user-initiated activation to minimize bandwidth usage.</li>
+<li>DuckDB-Wasm initialization:</li>
+<li>Initialization checks ensure availability; mock initialization is used in development to align with static asset hosting.</li>
+<li>Vector search:</li>
+<li>HNSWlib.js provides efficient similarity search; local keyword fallback ensures minimal latency.</li>
+<li>IndexedDB:</li>
+<li>IndexedDB transactions and indexes reduce read/write overhead; batch sync prevents network thrashing.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Service worker and precache:</li>
+<li>If assets fail to load offline, verify Next.js Webpack configuration for Async WebAssembly and worker loader.</li>
+<li>Offline AI:</li>
+<li>If model fails to load, confirm browser support for WebGPU and that the model is cached.</li>
+<li>Use progress callbacks to diagnose download stages.</li>
+<li>DuckDB-Wasm:</li>
+<li>Ensure CSV files are served from the public directory and accessible at runtime.</li>
+<li>IndexedDB:</li>
+<li>Confirm object store creation and index usage; handle transaction failures gracefully.</li>
+<li>Background sync:</li>
+<li>If sync does not trigger, verify ServiceWorker registration and SyncManager availability.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L23-L36">next.config.js:23-36</a>
+- <a href="file://frontend/lib/offline-ai.ts#L71-L154">offline-ai.ts:71-154</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L4-L18">duckdb-challan.ts:4-18</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L29-L42">offline-sos-queue.ts:29-42</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L61-L68">offline-sos-queue.ts:61-68</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>SafeVixAI’s five-layer offline-first architecture delivers robust offline experiences across emergency protocols, challan calculations, AI-powered assistance, and road reporting. By combining service worker precaching, local data assets, IndexedDB persistence, and WebAssembly-based engines, the system remains resilient and responsive even without connectivity.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="appendix-a-offline-data-bundles">Appendix A: Offline Data Bundles</h3>
+<ul>
+<li>Emergency numbers and categories are embedded in the UI for immediate access.</li>
+<li>Challan datasets are bundled as CSV files for offline querying.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/emergency-numbers.ts#L10-L124">emergency-numbers.ts:10-124</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a></p>
+<h3 id="appendix-b-offline-architecture-vision">Appendix B: Offline Architecture Vision</h3>
+<ul>
+<li>Current state: Queued SOS events and cached chat logs stored in IndexedDB; uploads use Workbox background sync.</li>
+<li>Enterprise-scale considerations: Use object storage for images and Supabase Realtime for offline resync.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://docs/Offline_Architecture.md#L1-L23">Offline_Architecture.md:1-23</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

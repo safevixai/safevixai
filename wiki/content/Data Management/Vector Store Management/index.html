@@ -1,0 +1,2010 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Vector Store Management - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vector-store-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vector Store Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#localvectorstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LocalVectorStore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DocumentLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedding Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retriever" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retriever
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-and-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration and Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legal-document-ingestion-motor-vehicles-act-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legal Document Ingestion (Motor Vehicles Act Summary)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#road-safety-indicators-processing-who-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Safety Indicators Processing (WHO CSV)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-vehicle-act-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motor Vehicle Act Summaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship-between-vector-store-updates-and-chatbot-training-cycles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship Between Vector Store Updates and Chatbot Training Cycles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#appendix-a-index-building-and-mirroring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Index Building and Mirroring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-b-deployment-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: Deployment Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="vector-store-management">Vector Store Management</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://chatbot_service/data/build_vectorstore.py">build_vectorstore.py</a>
+- <a href="file://chatbot_service/rag/vectorstore.py">vectorstore.py</a>
+- <a href="file://chatbot_service/rag/embeddings.py">embeddings.py</a>
+- <a href="file://chatbot_service/rag/document_loader.py">document_loader.py</a>
+- <a href="file://chatbot_service/rag/retriever.py">retriever.py</a>
+- <a href="file://chatbot_service/config.py">config.py</a>
+- <a href="file://chatbot_service/requirements.txt">requirements.txt</a>
+- <a href="file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt">motor_vehicles_act_1988_summary.txt</a>
+- <a href="file://chatbot_service/data/legal/who_road_safety_india-road_safety_indicators_ind.csv">who_road_safety_india-road_safety_indicators_ind.csv</a>
+- <a href="file://chatbot_service/agent/graph.py">graph.py</a>
+- <a href="file://chatbot_service/agent/context_assembler.py">context_assembler.py</a>
+- <a href="file://chatbot_service/memory/redis_memory.py">redis_memory.py</a>
+- <a href="file://docs/AI_Instructions.md">AI_Instructions.md</a>
+- <a href="file://chatbot_docs/Deployment.md">Deployment.md</a>
+- <a href="file://backend/scripts/app/build_vectorstore.py">build_vectorstore.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document explains the vector store management system powering the AI chatbot’s retrieval-augmented generation (RAG). It covers how documents are ingested, preprocessed, chunked, indexed, queried, and maintained. It also documents the relationship between vector store updates and chatbot training cycles, performance optimization techniques, memory management with Redis, and scaling strategies. Examples include legal document ingestion (Motor Vehicles Act summary), motor vehicle act summaries, and road safety indicators processing.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The vector store stack is primarily implemented in the chatbot service under the RAG module and is orchestrated by configuration and scripts. Supporting datasets and deployment guidance are included in the repository.</p>
+<pre class="mermaid"><code>graph TB
+cfg["Config (Settings)"]
+dload["Document Loader"]
+emb["Embedding Utilities"]
+idx["Local Vector Store Index"]
+ret["Retriever"]
+svc["Agent Graph"]
+mem["Redis Memory Store"]
+cfg --&gt; dload
+cfg --&gt; idx
+dload --&gt; idx
+emb --&gt; idx
+idx --&gt; ret
+ret --&gt; svc
+svc --&gt; mem</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/config.py#L69-L113">config.py:69-113</a>
+- <a href="file://chatbot_service/rag/document_loader.py#L28-L57">document_loader.py:28-57</a>
+- <a href="file://chatbot_service/rag/embeddings.py#L9-L30">embeddings.py:9-30</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L109">vectorstore.py:20-109</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L39">retriever.py:17-39</a>
+- <a href="file://chatbot_service/agent/graph.py#L92-L97">graph.py:92-97</a>
+- <a href="file://chatbot_service/memory/redis_memory.py#L10-L90">redis_memory.py:10-90</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/config.py#L69-L113">config.py:69-113</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L109">vectorstore.py:20-109</a>
+- <a href="file://chatbot_service/rag/document_loader.py#L28-L57">document_loader.py:28-57</a>
+- <a href="file://chatbot_service/rag/embeddings.py#L9-L30">embeddings.py:9-30</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L39">retriever.py:17-39</a>
+- <a href="file://chatbot_service/data/build_vectorstore.py#L7-L11">build_vectorstore.py:7-11</a>
+- <a href="file://docs/AI_Instructions.md#L227-L276">AI_Instructions.md:227-276</a>
+- <a href="file://chatbot_docs/Deployment.md#L20-L27">Deployment.md:20-27</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>LocalVectorStore: Builds, persists, and searches a lightweight JSON-based index of normalized document chunks. Implements category scoping and scoring.</li>
+<li>DocumentLoader: Recursively scans a data directory, loads supported formats (text, markdown, JSON, CSV, PDF), normalizes text, and assigns categories.</li>
+<li>Embedding Utilities: Provides text normalization, tokenization, and a simple semantic similarity score function.</li>
+<li>Retriever: Wraps the vector store to produce a standardized RetrievalResult list for downstream use.</li>
+<li>Configuration: Defines persistent directories for the index and data, default retrieval top-k, and model identifiers.</li>
+<li>Scripts: Provide index building and mirroring to support both chatbot and backend environments.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L109">vectorstore.py:20-109</a>
+- <a href="file://chatbot_service/rag/document_loader.py#L28-L57">document_loader.py:28-57</a>
+- <a href="file://chatbot_service/rag/embeddings.py#L9-L30">embeddings.py:9-30</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L39">retriever.py:17-39</a>
+- <a href="file://chatbot_service/config.py#L69-L113">config.py:69-113</a>
+- <a href="file://chatbot_service/data/build_vectorstore.py#L7-L11">build_vectorstore.py:7-11</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The vector store pipeline transforms raw documents into a searchable index and supports intent-aware retrieval for chatbot conversations.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant CLI as "CLI Script"
+participant CFG as "Settings"
+participant IDX as "LocalVectorStore"
+participant DLOAD as "DocumentLoader"
+participant EMB as "Embeddings"
+participant RET as "Retriever"
+participant AG as "Agent Graph"
+CLI-&gt;&gt;CFG : get_settings()
+CLI-&gt;&gt;IDX : build_index(force=True)
+IDX-&gt;&gt;DLOAD : load_documents(data_dir)
+DLOAD--&gt;&gt;IDX : list[LoadedDocument]
+IDX-&gt;&gt;IDX : _chunk_document(document)
+IDX--&gt;&gt;CLI : stats()
+AG-&gt;&gt;RET : retrieve(query, top_k, scopes)
+RET-&gt;&gt;IDX : search(query, top_k, scopes)
+IDX-&gt;&gt;EMB : score_query(query, content)
+EMB--&gt;&gt;IDX : float score
+IDX--&gt;&gt;RET : list[(chunk, score)]
+RET--&gt;&gt;AG : list[RetrievalResult]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/data/build_vectorstore.py#L7-L11">build_vectorstore.py:7-11</a>
+- <a href="file://chatbot_service/config.py#L69-L113">config.py:69-113</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L36-L49">vectorstore.py:36-49</a>
+- <a href="file://chatbot_service/rag/document_loader.py#L28-L57">document_loader.py:28-57</a>
+- <a href="file://chatbot_service/rag/embeddings.py#L17-L30">embeddings.py:17-30</a>
+- <a href="file://chatbot_service/rag/retriever.py#L22-L39">retriever.py:22-39</a>
+- <a href="file://chatbot_service/agent/graph.py#L92-L97">graph.py:92-97</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="localvectorstore">LocalVectorStore</h3>
+<p>Responsibilities:
+- Build and persist a JSON index of document chunks.
+- Normalize and chunk documents by paragraphs with a length threshold.
+- Search with optional category scoping and scoring.
+- Provide statistics on chunks and categories.</p>
+<p>Key behaviors:
+- Index persistence: writes a simple_index.json in the configured persist directory.
+- Chunking: iterates over normalized paragraphs; concatenates until a length threshold is reached, then emits a chunk with a composite chunk_id.
+- Scoring: uses token overlap and a phrase bonus; adds a small length-normalized bonus.</p>
+<pre class="mermaid"><code>classDiagram
+class DocumentChunk {
++string chunk_id
++string source
++string title
++string category
++string content
+}
+class LocalVectorStore {
++Path persist_dir
++Path data_dir
++Path index_path
++ensure_index() DocumentChunk[]
++build_index(force) DocumentChunk[]
++search(query, top_k, scopes) tuple[]
++stats() dict
+-_chunk_document(document) DocumentChunk[]
+}
+LocalVectorStore --&gt; DocumentChunk : "produces"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/rag/vectorstore.py#L11-L18">vectorstore.py:11-18</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L109">vectorstore.py:20-109</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L109">vectorstore.py:20-109</a></p>
+<h3 id="documentloader">DocumentLoader</h3>
+<p>Responsibilities:
+- Discover and load supported file types from a data directory.
+- Normalize text and truncate to a maximum length.
+- Assign categories based on the relative path.
+- Support for text/markdown/json/csv/pdf (with optional PDF parsing).</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["Start"]) --&gt; Walk["Walk data_dir recursively"]
+Walk --&gt; Filter{"Is file and suffix supported?"}
+Filter --&gt; |No| Next["Skip"]
+Filter --&gt; |Yes| Read["Read content via loader"]
+Read --&gt; Normalize["Normalize text"]
+Normalize --&gt; Truncate["Truncate to max chars"]
+Truncate --&gt; Category["Derive category from path"]
+Category --&gt; Append["Append LoadedDocument"]
+Append --&gt; Loop["Next file"]
+Next --&gt; Loop
+Loop --&gt; End(["End"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/rag/document_loader.py#L28-L57">document_loader.py:28-57</a>
+- <a href="file://chatbot_service/rag/document_loader.py#L60-L93">document_loader.py:60-93</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/rag/document_loader.py#L28-L57">document_loader.py:28-57</a>
+- <a href="file://chatbot_service/rag/document_loader.py#L60-L93">document_loader.py:60-93</a></p>
+<h3 id="embedding-utilities">Embedding Utilities</h3>
+<p>Responsibilities:
+- Normalize whitespace and strip text.
+- Tokenize with a simple pattern to extract words.
+- Score query-text similarity using token overlap, phrase presence, and a length bonus.</p>
+<pre class="mermaid"><code>flowchart TD
+S(["Start"]) --&gt; N["Normalize query and text"]
+N --&gt; TQ["Tokenize query"]
+N --&gt; TT["Tokenize text"]
+TQ --&gt; CheckQ{"Empty tokens?"}
+TT --&gt; CheckT{"Empty tokens?"}
+CheckQ --&gt; |Yes| Zero["Return 0.0"]
+CheckT --&gt; |Yes| Zero
+CheckQ --&gt; |No| Overlap["Compute overlap size"]
+CheckT --&gt; |No| Overlap
+Overlap --&gt; Phrase{"Phrase present?"}
+Phrase --&gt; |Yes| Bonus["Add phrase bonus"]
+Phrase --&gt; |No| LenBonus["Add length bonus"]
+Bonus --&gt; Sum["Sum scores"]
+LenBonus --&gt; Sum
+Sum --&gt; E(["End"])
+Zero --&gt; E</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/rag/embeddings.py#L9-L30">embeddings.py:9-30</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/rag/embeddings.py#L9-L30">embeddings.py:9-30</a></p>
+<h3 id="retriever">Retriever</h3>
+<p>Responsibilities:
+- Wrap LocalVectorStore search.
+- Convert results to a standardized RetrievalResult structure.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L39">retriever.py:17-39</a></p>
+<h3 id="configuration-and-scripts">Configuration and Scripts</h3>
+<ul>
+<li>Settings define persistent directories for the index and data, default retrieval top-k, and model identifiers.</li>
+<li>Index building script orchestrates index creation and prints stats.</li>
+<li>Backend mirroring script builds a separate index and optionally mirrors it into the chatbot data directory for deployment.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/config.py#L69-L113">config.py:69-113</a>
+- <a href="file://chatbot_service/data/build_vectorstore.py#L7-L11">build_vectorstore.py:7-11</a>
+- <a href="file://backend/scripts/app/build_vectorstore.py#L133-L174">build_vectorstore.py:133-174</a></p>
+<h3 id="example-workflows">Example Workflows</h3>
+<h4 id="legal-document-ingestion-motor-vehicles-act-summary">Legal Document Ingestion (Motor Vehicles Act Summary)</h4>
+<ul>
+<li>Place the summary file under the legal data directory.</li>
+<li>Run the index builder to load, chunk, and persist the index.</li>
+<li>The retriever can scope queries to the legal domain.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391">motor_vehicles_act_1988_summary.txt:1-391</a>
+- <a href="file://chatbot_service/data/build_vectorstore.py#L7-L11">build_vectorstore.py:7-11</a></p>
+<h4 id="road-safety-indicators-processing-who-csv">Road Safety Indicators Processing (WHO CSV)</h4>
+<ul>
+<li>Place the CSV under the legal data directory.</li>
+<li>The loader converts CSV rows into readable text and normalizes content.</li>
+<li>Queries can target road safety topics with category scoping.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/data/legal/who_road_safety_india-road_safety_indicators_ind.csv#L1-L25">who_road_safety_india-road_safety_indicators_ind.csv:1-25</a>
+- <a href="file://chatbot_service/rag/document_loader.py#L69-L81">document_loader.py:69-81</a></p>
+<h4 id="motor-vehicle-act-summaries">Motor Vehicle Act Summaries</h4>
+<ul>
+<li>Summaries are ingested similarly to legal documents and indexed for retrieval.</li>
+<li>The retriever can filter by category to focus on motor vehicle-related content.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391">motor_vehicles_act_1988_summary.txt:1-391</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L74-L109">vectorstore.py:74-109</a></p>
+<h3 id="relationship-between-vector-store-updates-and-chatbot-training-cycles">Relationship Between Vector Store Updates and Chatbot Training Cycles</h3>
+<ul>
+<li>Vector store updates occur by rebuilding the index when adding new documents or changing content.</li>
+<li>The chatbot agent exposes a method to rebuild the index and return stats, enabling integration with training or maintenance cycles.</li>
+<li>Deployment strategy commits the index to git for immediate startup without build time.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Admin as "Admin/CI"
+participant Script as "Index Builder"
+participant VS as "LocalVectorStore"
+participant Agent as "Agent Graph"
+participant Deploy as "Deployment"
+Admin-&gt;&gt;Script : Trigger build
+Script-&gt;&gt;VS : build_index(force=True)
+VS--&gt;&gt;Script : stats()
+Admin-&gt;&gt;Deploy : Commit updated index
+Deploy--&gt;&gt;Agent : Startup loads persisted index
+Admin-&gt;&gt;Agent : Optional rebuild_index() during maintenance</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/data/build_vectorstore.py#L7-L11">build_vectorstore.py:7-11</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L36-L49">vectorstore.py:36-49</a>
+- <a href="file://chatbot_service/agent/graph.py#L92-L97">graph.py:92-97</a>
+- <a href="file://chatbot_docs/Deployment.md#L20-L27">Deployment.md:20-27</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/agent/graph.py#L92-L97">graph.py:92-97</a>
+- <a href="file://chatbot_docs/Deployment.md#L20-L27">Deployment.md:20-27</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>External libraries and their roles:
+- LocalHashEmbeddingFunction (hash-based): embedding model identifier and local embedding capability.
+- chromadb: vector database library referenced in documentation and requirements.
+- redis: memory store for conversation sessions.
+- pypdf/pdfplumber: optional PDF parsing for document loader.</p>
+<pre class="mermaid"><code>graph TB
+req["requirements.txt"]
+st["LocalHashEmbeddingFunction (hash-based)"]
+chroma["chromadb"]
+redis["redis"]
+pypdf["pypdf"]
+pdfplumber["pdfplumber"]
+req --&gt; st
+req --&gt; chroma
+req --&gt; redis
+req --&gt; pypdf
+req --&gt; pdfplumber</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/requirements.txt#L26-L48">requirements.txt:26-48</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/requirements.txt#L26-L48">requirements.txt:26-48</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Index size and query latency: The current implementation uses a JSON index and linear scoring. Keep top_k moderate and leverage category scoping to reduce candidate sets.</li>
+<li>Text normalization and truncation: Normalize whitespace and truncate long texts to keep scoring efficient.</li>
+<li>Chunk sizing: Paragraph-based chunking with a length threshold balances semantic coherence and retrieval granularity.</li>
+<li>Persistence strategy: Commit the index to git for instant startup; rebuild locally and redeploy when content changes.</li>
+<li>Memory management: Use Redis-backed conversation memory to offload session history and reduce in-memory footprint.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and resolutions:
+- Embedding quality and search relevance
+  - Verify tokenization and phrase bonus logic; adjust query phrasing to improve overlap.
+  - Ensure documents are normalized and truncated appropriately.
+  - Increase top_k cautiously; use category scoping to narrow results.
+- Storage optimization
+  - Confirm the index is persisted under the configured persist directory.
+  - Rebuild the index after adding new documents; mirror to the chatbot data directory for deployment.
+- Maintenance operations
+  - Rebuild the index programmatically via the agent’s rebuild method and monitor stats.
+  - Validate that the data directory contains supported file types and is readable.
+- Redis memory
+  - Monitor Redis connectivity; fallback to in-memory sessions if Redis is unavailable.
+  - Adjust TTL and ensure keys are properly prefixed for session isolation.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/rag/embeddings.py#L17-L30">embeddings.py:17-30</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L36-L49">vectorstore.py:36-49</a>
+- <a href="file://chatbot_service/agent/graph.py#L92-L97">graph.py:92-97</a>
+- <a href="file://chatbot_service/memory/redis_memory.py#L10-L90">redis_memory.py:10-90</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The vector store system combines a simple, robust index with practical document loading and retrieval to power the chatbot’s RAG. By committing the index for fast startup, scoping queries by category, and managing memory with Redis, the system achieves a balance between simplicity, performance, and maintainability. Extending the dataset and rebuilding the index enables continuous improvement of the chatbot’s knowledge base.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="appendix-a-index-building-and-mirroring">Appendix A: Index Building and Mirroring</h3>
+<ul>
+<li>Use the chatbot index builder to generate and print stats.</li>
+<li>Mirror the index into the chatbot data directory for deployment.</li>
+<li>Backend mirroring script supports multiple source directories and counts sources.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/data/build_vectorstore.py#L7-L11">build_vectorstore.py:7-11</a>
+- <a href="file://backend/scripts/app/build_vectorstore.py#L133-L174">build_vectorstore.py:133-174</a></p>
+<h3 id="appendix-b-deployment-strategy">Appendix B: Deployment Strategy</h3>
+<ul>
+<li>Commit the index to git for immediate startup on Render.</li>
+<li>Rebuild locally and redeploy when updating knowledge.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_docs/Deployment.md#L20-L27">Deployment.md:20-27</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

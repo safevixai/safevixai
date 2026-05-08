@@ -1,0 +1,2072 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data Seeding Scripts - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-seeding-scripts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Seeding Scripts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emergency-service-seeding-seed_dbpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Service Seeding (seed_db.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-emergency-seeding-seed_emergencypy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Emergency Seeding (seed_emergency.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-bundle-generation-generate_bundlespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline Bundle Generation (generate_bundles.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-bundle-builder-build_offline_bundlepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline Bundle Builder (build_offline_bundle.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-and-redis-validation-check_dbpy-check_redispy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database and Redis Validation (check_db.py, check_redis.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#official-road-data-import-import_official_road_sourcespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Official Road Data Import (import_official_road_sources.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-configpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration (config.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-locator-and-overpass-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Locator and Overpass Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-data-bootstrap-scriptsdatabootstrap_local_datapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Data Bootstrap (scripts/data/bootstrap_local_data.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blackspot-seeding-scriptsdataseed_blackspotspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blackspot Seeding (scripts/data/seed_blackspots.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables-and-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables and Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="data-seeding-scripts">Data Seeding Scripts</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/scripts/app/seed_db.py">seed_db.py</a>
+- <a href="file://backend/scripts/app/seed_emergency.py">seed_emergency.py</a>
+- <a href="file://backend/scripts/app/check_db.py">check_db.py</a>
+- <a href="file://backend/scripts/app/generate_bundles.py">generate_bundles.py</a>
+- <a href="file://backend/scripts/app/build_offline_bundle.py">build_offline_bundle.py</a>
+- <a href="file://backend/scripts/app/import_official_road_sources.py">import_official_road_sources.py</a>
+- <a href="file://backend/scripts/app/check_redis.py">check_redis.py</a>
+- <a href="file://backend/core/config.py">config.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/services/emergency_locator.py">emergency_locator.py</a>
+- <a href="file://backend/services/overpass_service.py">overpass_service.py</a>
+- <a href="file://backend/data/road_sources.example.json">road_sources.example.json</a>
+- <a href="file://scripts/data/bootstrap_local_data.py">bootstrap_local_data.py</a>
+- <a href="file://scripts/data/seed_blackspots.py">seed_blackspots.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document explains the data seeding and initialization scripts that bootstrap the SafeVixAI system. It covers:
+- Emergency service population via curated seed data and live OpenStreetMap queries
+- User data initialization patterns and system configuration setup
+- Offline bundle generation for Progressive Web App (PWA) functionality
+- Validation and automation scripts for robust bootstrapping across local development and production environments
+- Guidance on customizing seed data, extending data sources, and automating refresh cycles</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The data seeding ecosystem spans backend scripts, services, models, and frontend assets:
+- Backend scripts orchestrate database seeding, bundle generation, and validation
+- Services integrate with Overpass API and local catalogs
+- Models define the emergency services schema
+- Frontend consumes offline bundles and emergency GeoJSON
+- Scripts in the root area prepare local datasets and build cross-service assets</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Backend Scripts"
+SDB["seed_db.py"]
+SEM["seed_emergency.py"]
+CDB["check_db.py"]
+GB["generate_bundles.py"]
+BOB["build_offline_bundle.py"]
+IOR["import_official_road_sources.py"]
+CR["check_redis.py"]
+end
+subgraph "Services"
+EL["emergency_locator.py"]
+OPS["overpass_service.py"]
+end
+subgraph "Core"
+CFG["config.py"]
+EMM["models/emergency.py"]
+end
+subgraph "Frontend Assets"
+GEO["frontend/public/offline-data/*.json"]
+end
+SDB --&gt; EMM
+SEM --&gt; EMM
+SEM --&gt; OPS
+SEM --&gt; EL
+GB --&gt; EL
+BOB --&gt; EL
+IOR --&gt; CFG
+CDB --&gt; CFG
+CR --&gt; CFG
+EL --&gt; CFG
+OPS --&gt; CFG
+EL --&gt; GEO</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/scripts/app/seed_db.py#L1-L198">seed_db.py:1-198</a>
+- <a href="file://backend/scripts/app/seed_emergency.py#L1-L197">seed_emergency.py:1-197</a>
+- <a href="file://backend/scripts/app/check_db.py#L1-L31">check_db.py:1-31</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L1-L84">generate_bundles.py:1-84</a>
+- <a href="file://backend/scripts/app/build_offline_bundle.py#L1-L51">build_offline_bundle.py:1-51</a>
+- <a href="file://backend/scripts/app/import_official_road_sources.py#L1-L152">import_official_road_sources.py:1-152</a>
+- <a href="file://backend/scripts/app/check_redis.py#L1-L38">check_redis.py:1-38</a>
+- <a href="file://backend/core/config.py#L1-L181">config.py:1-181</a>
+- <a href="file://backend/models/emergency.py#L1-L45">emergency.py:1-45</a>
+- <a href="file://backend/services/emergency_locator.py#L1-L507">emergency_locator.py:1-507</a>
+- <a href="file://backend/services/overpass_service.py#L1-L249">overpass_service.py:1-249</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/seed_db.py#L1-L198">seed_db.py:1-198</a>
+- <a href="file://backend/scripts/app/seed_emergency.py#L1-L197">seed_emergency.py:1-197</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L1-L84">generate_bundles.py:1-84</a>
+- <a href="file://backend/scripts/app/build_offline_bundle.py#L1-L51">build_offline_bundle.py:1-51</a>
+- <a href="file://backend/services/emergency_locator.py#L1-L507">emergency_locator.py:1-507</a>
+- <a href="file://backend/services/overpass_service.py#L1-L249">overpass_service.py:1-249</a>
+- <a href="file://backend/core/config.py#L1-L181">config.py:1-181</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Seed database script: Inserts curated emergency services into the database with upsert semantics and structured metadata.</li>
+<li>Emergency seeding script: Fetches live emergency services from Overpass API, normalizes and upserts them, and optionally exports offline bundles and GeoJSON.</li>
+<li>Bundle generation automation: Builds offline city bundles for PWA consumption, with filtering and rate-limiting safeguards.</li>
+<li>Database and Redis checks: Validates connectivity and table presence for quick bootstrap verification.</li>
+<li>Official road data importer: Downloads and normalizes government road datasets using a manifest file.</li>
+<li>Configuration: Centralized settings for database, caching, timeouts, and offline bundle directories.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/seed_db.py#L147-L198">seed_db.py:147-198</a>
+- <a href="file://backend/scripts/app/seed_emergency.py#L70-L197">seed_emergency.py:70-197</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L16-L84">generate_bundles.py:16-84</a>
+- <a href="file://backend/scripts/app/check_db.py#L8-L31">check_db.py:8-31</a>
+- <a href="file://backend/scripts/app/check_redis.py#L7-L38">check_redis.py:7-38</a>
+- <a href="file://backend/scripts/app/import_official_road_sources.py#L120-L152">import_official_road_sources.py:120-152</a>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The seeding workflow integrates three primary paths:
+- Curated seed insertion: Fast, deterministic baseline for key cities
+- Live Overpass ingestion: Dynamic sourcing of emergency services around city centers
+- Offline bundle assembly: Aggregation of database, local catalog, and Overpass fallback into city-specific JSON bundles for PWA</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Dev as "Developer"
+participant Seed as "seed_emergency.py"
+participant Ops as "overpass_service.py"
+participant DB as "PostgreSQL"
+participant Cache as "Redis"
+participant Bundler as "generate_bundles.py"
+Dev-&gt;&gt;Seed : Run with --city/--group
+Seed-&gt;&gt;Ops : search_services(lat, lon, radius, categories, limit)
+Ops--&gt;&gt;Seed : List[EmergencyServiceItem]
+Seed-&gt;&gt;DB : Upsert emergency_services
+Seed--&gt;&gt;Dev : Inserted/refreshed rows
+Dev-&gt;&gt;Bundler : Run with --cities
+Bundler-&gt;&gt;Cache : Build city bundle (database + local + overpass)
+Bundler--&gt;&gt;Dev : {city}.json offline bundle</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/scripts/app/seed_emergency.py#L70-L150">seed_emergency.py:70-150</a>
+- <a href="file://backend/services/overpass_service.py#L35-L79">overpass_service.py:35-79</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L16-L69">generate_bundles.py:16-69</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="emergency-service-seeding-seed_dbpy">Emergency Service Seeding (seed_db.py)</h3>
+<p>Purpose:
+- Populate emergency services for major Indian metro cities using curated seed data
+- Upsert records with conflict resolution on osm_id
+- Attach structured metadata for downstream categorization and display</p>
+<p>Key behaviors:
+- Validates seed row count and raises on mismatch
+- Converts coordinates to PostGIS POINT geometry
+- Sets standardized fields including category, sub-category, ratings, and availability flags
+- Uses SQLAlchemy insert with on-conflict update for idempotent seeding</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["seed_emergency_services"]) --&gt; Build["_build_rows() validates count&lt;br/&gt;maps fields to ORM dict"]
+Build --&gt; Upsert["SQLAlchemy insert(...).on_conflict_do_update(index_elements=['osm_id'], set_=...)"]
+Upsert --&gt; Commit["Commit transaction"]
+Commit --&gt; Done(["Return row count"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/scripts/app/seed_db.py#L88-L182">seed_db.py:88-182</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/seed_db.py#L34-L182">seed_db.py:34-182</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a></p>
+<h3 id="live-emergency-seeding-seed_emergencypy">Live Emergency Seeding (seed_emergency.py)</h3>
+<p>Purpose:
+- Seed emergency services from Overpass API for a configurable set of cities or groups
+- Export per-city offline JSON and/or a combined GeoJSON for frontend</p>
+<p>Key behaviors:
+- Accepts city filters and predefined city groups
+- Queries Overpass for amenities and related tags, classifies categories, computes distances
+- Upserts into the database with conflict resolution on osm_id
+- Optionally writes offline JSON and GeoJSON FeatureCollection</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant CLI as "CLI"
+participant Script as "seed_emergency.py"
+participant Overpass as "OverpassService"
+participant DB as "PostgreSQL"
+CLI-&gt;&gt;Script : Parse args (--city, --group, --limit, --export-offline)
+Script-&gt;&gt;Overpass : search_services(lat, lon, radius, categories, limit)
+Overpass--&gt;&gt;Script : List[EmergencyServiceItem]
+Script-&gt;&gt;DB : insert(...).on_conflict_do_update(...)
+Script--&gt;&gt;CLI : Printed stats and optional offline exports</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/scripts/app/seed_emergency.py#L152-L197">seed_emergency.py:152-197</a>
+- <a href="file://backend/services/overpass_service.py#L35-L79">overpass_service.py:35-79</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/seed_emergency.py#L19-L197">seed_emergency.py:19-197</a>
+- <a href="file://backend/services/overpass_service.py#L24-L135">overpass_service.py:24-135</a></p>
+<h3 id="offline-bundle-generation-generate_bundlespy">Offline Bundle Generation (generate_bundles.py)</h3>
+<p>Purpose:
+- Generate city-specific offline bundles for PWA by combining database, local catalog, and Overpass fallback
+- Respect rate limits and support filtering by city list</p>
+<p>Key behaviors:
+- Creates output directories if missing
+- Iterates over offline city centers, builds bundles, and writes JSON files
+- Logs success/error per city and closes resources cleanly</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["generate_bundles"]) --&gt; Init["Load settings, create cache, init OverpassService"]
+Init --&gt; Cities["Resolve city list (filter if provided)"]
+Cities --&gt; Loop{"For each city"}
+Loop --&gt; Build["locator.build_city_bundle(db, city)"]
+Build --&gt; Write["Write {city}.json to offline_bundle_dir"]
+Write --&gt; Sleep["Sleep between iterations for rate limiting"]
+Sleep --&gt; Loop
+Loop --&gt; |Done| Close["Close cache and Overpass client"]
+Close --&gt; End(["Log summary"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/scripts/app/generate_bundles.py#L16-L84">generate_bundles.py:16-84</a>
+- <a href="file://backend/services/emergency_locator.py#L241-L299">emergency_locator.py:241-299</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/generate_bundles.py#L16-L84">generate_bundles.py:16-84</a>
+- <a href="file://backend/services/emergency_locator.py#L241-L299">emergency_locator.py:241-299</a></p>
+<h3 id="offline-bundle-builder-build_offline_bundlepy">Offline Bundle Builder (build_offline_bundle.py)</h3>
+<p>Purpose:
+- Build offline bundles from the current database state for selected cities or groups</p>
+<p>Key behaviors:
+- Accepts city arguments and group selections
+- Delegates to EmergencyLocatorService to assemble and persist bundles</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/build_offline_bundle.py#L14-L47">build_offline_bundle.py:14-47</a>
+- <a href="file://backend/services/emergency_locator.py#L241-L299">emergency_locator.py:241-299</a></p>
+<h3 id="database-and-redis-validation-check_dbpy-check_redispy">Database and Redis Validation (check_db.py, check_redis.py)</h3>
+<p>Purpose:
+- Verify database connectivity and table presence
+- Verify Redis connectivity, TLS handling, and basic operations</p>
+<p>Key behaviors:
+- Asynchronous connection checks
+- Printouts for tables and row counts
+- Ping/set/get operations and memory info retrieval</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/check_db.py#L8-L31">check_db.py:8-31</a>
+- <a href="file://backend/scripts/app/check_redis.py#L7-L38">check_redis.py:7-38</a></p>
+<h3 id="official-road-data-import-import_official_road_sourcespy">Official Road Data Import (import_official_road_sources.py)</h3>
+<p>Purpose:
+- Download and import official road datasets using a manifest file
+- Normalize records, enforce global uniqueness, and batch-import into the database</p>
+<p>Key behaviors:
+- Supports URLs and local paths, API keys via environment variables
+- Handles ZIP extraction and member selection
+- Normalizes records with defaults and prefixes road IDs for uniqueness</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/import_official_road_sources.py#L21-L152">import_official_road_sources.py:21-152</a>
+- <a href="file://backend/data/road_sources.example.json#L1-L69">road_sources.example.json:1-69</a></p>
+<h3 id="configuration-configpy">Configuration (config.py)</h3>
+<p>Purpose:
+- Centralize environment-driven settings for database, caches, timeouts, and offline bundle directories</p>
+<p>Key behaviors:
+- Normalizes database URLs and supports asyncpg dialect
+- Provides offline bundle directory with normalization
+- Exposes lists for Overpass URLs and emergency radius steps</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a></p>
+<h3 id="emergency-locator-and-overpass-integration">Emergency Locator and Overpass Integration</h3>
+<p>Purpose:
+- Provide radius-based queries, merge database, local catalog, and Overpass results
+- Compute distances, sort by priority, and assemble offline bundles</p>
+<p>Key behaviors:
+- City center definitions and offline city sets
+- Radius steps and minimum result thresholds
+- Merge logic to avoid duplicates across sources</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L39-L115">emergency_locator.py:39-115</a>
+- <a href="file://backend/services/emergency_locator.py#L187-L374">emergency_locator.py:187-374</a>
+- <a href="file://backend/services/emergency_locator.py#L375-L422">emergency_locator.py:375-422</a>
+- <a href="file://backend/services/overpass_service.py#L136-L249">overpass_service.py:136-249</a></p>
+<h3 id="local-data-bootstrap-scriptsdatabootstrap_local_datapy">Local Data Bootstrap (scripts/data/bootstrap_local_data.py)</h3>
+<p>Purpose:
+- Synchronize and export local assets for chatbot and frontend, including:
+  - Challan rules and state overrides
+  - First aid bundle
+  - Emergency GeoJSON
+  - National highways CSV
+  - Optional PMGSY GeoJSON export</p>
+<p>Key behaviors:
+- Loads backend modules dynamically for shared logic
+- Computes nearest city for entries and writes GeoJSON features
+- Writes CSVs to both backend and frontend offline directories</p>
+<p><strong>Section sources</strong>
+- <a href="file://scripts/data/bootstrap_local_data.py#L1-L557">bootstrap_local_data.py:1-557</a></p>
+<h3 id="blackspot-seeding-scriptsdataseed_blackspotspy">Blackspot Seeding (scripts/data/seed_blackspots.py)</h3>
+<p>Purpose:
+- Normalize accident CSVs into a blackspot preview CSV and GeoJSON for offline mapping</p>
+<p>Key behaviors:
+- Discover CSVs recursively, normalize fields, compute severity scores
+- Write CSV and GeoJSON outputs with consistent structure</p>
+<p><strong>Section sources</strong>
+- <a href="file://scripts/data/seed_blackspots.py#L160-L190">seed_blackspots.py:160-190</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>High-level dependencies among key components:</p>
+<pre class="mermaid"><code>graph LR
+CFG["config.py"] --&gt; SDB["seed_db.py"]
+CFG --&gt; SEM["seed_emergency.py"]
+CFG --&gt; GB["generate_bundles.py"]
+CFG --&gt; BOB["build_offline_bundle.py"]
+CFG --&gt; IOR["import_official_road_sources.py"]
+EMM["models/emergency.py"] --&gt; SDB
+EMM --&gt; SEM
+OPS["overpass_service.py"] --&gt; SEM
+OPS --&gt; GB
+OPS --&gt; BOB
+EL["emergency_locator.py"] --&gt; GB
+EL --&gt; BOB
+CR["check_redis.py"] --&gt; CFG
+CDB["check_db.py"] --&gt; CFG</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a>
+- <a href="file://backend/scripts/app/seed_db.py#L1-L30">seed_db.py:1-30</a>
+- <a href="file://backend/scripts/app/seed_emergency.py#L1-L20">seed_emergency.py:1-20</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L4-L8">generate_bundles.py:4-8</a>
+- <a href="file://backend/scripts/app/build_offline_bundle.py#L6-L11">build_offline_bundle.py:6-11</a>
+- <a href="file://backend/scripts/app/import_official_road_sources.py#L13-L18">import_official_road_sources.py:13-18</a>
+- <a href="file://backend/models/emergency.py#L1-L10">emergency.py:1-10</a>
+- <a href="file://backend/services/overpass_service.py#L9-L11">overpass_service.py:9-11</a>
+- <a href="file://backend/services/emergency_locator.py#L12-L25">emergency_locator.py:12-25</a>
+- <a href="file://backend/scripts/app/check_redis.py#L7-L16">check_redis.py:7-16</a>
+- <a href="file://backend/scripts/app/check_db.py#L8-L10">check_db.py:8-10</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a>
+- <a href="file://backend/scripts/app/seed_db.py#L1-L30">seed_db.py:1-30</a>
+- <a href="file://backend/scripts/app/seed_emergency.py#L1-L20">seed_emergency.py:1-20</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L4-L8">generate_bundles.py:4-8</a>
+- <a href="file://backend/scripts/app/build_offline_bundle.py#L6-L11">build_offline_bundle.py:6-11</a>
+- <a href="file://backend/scripts/app/import_official_road_sources.py#L13-L18">import_official_road_sources.py:13-18</a>
+- <a href="file://backend/models/emergency.py#L1-L10">emergency.py:1-10</a>
+- <a href="file://backend/services/overpass_service.py#L9-L11">overpass_service.py:9-11</a>
+- <a href="file://backend/services/emergency_locator.py#L12-L25">emergency_locator.py:12-25</a>
+- <a href="file://backend/scripts/app/check_redis.py#L7-L16">check_redis.py:7-16</a>
+- <a href="file://backend/scripts/app/check_db.py#L8-L10">check_db.py:8-10</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Database pooling and timeouts: Tune pool size and timeouts for concurrent operations during bulk inserts and bundle generation.</li>
+<li>Overpass rate limiting: Respect upstream limits; the generator includes sleeps between cities.</li>
+<li>Caching: Use Redis TTL settings to balance freshness and performance for emergency queries.</li>
+<li>Indexing: Ensure spatial and categorical indexes are present for fast radius queries.</li>
+<li>Batch sizes: Prefer upsert with server-side conflict resolution to minimize round trips.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and remedies:
+- Database connectivity failures:
+  - Verify DATABASE_URL normalization and asyncpg dialect
+  - Use check_db.py to list tables and row counts
+- Redis connectivity and TLS:
+  - Ensure REDIS_URL uses rediss:// for managed services
+  - Use check_redis.py to validate ping/set/get and memory info
+- Overpass API errors:
+  - Confirm OVERPASS_URLS and request timeouts
+  - Monitor retry attempts and fallback behavior
+- Missing offline bundles:
+  - Confirm offline_bundle_dir exists and is writable
+  - Re-run generate_bundles.py with city filters if needed
+- Data import errors:
+  - Validate manifest file and API keys
+  - Inspect extracted members and record normalization logs</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/check_db.py#L8-L31">check_db.py:8-31</a>
+- <a href="file://backend/scripts/app/check_redis.py#L7-L38">check_redis.py:7-38</a>
+- <a href="file://backend/core/config.py#L86-L108">config.py:86-108</a>
+- <a href="file://backend/services/overpass_service.py#L123-L135">overpass_service.py:123-135</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L16-L84">generate_bundles.py:16-84</a>
+- <a href="file://backend/scripts/app/import_official_road_sources.py#L120-L152">import_official_road_sources.py:120-152</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The SafeVixAI data seeding pipeline combines curated baseline data, dynamic Overpass ingestion, and offline bundle generation to deliver a robust, production-ready system. Scripts are designed for idempotency, resilience, and easy automation across environments. Extending data sources and customizing seed data is straightforward through the provided manifests and argument-driven workflows.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="environment-variables-and-settings">Environment Variables and Settings</h3>
+<ul>
+<li>DATABASE_URL: PostgreSQL connection string (normalized to asyncpg)</li>
+<li>REDIS_URL: Redis connection string (TLS handled automatically)</li>
+<li>CORS_ORIGINS: Comma-separated origins or wildcard</li>
+<li>OVERPASS_URLS: Comma-separated Overpass endpoints</li>
+<li>EMERGENCY_RADIUS_STEPS: Comma-separated radius steps for emergency queries</li>
+<li>DATA_GOV_API_KEY: API key for official data sources (when applicable)</li>
+<li>HTTP_USER_AGENT and REQUEST_TIMEOUT_SECONDS: Control upstream requests</li>
+<li>OFFLINE_BUNDLE_DIR: Directory for generated offline bundles</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/config.py#L19-L108">config.py:19-108</a>
+- <a href="file://backend/core/config.py#L143-L169">config.py:143-169</a></p>
+<h3 id="example-workflows">Example Workflows</h3>
+<ul>
+<li>Seed emergency services for selected cities:</li>
+<li>Run the emergency seeding script with city filters or predefined groups</li>
+<li>
+<p>Optionally export offline JSON and combined GeoJSON</p>
+</li>
+<li>
+<p>Generate offline bundles for PWA:</p>
+</li>
+<li>Use the bundle generation script with optional city filters</li>
+<li>
+<p>Validate output in the offline bundle directory</p>
+</li>
+<li>
+<p>Validate environment:</p>
+</li>
+<li>
+<p>Run database and Redis checks to confirm connectivity and configuration</p>
+</li>
+<li>
+<p>Import official road data:</p>
+</li>
+<li>Prepare a manifest file and run the importer with optional API keys</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/app/seed_emergency.py#L152-L197">seed_emergency.py:152-197</a>
+- <a href="file://backend/scripts/app/generate_bundles.py#L70-L84">generate_bundles.py:70-84</a>
+- <a href="file://backend/scripts/app/check_db.py#L8-L31">check_db.py:8-31</a>
+- <a href="file://backend/scripts/app/check_redis.py#L7-L38">check_redis.py:7-38</a>
+- <a href="file://backend/scripts/app/import_official_road_sources.py#L120-L152">import_official_road_sources.py:120-152</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

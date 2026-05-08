@@ -1,0 +1,2023 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>LLM Provider Routing - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llm-provider-routing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LLM Provider Routing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-abstraction-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider Abstraction Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#providerrouter-intelligent-selection-and-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProviderRouter: Intelligent Selection and Fallback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-implementations-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider Implementations and Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-and-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration and Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-selection-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider Selection Criteria
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pricing-and-rate-limits-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pricing and Rate Limits (Overview)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-optimization-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Optimization Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="llm-provider-routing">LLM Provider Routing</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://chatbot_service/providers/__init__.py">chatbot_service/providers/<strong>init</strong>.py</a>
+- <a href="file://chatbot_service/providers/base.py">chatbot_service/providers/base.py</a>
+- <a href="file://chatbot_service/providers/router.py">chatbot_service/providers/router.py</a>
+- <a href="file://chatbot_service/providers/groq_provider.py">chatbot_service/providers/groq_provider.py</a>
+- <a href="file://chatbot_service/providers/gemini_provider.py">chatbot_service/providers/gemini_provider.py</a>
+- <a href="file://chatbot_service/providers/sarvam_provider.py">chatbot_service/providers/sarvam_provider.py</a>
+- <a href="file://chatbot_service/providers/cerebras_provider.py">chatbot_service/providers/cerebras_provider.py</a>
+- <a href="file://chatbot_service/providers/github_models_provider.py">chatbot_service/providers/github_models_provider.py</a>
+- <a href="file://chatbot_service/providers/nvidia_nim_provider.py">chatbot_service/providers/nvidia_nim_provider.py</a>
+- <a href="file://chatbot_service/providers/openrouter_provider.py">chatbot_service/providers/openrouter_provider.py</a>
+- <a href="file://chatbot_service/providers/mistral_provider.py">chatbot_service/providers/mistral_provider.py</a>
+- <a href="file://chatbot_service/providers/together_provider.py">chatbot_service/providers/together_provider.py</a>
+- <a href="file://chatbot_service/config.py">chatbot_service/config.py</a>
+- <a href="file://chatbot_service/main.py">chatbot_service/main.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document explains the multi-provider LLM routing system that powers the SafeVixAI chatbot service. It covers the provider abstraction layer, standardized API handling, intelligent routing and fallback logic, configuration and credentials, provider-specific features, and operational guidance for performance and cost optimization. The system routes user queries across 11 providers, prioritizing Indian language support, speed, and reliability, while ensuring safety and compliance with the project’s domain focus.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The routing system resides in the chatbot service and integrates with FastAPI application lifecycle. Providers are organized under a dedicated module with a shared base and individual implementations. Configuration is centralized and environment-driven.</p>
+<pre class="mermaid"><code>graph TB
+A["FastAPI App&lt;br/&gt;chatbot_service/main.py"] --&gt; B["ProviderRouter&lt;br/&gt;chatbot_service/providers/router.py"]
+B --&gt; C["Base Abstraction&lt;br/&gt;chatbot_service/providers/base.py"]
+B --&gt; D["GroqProvider&lt;br/&gt;chatbot_service/providers/groq_provider.py"]
+B --&gt; E["CerebrasProvider&lt;br/&gt;chatbot_service/providers/cerebras_provider.py"]
+B --&gt; F["GeminiProvider&lt;br/&gt;chatbot_service/providers/gemini_provider.py"]
+B --&gt; G["SarvamProvider variants&lt;br/&gt;chatbot_service/providers/sarvam_provider.py"]
+B --&gt; H["GitHubModelsProvider&lt;br/&gt;chatbot_service/providers/github_models_provider.py"]
+B --&gt; I["NvidiaNimProvider&lt;br/&gt;chatbot_service/providers/nvidia_nim_provider.py"]
+B --&gt; J["OpenRouterProvider&lt;br/&gt;chatbot_service/providers/openrouter_provider.py"]
+B --&gt; K["MistralProvider&lt;br/&gt;chatbot_service/providers/mistral_provider.py"]
+B --&gt; L["TogetherProvider&lt;br/&gt;chatbot_service/providers/together_provider.py"]
+B --&gt; M["TemplateProvider&lt;br/&gt;chatbot_service/providers/base.py"]
+A --&gt; N["Settings &amp; Env Config&lt;br/&gt;chatbot_service/config.py"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L93">chatbot_service/main.py:41-93</a>
+- <a href="file://chatbot_service/providers/router.py#L75-L123">chatbot_service/providers/router.py:75-123</a>
+- <a href="file://chatbot_service/providers/base.py#L90-L160">chatbot_service/providers/base.py:90-160</a>
+- <a href="file://chatbot_service/providers/groq_provider.py#L10-L22">chatbot_service/providers/groq_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/cerebras_provider.py#L10-L22">chatbot_service/providers/cerebras_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/gemini_provider.py#L18-L70">chatbot_service/providers/gemini_provider.py:18-70</a>
+- <a href="file://chatbot_service/providers/sarvam_provider.py#L44-L124">chatbot_service/providers/sarvam_provider.py:44-124</a>
+- <a href="file://chatbot_service/providers/github_models_provider.py#L10-L25">chatbot_service/providers/github_models_provider.py:10-25</a>
+- <a href="file://chatbot_service/providers/nvidia_nim_provider.py#L10-L25">chatbot_service/providers/nvidia_nim_provider.py:10-25</a>
+- <a href="file://chatbot_service/providers/openrouter_provider.py#L10-L28">chatbot_service/providers/openrouter_provider.py:10-28</a>
+- <a href="file://chatbot_service/providers/mistral_provider.py#L10-L22">chatbot_service/providers/mistral_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/together_provider.py#L10-L22">chatbot_service/providers/together_provider.py:10-22</a>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L93">chatbot_service/main.py:41-93</a>
+- <a href="file://chatbot_service/providers/__init__.py#L1-L4">chatbot_service/providers/<strong>init</strong>.py:1-4</a>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Provider abstraction layer: A shared HTTP-based interface for OpenAI-compatible providers and a specialized Gemini handler for non-OpenAI endpoints. Includes prompt building, safety filtering, and deterministic fallback.</li>
+<li>ProviderRouter: Implements intelligent selection and fallback logic across 11 providers, with language-aware routing and intent-based specialization.</li>
+<li>Configuration: Centralized settings loaded from environment variables, including default provider/model and HTTP behavior.</li>
+</ul>
+<p>Key abstractions and roles:
+- ProviderRequest and ProviderResult define the standardized input and output contract.
+- HttpProvider encapsulates HTTP transport, authentication, and payload construction.
+- TemplateProvider acts as a deterministic fallback for safety and availability.
+- ProviderRouter orchestrates selection, detection, and fallback.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/base.py#L44-L87">chatbot_service/providers/base.py:44-87</a>
+- <a href="file://chatbot_service/providers/base.py#L90-L160">chatbot_service/providers/base.py:90-160</a>
+- <a href="file://chatbot_service/providers/base.py#L162-L205">chatbot_service/providers/base.py:162-205</a>
+- <a href="file://chatbot_service/providers/router.py#L75-L198">chatbot_service/providers/router.py:75-198</a>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The system initializes a ProviderRouter and injects it into the chat engine during application startup. Requests pass through language detection and intent analysis, then are routed to a provider. On failure, the router attempts the next provider in the ordered fallback chain until success or exhaustion.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client"
+participant App as "FastAPI App&lt;br/&gt;main.py"
+participant Router as "ProviderRouter&lt;br/&gt;router.py"
+participant Base as "HttpProvider/Base&lt;br/&gt;base.py"
+participant Prov as "Concrete Provider&lt;br/&gt;e.g., groq_provider.py"
+participant Fallback as "Fallback Providers"
+Client-&gt;&gt;App : "POST /api/v1/chat/"
+App-&gt;&gt;Router : "generate(ProviderRequest)"
+Router-&gt;&gt;Router : "detect_lang()"
+Router-&gt;&gt;Router : "_select_provider_name()"
+Router-&gt;&gt;Prov : "generate(request)"
+Prov-&gt;&gt;Base : "build_messages(), _get_api_key(), _get_client()"
+Base--&gt;&gt;Prov : "HTTP POST to provider endpoint"
+Prov--&gt;&gt;Router : "ProviderResult"
+alt "Success"
+Router--&gt;&gt;App : "ProviderResult"
+App--&gt;&gt;Client : "Response"
+else "Failure"
+Router-&gt;&gt;Fallback : "try next provider"
+Fallback--&gt;&gt;Router : "ProviderResult or Exception"
+Router--&gt;&gt;App : "ProviderResult or raise"
+App--&gt;&gt;Client : "Response or Error"
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/main.py#L71-L78">chatbot_service/main.py:71-78</a>
+- <a href="file://chatbot_service/providers/router.py#L154-L198">chatbot_service/providers/router.py:154-198</a>
+- <a href="file://chatbot_service/providers/base.py#L129-L159">chatbot_service/providers/base.py:129-159</a>
+- <a href="file://chatbot_service/providers/groq_provider.py#L10-L22">chatbot_service/providers/groq_provider.py:10-22</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="provider-abstraction-layer">Provider Abstraction Layer</h3>
+<p>The abstraction layer defines:
+- ProviderRequest: carries the user message, conversation history, intent, tool summaries, document snippets, and optional provider hint.
+- ProviderResult: standardizes response fields including provider identity, model used, detected language, and fallback metadata.
+- build_messages: transforms structured request into an OpenAI-compatible messages array, including system context blocks and trimmed history.
+- HttpProvider: shared async HTTP transport, environment-based API key retrieval, and standardized payload construction. It enforces prompt injection checks and returns a ProviderResult.
+- TemplateProvider: deterministic fallback that responds based on intent and context snippets without external API calls.</p>
+<pre class="mermaid"><code>classDiagram
+class ProviderRequest {
++string message
++string intent
++list history
++list tool_summaries
++list document_snippets
++string provider_hint
+}
+class ProviderResult {
++string text
++string provider
++string model
++string provider_used
++string detected_lang
++bool india_badge
++string fallback_from
+}
+class HttpProvider {
++string name
++api_key_env() str
++base_url() str
++default_model() str
++extra_headers() dict
++generate(request) ProviderResult
+-_get_api_key() str
+-_get_client() AsyncClient
+}
+class TemplateProvider {
++string name
++string model
++generate(request) ProviderResult
+}
+ProviderRequest &lt;.. HttpProvider : "input"
+ProviderResult &lt;-- HttpProvider : "output"
+ProviderResult &lt;-- TemplateProvider : "output"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/providers/base.py#L44-L87">chatbot_service/providers/base.py:44-87</a>
+- <a href="file://chatbot_service/providers/base.py#L90-L160">chatbot_service/providers/base.py:90-160</a>
+- <a href="file://chatbot_service/providers/base.py#L162-L205">chatbot_service/providers/base.py:162-205</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/base.py#L44-L87">chatbot_service/providers/base.py:44-87</a>
+- <a href="file://chatbot_service/providers/base.py#L90-L160">chatbot_service/providers/base.py:90-160</a>
+- <a href="file://chatbot_service/providers/base.py#L162-L205">chatbot_service/providers/base.py:162-205</a></p>
+<h3 id="providerrouter-intelligent-selection-and-fallback">ProviderRouter: Intelligent Selection and Fallback</h3>
+<p>ProviderRouter implements:
+- Language detection: Uses Unicode ranges to detect Indian languages and route accordingly.
+- Intent-aware specialization: Chooses Sarvam-105B for high-stakes legal intents in Indian languages.
+- Provider selection precedence: Indian language → Sarvam variants → explicit hint → configured default.
+- Ordered fallback chain: Groq → Cerebras → Gemini → GitHub → NVIDIA → OpenRouter → Mistral → Together → Template.
+- Metadata enrichment: Attaches provider_used, detected_lang, and fallback_from fields to results.</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["Request Received"]) --&gt; Detect["Detect Language"]
+Detect --&gt; LangCheck{"Indian Language?"}
+LangCheck --&gt; |Yes| Intent["Check Intent"]
+Intent --&gt; Legal{"High-Stakes Legal?"}
+Legal --&gt; |Yes| Select105B["Select Sarvam-105B"]
+Legal --&gt; |No| Select30B["Select Sarvam-30B"]
+LangCheck --&gt; |No| Hint{"Provider Hint?"}
+Hint --&gt; |Present &amp; Valid| UseHint["Use Hinted Provider"]
+Hint --&gt; |None| Default["Use Configured Default"]
+Select105B --&gt; TryPrimary["Try Primary Provider"]
+Select30B --&gt; TryPrimary
+UseHint --&gt; TryPrimary
+Default --&gt; TryPrimary
+TryPrimary --&gt; Success{"Success?"}
+Success --&gt; |Yes| Enrich["Attach Metadata"]
+Success --&gt; |No| Fallback["Iterate Fallback Chain"]
+Fallback --&gt; NextProv["Try Next Provider"]
+NextProv --&gt; Success
+Enrich --&gt; End(["Return ProviderResult"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L125-L152">chatbot_service/providers/router.py:125-152</a>
+- <a href="file://chatbot_service/providers/router.py#L154-L198">chatbot_service/providers/router.py:154-198</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L48-L72">chatbot_service/providers/router.py:48-72</a>
+- <a href="file://chatbot_service/providers/router.py#L125-L152">chatbot_service/providers/router.py:125-152</a>
+- <a href="file://chatbot_service/providers/router.py#L154-L198">chatbot_service/providers/router.py:154-198</a></p>
+<h3 id="provider-implementations-and-configuration">Provider Implementations and Configuration</h3>
+<p>Each provider extends HttpProvider and supplies:
+- api_key_env(): environment variable name for credentials.
+- base_url(): OpenAI-compatible endpoint for most providers; Gemini uses a custom translation.
+- default_model(): sensible default model identifier.
+- extra_headers(): optional headers (e.g., referer, user-agent).</p>
+<p>Provider-specific notes:
+- Groq: Fast English model; suitable as primary for speed-sensitive queries.
+- Cerebras: High throughput overflow when Groq is rate-limited.
+- Gemini: Large context window; translates OpenAI messages to Gemini contents.
+- Sarvam: Supports multiple Indian languages; prefers direct API when available, falls back to OpenRouter fallback.
+- GitHub Models: Free via PAT; uses Azure-hosted endpoint.
+- NVIDIA NIM: GPU-optimized; requires API key.
+- OpenRouter: Gateway to many models; includes referer and title headers.
+- Mistral: Multilingual with generous free tier.
+- Together: Wide selection with initial credits.</p>
+<pre class="mermaid"><code>classDiagram
+class GroqProvider {
++api_key_env() str
++base_url() str
++default_model() str
+}
+class CerebrasProvider {
++api_key_env() str
++base_url() str
++default_model() str
+}
+class GeminiProvider {
++_get_client() AsyncClient
++generate(request) ProviderResult
+}
+class SarvamProvider {
++_use_direct_api() bool
++_get_api_key() str
++base_url() str
++default_model() str
++extra_headers() dict
++generate(request) ProviderResult
+}
+class GitHubModelsProvider {
++api_key_env() str
++base_url() str
++default_model() str
++extra_headers() dict
+}
+class NvidiaNimProvider {
++api_key_env() str
++base_url() str
++default_model() str
++extra_headers() dict
+}
+class OpenRouterProvider {
++api_key_env() str
++base_url() str
++default_model() str
++extra_headers() dict
+}
+class MistralProvider {
++api_key_env() str
++base_url() str
++default_model() str
+}
+class TogetherProvider {
++api_key_env() str
++base_url() str
++default_model() str
+}
+HttpProvider &lt;|-- GroqProvider
+HttpProvider &lt;|-- CerebrasProvider
+HttpProvider &lt;|-- GeminiProvider
+HttpProvider &lt;|-- SarvamProvider
+HttpProvider &lt;|-- GitHubModelsProvider
+HttpProvider &lt;|-- NvidiaNimProvider
+HttpProvider &lt;|-- OpenRouterProvider
+HttpProvider &lt;|-- MistralProvider
+HttpProvider &lt;|-- TogetherProvider</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/providers/groq_provider.py#L10-L22">chatbot_service/providers/groq_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/cerebras_provider.py#L10-L22">chatbot_service/providers/cerebras_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/gemini_provider.py#L18-L70">chatbot_service/providers/gemini_provider.py:18-70</a>
+- <a href="file://chatbot_service/providers/sarvam_provider.py#L44-L124">chatbot_service/providers/sarvam_provider.py:44-124</a>
+- <a href="file://chatbot_service/providers/github_models_provider.py#L10-L25">chatbot_service/providers/github_models_provider.py:10-25</a>
+- <a href="file://chatbot_service/providers/nvidia_nim_provider.py#L10-L25">chatbot_service/providers/nvidia_nim_provider.py:10-25</a>
+- <a href="file://chatbot_service/providers/openrouter_provider.py#L10-L28">chatbot_service/providers/openrouter_provider.py:10-28</a>
+- <a href="file://chatbot_service/providers/mistral_provider.py#L10-L22">chatbot_service/providers/mistral_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/together_provider.py#L10-L22">chatbot_service/providers/together_provider.py:10-22</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/groq_provider.py#L10-L22">chatbot_service/providers/groq_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/cerebras_provider.py#L10-L22">chatbot_service/providers/cerebras_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/gemini_provider.py#L18-L70">chatbot_service/providers/gemini_provider.py:18-70</a>
+- <a href="file://chatbot_service/providers/sarvam_provider.py#L44-L124">chatbot_service/providers/sarvam_provider.py:44-124</a>
+- <a href="file://chatbot_service/providers/github_models_provider.py#L10-L25">chatbot_service/providers/github_models_provider.py:10-25</a>
+- <a href="file://chatbot_service/providers/nvidia_nim_provider.py#L10-L25">chatbot_service/providers/nvidia_nim_provider.py:10-25</a>
+- <a href="file://chatbot_service/providers/openrouter_provider.py#L10-L28">chatbot_service/providers/openrouter_provider.py:10-28</a>
+- <a href="file://chatbot_service/providers/mistral_provider.py#L10-L22">chatbot_service/providers/mistral_provider.py:10-22</a>
+- <a href="file://chatbot_service/providers/together_provider.py#L10-L22">chatbot_service/providers/together_provider.py:10-22</a></p>
+<h3 id="configuration-and-environment">Configuration and Environment</h3>
+<p>Settings are loaded from environment variables and cached. Critical keys include:
+- DEFAULT_LLM_PROVIDER and DEFAULT_LLM_MODEL to select the default provider and model.
+- Individual provider API keys: GROQ_API_KEY, GOOGLE_API_KEY (Gemini), OPENROUTER_API_KEY, HF_TOKEN (Sarvam fallback), MISTRAL_API_KEY, SARVAM_API_KEY, NVIDIA_NIM_API_KEY, CEREBRAS_API_KEY.
+- HTTP timeouts, user agent, and other service parameters.</p>
+<p>The system validates that at least one real provider key is present and raises a fatal error otherwise.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a>
+- <a href="file://chatbot_service/config.py#L119-L125">chatbot_service/config.py:119-125</a></p>
+<h3 id="application-integration">Application Integration</h3>
+<p>The FastAPI app constructs a ProviderRouter and injects it into the chat engine during startup. Health and root endpoints expose service metadata and routing characteristics.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L93">chatbot_service/main.py:41-93</a>
+- <a href="file://chatbot_service/main.py#L106-L142">chatbot_service/main.py:106-142</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>ProviderRouter depends on:
+- Settings for defaults and environment configuration.
+- Individual provider classes for generation.
+- Base classes for shared behavior and safety checks.</p>
+<pre class="mermaid"><code>graph LR
+Settings["Settings&lt;br/&gt;config.py"] --&gt; Router["ProviderRouter&lt;br/&gt;router.py"]
+Router --&gt; Groq["GroqProvider&lt;br/&gt;groq_provider.py"]
+Router --&gt; Cerebras["CerebrasProvider&lt;br/&gt;cerebras_provider.py"]
+Router --&gt; Gemini["GeminiProvider&lt;br/&gt;gemini_provider.py"]
+Router --&gt; Sarvam["SarvamProvider variants&lt;br/&gt;sarvam_provider.py"]
+Router --&gt; GitHub["GitHubModelsProvider&lt;br/&gt;github_models_provider.py"]
+Router --&gt; Nvidia["NvidiaNimProvider&lt;br/&gt;nvidia_nim_provider.py"]
+Router --&gt; OpenRouter["OpenRouterProvider&lt;br/&gt;openrouter_provider.py"]
+Router --&gt; Mistral["MistralProvider&lt;br/&gt;mistral_provider.py"]
+Router --&gt; Together["TogetherProvider&lt;br/&gt;together_provider.py"]
+Router --&gt; Template["TemplateProvider&lt;br/&gt;base.py"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L85-L109">chatbot_service/providers/router.py:85-109</a>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L85-L109">chatbot_service/providers/router.py:85-109</a>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Language-aware routing: Prefer Sarvam-30B for Indian languages; Sarvam-105B for legal intents to reduce retries and improve accuracy.</li>
+<li>Primary provider selection: Groq for speed; Cerebras as overflow; Gemini for large-context tasks.</li>
+<li>Payload sizing: The system caps max tokens and trims history to balance latency and context retention.</li>
+<li>Retry strategy: Automatic fallback through the ordered chain minimizes downtime; monitor fallback_from to track provider health.</li>
+<li>Cost optimization: Use free tiers and credits where available (GitHub Models, OpenRouter free tier, Sarvam credits, Cerebras daily tokens).</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and resolutions:
+- Missing provider keys: The system validates presence of at least one real provider key and raises a fatal error if none are found. Ensure appropriate environment variables are set.
+- Prompt injection attempts: The base layer blocks suspicious prompts and returns a filtered response.
+- Gemini-specific errors: Ensure GEMINI_API_KEY is set; Gemini uses a different endpoint format and requires translated messages.
+- Sarvam fallback: If Sarvam direct API key is absent or exhausted, the system falls back to OpenRouter fallback via HF_TOKEN.
+- Rate limiting: Rely on fallback chain; configure higher-tier providers or adjust default provider to reduce throttling.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/config.py#L119-L125">chatbot_service/config.py:119-125</a>
+- <a href="file://chatbot_service/providers/base.py#L129-L136">chatbot_service/providers/base.py:129-136</a>
+- <a href="file://chatbot_service/providers/gemini_provider.py#L30-L32">chatbot_service/providers/gemini_provider.py:30-32</a>
+- <a href="file://chatbot_service/providers/sarvam_provider.py#L58-L68">chatbot_service/providers/sarvam_provider.py:58-68</a>
+- <a href="file://chatbot_service/providers/router.py#L179-L198">chatbot_service/providers/router.py:179-198</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The routing system provides robust, scalable, and regionally aware LLM inference by combining a unified abstraction, intelligent selection logic, and a resilient fallback chain. By leveraging language detection, intent-aware specialization, and environment-driven configuration, it ensures reliable performance and cost-conscious operation across diverse query types.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="provider-selection-criteria">Provider Selection Criteria</h3>
+<ul>
+<li>Indian language input: Route to Sarvam-30B; for high-stakes legal intents, prefer Sarvam-105B.</li>
+<li>Explicit provider hint: Use the hinted provider if valid.</li>
+<li>Default provider: Respect configured default for general English queries.</li>
+<li>Fallback chain: Groq → Cerebras → Gemini → GitHub → NVIDIA → OpenRouter → Mistral → Together → Template.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L125-L152">chatbot_service/providers/router.py:125-152</a>
+- <a href="file://chatbot_service/providers/router.py#L113-L123">chatbot_service/providers/router.py:113-123</a></p>
+<h3 id="pricing-and-rate-limits-overview">Pricing and Rate Limits (Overview)</h3>
+<ul>
+<li>Groq: Free tier quotas apply; model choice impacts throughput.</li>
+<li>Cerebras: Daily token allowance; high throughput for overflow scenarios.</li>
+<li>Gemini: Free tier with request and token limits; requires API key.</li>
+<li>Sarvam: Direct API offers free credits; fallback to OpenRouter fallback via HF_TOKEN.</li>
+<li>GitHub Models: Free quota per model per day via PAT.</li>
+<li>OpenRouter: Free tier with limited requests; gateway to many models.</li>
+<li>Mistral: Generous free tier on La Plateforme.</li>
+<li>NVIDIA NIM: Credits on sign-up; GPU-optimized inference.</li>
+<li>Together: Initial credits on sign-up.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/groq_provider.py#L1-L4">chatbot_service/providers/groq_provider.py:1-4</a>
+- <a href="file://chatbot_service/providers/cerebras_provider.py#L1-L4">chatbot_service/providers/cerebras_provider.py:1-4</a>
+- <a href="file://chatbot_service/providers/gemini_provider.py#L1-L7">chatbot_service/providers/gemini_provider.py:1-7</a>
+- <a href="file://chatbot_service/providers/sarvam_provider.py#L1-L11">chatbot_service/providers/sarvam_provider.py:1-11</a>
+- <a href="file://chatbot_service/providers/github_models_provider.py#L1-L4">chatbot_service/providers/github_models_provider.py:1-4</a>
+- <a href="file://chatbot_service/providers/openrouter_provider.py#L1-L4">chatbot_service/providers/openrouter_provider.py:1-4</a>
+- <a href="file://chatbot_service/providers/mistral_provider.py#L1-L4">chatbot_service/providers/mistral_provider.py:1-4</a>
+- <a href="file://chatbot_service/providers/nvidia_nim_provider.py#L1-L4">chatbot_service/providers/nvidia_nim_provider.py:1-4</a>
+- <a href="file://chatbot_service/providers/together_provider.py#L1-L4">chatbot_service/providers/together_provider.py:1-4</a></p>
+<h3 id="cost-optimization-strategies">Cost Optimization Strategies</h3>
+<ul>
+<li>Prefer free tiers and credits for initial traffic.</li>
+<li>Use Sarvam for Indian language queries to reduce latency and improve accuracy.</li>
+<li>Monitor fallback_from to identify throttled providers and adjust defaults.</li>
+<li>Configure higher-capacity providers as defaults for peak loads.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L113-L123">chatbot_service/providers/router.py:113-123</a>
+- <a href="file://chatbot_service/config.py#L95-L96">chatbot_service/config.py:95-96</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

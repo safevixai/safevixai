@@ -1,0 +1,2296 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data Schemas and Validation - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-schemas-and-validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Schemas and Validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emergency-service-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Service Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#road-issue-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Issue Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-profile-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Profile Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-payloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Payloads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-rules-and-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Rules and Constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serialization-and-deserialization-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serialization and Deserialization Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-schema-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON Schema Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="data-schemas-and-validation">Data Schemas and Validation</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/models/user.py">user.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/services/exceptions.py">exceptions.py</a>
+- <a href="file://backend/main.py">main.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document provides comprehensive documentation for the Pydantic data schemas used across the SafeVixAI backend. It focuses on request and response models for emergency services, road issues, routing, and user profiles. For each schema, we describe fields, data types, validation rules, constraints, and inheritance patterns. We also explain literal type definitions for categories, statuses, and profiles, and show how these schemas integrate with FastAPI endpoints and services. Serialization and deserialization patterns, including JSON dumps and SQLAlchemy ORM mapping, are covered, along with validation error handling and JSON schema generation.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The data schemas are primarily defined in a single module and consumed by FastAPI routers and services:
+- Data schemas: backend/models/schemas.py
+- Domain models (SQLAlchemy): backend/models/user.py, backend/models/emergency.py, backend/models/road_issue.py
+- API endpoints: backend/api/v1/<em>.py
+- Services and exceptions: backend/services/</em>.py
+- Application entrypoint: backend/main.py</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Models"
+S["schemas.py"]
+U["models/user.py"]
+E["models/emergency.py"]
+R["models/road_issue.py"]
+end
+subgraph "API"
+AE["api/v1/emergency.py"]
+AR["api/v1/roadwatch.py"]
+RT["api/v1/routing.py"]
+AU["api/v1/user.py"]
+end
+subgraph "Services"
+EX["services/exceptions.py"]
+MS["main.py"]
+end
+S --&gt; AE
+S --&gt; AR
+S --&gt; RT
+S --&gt; AU
+U --&gt; AU
+E --&gt; AE
+R --&gt; AR
+EX --&gt; AE
+EX --&gt; AR
+EX --&gt; RT
+MS --&gt; AE</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/models/user.py">user.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/services/exceptions.py">exceptions.py</a>
+- <a href="file://backend/main.py">main.py</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/models/user.py">user.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/services/exceptions.py">exceptions.py</a>
+- <a href="file://backend/main.py">main.py</a></p>
+<h2 id="core-components">Core Components</h2>
+<p>This section documents the primary Pydantic models used across the application, including their fields, types, defaults, and constraints.</p>
+<ul>
+<li>EmergencyCategory: Literal union of emergency service categories</li>
+<li>RoadIssueStatus: Literal union of supported statuses for road issues</li>
+<li>
+<p>RouteProfile: Literal union of routing profiles</p>
+</li>
+<li>
+<p>EmergencyServiceItem</p>
+</li>
+<li>Fields: id, name, category, sub_category, phone, phone_emergency, lat, lon, distance_meters, has_trauma, has_icu, is_24hr, address, source</li>
+<li>Types: str, float, bool, optional str, optional float</li>
+<li>
+<p>Defaults: has_trauma=False, has_icu=False, is_24hr=True, source="database"</p>
+</li>
+<li>
+<p>EmergencyResponse</p>
+</li>
+<li>Fields: services (list of EmergencyServiceItem), count, radius_used, source</li>
+<li>
+<p>Types: list, int, int, str</p>
+</li>
+<li>
+<p>SosResponse</p>
+</li>
+<li>Fields: services, count, radius_used, source, numbers (dict[str, EmergencyNumber])</li>
+<li>
+<p>Types: list, int, int, str, dict</p>
+</li>
+<li>
+<p>EmergencyNumber</p>
+</li>
+<li>Fields: service, coverage, notes</li>
+<li>
+<p>Types: str, str, optional str</p>
+</li>
+<li>
+<p>EmergencyNumbersResponse</p>
+</li>
+<li>
+<p>Fields: numbers (dict[str, EmergencyNumber])</p>
+</li>
+<li>
+<p>GeocodeResult</p>
+</li>
+<li>Fields: display_name, city, state, state_code, country_code, postcode, lat, lon</li>
+<li>
+<p>Types: str, optional str, optional float</p>
+</li>
+<li>
+<p>GeocodeSearchResponse</p>
+</li>
+<li>
+<p>Fields: results (list of GeocodeResult)</p>
+</li>
+<li>
+<p>AuthorityPreviewResponse</p>
+</li>
+<li>Fields: road_type, road_type_code, road_name, road_number, authority_name, helpline, complaint_portal, escalation_path, exec_engineer, exec_engineer_phone, contractor_name, budget_sanctioned, budget_spent, last_relayed_date, next_maintenance, data_source_url, source</li>
+<li>
+<p>Types: str, str, optional str, optional str, optional str, optional str, optional str, optional str, optional str, optional str, optional int, optional int, optional date, optional date, optional str, optional str</p>
+</li>
+<li>
+<p>RoadInfrastructureResponse</p>
+</li>
+<li>Fields: road_type, road_type_code, road_name, road_number, contractor_name, exec_engineer, exec_engineer_phone, budget_sanctioned, budget_spent, last_relayed_date, next_maintenance, data_source_url, source</li>
+<li>
+<p>Types: str, str, optional str, optional str, optional str, optional str, optional str, optional int, optional int, optional date, optional date, optional str, str</p>
+</li>
+<li>
+<p>RoadIssueItem</p>
+</li>
+<li>Fields: uuid, issue_type, severity, description, lat, lon, location_address, road_name, road_type, road_number, authority_name, status, created_at, distance_meters</li>
+<li>
+<p>Types: UUID, str, int, optional str, float, float, optional str, optional str, optional str, optional str, optional str, RoadIssueStatus, datetime, float</p>
+</li>
+<li>
+<p>RoadIssuesResponse</p>
+</li>
+<li>
+<p>Fields: issues (list of RoadIssueItem), count, radius_used</p>
+</li>
+<li>
+<p>RoadReportResponse</p>
+</li>
+<li>Fields: uuid, complaint_ref, authority_name, authority_phone, complaint_portal, road_type, road_type_code, road_number, road_name, exec_engineer, exec_engineer_phone, contractor_name, last_relayed_date, next_maintenance, budget_sanctioned, budget_spent, photo_url, status</li>
+<li>
+<p>Types: UUID, optional str, str, str, str, str, str, optional str, optional str, optional str, optional str, optional str, optional date, optional date, optional int, optional int, optional str, RoadIssueStatus</p>
+</li>
+<li>
+<p>RoutePoint</p>
+</li>
+<li>Fields: lat, lon, label</li>
+<li>
+<p>Types: float, float, optional str</p>
+</li>
+<li>
+<p>RouteBounds</p>
+</li>
+<li>Fields: south, west, north, east</li>
+<li>
+<p>Types: float, float, float, float</p>
+</li>
+<li>
+<p>RouteInstruction</p>
+</li>
+<li>Fields: index, instruction, distance_meters, duration_seconds, street_name, instruction_type, exit_number</li>
+<li>
+<p>Types: int, str, float, float, optional str, optional int, optional int</p>
+</li>
+<li>
+<p>RouteOption</p>
+</li>
+<li>Fields: route_id, label, distance_meters, duration_seconds, path (list[RoutePoint]), bounds (RouteBounds), steps (list[RouteInstruction])</li>
+<li>
+<p>Types: str, str, float, float, list, list, list</p>
+</li>
+<li>
+<p>RoutePreviewResponse</p>
+</li>
+<li>Fields: provider, profile, distance_meters, duration_seconds, path, bounds, origin, destination, steps, routes, selected_route_id, reroute_threshold_meters, warnings</li>
+<li>
+<p>Types: str, RouteProfile, float, float, list, list, RoutePoint, RoutePoint, list, list, str, float, list</p>
+</li>
+<li>
+<p>ServiceCandidate</p>
+</li>
+<li>Fields: id, name, category, lat, lon, distance_meters, address, phone, source</li>
+<li>Types: str, str, str, float, float, float, optional str, optional str, str</li>
+<li>
+<p>Config: from_attributes=True</p>
+</li>
+<li>
+<p>ChatRequest</p>
+</li>
+<li>Fields: message, session_id, lat, lon</li>
+<li>
+<p>Constraints: message (min_length=1, max_length=4000), session_id (min_length=1, max_length=128), lat (-90..90), lon (-180..180)</p>
+</li>
+<li>
+<p>ChatResponse</p>
+</li>
+<li>Fields: response, intent, sources, session_id</li>
+<li>
+<p>Types: str, optional str, list[str], str</p>
+</li>
+<li>
+<p>ChallanQuery</p>
+</li>
+<li>Fields: violation_code, vehicle_class, state_code, is_repeat</li>
+<li>Types: str, str, str, bool</li>
+<li>
+<p>Constraints: all strings min_length=1, max_length up to 32/64</p>
+</li>
+<li>
+<p>ChallanResponse</p>
+</li>
+<li>Fields: violation_code, vehicle_class, state_code, base_fine, repeat_fine, amount_due, section, description, state_override</li>
+<li>
+<p>Types: str, str, str, int, optional int, int, str, str, optional str</p>
+</li>
+<li>
+<p>EmergencyContact</p>
+</li>
+<li>Fields: name, phone, relation</li>
+<li>
+<p>Types: str, str, optional str</p>
+</li>
+<li>
+<p>UserProfileCreate</p>
+</li>
+<li>Fields: name, blood_group, emergency_contacts, allergies, vehicle_details, medical_notes</li>
+<li>
+<p>Types: str, optional str, list[EmergencyContact], optional str, optional str, optional str</p>
+</li>
+<li>
+<p>UserProfileUpdate</p>
+</li>
+<li>Fields: name, blood_group, emergency_contacts, allergies, vehicle_details, medical_notes</li>
+<li>
+<p>Types: optional str, optional str, optional list[EmergencyContact], optional str, optional str, optional str</p>
+</li>
+<li>
+<p>UserProfileResponse</p>
+</li>
+<li>Fields: id, created_at, updated_at</li>
+<li>Inheritance: extends UserProfileCreate</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The data schemas define the canonical request/response contracts for the backend APIs. They are consumed by FastAPI routers to validate inputs and serialize outputs. Services orchestrate domain logic and may convert between Pydantic models and SQLAlchemy ORM models. Exceptions propagate validation and external service errors to clients.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant C as "Client"
+participant API as "FastAPI Router"
+participant SVC as "Service"
+participant DB as "SQLAlchemy ORM"
+participant PY as "Pydantic Schema"
+C-&gt;&gt;API : "HTTP Request"
+API-&gt;&gt;PY : "Validate and parse request body"
+API-&gt;&gt;SVC : "Call handler with validated model"
+SVC-&gt;&gt;DB : "Read/Write ORM entities"
+DB--&gt;&gt;SVC : "ORM instances"
+SVC-&gt;&gt;PY : "Build response model(s)"
+API-&gt;&gt;PY : "Serialize response model"
+PY--&gt;&gt;API : "JSON payload"
+API--&gt;&gt;C : "HTTP Response"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/models/user.py">user.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="emergency-service-models">Emergency Service Models</h3>
+<p>These models represent emergency services and related responses.</p>
+<pre class="mermaid"><code>classDiagram
+class EmergencyNumber {
++string service
++string coverage
++string? notes
+}
+class EmergencyServiceItem {
++string id
++string name
++string category
++string? sub_category
++string? phone
++string? phone_emergency
++float lat
++float lon
++float distance_meters
++bool has_trauma
++bool has_icu
++bool is_24hr
++string? address
++string source
+}
+class EmergencyResponse {
++EmergencyServiceItem[] services
++int count
++int radius_used
++string source
+}
+class SosResponse {
++EmergencyServiceItem[] services
++int count
++int radius_used
++string source
++dict~string, EmergencyNumber~ numbers
+}
+EmergencyResponse --&gt; EmergencyServiceItem : "contains"
+SosResponse --&gt; EmergencyServiceItem : "contains"
+SosResponse --&gt; EmergencyNumber : "contains"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a></p>
+<h3 id="road-issue-models">Road Issue Models</h3>
+<p>These models represent road infrastructure, reported issues, and related responses.</p>
+<pre class="mermaid"><code>classDiagram
+class RoadIssueItem {
++uuid id
++string issue_type
++int severity
++string? description
++float lat
++float lon
++string? location_address
++string? road_name
++string? road_type
++string? road_number
++string? authority_name
++RoadIssueStatus status
++datetime created_at
++float distance_meters
+}
+class RoadIssuesResponse {
++RoadIssueItem[] issues
++int count
++int radius_used
+}
+class RoadReportResponse {
++uuid id
++string? complaint_ref
++string authority_name
++string authority_phone
++string complaint_portal
++string road_type
++string road_type_code
++string? road_number
++string? road_name
++string? exec_engineer
++string? exec_engineer_phone
++string? contractor_name
++date? last_relayed_date
++date? next_maintenance
++int? budget_sanctioned
++int? budget_spent
++string? photo_url
++RoadIssueStatus status
+}
+class AuthorityPreviewResponse {
++string road_type
++string road_type_code
++string? road_name
++string? road_number
++string authority_name
++string helpline
++string complaint_portal
++string escalation_path
++string? exec_engineer
++string? exec_engineer_phone
++string? contractor_name
++int? budget_sanctioned
++int? budget_spent
++date? last_relayed_date
++date? next_maintenance
++string? data_source_url
++string source
+}
+class RoadInfrastructureResponse {
++string road_type
++string road_type_code
++string? road_name
++string? road_number
++string? contractor_name
++string? exec_engineer
++string? exec_engineer_phone
++int? budget_sanctioned
++int? budget_spent
++date? last_relayed_date
++date? next_maintenance
++string? data_source_url
++string source
+}
+RoadIssuesResponse --&gt; RoadIssueItem : "contains"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a></p>
+<h3 id="routing-models">Routing Models</h3>
+<p>These models define route points, bounds, instructions, and route options.</p>
+<pre class="mermaid"><code>classDiagram
+class RoutePoint {
++float lat
++float lon
++string? label
+}
+class RouteBounds {
++float south
++float west
++float north
++float east
+}
+class RouteInstruction {
++int index
++string instruction
++float distance_meters
++float duration_seconds
++string? street_name
++int? instruction_type
++int? exit_number
+}
+class RouteOption {
++string route_id
++string label
++float distance_meters
++float duration_seconds
++RoutePoint[] path
++RouteBounds bounds
++RouteInstruction[] steps
+}
+class RoutePreviewResponse {
++string provider
++RouteProfile profile
++float distance_meters
++float duration_seconds
++RoutePoint[] path
++RouteBounds bounds
++RoutePoint origin
++RoutePoint destination
++RouteInstruction[] steps
++RouteOption[] routes
++string selected_route_id
++float reroute_threshold_meters
++string[] warnings
+}
+RoutePreviewResponse --&gt; RouteOption : "contains"
+RoutePreviewResponse --&gt; RoutePoint : "contains"
+RoutePreviewResponse --&gt; RouteBounds : "contains"
+RoutePreviewResponse --&gt; RouteInstruction : "contains"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a></p>
+<h3 id="user-profile-models">User Profile Models</h3>
+<p>These models handle user profile creation, updates, and responses.</p>
+<pre class="mermaid"><code>classDiagram
+class EmergencyContact {
++string name
++string phone
++string? relation
+}
+class UserProfileCreate {
++string name
++string? blood_group
++EmergencyContact[] emergency_contacts
++string? allergies
++string? vehicle_details
++string? medical_notes
+}
+class UserProfileUpdate {
++string? name
++string? blood_group
++EmergencyContact[]? emergency_contacts
++string? allergies
++string? vehicle_details
++string? medical_notes
+}
+class UserProfileResponse {
++uuid id
++datetime created_at
++datetime updated_at
+}
+UserProfileResponse &lt;|-- UserProfileCreate : "extends"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/models/user.py">user.py</a></p>
+<h3 id="example-payloads">Example Payloads</h3>
+<p>Below are example payloads for representative endpoints. Replace values with valid ones per schema constraints.</p>
+<ul>
+<li>GET /api/v1/emergency/nearby</li>
+<li>Query params: lat, lon, categories (comma-separated), radius, limit</li>
+<li>Response: EmergencyResponse</li>
+<li>
+<p>Example keys: services[], count, radius_used, source</p>
+</li>
+<li>
+<p>GET /api/v1/emergency/sos</p>
+</li>
+<li>Query params: lat, lon</li>
+<li>Response: SosResponse</li>
+<li>
+<p>Example keys: services[], count, radius_used, source, numbers{}</p>
+</li>
+<li>
+<p>GET /api/v1/roads/issues</p>
+</li>
+<li>Query params: lat, lon, radius, limit, statuses (comma-separated)</li>
+<li>Response: RoadIssuesResponse</li>
+<li>
+<p>Example keys: issues[], count, radius_used</p>
+</li>
+<li>
+<p>POST /api/v1/roads/report</p>
+</li>
+<li>Form fields: lat, lon, issue_type, severity, description, photo (optional)</li>
+<li>Response: RoadReportResponse</li>
+<li>
+<p>Example keys: id, authority_name, status, etc.</p>
+</li>
+<li>
+<p>GET /api/v1/routing/preview</p>
+</li>
+<li>Query params: origin_lat, origin_lon, destination_lat, destination_lon, profile, alternatives</li>
+<li>Response: RoutePreviewResponse</li>
+<li>
+<p>Example keys: provider, profile, distance_meters, duration_seconds, path[], bounds{}, origin{}, destination{}, steps[], routes[], selected_route_id, reroute_threshold_meters, warnings[]</p>
+</li>
+<li>
+<p>POST /users/</p>
+</li>
+<li>Body: UserProfileCreate</li>
+<li>Response: UserProfileResponse</li>
+<li>
+<p>Example keys: id, name, emergency_contacts[], created_at, updated_at</p>
+</li>
+<li>
+<p>PUT /users/{user_id}</p>
+</li>
+<li>Body: UserProfileUpdate</li>
+<li>Response: UserProfileResponse</li>
+<li>Example keys: id, name, emergency_contacts[], created_at, updated_at</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a></p>
+<h3 id="validation-rules-and-constraints">Validation Rules and Constraints</h3>
+<ul>
+<li>Numeric ranges:</li>
+<li>lat: -90 to 90</li>
+<li>lon: -180 to 180</li>
+<li>String lengths:</li>
+<li>message: min 1, max 4000</li>
+<li>session_id: min 1, max 128</li>
+<li>violation_code, vehicle_class, state_code: min 1, max 32/64</li>
+<li>Severity: 1 to 5</li>
+<li>Radius: 100 to 50000</li>
+<li>Limit: 1 to 50 for emergency nearby, 1 to 100 for road issues</li>
+<li>Statuses: comma-separated subset of supported statuses validated server-side</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/models/schemas.py">schemas.py</a></p>
+<h3 id="serialization-and-deserialization-patterns">Serialization and Deserialization Patterns</h3>
+<ul>
+<li>Pydantic model dumping:</li>
+<li>mode="json" used for caching and inter-service serialization</li>
+<li>exclude_unset used to avoid overwriting existing values during updates</li>
+<li>exclude_none used to remove nulls in certain requests</li>
+<li>SQLAlchemy ORM mapping:</li>
+<li>ServiceCandidate uses from_attributes=True to support ORM-style loading</li>
+<li>User profile emergency_contacts stored as JSON; serialized via model_dump before persistence</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/models/schemas.py">schemas.py</a></p>
+<h3 id="json-schema-generation">JSON Schema Generation</h3>
+<ul>
+<li>Pydantic models can be used to generate JSON schemas for documentation and validation. While not explicitly invoked in the referenced files, FastAPI integrates with Pydantic to expose OpenAPI schemas automatically. The presence of response_model annotations ensures schema generation for endpoints.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>The following diagram shows how schemas are consumed by routers and services, and how exceptions influence error handling.</p>
+<pre class="mermaid"><code>graph LR
+S["schemas.py"] --&gt; AE["api/v1/emergency.py"]
+S --&gt; AR["api/v1/roadwatch.py"]
+S --&gt; RT["api/v1/routing.py"]
+S --&gt; AU["api/v1/user.py"]
+AE --&gt; EX["services/exceptions.py"]
+AR --&gt; EX
+RT --&gt; EX
+U["models/user.py"] --&gt; AU
+E["models/emergency.py"] --&gt; AE
+R["models/road_issue.py"] --&gt; AR
+MS["main.py"] --&gt; AE</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/services/exceptions.py">exceptions.py</a>
+- <a href="file://backend/models/user.py">user.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a>
+- <a href="file://backend/main.py">main.py</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/services/exceptions.py">exceptions.py</a>
+- <a href="file://backend/models/user.py">user.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/models/road_issue.py">road_issue.py</a>
+- <a href="file://backend/main.py">main.py</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Prefer streaming or pagination for large lists (e.g., services[], issues[]) to reduce payload sizes.</li>
+<li>Use appropriate radius and limit parameters to constrain result sets.</li>
+<li>Cache frequently accessed responses using model_dump(mode="json") to minimize repeated computation.</li>
+<li>Avoid unnecessary nested object creation; reuse shared components like RoutePoint and RouteBounds.</li>
+</ul>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common validation and error scenarios:
+- 422 Unprocessable Entity:
+  - Unsupported road issue statuses passed to /roads/issues
+  - Invalid numeric ranges for lat/lon or severity
+  - Missing or out-of-range query parameters
+- 503 Service Unavailable:
+  - External service failures handled by ExternalServiceError
+  - Health endpoint returns 503 when database is unavailable</p>
+<p>Resolution steps:
+- Verify query parameter ranges and formats against schema constraints.
+- Confirm statuses are from the allowed set for road issues.
+- Inspect service logs for upstream dependency errors.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/roadwatch.py">roadwatch.py</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.py</a>
+- <a href="file://backend/api/v1/routing.py">routing.py</a>
+- <a href="file://backend/services/exceptions.py">exceptions.py</a>
+- <a href="file://backend/main.py">main.py</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Pydantic schemas in SafeVixAI provide strong typing, validation, and serialization guarantees across the backend. They align closely with FastAPI routers and services, ensuring predictable request/response contracts. By leveraging literals for constrained values, strict field constraints, and consistent serialization patterns, the system maintains reliability and clarity. Adhering to the documented constraints and error handling paths will help maintain robust integrations and predictable behavior.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

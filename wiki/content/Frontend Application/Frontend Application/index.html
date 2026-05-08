@@ -1,0 +1,2087 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Frontend Application - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#frontend-application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Frontend Application
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#state-management-with-zustand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Management with Zustand
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-ai-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline AI Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-rag-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline RAG Simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-integration-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Integration Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-composition-and-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Composition and Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progressive-web-app-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progressive Web App Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsive-design-accessibility-and-mobile-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsive Design, Accessibility, and Mobile Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#animations-and-transitions-with-tailwind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animations and Transitions with Tailwind
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-states-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component States Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tailwind-utilities-and-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tailwind Utilities and Helpers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="frontend-application">Frontend Application</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/package.json">package.json</a>
+- <a href="file://frontend/next.config.js">next.config.js</a>
+- <a href="file://frontend/public/manifest.json">manifest.json</a>
+- <a href="file://frontend/app/layout.tsx">layout.tsx</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://frontend/components/ConnectivityProvider.tsx">ConnectivityProvider.tsx</a>
+- <a href="file://frontend/components/ThemeProvider.tsx">ThemeProvider.tsx</a>
+- <a href="file://frontend/lib/offline-ai.ts">offline-ai.ts</a>
+- <a href="file://frontend/lib/offline-rag.ts">offline-rag.ts</a>
+- <a href="file://frontend/lib/api.ts">api.ts</a>
+- <a href="file://frontend/app/page.tsx">page.tsx</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx">ClientAppHooks.tsx</a>
+- <a href="file://frontend/components/PageShell.tsx">PageShell.tsx</a>
+- <a href="file://frontend/lib/utils.ts">utils.ts</a>
+- <a href="file://frontend/lib/map-defaults.ts">map-defaults.ts</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the Next.js PWA frontend application for SafeVixAI, focusing on component hierarchy, state management with React hooks, and offline-first architecture. It documents Progressive Web App features (service workers, manifest configuration), offline data caching, component composition, routing patterns, backend API integration, responsive design and accessibility, mobile optimization, Tailwind-based animations/transitions, cross-browser compatibility, performance optimization, and WebAssembly integration for offline AI models.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The frontend is organized as a Next.js 15 app under the frontend directory. Key areas:
+- app/: Next.js App Router pages and shared layout
+- components/: reusable UI and providers
+- lib/: utilities, stores, offline logic, and API clients
+- public/: static assets including manifest.json and icons
+- Tailwind CSS, PostCSS, and TypeScript configurations enable responsive, theme-aware UI</p>
+<pre class="mermaid"><code>graph TB
+A["app/layout.tsx"] --&gt; B["components/ThemeProvider.tsx"]
+A --&gt; C["components/ConnectivityProvider.tsx"]
+A --&gt; D["components/PageShell.tsx"]
+D --&gt; E["components/AppSidebar.tsx"]
+D --&gt; F["components/NetworkMonitor.tsx"]
+D --&gt; G["components/GlobalSOS.tsx"]
+A --&gt; H["components/ClientAppHooks.tsx"]
+A --&gt; I["app/page.tsx"]
+I --&gt; J["components/dashboard/* (dynamic imports)"]
+A --&gt; K["lib/store.ts"]
+A --&gt; L["lib/api.ts"]
+A --&gt; M["lib/offline-ai.ts"]
+A --&gt; N["lib/offline-rag.ts"]
+O["public/manifest.json"] --&gt; A</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L1-L86">layout.tsx:1-86</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L1-L63">ThemeProvider.tsx:1-63</a>
+- <a href="file://frontend/components/ConnectivityProvider.tsx#L1-L27">ConnectivityProvider.tsx:1-27</a>
+- <a href="file://frontend/components/PageShell.tsx#L1-L36">PageShell.tsx:1-36</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L1-L38">ClientAppHooks.tsx:1-38</a>
+- <a href="file://frontend/app/page.tsx#L1-L229">page.tsx:1-229</a>
+- <a href="file://frontend/lib/store.ts#L1-L226">store.ts:1-226</a>
+- <a href="file://frontend/lib/api.ts#L1-L821">api.ts:1-821</a>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L1-L86">layout.tsx:1-86</a>
+- <a href="file://frontend/package.json#L1-L85">package.json:1-85</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Layout and Providers</li>
+<li>Root layout sets metadata, viewport, manifest, Apple Web App settings, and composes providers and shell.</li>
+<li>ThemeProvider manages theme state and applies resolved theme to the document element.</li>
+<li>ConnectivityProvider listens to online/offline events and updates global connectivity state.</li>
+<li>PageShell wraps main content, renders sidebar and network monitor, and handles desktop sidebar collapse state.</li>
+<li>
+<p>ClientAppHooks initializes offline SOS sync listeners and crash detection.</p>
+</li>
+<li>
+<p>State Management</p>
+</li>
+<li>
+<p>Zustand store encapsulates GPS location, nearby services and road issues, AI mode and model load progress, connectivity, user profile, UI toggles, challan calculator state, and auth state. Persistence is selectively applied to user preferences and profile.</p>
+</li>
+<li>
+<p>Offline AI and RAG</p>
+</li>
+<li>offline-ai.ts orchestrates system AI (Chrome built-in), Transformers.js Gemma 4 E2B with WebGPU/WASM, and keyword fallback. It exposes initialization, querying, status checks, and readiness helpers.</li>
+<li>
+<p>offline-rag.ts simulates local law citations retrieval using a keyword-indexed dataset.</p>
+</li>
+<li>
+<p>API Layer</p>
+</li>
+<li>
+<p>api.ts defines typed requests for emergency services, geocoding, road issues, routing, and chatbot integration. It injects JWT from persisted store and configures timeouts.</p>
+</li>
+<li>
+<p>Dashboard and Pages</p>
+</li>
+<li>page.tsx renders the main dashboard with dynamic map bootstrapping, area intelligence cards, stats, recent hazards, and collapsible desktop panel. It integrates with the store and Tailwind classes for responsive design.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L1-L86">layout.tsx:1-86</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L1-L63">ThemeProvider.tsx:1-63</a>
+- <a href="file://frontend/components/ConnectivityProvider.tsx#L1-L27">ConnectivityProvider.tsx:1-27</a>
+- <a href="file://frontend/components/PageShell.tsx#L1-L36">PageShell.tsx:1-36</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L1-L38">ClientAppHooks.tsx:1-38</a>
+- <a href="file://frontend/lib/store.ts#L1-L226">store.ts:1-226</a>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a>
+- <a href="file://frontend/lib/api.ts#L1-L821">api.ts:1-821</a>
+- <a href="file://frontend/app/page.tsx#L1-L229">page.tsx:1-229</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The frontend follows a layered architecture:
+- Presentation Layer: Next.js App Router pages and components
+- State Layer: Zustand store for global state and persistence
+- Offline Layer: Transformers.js and system AI for offline AI, local RAG simulation
+- API Layer: Axios clients for backend and chatbot services
+- Infrastructure Layer: Manifest, Webpack config for WASM/Web Workers, and dynamic imports for map</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Presentation"
+P1["app/page.tsx"]
+P2["components/dashboard/*"]
+end
+subgraph "State"
+S1["lib/store.ts"]
+end
+subgraph "Offline"
+O1["lib/offline-ai.ts"]
+O2["lib/offline-rag.ts"]
+end
+subgraph "API"
+A1["lib/api.ts"]
+end
+subgraph "Infrastructure"
+I1["public/manifest.json"]
+I2["next.config.js"]
+end
+P1 --&gt; S1
+P1 --&gt; A1
+P1 --&gt; O1
+P1 --&gt; O2
+A1 --&gt; Backend["Backend API"]
+A1 --&gt; Chatbot["Chatbot Service"]
+I1 --&gt; PWA["PWA Runtime"]
+I2 --&gt; Build["Webpack Config&lt;br/&gt;WASM + Workers"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/page.tsx#L1-L229">page.tsx:1-229</a>
+- <a href="file://frontend/lib/store.ts#L1-L226">store.ts:1-226</a>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a>
+- <a href="file://frontend/lib/api.ts#L1-L821">api.ts:1-821</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a>
+- <a href="file://frontend/next.config.js#L1-L44">next.config.js:1-44</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="state-management-with-zustand">State Management with Zustand</h3>
+<p>The store defines:
+- GPS and errors
+- Nearby services and road issues with metadata
+- AI mode and model load progress
+- Connectivity state
+- User profile and preferences
+- UI toggles (sidebar open/collapsed)
+- Challan calculator state
+- Authentication state</p>
+<p>Persistence is configured to persist only a subset of state (profile, preferences, auth) to localStorage via zustand/persist.</p>
+<pre class="mermaid"><code>classDiagram
+class AppState {
++gpsLocation : GpsLocation|null
++gpsError : string|null
++nearbyServices : NearbyService[]
++serviceSearchMeta : ServiceSearchMeta
++serviceRadius : number
++serviceCategory : string|"all"
++nearbyRoadIssues : NearbyRoadIssue[]
++roadIssueSearchMeta : RoadIssueSearchMeta
++aiMode : "online"|"offline"|"loading"
++modelLoadProgress : number
++connectivity : "online"|"cached"|"offline"|"ai-offline"
++userProfile : UserProfile
++drivingScore : number|null
++crashDetectionEnabled : boolean
++isSystemSidebarOpen : boolean
++isDesktopSidebarCollapsed : boolean
++challanState : object
++isAuthenticated : boolean
++authToken : string|null
++operatorName : string
+}
+class StoreActions {
++setGpsLocation(loc)
++setGpsError(err)
++setNearbyServices(services)
++setServiceSearchMeta(meta)
++setServiceRadius(r)
++setServiceCategory(c)
++setNearbyRoadIssues(issues)
++setRoadIssueSearchMeta(meta)
++setAiMode(mode)
++setModelLoadProgress(p)
++setConnectivity(state)
++setUserProfile(partial)
++setDrivingScore(score)
++setCrashDetectionEnabled(v)
++setSystemSidebarOpen(v)
++setDesktopSidebarCollapsed(v)
++setChallanState(state)
++setAuth(token,name)
++clearAuth()
+}
+AppState &lt;.. StoreActions : "actions"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/store.ts#L63-L226">store.ts:63-226</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/store.ts#L1-L226">store.ts:1-226</a></p>
+<h3 id="offline-ai-engine">Offline AI Engine</h3>
+<p>The offline AI engine supports three tiers:
+1. System AI (Chrome built-in) — zero download, instant
+2. Transformers.js Gemma 4 E2B — WebGPU acceleration with WASM fallback, cached via browser cache
+3. Keyword fallback — deterministic responses using cached data</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant UI as "UI Component"
+participant Store as "useAppStore"
+participant OA as "offline-ai.ts"
+participant TF as "Transformers.js"
+participant SYS as "window.ai"
+UI-&gt;&gt;Store : "setAiMode('offline')"
+UI-&gt;&gt;OA : "getOfflineAI(onProgress)"
+OA-&gt;&gt;SYS : "capabilities() / create()"
+alt "System AI available"
+OA--&gt;&gt;UI : "{type : 'system'}"
+else "System AI unavailable"
+OA-&gt;&gt;TF : "pipeline('google/gemma-4-E2B-it', {device : 'webgpu',dtype : 'q4'})"
+TF--&gt;&gt;OA : "ready"
+OA--&gt;&gt;UI : "{type : 'transformers'}"
+end
+UI-&gt;&gt;OA : "askOfflineAI(prompt, audioBlob?)"
+OA-&gt;&gt;SYS : "prompt()"
+OA-&gt;&gt;TF : "pipeline(messages, {max_new_tokens})"
+OA--&gt;&gt;UI : "response or keyword fallback"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L114-L221">offline-ai.ts:114-221</a>
+- <a href="file://frontend/lib/store.ts#L84-L88">store.ts:84-88</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/next.config.js#L23-L36">next.config.js:23-36</a></p>
+<h3 id="offline-rag-simulation">Offline RAG Simulation</h3>
+<p>The local RAG retrieves MV Act citations by keyword matching against a small dataset. In production, HNSWlib-wasm would replace this for semantic similarity.</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["User Query"]) --&gt; Normalize["Normalize Query"]
+Normalize --&gt; Split["Split into Words"]
+Split --&gt; Filter["Filter Docs by Tags/Text Containment"]
+Filter --&gt; Return["Return Matching LawDocs"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-rag.ts#L22-L34">offline-rag.ts:22-34</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a></p>
+<h3 id="api-integration-patterns">API Integration Patterns</h3>
+<p>The API client:
+- Uses axios with base URLs for backend and chatbot services
+- Injects Authorization header from persisted store
+- Normalizes backend responses into typed models
+- Exposes functions for emergency services, geocoding, road issues, routing, and chat</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Page as "app/page.tsx"
+participant Store as "useAppStore"
+participant API as "lib/api.ts"
+participant BE as "Backend API"
+participant CB as "Chatbot Service"
+Page-&gt;&gt;Store : "Read gpsLocation, serviceRadius, serviceCategory"
+Page-&gt;&gt;API : "fetchNearbyServices(params)"
+API-&gt;&gt;BE : "GET /api/v1/emergency/nearby"
+BE--&gt;&gt;API : "JSON EmergencyResponse"
+API--&gt;&gt;Page : "Normalized EmergencyResponse"
+Page-&gt;&gt;API : "sendChatMessage(req)"
+API-&gt;&gt;CB : "POST /api/v1/chat/"
+CB--&gt;&gt;API : "ChatResponse"
+API--&gt;&gt;Page : "ChatResponse"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/page.tsx#L31-L37">page.tsx:31-37</a>
+- <a href="file://frontend/lib/api.ts#L624-L800">api.ts:624-800</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/api.ts#L1-L821">api.ts:1-821</a></p>
+<h3 id="dashboard-composition-and-routing">Dashboard Composition and Routing</h3>
+<ul>
+<li>The root page uses dynamic imports for map components to avoid SSR and improve hydration performance.</li>
+<li>The page composes dashboard components, reads from the store, and renders area intelligence cards, stats, and hazards.</li>
+<li>Routing is handled by Next.js App Router pages under app/.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+Root["app/layout.tsx"] --&gt; Shell["components/PageShell.tsx"]
+Shell --&gt; Sidebar["components/AppSidebar.tsx"]
+Shell --&gt; Main["app/page.tsx"]
+Main --&gt; MapBoot["components/dashboard/DashboardMapBootstrap.tsx"]
+Main --&gt; MapDyn["components/dashboard/MapBackgroundInner.tsx (dynamic)"]
+Main --&gt; Controls["components/dashboard/FloatingSidebarControls.tsx"]
+Main --&gt; Alerts["components/dashboard/RecentAlertsOverlay.tsx"]
+Main --&gt; Bottom["components/dashboard/BottomNav.tsx"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L84">layout.tsx:38-84</a>
+- <a href="file://frontend/app/page.tsx#L17-L27">page.tsx:17-27</a>
+- <a href="file://frontend/components/PageShell.tsx#L13-L35">PageShell.tsx:13-35</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/page.tsx#L1-L229">page.tsx:1-229</a>
+- <a href="file://frontend/app/layout.tsx#L1-L86">layout.tsx:1-86</a></p>
+<h3 id="progressive-web-app-features">Progressive Web App Features</h3>
+<ul>
+<li>Manifest: Defines app identity, display mode, orientation, theme/background colors, icons, shortcuts, screenshots, and categories.</li>
+<li>Webpack config: Enables asyncWebAssembly and worker-loader for Transformers.js and WebGPU acceleration.</li>
+<li>Service Worker: Not shown in the provided files; however, the manifest and Next.js build configuration support PWA installation and offline capabilities.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Manifest["public/manifest.json"] --&gt; Install["Install Prompt"]
+Install --&gt; Launch["Launch from Home Screen"]
+Launch --&gt; Cache["Cache Assets via SW"]
+Cache --&gt; Offline["Offline Data Access"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a>
+- <a href="file://frontend/next.config.js#L19-L39">next.config.js:19-39</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a>
+- <a href="file://frontend/next.config.js#L1-L44">next.config.js:1-44</a></p>
+<h3 id="responsive-design-accessibility-and-mobile-optimization">Responsive Design, Accessibility, and Mobile Optimization</h3>
+<ul>
+<li>Tailwind utilities and responsive breakpoints are used extensively in the dashboard and components.</li>
+<li>Accessibility: skip link for keyboard navigation, semantic markup, and focus-visible patterns.</li>
+<li>Mobile-first design with bottom navigation, collapsible desktop panels, and touch-friendly controls.</li>
+<li>Theme switching and system preference handling for optimal viewing across devices.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/page.tsx#L77-L229">page.tsx:77-229</a>
+- <a href="file://frontend/components/PageShell.tsx#L18-L32">PageShell.tsx:18-32</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L23-L48">ThemeProvider.tsx:23-48</a></p>
+<h3 id="animations-and-transitions-with-tailwind">Animations and Transitions with Tailwind</h3>
+<ul>
+<li>Pulse and opacity transitions are used for connectivity indicators and interactive states.</li>
+<li>Collapsible desktop panel with smooth width transitions.</li>
+<li>Loading spinners and animated indicators for async operations.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/page.tsx#L112-L119">page.tsx:112-119</a>
+- <a href="file://frontend/app/page.tsx#L94-L100">page.tsx:94-100</a>
+- <a href="file://frontend/app/page.tsx#L23-L26">page.tsx:23-26</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>Key runtime dependencies include:
+- UI and styling: lucide-react, tailwind-merge, class-variance-authority, next-themes
+- Maps: maplibre-gl, dynamic map components
+- AI and ML: @huggingface/transformers, @mlc-ai/web-llm, hnswlib-wasm
+- State and caching: zustand, idb
+- Networking: axios, socket.io-client
+- Utilities: fast-deep-equal, geokdbush, @turf/turf
+- Motion and animations: motion, tw-animate-css</p>
+<p>Build-time dependencies include Next.js, PostCSS, Tailwind CSS, and Jest/Vitest for testing.</p>
+<pre class="mermaid"><code>graph TB
+Pkg["frontend/package.json"] --&gt; Next["next"]
+Pkg --&gt; Tailwind["tailwindcss"]
+Pkg --&gt; MapLibre["maplibre-gl"]
+Pkg --&gt; HF["@huggingface/transformers"]
+Pkg --&gt; MLC["@mlc-ai/web-llm"]
+Pkg --&gt; Zustand["zustand"]
+Pkg --&gt; Axios["axios"]
+Pkg --&gt; Lucide["lucide-react"]
+Pkg --&gt; Motion["motion"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/package.json#L14-L52">package.json:14-52</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/package.json#L1-L85">package.json:1-85</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Dynamic imports for heavy map components reduce initial bundle size.</li>
+<li>Webpack config enables asyncWebAssembly and worker-loader for AI model loading.</li>
+<li>Tailwind utilities minimize CSS overhead; use only required classes.</li>
+<li>Persist selective state to localStorage to avoid bloating IndexedDB.</li>
+<li>Use SWR or similar for efficient data fetching and caching.</li>
+<li>Prefer GPU acceleration (WebGPU) for AI inference when available; fallback to WASM is supported.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Offline AI not loading</li>
+<li>Verify asyncWebAssembly is enabled and worker-loader is configured.</li>
+<li>Check browser support for WebGPU; fallback to WASM should occur automatically.</li>
+<li>
+<p>Confirm model cache storage is permitted by the browser.</p>
+</li>
+<li>
+<p>Connectivity state not updating</p>
+</li>
+<li>
+<p>Ensure ConnectivityProvider is mounted in the root layout and event listeners are attached.</p>
+</li>
+<li>
+<p>API requests failing</p>
+</li>
+<li>Confirm NEXT_PUBLIC_API_URL and NEXT_PUBLIC_CHATBOT_URL are set.</li>
+<li>
+<p>Verify Authorization header injection from persisted store.</p>
+</li>
+<li>
+<p>Map not rendering</p>
+</li>
+<li>Confirm dynamic import is used for map components and SSR is disabled for them.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L23-L36">next.config.js:23-36</a>
+- <a href="file://frontend/components/ConnectivityProvider.tsx#L9-L23">ConnectivityProvider.tsx:9-23</a>
+- <a href="file://frontend/lib/api.ts#L4-L12">api.ts:4-12</a>
+- <a href="file://frontend/app/page.tsx#L17-L27">page.tsx:17-27</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<blockquote>
+<p><strong>Enterprise Hardening Notes:</strong>
+- <code>app/error.tsx</code> Error Boundary added for graceful crash recovery
+- <code>EnterpriseClientAppHooks.tsx</code> added for production monitoring hooks
+- PWA manifest includes <code>shortcuts</code> (4 app shortcuts) and <code>share_target</code> for Web Share API
+- 45 React components across the component library
+- 16 page routes with full Next.js App Router</p>
+</blockquote>
+<p>The SafeVixAI frontend leverages Next.js App Router, Zustand for state, and a robust offline-first AI stack with Transformers.js and system AI fallbacks. It integrates with backend APIs, supports PWA installation, and emphasizes responsive design, accessibility, and performance. The modular component architecture and typed API clients facilitate maintainability and scalability.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="component-states-reference">Component States Reference</h3>
+<ul>
+<li>GPS: lat, lon, accuracy, timestamp, city, state, displayName</li>
+<li>Services: id, name, category, lat, lon, distance, phone, address, source</li>
+<li>Road Issues: uuid, issueType, severity, lat, lon, distance, status, description, authorityName, roadName, roadType, createdAt</li>
+<li>Search Meta: count, radiusUsed, requestedRadius, source</li>
+<li>User Profile: bloodGroup, vehicleNumber, emergencyContact, name</li>
+<li>UI: isSystemSidebarOpen, isDesktopSidebarCollapsed</li>
+<li>Auth: isAuthenticated, authToken, operatorName</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/store.ts#L4-L58">store.ts:4-58</a></p>
+<h3 id="tailwind-utilities-and-helpers">Tailwind Utilities and Helpers</h3>
+<ul>
+<li>Utility merging: cn(...) from clsx and tailwind-merge</li>
+<li>Map defaults: fallback center and zoom levels configurable via environment variables</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/utils.ts#L1-L7">utils.ts:1-7</a>
+- <a href="file://frontend/lib/map-defaults.ts#L1-L8">map-defaults.ts:1-8</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

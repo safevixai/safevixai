@@ -1,0 +1,2053 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Challan Records Entity - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#challan-records-entity" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Challan Records Entity
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-models-challanrule-and-statechallanoverride" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Models: ChallanRule and StateChallanOverride
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fine-calculation-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fine Calculation Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-workflow-post-apiv1challancalculate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Workflow: POST /api/v1/challan/calculate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-seeding-and-regional-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Seeding and Regional Overrides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legal-database-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legal Database Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#appendix-a-data-model-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A: Data Model Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-b-examples-and-state-specific-violations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B: Examples and State-Specific Violations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="challan-records-entity">Challan Records Entity</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/models/challan.py">challan.py</a>
+- <a href="file://backend/services/challan_service.py">challan_service.py</a>
+- <a href="file://backend/models/schemas.py">schemas.py</a>
+- <a href="file://backend/api/v1/challan.py">challan.py</a>
+- <a href="file://backend/main.py">main.py</a>
+- <a href="file://backend/tests/test_challan.py">test_challan.py</a>
+- <a href="file://backend/scripts/data/seed_violations.py">seed_violations.py</a>
+- <a href="file://chatbot_service/data/state_overrides.csv">state_overrides.csv</a>
+- <a href="file://chatbot_service/data/violations_seed.csv">violations_seed.csv</a>
+- <a href="file://chatbot_service/tools/challan_tool.py">challan_tool.py</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx">ChallanCalculator.tsx</a>
+- <a href="file://frontend/app/challan/page.tsx">page.tsx</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document provides comprehensive data model documentation for Challan Records entities, focusing on ChallanViolation and ChallanPayment, along with legal enforcement tracking. It details the challan record table structure, violation details, fine calculations, payment processing, and legal citation tracking. It also documents state-specific traffic violation enforcement rules, Motor Vehicle Act compliance, and regional variation handling. The document explains fine calculation algorithms, penalty escalation patterns, and payment status tracking, and includes examples of challan data structures, state-specific violation codes, and integration with legal databases. Finally, it covers performance considerations for large-scale violation data and compliance reporting requirements.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The challan system spans backend models and services, API endpoints, frontend components, and data seeding utilities. The backend defines the ChallanRule and StateChallanOverride models, exposes a calculation endpoint, and integrates with the application lifecycle. The frontend provides interactive calculators and pages for fine estimation. Data seeding scripts normalize and persist violations and state overrides for runtime use.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Backend"
+A["models/challan.py"]
+B["services/challan_service.py"]
+C["api/v1/challan.py"]
+D["models/schemas.py"]
+E["main.py"]
+end
+subgraph "Data Seeding"
+F["scripts/data/seed_violations.py"]
+G["chatbot_service/data/violations_seed.csv"]
+H["chatbot_service/data/state_overrides.csv"]
+end
+subgraph "Frontend"
+I["frontend/components/ChallanCalculator.tsx"]
+J["frontend/app/challan/page.tsx"]
+end
+A --&gt; B
+B --&gt; C
+D --&gt; C
+E --&gt; C
+F --&gt; A
+F --&gt; B
+G --&gt; F
+H --&gt; F
+I --&gt; C
+J --&gt; C</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/challan.py#L1-L53">challan.py:1-53</a>
+- <a href="file://backend/services/challan_service.py#L1-L314">challan_service.py:1-314</a>
+- <a href="file://backend/api/v1/challan.py#L1-L26">challan.py:1-26</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a>
+- <a href="file://backend/main.py#L24-L64">main.py:24-64</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L1-L482">seed_violations.py:1-482</a>
+- <a href="file://chatbot_service/data/violations_seed.csv#L1-L30">violations_seed.csv:1-30</a>
+- <a href="file://chatbot_service/data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-L186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/app/challan/page.tsx#L1-L320">page.tsx:1-320</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/challan.py#L1-L53">challan.py:1-53</a>
+- <a href="file://backend/services/challan_service.py#L1-L314">challan_service.py:1-314</a>
+- <a href="file://backend/api/v1/challan.py#L1-L26">challan.py:1-26</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a>
+- <a href="file://backend/main.py#L24-L64">main.py:24-64</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L1-L482">seed_violations.py:1-482</a>
+- <a href="file://chatbot_service/data/violations_seed.csv#L1-L30">violations_seed.csv:1-30</a>
+- <a href="file://chatbot_service/data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-L186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/app/challan/page.tsx#L1-L320">page.tsx:1-320</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>ChallanRule: Defines a traffic violation rule with violation_code, section, description, base_fines, repeat_fines, and aliases. Provides matching and fine lookup helpers.</li>
+<li>StateChallanOverride: Encapsulates state-specific overrides for base_fine, repeat_fine, section, description, and notes, with matching logic for state_code, violation_code, and vehicle_class.</li>
+<li>ChallanService: Central service implementing fine calculation, normalization, optional CSV loading, and state override resolution.</li>
+<li>ChallanQuery and ChallanResponse: Pydantic models defining input and output structures for the calculation endpoint.</li>
+<li>API Endpoint: Exposes POST /api/v1/challan/calculate with dependency injection of ChallanService.</li>
+<li>Frontend Components: Interactive calculators and pages that collect inputs and call the backend endpoint.</li>
+</ul>
+<p>Key responsibilities:
+- Normalize inputs (violation_code, vehicle_class, state_code).
+- Resolve applicable rule and apply state overrides.
+- Compute amount_due based on repeat offense flag.
+- Return structured response with legal citations.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/challan.py#L6-L53">challan.py:6-53</a>
+- <a href="file://backend/services/challan_service.py#L96-L149">challan_service.py:96-149</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The challan calculation pipeline integrates frontend input, API routing, service logic, and optional data sources.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant FE as "Frontend Component"
+participant API as "FastAPI Router"
+participant SVC as "ChallanService"
+participant FS as "File System"
+FE-&gt;&gt;API : POST /api/v1/challan/calculate
+API-&gt;&gt;SVC : calculate(ChallanQuery)
+SVC-&gt;&gt;SVC : normalize inputs
+SVC-&gt;&gt;SVC : find rule by violation_code
+SVC-&gt;&gt;FS : optionally load violations.csv/state_overrides.csv
+SVC-&gt;&gt;SVC : resolve state override
+SVC-&gt;&gt;SVC : compute amount_due (repeat vs base)
+SVC--&gt;&gt;API : ChallanResponse
+API--&gt;&gt;FE : JSON response</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a>
+- <a href="file://backend/services/challan_service.py#L103-L149">challan_service.py:103-149</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L158-L174">seed_violations.py:158-174</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a>
+- <a href="file://backend/services/challan_service.py#L103-L149">challan_service.py:103-149</a>
+- <a href="file://backend/main.py#L35-L50">main.py:35-50</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="data-models-challanrule-and-statechallanoverride">Data Models: ChallanRule and StateChallanOverride</h3>
+<p>The models define the core data structures for violation rules and state overrides.</p>
+<pre class="mermaid"><code>classDiagram
+class ChallanRule {
++string violation_code
++string section
++string description
++dict~string,int~ base_fines
++dict~string,int~ repeat_fines
++tuple~string...~ aliases
++matches(candidate) bool
++fine_for_vehicle(vehicle_class) int
++repeat_fine_for_vehicle(vehicle_class) int?
+}
+class StateChallanOverride {
++string state_code
++string violation_code
++string? vehicle_class
++int base_fine
++int? repeat_fine
++string? section
++string? description
++string? note
++matches(state_code, violation_code, vehicle_class) bool
+}</code></pre>
+<ul>
+<li>Matching and normalization:</li>
+<li>violation_code is normalized to uppercase alphanumeric and slash.</li>
+<li>aliases enable alternate identifiers for the same rule.</li>
+<li>vehicle_class is normalized via aliases and validated.</li>
+<li>
+<p>state_code supports multiple forms and extracts a 2-letter code.</p>
+</li>
+<li>
+<p>Fine computation:</p>
+</li>
+<li>Base and repeat fines are looked up by vehicle class with a default fallback.</li>
+<li>Repeat offenses use repeat_fine when present; otherwise base_fine.</li>
+</ul>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/challan.py#L6-L53">challan.py:6-53</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/challan.py#L6-L53">challan.py:6-53</a>
+- <a href="file://backend/services/challan_service.py#L290-L314">challan_service.py:290-314</a></p>
+<h3 id="fine-calculation-algorithm">Fine Calculation Algorithm</h3>
+<p>The calculation algorithm resolves the appropriate rule, applies state overrides, and computes the payable amount.</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["Start calculate"]) --&gt; Normalize["Normalize violation_code, vehicle_class, state_code"]
+Normalize --&gt; FindRule["Find rule by violation_code"]
+FindRule --&gt; RuleFound{"Rule found?"}
+RuleFound --&gt; |No| RaiseError["Raise validation error"]
+RuleFound --&gt; |Yes| LoadOverrides["Load state overrides (optional)"]
+LoadOverrides --&gt; ApplyOverride{"Override exists?"}
+ApplyOverride --&gt; |Yes| OverrideFine["Use override base/repeat fines&lt;br/&gt;Optionally update section/description"]
+ApplyOverride --&gt; |No| UseDefaults["Use rule base/repeat fines"]
+OverrideFine --&gt; DecideAmount{"is_repeat?"}
+UseDefaults --&gt; DecideAmount
+DecideAmount --&gt; |Yes| AmountRepeat["Set amount_due = repeat_fine"]
+DecideAmount --&gt; |No| AmountBase["Set amount_due = base_fine"]
+AmountRepeat --&gt; Return["Return ChallanResponse"]
+AmountBase --&gt; Return
+RaiseError --&gt; End(["End"])
+Return --&gt; End</code></pre>
+<ul>
+<li>Optional data loading:</li>
+<li>violations.csv and state_overrides.csv are loaded from multiple candidate directories.</li>
+<li>
+<p>CSV parsing supports flexible column names and money extraction.</p>
+</li>
+<li>
+<p>Repeat offense escalation:</p>
+</li>
+<li>repeat_fine is preferred when is_repeat is true and available; otherwise base_fine is used.</li>
+</ul>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/challan_service.py#L103-L149">challan_service.py:103-149</a>
+- <a href="file://backend/services/challan_service.py#L168-L238">challan_service.py:168-238</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L103-L149">challan_service.py:103-149</a>
+- <a href="file://backend/services/challan_service.py#L168-L238">challan_service.py:168-238</a></p>
+<h3 id="api-workflow-post-apiv1challancalculate">API Workflow: POST /api/v1/challan/calculate</h3>
+<p>The API endpoint validates inputs, delegates to ChallanService, and handles validation errors.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client"
+participant Router as "API Router"
+participant Dep as "Dependency Injection"
+participant Service as "ChallanService"
+Client-&gt;&gt;Router : POST /api/v1/challan/calculate
+Router-&gt;&gt;Dep : get_challan_service()
+Dep--&gt;&gt;Router : ChallanService instance
+Router-&gt;&gt;Service : calculate(ChallanQuery)
+Service--&gt;&gt;Router : ChallanResponse
+Router--&gt;&gt;Client : 200 OK JSON</code></pre>
+<ul>
+<li>Validation:</li>
+<li>Unsupported violation codes trigger a 422 error with guidance.</li>
+</ul>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a>
+- <a href="file://backend/tests/test_challan.py#L45-L59">test_challan.py:45-59</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">challan.py:17-25</a>
+- <a href="file://backend/tests/test_challan.py#L45-L59">test_challan.py:45-59</a></p>
+<h3 id="frontend-integration">Frontend Integration</h3>
+<p>Frontend components collect user inputs and call the backend endpoint, displaying results with repeat-offense indicators.</p>
+<ul>
+<li>ChallanCalculator.tsx:</li>
+<li>Provides a visual interface to select violation, vehicle class, state, and repeat status.</li>
+<li>
+<p>Calls calculateChallan and renders total liability with legal citation.</p>
+</li>
+<li>
+<p>page.tsx:</p>
+</li>
+<li>Integrates with app-wide state to maintain selections across navigation.</li>
+<li>Uses SWR for efficient fetching and displays repeat-offense effects.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L32-L62">ChallanCalculator.tsx:32-62</a>
+- <a href="file://frontend/app/challan/page.tsx#L71-L80">page.tsx:71-80</a></p>
+<h3 id="data-seeding-and-regional-overrides">Data Seeding and Regional Overrides</h3>
+<p>Data seeding normalizes external sources into backend-ready CSVs and loads them at runtime.</p>
+<ul>
+<li>Seed script:</li>
+<li>Reads violations_seed.csv and state_overrides.csv.</li>
+<li>Normalizes codes, amounts, and vehicle classes.</li>
+<li>
+<p>Emits violations.csv and state_overrides.csv for runtime use.</p>
+</li>
+<li>
+<p>Example datasets:</p>
+</li>
+<li>violations_seed.csv: Central Motor Vehicle Act penalties and descriptions.</li>
+<li>state_overrides.csv: State-specific overrides with authority, effective dates, and notes.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/scripts/data/seed_violations.py#L177-L234">seed_violations.py:177-234</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L252-L301">seed_violations.py:252-301</a>
+- <a href="file://chatbot_service/data/violations_seed.csv#L1-L30">violations_seed.csv:1-30</a>
+- <a href="file://chatbot_service/data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a></p>
+<h3 id="legal-database-integration">Legal Database Integration</h3>
+<p>The system integrates with legal databases via:
+- Central Motor Vehicle Act references embedded in rule sections and descriptions.
+- State-specific notifications and schedules linked by authority and source URLs.
+- Tool-level inference of state and violation codes from natural language queries.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L30-L93">challan_service.py:30-93</a>
+- <a href="file://chatbot_service/data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a>
+- <a href="file://chatbot_service/tools/challan_tool.py#L31-L69">challan_tool.py:31-69</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>The challan system exhibits clear separation of concerns with low coupling between modules.</p>
+<pre class="mermaid"><code>graph TB
+Models["models/challan.py"] --&gt; Service["services/challan_service.py"]
+Schemas["models/schemas.py"] --&gt; API["api/v1/challan.py"]
+API --&gt; Service
+Service --&gt; Main["main.py"]
+Seed["scripts/data/seed_violations.py"] --&gt; Service
+Seed --&gt; Models
+Front1["frontend/components/ChallanCalculator.tsx"] --&gt; API
+Front2["frontend/app/challan/page.tsx"] --&gt; API</code></pre>
+<ul>
+<li>Coupling:</li>
+<li>Service depends on models and schemas.</li>
+<li>API depends on service and schemas.</li>
+<li>
+<p>Frontend depends on API.</p>
+</li>
+<li>
+<p>Cohesion:</p>
+</li>
+<li>Service encapsulates all calculation logic and optional data loading.</li>
+<li>Models are cohesive data carriers with minimal behavior.</li>
+</ul>
+<p>Potential circular dependencies:
+- None observed among the analyzed modules.</p>
+<p>External dependencies:
+- CSV parsing for optional data loading.
+- Pydantic for request/response validation.</p>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/challan.py#L1-L53">challan.py:1-53</a>
+- <a href="file://backend/services/challan_service.py#L1-L314">challan_service.py:1-314</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a>
+- <a href="file://backend/api/v1/challan.py#L1-L26">challan.py:1-26</a>
+- <a href="file://backend/main.py#L35-L50">main.py:35-50</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L1-L482">seed_violations.py:1-482</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-L186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/app/challan/page.tsx#L1-L320">page.tsx:1-320</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/challan.py#L1-L53">challan.py:1-53</a>
+- <a href="file://backend/services/challan_service.py#L1-L314">challan_service.py:1-314</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a>
+- <a href="file://backend/api/v1/challan.py#L1-L26">challan.py:1-26</a>
+- <a href="file://backend/main.py#L35-L50">main.py:35-50</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L1-L482">seed_violations.py:1-482</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-L186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/app/challan/page.tsx#L1-L320">page.tsx:1-320</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Data loading:</li>
+<li>CSV loading occurs during initialization and is bounded by file sizes.</li>
+<li>
+<p>Money parsing uses regex to strip non-digit characters, ensuring O(n) per field.</p>
+</li>
+<li>
+<p>Memory footprint:</p>
+</li>
+<li>
+<p>Rules and overrides are stored in lists; consider pagination or lazy loading for very large datasets.</p>
+</li>
+<li>
+<p>Computation complexity:</p>
+</li>
+<li>Finding a rule and applying overrides are linear scans; acceptable for typical rule counts.</li>
+<li>
+<p>Consider indexing or caching mechanisms if rule sets grow substantially.</p>
+</li>
+<li>
+<p>Frontend responsiveness:</p>
+</li>
+<li>SWR caching reduces redundant requests.</li>
+<li>
+<p>Debouncing repeated rapid inputs improves UX and backend throughput.</p>
+</li>
+<li>
+<p>Offline fallback:</p>
+</li>
+<li>Frontend includes an offline mock to maintain availability during network issues.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and resolutions:
+- Unsupported violation code:
+  - Symptom: 422 error indicating unsupported code.
+  - Resolution: Verify violation_code against known examples and aliases.</p>
+<ul>
+<li>Missing or invalid vehicle_class/state_code:</li>
+<li>Symptom: Validation errors during normalization.</li>
+<li>
+<p>Resolution: Ensure inputs conform to accepted formats and aliases.</p>
+</li>
+<li>
+<p>Unexpected defaults after state override:</p>
+</li>
+<li>Symptom: Section/description unchanged from base rule.</li>
+<li>
+<p>Resolution: Confirm override presence and completeness in state_overrides.csv.</p>
+</li>
+<li>
+<p>Payment processing:</p>
+</li>
+<li>The current models and API do not include ChallanPayment records or payment status tracking. Extend models and services to support payment lifecycle.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/tests/test_challan.py#L45-L59">test_challan.py:45-59</a>
+- <a href="file://backend/services/challan_service.py#L109-L113">challan_service.py:109-113</a>
+- <a href="file://backend/services/challan_service.py#L246-L260">challan_service.py:246-260</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The challan system provides a robust foundation for traffic violation fine calculation with strong support for state-specific overrides and legal citations. The modular design enables easy extension for ChallanPayment entities and payment status tracking. By leveraging CSV-based data seeding and frontend integration, the system scales to diverse regional enforcement needs while maintaining clarity and performance.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="appendix-a-data-model-definitions">Appendix A: Data Model Definitions</h3>
+<ul>
+<li>ChallanRule</li>
+<li>violation_code: Unique identifier for the violation.</li>
+<li>section: Legal section reference.</li>
+<li>description: Human-readable description.</li>
+<li>base_fines: Vehicle-class-specific base fines.</li>
+<li>repeat_fines: Vehicle-class-specific repeat offense fines.</li>
+<li>
+<p>aliases: Alternate identifiers for matching.</p>
+</li>
+<li>
+<p>StateChallanOverride</p>
+</li>
+<li>state_code: Two-letter state code.</li>
+<li>violation_code: Violation identifier.</li>
+<li>vehicle_class: Optional vehicle class filter.</li>
+<li>base_fine: State-specific base fine.</li>
+<li>repeat_fine: Optional state-specific repeat fine.</li>
+<li>section/description: Optional override for legal citation.</li>
+<li>
+<p>note: Metadata and provenance.</p>
+</li>
+<li>
+<p>ChallanQuery</p>
+</li>
+<li>
+<p>violation_code, vehicle_class, state_code, is_repeat.</p>
+</li>
+<li>
+<p>ChallanResponse</p>
+</li>
+<li>violation_code, vehicle_class, state_code, base_fine, repeat_fine, amount_due, section, description, state_override.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/models/challan.py#L6-L53">challan.py:6-53</a>
+- <a href="file://backend/models/schemas.py#L240-L257">schemas.py:240-257</a></p>
+<h3 id="appendix-b-examples-and-state-specific-violations">Appendix B: Examples and State-Specific Violations</h3>
+<ul>
+<li>Known violation codes include 183, 185, 181, 194D, 194B, and 179.</li>
+<li>State-specific overrides demonstrate enhanced or modified penalties per state.</li>
+<li>Legal citations align with the Central Motor Vehicles Act and state notifications.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L30-L93">challan_service.py:30-93</a>
+- <a href="file://chatbot_service/data/state_overrides.csv#L1-L14">state_overrides.csv:1-14</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2042 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Tool Execution and External Integrations - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tool-execution-and-external-integrations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tool Execution and External Integrations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backendtoolclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BackendToolClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergencytool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmergencyTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weathertool-and-openmeteoclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WeatherTool and OpenMeteoClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legalsearchtool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LegalSearchTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geocodingclient-nominatim-opencage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GeocodingClient (Nominatim + OpenCage)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what3wordstool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What3WordsTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sostool-tool-chaining-and-parallel-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SosTool (Tool Chaining and Parallel Execution)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadinfrastructuretool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RoadInfrastructureTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contextassembler-and-dynamic-tool-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ContextAssembler and Dynamic Tool Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intentdetector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IntentDetector
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tool-execution-pipeline-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tool Execution Pipeline Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-tool-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New Tool: Step-by-Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintaining-tool-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintaining Tool Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tool-execution-and-external-integrations">Tool Execution and External Integrations</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://chatbot_service/main.py">chatbot_service/main.py</a>
+- <a href="file://chatbot_service/config.py">chatbot_service/config.py</a>
+- <a href="file://chatbot_service/tools/__init__.py">chatbot_service/tools/<strong>init</strong>.py</a>
+- <a href="file://chatbot_service/tools/emergency_tool.py">chatbot_service/tools/emergency_tool.py</a>
+- <a href="file://chatbot_service/tools/weather_tool.py">chatbot_service/tools/weather_tool.py</a>
+- <a href="file://chatbot_service/tools/open_meteo.py">chatbot_service/tools/open_meteo.py</a>
+- <a href="file://chatbot_service/tools/legal_search_tool.py">chatbot_service/tools/legal_search_tool.py</a>
+- <a href="file://chatbot_service/tools/geocoding.py">chatbot_service/tools/geocoding.py</a>
+- <a href="file://chatbot_service/tools/what3words.py">chatbot_service/tools/what3words.py</a>
+- <a href="file://chatbot_service/tools/sos_tool.py">chatbot_service/tools/sos_tool.py</a>
+- <a href="file://chatbot_service/agent/context_assembler.py">chatbot_service/agent/context_assembler.py</a>
+- <a href="file://chatbot_service/agent/intent_detector.py">chatbot_service/agent/intent_detector.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the tool execution system for external service integration and automated workflows in the SafeVixAI chatbot service. It focuses on standardized interfaces for emergency services, legal databases, weather APIs, and geocoding services, and explains the tool execution pipeline including parameter validation, error handling, and response formatting. It also documents each tool implementation, the tool registry system, dynamic tool selection based on intent classification, examples of tool chaining, parallel execution, and timeout management, along with authentication, rate limiting, and fallback strategies. Finally, it provides guidelines for adding new tools and maintaining compatibility.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The tool system is organized under the chatbot service with a dedicated tools module and an agent-driven context assembly layer. The main application initializes tool clients and integrates them into the chat engine lifecycle.</p>
+<pre class="mermaid"><code>graph TB
+A["chatbot_service/main.py&lt;br/&gt;Application factory and lifecycle"] --&gt; B["chatbot_service/config.py&lt;br/&gt;Settings and environment"]
+A --&gt; C["chatbot_service/tools/__init__.py&lt;br/&gt;Tool exports and BackendToolClient"]
+A --&gt; D["chatbot_service/agent/context_assembler.py&lt;br/&gt;Dynamic tool selection"]
+A --&gt; E["chatbot_service/agent/intent_detector.py&lt;br/&gt;Intent classification"]
+subgraph "Tools"
+C --&gt; F["tools/emergency_tool.py"]
+C --&gt; G["tools/weather_tool.py"]
+C --&gt; H["tools/open_meteo.py"]
+C --&gt; I["tools/legal_search_tool.py"]
+C --&gt; J["tools/geocoding.py"]
+C --&gt; K["tools/what3words.py"]
+C --&gt; L["tools/sos_tool.py"]
+end
+D --&gt; F
+D --&gt; G
+D --&gt; I
+D --&gt; J
+D --&gt; K
+D --&gt; L</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L93">chatbot_service/main.py:41-93</a>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a>
+- <a href="file://chatbot_service/tools/__init__.py#L8-L70">chatbot_service/tools/<strong>init</strong>.py:8-70</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L17-L81">chatbot_service/agent/context_assembler.py:17-81</a>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L149">chatbot_service/main.py:41-149</a>
+- <a href="file://chatbot_service/config.py#L39-L126">chatbot_service/config.py:39-126</a>
+- <a href="file://chatbot_service/tools/__init__.py#L1-L70">chatbot_service/tools/<strong>init</strong>.py:1-70</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>BackendToolClient: Shared HTTP client for backend API calls with timeouts and user-agent headers.</li>
+<li>Tool Registry: Centralized exports of all tools via the tools package initializer.</li>
+<li>Tool Clients: Specialized clients for emergency lookup, weather, legal search, geocoding, what3words, SOS payload assembly, and road infrastructure queries.</li>
+<li>Context Assembler: Dynamically selects and executes tools based on intent classification.</li>
+<li>Intent Detector: Classifies incoming messages into intents such as emergency, first aid, challan, legal, road_issue, and general.</li>
+</ul>
+<p>Key responsibilities:
+- Parameter validation: Tools accept typed parameters (lat/lon, limit, query, etc.) and pass them to external services.
+- Error handling: Tools wrap external calls in try/except blocks and return None on failure to allow graceful degradation.
+- Response formatting: Tools normalize responses into consistent dictionaries with optional metadata (e.g., source attribution).
+- Parallel execution: Tools leverage asyncio.gather for concurrent calls where appropriate.
+- Fallback strategies: WeatherTool and GeocodingClient implement primary/fallback providers.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/__init__.py#L8-L70">chatbot_service/tools/<strong>init</strong>.py:8-70</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L43-L215">chatbot_service/agent/context_assembler.py:43-215</a>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The system orchestrates tool execution around a central intent detector and context assembler. The application lifecycle creates tool instances and wires them into the chat engine. Tools communicate with external services and the main backend, returning structured payloads consumed by the agent.</p>
+<pre class="mermaid"><code>graph TB
+ID["IntentDetector.detect()&lt;br/&gt;Classify intent"] --&gt; CA["ContextAssembler.assemble()&lt;br/&gt;Select and run tools"]
+CA --&gt; ET["EmergencyTool.find_nearby()"]
+CA --&gt; WT["WeatherTool.lookup()"]
+CA --&gt; LS["LegalSearchTool.search()"]
+CA --&gt; GC["GeocodingClient.reverse_geocode()"]
+CA --&gt; W3W["What3WordsTool.gps_to_words()"]
+CA --&gt; SI["SosTool.get_payload()"]
+CA --&gt; RI["RoadInfrastructureTool.lookup()"]
+WT --&gt; OM["OpenMeteoClient.lookup()"]
+WT --&gt; OW["OpenWeatherMap fallback"]
+SI --&gt; ET
+SI --&gt; W3W
+SI --&gt; GC</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L43-L215">chatbot_service/agent/context_assembler.py:43-215</a>
+- <a href="file://chatbot_service/tools/weather_tool.py#L15-L64">chatbot_service/tools/weather_tool.py:15-64</a>
+- <a href="file://chatbot_service/tools/open_meteo.py#L61-L127">chatbot_service/tools/open_meteo.py:61-127</a>
+- <a href="file://chatbot_service/tools/sos_tool.py#L10-L44">chatbot_service/tools/sos_tool.py:10-44</a>
+- <a href="file://chatbot_service/tools/emergency_tool.py#L6-L15">chatbot_service/tools/emergency_tool.py:6-15</a>
+- <a href="file://chatbot_service/tools/geocoding.py#L17-L125">chatbot_service/tools/geocoding.py:17-125</a>
+- <a href="file://chatbot_service/tools/what3words.py#L19-L89">chatbot_service/tools/what3words.py:19-89</a>
+- <a href="file://chatbot_service/tools/legal_search_tool.py#L6-L12">chatbot_service/tools/legal_search_tool.py:6-12</a>
+- <a href="file://chatbot_service/tools/road_infra_tool.py#L6-L15">chatbot_service/tools/road_infra_tool.py:6-15</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="backendtoolclient">BackendToolClient</h3>
+<ul>
+<li>Purpose: Unified HTTP client for backend API calls with configurable base URL, timeout, and user-agent.</li>
+<li>Behavior: Provides GET and POST helpers that return JSON or None on errors, ensuring robustness against transient failures.</li>
+<li>Lifecycle: Managed by the application factory and closed during shutdown.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class BackendToolClient {
++get(path, params=None) dict|None
++post(path, payload=None) dict|None
++aclose() None
+}</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/tools/__init__.py#L8-L37">chatbot_service/tools/<strong>init</strong>.py:8-37</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/__init__.py#L8-L37">chatbot_service/tools/<strong>init</strong>.py:8-37</a>
+- <a href="file://chatbot_service/main.py#L46-L92">chatbot_service/main.py:46-92</a></p>
+<h3 id="emergencytool">EmergencyTool</h3>
+<ul>
+<li>Purpose: Retrieve nearby emergency services for a given coordinate pair.</li>
+<li>Parameters: lat, lon, limit (default 5).</li>
+<li>Behavior: Delegates to BackendToolClient to call the backend emergency endpoint and returns the parsed JSON or None.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant CA as "ContextAssembler"
+participant ET as "EmergencyTool"
+participant BTC as "BackendToolClient"
+CA-&gt;&gt;ET : find_nearby(lat, lon, limit)
+ET-&gt;&gt;BTC : get("/api/v1/emergency/nearby", params)
+BTC--&gt;&gt;ET : JSON or None
+ET--&gt;&gt;CA : Result or None</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/tools/emergency_tool.py#L6-L15">chatbot_service/tools/emergency_tool.py:6-15</a>
+- <a href="file://chatbot_service/tools/__init__.py#L19-L33">chatbot_service/tools/<strong>init</strong>.py:19-33</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/emergency_tool.py#L6-L15">chatbot_service/tools/emergency_tool.py:6-15</a></p>
+<h3 id="weathertool-and-openmeteoclient">WeatherTool and OpenMeteoClient</h3>
+<ul>
+<li>Purpose: Provide weather conditions for risk assessment with a primary free provider and a fallback.</li>
+<li>Primary: OpenMeteoClient (no API key required) returns current weather, hourly precipitation probability, visibility, and a risk multiplier.</li>
+<li>Fallback: WeatherTool attempts OpenWeatherMap if OpenMeteo fails, requiring an API key and units configuration.</li>
+<li>Behavior: Returns normalized dictionary with summary, temperature, wind speed, precipitation probability, visibility, weather code, risk multiplier, and source.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["lookup(lat, lon)"]) --&gt; OM["OpenMeteoClient.lookup()"]
+OM --&gt; OM_OK{"Success?"}
+OM_OK --&gt; |Yes| ReturnOM["Return Open-Meteo result"]
+OM_OK --&gt; |No| OWM["OpenWeatherMap fallback"]
+OWM --&gt; OWM_OK{"API key set and success?"}
+OWM_OK --&gt; |Yes| ReturnOWM["Return OpenWeatherMap result"]
+OWM_OK --&gt; |No| ReturnNone["Return None"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/tools/weather_tool.py#L15-L64">chatbot_service/tools/weather_tool.py:15-64</a>
+- <a href="file://chatbot_service/tools/open_meteo.py#L61-L127">chatbot_service/tools/open_meteo.py:61-127</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/weather_tool.py#L15-L64">chatbot_service/tools/weather_tool.py:15-64</a>
+- <a href="file://chatbot_service/tools/open_meteo.py#L61-L127">chatbot_service/tools/open_meteo.py:61-127</a></p>
+<h3 id="legalsearchtool">LegalSearchTool</h3>
+<ul>
+<li>Purpose: Search legal documents and regulations using a retriever scoped to legal content.</li>
+<li>Parameters: query string, top_k (default 4).</li>
+<li>Behavior: Returns a list of retrieval results suitable for downstream context assembly.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/legal_search_tool.py#L6-L12">chatbot_service/tools/legal_search_tool.py:6-12</a></p>
+<h3 id="geocodingclient-nominatim-opencage">GeocodingClient (Nominatim + OpenCage)</h3>
+<ul>
+<li>Purpose: Convert coordinates to human-readable addresses with a primary free provider and a fallback.</li>
+<li>Primary: Nominatim reverse geocoding with strict rate limits and required user-agent.</li>
+<li>Fallback: OpenCage with a daily free quota and API key requirement.</li>
+<li>Behavior: Returns a normalized dictionary containing road, city, state, postcode, display string, and source.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["reverse_geocode(lat, lon)"]) --&gt; Nom["Nominatim reverse"]
+Nom --&gt; Nom_OK{"Success?"}
+Nom_OK --&gt; |Yes| ReturnNom["Return Nominatim result"]
+Nom_OK --&gt; |No| OC["OpenCage reverse"]
+OC --&gt; OC_OK{"API key set and success?"}
+OC_OK --&gt; |Yes| ReturnOC["Return OpenCage result"]
+OC_OK --&gt; |No| ReturnNone["Return None"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/tools/geocoding.py#L17-L125">chatbot_service/tools/geocoding.py:17-125</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/geocoding.py#L17-L125">chatbot_service/tools/geocoding.py:17-125</a></p>
+<h3 id="what3wordstool">What3WordsTool</h3>
+<ul>
+<li>Purpose: Convert GPS coordinates to a 3-word address and back for precise location sharing.</li>
+<li>Authentication: Requires an API key; returns None if missing.</li>
+<li>Behavior: Returns formatted 3-word address and map URL on forward conversion; returns lat/lng on reverse conversion.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/what3words.py#L19-L89">chatbot_service/tools/what3words.py:19-89</a></p>
+<h3 id="sostool-tool-chaining-and-parallel-execution">SosTool (Tool Chaining and Parallel Execution)</h3>
+<ul>
+<li>Purpose: Assemble an SOS payload by concurrently fetching backend emergency data, 3-word address, and reverse geocoding.</li>
+<li>Parallelism: Uses asyncio.gather to execute three coroutines concurrently, reducing latency.</li>
+<li>Error handling: Proceeds even if one or more tasks fail; merges successful results into the payload.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant CA as "ContextAssembler"
+participant ST as "SosTool"
+participant BTC as "BackendToolClient"
+participant W3W as "What3WordsTool"
+participant GC as "GeocodingClient"
+CA-&gt;&gt;ST : get_payload(lat, lon)
+par Concurrent calls
+ST-&gt;&gt;BTC : get("/api/v1/emergency/sos", params)
+ST-&gt;&gt;W3W : gps_to_words(lat, lon)
+ST-&gt;&gt;GC : reverse_geocode(lat, lon)
+end
+BTC--&gt;&gt;ST : Backend payload or Exception
+W3W--&gt;&gt;ST : 3-word address or Exception
+GC--&gt;&gt;ST : Address or Exception
+ST--&gt;&gt;CA : Merged payload or None</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/tools/sos_tool.py#L10-L44">chatbot_service/tools/sos_tool.py:10-44</a>
+- <a href="file://chatbot_service/tools/what3words.py#L26-L57">chatbot_service/tools/what3words.py:26-57</a>
+- <a href="file://chatbot_service/tools/geocoding.py#L36-L81">chatbot_service/tools/geocoding.py:36-81</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/sos_tool.py#L10-L44">chatbot_service/tools/sos_tool.py:10-44</a></p>
+<h3 id="roadinfrastructuretool">RoadInfrastructureTool</h3>
+<ul>
+<li>Purpose: Query road infrastructure metadata near a coordinate pair.</li>
+<li>Parameters: lat, lon.</li>
+<li>Behavior: Calls backend roads infrastructure endpoint and returns structured data.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/road_infra_tool.py#L6-L15">chatbot_service/tools/road_infra_tool.py:6-15</a></p>
+<h3 id="contextassembler-and-dynamic-tool-selection">ContextAssembler and Dynamic Tool Selection</h3>
+<ul>
+<li>Purpose: Dynamically assemble conversation context by selecting tools based on intent.</li>
+<li>Intents:</li>
+<li>emergency: Adds SOS payload and weather context.</li>
+<li>first_aid: Adds first aid guidance and optional drug info.</li>
+<li>challan: Adds challan inference and calculation.</li>
+<li>legal: Adds legal search results.</li>
+<li>road_issue: Adds road infrastructure and issues, plus submission guidance.</li>
+<li>general: Adds general retrieval results.</li>
+<li>Behavior: Normalizes tool outputs into ToolContext entries with summaries, payloads, and sources.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+A["assemble(session_id, message, intent, lat, lon, ... )"] --&gt; B{"Intent"}
+B --&gt; |emergency| C["Add SOS + Weather"]
+B --&gt; |first_aid| D["Add First Aid + Optional Drug Info"]
+B --&gt; |challan| E["Add Challan Inference"]
+B --&gt; |legal| F["Add Legal Search"]
+B --&gt; |road_issue| G["Add Road Infra + Issues + Report Guidance"]
+B --&gt; |general| H["Add General Retrieval"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/agent/context_assembler.py#L43-L215">chatbot_service/agent/context_assembler.py:43-215</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/agent/context_assembler.py#L43-L215">chatbot_service/agent/context_assembler.py:43-215</a></p>
+<h3 id="intentdetector">IntentDetector</h3>
+<ul>
+<li>Purpose: Classify user messages into intents for tool selection.</li>
+<li>Classification rules: Pattern-based matching for emergency, first aid, challan, legal, and road_issue categories.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>The tool system exhibits clear separation of concerns:
+- Application lifecycle constructs tool clients and injects them into the context assembler.
+- Context assembler depends on intent detector and tool clients.
+- Tools depend on shared HTTP clients and external services, with explicit fallbacks.</p>
+<pre class="mermaid"><code>graph LR
+Config["config.Settings"] --&gt; App["main.create_app()"]
+App --&gt; Tools["tools.* clients"]
+App --&gt; CA["ContextAssembler"]
+CA --&gt; ID["IntentDetector"]
+CA --&gt; Tools
+Tools --&gt; Ext["External Services"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a>
+- <a href="file://chatbot_service/main.py#L41-L93">chatbot_service/main.py:41-93</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L17-L42">chatbot_service/agent/context_assembler.py:17-42</a>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L93">chatbot_service/main.py:41-93</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L17-L42">chatbot_service/agent/context_assembler.py:17-42</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Parallel execution: SosTool uses asyncio.gather to reduce latency by running multiple external calls concurrently.</li>
+<li>Timeouts: Tools configure timeouts via Settings and per-client timeouts to avoid blocking.</li>
+<li>Fallbacks: Free providers (Open-Meteo, Nominatim) minimize cost and latency; paid providers serve as fallbacks.</li>
+<li>Graceful degradation: Returning None on failures allows the system to continue assembling context without external data.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and resolutions:
+- Missing API keys:
+  - OpenWeatherMap fallback requires an API key; absence disables fallback.
+  - What3Words requires an API key; absence disables 3-word address conversion.
+  - OpenCage requires an API key; absence disables fallback reverse geocoding.
+- Rate limiting:
+  - Nominatim enforces a strict request rate; consider caching or increasing delays if needed.
+  - OpenCage offers a daily free quota; monitor usage to avoid throttling.
+- Timeout errors:
+  - Adjust Settings.http_timeout_seconds and per-tool timeouts to accommodate network variability.
+- Backend connectivity:
+  - BackendToolClient wraps calls and returns None on exceptions; verify backend base URL and network reachability.</p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/weather_tool.py#L37-L38">chatbot_service/tools/weather_tool.py:37-38</a>
+- <a href="file://chatbot_service/tools/what3words.py#L33-L34">chatbot_service/tools/what3words.py:33-34</a>
+- <a href="file://chatbot_service/tools/geocoding.py#L85-L86">chatbot_service/tools/geocoding.py:85-86</a>
+- <a href="file://chatbot_service/config.py#L63-L108">chatbot_service/config.py:63-108</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The tool execution system integrates external services through standardized interfaces, robust error handling, and dynamic tool selection driven by intent classification. It emphasizes resilience via fallback strategies, performance via parallel execution, and maintainability through a centralized tool registry and lifecycle management.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="tool-execution-pipeline-overview">Tool Execution Pipeline Overview</h3>
+<ul>
+<li>Input: Message, optional coordinates, client IP, and conversation history.</li>
+<li>Intent classification: Determined by IntentDetector.</li>
+<li>Tool selection: ContextAssembler chooses tools based on intent.</li>
+<li>Execution: Tools call external services or backend endpoints with validated parameters.</li>
+<li>Output: Structured payloads merged into conversation context for the agent.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant User as "User"
+participant ID as "IntentDetector"
+participant CA as "ContextAssembler"
+participant Tools as "Selected Tools"
+participant Agent as "Agent"
+User-&gt;&gt;ID : message
+ID--&gt;&gt;CA : intent
+CA-&gt;&gt;Tools : execute with validated params
+Tools--&gt;&gt;CA : structured payloads
+CA--&gt;&gt;Agent : ConversationContext</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L43-L215">chatbot_service/agent/context_assembler.py:43-215</a></p>
+<h3 id="adding-a-new-tool-step-by-step">Adding a New Tool: Step-by-Step</h3>
+<ul>
+<li>Define a new tool class under chatbot_service/tools with a clear interface and error-handling pattern.</li>
+<li>Add the tool to the tools package initializer exports.</li>
+<li>Instantiate the tool in the application factory with required dependencies (e.g., Settings, BackendToolClient, or retrievers).</li>
+<li>Wire the tool into ContextAssembler and select it based on intent.</li>
+<li>Ensure timeouts and authentication are configured via Settings or constructor parameters.</li>
+<li>Test with unit tests and integration checks for parameter validation, error handling, and response formatting.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tools/__init__.py#L39-L70">chatbot_service/tools/<strong>init</strong>.py:39-70</a>
+- <a href="file://chatbot_service/main.py#L53-L70">chatbot_service/main.py:53-70</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L17-L42">chatbot_service/agent/context_assembler.py:17-42</a></p>
+<h3 id="maintaining-tool-compatibility">Maintaining Tool Compatibility</h3>
+<ul>
+<li>Keep parameter names and response shapes consistent across tools to simplify ContextAssembler logic.</li>
+<li>Prefer optional fallbacks and guard clauses for authentication to avoid breaking the pipeline.</li>
+<li>Centralize configuration via Settings to enable environment-specific tuning without code changes.</li>
+<li>Use lifecycle hooks (e.g., aclose) to properly manage resources and connections.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/config.py#L39-L113">chatbot_service/config.py:39-113</a>
+- <a href="file://chatbot_service/tools/weather_tool.py#L61-L63">chatbot_service/tools/weather_tool.py:61-63</a>
+- <a href="file://chatbot_service/tools/open_meteo.py#L125-L127">chatbot_service/tools/open_meteo.py:125-127</a>
+- <a href="file://chatbot_service/tools/geocoding.py#L123-L125">chatbot_service/tools/geocoding.py:123-125</a>
+- <a href="file://chatbot_service/tools/what3words.py#L87-L89">chatbot_service/tools/what3words.py:87-89</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

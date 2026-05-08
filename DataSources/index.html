@@ -1,0 +1,2219 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+        <link rel="prev" href="../Deployment/">
+      
+      
+        <link rel="next" href="../DATASET_PLACEMENT/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data Sources - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#safevixai-data-sources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Sources
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pdfs-rag-knowledge-base-download-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. PDFs RAG Knowledge Base (Download Manually)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-apis-live-data-no-api-key-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. APIs Live Data (No API Key Required)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. APIs Live Data (No API Key Required)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openstreetmap-overpass-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenStreetMap Overpass API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nominatim-geocoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nominatim Geocoder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#groq-llm-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groq LLM API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overpass-turbo-testing-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overpass Turbo (Testing Only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-apis-government-open-data-api-key-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. APIs Government Open Data (API Key Required)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. APIs Government Open Data (API Key Required)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datagovin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        data.gov.in
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pmgsy-ommas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PMGSY OMMAS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#national-health-facility-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        National Health Facility Registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-osm-seed-data-25-indian-cities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. OSM Seed Data 25 Indian Cities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-traffic-violations-data-violations_seedcsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Traffic Violations Data violations_seed.csv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-state-override-data-state_overridescsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. State Override Data state_overrides.csv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-webllm-model-weights-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. WebLLM Model Weights CDN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-government-portals-deep-links-only-no-data-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Government Portals (Deep Links Only No Data Pull)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pdfs-rag-knowledge-base-download-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. PDFs RAG Knowledge Base (Download Manually)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-apis-live-data-no-api-key-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. APIs Live Data (No API Key Required)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. APIs Live Data (No API Key Required)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openstreetmap-overpass-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenStreetMap Overpass API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nominatim-geocoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nominatim Geocoder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#groq-llm-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groq LLM API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overpass-turbo-testing-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overpass Turbo (Testing Only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-apis-government-open-data-api-key-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. APIs Government Open Data (API Key Required)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. APIs Government Open Data (API Key Required)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datagovin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        data.gov.in
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pmgsy-ommas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PMGSY OMMAS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#national-health-facility-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        National Health Facility Registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-osm-seed-data-25-indian-cities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. OSM Seed Data 25 Indian Cities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-traffic-violations-data-violations_seedcsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Traffic Violations Data violations_seed.csv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-state-override-data-state_overridescsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. State Override Data state_overrides.csv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-webllm-model-weights-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. WebLLM Model Weights CDN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-government-portals-deep-links-only-no-data-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Government Portals (Deep Links Only No Data Pull)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="safevixai-data-sources">SafeVixAI  Data Sources</h1>
+<h2 id="overview">Overview</h2>
+<p>All data sources used in SafeVixAI are free and open. This document lists every data source, its URL, how to access it, and what it's used for.</p>
+<hr />
+<h2 id="1-pdfs-rag-knowledge-base-download-manually">1. PDFs  RAG Knowledge Base (Download Manually)</h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Source URL</th>
+<th>Save As</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Motor Vehicles Act 1988</td>
+<td><a href="https://www.indiacode.nic.in">indiacode.nic.in</a>  search "Motor Vehicles Act 1988"</td>
+<td><code>backend/data/motor_vehicles_act_1988.pdf</code></td>
+<td>All base traffic law provisions + section numbers</td>
+</tr>
+<tr>
+<td>MV Amendment Act 2019</td>
+<td><a href="https://morth.nic.in/motor-vehicles-amendment-act-2019">morth.nic.in</a></td>
+<td><code>backend/data/mv_amendment_act_2019.pdf</code></td>
+<td>Updated 2019 fine amounts (10x increase)</td>
+</tr>
+<tr>
+<td>WHO Trauma Care Guidelines</td>
+<td><a href="https://www.who.int">who.int</a>  search "emergency care systems for universal health coverage"</td>
+<td><code>backend/data/who_trauma_care_guidelines.pdf</code></td>
+<td>First-aid protocols: bleeding, fractures, burns, CPR</td>
+</tr>
+<tr>
+<td>WHO Global Road Safety Report 2023</td>
+<td><a href="https://www.who.int/publications/i/item/9789240086517">who.int</a></td>
+<td><code>backend/data/who_road_safety_2023.pdf</code></td>
+<td>Traffic laws for 100+ countries (speed limits, BAC limits, helmet laws)</td>
+</tr>
+<tr>
+<td>State Amendment PDFs</td>
+<td>Each state transport department website</td>
+<td><code>backend/data/state_amendments/[state].pdf</code></td>
+<td>State-level fine overrides and additional rules</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-apis-live-data-no-api-key-required">2. APIs  Live Data (No API Key Required)</h2>
+<h3 id="openstreetmap-overpass-api">OpenStreetMap Overpass API</h3>
+<ul>
+<li><strong>URL</strong>: <code>https://overpass-api.de/api/interpreter</code></li>
+<li><strong>Authentication</strong>: None (fair use)</li>
+<li><strong>Rate limit</strong>: ~1 request/second</li>
+<li><strong>Use in SafeVixAI</strong>: Live queries for emergency service locations worldwide</li>
+<li><strong>Data</strong>: Hospitals, police stations, ambulance stations, petrol pumps, pharmacies, ATMs</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># Example: find hospitals within 5km of Chennai
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>[out:json][timeout:25];
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>(
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  node[amenity~&quot;hospital|clinic|doctors&quot;](around:5000,13.0827,80.2707);
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  way[amenity~&quot;hospital|clinic|doctors&quot;](around:5000,13.0827,80.2707);
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>);
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>out body center;
+</span></code></pre></div>
+<h3 id="nominatim-geocoder">Nominatim Geocoder</h3>
+<ul>
+<li><strong>URL</strong>: <code>https://nominatim.openstreetmap.org</code></li>
+<li><strong>Authentication</strong>: None (User-Agent header required)</li>
+<li><strong>Rate limit</strong>: 1 request/second strictly enforced</li>
+<li><strong>Use in SafeVixAI</strong>: GPS coordinates  city/state name, address  coordinates</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># Required header: User-Agent: SafeVixAI/1.0 (hackathon@rbg.iitm.ac.in)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a># Reverse: GET /reverse?lat=13.0827&amp;lon=80.2707&amp;format=json&amp;addressdetails=1
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a># Forward: GET /search?q=Apollo+Hospital+Chennai&amp;format=json&amp;limit=1
+</span></code></pre></div>
+<h3 id="groq-llm-api">Groq LLM API</h3>
+<ul>
+<li><strong>URL</strong>: <code>https://api.groq.com/openai/v1</code></li>
+<li><strong>Authentication</strong>: API key (gsk_...) from <a href="https://console.groq.com">console.groq.com</a></li>
+<li><strong>Rate limit</strong>: 6,000 tokens/minute free tier</li>
+<li><strong>Use in SafeVixAI</strong>: Online AI chatbot — llama3-70b-8192 model</li>
+</ul>
+<h3 id="overpass-turbo-testing-only">Overpass Turbo (Testing Only)</h3>
+<ul>
+<li><strong>URL</strong>: <a href="https://overpass-turbo.eu">overpass-turbo.eu</a></li>
+<li><strong>Use</strong>: Test Overpass queries before implementing in code</li>
+</ul>
+<hr />
+<h2 id="3-apis-government-open-data-api-key-required">3. APIs  Government Open Data (API Key Required)</h2>
+<h3 id="datagovin">data.gov.in</h3>
+<ul>
+<li><strong>URL</strong>: <a href="https://api.data.gov.in">api.data.gov.in</a></li>
+<li><strong>Authentication</strong>: Free API key after registration at <a href="https://data.gov.in">data.gov.in</a></li>
+<li><strong>Use in SafeVixAI</strong>: NHAI road project data (contractor names, budgets, construction dates)</li>
+<li><strong>Key datasets</strong>:</li>
+<li>NHAI National Highway Projects</li>
+<li>Accident data by state and district</li>
+<li>Government hospital registry</li>
+</ul>
+<h3 id="pmgsy-ommas">PMGSY OMMAS</h3>
+<ul>
+<li><strong>URL</strong>: <a href="https://ommas.nic.in">ommas.nic.in</a></li>
+<li><strong>Authentication</strong>: Public portal, no API  scrape or use exported data</li>
+<li><strong>Use in SafeVixAI</strong>: Rural road infrastructure data (contractor, exec engineer, budget)</li>
+</ul>
+<h3 id="national-health-facility-registry">National Health Facility Registry</h3>
+<ul>
+<li><strong>URL</strong>: <a href="https://healthfacilities.in">healthfacilities.in</a></li>
+<li><strong>Authentication</strong>: Public API available</li>
+<li><strong>Use in SafeVixAI</strong>: Government hospital locations, contact numbers, specializations</li>
+</ul>
+<hr />
+<h2 id="4-osm-seed-data-25-indian-cities">4. OSM Seed Data  25 Indian Cities</h2>
+<p>Seeded from Overpass API by <code>data/seed_emergency.py</code>. Stored in PostgreSQL + exported as GeoJSON.</p>
+<table>
+<thead>
+<tr>
+<th>City</th>
+<th>State</th>
+<th>Lat</th>
+<th>Lon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chennai</td>
+<td>Tamil Nadu</td>
+<td>13.0827</td>
+<td>80.2707</td>
+</tr>
+<tr>
+<td>Coimbatore</td>
+<td>Tamil Nadu</td>
+<td>11.0168</td>
+<td>76.9558</td>
+</tr>
+<tr>
+<td>Madurai</td>
+<td>Tamil Nadu</td>
+<td>9.9252</td>
+<td>78.1198</td>
+</tr>
+<tr>
+<td>Thiruvananthapuram</td>
+<td>Kerala</td>
+<td>8.5241</td>
+<td>76.9366</td>
+</tr>
+<tr>
+<td>Kochi</td>
+<td>Kerala</td>
+<td>9.9312</td>
+<td>76.2673</td>
+</tr>
+<tr>
+<td>Bengaluru</td>
+<td>Karnataka</td>
+<td>12.9716</td>
+<td>77.5946</td>
+</tr>
+<tr>
+<td>Mumbai</td>
+<td>Maharashtra</td>
+<td>19.0760</td>
+<td>72.8777</td>
+</tr>
+<tr>
+<td>Pune</td>
+<td>Maharashtra</td>
+<td>18.5204</td>
+<td>73.8567</td>
+</tr>
+<tr>
+<td>Nagpur</td>
+<td>Maharashtra</td>
+<td>21.1458</td>
+<td>79.0882</td>
+</tr>
+<tr>
+<td>Hyderabad</td>
+<td>Telangana</td>
+<td>17.3850</td>
+<td>78.4867</td>
+</tr>
+<tr>
+<td>Delhi</td>
+<td>Delhi</td>
+<td>28.6139</td>
+<td>77.2090</td>
+</tr>
+<tr>
+<td>Jaipur</td>
+<td>Rajasthan</td>
+<td>26.9124</td>
+<td>75.7873</td>
+</tr>
+<tr>
+<td>Ahmedabad</td>
+<td>Gujarat</td>
+<td>23.0225</td>
+<td>72.5714</td>
+</tr>
+<tr>
+<td>Surat</td>
+<td>Gujarat</td>
+<td>21.1702</td>
+<td>72.8311</td>
+</tr>
+<tr>
+<td>Vadodara</td>
+<td>Gujarat</td>
+<td>22.3072</td>
+<td>73.1812</td>
+</tr>
+<tr>
+<td>Kolkata</td>
+<td>West Bengal</td>
+<td>22.5726</td>
+<td>88.3639</td>
+</tr>
+<tr>
+<td>Patna</td>
+<td>Bihar</td>
+<td>25.5941</td>
+<td>85.1376</td>
+</tr>
+<tr>
+<td>Bhopal</td>
+<td>Madhya Pradesh</td>
+<td>23.2599</td>
+<td>77.4126</td>
+</tr>
+<tr>
+<td>Indore</td>
+<td>Madhya Pradesh</td>
+<td>22.7196</td>
+<td>75.8577</td>
+</tr>
+<tr>
+<td>Lucknow</td>
+<td>Uttar Pradesh</td>
+<td>26.8467</td>
+<td>80.9462</td>
+</tr>
+<tr>
+<td>Agra</td>
+<td>Uttar Pradesh</td>
+<td>27.1767</td>
+<td>78.0081</td>
+</tr>
+<tr>
+<td>Varanasi</td>
+<td>Uttar Pradesh</td>
+<td>25.3176</td>
+<td>82.9739</td>
+</tr>
+<tr>
+<td>Chandigarh</td>
+<td>Punjab/Haryana</td>
+<td>30.7333</td>
+<td>76.7794</td>
+</tr>
+<tr>
+<td>Visakhapatnam</td>
+<td>Andhra Pradesh</td>
+<td>17.6868</td>
+<td>83.2185</td>
+</tr>
+<tr>
+<td>Bhubaneswar</td>
+<td>Odisha</td>
+<td>20.2961</td>
+<td>85.8245</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-traffic-violations-data-violations_seedcsv">5. Traffic Violations Data  violations_seed.csv</h2>
+<p>Generated from official MV Amendment Act 2019 gazette notification. The CSV has these columns:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>violation_code, section, description_en, base_fine_inr, repeat_fine_inr,
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>vehicle_type, imprisonment, dl_points
+</span></code></pre></div>
+<p>All 22+ sections from MVA 1988/2019 are pre-populated. See <code>docs/Database.md</code> for the complete violations reference table.</p>
+<hr />
+<h2 id="6-state-override-data-state_overridescsv">6. State Override Data  state_overrides.csv</h2>
+<p>State-specific fine amounts that override national MVA fines. Research from official state transport department notifications.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>violation_code, state_code, override_fine, authority, effective_date
+</span></code></pre></div>
+<p>States covered: TN (Tamil Nadu), KA (Karnataka), MH (Maharashtra), DL (Delhi), AP (Andhra Pradesh), TS (Telangana), KL (Kerala), RJ (Rajasthan)</p>
+<p><strong>Verify all amounts</strong> against official state gazette notifications before using in production.</p>
+<hr />
+<h2 id="7-webllm-model-weights-cdn">7. WebLLM Model Weights  CDN</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>HF Repo</th>
+<th>Size</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phi-3 Mini 4-bit</td>
+<td><code>microsoft/Phi-3-mini-4k-instruct</code></td>
+<td>~2.2GB</td>
+<td>Auto via WebLLM</td>
+</tr>
+<tr>
+<td>Gemma 2B 4-bit</td>
+<td><code>google/gemma-2b-it</code></td>
+<td>~1.4GB</td>
+<td>Auto via WebLLM</td>
+</tr>
+<tr>
+<td>LocalHashEmbeddingFunction (browser)</td>
+<td><code>Xenova/LocalHashEmbeddingFunction</code></td>
+<td>~25MB</td>
+<td>Auto via Transformers.js</td>
+</tr>
+<tr>
+<td>YOLOv8n (browser)</td>
+<td><code>Xenova/yolov8n</code></td>
+<td>~15MB</td>
+<td>Auto via Transformers.js</td>
+</tr>
+</tbody>
+</table>
+<p>WebLLM fetches directly from Hugging Face CDN and caches in browser Cache Storage. Users do not need a Hugging Face account.</p>
+<hr />
+<h2 id="8-government-portals-deep-links-only-no-data-pull">8. Government Portals (Deep Links Only  No Data Pull)</h2>
+<table>
+<thead>
+<tr>
+<th>Portal</th>
+<th>URL</th>
+<th>Used For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eChallan Payment</td>
+<td>echallan.parivahan.gov.in</td>
+<td>Link to pay fines after challan lookup</td>
+</tr>
+<tr>
+<td>mParivahan</td>
+<td>parivahan.gov.in</td>
+<td>Vehicle RC / DL verification</td>
+</tr>
+<tr>
+<td>VAHAN</td>
+<td>vahan.parivahan.gov.in</td>
+<td>Vehicle registration database</td>
+</tr>
+<tr>
+<td>SARATHI</td>
+<td>sarathi.parivahan.gov.in</td>
+<td>Driving licence database</td>
+</tr>
+<tr>
+<td>NHAI Complaint</td>
+<td>nhai.gov.in/complaint</td>
+<td>Route NH complaints here</td>
+</tr>
+<tr>
+<td>CPGRAMS</td>
+<td>pgportal.gov.in</td>
+<td>Universal government complaint portal</td>
+</tr>
+<tr>
+<td>PMGSY OMMAS</td>
+<td>ommas.nic.in</td>
+<td>Rural road complaint portal</td>
+</tr>
+<tr>
+<td>NHAI Helpline</td>
+<td>1033</td>
+<td>Highway emergency tel: link</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Document version: 1.0 | IIT Madras Road Safety Hackathon 2026</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

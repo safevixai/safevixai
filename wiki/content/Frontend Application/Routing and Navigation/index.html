@@ -1,0 +1,1996 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Routing and Navigation - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#routing-and-navigation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Routing and Navigation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-directory-structure-and-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        App Directory Structure and Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desktop-sidebar-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desktop Sidebar Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mobile-system-sidebar-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mobile System Sidebar Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottom-navigation-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bottom Navigation (Mobile)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-routes-and-route-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Routes and Route Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-navigation-and-route-guards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Navigation and Route Guards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-integration-and-navigation-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Integration and Navigation State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seo-optimization-and-meta-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SEO Optimization and Meta Tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation Accessibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-for-navigation-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling for Navigation Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="routing-and-navigation">Routing and Navigation</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/app/layout.tsx">layout.tsx</a>
+- <a href="file://frontend/app/page.tsx">page.tsx</a>
+- <a href="file://frontend/components/AppSidebar.tsx">AppSidebar.tsx</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx">SystemSidebar.tsx</a>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx">BottomNav.tsx</a>
+- <a href="file://frontend/components/PageShell.tsx">PageShell.tsx</a>
+- <a href="file://frontend/app/login/page.tsx">login/page.tsx</a>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx">emergency-card/[userId]/page.tsx</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://frontend/lib/api.ts">api.ts</a>
+- <a href="file://frontend/next.config.js">next.config.js</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document explains the Next.js routing system and navigation patterns used in the frontend application. It covers the app directory structure, dynamic routes, page-level components, sidebar navigation, bottom navigation, route parameters handling, programmatic navigation, authentication integration, error handling, SEO and accessibility, and performance optimization strategies such as preloading and WebAssembly support.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The frontend uses Next.js App Router conventions. Pages are defined under the app directory, with shared layout and shell components wrapping page content. Navigation is implemented via client-side components and Next.js Link/Navigation APIs.</p>
+<pre class="mermaid"><code>graph TB
+A["Root Layout&lt;br/&gt;frontend/app/layout.tsx"] --&gt; B["Page Shell&lt;br/&gt;frontend/components/PageShell.tsx"]
+B --&gt; C["Main Page (Dashboard)&lt;br/&gt;frontend/app/page.tsx"]
+B --&gt; D["Login Page&lt;br/&gt;frontend/app/login/page.tsx"]
+B --&gt; E["Dynamic Route Page&lt;br/&gt;frontend/app/emergency-card/[userId]/page.tsx"]
+subgraph "Navigation Components"
+F["Desktop Sidebar&lt;br/&gt;frontend/components/AppSidebar.tsx"]
+G["Mobile System Sidebar&lt;br/&gt;frontend/components/dashboard/SystemSidebar.tsx"]
+H["Bottom Navigation&lt;br/&gt;frontend/components/dashboard/BottomNav.tsx"]
+end
+A --&gt; F
+A --&gt; G
+A --&gt; H</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L85">layout.tsx:38-85</a>
+- <a href="file://frontend/components/PageShell.tsx#L13-L35">PageShell.tsx:13-35</a>
+- <a href="file://frontend/app/page.tsx#L29-L228">page.tsx:29-228</a>
+- <a href="file://frontend/app/login/page.tsx#L21-L345">login/page.tsx:21-345</a>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173">emergency-card/[userId]/page.tsx</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L169">AppSidebar.tsx:42-169</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205">SystemSidebar.tsx:62-205</a>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx#L24-L102">BottomNav.tsx:24-102</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L1-L86">layout.tsx:1-86</a>
+- <a href="file://frontend/app/page.tsx#L1-L229">page.tsx:1-229</a>
+- <a href="file://frontend/app/login/page.tsx#L1-L346">login/page.tsx:1-346</a>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx#L1-L174">emergency-card/[userId]/page.tsx</a>
+- <a href="file://frontend/components/PageShell.tsx#L1-L36">PageShell.tsx:1-36</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L1-L171">AppSidebar.tsx:1-171</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209">SystemSidebar.tsx:1-209</a>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx#L1-L103">BottomNav.tsx:1-103</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Root layout defines global metadata, viewport, and providers for theme, connectivity, analytics, and page shell.</li>
+<li>Page shell hosts desktop sidebar, mobile system sidebar, and main content area.</li>
+<li>Navigation components:</li>
+<li>Desktop sidebar with persistent links and quick dial actions.</li>
+<li>Mobile system sidebar with animated grid navigation and SOS action.</li>
+<li>Bottom navigation for mobile-centric tabs.</li>
+</ul>
+<p>Key routing and navigation primitives:
+- Next.js Link for declarative navigation.
+- Next.js usePathname for active state computation.
+- Next.js useRouter for programmatic navigation.
+- Zustand store for UI state and authentication flags.</p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L10-L36">layout.tsx:10-36</a>
+- <a href="file://frontend/components/PageShell.tsx#L13-L35">PageShell.tsx:13-35</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L169">AppSidebar.tsx:42-169</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205">SystemSidebar.tsx:62-205</a>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx#L24-L102">BottomNav.tsx:24-102</a>
+- <a href="file://frontend/lib/store.ts#L63-L127">store.ts:63-127</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The routing architecture combines server-rendered metadata and client-side navigation. The root layout sets global metadata and viewport. Providers wrap the app to supply theme, connectivity, and analytics. The page shell positions navigation components and renders page content. Navigation components compute active states from the current path and trigger programmatic navigation when needed.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant U as "User"
+participant LS as "Root Layout&lt;br/&gt;layout.tsx"
+participant PS as "PageShell&lt;br/&gt;PageShell.tsx"
+participant SB as "Desktop Sidebar&lt;br/&gt;AppSidebar.tsx"
+participant MSB as "Mobile Sidebar&lt;br/&gt;SystemSidebar.tsx"
+participant BN as "BottomNav&lt;br/&gt;BottomNav.tsx"
+participant PG as "Page Content&lt;br/&gt;page.tsx"
+U-&gt;&gt;LS : Load app
+LS-&gt;&gt;PS : Render providers and shell
+PS-&gt;&gt;SB : Render desktop sidebar
+PS-&gt;&gt;MSB : Render mobile sidebar
+PS-&gt;&gt;BN : Render bottom nav
+U-&gt;&gt;SB : Click navigation item
+SB-&gt;&gt;PG : Navigate to target page
+U-&gt;&gt;BN : Tap bottom tab
+BN-&gt;&gt;PG : Navigate to target page
+U-&gt;&gt;MSB : Tap menu item
+MSB-&gt;&gt;PG : Navigate to target page</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L85">layout.tsx:38-85</a>
+- <a href="file://frontend/components/PageShell.tsx#L13-L35">PageShell.tsx:13-35</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L84-L112">AppSidebar.tsx:84-112</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L122-L142">SystemSidebar.tsx:122-142</a>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx#L49-L58">BottomNav.tsx:49-58</a>
+- <a href="file://frontend/app/page.tsx#L29-L228">page.tsx:29-228</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="app-directory-structure-and-pages">App Directory Structure and Pages</h3>
+<ul>
+<li>Root layout: Defines metadata, viewport, and provider stack.</li>
+<li>Home/dashboard page: Renders map, controls, and panels.</li>
+<li>Login page: Handles authentication and redirects on success.</li>
+<li>Dynamic route page: Accepts route parameters and search params for emergency cards.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["App Load"]) --&gt; Layout["Root Layout&lt;br/&gt;metadata + providers"]
+Layout --&gt; Shell["Page Shell&lt;br/&gt;desktop/mobile nav + main"]
+Shell --&gt; Home["Home Page&lt;br/&gt;dashboard + map"]
+Shell --&gt; Login["Login Page&lt;br/&gt;auth form + demo creds"]
+Shell --&gt; Dyn["Dynamic Route Page&lt;br/&gt;emergency-card/[userId]"]
+Home --&gt; |User Actions| Home
+Login --&gt; |Auth Success| Home
+Dyn --&gt; |Render with params| Dyn</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L10-L36">layout.tsx:10-36</a>
+- <a href="file://frontend/app/page.tsx#L29-L228">page.tsx:29-228</a>
+- <a href="file://frontend/app/login/page.tsx#L21-L345">login/page.tsx:21-345</a>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173">emergency-card/[userId]/page.tsx</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L10-L36">layout.tsx:10-36</a>
+- <a href="file://frontend/app/page.tsx#L29-L228">page.tsx:29-228</a>
+- <a href="file://frontend/app/login/page.tsx#L21-L345">login/page.tsx:21-345</a>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173">emergency-card/[userId]/page.tsx</a></p>
+<h3 id="desktop-sidebar-navigation">Desktop Sidebar Navigation</h3>
+<ul>
+<li>Uses Next.js Link for navigation and usePathname to compute active state.</li>
+<li>Stores UI state (collapsed/desktop open) in the Zustand store.</li>
+<li>Provides quick dial links for emergency numbers.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class AppSidebar {
++usePathname()
++setDesktopSidebarCollapsed()
++render()
+}
+class Store {
++isDesktopSidebarCollapsed : boolean
++setDesktopSidebarCollapsed()
+}
+AppSidebar --&gt; Store : "reads/writes UI state"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L169">AppSidebar.tsx:42-169</a>
+- <a href="file://frontend/lib/store.ts#L109-L110">store.ts:109-110</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L169">AppSidebar.tsx:42-169</a>
+- <a href="file://frontend/lib/store.ts#L109-L110">store.ts:109-110</a></p>
+<h3 id="mobile-system-sidebar-navigation">Mobile System Sidebar Navigation</h3>
+<ul>
+<li>Controlled by a store flag; animates in/out with motion variants.</li>
+<li>Renders a grid of navigation items and quick dial buttons.</li>
+<li>Uses Next.js Link for navigation and closes the drawer after selection.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant U as "User"
+participant MSB as "SystemSidebar.tsx"
+participant ST as "Zustand Store"
+participant LN as "Next.js Link"
+U-&gt;&gt;MSB : Open mobile menu
+MSB-&gt;&gt;ST : setOpen(true)
+U-&gt;&gt;LN : Tap nav item
+LN--&gt;&gt;MSB : Navigate
+MSB-&gt;&gt;ST : setOpen(false)</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205">SystemSidebar.tsx:62-205</a>
+- <a href="file://frontend/lib/store.ts#L107-L108">store.ts:107-108</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205">SystemSidebar.tsx:62-205</a>
+- <a href="file://frontend/lib/store.ts#L107-L108">store.ts:107-108</a></p>
+<h3 id="bottom-navigation-mobile">Bottom Navigation (Mobile)</h3>
+<ul>
+<li>Renders a horizontal tab bar with active indicator.</li>
+<li>Computes active tab from current path and supports programmatic vibration feedback.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+P["usePathname()"] --&gt; A["Compute active index"]
+A --&gt; R["Render tabs with active pill"]
+R --&gt; N["On tap: navigate via Link"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx#L24-L102">BottomNav.tsx:24-102</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx#L24-L102">BottomNav.tsx:24-102</a></p>
+<h3 id="dynamic-routes-and-route-parameters">Dynamic Routes and Route Parameters</h3>
+<ul>
+<li>Dynamic route folder [emergency-card/[userId]] receives route parameters and optional search params.</li>
+<li>Page extracts userId and optional name/blood/vehicle/contact and renders an emergency card.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant U as "User"
+participant Router as "Next.js Router"
+participant Page as "emergency-card/[userId]/page.tsx"
+U-&gt;&gt;Router : Navigate to /emergency-card/ : userId?name=...&amp;blood=...
+Router-&gt;&gt;Page : Pass params + searchParams
+Page--&gt;&gt;U : Render emergency card with extracted data</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173">emergency-card/[userId]/page.tsx</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173">emergency-card/[userId]/page.tsx</a></p>
+<h3 id="programmatic-navigation-and-route-guards">Programmatic Navigation and Route Guards</h3>
+<ul>
+<li>Programmatic navigation uses Next.js useRouter to redirect after successful login.</li>
+<li>Route guard pattern: on mount, if authenticated, redirect to home.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Comp as "LoginPage"
+participant Store as "Zustand Store"
+participant Router as "Next.js Router"
+Comp-&gt;&gt;Store : Read isAuthenticated
+alt Authenticated
+Comp-&gt;&gt;Router : replace("/")
+else Not authenticated
+Comp-&gt;&gt;Comp : Show login form
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/login/page.tsx#L34-L37">login/page.tsx:34-37</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/login/page.tsx#L34-L37">login/page.tsx:34-37</a></p>
+<h3 id="authentication-integration-and-navigation-state">Authentication Integration and Navigation State</h3>
+<ul>
+<li>Authentication state is persisted in the Zustand store and injected into API requests via interceptors.</li>
+<li>Login page updates auth state and navigates to home upon success.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant LP as "LoginPage"
+participant API as "Axios Interceptors&lt;br/&gt;api.ts"
+participant ST as "Zustand Store"
+participant Router as "Next.js Router"
+LP-&gt;&gt;API : POST /api/v1/auth/login
+API--&gt;&gt;LP : {access_token, operator_name}
+LP-&gt;&gt;ST : setAuth(token, name)
+LP-&gt;&gt;Router : replace("/")</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/login/page.tsx#L50-L82">login/page.tsx:50-82</a>
+- <a href="file://frontend/lib/api.ts#L19-L47">api.ts:19-47</a>
+- <a href="file://frontend/lib/store.ts#L204-L209">store.ts:204-209</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/login/page.tsx#L50-L82">login/page.tsx:50-82</a>
+- <a href="file://frontend/lib/api.ts#L19-L47">api.ts:19-47</a>
+- <a href="file://frontend/lib/store.ts#L204-L209">store.ts:204-209</a></p>
+<h3 id="seo-optimization-and-meta-tags">SEO Optimization and Meta Tags</h3>
+<ul>
+<li>Root layout exports Metadata and Viewport for title, description, keywords, Open Graph, and theme color behavior.</li>
+<li>Manifest and Apple Web App settings are included in head.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+M["Metadata + Viewport&lt;br/&gt;layout.tsx"] --&gt; OG["Open Graph Tags"]
+M --&gt; KW["Keywords"]
+M --&gt; MAN["Manifest + Apple Web App"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L10-L36">layout.tsx:10-36</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L10-L36">layout.tsx:10-36</a></p>
+<h3 id="navigation-accessibility">Navigation Accessibility</h3>
+<ul>
+<li>Skip link targets main content for keyboard/screen reader users.</li>
+<li>ARIA roles and labels used in mobile sidebar dialog and close button.</li>
+<li>Active states indicated via aria-current and visual highlights.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+SL["Skip link to #main"] --&gt; MC["Main content"]
+MSB["Mobile Sidebar Dialog"] --&gt; AR1["aria-modal=true"]
+MSB --&gt; AR2["aria-label='Mobile Navigation'"]
+MSB --&gt; CL["Close button aria-label='Close Sidebar'"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/PageShell.tsx#L18-L19">PageShell.tsx:18-19</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L81-L83">SystemSidebar.tsx:81-83</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L101-L107">SystemSidebar.tsx:101-107</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/PageShell.tsx#L18-L19">PageShell.tsx:18-19</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L81-L83">SystemSidebar.tsx:81-83</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L101-L107">SystemSidebar.tsx:101-107</a></p>
+<h3 id="error-handling-for-navigation-failures">Error Handling for Navigation Failures</h3>
+<ul>
+<li>Login form validates presence of credentials and displays errors.</li>
+<li>Demo mode bypass allows quick testing without backend.</li>
+<li>Axios interceptors provide fallback tokens for development/demo.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+F["Submit Login"] --&gt; V["Validate fields"]
+V --&gt; |Invalid| E["Show error message"]
+V --&gt; |Valid| C["Call API"]
+C --&gt; |OK| S["Set auth + redirect"]
+C --&gt; |Error| ER["Parse error + show message"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/login/page.tsx#L50-L82">login/page.tsx:50-82</a>
+- <a href="file://frontend/lib/api.ts#L19-L47">api.ts:19-47</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/login/page.tsx#L50-L82">login/page.tsx:50-82</a>
+- <a href="file://frontend/lib/api.ts#L19-L47">api.ts:19-47</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Navigation components depend on Next.js Link and usePathname for declarative navigation and active state.</li>
+<li>The store manages UI state and authentication flags used across navigation components.</li>
+<li>API interceptors rely on persisted store state to attach auth tokens to requests.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+LS["layout.tsx"] --&gt; PS["PageShell.tsx"]
+PS --&gt; ASB["AppSidebar.tsx"]
+PS --&gt; MSB["SystemSidebar.tsx"]
+PS --&gt; BN["BottomNav.tsx"]
+PS --&gt; HP["page.tsx"]
+PS --&gt; LG["login/page.tsx"]
+PS --&gt; DC["emergency-card/[userId]/page.tsx"]
+ASB --&gt; ST["store.ts"]
+MSB --&gt; ST
+BN --&gt; ST
+LG --&gt; ST
+API["api.ts"] --&gt; ST</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L85">layout.tsx:38-85</a>
+- <a href="file://frontend/components/PageShell.tsx#L13-L35">PageShell.tsx:13-35</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L169">AppSidebar.tsx:42-169</a>
+- <a href="file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205">SystemSidebar.tsx:62-205</a>
+- <a href="file://frontend/components/dashboard/BottomNav.tsx#L24-L102">BottomNav.tsx:24-102</a>
+- <a href="file://frontend/app/page.tsx#L29-L228">page.tsx:29-228</a>
+- <a href="file://frontend/app/login/page.tsx#L21-L345">login/page.tsx:21-345</a>
+- <a href="file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173">emergency-card/[userId]/page.tsx</a>
+- <a href="file://frontend/lib/store.ts#L63-L127">store.ts:63-127</a>
+- <a href="file://frontend/lib/api.ts#L19-L47">api.ts:19-47</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/store.ts#L63-L127">store.ts:63-127</a>
+- <a href="file://frontend/lib/api.ts#L19-L47">api.ts:19-47</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>WebAssembly and workers: next.config.js enables asyncWebAssembly and worker-loader to support offline AI features.</li>
+<li>Preloading: Root layout includes preconnect directives for fonts and a script to apply theme before first paint.</li>
+<li>Client-side rendering: Dynamic imports are used for heavy map components to defer SSR.</li>
+</ul>
+<p>Recommendations:
+- Use Next.js static generation or ISR for pages that do not require real-time data.
+- Implement route-based code splitting and lazy-load heavy components.
+- Add link rel="prefetch" for frequently visited pages.
+- Monitor hydration and consider progressive enhancement for critical UI.</p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a>
+- <a href="file://frontend/app/layout.tsx#L45-L71">layout.tsx:45-71</a>
+- <a href="file://frontend/app/page.tsx#L18-L27">page.tsx:18-27</a></p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and resolutions:
+- Navigation not updating active state:
+  - Ensure usePathname is used consistently in navigation components.
+  - Verify that Link href matches the current path exactly.
+- Authentication redirect loop:
+  - Confirm isAuthenticated is correctly persisted and read on mount.
+  - Check that router.replace is called after setting auth state.
+- Missing fonts or styles:
+  - Verify preconnect links and font URLs in head.
+- Offline AI not loading:
+  - Confirm asyncWebAssembly and worker-loader are enabled in webpack config.</p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/AppSidebar.tsx#L82-L88">AppSidebar.tsx:82-88</a>
+- <a href="file://frontend/app/login/page.tsx#L34-L37">login/page.tsx:34-37</a>
+- <a href="file://frontend/app/layout.tsx#L45-L71">layout.tsx:45-71</a>
+- <a href="file://frontend/next.config.js#L23-L36">next.config.js:23-36</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The application leverages Next.js App Router to deliver a responsive, accessible, and performant navigation experience. Navigation components integrate with the Zustand store for UI state and with authentication state for guarded navigation. Dynamic routes enable parameterized pages, while SEO metadata and accessibility features improve usability. Performance enhancements through WebAssembly and preloading support offline-first capabilities.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

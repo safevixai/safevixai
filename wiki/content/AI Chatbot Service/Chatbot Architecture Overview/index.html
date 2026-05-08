@@ -1,0 +1,2079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chatbot Architecture Overview - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chatbot-architecture-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chatbot Architecture Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-application-and-lifecycle-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FastAPI Application and Lifecycle Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-orchestration-chatengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Orchestration (ChatEngine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intent-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intent Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-checker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety Checker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-routing-and-language-aware-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider Routing and Language-Aware Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chatbot-architecture-overview">Chatbot Architecture Overview</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://chatbot_service/main.py">chatbot_service/main.py</a>
+- <a href="file://chatbot_service/config.py">chatbot_service/config.py</a>
+- <a href="file://chatbot_service/agent/__init__.py">chatbot_service/agent/<strong>init</strong>.py</a>
+- <a href="file://chatbot_service/agent/context_assembler.py">chatbot_service/agent/context_assembler.py</a>
+- <a href="file://chatbot_service/agent/graph.py">chatbot_service/agent/graph.py</a>
+- <a href="file://chatbot_service/agent/intent_detector.py">chatbot_service/agent/intent_detector.py</a>
+- <a href="file://chatbot_service/agent/safety_checker.py">chatbot_service/agent/safety_checker.py</a>
+- <a href="file://chatbot_service/providers/router.py">chatbot_service/providers/router.py</a>
+- <a href="file://chatbot_service/providers/base.py">chatbot_service/providers/base.py</a>
+- <a href="file://chatbot_service/memory/redis_memory.py">chatbot_service/memory/redis_memory.py</a>
+- <a href="file://chatbot_service/rag/retriever.py">chatbot_service/rag/retriever.py</a>
+- <a href="file://chatbot_service/rag/vectorstore.py">chatbot_service/rag/vectorstore.py</a>
+- <a href="file://chatbot_service/api/chat.py">chatbot_service/api/chat.py</a>
+- <a href="file://chatbot_service/api/admin.py">chatbot_service/api/admin.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the AI Chatbot Service architecture for SafeVixAI, focusing on the agentic Retrieval-Augmented Generation (RAG) pipeline, FastAPI application structure, and service lifecycle management. It explains the modular design separating context assembly, intent detection, provider routing, and memory management, along with system boundaries, component interactions, and data flow patterns. It also covers dependency injection for service initialization, scalability considerations, error handling strategies, and performance optimizations.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The chatbot service is organized into cohesive modules:
+- Application entrypoint and lifecycle: FastAPI app creation, middleware, and dependency injection via lifespan.
+- Agent subsystem: intent detection, safety checks, context assembly, and orchestration.
+- Providers: multi-provider routing with fallback and language-aware selection.
+- Memory: Redis-backed conversation storage with in-memory fallback.
+- RAG: vectorized retrieval augmented by a local vector store and retriever.
+- Tools: external integrations for SOS, challan calculation, weather, road infrastructure, and legal search.
+- API: chat endpoints (blocking and streaming), admin endpoints, and health checks.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "FastAPI App"
+M["main.py&lt;br/&gt;create_app()"]
+CFG["config.py&lt;br/&gt;Settings"]
+API_CHAT["api/chat.py&lt;br/&gt;/api/v1/chat/*"]
+API_ADMIN["api/admin.py&lt;br/&gt;/admin/*"]
+end
+subgraph "Agent"
+INTENT["agent/intent_detector.py"]
+SAFETY["agent/safety_checker.py"]
+CTX["agent/context_assembler.py"]
+ENGINE["agent/graph.py&lt;br/&gt;ChatEngine"]
+end
+subgraph "Providers"
+ROUTER["providers/router.py&lt;br/&gt;ProviderRouter"]
+BASE["providers/base.py&lt;br/&gt;HttpProvider, TemplateProvider"]
+end
+subgraph "Memory"
+MEM["memory/redis_memory.py&lt;br/&gt;ConversationMemoryStore"]
+end
+subgraph "RAG"
+VSTORE["rag/vectorstore.py&lt;br/&gt;LocalVectorStore"]
+RETRIEVE["rag/retriever.py&lt;br/&gt;Retriever"]
+end
+subgraph "Tools"
+BT["tools/__init__.py&lt;br/&gt;BackendToolClient"]
+end
+M --&gt; API_CHAT
+M --&gt; API_ADMIN
+M --&gt; CFG
+M --&gt; MEM
+M --&gt; ENGINE
+ENGINE --&gt; INTENT
+ENGINE --&gt; SAFETY
+ENGINE --&gt; CTX
+ENGINE --&gt; ROUTER
+CTX --&gt; RETRIEVE
+CTX --&gt; BT
+RETRIEVE --&gt; VSTORE
+ROUTER --&gt; BASE</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L145">chatbot_service/main.py:41-145</a>
+- <a href="file://chatbot_service/config.py#L69-L126">chatbot_service/config.py:69-126</a>
+- <a href="file://chatbot_service/agent/graph.py#L15-L109">chatbot_service/agent/graph.py:15-109</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L17-L215">chatbot_service/agent/context_assembler.py:17-215</a>
+- <a href="file://chatbot_service/providers/router.py#L75-L199">chatbot_service/providers/router.py:75-199</a>
+- <a href="file://chatbot_service/providers/base.py#L90-L206">chatbot_service/providers/base.py:90-206</a>
+- <a href="file://chatbot_service/memory/redis_memory.py#L10-L90">chatbot_service/memory/redis_memory.py:10-90</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L110">chatbot_service/rag/vectorstore.py:20-110</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L40">chatbot_service/rag/retriever.py:17-40</a>
+- <a href="file://chatbot_service/api/chat.py#L16-L111">chatbot_service/api/chat.py:16-111</a>
+- <a href="file://chatbot_service/api/admin.py#L12-L52">chatbot_service/api/admin.py:12-52</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L145">chatbot_service/main.py:41-145</a>
+- <a href="file://chatbot_service/config.py#L69-L126">chatbot_service/config.py:69-126</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>FastAPI application with dependency injection during lifespan, CORS middleware, rate limiting, and health endpoints.</li>
+<li>Agent orchestration encapsulated in ChatEngine, coordinating intent detection, safety checks, context assembly, provider routing, and memory persistence.</li>
+<li>ProviderRouter implementing a 9-provider fallback chain with language-aware routing and Indian-language specialization.</li>
+<li>ContextAssembler assembling conversation context from RAG snippets and tool outputs based on detected intent.</li>
+<li>Memory abstraction via ConversationMemoryStore supporting Redis and in-memory fallback.</li>
+<li>RAG stack with LocalVectorStore and Retriever for semantic search and document scoring.</li>
+<li>Tools integrating with backend APIs and external services for SOS, weather, road infrastructure, legal search, and more.</li>
+<li>API surface exposing chat endpoints (blocking and streaming) and admin endpoints for index rebuilding and health.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L145">chatbot_service/main.py:41-145</a>
+- <a href="file://chatbot_service/agent/graph.py#L15-L109">chatbot_service/agent/graph.py:15-109</a>
+- <a href="file://chatbot_service/providers/router.py#L75-L199">chatbot_service/providers/router.py:75-199</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L17-L215">chatbot_service/agent/context_assembler.py:17-215</a>
+- <a href="file://chatbot_service/memory/redis_memory.py#L10-L90">chatbot_service/memory/redis_memory.py:10-90</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L110">chatbot_service/rag/vectorstore.py:20-110</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L40">chatbot_service/rag/retriever.py:17-40</a>
+- <a href="file://chatbot_service/api/chat.py#L16-L111">chatbot_service/api/chat.py:16-111</a>
+- <a href="file://chatbot_service/api/admin.py#L12-L52">chatbot_service/api/admin.py:12-52</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The system follows an agentic RAG pipeline:
+- Input enters via FastAPI routes, injected into ChatEngine through app.state.
+- ChatEngine evaluates safety, detects intent, assembles context, selects a provider, and streams or returns the response.
+- ContextAssembly enriches prompts with RAG snippets and tool outputs scoped by intent.
+- ProviderRouter applies language detection and intent-aware routing with robust fallback.
+- Memory persists user-assistant messages with TTL and supports health checks.
+- RAG retrieves semantically similar chunks and builds a compact context window.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client"
+participant API as "FastAPI Router (/api/v1/chat)"
+participant Engine as "ChatEngine"
+participant Safety as "SafetyChecker"
+participant Intent as "IntentDetector"
+participant Assembler as "ContextAssembler"
+participant RAG as "Retriever/VectorStore"
+participant Tools as "Tools"
+participant Router as "ProviderRouter"
+participant Prov as "LLM Provider"
+participant Mem as "ConversationMemoryStore"
+Client-&gt;&gt;API : POST /chat or /chat/stream
+API-&gt;&gt;Engine : chat(payload)
+Engine-&gt;&gt;Mem : append_message(user)
+Engine-&gt;&gt;Mem : get_history(limit)
+Engine-&gt;&gt;Safety : evaluate(message)
+alt blocked
+Safety--&gt;&gt;Engine : SafetyDecision(blocked)
+Engine-&gt;&gt;Mem : append_message(assistant, policy response)
+Engine--&gt;&gt;API : ChatResponse(blocked)
+API--&gt;&gt;Client : response
+else allowed
+Engine-&gt;&gt;Intent : detect(message)
+Engine-&gt;&gt;Assembler : assemble(session_id, message, intent, coords, history)
+Assembler-&gt;&gt;RAG : retrieve(query, top_k, scopes)
+Assembler-&gt;&gt;Tools : call SOS/Weather/Legal/Road/etc.
+Assembler--&gt;&gt;Engine : ConversationContext
+Engine-&gt;&gt;Router : generate(ProviderRequest)
+Router-&gt;&gt;Prov : generate(request)
+Prov--&gt;&gt;Router : ProviderResult
+Router--&gt;&gt;Engine : ProviderResult
+Engine-&gt;&gt;Mem : append_message(assistant, result.text)
+Engine--&gt;&gt;API : ChatResponse
+API--&gt;&gt;Client : response or SSE stream
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/api/chat.py#L28-L97">chatbot_service/api/chat.py:28-97</a>
+- <a href="file://chatbot_service/agent/graph.py#L33-L87">chatbot_service/agent/graph.py:33-87</a>
+- <a href="file://chatbot_service/agent/safety_checker.py#L12-L31">chatbot_service/agent/safety_checker.py:12-31</a>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L43-L81">chatbot_service/agent/context_assembler.py:43-81</a>
+- <a href="file://chatbot_service/rag/retriever.py#L22-L39">chatbot_service/rag/retriever.py:22-39</a>
+- <a href="file://chatbot_service/providers/router.py#L154-L199">chatbot_service/providers/router.py:154-199</a>
+- <a href="file://chatbot_service/providers/base.py#L129-L159">chatbot_service/providers/base.py:129-159</a>
+- <a href="file://chatbot_service/memory/redis_memory.py#L23-L44">chatbot_service/memory/redis_memory.py:23-44</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="fastapi-application-and-lifecycle-management">FastAPI Application and Lifecycle Management</h3>
+<ul>
+<li>Application factory creates FastAPI with CORS and rate-limiting middleware.</li>
+<li>Lifespan initializes services: memory store, vector store, retriever, tools, context assembler, and ChatEngine.</li>
+<li>Services are attached to app.state for global access via dependency injection.</li>
+<li>Health endpoints expose service status and memory availability.</li>
+<li>API routers mounted for chat and admin operations.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["create_app()"]) --&gt; LoadCfg["Load Settings"]
+LoadCfg --&gt; InitServices["Initialize Services in lifespan()"]
+InitServices --&gt; AttachState["Attach to app.state"]
+AttachState --&gt; MountAPI["Mount API Routers"]
+MountAPI --&gt; Health["Expose /health and root"]
+Health --&gt; Ready(["Application Ready"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L145">chatbot_service/main.py:41-145</a>
+- <a href="file://chatbot_service/config.py#L69-L126">chatbot_service/config.py:69-126</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L145">chatbot_service/main.py:41-145</a>
+- <a href="file://chatbot_service/config.py#L69-L126">chatbot_service/config.py:69-126</a></p>
+<h3 id="agent-orchestration-chatengine">Agent Orchestration (ChatEngine)</h3>
+<ul>
+<li>Coordinates safety evaluation, intent detection, context assembly, provider routing, and memory persistence.</li>
+<li>Builds a de-duplicated sources list for provenance tracking.</li>
+<li>Exposes history retrieval and index rebuild/stats.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class ChatEngine {
++memory_store : ConversationMemoryStore
++vectorstore : LocalVectorStore
++intent_detector : IntentDetector
++safety_checker : SafetyChecker
++context_assembler : ContextAssembler
++provider_router : ProviderRouter
++chat(payload) ChatResponse
++get_history(session_id) list
++rebuild_index() dict
++stats() dict
+}</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/agent/graph.py#L15-L109">chatbot_service/agent/graph.py:15-109</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/agent/graph.py#L15-L109">chatbot_service/agent/graph.py:15-109</a></p>
+<h3 id="intent-detection">Intent Detection</h3>
+<ul>
+<li>Rule-based classifier categorizing user messages into emergency, first_aid, challan, legal, road_issue, or general.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+A["Input message"] --&gt; B["Lowercase &amp; tokenize"]
+B --&gt; C{"Contains emergency terms?"}
+C --&gt; |Yes| E["intent=emergency"]
+C --&gt; |No| D{"Contains first_aid terms?"}
+D --&gt; |Yes| F["intent=first_aid"]
+D --&gt; |No| G{"Matches challan pattern?"}
+G --&gt; |Yes| H["intent=challan"]
+G --&gt; |No| I{"Contains legal terms?"}
+I --&gt; |Yes| J["intent=legal"]
+I --&gt; |No| K{"Contains road_issue terms?"}
+K --&gt; |Yes| L["intent=road_issue"]
+K --&gt; |No| M["intent=general"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/agent/intent_detector.py#L9-L25">chatbot_service/agent/intent_detector.py:9-25</a></p>
+<h3 id="safety-checker">Safety Checker</h3>
+<ul>
+<li>Blocks harmful prompts and returns a policy-compliant response.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+S["Input message"] --&gt; T["Lowercase"]
+T --&gt; U{"Blocked pattern matched?"}
+U --&gt; |Yes| V["Return blocked=True + policy response"]
+U --&gt; |No| W["Return blocked=False"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/agent/safety_checker.py#L12-L31">chatbot_service/agent/safety_checker.py:12-31</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/agent/safety_checker.py#L12-L31">chatbot_service/agent/safety_checker.py:12-31</a></p>
+<h3 id="context-assembly">Context Assembly</h3>
+<ul>
+<li>Assembles ConversationContext with retrieved RAG snippets and tool outputs.</li>
+<li>Adds SOS, weather, first aid, challan, road infrastructure, road issues, and submission guidance depending on intent and coordinates.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+CA["assemble(session_id, message, intent, lat, lon, history)"] --&gt; DetectIntent["Intent switch"]
+DetectIntent --&gt; EM{"emergency?"}
+EM --&gt; |Yes| AddEmerg["Add SOS + nearby services + weather"]
+EM --&gt; |No| FA{"first_aid?"}
+FA --&gt; |Yes| AddFA["Add first aid steps + drug info"]
+FA --&gt; |No| CH{"challan?"}
+CH --&gt; |Yes| AddChallan["Add challan inference"]
+CH --&gt; |No| LE{"legal?"}
+LE --&gt; |Yes| AddLegal["Add legal search results"]
+LE --&gt; |No| RI{"road_issue?"}
+RI --&gt; |Yes| AddRoad["Add road infra + issues + report guidance"]
+RI --&gt; |No| AddGen["Add general retrieval"]
+AddEmerg --&gt; BuildCtx["Build ConversationContext"]
+AddFA --&gt; BuildCtx
+AddChallan --&gt; BuildCtx
+AddLegal --&gt; BuildCtx
+AddRoad --&gt; BuildCtx
+AddGen --&gt; BuildCtx</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/agent/context_assembler.py#L43-L81">chatbot_service/agent/context_assembler.py:43-81</a>
+- <a href="file://chatbot_service/agent/context_assembler.py#L83-L215">chatbot_service/agent/context_assembler.py:83-215</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/agent/context_assembler.py#L17-L215">chatbot_service/agent/context_assembler.py:17-215</a></p>
+<h3 id="provider-routing-and-language-aware-selection">Provider Routing and Language-Aware Selection</h3>
+<ul>
+<li>Detects Indian language scripts and routes to specialized providers for legal and general queries.</li>
+<li>Implements a strict fallback chain across 11 providers with deterministic template fallback.</li>
+<li>Attaches routing metadata to results.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+P["generate(request)"] --&gt; Lang["detect_lang(message)"]
+Lang --&gt; Sel["select_provider_name(intent, detected_lang, hint)"]
+Sel --&gt; Prim["Primary provider"]
+Prim --&gt; TryPrim{"Generate succeeds?"}
+TryPrim --&gt; |Yes| Meta["Attach provider_used, detected_lang, india_badge"]
+Meta --&gt; Done["Return ProviderResult"]
+TryPrim --&gt; |No| Fallback["Iterate fallback chain"]
+Fallback --&gt; TryFB{"Next provider succeeds?"}
+TryFB --&gt; |Yes| FBMeta["Attach provider_used, fallback_from"]
+FBMeta --&gt; Done
+TryFB --&gt; |No| RetryChain["Continue or raise error"]
+RetryChain --&gt; Done</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L48-L73">chatbot_service/providers/router.py:48-73</a>
+- <a href="file://chatbot_service/providers/router.py#L125-L153">chatbot_service/providers/router.py:125-153</a>
+- <a href="file://chatbot_service/providers/router.py#L154-L199">chatbot_service/providers/router.py:154-199</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/providers/router.py#L75-L199">chatbot_service/providers/router.py:75-199</a>
+- <a href="file://chatbot_service/providers/base.py#L90-L206">chatbot_service/providers/base.py:90-206</a></p>
+<h3 id="memory-management">Memory Management</h3>
+<ul>
+<li>ConversationMemoryStore persists messages with timestamps and metadata.</li>
+<li>Supports Redis-backed storage with in-memory fallback and TTL.</li>
+<li>Provides health checks and graceful degradation.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class ConversationMemoryStore {
+-_client : Redis | None
+-_memory : dict
+-_redis_healthy : bool
+-_session_ttl_seconds : int
++append_message(session_id, role, content, metadata) dict
++get_history(session_id, limit) list
++clear_session(session_id) void
++ping() bool
++close() void
++backend_name() str
+}</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/memory/redis_memory.py#L10-L90">chatbot_service/memory/redis_memory.py:10-90</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/memory/redis_memory.py#L10-L90">chatbot_service/memory/redis_memory.py:10-90</a></p>
+<h3 id="rag-pipeline">RAG Pipeline</h3>
+<ul>
+<li>LocalVectorStore loads and persists document chunks; builds index from data directory.</li>
+<li>Retriever performs semantic search with optional category scopes and top-k selection.</li>
+<li>Scoring and chunking strategies optimize relevance and context window fit.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+VS["LocalVectorStore"] --&gt; EnsureIdx{"Index exists?"}
+EnsureIdx --&gt; |Yes| UseIdx["Use existing chunks"]
+EnsureIdx --&gt; |No| BuildIdx["load_documents -&gt; _chunk_document -&gt; persist"]
+UseIdx --&gt; Search["search(query, top_k, scopes)"]
+BuildIdx --&gt; Search
+Search --&gt; Score["score_query -&gt; sort -&gt; top_k"]
+Score --&gt; Results["Return (chunk, score) list"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L110">chatbot_service/rag/vectorstore.py:20-110</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L40">chatbot_service/rag/retriever.py:17-40</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L110">chatbot_service/rag/vectorstore.py:20-110</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L40">chatbot_service/rag/retriever.py:17-40</a></p>
+<h3 id="api-surface">API Surface</h3>
+<ul>
+<li>Chat endpoints: blocking and streaming with SSE; streaming simulates token delivery for UX.</li>
+<li>History endpoint: retrieve conversation history for a session.</li>
+<li>Admin endpoints: health and rebuild index guarded by admin secret.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client"
+participant ChatAPI as "/api/v1/chat"
+participant Stream as "/api/v1/chat/stream"
+participant Admin as "/admin/rebuild-index"
+Client-&gt;&gt;ChatAPI : POST /
+ChatAPI--&gt;&gt;Client : ChatResponse
+Client-&gt;&gt;Stream : POST /stream
+Stream--&gt;&gt;Client : SSE tokens + done event
+Client-&gt;&gt;Admin : POST /admin/rebuild-index (X-Admin-Key)
+Admin--&gt;&gt;Client : Index rebuilt stats</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/api/chat.py#L28-L97">chatbot_service/api/chat.py:28-97</a>
+- <a href="file://chatbot_service/api/admin.py#L45-L52">chatbot_service/api/admin.py:45-52</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/api/chat.py#L16-L111">chatbot_service/api/chat.py:16-111</a>
+- <a href="file://chatbot_service/api/admin.py#L12-L52">chatbot_service/api/admin.py:12-52</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Cohesion: Each module has a single responsibility (routing, memory, RAG, tools, agent orchestration).</li>
+<li>Coupling: Low coupling via dependency injection (app.state) and explicit constructor wiring.</li>
+<li>External dependencies: Redis, HTTP clients, vector store persistence, and multiple LLM providers.</li>
+<li>Provider abstractions: HttpProvider and TemplateProvider decouple routing logic from provider specifics.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+MAIN["main.py"] --&gt; CFG["config.py"]
+MAIN --&gt; MEM["memory/redis_memory.py"]
+MAIN --&gt; ENGINE["agent/graph.py"]
+ENGINE --&gt; INTENT["agent/intent_detector.py"]
+ENGINE --&gt; SAFETY["agent/safety_checker.py"]
+ENGINE --&gt; CTX["agent/context_assembler.py"]
+ENGINE --&gt; ROUTER["providers/router.py"]
+CTX --&gt; RETRIEVER["rag/retriever.py"]
+CTX --&gt; TOOLS["tools/*"]
+RETRIEVER --&gt; VSTORE["rag/vectorstore.py"]
+ROUTER --&gt; BASE["providers/base.py"]
+API["api/chat.py"] --&gt; ENGINE
+ADMIN["api/admin.py"] --&gt; ENGINE
+ADMIN --&gt; MEM</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L145">chatbot_service/main.py:41-145</a>
+- <a href="file://chatbot_service/agent/graph.py#L15-L109">chatbot_service/agent/graph.py:15-109</a>
+- <a href="file://chatbot_service/providers/router.py#L75-L199">chatbot_service/providers/router.py:75-199</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L40">chatbot_service/rag/retriever.py:17-40</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L110">chatbot_service/rag/vectorstore.py:20-110</a>
+- <a href="file://chatbot_service/api/chat.py#L16-L111">chatbot_service/api/chat.py:16-111</a>
+- <a href="file://chatbot_service/api/admin.py#L12-L52">chatbot_service/api/admin.py:12-52</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L41-L145">chatbot_service/main.py:41-145</a>
+- <a href="file://chatbot_service/agent/graph.py#L15-L109">chatbot_service/agent/graph.py:15-109</a>
+- <a href="file://chatbot_service/providers/router.py#L75-L199">chatbot_service/providers/router.py:75-199</a>
+- <a href="file://chatbot_service/rag/retriever.py#L17-L40">chatbot_service/rag/retriever.py:17-40</a>
+- <a href="file://chatbot_service/rag/vectorstore.py#L20-L110">chatbot_service/rag/vectorstore.py:20-110</a>
+- <a href="file://chatbot_service/api/chat.py#L16-L111">chatbot_service/api/chat.py:16-111</a>
+- <a href="file://chatbot_service/api/admin.py#L12-L52">chatbot_service/api/admin.py:12-52</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Streaming UX: Simulated streaming via word-delimited chunks to improve perceived latency.</li>
+<li>Prompt construction: Limits history length and response tokens to control cost and latency.</li>
+<li>Retrieval tuning: Adjustable top_k and category-scoped retrieval reduce noise and improve relevance.</li>
+<li>Provider fallback: Fast primary providers (e.g., Groq) with overflow to higher-throughput providers (e.g., Cerebras) maintain throughput.</li>
+<li>Memory TTL: Session expiration prevents unbounded growth; Redis health monitoring enables failback to in-memory storage.</li>
+<li>Indexing: On-demand index building and persistence minimize cold-start costs.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Health checks: Use /health for service readiness and memory backend status; use /admin/health for index and memory diagnostics.</li>
+<li>Admin rebuild: Trigger index rebuild with admin secret via /admin/rebuild-index.</li>
+<li>Rate limiting: Requests are throttled; excessive errors indicate misconfiguration or upstream provider issues.</li>
+<li>Safety blocks: Harmful prompts are rejected; adjust client messaging to align with policy.</li>
+<li>Provider errors: ProviderRouter falls back across providers; persistent failures indicate missing API keys or network issues.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/main.py#L106-L115">chatbot_service/main.py:106-115</a>
+- <a href="file://chatbot_service/api/admin.py#L32-L52">chatbot_service/api/admin.py:32-52</a>
+- <a href="file://chatbot_service/agent/safety_checker.py#L12-L31">chatbot_service/agent/safety_checker.py:12-31</a>
+- <a href="file://chatbot_service/providers/router.py#L154-L199">chatbot_service/providers/router.py:154-199</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<blockquote>
+<p><strong>Enterprise Hardening Notes:</strong>
+- LLM calls wrapped in <code>asyncio.wait_for()</code> with configurable timeout
+- 13 agent tools (ChallanTool, DrugInfoTool, EmergencyTool, FirstAidTool, GeocodingClient, LegalSearchTool, OpenMeteoClient, RoadInfrastructureTool, RoadIssuesTool, SosTool, SubmitReportTool, WeatherTool, What3WordsTool)
+- 9 intent classes: emergency, first_aid, challan, legal, road_weather, safe_route, road_infrastructure, road_issue, general</p>
+</blockquote>
+<p>The SafeVixAI Chatbot Service employs a clean, modular architecture centered on an agentic RAG pipeline. Dependency injection ensures robust initialization and lifecycle management, while intent detection, safety checks, and context assembly deliver precise, policy-compliant responses. The provider router’s language-aware routing and extensive fallback chain guarantee reliability, and the RAG stack with Redis-backed memory provides scalable, contextual assistance for road safety scenarios across India.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<ul>
+<li>Endpoint summary:</li>
+<li>Chat: POST /api/v1/chat/, POST /api/v1/chat/stream, GET /api/v1/chat/history/{session_id}, GET /api/v1/chat/health</li>
+<li>Admin: GET /admin/health, POST /admin/rebuild-index</li>
+<li>System: GET /health, GET /</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/api/chat.py#L16-L111">chatbot_service/api/chat.py:16-111</a>
+- <a href="file://chatbot_service/api/admin.py#L12-L52">chatbot_service/api/admin.py:12-52</a>
+- <a href="file://chatbot_service/main.py#L106-L142">chatbot_service/main.py:106-142</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

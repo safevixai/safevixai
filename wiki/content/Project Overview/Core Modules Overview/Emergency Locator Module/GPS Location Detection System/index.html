@@ -1,0 +1,1953 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>GPS Location Detection System - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gps-location-detection-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GPS Location Detection System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-gps-auto-detection-and-accuracy-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend GPS Auto-Detection and Accuracy Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-tracker-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location Tracker Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-utilities-coordinate-conversion-distance-proximity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location Utilities: Coordinate Conversion, Distance, Proximity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-emergency-locator-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend Emergency Locator Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-api-location-request-processing-and-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend API: Location Request Processing and Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sos-sharing-with-coordinates-and-reverse-geocoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SOS Sharing with Coordinates and Reverse Geocoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="gps-location-detection-system">GPS Location Detection System</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/lib/geolocation.ts">geolocation.ts</a>
+- <a href="file://frontend/lib/location-tracker.ts">location-tracker.ts</a>
+- <a href="file://frontend/lib/location-utils.ts">location-utils.ts</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://frontend/components/dashboard/DashboardMapBootstrap.tsx">DashboardMapBootstrap.tsx</a>
+- <a href="file://backend/api/v1/emergency.py">emergency.ts</a>
+- <a href="file://backend/services/emergency_locator.py">emergency_locator.py</a>
+- <a href="file://backend/models/emergency.py">emergency.py</a>
+- <a href="file://backend/core/config.py">config.py</a>
+- <a href="file://frontend/lib/sos-share.ts">sos-share.ts</a>
+- <a href="file://frontend/lib/maps-fallback.ts">maps-fallback.ts</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the GPS Location Detection System powering SafeVixAI’s real-time location awareness and emergency services discovery. It covers:
+- Frontend GPS auto-detection with accuracy thresholds and permission handling
+- Continuous location tracking and update intervals
+- Location utilities for coordinate conversion, distance calculations, and proximity detection
+- Backend emergency locator service that processes location requests and validates coordinates
+- Technical specifications for GPS accuracy requirements, battery optimization strategies, and location permission handling
+- Troubleshooting procedures for poor GPS reception scenarios</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The GPS and location system spans the frontend React application and the backend FastAPI service:
+- Frontend: React hooks and utilities manage geolocation, accuracy validation, and map overlays
+- Backend: FastAPI routes accept coordinates, validate ranges, and serve emergency services near a user’s location</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Frontend"
+GEO["useGeolocation()&lt;br/&gt;geolocation.ts"]
+STORE["Zustand Store&lt;br/&gt;store.ts"]
+MAPBOOT["DashboardMapBootstrap.tsx"]
+TRACK["startLocationTracking()&lt;br/&gt;location-tracker.ts"]
+UTILS["location-utils.ts"]
+SOS["sos-share.ts"]
+end
+subgraph "Backend"
+API["Emergency API&lt;br/&gt;emergency.py"]
+SVC["EmergencyLocatorService&lt;br/&gt;emergency_locator.py"]
+CFG["Settings&lt;br/&gt;config.py"]
+MODEL["EmergencyService Model&lt;br/&gt;models/emergency.py"]
+end
+GEO --&gt; STORE
+MAPBOOT --&gt; GEO
+MAPBOOT --&gt; API
+TRACK --&gt; MAPBOOT
+UTILS --&gt; MAPBOOT
+SOS --&gt; GEO
+API --&gt; SVC
+SVC --&gt; CFG
+SVC --&gt; MODEL</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/store.ts#L4-L226">store.ts:4-226</a>
+- <a href="file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330">DashboardMapBootstrap.tsx:77-330</a>
+- <a href="file://frontend/lib/location-tracker.ts#L8-L66">location-tracker.ts:8-66</a>
+- <a href="file://frontend/lib/location-utils.ts#L1-L57">location-utils.ts:1-57</a>
+- <a href="file://frontend/lib/sos-share.ts#L9-L69">sos-share.ts:9-69</a>
+- <a href="file://backend/api/v1/emergency.py#L19-L83">emergency.py:19-83</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/location-tracker.ts#L8-L66">location-tracker.ts:8-66</a>
+- <a href="file://frontend/lib/location-utils.ts#L1-L57">location-utils.ts:1-57</a>
+- <a href="file://frontend/lib/store.ts#L4-L226">store.ts:4-226</a>
+- <a href="file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330">DashboardMapBootstrap.tsx:77-330</a>
+- <a href="file://backend/api/v1/emergency.py#L19-L83">emergency.py:19-83</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a>
+- <a href="file://frontend/lib/sos-share.ts#L9-L69">sos-share.ts:9-69</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Frontend geolocation hook: Requests high-accuracy location with timeouts and permission checks; maintains state in a global store and watches updates continuously</li>
+<li>Location tracker: Adds a live dot overlay on the map and updates coordinates with a fixed interval</li>
+<li>Location utilities: Formats accuracy labels, detects approximate locations, and builds human-friendly labels</li>
+<li>Store: Defines the GPS location shape and exposes setters for location and errors</li>
+<li>Backend emergency locator: Accepts coordinates, validates ranges, and returns nearby emergency services with fallback strategies</li>
+<li>Configuration: Centralizes radius steps, limits, and caching TTL for robustness</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/location-tracker.ts#L8-L66">location-tracker.ts:8-66</a>
+- <a href="file://frontend/lib/location-utils.ts#L1-L57">location-utils.ts:1-57</a>
+- <a href="file://frontend/lib/store.ts#L4-L226">store.ts:4-226</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/core/config.py#L26-L100">config.py:26-100</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The GPS system integrates frontend and backend:
+- Frontend obtains a single high-accuracy position and then continuously watches for updates
+- Dashboard hydrates services and road issues around the current location with progressive fallbacks
+- Backend validates coordinates, applies radius steps, caches results, and merges database, local, and external sources</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Browser as "Browser"
+participant Hook as "useGeolocation()&lt;br/&gt;geolocation.ts"
+participant Store as "Zustand Store&lt;br/&gt;store.ts"
+participant MapBoot as "DashboardMapBootstrap.tsx"
+participant API as "Emergency API&lt;br/&gt;emergency.py"
+participant Service as "EmergencyLocatorService&lt;br/&gt;emergency_locator.py"
+Browser-&gt;&gt;Hook : getCurrentPosition(enableHighAccuracy=true, timeout=10s)
+Hook--&gt;&gt;Store : setGpsLocation({lat, lon, accuracy, timestamp})
+Hook-&gt;&gt;Hook : watchPosition(enableHighAccuracy=true, timeout=20s, maximumAge=5s)
+Hook--&gt;&gt;Store : update location on change
+MapBoot-&gt;&gt;API : GET /api/v1/emergency/nearby?lat&amp;lon&amp;radius&amp;categories
+API-&gt;&gt;Service : find_nearby(lat, lon, categories, radius)
+Service--&gt;&gt;API : EmergencyResponse
+API--&gt;&gt;MapBoot : EmergencyResponse
+MapBoot--&gt;&gt;Store : setNearbyServices(), setServiceSearchMeta()</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L30-L108">geolocation.ts:30-108</a>
+- <a href="file://frontend/lib/store.ts#L63-L136">store.ts:63-136</a>
+- <a href="file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L171-L300">DashboardMapBootstrap.tsx:171-300</a>
+- <a href="file://backend/api/v1/emergency.py#L19-L40">emergency.py:19-40</a>
+- <a href="file://backend/services/emergency_locator.py#L187-L217">emergency_locator.py:187-217</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="frontend-gps-auto-detection-and-accuracy-validation">Frontend GPS Auto-Detection and Accuracy Validation</h3>
+<ul>
+<li>Permission and context checks: Requires secure context (HTTPS or localhost) and verifies browser geolocation support</li>
+<li>Single-shot acquisition: Uses high accuracy with a 10-second timeout and zero maximum age to avoid stale data</li>
+<li>Continuous watching: Watches position with extended timeout and 5-second maximum age to balance freshness and battery usage</li>
+<li>Error handling: Maps browser error codes to actionable messages and clears watchers on cleanup</li>
+<li>Accuracy threshold: A location is considered approximate if its accuracy exceeds a predefined threshold (used by UI formatting)</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Request Location"]) --&gt; CheckSecure["Check secure context"]
+CheckSecure --&gt; SecureOK{"Secure or localhost?"}
+SecureOK --&gt; |No| SetError["Set error: HTTPS required"]
+SecureOK --&gt; |Yes| CheckSupport["Check navigator.geolocation"]
+CheckSupport --&gt; Supported{"Supported?"}
+Supported --&gt; |No| SetError2["Set error: Not supported"]
+Supported --&gt; |Yes| GetCurrent["getCurrentPosition(highAccuracy, timeout=10s)"]
+GetCurrent --&gt; Watch["watchPosition(highAccuracy, timeout=20s, maxAge=5s)"]
+Watch --&gt; Success["onSuccess: setGpsLocation()"]
+Watch --&gt; Error["onError: map error code to message"]
+Success --&gt; End(["Idle"])
+Error --&gt; End
+SetError --&gt; End
+SetError2 --&gt; End</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L30-L108">geolocation.ts:30-108</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L30-L108">geolocation.ts:30-108</a>
+- <a href="file://frontend/lib/location-utils.ts#L3,L17-L19">location-utils.ts:3,17-19</a>
+- <a href="file://frontend/lib/store.ts#L4,L63-L68">store.ts:4,63-68</a></p>
+<h3 id="location-tracker-implementation">Location Tracker Implementation</h3>
+<ul>
+<li>Adds a GeoJSON source and concentric circle layers to visualize the user’s location and accuracy</li>
+<li>Updates the source data on each watched position and invokes optional callbacks</li>
+<li>Returns a cleanup function to clear the watcher</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Caller as "Caller"
+participant Tracker as "startLocationTracking()"
+participant Geoloc as "navigator.geolocation"
+participant Map as "MapLibre GL JS"
+Caller-&gt;&gt;Tracker : startLocationTracking(map, {onUpdate, onError})
+Tracker-&gt;&gt;Map : addSource('user-location', GeoJSON)
+Tracker-&gt;&gt;Map : addLayers (inner dot, pulse ring)
+Tracker-&gt;&gt;Geoloc : watchPosition(options)
+Geoloc--&gt;&gt;Tracker : position
+Tracker-&gt;&gt;Map : setData(GeoJSON Feature with accuracy)
+Tracker--&gt;&gt;Caller : cleanup() via clearWatch()</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/location-tracker.ts#L8-L66">location-tracker.ts:8-66</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/location-tracker.ts#L8-L66">location-tracker.ts:8-66</a></p>
+<h3 id="location-utilities-coordinate-conversion-distance-proximity">Location Utilities: Coordinate Conversion, Distance, Proximity</h3>
+<ul>
+<li>Approximate location detection: Flags a location as approximate if its accuracy meets or exceeds a threshold</li>
+<li>Accuracy labeling: Converts meters to kilometers for display and formats human-readable labels</li>
+<li>Location labeling: Builds short labels from city/state or coordinates; prefixes “Approx.” when accuracy is high</li>
+<li>Distance calculation: The backend computes distances using spherical trigonometry for merging and ranking</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+A["Input GpsLocation"] --&gt; B{"Has gpsError?"}
+B --&gt; |Yes| L1["Label: Enable Location"]
+B --&gt; |No| C{"Has location?"}
+C --&gt; |No| L2["Label: Use My Location"]
+C --&gt; |Yes| D["Build short label (city/state/displayName/coords)"]
+D --&gt; E{"isApproximateLocation?"}
+E --&gt; |Yes| L3["Prefix: Approx. + short label"]
+E --&gt; |No| L4["short label"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/location-utils.ts#L33-L56">location-utils.ts:33-56</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/location-utils.ts#L1-L57">location-utils.ts:1-57</a>
+- <a href="file://backend/services/emergency_locator.py#L468-L479">emergency_locator.py:468-479</a></p>
+<h3 id="backend-emergency-locator-service">Backend Emergency Locator Service</h3>
+<ul>
+<li>Validates coordinates and categories, normalizes inputs, and constructs radius steps from configuration</li>
+<li>Caches responses keyed by coordinates, categories, and radius to reduce latency and load</li>
+<li>Searches in three tiers:
+  1) Database with PostGIS geography and distance ordering
+  2) Local catalog entries filtered by distance and category
+  3) Overpass service as a fallback with graceful degradation</li>
+<li>Merges results, deduplicates by name/category/rounded coordinates, and sorts by priority (trauma availability, 24hr availability, distance)</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class EmergencyLocatorService {
++parse_categories(categories) str[]
++build_radius_steps(radius) int[]
++find_nearby(db,lat,lon,categories,radius,limit) EmergencyResponse
++build_sos_payload(db,lat,lon) SosResponse
++build_city_bundle(db,city) dict
+-_find_nearby_uncached(...) EmergencyResponse
+-_query_database(...) EmergencyServiceItem[]
+-_search_local_catalog(...) EmergencyServiceItem[]
+-_merge_results(database_items,fallback_items,limit) EmergencyServiceItem[]
+-_distance_meters(lat1,lon1,lat2,lon2) float
+}
+class Settings {
++default_radius int
++max_radius int
++emergency_min_results int
++emergency_radius_steps int[]
++cache_ttl_seconds int
+}
+class EmergencyService {
++id int
++name str
++category str
++location Geometry(Point,4326)
++has_trauma bool
++is_24hr bool
++distance_meters float
+}
+EmergencyLocatorService --&gt; Settings : "reads"
+EmergencyLocatorService --&gt; EmergencyService : "queries"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/core/config.py#L26-L100">config.py:26-100</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/core/config.py#L26-L100">config.py:26-100</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a></p>
+<h3 id="backend-api-location-request-processing-and-validation">Backend API: Location Request Processing and Validation</h3>
+<ul>
+<li>Exposes endpoints to discover nearby services, build SOS payloads, and fetch emergency numbers</li>
+<li>Validates latitude (-90..90), longitude (-180..180), radius (min 100, max 50000), and limit (1..50)</li>
+<li>Inserts SOS incidents into a table for audit and user-agent tracking</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client"
+participant API as "GET /api/v1/emergency/nearby"
+participant DB as "AsyncSession"
+participant Service as "EmergencyLocatorService"
+Client-&gt;&gt;API : Query(lat, lon, categories, radius, limit)
+API-&gt;&gt;Service : find_nearby(db, lat, lon, categories, radius, limit)
+Service-&gt;&gt;DB : ST_Distance + ST_DWithin + order by priority
+DB--&gt;&gt;Service : results
+Service--&gt;&gt;API : EmergencyResponse
+API--&gt;&gt;Client : EmergencyResponse</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L40">emergency.py:19-40</a>
+- <a href="file://backend/services/emergency_locator.py#L187-L217">emergency_locator.py:187-217</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L83">emergency.py:19-83</a></p>
+<h3 id="sos-sharing-with-coordinates-and-reverse-geocoding">SOS Sharing with Coordinates and Reverse Geocoding</h3>
+<ul>
+<li>Generates pre-filled links for WhatsApp and SMS with coordinates and optional address derived from reverse geocoding</li>
+<li>Provides a synchronous variant for instant links without waiting for geocoding</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Generate SOS Link"]) --&gt; CheckLoc{"Location available?"}
+CheckLoc --&gt; |No| BuildMsg["Build message with Unknown location"]
+CheckLoc --&gt; |Yes| Geocode["Reverse geocode coordinates"]
+Geocode --&gt; Addr{"Address found?"}
+Addr --&gt; |Yes| BuildMsg
+Addr --&gt; |No| Coords["Use lat/lng as address fallback"]
+BuildMsg --&gt; Encode["Encode message for URL"]
+Coords --&gt; Encode
+Encode --&gt; End(["Return shareable link"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/sos-share.ts#L9-L69">sos-share.ts:9-69</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/sos-share.ts#L9-L69">sos-share.ts:9-69</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Frontend depends on:</li>
+<li>Geolocation API for acquiring and watching positions</li>
+<li>Zustand store for centralized state</li>
+<li>MapLibre GL JS for live dot overlay</li>
+<li>Reverse geocoding for human-readable labels</li>
+<li>Backend depends on:</li>
+<li>SQLAlchemy async ORM and PostGIS for spatial queries</li>
+<li>Redis cache for response caching</li>
+<li>Overpass service for fallback emergency data</li>
+<li>Pydantic settings for configuration</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+GEO["geolocation.ts"] --&gt; STORE["store.ts"]
+MAPBOOT["DashboardMapBootstrap.tsx"] --&gt; GEO
+MAPBOOT --&gt; API["emergency.py"]
+API --&gt; SVC["emergency_locator.py"]
+SVC --&gt; CFG["config.py"]
+SVC --&gt; MODEL["models/emergency.py"]
+MAPBOOT --&gt; UTILS["location-utils.ts"]
+MAPBOOT --&gt; TRACK["location-tracker.ts"]
+GEO --&gt; UTILS
+GEO --&gt; SOS["sos-share.ts"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/lib/store.ts#L4-L226">store.ts:4-226</a>
+- <a href="file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330">DashboardMapBootstrap.tsx:77-330</a>
+- <a href="file://frontend/lib/location-utils.ts#L1-L57">location-utils.ts:1-57</a>
+- <a href="file://frontend/lib/location-tracker.ts#L8-L66">location-tracker.ts:8-66</a>
+- <a href="file://backend/api/v1/emergency.py#L19-L83">emergency.py:19-83</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a>
+- <a href="file://frontend/lib/sos-share.ts#L9-L69">sos-share.ts:9-69</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L13-L124">geolocation.ts:13-124</a>
+- <a href="file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330">DashboardMapBootstrap.tsx:77-330</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/core/config.py#L11-L181">config.py:11-181</a>
+- <a href="file://backend/models/emergency.py#L12-L45">emergency.py:12-45</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Frontend</li>
+<li>High-accuracy single-shot with short maximum age ensures fresh data without excessive polling</li>
+<li>Continuous watch with moderate timeout and 5-second maximum age balances responsiveness and battery life</li>
+<li>UI avoids unnecessary re-renders by updating only when the hydration key changes</li>
+<li>Backend</li>
+<li>Radius steps progressively increase to minimize database scans and improve hit rates</li>
+<li>Caching reduces repeated computation and network calls</li>
+<li>PostGIS spatial indexing and distance expressions optimize queries</li>
+<li>Fallback to Overpass is gated behind external service error handling</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Common location detection issues</li>
+<li>Permission denied: Prompt users to enable location in browser settings</li>
+<li>Unavailable or timeout: Advise retrying or moving outdoors for better GPS reception</li>
+<li>Mixed content errors: Ensure the site is served over HTTPS or run on localhost</li>
+<li>Accuracy limitations</li>
+<li>Approximate locations: The UI flags locations with accuracy exceeding the threshold; rely on address geocoding for context</li>
+<li>Indoor/outdoor reception: Use fallbacks like reverse geocoding and city bundles when GPS accuracy is poor</li>
+<li>Battery optimization strategies</li>
+<li>Prefer watchPosition with reasonable maximumAge and timeout</li>
+<li>Debounce UI updates and avoid frequent re-fetching of nearby services</li>
+<li>Limit map overlays to essential layers during low-power modes</li>
+<li>Backend validation</li>
+<li>Verify coordinates are within accepted ranges</li>
+<li>Confirm categories are supported and radius does not exceed maximum</li>
+<li>Inspect cache keys and TTL to diagnose stale or missing results</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/geolocation.ts#L63-L71">geolocation.ts:63-71</a>
+- <a href="file://frontend/lib/location-utils.ts#L17-L19">location-utils.ts:17-19</a>
+- <a href="file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L131-L158">DashboardMapBootstrap.tsx:131-158</a>
+- <a href="file://backend/api/v1/emergency.py#L20-L26">emergency.py:20-26</a>
+- <a href="file://backend/core/config.py#L26-L36">config.py:26-36</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The GPS Location Detection System combines robust frontend geolocation with resilient backend emergency discovery. It enforces accuracy-aware UX, optimizes for battery life, and provides fallback strategies for degraded environments. Together with SOS sharing and caching, it delivers reliable location-based services for emergency scenarios.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

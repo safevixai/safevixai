@@ -1,0 +1,2192 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>API Reference - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#road-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Reporting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challan-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challan Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chatbot Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geocoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geocoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-bundles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline Bundles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requestresponse-examples-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request/Response Examples (paths)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-implementation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client Implementation Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebSocket Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API Reference</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/main.py">backend/main.py</a>
+- <a href="file://backend/api/v1/__init__.py">backend/api/v1/<strong>init</strong>.py</a>
+- <a href="file://backend/api/v1/auth.py">backend/api/v1/auth.py</a>
+- <a href="file://backend/api/v1/emergency.py">backend/api/v1/emergency.py</a>
+- <a href="file://backend/api/v1/roadwatch.py">backend/api/v1/roadwatch.py</a>
+- <a href="file://backend/api/v1/routing.py">backend/api/v1/routing.py</a>
+- <a href="file://backend/api/v1/user.py">backend/api/v1/user.py</a>
+- <a href="file://backend/api/v1/challan.py">backend/api/v1/challan.py</a>
+- <a href="file://backend/api/v1/chat.py">backend/api/v1/chat.py</a>
+- <a href="file://backend/api/v1/geocode.py">backend/api/v1/geocode.py</a>
+- <a href="file://backend/api/v1/offline.py">backend/api/v1/offline.py</a>
+- <a href="file://backend/models/schemas.py">backend/models/schemas.py</a>
+- <a href="file://backend/core/security.py">backend/core/security.py</a>
+- <a href="file://backend/services/exceptions.py">backend/services/exceptions.py</a>
+- <a href="file://backend/core/config.py">backend/core/config.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the SafeVixAI REST API surface implemented with FastAPI. It covers HTTP methods, URL patterns, request/response schemas, authentication, error handling, rate limiting, and versioning. It also documents WebSocket-related chat capabilities and provides guidance for clients, security, performance, and debugging.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The backend exposes a single API version at /api/v1 and mounts static uploads under /uploads. The API router aggregates multiple feature routers for emergency, road reporting, routing, user management, authentication, challan calculation, chat, geocoding, and offline bundles.</p>
+<pre class="mermaid"><code>graph TB
+A["FastAPI App&lt;br/&gt;backend/main.py"] --&gt; B["API Router v1&lt;br/&gt;backend/api/v1/__init__.py"]
+B --&gt; C["Auth Router&lt;br/&gt;backend/api/v1/auth.py"]
+B --&gt; D["Emergency Router&lt;br/&gt;backend/api/v1/emergency.py"]
+B --&gt; E["RoadWatch Router&lt;br/&gt;backend/api/v1/roadwatch.py"]
+B --&gt; F["Routing Router&lt;br/&gt;backend/api/v1/routing.py"]
+B --&gt; G["User Router&lt;br/&gt;backend/api/v1/user.py"]
+B --&gt; H["Challan Router&lt;br/&gt;backend/api/v1/challan.py"]
+B --&gt; I["Chat Router&lt;br/&gt;backend/api/v1/chat.py"]
+B --&gt; J["Geocode Router&lt;br/&gt;backend/api/v1/geocode.py"]
+B --&gt; K["Offline Router&lt;br/&gt;backend/api/v1/offline.py"]
+A --&gt; L["Static Uploads&lt;br/&gt;/uploads"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/main.py#L127">backend/main.py:127</a>
+- <a href="file://backend/api/v1/__init__.py#L17-L27">backend/api/v1/<strong>init</strong>.py:17-27</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/main.py#L65-L128">backend/main.py:65-128</a>
+- <a href="file://backend/api/v1/__init__.py#L1-L28">backend/api/v1/<strong>init</strong>.py:1-28</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Authentication: Bearer JWT tokens via Authorization header. Credentials managed via Supabase Auth.</li>
+<li>Validation and errors: Pydantic models define request/response schemas; service-level exceptions map to HTTP 422/503.</li>
+<li>Caching and external services: Redis-backed caching and upstream integrations for geocoding, routing, and OpenStreetMap/Overpass queries.</li>
+<li>Versioning: API version is embedded in URLs (/api/v1).</li>
+</ul>
+<p>Security highlights:
+- JWT algorithm HS256 with a shared secret.
+- JWT validation using HS256 with environment-sourced secret keys.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/security.py#L13-L41">backend/core/security.py:13-41</a>
+- <a href="file://backend/services/exceptions.py#L1-L7">backend/services/exceptions.py:1-7</a>
+- <a href="file://backend/core/config.py#L11-L181">backend/core/config.py:11-181</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The API orchestrates domain services behind feature routers. Services depend on async database sessions, Redis cache, and external providers. Health checks expose runtime status and environment metadata.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "API Layer"
+R1["Auth&lt;br/&gt;/api/v1/auth/*"]
+R2["Emergency&lt;br/&gt;/api/v1/emergency/*"]
+R3["RoadWatch&lt;br/&gt;/api/v1/roads/*"]
+R4["Routing&lt;br/&gt;/api/v1/routing/*"]
+R5["Users&lt;br/&gt;/users/*"]
+R6["Challan&lt;br/&gt;/api/v1/challan/*"]
+R7["Chat&lt;br/&gt;/api/v1/chat/*"]
+R8["Geocode&lt;br/&gt;/api/v1/geocode/*"]
+R9["Offline&lt;br/&gt;/api/v1/offline/*"]
+end
+subgraph "Domain Services"
+S1["EmergencyLocatorService"]
+S2["RoadWatchService"]
+S3["RoutingService"]
+S4["LLMService"]
+S5["ChallanService"]
+S6["GeocodingService"]
+S7["AuthorityRouter"]
+end
+subgraph "Infra"
+D["Async Postgres"]
+RC["Redis Cache"]
+U["External Providers"]
+end
+R1 --&gt; S4
+R2 --&gt; S1
+R3 --&gt; S2
+R4 --&gt; S3
+R6 --&gt; S5
+R7 --&gt; S4
+R8 --&gt; S6
+R9 --&gt; S1
+S1 --&gt; D
+S2 --&gt; D
+S3 --&gt; D
+S4 --&gt; D
+S5 --&gt; D
+S6 --&gt; RC
+S1 --&gt; RC
+S2 --&gt; RC
+S3 --&gt; RC
+S6 --&gt; U
+S1 --&gt; U
+S3 --&gt; U</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/__init__.py#L17-L27">backend/api/v1/<strong>init</strong>.py:17-27</a>
+- <a href="file://backend/main.py#L24-L63">backend/main.py:24-63</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="authentication">Authentication</h3>
+<ul>
+<li>Endpoint: POST /api/v1/auth/login</li>
+<li>Purpose: Issue bearer JWT for authenticated operators via Supabase Auth.</li>
+<li>Request body:</li>
+<li>email: string</li>
+<li>password: string</li>
+<li>Response body:</li>
+<li>access_token: string</li>
+<li>token_type: string</li>
+<li>operator_name: string</li>
+<li>Notes:</li>
+<li>Users are validated server-side via Supabase Auth JWT verification.</li>
+<li>Token expiry is 7 days.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant C as "Client"
+participant A as "Auth Router"
+participant T as "Token Factory"
+C-&gt;&gt;A : POST /api/v1/auth/login {email,password}
+A-&gt;&gt;A : Validate credentials
+A-&gt;&gt;T : create_access_token(data, expires_delta)
+T--&gt;&gt;A : JWT
+A--&gt;&gt;C : {access_token, token_type, operator_name}</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/auth.py#L24-L38">backend/api/v1/auth.py:24-38</a>
+- <a href="file://backend/core/security.py#L13-L21">backend/core/security.py:13-21</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/auth.py#L1-L44">backend/api/v1/auth.py:1-44</a>
+- <a href="file://backend/core/security.py#L13-L41">backend/core/security.py:13-41</a></p>
+<h3 id="emergency-services">Emergency Services</h3>
+<ul>
+<li>GET /api/v1/emergency/nearby</li>
+<li>Query params: lat, lon, categories (comma-separated), radius (100–50000), limit (1–50)</li>
+<li>Response: EmergencyResponse</li>
+<li>GET /api/v1/emergency/sos</li>
+<li>Query params: lat, lon</li>
+<li>Behavior: Records incident and returns SOS payload</li>
+<li>Response: SosResponse</li>
+<li>GET /api/v1/emergency/numbers</li>
+<li>Response: EmergencyNumbersResponse</li>
+<li>GET /api/v1/emergency/safe-spaces</li>
+<li>Query params: lat, lon, radius (default 1000)</li>
+<li>Response: List of safe spaces</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant C as "Client"
+participant E as "Emergency Router"
+participant S as "EmergencyLocatorService"
+participant DB as "Postgres"
+participant O as "Overpass/Nominatim"
+C-&gt;&gt;E : GET /emergency/nearby?lat&amp;lon&amp;radius&amp;limit
+E-&gt;&gt;S : find_nearby(...)
+S-&gt;&gt;DB : Query emergency facilities
+S-&gt;&gt;O : Reverse-/geocode if needed
+O--&gt;&gt;S : Coordinates/address
+DB--&gt;&gt;S : Facilities
+S--&gt;&gt;E : EmergencyResponse
+E--&gt;&gt;C : 200 OK</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L19-L75">backend/api/v1/emergency.py:19-75</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/emergency.py#L1-L83">backend/api/v1/emergency.py:1-83</a>
+- <a href="file://backend/models/schemas.py#L32-L66">backend/models/schemas.py:32-66</a></p>
+<h3 id="road-reporting">Road Reporting</h3>
+<ul>
+<li>GET /api/v1/roads/issues</li>
+<li>Query params: lat, lon, radius (default 5000), limit (1–100), statuses (comma-separated subset of open,acknowledged,in_progress,resolved,rejected)</li>
+<li>Response: RoadIssuesResponse</li>
+<li>GET /api/v1/roads/authority</li>
+<li>Query params: lat, lon</li>
+<li>Response: AuthorityPreviewResponse</li>
+<li>GET /api/v1/roads/infrastructure</li>
+<li>Query params: lat, lon</li>
+<li>Response: RoadInfrastructureResponse</li>
+<li>POST /api/v1/roads/report</li>
+<li>Form fields: lat, lon, issue_type (2–64 chars), severity (1–5), description, photo (optional)</li>
+<li>Requires authenticated user</li>
+<li>Response: RoadReportResponse</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["POST /roads/report"]) --&gt; Validate["Validate form fields"]
+Validate --&gt; Valid{"Valid?"}
+Valid --&gt; |No| Err422["HTTP 422 ServiceValidationError"]
+Valid --&gt; |Yes| Submit["Submit report via RoadWatchService"]
+Submit --&gt; SavePhoto["Persist optional photo"]
+SavePhoto --&gt; AssignAuth["Assign authority and generate ref"]
+AssignAuth --&gt; Resp["RoadReportResponse"]
+Resp --&gt; Done(["Done"])
+Err422 --&gt; Done</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">backend/api/v1/roadwatch.py:73-97</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/roadwatch.py#L1-L97">backend/api/v1/roadwatch.py:1-97</a>
+- <a href="file://backend/models/schemas.py#L103-L161">backend/models/schemas.py:103-161</a></p>
+<h3 id="routing">Routing</h3>
+<ul>
+<li>GET /api/v1/routing/preview</li>
+<li>Query params: origin_lat, origin_lon, destination_lat, destination_lon, profile (driving-car|cycling-regular|foot-walking), alternatives (0–2)</li>
+<li>Response: RoutePreviewResponse</li>
+<li>GET /api/v1/routing/safe-route</li>
+<li>Query params: origin_lat, origin_lon, destination_lat, destination_lon, prefer_safety (bool)</li>
+<li>Response: Provider-specific route data</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant C as "Client"
+participant R as "Routing Router"
+participant RS as "RoutingService"
+participant ORS as "OpenRouteService"
+C-&gt;&gt;R : GET /routing/preview?orig&amp;dest&amp;profile&amp;alternatives
+R-&gt;&gt;RS : preview_route(...)
+RS-&gt;&gt;ORS : Fetch route
+ORS--&gt;&gt;RS : RouteOptions
+RS--&gt;&gt;R : RoutePreviewResponse
+R--&gt;&gt;C : 200 OK</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/routing.py#L18-L41">backend/api/v1/routing.py:18-41</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/routing.py#L1-L64">backend/api/v1/routing.py:1-64</a>
+- <a href="file://backend/models/schemas.py#L163-L210">backend/models/schemas.py:163-210</a></p>
+<h3 id="user-management">User Management</h3>
+<ul>
+<li>POST /users/</li>
+<li>Body: UserProfileCreate</li>
+<li>Response: UserProfileResponse</li>
+<li>GET /users/{user_id}</li>
+<li>Path param: user_id (UUID)</li>
+<li>Response: UserProfileResponse</li>
+<li>PUT /users/{user_id}</li>
+<li>Path param: user_id (UUID)</li>
+<li>Body: UserProfileUpdate</li>
+<li>Response: UserProfileResponse</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class UserProfileCreate {
++string name
++string? blood_group
++EmergencyContact[] emergency_contacts
++string? allergies
++string? vehicle_details
++string? medical_notes
+}
+class UserProfileUpdate {
++string? name
++string? blood_group
++EmergencyContact[]? emergency_contacts
++string? allergies
++string? vehicle_details
++string? medical_notes
+}
+class UserProfileResponse {
++uuid id
++datetime created_at
++datetime updated_at
+}
+UserProfileResponse &lt;|-- UserProfileCreate
+UserProfileResponse &lt;|-- UserProfileUpdate</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/models/schemas.py#L259-L287">backend/models/schemas.py:259-287</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/user.py#L1-L83">backend/api/v1/user.py:1-83</a>
+- <a href="file://backend/models/schemas.py#L259-L287">backend/models/schemas.py:259-287</a></p>
+<h3 id="challan-calculation">Challan Calculation</h3>
+<ul>
+<li>POST /api/v1/challan/calculate</li>
+<li>Body: ChallanQuery</li>
+<li>Response: ChallanResponse</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant C as "Client"
+participant Ch as "Challan Router"
+participant CS as "ChallanService"
+C-&gt;&gt;Ch : POST /challan/calculate {violation_code,vehicle_class,state_code,is_repeat}
+Ch-&gt;&gt;CS : calculate(query)
+CS--&gt;&gt;Ch : ChallanResponse
+Ch--&gt;&gt;C : 200 OK</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/challan.py#L17-L25">backend/api/v1/challan.py:17-25</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/challan.py#L1-L26">backend/api/v1/challan.py:1-26</a>
+- <a href="file://backend/models/schemas.py#L240-L257">backend/models/schemas.py:240-257</a></p>
+<h3 id="chatbot-integration">Chatbot Integration</h3>
+<ul>
+<li>POST /api/v1/chat/</li>
+<li>Body: ChatRequest</li>
+<li>Requires authenticated user</li>
+<li>Response: ChatResponse</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant C as "Client"
+participant CH as "Chat Router"
+participant L as "LLMService"
+C-&gt;&gt;CH : POST /chat {message,session_id,lat,lon}
+CH-&gt;&gt;L : send_message(ChatRequest)
+L--&gt;&gt;CH : ChatResponse
+CH--&gt;&gt;C : 200 OK</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/chat.py#L17-L23">backend/api/v1/chat.py:17-23</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/chat.py#L1-L24">backend/api/v1/chat.py:1-24</a>
+- <a href="file://backend/models/schemas.py#L226-L238">backend/models/schemas.py:226-238</a></p>
+<h3 id="geocoding">Geocoding</h3>
+<ul>
+<li>GET /api/v1/geocode/search</li>
+<li>Query params: q (min length 2)</li>
+<li>Response: GeocodeSearchResponse</li>
+<li>GET /api/v1/geocode/reverse</li>
+<li>Query params: lat, lon</li>
+<li>Response: Array of geocoding results</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/geocode.py#L1-L38">backend/api/v1/geocode.py:1-38</a>
+- <a href="file://backend/models/schemas.py#L68-L81">backend/models/schemas.py:68-81</a></p>
+<h3 id="offline-bundles">Offline Bundles</h3>
+<ul>
+<li>GET /api/v1/offline/bundle/{city}</li>
+<li>Path param: city (string)</li>
+<li>Response: City-specific emergency bundle</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/offline.py#L1-L28">backend/api/v1/offline.py:1-28</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Router composition: v1 router aggregates all feature routers.</li>
+<li>Runtime dependencies: services are attached to app.state during startup and injected via Depends.</li>
+<li>External dependencies: OpenRouteService, Photon/Nominatim, Overpass API, Postgres, Redis.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+M["main.py:create_app"] --&gt; P["include_router(api_router)"]
+P --&gt; V1["api/v1/__init__.py"]
+V1 --&gt; AUTH["auth.py"]
+V1 --&gt; EM["emergency.py"]
+V1 --&gt; RW["roadwatch.py"]
+V1 --&gt; RT["routing.py"]
+V1 --&gt; US["user.py"]
+V1 --&gt; CH["challan.py"]
+V1 --&gt; CT["chat.py"]
+V1 --&gt; GC["geocode.py"]
+V1 --&gt; OF["offline.py"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/main.py#L127">backend/main.py:127</a>
+- <a href="file://backend/api/v1/__init__.py#L17-L27">backend/api/v1/<strong>init</strong>.py:17-27</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/main.py#L24-L63">backend/main.py:24-63</a>
+- <a href="file://backend/api/v1/__init__.py#L1-L28">backend/api/v1/<strong>init</strong>.py:1-28</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Caching: Redis TTLs configured per domain (e.g., geocode, authority, route, general cache).</li>
+<li>Upstream timeouts and retries: Configurable retry attempts and backoff for external services.</li>
+<li>Upload limits: Max upload size and allowed content types are enforced.</li>
+<li>Route alternatives: Limit alternatives to reduce compute load.</li>
+<li>Radius defaults: Use conservative defaults for nearby queries to bound result sets.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/config.py#L26-L63">backend/core/config.py:26-63</a>
+- <a href="file://backend/api/v1/roadwatch.py#L73-L97">backend/api/v1/roadwatch.py:73-97</a></p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common HTTP errors:
+- 401 Unauthorized: Invalid or missing JWT; ensure Authorization: Bearer <token>.
+- 404 Not Found: User profile or offline bundle not found.
+- 422 Unprocessable Entity: Validation errors in request payloads (e.g., road report fields, challan query).
+- 503 Service Unavailable: External service failures (routing, geocoding, emergency locator).</p>
+<p>Health and diagnostics:
+- GET /health returns operational status, cache availability, and environment/version info.
+- Root endpoint lists available endpoints and metadata.</p>
+<p>Rate limiting:
+- No explicit rate limiter is present in the codebase. Apply at gateway/proxy level if needed.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/auth.py#L24-L38">backend/api/v1/auth.py:24-38</a>
+- <a href="file://backend/api/v1/user.py#L39-L53">backend/api/v1/user.py:39-53</a>
+- <a href="file://backend/api/v1/roadwatch.py#L95-L97">backend/api/v1/roadwatch.py:95-97</a>
+- <a href="file://backend/api/v1/challan.py#L22-L25">backend/api/v1/challan.py:22-25</a>
+- <a href="file://backend/api/v1/emergency.py#L38-L40">backend/api/v1/emergency.py:38-40</a>
+- <a href="file://backend/api/v1/routing.py#L37-L40">backend/api/v1/routing.py:37-40</a>
+- <a href="file://backend/api/v1/geocode.py#L22-L26">backend/api/v1/geocode.py:22-26</a>
+- <a href="file://backend/main.py#L103-L125">backend/main.py:103-125</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>SafeVixAI’s API provides a cohesive set of endpoints for emergency services, road reporting, routing, user profiles, challan calculation, and chat. It leverages async services, caching, and external providers while exposing a clean schema-driven interface. Clients should implement robust error handling, respect validation constraints, and apply appropriate caching and rate limiting strategies.</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="authentication-methods">Authentication Methods</h3>
+<ul>
+<li>Header: Authorization: Bearer <JWT></li>
+<li>JWT tokens are validated with strict HS256 signature verification using environment-sourced keys for demo/testing.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/security.py#L23-L41">backend/core/security.py:23-41</a></p>
+<h3 id="requestresponse-examples-paths">Request/Response Examples (paths)</h3>
+<ul>
+<li>Login: <a href="file://backend/api/v1/auth.py#L24-L38">backend/api/v1/auth.py:24-38</a></li>
+<li>Nearby emergency: <a href="file://backend/api/v1/emergency.py#L19-L38">backend/api/v1/emergency.py:19-38</a></li>
+<li>SOS payload: <a href="file://backend/api/v1/emergency.py#L42-L71">backend/api/v1/emergency.py:42-71</a></li>
+<li>Road report submission: <a href="file://backend/api/v1/roadwatch.py#L73-L97">backend/api/v1/roadwatch.py:73-97</a></li>
+<li>Route preview: <a href="file://backend/api/v1/routing.py#L18-L41">backend/api/v1/routing.py:18-41</a></li>
+<li>Safe route: <a href="file://backend/api/v1/routing.py#L43-L64">backend/api/v1/routing.py:43-64</a></li>
+<li>User profile CRUD: <a href="file://backend/api/v1/user.py#L16-L83">backend/api/v1/user.py:16-83</a></li>
+<li>Challan calculation: <a href="file://backend/api/v1/challan.py#L17-L25">backend/api/v1/challan.py:17-25</a></li>
+<li>Chat: <a href="file://backend/api/v1/chat.py#L17-L23">backend/api/v1/chat.py:17-23</a></li>
+<li>Geocoding search: <a href="file://backend/api/v1/geocode.py#L28-L37">backend/api/v1/geocode.py:28-37</a></li>
+<li>Offline bundle: <a href="file://backend/api/v1/offline.py#L18-L27">backend/api/v1/offline.py:18-27</a></li>
+</ul>
+<h3 id="error-handling-strategy">Error Handling Strategy</h3>
+<ul>
+<li>Validation errors: HTTP 422 with service-provided detail.</li>
+<li>External service failures: HTTP 503 with upstream error detail.</li>
+<li>Authentication failures: HTTP 401 with credential error detail.</li>
+<li>Resource not found: HTTP 404 for user profiles and offline bundles.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/exceptions.py#L1-L7">backend/services/exceptions.py:1-7</a>
+- <a href="file://backend/api/v1/roadwatch.py#L95-L97">backend/api/v1/roadwatch.py:95-97</a>
+- <a href="file://backend/api/v1/emergency.py#L38-L40">backend/api/v1/emergency.py:38-40</a>
+- <a href="file://backend/api/v1/routing.py#L37-L40">backend/api/v1/routing.py:37-40</a>
+- <a href="file://backend/api/v1/geocode.py#L22-L26">backend/api/v1/geocode.py:22-26</a>
+- <a href="file://backend/api/v1/user.py#L48-L52">backend/api/v1/user.py:48-52</a>
+- <a href="file://backend/api/v1/offline.py#L24-L27">backend/api/v1/offline.py:24-27</a></p>
+<h3 id="rate-limiting">Rate Limiting</h3>
+<ul>
+<li>Not implemented in code. Recommended to enforce per-client quotas at ingress.</li>
+</ul>
+<h3 id="versioning">Versioning</h3>
+<ul>
+<li>API version: /api/v1</li>
+<li>Application version: exposed in health and root endpoints.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/config.py#L11-L181">backend/core/config.py:11-181</a>
+- <a href="file://backend/main.py#L75-L101">backend/main.py:75-101</a>
+- <a href="file://backend/main.py#L103-L125">backend/main.py:103-125</a></p>
+<h3 id="security-considerations">Security Considerations</h3>
+<ul>
+<li>Use HTTPS in production.</li>
+<li>Rotate JWT secret regularly; all tokens are validated with strict signature verification.</li>
+<li>Validate and sanitize uploaded photos; restrict content types and sizes.</li>
+<li>Enforce CORS origins appropriately for production environments.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/security.py#L7-L9">backend/core/security.py:7-9</a>
+- <a href="file://backend/core/config.py#L59-L63">backend/core/config.py:59-63</a>
+- <a href="file://backend/core/config.py#L72-L84">backend/core/config.py:72-84</a></p>
+<h3 id="client-implementation-guidelines">Client Implementation Guidelines</h3>
+<ul>
+<li>Always attach Authorization: Bearer <token> for protected endpoints.</li>
+<li>Respect query constraints (bounds, limits, allowed statuses).</li>
+<li>Cache responses where appropriate using TTLs aligned with configuration.</li>
+<li>Implement retry with backoff for 503 responses from external services.</li>
+</ul>
+<h3 id="websocket-endpoints">WebSocket Endpoints</h3>
+<ul>
+<li>No WebSocket endpoints are defined in the backend codebase. Real-time chat interactions are handled via synchronous chat endpoints.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/chat.py#L17-L23">backend/api/v1/chat.py:17-23</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

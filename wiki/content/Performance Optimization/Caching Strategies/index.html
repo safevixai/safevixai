@@ -1,0 +1,2077 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Caching Strategies - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#caching-strategies" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Caching Strategies
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cachehelper-dual-tier-cache-with-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CacheHelper: Dual-Tier Cache with Failover
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-services-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Services Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#road-infrastructure-and-issues-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Road Infrastructure and Issues Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geocoding-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geocoding Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-data-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Data Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-key-patterns-and-ttls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Key Patterns and TTLs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-invalidation-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Invalidation Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failover-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failover Mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-configuration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Configuration Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-warming-and-background-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache Warming and Background Refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="caching-strategies">Caching Strategies</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/core/redis_client.py">redis_client.py</a>
+- <a href="file://backend/core/config.py">config.py</a>
+- <a href="file://backend/main.py">main.py</a>
+- <a href="file://backend/services/emergency_locator.py">emergency_locator.py</a>
+- <a href="file://backend/services/roadwatch_service.py">roadwatch_service.py</a>
+- <a href="file://backend/services/geocoding_service.py">geocoding_service.py</a>
+- <a href="file://backend/services/routing_service.py">routing_service.py</a>
+- <a href="file://backend/api/v1/user.py">user.py</a>
+- <a href="file://backend/models/user.py">user.py</a>
+- <a href="file://scripts/app/seed_emergency.py">seed_emergency.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the dual-tier caching strategy used by SafeVixAI’s backend. The system uses Redis as the primary cache backend with an in-memory fallback via the CacheHelper class. Cache keys are designed for emergency services, road infrastructure, geocoding, and routing. TTL strategies and invalidation policies are defined per data domain. Failover behavior is automatic when Redis is unavailable. We also outline cache warming and background refresh patterns, and provide guidance for measuring performance and cache hit ratios.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The caching strategy spans several backend modules:
+- Core cache abstraction and Redis integration
+- Service layer implementations that consume cache
+- Application lifecycle initialization
+- Data models and API endpoints that may benefit from caching
+- Scripts for seeding and warming caches</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Core"
+CFG["Settings&lt;br/&gt;config.py"]
+RCL["CacheHelper&lt;br/&gt;redis_client.py"]
+end
+subgraph "Services"
+EML["EmergencyLocatorService&lt;br/&gt;emergency_locator.py"]
+RW["RoadWatchService&lt;br/&gt;roadwatch_service.py"]
+GEO["GeocodingService&lt;br/&gt;geocoding_service.py"]
+RTG["RoutingService&lt;br/&gt;routing_service.py"]
+end
+subgraph "App Lifecycle"
+APP["FastAPI app&lt;br/&gt;main.py"]
+end
+CFG --&gt; APP
+APP --&gt; RCL
+APP --&gt; EML
+APP --&gt; RW
+APP --&gt; GEO
+APP --&gt; RTG
+RCL --&gt; EML
+RCL --&gt; RW
+RCL --&gt; GEO
+RCL --&gt; RTG</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/core/config.py#L33-L36">config.py:33-36</a>
+- <a href="file://backend/core/redis_client.py#L10-L139">redis_client.py:10-139</a>
+- <a href="file://backend/main.py#L24-L63">main.py:24-63</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/services/roadwatch_service.py#L56-L325">roadwatch_service.py:56-325</a>
+- <a href="file://backend/services/geocoding_service.py#L19-L170">geocoding_service.py:19-170</a>
+- <a href="file://backend/services/routing_service.py#L20-L356">routing_service.py:20-356</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/config.py#L33-L36">config.py:33-36</a>
+- <a href="file://backend/core/redis_client.py#L10-L139">redis_client.py:10-139</a>
+- <a href="file://backend/main.py#L24-L63">main.py:24-63</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>CacheHelper: Dual-backend cache with Redis and in-memory fallback. Provides JSON get/set/delete, integer get/increment, and health checks. Automatically switches backend when Redis fails.</li>
+<li>Settings: Centralized TTL values for cache domains and other runtime configuration.</li>
+<li>Application lifecycle: Creates CacheHelper from Redis URL and injects it into services.</li>
+</ul>
+<p>Key behaviors:
+- Redis availability is probed on each operation; failures mark Redis unhealthy and switch to memory backend.
+- Memory store entries expire using monotonic timestamps.
+- TTL values are drawn from Settings for each domain.</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/redis_client.py#L10-L139">redis_client.py:10-139</a>
+- <a href="file://backend/core/config.py#L33-L36">config.py:33-36</a>
+- <a href="file://backend/main.py#L24-L63">main.py:24-63</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The cache sits between the API handlers and external services or databases. It reduces latency and downstream load by serving precomputed or recently fetched data.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as "Client"
+participant API as "API Handler"
+participant Svc as "Service Layer"
+participant Cache as "CacheHelper"
+participant Redis as "Redis"
+participant Mem as "Memory Store"
+Client-&gt;&gt;API : Request
+API-&gt;&gt;Svc : Invoke service method
+Svc-&gt;&gt;Cache : get_json(key)
+alt Redis healthy
+Cache-&gt;&gt;Redis : GET key
+alt Hit
+Redis--&gt;&gt;Cache : Payload
+Cache--&gt;&gt;Svc : Parsed JSON
+else Miss
+Cache--&gt;&gt;Svc : None
+Svc-&gt;&gt;Svc : Compute result
+Svc-&gt;&gt;Cache : set_json(key, value, ttl)
+Cache-&gt;&gt;Redis : SETEX key ttl value
+Redis--&gt;&gt;Cache : OK
+end
+else Redis unhealthy
+Cache-&gt;&gt;Mem : GET key
+alt Hit
+Mem--&gt;&gt;Cache : Payload
+Cache--&gt;&gt;Svc : Parsed JSON
+else Miss
+Cache--&gt;&gt;Svc : None
+Svc-&gt;&gt;Svc : Compute result
+Svc-&gt;&gt;Cache : set_json(key, value, ttl)
+Cache-&gt;&gt;Mem : Set with TTL
+end
+end
+Svc--&gt;&gt;API : Response
+API--&gt;&gt;Client : Response</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/core/redis_client.py#L43-L124">redis_client.py:43-124</a>
+- <a href="file://backend/services/emergency_locator.py#L196-L216">emergency_locator.py:196-216</a>
+- <a href="file://backend/services/roadwatch_service.py#L70-L125">roadwatch_service.py:70-125</a>
+- <a href="file://backend/services/geocoding_service.py#L33-L63">geocoding_service.py:33-63</a>
+- <a href="file://backend/services/routing_service.py#L48-L142">routing_service.py:48-142</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="cachehelper-dual-tier-cache-with-failover">CacheHelper: Dual-Tier Cache with Failover</h3>
+<ul>
+<li>Backend selection: Returns “redis”, “memory”, or “redis+memory” depending on availability.</li>
+<li>Operations:</li>
+<li>get_json: Try Redis; on failure or miss, fall back to memory.</li>
+<li>set_json: Write to memory; attempt Redis and mark unhealthy on failure.</li>
+<li>delete: Remove from memory; attempt Redis deletion and mark unhealthy on failure.</li>
+<li>increment/get_int: Prefer Redis; on failure, use memory and return current value.</li>
+<li>ping/close: Probe Redis health and close connection.</li>
+<li>Memory semantics: Stores (expires_at, payload) tuples; expiration checked on retrieval.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class CacheHelper {
+-client Redis
+-memory_store dict
+-redis_healthy bool
++enabled bool
++backend_name str
++get_json(key) Any?
++set_json(key, value, ttl) void
++delete(key) void
++increment(key) int
++get_int(key, default) int
++ping() bool
++close() void
+}</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/core/redis_client.py#L10-L139">redis_client.py:10-139</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/redis_client.py#L10-L139">redis_client.py:10-139</a></p>
+<h3 id="emergency-services-caching">Emergency Services Caching</h3>
+<ul>
+<li>Cache keys:</li>
+<li>Nearby emergency search: emergency:nearby:<lat>:<lon>:<cats>:<radius>:<limit></li>
+<li>City offline bundle: offline:bundle:<city></li>
+<li>TTL: Uses global cache TTL from Settings.</li>
+<li>Invalidation:</li>
+<li>City bundles are long-lived; no explicit invalidation shown.</li>
+<li>Nearby results are short-lived and revalidated on subsequent requests.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant API as "API"
+participant EL as "EmergencyLocatorService"
+participant Cache as "CacheHelper"
+participant DB as "Database"
+participant OP as "OverpassService"
+API-&gt;&gt;EL : find_nearby(lat, lon, cats, radius, limit)
+EL-&gt;&gt;Cache : get_json("emergency : nearby : ...")
+alt Hit
+Cache--&gt;&gt;EL : EmergencyResponse
+EL--&gt;&gt;API : Response
+else Miss
+EL-&gt;&gt;DB : Query within radius steps
+DB--&gt;&gt;EL : Results
+opt Merge with local catalog
+EL-&gt;&gt;EL : Merge results
+end
+opt Fallback to Overpass
+EL-&gt;&gt;OP : Search services
+OP--&gt;&gt;EL : Results
+EL-&gt;&gt;EL : Merge results
+end
+EL-&gt;&gt;Cache : set_json("...", response, ttl)
+EL--&gt;&gt;API : Response
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L196-L216">emergency_locator.py:196-216</a>
+- <a href="file://backend/services/emergency_locator.py#L241-L299">emergency_locator.py:241-299</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L196-L216">emergency_locator.py:196-216</a>
+- <a href="file://backend/services/emergency_locator.py#L241-L299">emergency_locator.py:241-299</a>
+- <a href="file://backend/core/config.py#L33">config.py</a></p>
+<h3 id="road-infrastructure-and-issues-caching">Road Infrastructure and Issues Caching</h3>
+<ul>
+<li>Cache keys:</li>
+<li>Authority preview: roads:authority:<lat>:<lon></li>
+<li>Infrastructure details: roads:infra:<lat>:<lon></li>
+<li>Issues list: roads:issues:v<version>:<lat>:<lon>:<radius>:<statuses>:<limit></li>
+<li>TTL: Uses authority cache TTL for authority/infrastructure; global cache TTL for issues.</li>
+<li>Invalidation:</li>
+<li>A shared integer key tracks issues cache version. On new report submission, the version increments, invalidating prior issue lists.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Submit Report"]) --&gt; Save["Persist issue to DB"]
+Save --&gt; Inc["Increment issues cache version key"]
+Inc --&gt; Invalidate["Old cache keys remain but version mismatch handled by key format"]
+Invalidate --&gt; End(["Next query builds new cache key with latest version"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/roadwatch_service.py#L232-L233">roadwatch_service.py:232-233</a>
+- <a href="file://backend/services/roadwatch_service.py#L137-L142">roadwatch_service.py:137-142</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/roadwatch_service.py#L70-L125">roadwatch_service.py:70-125</a>
+- <a href="file://backend/services/roadwatch_service.py#L137-L184">roadwatch_service.py:137-184</a>
+- <a href="file://backend/services/roadwatch_service.py#L232-L233">roadwatch_service.py:232-233</a>
+- <a href="file://backend/core/config.py#L35">config.py</a></p>
+<h3 id="geocoding-caching">Geocoding Caching</h3>
+<ul>
+<li>Cache keys:</li>
+<li>Reverse geocode: geocode:reverse:<lat>:<lon></li>
+<li>Forward search: geocode:search:<query></li>
+<li>TTL: Uses geocoding-specific TTL from Settings.</li>
+<li>Behavior: Attempts Photon; falls back to Nominatim if Photon fails. Both results are cached.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant API as "API"
+participant GEO as "GeocodingService"
+participant Cache as "CacheHelper"
+participant Photon as "Photon"
+participant Nominatim as "Nominatim"
+API-&gt;&gt;GEO : reverse(lat, lon)
+GEO-&gt;&gt;Cache : get_json("geocode : reverse : ...")
+alt Hit
+Cache--&gt;&gt;GEO : GeocodeResult
+GEO--&gt;&gt;API : Result
+else Miss
+GEO-&gt;&gt;Photon : Reverse geocode
+alt Success
+Photon--&gt;&gt;GEO : Feature
+else Failure
+GEO-&gt;&gt;Nominatim : Reverse geocode
+Nominatim--&gt;&gt;GEO : Feature
+end
+GEO-&gt;&gt;Cache : set_json("geocode : reverse : ...", result, ttl)
+GEO--&gt;&gt;API : Result
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/geocoding_service.py#L33-L63">geocoding_service.py:33-63</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/geocoding_service.py#L33-L63">geocoding_service.py:33-63</a>
+- <a href="file://backend/core/config.py#L34">config.py</a></p>
+<h3 id="routing-caching">Routing Caching</h3>
+<ul>
+<li>Cache keys:</li>
+<li>Route preview: route:preview:<profile>:<alternatives>:<origin>:<destination></li>
+<li>TTL: Uses routing-specific TTL from Settings.</li>
+<li>Behavior: Queries ORS (with API key) or OSRM (public); normalizes response; caches.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant API as "API"
+participant RT as "RoutingService"
+participant Cache as "CacheHelper"
+participant ORS as "ORS"
+participant OSRM as "OSRM"
+API-&gt;&gt;RT : preview_route(...)
+RT-&gt;&gt;Cache : get_json("route : preview : ...")
+alt Hit
+Cache--&gt;&gt;RT : RoutePreviewResponse
+RT--&gt;&gt;API : Response
+else Miss
+alt Has API key
+RT-&gt;&gt;ORS : Directions API
+ORS--&gt;&gt;RT : Routes
+else No API key
+RT-&gt;&gt;OSRM : Public router
+OSRM--&gt;&gt;RT : Routes
+end
+RT-&gt;&gt;Cache : set_json("route : preview : ...", route, ttl)
+RT--&gt;&gt;API : Response
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/routing_service.py#L48-L142">routing_service.py:48-142</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/routing_service.py#L48-L142">routing_service.py:48-142</a>
+- <a href="file://backend/core/config.py#L36">config.py</a></p>
+<h3 id="user-data-caching">User Data Caching</h3>
+<ul>
+<li>Current implementation: User profile endpoints read/write directly from/to the database without cache usage.</li>
+<li>Recommendation: Apply short TTL caching for profile reads (e.g., user:profile:<id>) with invalidation on write.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/user.py#L16-L83">user.py:16-83</a>
+- <a href="file://backend/models/user.py#L13-L25">user.py:13-25</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>CacheHelper depends on Redis client and maintains an in-memory dictionary.</li>
+<li>Services depend on Settings for TTL values and on CacheHelper for storage.</li>
+<li>Application lifecycle constructs CacheHelper and injects it into services.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+Settings["Settings"] --&gt; CacheHelper["CacheHelper"]
+CacheHelper --&gt; EmergencyLocatorService["EmergencyLocatorService"]
+CacheHelper --&gt; RoadWatchService["RoadWatchService"]
+CacheHelper --&gt; GeocodingService["GeocodingService"]
+CacheHelper --&gt; RoutingService["RoutingService"]
+FastAPI["FastAPI lifespan"] --&gt; CacheHelper</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/core/config.py#L33-L36">config.py:33-36</a>
+- <a href="file://backend/core/redis_client.py#L10-L139">redis_client.py:10-139</a>
+- <a href="file://backend/main.py#L24-L63">main.py:24-63</a>
+- <a href="file://backend/services/emergency_locator.py#L161-L507">emergency_locator.py:161-507</a>
+- <a href="file://backend/services/roadwatch_service.py#L56-L325">roadwatch_service.py:56-325</a>
+- <a href="file://backend/services/geocoding_service.py#L19-L170">geocoding_service.py:19-170</a>
+- <a href="file://backend/services/routing_service.py#L20-L356">routing_service.py:20-356</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/config.py#L33-L36">config.py:33-36</a>
+- <a href="file://backend/core/redis_client.py#L10-L139">redis_client.py:10-139</a>
+- <a href="file://backend/main.py#L24-L63">main.py:24-63</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Latency reduction: Cache hits avoid database queries and external API calls.</li>
+<li>Throughput: Reduced load on Overpass/Nominatim/ORS improves stability under load.</li>
+<li>Memory footprint: In-memory fallback prevents cache blowouts; TTL ensures eviction.</li>
+<li>Hit ratio measurement: Not implemented in code; recommended metrics include cache hits/misses counters and backend health status.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Symptoms of Redis unavailability:</li>
+<li>Health endpoint shows degraded cache backend and “redis+memory” mode.</li>
+<li>Cache operations silently fall back to memory.</li>
+<li>Diagnostics:</li>
+<li>Use the health endpoint to confirm cache availability and backend name.</li>
+<li>Inspect cache backend_name property and ping status.</li>
+<li>Mitigation:</li>
+<li>Scale or restart Redis.</li>
+<li>Monitor cache backend transitions and adjust TTLs accordingly.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/main.py#L103-L125">main.py:103-125</a>
+- <a href="file://backend/core/redis_client.py#L115-L124">redis_client.py:115-124</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>SafeVixAI employs a robust dual-tier caching strategy centered on CacheHelper. Redis is the primary backend with seamless in-memory fallback, ensuring resilience. Domain-specific TTLs and explicit invalidation (versioned issues) balance freshness and performance. While user profile reads currently bypass cache, adding short-lived caching with write-through invalidation would further improve performance.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="cache-key-patterns-and-ttls">Cache Key Patterns and TTLs</h3>
+<ul>
+<li>Emergency services</li>
+<li>Key pattern: emergency:nearby:<lat>:<lon>:<cats>:<radius>:<limit></li>
+<li>TTL: global cache TTL</li>
+<li>City offline bundle</li>
+<li>Key pattern: offline:bundle:<city></li>
+<li>TTL: global cache TTL</li>
+<li>Authority and infrastructure</li>
+<li>Keys: roads:authority:<lat>:<lon>, roads:infra:<lat>:<lon></li>
+<li>TTL: authority cache TTL</li>
+<li>Road issues</li>
+<li>Key pattern: roads:issues:v<version>:<lat>:<lon>:<radius>:<statuses>:<limit></li>
+<li>TTL: global cache TTL</li>
+<li>Geocoding</li>
+<li>Keys: geocode:reverse:<lat>:<lon>, geocode:search:<query></li>
+<li>TTL: geocoding cache TTL</li>
+<li>Routing</li>
+<li>Key pattern: route:preview:<profile>:<alternatives>:<origin>:<destination></li>
+<li>TTL: routing cache TTL</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L196-L216">emergency_locator.py:196-216</a>
+- <a href="file://backend/services/emergency_locator.py#L241-L299">emergency_locator.py:241-299</a>
+- <a href="file://backend/services/roadwatch_service.py#L70-L125">roadwatch_service.py:70-125</a>
+- <a href="file://backend/services/roadwatch_service.py#L137-L184">roadwatch_service.py:137-184</a>
+- <a href="file://backend/services/geocoding_service.py#L33-L63">geocoding_service.py:33-63</a>
+- <a href="file://backend/services/routing_service.py#L48-L142">routing_service.py:48-142</a>
+- <a href="file://backend/core/config.py#L33-L36">config.py:33-36</a></p>
+<h3 id="cache-invalidation-policies">Cache Invalidation Policies</h3>
+<ul>
+<li>Emergency services: short TTL; stale data refreshed on next request.</li>
+<li>Road issues: versioned cache key; incrementing a version key on report submission invalidates prior caches.</li>
+<li>Authority/infrastructure: short TTL; stale data refreshed on next request.</li>
+<li>Geocoding: short TTL; stale data refreshed on next request.</li>
+<li>Routing: short TTL; stale data refreshed on next request.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/roadwatch_service.py#L232-L233">roadwatch_service.py:232-233</a>
+- <a href="file://backend/core/config.py#L33-L36">config.py:33-36</a></p>
+<h3 id="failover-mechanisms">Failover Mechanisms</h3>
+<ul>
+<li>Redis failures are detected on each operation; backend_name reflects “redis+memory” when Redis is down.</li>
+<li>All cache operations transparently fall back to memory until Redis recovers.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/core/redis_client.py#L20-L24">redis_client.py:20-24</a>
+- <a href="file://backend/core/redis_client.py#L45-L51">redis_client.py:45-51</a>
+- <a href="file://backend/core/redis_client.py#L115-L124">redis_client.py:115-124</a></p>
+<h3 id="cache-configuration-examples">Cache Configuration Examples</h3>
+<ul>
+<li>Emergency service coordinates: use emergency:nearby:<lat>:<lon>:<cats>:<radius>:<limit> with global TTL.</li>
+<li>Road issue reports: use roads:issues:v<version>:<lat>:<lon>:<radius>:<statuses>:<limit>; increment version on submit.</li>
+<li>User preferences: introduce user:profile:<id> with short TTL and invalidate on update.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/emergency_locator.py#L196-L216">emergency_locator.py:196-216</a>
+- <a href="file://backend/services/roadwatch_service.py#L137-L142">roadwatch_service.py:137-142</a>
+- <a href="file://backend/services/roadwatch_service.py#L232-L233">roadwatch_service.py:232-233</a>
+- <a href="file://backend/api/v1/user.py#L16-L83">user.py:16-83</a></p>
+<h3 id="cache-warming-and-background-refresh">Cache Warming and Background Refresh</h3>
+<ul>
+<li>Startup warming: Seed emergency data to warm emergency:nearby and offline:bundle keys for major cities.</li>
+<li>Background refresh: Periodically re-fetch and re-cache frequently accessed road infrastructure and emergency results.</li>
+</ul>
+<p>Note: The repository includes a seed script entry point for emergency data. Extend it to populate cache keys for hotspots.</p>
+<p><strong>Section sources</strong>
+- <a href="file://scripts/app/seed_emergency.py#L1-L19">seed_emergency.py:1-19</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1971 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Offline Architecture - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#offline-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Offline Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offline-ai-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline AI Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-rag-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline RAG Index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexeddb-offline-sos-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IndexedDB Offline SOS Queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-data-bundling-for-25-major-indian-cities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline Data Bundling for 25 Major Indian Cities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progressive-enhancement-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progressive Enhancement Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-ai-model-loading-and-vector-store-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline AI Model Loading and Vector Store Initialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-service-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Service Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="offline-architecture">Offline Architecture</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://docs/Offline_Architecture.md">Offline_Architecture.md</a>
+- <a href="file://frontend/lib/offline-ai.ts">offline-ai.ts</a>
+- <a href="file://frontend/lib/offline-rag.ts">offline-rag.ts</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts">offline-sos-queue.ts</a>
+- <a href="file://frontend/components/OfflineChat.tsx">OfflineChat.tsx</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://backend/api/v1/offline.py">offline.py</a>
+- <a href="file://frontend/public/offline-data/first-aid.json">first-aid.json</a>
+- <a href="file://frontend/public/offline-data/violations.csv">violations.csv</a>
+- <a href="file://frontend/public/offline-data/chennai.json">chennai.json</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document explains the offline-first architecture implemented in the project. It covers service worker registration, IndexedDB storage strategies, offline data bundling for 25 major Indian cities, and progressive enhancement patterns that preserve core functionality without network connectivity. It documents offline AI model loading, vector store initialization, and emergency service caching. It also outlines configuration options for cache policies, data synchronization, and conflict resolution, and clarifies relationships with online functionality and data consistency mechanisms. Practical guidance is included for storage limits, cache invalidation, and offline queue management.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The offline architecture spans frontend libraries, backend endpoints, and bundled offline datasets:
+- Frontend offline engines and stores:
+  - Offline AI engine and fallback logic
+  - Offline RAG simulation and keyword index
+  - IndexedDB-backed offline SOS queue with background sync hooks
+  - Application state and connectivity tracking
+- Backend offline bundle endpoint for city-specific data
+- Offline datasets for first aid, traffic violations, and city data</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Frontend"
+SW["Service Worker&lt;br/&gt;Background Sync"]
+IDB["IndexedDB Queue&lt;br/&gt;(SOS)"]
+AI["Offline AI Engine&lt;br/&gt;(System/Transformers/Fallback)"]
+RAG["Offline RAG Index&lt;br/&gt;(Local Laws)"]
+STORE["App State &amp; Connectivity"]
+DATA["Offline Datasets&lt;br/&gt;(First Aid, Violations,&lt;br/&gt;City JSON)"]
+end
+subgraph "Backend"
+API["Offline Bundle Endpoint&lt;br/&gt;GET /api/v1/offline/bundle/{city}"]
+end
+SW --&gt; IDB
+IDB --&gt; API
+AI --&gt; STORE
+RAG --&gt; STORE
+DATA --&gt; STORE
+STORE --&gt; API</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L1-L138">offline-sos-queue.ts:1-138</a>
+- <a href="file://frontend/lib/store.ts#L1-L226">store.ts:1-226</a>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://docs/Offline_Architecture.md#L1-L23">Offline_Architecture.md:1-23</a>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/offline-rag.ts#L1-L35">offline-rag.ts:1-35</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L1-L138">offline-sos-queue.ts:1-138</a>
+- <a href="file://frontend/lib/store.ts#L1-L226">store.ts:1-226</a>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a>
+- <a href="file://frontend/public/offline-data/first-aid.json#L1-L388">first-aid.json:1-388</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/chennai.json#L1-L200">chennai.json:1-200</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Offline AI Engine</li>
+<li>Progressive fallback: Chrome/Android built-in AI, Transformers.js Gemma 4 E2B, keyword fallback</li>
+<li>Uses browser cache storage and WebGPU acceleration when available</li>
+<li>Exposes initialization, querying, readiness checks, and progress callbacks</li>
+<li>Offline RAG Index</li>
+<li>Local keyword-based similarity search over MV Act citations</li>
+<li>Simulates vector search behavior for demos; production would use WASM HNSW</li>
+<li>IndexedDB Offline SOS Queue</li>
+<li>Stores SOS events with timestamps and auto-increments IDs</li>
+<li>Provides enqueue, sync, and automatic sync-on-online listeners</li>
+<li>Integrates optional background sync registration</li>
+<li>Application State and Connectivity</li>
+<li>Tracks GPS, nearby services, road issues, AI mode, connectivity state, and user profile persistence</li>
+<li>Offline Data Bundles</li>
+<li>City-specific JSON and CSV datasets for first aid, violations, and localized hazard info</li>
+<li>Backend endpoint to serve per-city offline bundles</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L114-L221">offline-ai.ts:114-221</a>
+- <a href="file://frontend/lib/offline-rag.ts#L18-L34">offline-rag.ts:18-34</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L22-L137">offline-sos-queue.ts:22-137</a>
+- <a href="file://frontend/lib/store.ts#L60-L127">store.ts:60-127</a>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a>
+- <a href="file://frontend/public/offline-data/first-aid.json#L1-L388">first-aid.json:1-388</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The offline-first architecture ensures core functionality remains available without network connectivity:
+- Service Worker and Background Sync
+  - Queues offline actions (e.g., SOS submissions) and attempts to flush them when online
+  - Integrates with browser SyncManager for background retries
+- IndexedDB Persistence
+  - Stores queued events and metadata reliably across sessions
+- Offline AI and RAG
+  - Loads models on demand with clear fallbacks and user consent
+  - Provides deterministic keyword-based responses when models are unavailable
+- Offline Data Bundles
+  - Serves city-specific datasets via backend endpoint for offline rendering and search
+- Progressive Enhancement
+  - UI adapts to connectivity state, prioritizing cached data and local computations</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant UI as "UI"
+participant AI as "Offline AI Engine"
+participant IDB as "IndexedDB Queue"
+participant SW as "Service Worker"
+participant API as "Backend API"
+UI-&gt;&gt;AI : "Initialize offline AI"
+AI--&gt;&gt;UI : "Status updates (checking/system/downloading/ready)"
+UI-&gt;&gt;IDB : "On network error, enqueue SOS"
+IDB--&gt;&gt;UI : "Queued locally"
+UI-&gt;&gt;SW : "Optional background sync registration"
+SW--&gt;&gt;UI : "Queued for background retry"
+UI-&gt;&gt;API : "Attempt online sync on connection restore"
+API--&gt;&gt;UI : "Acknowledge and remove from queue"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L114-L221">offline-ai.ts:114-221</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L48-L137">offline-sos-queue.ts:48-137</a>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="offline-ai-engine">Offline AI Engine</h3>
+<p>The offline AI engine implements a layered strategy:
+- System AI (Chrome/Android AICore): zero-download, instant availability
+- Transformers.js Gemma 4 E2B: GPU-accelerated inference with 4-bit quantization
+- Keyword fallback: deterministic responses based on cached offline data</p>
+<p>Key behaviors:
+- Initialization requires explicit user confirmation to avoid large downloads
+- Progress callbacks enable UI feedback for long downloads
+- Graceful degradation to keyword fallback if model fails to load
+- Audio input supported when available</p>
+<pre class="mermaid"><code>flowchart TD
+Start(["Initialize Offline AI"]) --&gt; CheckSystem["Check System AI Availability"]
+CheckSystem --&gt; |Available| UseSystem["Use System AI Session"]
+CheckSystem --&gt; |Unavailable| LoadModel["Load Gemma 4 E2B via Transformers.js"]
+LoadModel --&gt; Download["Download Model (~1.3GB)"]
+Download --&gt; Ready["Model Ready"]
+UseSystem --&gt; Ready
+Ready --&gt; Ask["Ask Offline AI"]
+Ask --&gt; SystemResp{"System AI OK?"}
+SystemResp --&gt; |Yes| ReturnSys["Return System Response"]
+SystemResp --&gt; |No| TransResp{"Transformers OK?"}
+TransResp --&gt; |Yes| ReturnTrans["Return Model Response"]
+TransResp --&gt; |No| Fallback["Keyword Fallback"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L47-L154">offline-ai.ts:47-154</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L114-L221">offline-ai.ts:114-221</a>
+- <a href="file://docs/Offline_Architecture.md#L4">Offline_Architecture.md:4</a></p>
+<h3 id="offline-rag-index">Offline RAG Index</h3>
+<p>The offline RAG simulates vector similarity search using a local keyword index:
+- Local dataset of MV Act citations with tags and text
+- Simulated latency to mimic real vector search
+- Keyword matching filters documents by tags or text inclusion</p>
+<p>Production-ready RAG would replace keyword matching with WASM-based HNSWlib for true similarity search.</p>
+<pre class="mermaid"><code>flowchart TD
+Query["User Query"] --&gt; Tokenize["Tokenize Query"]
+Tokenize --&gt; Filter["Filter Docs by Tags/Text"]
+Filter --&gt; Rank["Rank by Relevance"]
+Rank --&gt; ReturnDocs["Return Matching Docs"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-rag.ts#L22-L34">offline-rag.ts:22-34</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-rag.ts#L18-L34">offline-rag.ts:18-34</a></p>
+<h3 id="indexeddb-offline-sos-queue">IndexedDB Offline SOS Queue</h3>
+<p>The SOS queue persists emergency events when offline and synchronizes them upon reconnect:
+- IndexedDB schema with auto-incremented keys and timestamp index
+- Enqueue operation records location, optional user info, and timestamp
+- Sync iterates through queued entries, sends to backend, and deletes successful items
+- Automatic sync listener triggers on network restoration
+- Optional background sync registration via ServiceWorker SyncManager</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant UI as "UI"
+participant IDB as "IndexedDB"
+participant SW as "Service Worker"
+participant API as "Backend API"
+UI-&gt;&gt;IDB : "enqueueSOS(data)"
+IDB--&gt;&gt;UI : "Stored with timestamp"
+UI-&gt;&gt;SW : "register('sync-sos')"
+SW--&gt;&gt;UI : "Queued for background sync"
+UI-&gt;&gt;API : "syncOfflineSOSQueue()"
+API--&gt;&gt;UI : "200 OK -&gt; delete from queue"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L48-L137">offline-sos-queue.ts:48-137</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L22-L137">offline-sos-queue.ts:22-137</a>
+- <a href="file://docs/Offline_Architecture.md#L4">Offline_Architecture.md:4</a></p>
+<h3 id="offline-data-bundling-for-25-major-indian-cities">Offline Data Bundling for 25 Major Indian Cities</h3>
+<p>Offline data is organized as city-specific JSON and CSV assets:
+- City JSON: localized hazard and service data for offline rendering
+- Violations CSV: cached MV Act penalties for offline calculations
+- First Aid JSON: cached first aid steps and guidance for offline triage</p>
+<p>The backend exposes an endpoint to serve per-city offline bundles, enabling clients to fetch and cache city-specific data for offline use.</p>
+<pre class="mermaid"><code>graph TB
+API["GET /api/v1/offline/bundle/{city}"] --&gt; CityData["City Offline Data"]
+CityData --&gt; Assets["City JSON Assets"]
+Assets --&gt; UI["UI Renders Offline Data"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a>
+- <a href="file://frontend/public/offline-data/chennai.json#L1-L200">chennai.json:1-200</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/first-aid.json#L1-L388">first-aid.json:1-388</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a>
+- <a href="file://frontend/public/offline-data/chennai.json#L1-L200">chennai.json:1-200</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/first-aid.json#L1-L388">first-aid.json:1-388</a></p>
+<h3 id="progressive-enhancement-patterns">Progressive Enhancement Patterns</h3>
+<p>The application progressively enhances functionality based on connectivity and capability:
+- Connectivity state tracked in app state (online/cached/offline/ai-offline)
+- Offline AI readiness gates model usage
+- Offline RAG provides deterministic results when vector search is unavailable
+- Offline datasets power UI rendering and search without network calls
+- IndexedDB queues ensure offline submissions are not lost</p>
+<pre class="mermaid"><code>stateDiagram-v2
+[*] --&gt; Online
+Online --&gt; Cached : "network unreliable"
+Online --&gt; Offline : "no network"
+Cached --&gt; Online : "connected"
+Offline --&gt; Online : "connected"
+Online --&gt; AI_Offline : "model load failed"
+AI_Offline --&gt; Online : "model ready"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/store.ts#L60-L92">store.ts:60-92</a>
+- <a href="file://frontend/lib/offline-ai.ts#L213-L221">offline-ai.ts:213-221</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/store.ts#L60-L92">store.ts:60-92</a>
+- <a href="file://frontend/lib/offline-ai.ts#L213-L221">offline-ai.ts:213-221</a></p>
+<h3 id="offline-ai-model-loading-and-vector-store-initialization">Offline AI Model Loading and Vector Store Initialization</h3>
+<ul>
+<li>Offline AI loading:</li>
+<li>Checks for system AI (zero-download)</li>
+<li>Falls back to Transformers.js Gemma 4 E2B with WebGPU acceleration</li>
+<li>Progress callbacks and readiness checks inform UI</li>
+<li>Vector store initialization:</li>
+<li>Current implementation uses keyword matching</li>
+<li>Production would initialize WASM HNSWlib for similarity search</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant UI as "UI"
+participant AI as "Offline AI Engine"
+participant TF as "Transformers.js"
+participant VS as "Vector Store (WASM HNSW)"
+UI-&gt;&gt;AI : "getOfflineAI()"
+AI-&gt;&gt;AI : "checkSystemAI()"
+alt System AI available
+AI--&gt;&gt;UI : "type='system'"
+else System AI unavailable
+AI-&gt;&gt;TF : "loadTransformersGemma()"
+TF--&gt;&gt;AI : "model ready"
+AI--&gt;&gt;UI : "type='transformers'"
+end
+UI-&gt;&gt;VS : "initialize vector store (WASM)"
+VS--&gt;&gt;UI : "ready for similarity search"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L124-L154">offline-ai.ts:124-154</a>
+- <a href="file://frontend/lib/offline-rag.ts#L22-L34">offline-rag.ts:22-34</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L124-L154">offline-ai.ts:124-154</a>
+- <a href="file://frontend/lib/offline-rag.ts#L22-L34">offline-rag.ts:22-34</a></p>
+<h3 id="emergency-service-caching">Emergency Service Caching</h3>
+<p>Emergency services are cached locally and rendered without network connectivity:
+- First Aid JSON provides offline triage guidance
+- Violations CSV enables offline challan calculations
+- City JSON provides localized emergency data for offline rendering</p>
+<pre class="mermaid"><code>graph TB
+FA["First Aid JSON"] --&gt; UI["UI"]
+VF["Violations CSV"] --&gt; UI
+CJ["City JSON"] --&gt; UI
+UI --&gt; "Render Offline Services"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/public/offline-data/first-aid.json#L1-L388">first-aid.json:1-388</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/chennai.json#L1-L200">chennai.json:1-200</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/public/offline-data/first-aid.json#L1-L388">first-aid.json:1-388</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-L27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/chennai.json#L1-L200">chennai.json:1-200</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>The offline architecture exhibits clear separation of concerns:
+- Frontend libraries depend on browser APIs (Service Worker, IndexedDB, Cache Storage)
+- Backend depends on city-specific data and emergency services
+- Offline datasets decouple UI rendering from network availability</p>
+<pre class="mermaid"><code>graph TB
+AI["offline-ai.ts"] --&gt; CACHE["Cache Storage"]
+AI --&gt; GPU["WebGPU"]
+RAG["offline-rag.ts"] --&gt; DATA["offline-data/*"]
+QUEUE["offline-sos-queue.ts"] --&gt; IDB["IndexedDB"]
+QUEUE --&gt; SW["Service Worker"]
+STORE["store.ts"] --&gt; QUEUE
+STORE --&gt; AI
+STORE --&gt; RAG
+API["offline.py"] --&gt; DATA</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L114-L221">offline-ai.ts:114-221</a>
+- <a href="file://frontend/lib/offline-rag.ts#L18-L34">offline-rag.ts:18-34</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L22-L137">offline-sos-queue.ts:22-137</a>
+- <a href="file://frontend/lib/store.ts#L60-L127">store.ts:60-127</a>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L114-L221">offline-ai.ts:114-221</a>
+- <a href="file://frontend/lib/offline-rag.ts#L18-L34">offline-rag.ts:18-34</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L22-L137">offline-sos-queue.ts:22-137</a>
+- <a href="file://frontend/lib/store.ts#L60-L127">store.ts:60-127</a>
+- <a href="file://backend/api/v1/offline.py#L18-L28">offline.py:18-28</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Model loading</li>
+<li>Prefer system AI when available to avoid large downloads</li>
+<li>Use WebGPU acceleration for faster inference</li>
+<li>Provide progress callbacks to manage perceived performance</li>
+<li>IndexedDB</li>
+<li>Batch reads/writes to minimize transaction overhead</li>
+<li>Use indexes (e.g., timestamp) for efficient queries</li>
+<li>Offline data</li>
+<li>Compress and chunk datasets for faster initial load</li>
+<li>Cache frequently accessed resources in browser Cache Storage</li>
+<li>Background sync</li>
+<li>Limit batch sizes and retry intervals to avoid overwhelming the network</li>
+<li>Respect backoff strategies and user connectivity state</li>
+</ul>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<p>Common issues and resolutions:
+- Storage limits
+  - IndexedDB quotas vary by browser; implement eviction strategies for older entries
+  - Monitor storage usage and warn users when approaching limits
+- Cache invalidation
+  - Version offline datasets and invalidate old caches on updates
+  - Clear model caches when switching between system and Transformers.js modes
+- Offline queue management
+  - On network errors, retain items and surface retry options
+  - Implement per-item backoff and prioritize recent entries
+- Conflict resolution
+  - Use backend-side reconciliation for overlapping offline events
+  - Consider optimistic updates with eventual consistency guarantees
+- Service worker registration
+  - Fallback gracefully if SyncManager is unavailable
+  - Verify HTTPS and proper scope for background sync</p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L60-L68">offline-sos-queue.ts:60-68</a>
+- <a href="file://docs/Offline_Architecture.md#L8-L23">Offline_Architecture.md:8-23</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The offline-first architecture delivers resilient functionality across connectivity scenarios. By combining system AI, Transformers.js, and keyword fallbacks, the AI engine remains responsive and accessible. IndexedDB and background sync ensure offline submissions are not lost. Offline datasets power UI rendering and search, while the backend provides city-specific bundles. Progressive enhancement patterns guarantee core features remain functional even without network connectivity. With careful attention to storage limits, cache invalidation, and queue management, the system scales to real-world usage.</p>
+<h2 id="appendices">Appendices</h2>
+<ul>
+<li>Configuration options</li>
+<li>Offline AI: user-initiated model loading, progress callbacks, readiness checks</li>
+<li>IndexedDB: schema versioning, indexes, transaction batching</li>
+<li>Background sync: registration, retry policy, backoff</li>
+<li>Cache policies: dataset versioning, browser cache usage, TTL</li>
+<li>Data synchronization: per-item retries, conflict resolution, reconciliation</li>
+<li>Data consistency</li>
+<li>Offline queues and IndexedDB provide durability</li>
+<li>Backend endpoint serves consistent city bundles</li>
+<li>UI reflects connectivity state and offline capabilities</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

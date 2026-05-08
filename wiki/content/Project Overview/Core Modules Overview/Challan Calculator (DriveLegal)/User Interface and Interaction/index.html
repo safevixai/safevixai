@@ -1,0 +1,1973 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>User Interface and Interaction - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#user-interface-and-interaction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Interface and Interaction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#violation-selection-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Violation Selection Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vehicle-class-selection-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vehicle Class Selection System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jurisdiction-selection-dropdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jurisdiction Selection Dropdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeat-offender-toggle-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeat Offender Toggle Mechanism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-fine-calculation-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-Time Fine Calculation Display
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-report-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Report Functionality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-tactical-insight-footer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Tactical Insight Footer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-management-using-the-shared-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Management Using the Shared Store
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backwards-compatibility-for-cached-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backwards Compatibility for Cached Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsive-design-adaptations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsive Design Adaptations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-loading-states-and-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling, Loading States, and Accessibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="user-interface-and-interaction">User Interface and Interaction</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/app/challan/page.tsx">ChallanPage</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx">ChallanCalculator</a>
+- <a href="file://frontend/lib/store.ts">store</a>
+- <a href="file://frontend/lib/api.ts">api</a>
+- <a href="file://frontend/lib/duckdb-challan.ts">duckdb-challan</a>
+- <a href="file://frontend/components/ViolationsList.tsx">ViolationsList</a>
+- <a href="file://docs/UIUX.md">UIUX</a>
+- <a href="file://frontend/app/globals.css">globals.css</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the user interface and interaction design of the Challan Calculator, focusing on intuitive violation selection, vehicle classification, jurisdiction selection, repeat offender toggling, real-time fine calculation with animated transitions, detailed report affordances, and the AI tactical insight footer. It also documents state management via the shared store, backwards compatibility for cached values, responsive design adaptations, error handling, loading states, and accessibility features.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The Challan Calculator is implemented as two complementary UI surfaces:
+- A streamlined calculator component for quick selection and calculation
+- A comprehensive page with a live summary panel, detailed inputs, and AI insights</p>
+<p>Key files:
+- <a href="file://frontend/app/challan/page.tsx">ChallanPage</a>: Full-featured page with live summary, inputs, and AI footer
+- <a href="file://frontend/components/ChallanCalculator.tsx">ChallanCalculator</a>: Compact calculator with grid-based violation selection and result display
+- <a href="file://frontend/lib/store.ts">store</a>: Shared Zustand store with persisted state for violation, vehicle class, jurisdiction, and repeat status
+- <a href="file://frontend/lib/api.ts">api</a>: API client and calculateChallan endpoint
+- <a href="file://frontend/lib/duckdb-challan.ts">duckdb-challan</a>: Offline calculation helper for DuckDB-backed fine lookup
+- <a href="file://frontend/components/ViolationsList.tsx">ViolationsList</a>: Reference list of common violations
+- <a href="file://docs/UIUX.md">UIUX</a>: Accessibility and animation guidelines
+- <a href="file://frontend/app/globals.css">globals.css</a>: Theming, typography, animations, and responsive utilities</p>
+<pre class="mermaid"><code>graph TB
+subgraph "UI"
+CP["ChallanPage&lt;br/&gt;page.tsx"]
+CC["ChallanCalculator&lt;br/&gt;components/ChallanCalculator.tsx"]
+VL["ViolationsList&lt;br/&gt;components/ViolationsList.tsx"]
+end
+subgraph "State"
+ST["useAppStore&lt;br/&gt;lib/store.ts"]
+end
+subgraph "Network"
+API["calculateChallan&lt;br/&gt;lib/api.ts"]
+DUCK["Offline Engine&lt;br/&gt;lib/duckdb-challan.ts"]
+end
+CP --&gt; ST
+CC --&gt; ST
+CP --&gt; API
+CC --&gt; API
+CP --&gt; DUCK
+CC --&gt; DUCK
+CP --&gt; VL</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L45-L320">ChallanPage:45-320</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L13-L186">ChallanCalculator:13-186</a>
+- <a href="file://frontend/lib/store.ts#L129-L226">store:129-226</a>
+- <a href="file://frontend/lib/api.ts#L817-L821">api:817-821</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-L51">duckdb-challan:1-51</a>
+- <a href="file://frontend/components/ViolationsList.tsx#L1-L54">ViolationsList:1-54</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L45-L320">ChallanPage:45-320</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L13-L186">ChallanCalculator:13-186</a>
+- <a href="file://frontend/lib/store.ts#L129-L226">store:129-226</a>
+- <a href="file://frontend/lib/api.ts#L817-L821">api:817-821</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-L51">duckdb-challan:1-51</a>
+- <a href="file://frontend/components/ViolationsList.tsx#L1-L54">ViolationsList:1-54</a>
+- <a href="file://docs/UIUX.md#L225-L279">UIUX:225-279</a>
+- <a href="file://frontend/app/globals.css#L1-L1045">globals.css:1-1045</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Violation selection grid: Six predefined violations with icons and labels, with visual selection feedback and keyboard-friendly interaction.</li>
+<li>Vehicle class selector: Dropdown with four classifications mapped to concise labels and descriptions.</li>
+<li>Jurisdiction dropdown: State/UT selection with human-readable labels and codes.</li>
+<li>Repeat offender toggle: Animated switch with clear visual state and accessible labeling.</li>
+<li>Real-time fine calculation: Live summary panel with animated number transitions, danger warnings, and detailed report affordance.</li>
+<li>AI tactical insight footer: Contextual legal insight with dynamic content based on selected violation and jurisdiction.</li>
+<li>State persistence: Shared store persists user selections across sessions and navigations.</li>
+<li>Backwards compatibility: Legacy cached values are normalized to current field names and values.</li>
+<li>Responsive design: Mobile-first layout with sticky summary, large touch targets, and adaptive grids.</li>
+<li>Accessibility: Focus rings, ARIA roles, keyboard navigation, and WCAG-compliant contrast.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L20-L36">ChallanPage:20-36</a>
+- <a href="file://frontend/app/challan/page.tsx#L38-L43">ChallanPage:38-43</a>
+- <a href="file://frontend/app/challan/page.tsx#L209-L298">ChallanPage:209-298</a>
+- <a href="file://frontend/app/challan/page.tsx#L111-L180">ChallanPage:111-180</a>
+- <a href="file://frontend/app/challan/page.tsx#L301-L312">ChallanPage:301-312</a>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a>
+- <a href="file://frontend/lib/store.ts#L53-L58">store:53-58</a>
+- <a href="file://docs/UIUX.md#L225-L279">UIUX:225-279</a>
+- <a href="file://frontend/app/globals.css#L1-L1045">globals.css:1-1045</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The UI integrates with a shared store and network layer to compute and display fines in real time. The page orchestrates live updates via SWR, while the compact calculator triggers manual calculations.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant U as "User"
+participant P as "ChallanPage&lt;br/&gt;page.tsx"
+participant S as "useAppStore&lt;br/&gt;lib/store.ts"
+participant N as "calculateChallan&lt;br/&gt;lib/api.ts"
+participant O as "Offline Engine&lt;br/&gt;lib/duckdb-challan.ts"
+U-&gt;&gt;P : Change violation/vehicle/jurisdiction/repeat
+P-&gt;&gt;S : setChallanState(...)
+P-&gt;&gt;N : fetch result via SWR
+alt Online
+N--&gt;&gt;P : {section, description, base_fine, repeat_fine}
+else Offline
+P-&gt;&gt;O : calculateOfflineChallan(...)
+O--&gt;&gt;P : {section, description, base_fine, repeat_fine}
+end
+P-&gt;&gt;P : Compute finalFine (repeat multiplier if applicable)
+P--&gt;&gt;U : Animated total liability update</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L49-L82">ChallanPage:49-82</a>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a>
+- <a href="file://frontend/lib/api.ts#L817-L821">api:817-821</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L20-L50">duckdb-challan:20-50</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="violation-selection-interface">Violation Selection Interface</h3>
+<ul>
+<li>Predefined options include speeding, red light violations, drunk driving, driving without license, seatbelt/helmet violations, and disobedience.</li>
+<li>Grid layout with icon, label, and selection feedback.</li>
+<li>Visual selection highlights the active option with a bright accent and subtle glow.</li>
+<li>Accessible via keyboard and touch; large hit areas and clear focus states.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["User selects a violation"]) --&gt; Highlight["Highlight selected card"]
+Highlight --&gt; UpdateStore["Update store.violation"]
+UpdateStore --&gt; Recalc["Trigger recalculation via SWR"]
+Recalc --&gt; Result["Display updated fine summary"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L209-L222">ChallanPage:209-222</a>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L20-L36">ChallanPage:20-36</a>
+- <a href="file://frontend/app/challan/page.tsx#L209-L222">ChallanPage:209-222</a></p>
+<h3 id="vehicle-class-selection-system">Vehicle Class Selection System</h3>
+<ul>
+<li>Four classifications: 2W, 4W, HTV, BUS.</li>
+<li>Visual representation uses Lucide icons and concise labels.</li>
+<li>Selected state applies accent background, glow, and ring highlight.</li>
+<li>Large touch targets and hover/focus feedback for desktop.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class VehicleClass {
++id : string
++icon : ReactNode
++title : string
++subtitle : string
+}
+class UI {
++renderGrid()
++handleSelection(id)
+}
+UI --&gt; VehicleClass : "renders"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L38-L43">ChallanPage:38-43</a>
+- <a href="file://frontend/app/challan/page.tsx#L232-L256">ChallanPage:232-256</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L38-L43">ChallanPage:38-43</a>
+- <a href="file://frontend/app/challan/page.tsx#L232-L256">ChallanPage:232-256</a></p>
+<h3 id="jurisdiction-selection-dropdown">Jurisdiction Selection Dropdown</h3>
+<ul>
+<li>State/UT selection with human-readable labels and codes.</li>
+<li>Controlled select element updates jurisdiction in the shared store.</li>
+<li>Sticky summary shows the selected state abbreviation.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Select["User picks state"] --&gt; Update["Update jurisdiction in store"]
+Update --&gt; Extract["Extract state code from label"]
+Extract --&gt; Fetch["Fetch fine data via SWR"]
+Fetch --&gt; Render["Render updated summary"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L264-L274">ChallanPage:264-274</a>
+- <a href="file://frontend/app/challan/page.tsx#L62-L63">ChallanPage:62-63</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L20-L27">ChallanPage:20-27</a>
+- <a href="file://frontend/app/challan/page.tsx#L264-L274">ChallanPage:264-274</a></p>
+<h3 id="repeat-offender-toggle-mechanism">Repeat Offender Toggle Mechanism</h3>
+<ul>
+<li>Animated switch with spring physics for smooth state transitions.</li>
+<li>Visual indicators include color, pulse, and label emphasis.</li>
+<li>Updates store.isRepeat and triggers recalculation.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant U as "User"
+participant T as "Toggle Button"
+participant S as "useAppStore"
+participant P as "ChallanPage"
+U-&gt;&gt;T : Tap toggle
+T-&gt;&gt;S : setChallanState({ isRepeat })
+S--&gt;&gt;P : State change
+P-&gt;&gt;P : Recompute finalFine (repeat multiplier)
+P--&gt;&gt;U : Update summary with animation</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L279-L298">ChallanPage:279-298</a>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L279-L298">ChallanPage:279-298</a>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a></p>
+<h3 id="real-time-fine-calculation-display">Real-Time Fine Calculation Display</h3>
+<ul>
+<li>Live summary panel shows total liability with animated number transitions.</li>
+<li>Danger warnings appear conditionally for high-risk violations.</li>
+<li>Detailed report affordance provides contextual help; currently offline notice is shown.</li>
+<li>Repeat offender multipliers are applied automatically.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Init(["Initial render"]) --&gt; Load["SWR fetches result"]
+Load --&gt; Compute["Compute finalFine (repeat?)"]
+Compute --&gt; Animate["Animate number transition"]
+Animate --&gt; Danger{"Has danger warning?"}
+Danger --&gt; |Yes| Show["Show danger banner"]
+Danger --&gt; |No| Hide["Hide banner"]
+Show --&gt; Done(["Updated UI"])
+Hide --&gt; Done</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L71-L82">ChallanPage:71-82</a>
+- <a href="file://frontend/app/challan/page.tsx#L121-L128">ChallanPage:121-128</a>
+- <a href="file://frontend/app/challan/page.tsx#L140-L152">ChallanPage:140-152</a>
+- <a href="file://frontend/app/challan/page.tsx#L156-L178">ChallanPage:156-178</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L71-L82">ChallanPage:71-82</a>
+- <a href="file://frontend/app/challan/page.tsx#L111-L180">ChallanPage:111-180</a>
+- <a href="file://frontend/app/challan/page.tsx#L156-L178">ChallanPage:156-178</a></p>
+<h3 id="detailed-report-functionality">Detailed Report Functionality</h3>
+<ul>
+<li>DETAILED REPORT button triggers a brief toast notification indicating offline status.</li>
+<li>Animated entrance/exit for the tooltip using AnimatePresence.</li>
+<li>Intended to guide users to next steps when the detailed report is unavailable.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L156-L178">ChallanPage:156-178</a></p>
+<h3 id="ai-tactical-insight-footer">AI Tactical Insight Footer</h3>
+<ul>
+<li>Gradient-styled footer with zap icon and contextual legal insight.</li>
+<li>Dynamic content pulls from the latest calculation result and jurisdiction.</li>
+<li>Reinforces trust by providing actionable, law-aware guidance.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L301-L312">ChallanPage:301-312</a></p>
+<h3 id="state-management-using-the-shared-store">State Management Using the Shared Store</h3>
+<ul>
+<li>Centralized state for violation, vehicle class, jurisdiction, and repeat status.</li>
+<li>Persisted across sessions and navigations.</li>
+<li>Backwards compatibility: legacy keys (e.g., dui, speeding, nolicense, helmet_seatbelt, redlight) are normalized to current IDs.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Legacy["Legacy cached values"] --&gt; Normalize["Normalize to current IDs"]
+Normalize --&gt; UpdateStore["setChallanState(...)"]
+UpdateStore --&gt; UI["Re-render UI with new values"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a>
+- <a href="file://frontend/app/challan/page.tsx#L51-L60">ChallanPage:51-60</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a>
+- <a href="file://frontend/app/challan/page.tsx#L51-L60">ChallanPage:51-60</a></p>
+<h3 id="backwards-compatibility-for-cached-values">Backwards Compatibility for Cached Values</h3>
+<ul>
+<li>Legacy values are mapped to current violation IDs.</li>
+<li>Ensures continuity for users upgrading from older versions.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L51-L57">ChallanPage:51-57</a></p>
+<h3 id="responsive-design-adaptations">Responsive Design Adaptations</h3>
+<ul>
+<li>Mobile-first layout with sticky summary on larger screens.</li>
+<li>Adaptive grids for inputs and vehicle classes.</li>
+<li>Safe area insets and bottom navigation placement optimized for phones.</li>
+<li>Large touch targets and reduced reliance on hover.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L96-L193">ChallanPage:96-193</a>
+- <a href="file://docs/UIUX.md#L254-L262">UIUX:254-262</a>
+- <a href="file://frontend/app/globals.css#L10-L23">globals.css:10-23</a></p>
+<h3 id="error-handling-loading-states-and-accessibility">Error Handling, Loading States, and Accessibility</h3>
+<ul>
+<li>Loading states: Skeletons and disabled states prevent misleading empty UI.</li>
+<li>Error states: Never silent; errors surface via toasts or inline messaging.</li>
+<li>Accessibility: Focus-visible rings, ARIA roles, keyboard navigation, and WCAG-compliant contrast ratios.</li>
+<li>Animations: Subtle, purposeful, and non-animated elements remain static to preserve clarity.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L140-L152">ChallanPage:140-152</a>
+- <a href="file://docs/UIUX.md#L225-L279">UIUX:225-279</a>
+- <a href="file://frontend/app/globals.css#L290-L370">globals.css:290-370</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>UI components depend on the shared store for state and on SWR for data fetching.</li>
+<li>Network requests are routed through the API client; offline fallbacks are handled by the DuckDB helper.</li>
+<li>The page’s live summary depends on the store’s persisted values and the connectivity state.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+UI["ChallanPage"] --&gt; STORE["useAppStore"]
+UI --&gt; SWR["SWR fetch"]
+SWR --&gt; API["calculateChallan"]
+API --&gt; BACKEND["Backend API"]
+UI --&gt; OFFLINE["DuckDB Offline Engine"]
+STORE --&gt; STATE["Persisted State"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L49-L82">ChallanPage:49-82</a>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a>
+- <a href="file://frontend/lib/api.ts#L817-L821">api:817-821</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-L51">duckdb-challan:1-51</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L49-L82">ChallanPage:49-82</a>
+- <a href="file://frontend/lib/store.ts#L195-L202">store:195-202</a>
+- <a href="file://frontend/lib/api.ts#L817-L821">api:817-821</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-L51">duckdb-challan:1-51</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Keep previous data during refetch to avoid flicker.</li>
+<li>Debounce or batch rapid input changes to reduce unnecessary recalculations.</li>
+<li>Prefer controlled components for inputs to minimize re-renders.</li>
+<li>Use SWR caching and deduplication to avoid redundant network calls.</li>
+<li>Inline SVGs and minimal DOM for animated elements to maintain smooth transitions.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>If totals do not update after changing inputs, verify SWR key includes all parameters and that the store updates correctly.</li>
+<li>If offline mode does not trigger, confirm the DuckDB helper resolves readiness and that the fallback path is executed.</li>
+<li>If animations feel sluggish, reduce the number of animated elements or simplify easing curves.</li>
+<li>For accessibility issues, ensure focus rings are visible, labels are descriptive, and interactive elements are reachable via keyboard.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/challan/page.tsx#L71-L82">ChallanPage:71-82</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L4-L18">duckdb-challan:4-18</a>
+- <a href="file://docs/UIUX.md#L225-L279">UIUX:225-279</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Challan Calculator delivers a fast, intuitive, and trustworthy experience for estimating penalties. Its dual UI surfaces—compact calculator and comprehensive page—support both quick checks and detailed analysis. The shared store ensures continuity across sessions, while SWR and optional offline engines power responsive, resilient calculations. Accessibility and animation guidelines reinforce clarity and usability across devices.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

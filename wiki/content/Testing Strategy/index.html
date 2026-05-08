@@ -1,0 +1,1972 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Testing Strategy - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-strategy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing Strategy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-api-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend API Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-service-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chatbot Service Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-integration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous Integration Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-and-quality-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage and Quality Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="testing-strategy">Testing Strategy</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://backend/pytest.ini">backend/pytest.ini</a>
+- <a href="file://chatbot_service/pytest.ini">chatbot_service/pytest.ini</a>
+- <a href="file://frontend/jest.config.js">frontend/jest.config.js</a>
+- <a href="file://backend/tests/conftest.py">backend/tests/conftest.py</a>
+- <a href="file://chatbot_service/tests/conftest.py">chatbot_service/tests/conftest.py</a>
+- <a href="file://.github/workflows/backend.yml">.github/workflows/backend.yml</a>
+- <a href="file://.github/workflows/chatbot.yml">.github/workflows/chatbot.yml</a>
+- <a href="file://.github/workflows/frontend.yml">.github/workflows/frontend.yml</a>
+- <a href="file://.github/workflows/e2e.yml">.github/workflows/e2e.yml</a>
+- <a href="file://.github/workflows/security.yml">.github/workflows/security.yml</a>
+- <a href="file://backend/tests/test_chatbot.py">backend/tests/test_chatbot.py</a>
+- <a href="file://backend/tests/test_routing.py">backend/tests/test_routing.py</a>
+- <a href="file://chatbot_service/tests/test_e2e.py">chatbot_service/tests/test_e2e.py</a>
+- <a href="file://chatbot_service/tests/test_intent.py">chatbot_service/tests/test_intent.py</a>
+- <a href="file://chatbot_service/tests/test_rag.py">chatbot_service/tests/test_rag.py</a>
+- <a href="file://frontend/tests/home.test.tsx">frontend/tests/home.test.tsx</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document defines the comprehensive testing strategy for SafeVixAI across its multi-service stack. It covers unit testing, integration testing, and end-to-end validation using FastAPI Pytest, Next.js Jest/Vitest, and specialized chatbot testing frameworks. It also documents mock setups, test data management, continuous integration pipelines, performance and security testing, coverage expectations, and operational validation practices. The goal is to enable both beginners and QA engineers to confidently contribute to and maintain high-quality software.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>SafeVixAI is organized into three major services:
+- Backend API service built with FastAPI
+- Chatbot service with RAG, tools, and provider integrations
+- Frontend Next.js application</p>
+<p>Each service maintains its own test configuration and CI workflows, enabling independent and focused testing.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Backend API"
+B_Pytest["backend/pytest.ini"]
+B_Conftest["backend/tests/conftest.py"]
+B_Tests["backend/tests/*.py"]
+end
+subgraph "Chatbot Service"
+C_Pytest["chatbot_service/pytest.ini"]
+C_Conftest["chatbot_service/tests/conftest.py"]
+C_Tests["chatbot_service/tests/*.py"]
+end
+subgraph "Frontend"
+F_Jest["frontend/jest.config.js"]
+F_Tests["frontend/tests/*.tsx"]
+end
+subgraph "CI Workflows"
+W_Backend[".github/workflows/backend.yml"]
+W_Chatbot[".github/workflows/chatbot.yml"]
+W_Frontend[".github/workflows/frontend.yml"]
+W_E2E[".github/workflows/e2e.yml"]
+W_Security[".github/workflows/security.yml"]
+end
+B_Pytest --&gt; B_Conftest --&gt; B_Tests
+C_Pytest --&gt; C_Conftest --&gt; C_Tests
+F_Jest --&gt; F_Tests
+W_Backend --&gt; B_Tests
+W_Chatbot --&gt; C_Tests
+W_Frontend --&gt; F_Tests
+W_E2E --&gt; F_Tests
+W_Security --&gt; B_Tests
+W_Security --&gt; C_Tests</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/pytest.ini#L1-L5">backend/pytest.ini:1-5</a>
+- <a href="file://chatbot_service/pytest.ini#L1-L4">chatbot_service/pytest.ini:1-4</a>
+- <a href="file://frontend/jest.config.js#L1-L16">frontend/jest.config.js:1-16</a>
+- <a href="file://backend/tests/conftest.py#L1-L31">backend/tests/conftest.py:1-31</a>
+- <a href="file://chatbot_service/tests/conftest.py#L1-L10">chatbot_service/tests/conftest.py:1-10</a>
+- <a href="file://.github/workflows/backend.yml#L1-L55">.github/workflows/backend.yml:1-55</a>
+- <a href="file://.github/workflows/chatbot.yml#L1-L55">.github/workflows/chatbot.yml:1-55</a>
+- <a href="file://.github/workflows/frontend.yml#L1-L43">.github/workflows/frontend.yml:1-43</a>
+- <a href="file://.github/workflows/e2e.yml#L1-L43">.github/workflows/e2e.yml:1-43</a>
+- <a href="file://.github/workflows/security.yml#L1-L64">.github/workflows/security.yml:1-64</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/pytest.ini#L1-L5">backend/pytest.ini:1-5</a>
+- <a href="file://chatbot_service/pytest.ini#L1-L4">chatbot_service/pytest.ini:1-4</a>
+- <a href="file://frontend/jest.config.js#L1-L16">frontend/jest.config.js:1-16</a>
+- <a href="file://backend/tests/conftest.py#L1-L31">backend/tests/conftest.py:1-31</a>
+- <a href="file://chatbot_service/tests/conftest.py#L1-L10">chatbot_service/tests/conftest.py:1-10</a>
+- <a href="file://.github/workflows/backend.yml#L1-L55">.github/workflows/backend.yml:1-55</a>
+- <a href="file://.github/workflows/chatbot.yml#L1-L55">.github/workflows/chatbot.yml:1-55</a>
+- <a href="file://.github/workflows/frontend.yml#L1-L43">.github/workflows/frontend.yml:1-43</a>
+- <a href="file://.github/workflows/e2e.yml#L1-L43">.github/workflows/e2e.yml:1-43</a>
+- <a href="file://.github/workflows/security.yml#L1-L64">.github/workflows/security.yml:1-64</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Backend FastAPI service</li>
+<li>Pytest configuration and fixtures for app bootstrapping and dependency overrides</li>
+<li>Endpoint-specific tests validating routing, chatbot integration, and business logic</li>
+<li>Chatbot service</li>
+<li>Pytest configuration optimized for async workflows</li>
+<li>Comprehensive end-to-end tests simulating conversational flows, tools, and provider routing</li>
+<li>Unit tests for intent detection, retrieval, and provider behavior</li>
+<li>Frontend Next.js</li>
+<li>Jest configuration for DOM environment and setup</li>
+<li>UI component tests verifying structural rendering and module presence</li>
+</ul>
+<p>Key testing artifacts:
+- Backend app fixture and dependency override pattern
+- Chatbot async app lifecycle and extensive mock factories
+- Frontend DOM assertions and component rendering checks</p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/tests/conftest.py#L18-L31">backend/tests/conftest.py:18-31</a>
+- <a href="file://chatbot_service/pytest.ini#L1-L4">chatbot_service/pytest.ini:1-4</a>
+- <a href="file://chatbot_service/tests/test_e2e.py#L219-L236">chatbot_service/tests/test_e2e.py:219-236</a>
+- <a href="file://frontend/jest.config.js#L1-L16">frontend/jest.config.js:1-16</a>
+- <a href="file://frontend/tests/home.test.tsx#L1-L25">frontend/tests/home.test.tsx:1-25</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The testing architecture integrates per-service test suites with dedicated CI jobs. Security scanning is performed independently, and frontend unit tests are executed via Vitest in a separate workflow.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Dev as "Developer"
+participant GH as "GitHub Actions"
+participant BE as "Backend Pytest"
+participant CS as "Chatbot Pytest"
+participant FE as "Frontend Jest/Vitest"
+participant SEC as "Security Audit"
+Dev-&gt;&gt;GH : Push/Pull Request
+GH-&gt;&gt;BE : Trigger backend.yml
+GH-&gt;&gt;CS : Trigger chatbot.yml
+GH-&gt;&gt;FE : Trigger frontend.yml + e2e.yml
+GH-&gt;&gt;SEC : Trigger security.yml
+BE--&gt;&gt;GH : Test results
+CS--&gt;&gt;GH : Test results
+FE--&gt;&gt;GH : Test results
+SEC--&gt;&gt;GH : Security scan report</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://.github/workflows/backend.yml#L1-L55">.github/workflows/backend.yml:1-55</a>
+- <a href="file://.github/workflows/chatbot.yml#L1-L55">.github/workflows/chatbot.yml:1-55</a>
+- <a href="file://.github/workflows/frontend.yml#L1-L43">.github/workflows/frontend.yml:1-43</a>
+- <a href="file://.github/workflows/e2e.yml#L1-L43">.github/workflows/e2e.yml:1-43</a>
+- <a href="file://.github/workflows/security.yml#L1-L64">.github/workflows/security.yml:1-64</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="backend-api-testing">Backend API Testing</h3>
+<ul>
+<li>Pytest configuration</li>
+<li>Sets test discovery path and asyncio mode for async fixtures</li>
+<li>App fixture and dependency override</li>
+<li>Creates a FastAPI app instance and injects a dummy DB session to bypass persistence</li>
+<li>Example tests</li>
+<li>Chat endpoint test mocks the LLM service and asserts response shape and fields</li>
+<li>Routing preview test validates route computation and invalid profile handling</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant TC as "TestClient"
+participant APP as "FastAPI App Fixture"
+participant SVC as "LLM/Service Under Test"
+participant RESP as "HTTP Response"
+TC-&gt;&gt;APP : Initialize TestClient(app)
+APP-&gt;&gt;APP : Override get_db with DummySession
+TC-&gt;&gt;SVC : POST /api/v1/chat/
+SVC--&gt;&gt;TC : JSON payload
+TC--&gt;&gt;RESP : Assert status and payload fields</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/tests/conftest.py#L22-L31">backend/tests/conftest.py:22-31</a>
+- <a href="file://backend/tests/test_chatbot.py#L16-L33">backend/tests/test_chatbot.py:16-33</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/pytest.ini#L1-L5">backend/pytest.ini:1-5</a>
+- <a href="file://backend/tests/conftest.py#L18-L31">backend/tests/conftest.py:18-31</a>
+- <a href="file://backend/tests/test_chatbot.py#L1-L33">backend/tests/test_chatbot.py:1-33</a>
+- <a href="file://backend/tests/test_routing.py#L1-L97">backend/tests/test_routing.py:1-97</a></p>
+<h3 id="chatbot-service-testing">Chatbot Service Testing</h3>
+<ul>
+<li>Pytest configuration</li>
+<li>Strict asyncio mode and function-scoped loop for deterministic async tests</li>
+<li>End-to-end test suite</li>
+<li>Extensive mock factories simulate memory stores, vector store, retrievers, tools, and provider routers</li>
+<li>Async client lifecycle ensures proper lifespan management during tests</li>
+<li>Tests cover English/Tamil queries, emergency routing with coordinates, and tool integration</li>
+<li>Unit tests</li>
+<li>Intent detection classification for emergency and challan-related queries</li>
+<li>Retrieval accuracy against legal knowledge base content</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant AC as "AsyncClient"
+participant APP as "Chatbot App Fixture"
+participant MR as "Mock Router"
+participant MT as "Mock Tools"
+participant RESP as "Chat Response"
+AC-&gt;&gt;APP : POST /api/v1/chat/
+APP-&gt;&gt;MR : generate(request)
+MR--&gt;&gt;APP : ProviderResult(text, provider, model)
+APP-&gt;&gt;MT : Invoke tools (sos/weather/legal/etc.)
+MT--&gt;&gt;APP : Tool payloads
+APP--&gt;&gt;AC : JSON {response, intent, sources, session_id}
+AC--&gt;&gt;RESP : Assert response characteristics</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://chatbot_service/pytest.ini#L1-L4">chatbot_service/pytest.ini:1-4</a>
+- <a href="file://chatbot_service/tests/test_e2e.py#L219-L236">chatbot_service/tests/test_e2e.py:219-236</a>
+- <a href="file://chatbot_service/tests/test_e2e.py#L247-L309">chatbot_service/tests/test_e2e.py:247-309</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/pytest.ini#L1-L4">chatbot_service/pytest.ini:1-4</a>
+- <a href="file://chatbot_service/tests/test_e2e.py#L1-L309">chatbot_service/tests/test_e2e.py:1-309</a>
+- <a href="file://chatbot_service/tests/test_intent.py#L1-L14">chatbot_service/tests/test_intent.py:1-14</a>
+- <a href="file://chatbot_service/tests/test_rag.py#L1-L18">chatbot_service/tests/test_rag.py:1-18</a></p>
+<h3 id="frontend-testing">Frontend Testing</h3>
+<ul>
+<li>Jest configuration</li>
+<li>Uses next/jest to load Next.js config and sets jsdom environment</li>
+<li>Imports a setup file for global test utilities</li>
+<li>UI test example</li>
+<li>Renders the home page and asserts presence of key headings and module labels</li>
+<li>Mocks external components (e.g., navigation) to isolate UI assertions</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Render Home Page"]) --&gt; MockLink["Mock external components"]
+MockLink --&gt; RenderUI["Render UI tree"]
+RenderUI --&gt; AssertTitle["Assert main heading present"]
+AssertTitle --&gt; AssertModules["Assert core module labels present"]
+AssertModules --&gt; End(["Pass/Fail"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/jest.config.js#L1-L16">frontend/jest.config.js:1-16</a>
+- <a href="file://frontend/tests/home.test.tsx#L5-L10">frontend/tests/home.test.tsx:5-10</a>
+- <a href="file://frontend/tests/home.test.tsx#L12-L24">frontend/tests/home.test.tsx:12-24</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/jest.config.js#L1-L16">frontend/jest.config.js:1-16</a>
+- <a href="file://frontend/tests/home.test.tsx#L1-L25">frontend/tests/home.test.tsx:1-25</a></p>
+<h3 id="continuous-integration-testing">Continuous Integration Testing</h3>
+<ul>
+<li>Backend CI</li>
+<li>Installs dependencies, runs Pytest, and supplies stub environment variables for configuration</li>
+<li>Chatbot CI</li>
+<li>Installs dependencies, runs Pytest, and supplies stub environment variables for settings</li>
+<li>Frontend CI</li>
+<li>Lints and type-checks TypeScript; does not run unit tests in this workflow</li>
+<li>E2E CI</li>
+<li>Runs Vitest for frontend unit tests</li>
+<li>Security CI</li>
+<li>Performs npm audit, Python Bandit SAST scans, and Safety dependency CVE checks across both backend and chatbot services</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+BE_YML["backend.yml"] --&gt; BE_DEPS["Install backend deps"]
+BE_DEPS --&gt; BE_TEST["Run pytest tests"]
+CS_YML["chatbot.yml"] --&gt; CS_DEPS["Install chatbot deps"]
+CS_DEPS --&gt; CS_TEST["Run pytest tests"]
+FE_YML["frontend.yml"] --&gt; FE_LINT["ESLint + TypeScript"]
+E2E_YML["e2e.yml"] --&gt; FE_VITEST["Vitest unit tests"]
+SEC_YML["security.yml"] --&gt; NPM_AUDIT["npm audit"]
+SEC_YML --&gt; BANDIT["bandit (Python SAST)"]
+SEC_YML --&gt; SAFETY["safety (CVE scan)"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://.github/workflows/backend.yml#L32-L55">.github/workflows/backend.yml:32-55</a>
+- <a href="file://.github/workflows/chatbot.yml#L32-L55">.github/workflows/chatbot.yml:32-55</a>
+- <a href="file://.github/workflows/frontend.yml#L36-L43">.github/workflows/frontend.yml:36-43</a>
+- <a href="file://.github/workflows/e2e.yml#L35-L43">.github/workflows/e2e.yml:35-43</a>
+- <a href="file://.github/workflows/security.yml#L30-L64">.github/workflows/security.yml:30-64</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://.github/workflows/backend.yml#L1-L55">.github/workflows/backend.yml:1-55</a>
+- <a href="file://.github/workflows/chatbot.yml#L1-L55">.github/workflows/chatbot.yml:1-55</a>
+- <a href="file://.github/workflows/frontend.yml#L1-L43">.github/workflows/frontend.yml:1-43</a>
+- <a href="file://.github/workflows/e2e.yml#L1-L43">.github/workflows/e2e.yml:1-43</a>
+- <a href="file://.github/workflows/security.yml#L1-L64">.github/workflows/security.yml:1-64</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Backend</li>
+<li>Test app fixture depends on the FastAPI application factory and database dependency override</li>
+<li>Endpoint tests rely on TestClient and injected service mocks</li>
+<li>Chatbot</li>
+<li>Async app fixture manages lifespan and ASGI transport for AsyncClient</li>
+<li>Extensive monkeypatching replaces real components with deterministic mocks</li>
+<li>Frontend</li>
+<li>Tests depend on jsdom environment and component rendering utilities</li>
+</ul>
+<pre class="mermaid"><code>graph TB
+B_Conf["backend/tests/conftest.py"] --&gt; B_App["FastAPI app"]
+B_App --&gt; B_TestC["backend/tests/test_chatbot.py"]
+B_App --&gt; B_TestR["backend/tests/test_routing.py"]
+C_Conf["chatbot_service/tests/conftest.py"] --&gt; C_App["Chatbot app fixture"]
+C_App --&gt; C_TestE["chatbot_service/tests/test_e2e.py"]
+C_App --&gt; C_TestI["chatbot_service/tests/test_intent.py"]
+C_App --&gt; C_TestR["chatbot_service/tests/test_rag.py"]
+F_JestCfg["frontend/jest.config.js"] --&gt; F_Test["frontend/tests/home.test.tsx"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/tests/conftest.py#L14-L31">backend/tests/conftest.py:14-31</a>
+- <a href="file://backend/tests/test_chatbot.py#L16-L33">backend/tests/test_chatbot.py:16-33</a>
+- <a href="file://backend/tests/test_routing.py#L67-L97">backend/tests/test_routing.py:67-97</a>
+- <a href="file://chatbot_service/tests/conftest.py#L1-L10">chatbot_service/tests/conftest.py:1-10</a>
+- <a href="file://chatbot_service/tests/test_e2e.py#L219-L236">chatbot_service/tests/test_e2e.py:219-236</a>
+- <a href="file://chatbot_service/tests/test_intent.py#L6-L14">chatbot_service/tests/test_intent.py:6-14</a>
+- <a href="file://chatbot_service/tests/test_rag.py#L9-L18">chatbot_service/tests/test_rag.py:9-18</a>
+- <a href="file://frontend/jest.config.js#L1-L16">frontend/jest.config.js:1-16</a>
+- <a href="file://frontend/tests/home.test.tsx#L1-L25">frontend/tests/home.test.tsx:1-25</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/tests/conftest.py#L1-L31">backend/tests/conftest.py:1-31</a>
+- <a href="file://chatbot_service/tests/conftest.py#L1-L10">chatbot_service/tests/conftest.py:1-10</a>
+- <a href="file://frontend/jest.config.js#L1-L16">frontend/jest.config.js:1-16</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Current test suite focuses on correctness and integration rather than performance or load testing.</li>
+<li>Recommended additions:</li>
+<li>Introduce synthetic latency in service mocks to detect slow endpoints</li>
+<li>Use profiling tools to measure test execution time and identify hotspots</li>
+<li>Add load tests using Locust or k6 against staging environments for critical paths (chat, routing)</li>
+<li>Monitor memory usage during long-running test sessions</li>
+<li>Keep performance tests out of CI by default; run them on scheduled pipelines or developer machines.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Async fixture scope issues</li>
+<li>Ensure asyncio mode matches the service configuration (auto for backend, strict for chatbot)</li>
+<li>Missing environment variables</li>
+<li>CI workflows supply stub environment variables; locally, mirror the same keys with placeholder values</li>
+<li>Test isolation failures</li>
+<li>Use function-scoped fixtures and avoid global mutable state</li>
+<li>Mock mismatches</li>
+<li>Verify that all external dependencies are patched consistently across tests</li>
+<li>Frontend rendering errors</li>
+<li>Confirm jsdom environment and component mocking align with actual runtime behavior</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/pytest.ini#L2-L4">backend/pytest.ini:2-4</a>
+- <a href="file://chatbot_service/pytest.ini#L1-L4">chatbot_service/pytest.ini:1-4</a>
+- <a href="file://.github/workflows/backend.yml#L47-L55">.github/workflows/backend.yml:47-55</a>
+- <a href="file://.github/workflows/chatbot.yml#L47-L55">.github/workflows/chatbot.yml:47-55</a>
+- <a href="file://frontend/jest.config.js#L9-L12">frontend/jest.config.js:9-12</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<blockquote>
+<p><strong>Current Test Suites:</strong>
+- Backend: 10 test files (pytest)
+- Chatbot: 7 test files (pytest)
+- Frontend: vitest + Playwright
+- 7 GitHub Actions CI/CD workflows: backend, chatbot, frontend, e2e, security, system, update-master-doc</p>
+</blockquote>
+<p>SafeVixAI’s testing strategy leverages per-service test suites and CI workflows to ensure correctness across the backend, chatbot, and frontend. The documented patterns—fixtures, mocks, and async lifecycles—provide a strong foundation for unit, integration, and end-to-end validation. By extending current practices with performance and security-focused tests, and by maintaining robust CI hygiene, the project can sustain high quality and reliability.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="test-data-management">Test Data Management</h3>
+<ul>
+<li>Use temporary directories for vector store indices and local databases in tests</li>
+<li>Seed minimal datasets for retrieval and tool tests to keep runs fast and deterministic</li>
+<li>Centralize shared fixtures for repeated setup across related tests</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://chatbot_service/tests/test_rag.py#L9-L18">chatbot_service/tests/test_rag.py:9-18</a></p>
+<h3 id="coverage-and-quality-metrics">Coverage and Quality Metrics</h3>
+<ul>
+<li>Enforce minimum coverage thresholds per service and gate PRs on coverage checks</li>
+<li>Track duplication and complexity via static analysis in CI</li>
+<li>Maintain clean diffs by avoiding noisy test output and focusing on meaningful assertions</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://.github/workflows/security.yml#L42-L64">.github/workflows/security.yml:42-64</a></p>
+<h3 id="production-validation">Production Validation</h3>
+<ul>
+<li>Run smoke tests against staging endpoints before releases</li>
+<li>Validate critical flows (chat, SOS, routing) end-to-end with real or realistic mocks</li>
+<li>Monitor CI failure rates and address regressions promptly</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://.github/workflows/backend.yml#L39-L46">.github/workflows/backend.yml:39-46</a>
+- <a href="file://.github/workflows/chatbot.yml#L39-L46">.github/workflows/chatbot.yml:39-46</a>
+- <a href="file://.github/workflows/e2e.yml#L35-L43">.github/workflows/e2e.yml:35-43</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

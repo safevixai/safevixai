@@ -1,0 +1,1923 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Performance Optimization - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#performance-optimization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Performance Optimization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nextjs-optimization-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next.js Optimization Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-optimization-and-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Optimization and Lazy Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-ai-engine-webassembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline AI Engine (WebAssembly)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-ai-engine-simulated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge AI Engine (Simulated)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-management-and-lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Management and Lazy Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progressive-enhancement-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progressive Enhancement Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pwa-and-mobile-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PWA and Mobile Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="performance-optimization">Performance Optimization</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/next.config.js">next.config.js</a>
+- <a href="file://frontend/package.json">package.json</a>
+- <a href="file://frontend/app/layout.tsx">layout.tsx</a>
+- <a href="file://frontend/app/globals.css">globals.css</a>
+- <a href="file://frontend/lib/offline-ai.ts">offline-ai.ts</a>
+- <a href="file://frontend/lib/edge-ai.ts">edge-ai.ts</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://frontend/components/ModelLoader.tsx">ModelLoader.tsx</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts">offline-sos-queue.ts</a>
+- <a href="file://frontend/lib/crash-detection.ts">crash-detection.ts</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx">ClientAppHooks.tsx</a>
+- <a href="file://frontend/public/manifest.json">manifest.json</a>
+- <a href="file://frontend/lib/analytics-provider.tsx">analytics-provider.tsx</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document provides a comprehensive guide to frontend performance optimization for the SafeVixAI project. It focuses on Next.js optimization configurations, image optimization, code splitting, and lazy loading. It also explains Edge AI optimization for WebAssembly models, bundle size reduction techniques, and runtime performance improvements. Guidance is included for profiling tools usage, performance monitoring, optimization metrics, mobile performance considerations, Core Web Vitals optimization, progressive enhancement patterns, and the integration of WebAssembly models with their impact on application performance.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The frontend is built with Next.js and TypeScript. Key performance-relevant areas include:
+- Next.js configuration enabling WebAssembly and Web Workers for AI models
+- Client-side stores and state management for efficient rendering
+- Progressive offline capabilities using IndexedDB and background sync
+- PWA manifest and viewport configuration for mobile-first performance
+- CSS utilities and animations optimized for smooth UI transitions</p>
+<pre class="mermaid"><code>graph TB
+A["Next.js Config&lt;br/&gt;next.config.js"] --&gt; B["Webpack Experiments&lt;br/&gt;asyncWebAssembly, layers"]
+A --&gt; C["Remote Images Allowlist&lt;br/&gt;images.remotePatterns"]
+D["Client Root Layout&lt;br/&gt;layout.tsx"] --&gt; E["Theme &amp; Analytics Providers"]
+F["Offline AI Engine&lt;br/&gt;offline-ai.ts"] --&gt; G["Transformers.js + WebGPU/WASM"]
+H["Edge AI Engine&lt;br/&gt;edge-ai.ts"] --&gt; I["Simulated Local Responses"]
+J["State Store&lt;br/&gt;store.ts"] --&gt; K["UI Rendering &amp; Lazy Loading"]
+L["PWA Manifest&lt;br/&gt;manifest.json"] --&gt; M["Mobile Performance &amp; Core Web Vitals"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/next.config.js#L1-L44">next.config.js:1-44</a>
+- <a href="file://frontend/app/layout.tsx#L1-L86">layout.tsx:1-86</a>
+- <a href="file://frontend/lib/offline-ai.ts#L1-L256">offline-ai.ts:1-256</a>
+- <a href="file://frontend/lib/edge-ai.ts#L1-L29">edge-ai.ts:1-29</a>
+- <a href="file://frontend/lib/store.ts#L1-L226">store.ts:1-226</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L1-L44">next.config.js:1-44</a>
+- <a href="file://frontend/app/layout.tsx#L1-L86">layout.tsx:1-86</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>Next.js configuration enabling WebAssembly and Web Workers for AI model loading</li>
+<li>Offline AI engine with system fallback and Transformers.js loader</li>
+<li>Edge AI engine for simulated offline responses</li>
+<li>Zustand store for state management and lazy-loading triggers</li>
+<li>PWA manifest and viewport configuration for mobile performance</li>
+<li>Offline SOS queue with IndexedDB and background sync</li>
+<li>Crash detection using DeviceMotionEvent for progressive enhancement</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a>
+- <a href="file://frontend/lib/offline-ai.ts#L47-L154">offline-ai.ts:47-154</a>
+- <a href="file://frontend/lib/edge-ai.ts#L15-L28">edge-ai.ts:15-28</a>
+- <a href="file://frontend/lib/store.ts#L129-L225">store.ts:129-225</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L25-L137">offline-sos-queue.ts:25-137</a>
+- <a href="file://frontend/lib/crash-detection.ts#L51-L83">crash-detection.ts:51-83</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The frontend architecture integrates Next.js with WebAssembly-based AI models, progressive offline capabilities, and a PWA shell optimized for mobile performance.</p>
+<pre class="mermaid"><code>graph TB
+subgraph "Runtime"
+SW["Service Worker"]
+IDB["IndexedDB Queue"]
+end
+subgraph "UI Layer"
+Root["Root Layout&lt;br/&gt;layout.tsx"]
+Store["Zustand Store&lt;br/&gt;store.ts"]
+Loader["Model Loader UI&lt;br/&gt;ModelLoader.tsx"]
+end
+subgraph "AI Engines"
+Edge["Edge AI&lt;br/&gt;edge-ai.ts"]
+Offline["Offline AI&lt;br/&gt;offline-ai.ts"]
+end
+subgraph "Build/Runtime Config"
+NextCfg["Next.js Config&lt;br/&gt;next.config.js"]
+Pkg["Dependencies&lt;br/&gt;package.json"]
+PWA["PWA Manifest&lt;br/&gt;manifest.json"]
+end
+NextCfg --&gt; SW
+Pkg --&gt; Offline
+Root --&gt; Store
+Store --&gt; Loader
+Store --&gt; Offline
+Store --&gt; Edge
+SW --&gt; IDB
+PWA --&gt; Root</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a>
+- <a href="file://frontend/lib/offline-ai.ts#L124-L154">offline-ai.ts:124-154</a>
+- <a href="file://frontend/lib/edge-ai.ts#L15-L28">edge-ai.ts:15-28</a>
+- <a href="file://frontend/lib/store.ts#L129-L225">store.ts:129-225</a>
+- <a href="file://frontend/components/ModelLoader.tsx#L1-L61">ModelLoader.tsx:1-61</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L25-L137">offline-sos-queue.ts:25-137</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="nextjs-optimization-configuration">Next.js Optimization Configuration</h3>
+<ul>
+<li>Enables async WebAssembly and layers for Transformers.js compatibility</li>
+<li>Adds Web Worker loader for worker files</li>
+<li>Configures remote image hosts for optimized image delivery</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Next Build"]) --&gt; Experiments["Enable asyncWebAssembly and layers"]
+Experiments --&gt; WorkerLoader["Add Web Worker loader rule"]
+WorkerLoader --&gt; RemoteImages["Configure images.remotePatterns"]
+RemoteImages --&gt; Output(["Optimized Build Artifacts"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L3-L18">next.config.js:3-18</a>
+- <a href="file://frontend/next.config.js#L19-L40">next.config.js:19-40</a></p>
+<h3 id="image-optimization-and-lazy-loading">Image Optimization and Lazy Loading</h3>
+<ul>
+<li>Remote image hosts configured for Next.js Image Optimization</li>
+<li>CSS utilities for responsive layouts and reduced layout shifts</li>
+<li>PWA manifest ensures fast startup and installability</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Browser as "Browser"
+participant NextImage as "Next Image Optimizer"
+participant CDN as "Remote Host"
+Browser-&gt;&gt;NextImage : Request optimized image
+NextImage-&gt;&gt;CDN : Fetch image from allowed host
+CDN--&gt;&gt;NextImage : Optimized image
+NextImage--&gt;&gt;Browser : Serve optimized asset</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/next.config.js#L4-L14">next.config.js:4-14</a>
+- <a href="file://frontend/app/globals.css#L206-L226">globals.css:206-226</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L4-L14">next.config.js:4-14</a>
+- <a href="file://frontend/app/globals.css#L206-L226">globals.css:206-226</a>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a></p>
+<h3 id="offline-ai-engine-webassembly">Offline AI Engine (WebAssembly)</h3>
+<ul>
+<li>Checks for system AI (Chrome/Android AICore) first for zero-download operation</li>
+<li>Falls back to Transformers.js with WebGPU acceleration and 4-bit quantization</li>
+<li>Provides progress callbacks and graceful keyword fallback</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Init["Initialize Offline AI"] --&gt; CheckSystem{"System AI Available?"}
+CheckSystem --&gt; |Yes| UseSystem["Use window.ai session"]
+CheckSystem --&gt; |No| LoadModel["Load Gemma 4 E2B via Transformers.js"]
+LoadModel --&gt; WebGPU["WebGPU acceleration with q4 dtype"]
+WebGPU --&gt; Ready["Model Ready"]
+UseSystem --&gt; Ready
+Ready --&gt; Ask["askOfflineAI(prompt, audioBlob)"]
+Ask --&gt; Response["Return response or keyword fallback"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L47-L154">offline-ai.ts:47-154</a>
+- <a href="file://frontend/lib/offline-ai.ts#L160-L211">offline-ai.ts:160-211</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/offline-ai.ts#L47-L154">offline-ai.ts:47-154</a>
+- <a href="file://frontend/lib/offline-ai.ts#L160-L211">offline-ai.ts:160-211</a></p>
+<h3 id="edge-ai-engine-simulated">Edge AI Engine (Simulated)</h3>
+<ul>
+<li>Provides deterministic offline responses without model downloads</li>
+<li>Useful for demos and low-latency scenarios</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/edge-ai.ts#L15-L28">edge-ai.ts:15-28</a></p>
+<h3 id="state-management-and-lazy-loading">State Management and Lazy Loading</h3>
+<ul>
+<li>Zustand store manages AI mode, model load progress, and UI state</li>
+<li>ModelLoader component renders progress during model initialization</li>
+<li>Progressive enhancement patterns ensure functionality even without AI</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class Store {
++aiMode : "online"|"offline"|"loading"
++modelLoadProgress : number
++setAiMode(mode)
++setModelLoadProgress(percent)
+}
+class ModelLoader {
++render()
+}
+Store --&gt; ModelLoader : "drives progress UI"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/store.ts#L84-L88">store.ts:84-88</a>
+- <a href="file://frontend/lib/store.ts#L160-L164">store.ts:160-164</a>
+- <a href="file://frontend/components/ModelLoader.tsx#L5-L8">ModelLoader.tsx:5-8</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/store.ts#L84-L88">store.ts:84-88</a>
+- <a href="file://frontend/lib/store.ts#L160-L164">store.ts:160-164</a>
+- <a href="file://frontend/components/ModelLoader.tsx#L1-L61">ModelLoader.tsx:1-61</a></p>
+<h3 id="progressive-enhancement-patterns">Progressive Enhancement Patterns</h3>
+<ul>
+<li>Crash detection attaches DeviceMotion listeners with permission handling</li>
+<li>Offline SOS queue persists requests and syncs when online</li>
+<li>ClientAppHooks initializes global listeners safely</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant App as "ClientAppHooks"
+participant Crash as "Crash Detection"
+participant SOS as "Offline SOS Queue"
+App-&gt;&gt;Crash : startCrashDetection(callback)
+App-&gt;&gt;SOS : registerOfflineSyncListeners()
+Crash--&gt;&gt;App : crash detected (G-force)
+SOS--&gt;&gt;App : sync when online</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L8-L34">ClientAppHooks.tsx:8-34</a>
+- <a href="file://frontend/lib/crash-detection.ts#L51-L83">crash-detection.ts:51-83</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L130-L137">offline-sos-queue.ts:130-137</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L8-L34">ClientAppHooks.tsx:8-34</a>
+- <a href="file://frontend/lib/crash-detection.ts#L51-L83">crash-detection.ts:51-83</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L130-L137">offline-sos-queue.ts:130-137</a></p>
+<h3 id="pwa-and-mobile-performance">PWA and Mobile Performance</h3>
+<ul>
+<li>PWA manifest defines standalone display, theme/background colors, and shortcuts</li>
+<li>Viewport configuration ensures proper scaling and safe-area insets</li>
+<li>CSS utilities reduce layout shifts and optimize animations</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/public/manifest.json#L1-L68">manifest.json:1-68</a>
+- <a href="file://frontend/app/layout.tsx#L28-L36">layout.tsx:28-36</a>
+- <a href="file://frontend/app/globals.css#L10-L23">globals.css:10-23</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Next.js 15.3.1 with Webpack experiments for async WebAssembly</li>
+<li>@huggingface/transformers for WebAssembly model loading</li>
+<li>@mlc-ai/web-llm for optional WebLLM integration</li>
+<li>PostHog for analytics instrumentation</li>
+<li>IndexedDB (idb) for offline persistence</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+Next["Next.js 15.3.1"] --&gt; WA["WebAssembly Support"]
+Next --&gt; Img["Image Optimization"]
+WA --&gt; HF["@huggingface/transformers"]
+WA --&gt; MLC["@mlc-ai/web-llm"]
+Store["Zustand Store"] --&gt; UI["React Components"]
+IDB["idb"] --&gt; SOS["Offline SOS Queue"]
+PostHog["posthog-js"] --&gt; Analytics["Analytics Provider"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/package.json#L14-L52">package.json:14-52</a>
+- <a href="file://frontend/next.config.js#L26-L30">next.config.js:26-30</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/package.json#L14-L52">package.json:14-52</a>
+- <a href="file://frontend/next.config.js#L26-L30">next.config.js:26-30</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Bundle size reduction</li>
+<li>Prefer dynamic imports for AI engines to keep initial bundle small</li>
+<li>Use WebGPU acceleration to minimize model load time and memory footprint</li>
+<li>Limit third-party dependencies and scope analytics to opt-in environments</li>
+<li>Runtime performance</li>
+<li>Use CSS transforms and opacity for animations to avoid layout thrashing</li>
+<li>Minimize re-renders by structuring state with Zustand and selective updates</li>
+<li>Defer non-critical features until after initial load</li>
+<li>Mobile performance</li>
+<li>Configure viewport and safe-area insets for immersive UI</li>
+<li>Use PWA features to cache assets and enable offline-first experiences</li>
+<li>Optimize images with Next.js Image Optimization and appropriate sizes</li>
+<li>Core Web Vitals</li>
+<li>Reduce Largest Contentful Paint by deferring non-critical resources</li>
+<li>Improve First Input Delay by minimizing main-thread work during initial load</li>
+<li>Maintain Cumulative Layout Shift by using aspect ratios and skeleton loaders</li>
+<li>Profiling and monitoring</li>
+<li>Use PostHog for performance event capture and funnel analysis</li>
+<li>Monitor model load progress and failures to inform users and improve UX</li>
+<li>Track offline sync success rates and retry behavior</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>WebAssembly and Web Worker issues</li>
+<li>Verify asyncWebAssembly and layers are enabled in Next.js config</li>
+<li>Ensure worker loader handles .worker.js files</li>
+<li>Model loading failures</li>
+<li>Check system AI availability and fallback to Transformers.js</li>
+<li>Monitor progress callbacks and error states in the store</li>
+<li>Offline persistence</li>
+<li>Confirm IndexedDB initialization and transaction handling</li>
+<li>Validate background sync registration and network conditions</li>
+<li>Analytics initialization</li>
+<li>Ensure environment variables are present before initializing PostHog</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/next.config.js#L26-L36">next.config.js:26-36</a>
+- <a href="file://frontend/lib/offline-ai.ts#L142-L153">offline-ai.ts:142-153</a>
+- <a href="file://frontend/lib/offline-sos-queue.ts#L25-L137">offline-sos-queue.ts:25-137</a>
+- <a href="file://frontend/lib/analytics-provider.tsx#L8-L22">analytics-provider.tsx:8-22</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The SafeVixAI frontend leverages Next.js optimizations, WebAssembly-based AI engines, and progressive offline capabilities to deliver a performant, mobile-first experience. By combining dynamic imports, WebGPU acceleration, PWA features, and robust state management, the application achieves strong runtime performance and resilience. Monitoring and profiling should continue to guide iterative improvements to Core Web Vitals and user experience.</p>
+<p>[No sources needed since this section summarizes without analyzing specific files]</p>
+<h2 id="appendices">Appendices</h2>
+<ul>
+<li>Example profiling tools usage</li>
+<li>Use browser DevTools Performance panel to record interactions and analyze main-thread work</li>
+<li>Use Lighthouse for automated audits on build artifacts and deployment previews</li>
+<li>Use PostHog to track user journeys and identify performance regressions in production</li>
+<li>Optimization metrics</li>
+<li>Measure TTFB, LCP, FID, CLS, and INP across devices and networks</li>
+<li>Track model load durations, cache hit rates, and offline sync success rates</li>
+<li>Progressive enhancement patterns</li>
+<li>Always provide fallbacks for AI features and sensor-based enhancements</li>
+<li>Ensure core functionality remains usable without WebAssembly or advanced APIs</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

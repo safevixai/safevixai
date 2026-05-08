@@ -1,0 +1,2000 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>DuckDB Offline Implementation - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#duckdb-offline-implementation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DuckDB Offline Implementation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duckdb-offline-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DuckDB Offline Abstraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-challanservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend ChallanService
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-schema-and-csv-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Schema and CSV Normalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-integration-and-fallback-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Integration and Fallback Mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="duckdb-offline-implementation">DuckDB Offline Implementation</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/lib/duckdb-challan.ts">duckdb-challan.ts</a>
+- <a href="file://frontend/public/offline-data/violations.csv">violations.csv</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv">state_overrides.csv</a>
+- <a href="file://backend/api/v1/challan.py">challan.py</a>
+- <a href="file://backend/services/challan_service.py">challan_service.py</a>
+- <a href="file://backend/models/challan.py">challan.py</a>
+- <a href="file://backend/core/config.py">config.py</a>
+- <a href="file://backend/scripts/data/seed_violations.py">seed_violations.py</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx">ChallanCalculator.tsx</a>
+- <a href="file://frontend/lib/api.ts">api.ts</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://backend/api/v1/offline.py">offline.py</a>
+- <a href="file://backend/scripts/app/build_offline_bundle.py">build_offline_bundle.py</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the DuckDB offline implementation for the Challan Calculator, focusing on offline fine calculation capabilities. It explains how the system loads and normalizes traffic violation and state override data from CSV files, how the backend service performs real-time fine calculations, and how the frontend integrates with both online and offline modes. It also covers performance characteristics, memory management strategies for large datasets, caching mechanisms, and data synchronization/validation processes to ensure accurate calculations across 25+ major cities.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The offline Challan Calculator spans both the frontend and backend:</p>
+<ul>
+<li>Frontend:</li>
+<li>Offline data bundles: violations.csv and state_overrides.csv placed under frontend/public/offline-data</li>
+<li>DuckDB abstraction layer for offline calculations</li>
+<li>UI component for Challan calculation with online/offline fallback</li>
+<li>
+<p>Store and connectivity state management</p>
+</li>
+<li>
+<p>Backend:</p>
+</li>
+<li>FastAPI endpoints for Challan calculation</li>
+<li>ChallanService that loads CSV data and computes penalties</li>
+<li>Models for ChallanRule and StateChallanOverride</li>
+<li>Scripts to seed and normalize CSV data into backend datasets</li>
+<li>Configuration for data directories and offline bundle generation</li>
+</ul>
+<pre class="mermaid"><code>graph TB
+subgraph "Frontend"
+UI["ChallanCalculator.tsx"]
+Store["store.ts"]
+API["api.ts"]
+DuckDB["duckdb-challan.ts"]
+Data["frontend/public/offline-data/&lt;br/&gt;violations.csv&lt;br/&gt;state_overrides.csv"]
+end
+subgraph "Backend"
+Router["backend/api/v1/challan.py"]
+Service["backend/services/challan_service.py"]
+Models["backend/models/challan.py"]
+Config["backend/core/config.py"]
+Seed["backend/scripts/data/seed_violations.py"]
+end
+UI --&gt; API
+UI --&gt; Store
+UI --&gt; DuckDB
+DuckDB --&gt; Data
+API --&gt; Router
+Router --&gt; Service
+Service --&gt; Models
+Service --&gt; Config
+Seed --&gt; Config</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/lib/store.ts#L1-226">store.ts:1-226</a>
+- <a href="file://frontend/lib/api.ts#L1-821">api.ts:1-821</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-51">duckdb-challan.ts:1-51</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv#L1-14">state_overrides.csv:1-14</a>
+- <a href="file://backend/api/v1/challan.py#L1-26">challan.py:1-26</a>
+- <a href="file://backend/services/challan_service.py#L1-314">challan_service.py:1-314</a>
+- <a href="file://backend/models/challan.py#L1-53">challan.py:1-53</a>
+- <a href="file://backend/core/config.py#L1-181">config.py:1-181</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L1-482">seed_violations.py:1-482</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-51">duckdb-challan.ts:1-51</a>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv#L1-14">state_overrides.csv:1-14</a>
+- <a href="file://backend/api/v1/challan.py#L1-26">challan.py:1-26</a>
+- <a href="file://backend/services/challan_service.py#L1-314">challan_service.py:1-314</a>
+- <a href="file://backend/models/challan.py#L1-53">challan.py:1-53</a>
+- <a href="file://backend/core/config.py#L1-181">config.py:1-181</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L1-482">seed_violations.py:1-482</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/lib/api.ts#L1-821">api.ts:1-821</a>
+- <a href="file://frontend/lib/store.ts#L1-226">store.ts:1-226</a></p>
+<h2 id="core-components">Core Components</h2>
+<ul>
+<li>DuckDB Offline Abstraction:</li>
+<li>Provides a lightweight DuckDB WASM initialization helper and an offline calculation function that simulates fast lookups against bundled data.</li>
+<li>
+<p>In production, this would integrate with DuckDB WASM to load and query the CSV datasets directly in the browser.</p>
+</li>
+<li>
+<p>Backend ChallanService:</p>
+</li>
+<li>Loads violations and state overrides from multiple candidate directories (including frontend public offline-data).</li>
+<li>Normalizes vehicle classes, violation codes, and state codes.</li>
+<li>
+<p>Computes base/repeat fines and applies state overrides when present.</p>
+</li>
+<li>
+<p>Models:</p>
+</li>
+<li>ChallanRule defines violation rules with per-vehicle-class base and repeat fines.</li>
+<li>
+<p>StateChallanOverride captures state-specific adjustments to base/repeat fines.</p>
+</li>
+<li>
+<p>Frontend Integration:</p>
+</li>
+<li>ChallanCalculator component orchestrates online/offline calculation based on connectivity state.</li>
+<li>Uses a store to manage connectivity and user inputs.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-51">duckdb-challan.ts:1-51</a>
+- <a href="file://backend/services/challan_service.py#L96-314">challan_service.py:96-314</a>
+- <a href="file://backend/models/challan.py#L6-53">challan.py:6-53</a>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/lib/store.ts#L60-120">store.ts:60-120</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The offline architecture separates concerns between frontend data bundling and backend computation:</p>
+<ul>
+<li>Data Loading:</li>
+<li>CSV files are placed under frontend/public/offline-data and optionally generated/seeded via backend scripts.</li>
+<li>
+<p>Backend ChallanService scans multiple directories for violations.csv and state_overrides.csv.</p>
+</li>
+<li>
+<p>Calculation Flow:</p>
+</li>
+<li>Online: Frontend calls backend endpoint; backend resolves rules and overrides and returns calculated amounts.</li>
+<li>Offline: Frontend uses DuckDB WASM to query the bundled CSV data directly.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant User as "User"
+participant UI as "ChallanCalculator.tsx"
+participant Store as "store.ts"
+participant API as "api.ts"
+participant Router as "backend/api/v1/challan.py"
+participant Service as "backend/services/challan_service.py"
+User-&gt;&gt;UI : Select violation, vehicle, state, repeat flag
+UI-&gt;&gt;Store : Read connectivity state
+alt Online
+UI-&gt;&gt;API : calculateChallan(payload)
+API-&gt;&gt;Router : POST /api/v1/challan/calculate
+Router-&gt;&gt;Service : calculate(payload)
+Service--&gt;&gt;Router : ChallanResponse
+Router--&gt;&gt;API : ChallanResponse
+API--&gt;&gt;UI : Result
+else Offline
+UI-&gt;&gt;UI : Fallback to DuckDB WASM lookup
+UI--&gt;&gt;User : Display offline-calculated result
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L32-62">ChallanCalculator.tsx:32-62</a>
+- <a href="file://frontend/lib/store.ts#L90-93">store.ts:90-93</a>
+- <a href="file://frontend/lib/api.ts#L1-821">api.ts:1-821</a>
+- <a href="file://backend/api/v1/challan.py#L17-26">challan.py:17-26</a>
+- <a href="file://backend/services/challan_service.py#L103-149">challan_service.py:103-149</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="duckdb-offline-abstraction">DuckDB Offline Abstraction</h3>
+<ul>
+<li>Purpose:</li>
+<li>Initialize DuckDB WASM and perform offline queries against bundled CSV data.</li>
+<li>
+<p>Provides a simulated offline calculation path for development and fallback scenarios.</p>
+</li>
+<li>
+<p>Implementation Notes:</p>
+</li>
+<li>The current implementation simulates a fast offline lookup using an in-memory database.</li>
+<li>Production-ready integration would load violations.csv and state_overrides.csv into DuckDB WASM and execute SQL queries for rule and override resolution.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Offline Init"]) --&gt; CheckEnv["Check Browser Environment"]
+CheckEnv --&gt; Ready{"Ready?"}
+Ready --&gt; |Yes| LoadData["Load bundled CSVs into DuckDB"]
+Ready --&gt; |No| Fallback["Return offline engine simulation"]
+LoadData --&gt; QueryDB["Execute SQL to resolve rule and override"]
+QueryDB --&gt; Return["Return calculated fine"]
+Fallback --&gt; Return</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/lib/duckdb-challan.ts#L4-18">duckdb-challan.ts:4-18</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L20-50">duckdb-challan.ts:20-50</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-51">duckdb-challan.ts:1-51</a></p>
+<h3 id="backend-challanservice">Backend ChallanService</h3>
+<ul>
+<li>Responsibilities:</li>
+<li>Normalize inputs (violation code, vehicle class, state code).</li>
+<li>Load rules and overrides from CSV files.</li>
+<li>Apply state overrides and compute final amounts.</li>
+<li>
+<p>Validate inputs and raise service validation errors when unsupported.</p>
+</li>
+<li>
+<p>Data Loading Strategy:</p>
+</li>
+<li>Scans multiple directories for violations.csv and state_overrides.csv.</li>
+<li>
+<p>Supports both backend datasets and frontend public offline-data.</p>
+</li>
+<li>
+<p>Query Optimization:</p>
+</li>
+<li>Linear scan of rules and overrides; suitable for small-to-medium datasets.</li>
+<li>Consider adding indexing or precomputed structures for larger datasets.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class ChallanService {
++calculate(query) ChallanResponse
+-_load_optional_files() void
+-_load_rules_csv(csv_path) void
+-_load_state_overrides_csv(csv_path) void
+-_find_rule(violation_code) ChallanRule
+-_find_override(state_code, violation_code, vehicle_class) StateChallanOverride
+-_extract_fines(row, prefix) dict
+-_parse_money(value) int
+-_normalize_violation_code(value) str
+-_normalize_vehicle_class(value) str
+-_normalize_state_code(value) str
+}
+class ChallanRule {
++violation_code : str
++section : str
++description : str
++base_fines : dict
++repeat_fines : dict
++aliases : tuple
++matches(candidate) bool
++fine_for_vehicle(vehicle_class) int
++repeat_fine_for_vehicle(vehicle_class) int
+}
+class StateChallanOverride {
++state_code : str
++violation_code : str
++vehicle_class : str
++base_fine : int
++repeat_fine : int
++section : str
++description : str
++note : str
++matches(state_code, violation_code, vehicle_class) bool
+}
+ChallanService --&gt; ChallanRule : "loads and uses"
+ChallanService --&gt; StateChallanOverride : "loads and uses"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/services/challan_service.py#L96-314">challan_service.py:96-314</a>
+- <a href="file://backend/models/challan.py#L6-53">challan.py:6-53</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L96-314">challan_service.py:96-314</a>
+- <a href="file://backend/models/challan.py#L6-53">challan.py:6-53</a></p>
+<h3 id="data-schema-and-csv-normalization">Data Schema and CSV Normalization</h3>
+<ul>
+<li>violations.csv:</li>
+<li>Columns include violation_code, section, description, base_fine variants by vehicle class, repeat_fine variants, and aliases.</li>
+<li>
+<p>The backend normalizes these into ChallanRule entries.</p>
+</li>
+<li>
+<p>state_overrides.csv:</p>
+</li>
+<li>Columns include state_code, violation_code, vehicle_class, base_fine, repeat_fine, section, description, and note.</li>
+<li>
+<p>The backend normalizes these into StateChallanOverride entries.</p>
+</li>
+<li>
+<p>Seed Script:</p>
+</li>
+<li>Normalizes diverse sources into standardized CSVs for backend consumption.</li>
+<li>Merges defaults with overrides and writes normalized outputs.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Source["Seed Inputs"] --&gt; Normalize["Normalize and Merge"]
+Normalize --&gt; Rules["violations.csv"]
+Normalize --&gt; Overrides["state_overrides.csv"]
+Rules --&gt; Backend["Backend CSV Loader"]
+Overrides --&gt; Backend
+Backend --&gt; Service["ChallanService"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://backend/scripts/data/seed_violations.py#L158-301">seed_violations.py:158-301</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L419-482">seed_violations.py:419-482</a>
+- <a href="file://backend/services/challan_service.py#L168-238">challan_service.py:168-238</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/public/offline-data/violations.csv#L1-27">violations.csv:1-27</a>
+- <a href="file://frontend/public/offline-data/state_overrides.csv#L1-14">state_overrides.csv:1-14</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L158-301">seed_violations.py:158-301</a>
+- <a href="file://backend/services/challan_service.py#L168-238">challan_service.py:168-238</a></p>
+<h3 id="frontend-integration-and-fallback-mechanisms">Frontend Integration and Fallback Mechanisms</h3>
+<ul>
+<li>Connectivity-aware calculation:</li>
+<li>Reads connectivity state from the store.</li>
+<li>
+<p>Calls backend endpoint in online mode; falls back to DuckDB WASM simulation in offline mode.</p>
+</li>
+<li>
+<p>User Experience:</p>
+</li>
+<li>Provides a responsive UI with violation selection, vehicle class, state selection, and repeat offender toggle.</li>
+<li>Displays results with section, description, and calculated amounts.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant UI as "ChallanCalculator.tsx"
+participant Store as "store.ts"
+participant DuckDB as "duckdb-challan.ts"
+participant API as "api.ts"
+UI-&gt;&gt;Store : Get connectivity
+alt Online
+UI-&gt;&gt;API : calculateChallan(payload)
+API--&gt;&gt;UI : Result
+else Offline
+UI-&gt;&gt;DuckDB : calculateOfflineChallan(code, vehicle, repeat)
+DuckDB--&gt;&gt;UI : Simulated result
+end</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L32-62">ChallanCalculator.tsx:32-62</a>
+- <a href="file://frontend/lib/store.ts#L90-93">store.ts:90-93</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L20-50">duckdb-challan.ts:20-50</a>
+- <a href="file://frontend/lib/api.ts#L1-821">api.ts:1-821</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/lib/store.ts#L60-120">store.ts:60-120</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-51">duckdb-challan.ts:1-51</a>
+- <a href="file://frontend/lib/api.ts#L1-821">api.ts:1-821</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<ul>
+<li>Frontend Dependencies:</li>
+<li>ChallanCalculator depends on store connectivity state and API for online calculation.</li>
+<li>
+<p>DuckDB abstraction encapsulates offline calculation logic.</p>
+</li>
+<li>
+<p>Backend Dependencies:</p>
+</li>
+<li>ChallanService depends on models, configuration, and CSV loaders.</li>
+<li>CSV loading paths include backend datasets and frontend public offline-data.</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+UI["ChallanCalculator.tsx"] --&gt; API["api.ts"]
+UI --&gt; Store["store.ts"]
+UI --&gt; DuckDB["duckdb-challan.ts"]
+API --&gt; Router["backend/api/v1/challan.py"]
+Router --&gt; Service["backend/services/challan_service.py"]
+Service --&gt; Models["backend/models/challan.py"]
+Service --&gt; Config["backend/core/config.py"]
+Service --&gt; CSV["CSV Datasets"]
+CSV --&gt; FrontendData["frontend/public/offline-data"]
+CSV --&gt; BackendData["backend/datasets/challan"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ChallanCalculator.tsx#L1-186">ChallanCalculator.tsx:1-186</a>
+- <a href="file://frontend/lib/store.ts#L1-226">store.ts:1-226</a>
+- <a href="file://frontend/lib/api.ts#L1-821">api.ts:1-821</a>
+- <a href="file://frontend/lib/duckdb-challan.ts#L1-51">duckdb-challan.ts:1-51</a>
+- <a href="file://backend/api/v1/challan.py#L1-26">challan.py:1-26</a>
+- <a href="file://backend/services/challan_service.py#L151-166">challan_service.py:151-166</a>
+- <a href="file://backend/core/config.py#L55-57">config.py:55-57</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L151-166">challan_service.py:151-166</a>
+- <a href="file://backend/core/config.py#L55-57">config.py:55-57</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Data Loading:</li>
+<li>CSV parsing is straightforward and suitable for small-to-medium datasets.</li>
+<li>
+<p>For large datasets, consider precomputing and caching normalized structures in memory.</p>
+</li>
+<li>
+<p>Query Optimization:</p>
+</li>
+<li>Current linear scans are acceptable for typical datasets.</li>
+<li>
+<p>For scalability, consider indexing or hash maps keyed by violation_code and state_code.</p>
+</li>
+<li>
+<p>Memory Management:</p>
+</li>
+<li>Keep rule and override lists immutable after loading.</li>
+<li>
+<p>Avoid repeated CSV reads by caching parsed data in memory.</p>
+</li>
+<li>
+<p>Caching Strategies:</p>
+</li>
+<li>Frontend: Persist connectivity state and recent calculations in local storage.</li>
+<li>
+<p>Backend: Cache normalized CSV data during service initialization.</p>
+</li>
+<li>
+<p>Offline Operation:</p>
+</li>
+<li>DuckDB WASM enables efficient in-browser querying of CSV data.</li>
+<li>Bundle only necessary data to minimize memory footprint.</li>
+</ul>
+<p>[No sources needed since this section provides general guidance]</p>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Unsupported Violation Code:</li>
+<li>The backend raises a service validation error when a violation code is not recognized.</li>
+<li>
+<p>Ensure violations.csv includes the violation code or alias.</p>
+</li>
+<li>
+<p>Missing Vehicle Class or State Code:</p>
+</li>
+<li>Validation errors are raised for missing or invalid vehicle/state codes.</li>
+<li>
+<p>Confirm normalization rules and aliases align with input values.</p>
+</li>
+<li>
+<p>Data Consistency Across States:</p>
+</li>
+<li>Verify state_overrides.csv entries match state codes and vehicle classes.</li>
+<li>
+<p>Use the seed script to normalize and merge overrides consistently.</p>
+</li>
+<li>
+<p>Offline Calculation Accuracy:</p>
+</li>
+<li>Confirm DuckDB WASM is initialized and CSV data is loaded.</li>
+<li>Validate that the simulated offline lookup returns expected results.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://backend/services/challan_service.py#L109-113">challan_service.py:109-113</a>
+- <a href="file://backend/services/challan_service.py#L293-314">challan_service.py:293-314</a>
+- <a href="file://backend/scripts/data/seed_violations.py#L383-396">seed_violations.py:383-396</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The DuckDB offline implementation for the Challan Calculator combines frontend CSV bundling with backend CSV loading and normalization to deliver accurate, real-time fine calculations. The system supports online and offline modes, with robust input validation and state override handling. By leveraging DuckDB WASM for in-browser querying and maintaining normalized CSV datasets, the solution ensures reliable operation across 25+ major cities while preserving performance and data consistency.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

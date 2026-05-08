@@ -1,0 +1,1995 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UI Components - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ui-components" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UI Components
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-component-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Component Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Component Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#button-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Button Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appsidebar-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AppSidebar Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clientapphooks-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClientAppHooks Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectivitybadge-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConnectivityBadge Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networkmonitor-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NetworkMonitor Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#themeprovider-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ThemeProvider Component
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#styling-and-design-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Styling and Design Tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider Composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="ui-components">UI Components</h1>
+<p><cite>
+<strong>Referenced Files in This Document</strong>
+- <a href="file://frontend/components/ui/button.tsx">button.tsx</a>
+- <a href="file://frontend/components/AppSidebar.tsx">AppSidebar.tsx</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx">ClientAppHooks.tsx</a>
+- <a href="file://frontend/components/ConnectivityBadge.tsx">ConnectivityBadge.tsx</a>
+- <a href="file://frontend/components/NetworkMonitor.tsx">NetworkMonitor.tsx</a>
+- <a href="file://frontend/components/ThemeProvider.tsx">ThemeProvider.tsx</a>
+- <a href="file://frontend/components/ConnectivityProvider.tsx">ConnectivityProvider.tsx</a>
+- <a href="file://frontend/lib/store.ts">store.ts</a>
+- <a href="file://frontend/app/layout.tsx">layout.tsx</a>
+- <a href="file://frontend/tailwind.config.js">tailwind.config.js</a>
+- <a href="file://frontend/components.json">components.json</a>
+- <a href="file://frontend/lib/utils.ts">utils.ts</a>
+- <a href="file://frontend/app/globals.css">globals.css</a>
+</cite></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#detailed-component-analysis">Detailed Component Analysis</a></li>
+<li><a href="#dependency-analysis">Dependency Analysis</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendices">Appendices</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>This document describes the core UI component library used across the SafeVixAI application. It focuses on foundational components that define behavior, styling, and integration patterns: Button, AppSidebar, ClientAppHooks, ConnectivityBadge, NetworkMonitor, and ThemeProvider. It explains component props, TypeScript interfaces, styling approaches with Tailwind CSS, and accessibility implementations. It also provides usage examples, composition patterns, state management integration, performance optimization techniques, and guidelines for extending components while maintaining design consistency.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>The UI components live under the frontend/components directory and integrate with a centralized Zustand store for state, a ThemeProvider for theme resolution, and Tailwind CSS for styling. The Next.js root layout composes providers to establish global behavior.</p>
+<pre class="mermaid"><code>graph TB
+L["Root Layout&lt;br/&gt;layout.tsx"] --&gt; TP["ThemeProvider&lt;br/&gt;ThemeProvider.tsx"]
+TP --&gt; CP["ConnectivityProvider&lt;br/&gt;ConnectivityProvider.tsx"]
+CP --&gt; CAH["ClientAppHooks&lt;br/&gt;ClientAppHooks.tsx"]
+CAH --&gt; PS["PageShell&lt;br/&gt;(used in layout.tsx)"]
+L --&gt; SB["AppSidebar&lt;br/&gt;AppSidebar.tsx"]
+L --&gt; CB["ConnectivityBadge&lt;br/&gt;ConnectivityBadge.tsx"]
+L --&gt; NM["NetworkMonitor&lt;br/&gt;NetworkMonitor.tsx"]
+L --&gt; BTN["Button&lt;br/&gt;button.tsx"]
+BTN --&gt; U["Utils (cn)&lt;br/&gt;utils.ts"]
+TP --&gt; ST["Zustand Store&lt;br/&gt;store.ts"]
+CP --&gt; ST
+SB --&gt; ST
+CB --&gt; ST
+NM --&gt; ST</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L85">layout.tsx:38-85</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L19-L62">ThemeProvider.tsx:19-62</a>
+- <a href="file://frontend/components/ConnectivityProvider.tsx#L6-L26">ConnectivityProvider.tsx:6-26</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L8-L37">ClientAppHooks.tsx:8-37</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L170">AppSidebar.tsx:42-170</a>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L16-L31">ConnectivityBadge.tsx:16-31</a>
+- <a href="file://frontend/components/NetworkMonitor.tsx#L6-L34">NetworkMonitor.tsx:6-34</a>
+- <a href="file://frontend/components/ui/button.tsx#L43-L58">button.tsx:43-58</a>
+- <a href="file://frontend/lib/utils.ts#L4-L6">utils.ts:4-6</a>
+- <a href="file://frontend/lib/store.ts#L129-L225">store.ts:129-225</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L85">layout.tsx:38-85</a>
+- <a href="file://frontend/components.json#L1-L26">components.json:1-26</a></p>
+<h2 id="core-components">Core Components</h2>
+<p>This section documents the core UI components and their responsibilities, props, styling, and accessibility.</p>
+<ul>
+<li>Button</li>
+<li>Purpose: A versatile button primitive with variant and size variants powered by class variance authority and styled with Tailwind utilities.</li>
+<li>Props: Inherits from the underlying button primitive and adds optional variant and size props. It merges className with computed variants.</li>
+<li>Styling: Uses cva for variants and sizes, Tailwind utilities for responsive sizing and spacing, and focus-visible ring styles.</li>
+<li>Accessibility: Inherits native button semantics; supports aria-* attributes and focus-visible ring.</li>
+<li>
+<p>Usage pattern: Wrap icons and text; use variant "link" for minimal actions; pair with size "icon" for compact controls.</p>
+</li>
+<li>
+<p>AppSidebar</p>
+</li>
+<li>Purpose: A responsive sidebar with navigation links, quick dial buttons, and a prominent SOS action. Integrates with Zustand for collapse state and Next.js routing for active indicators.</li>
+<li>Props: None; reads current pathname and state from hooks.</li>
+<li>Styling: Uses Tailwind utilities for backdrop blur, shadows, transitions, and responsive widths. Animations powered by motion/react.</li>
+<li>
+<p>Accessibility: Uses semantic Link and button elements; includes title attributes and aria-labels where appropriate.</p>
+</li>
+<li>
+<p>ClientAppHooks</p>
+</li>
+<li>Purpose: Initializes offline sync listeners and crash detection, and displays a toast notification on crash detection events.</li>
+<li>Props: None; runs side effects on mount.</li>
+<li>Styling: Toast styling is handled by react-hot-toast; component itself renders null.</li>
+<li>
+<p>Accessibility: Toasts are announced to assistive technologies; ensure sufficient contrast and readable text.</p>
+</li>
+<li>
+<p>ConnectivityBadge</p>
+</li>
+<li>Purpose: Displays current connectivity state with a colored dot and label. Reads from Zustand store.</li>
+<li>Props: Optional className for additional styling.</li>
+<li>Styling: Uses CSS classes for dot and label; color classes mapped per state.</li>
+<li>
+<p>Accessibility: Announces state via aria-live and aria-label.</p>
+</li>
+<li>
+<p>NetworkMonitor</p>
+</li>
+<li>Purpose: Listens to browser online/offline events and updates Zustand store accordingly.</li>
+<li>Props: None; runs side effects on mount and unmounts listeners.</li>
+<li>Styling: Renders nothing; pure behavior.</li>
+<li>
+<p>Accessibility: No special accessibility concerns.</p>
+</li>
+<li>
+<p>ThemeProvider</p>
+</li>
+<li>Purpose: Manages theme selection (light, dark, system) and applies resolved theme to the document element and classes.</li>
+<li>Props: Children.</li>
+<li>Styling: Applies data-theme and class toggles; persists selection in localStorage.</li>
+<li>Accessibility: Respects system preference; ensures smooth transitions.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ui/button.tsx#L43-L58">button.tsx:43-58</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L170">AppSidebar.tsx:42-170</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L8-L37">ClientAppHooks.tsx:8-37</a>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L16-L31">ConnectivityBadge.tsx:16-31</a>
+- <a href="file://frontend/components/NetworkMonitor.tsx#L6-L34">NetworkMonitor.tsx:6-34</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L19-L62">ThemeProvider.tsx:19-62</a></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The UI components are composed within the Next.js root layout. Providers orchestrate global state and behavior:
+- ThemeProvider resolves and applies theme, persists user choice.
+- ConnectivityProvider listens to network events and updates store.
+- ClientAppHooks initializes offline and crash detection.
+- AppSidebar integrates routing and state to reflect active navigation and show quick actions.
+- ConnectivityBadge reflects current connectivity state.
+- NetworkMonitor mirrors browser online/offline events to store.
+- Button uses shared styling utilities and variants.</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Browser as "Browser"
+participant Layout as "Root Layout&lt;br/&gt;layout.tsx"
+participant Theme as "ThemeProvider&lt;br/&gt;ThemeProvider.tsx"
+participant ConnProv as "ConnectivityProvider&lt;br/&gt;ConnectivityProvider.tsx"
+participant Hooks as "ClientAppHooks&lt;br/&gt;ClientAppHooks.tsx"
+participant Store as "Zustand Store&lt;br/&gt;store.ts"
+Browser-&gt;&gt;Layout : Render HTML
+Layout-&gt;&gt;Theme : Initialize theme provider
+Theme-&gt;&gt;Theme : Read localStorage and system preference
+Theme-&gt;&gt;Browser : Apply data-theme and classes
+Layout-&gt;&gt;ConnProv : Initialize connectivity provider
+ConnProv-&gt;&gt;Browser : Add online/offline listeners
+Browser--&gt;&gt;ConnProv : online/offline events
+ConnProv-&gt;&gt;Store : setConnectivity(state)
+Layout-&gt;&gt;Hooks : Mount client hooks
+Hooks-&gt;&gt;Store : registerOfflineSyncListeners()
+Hooks-&gt;&gt;Browser : startCrashDetection()
+Hooks--&gt;&gt;Browser : toast on crash detected</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L85">layout.tsx:38-85</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L19-L62">ThemeProvider.tsx:19-62</a>
+- <a href="file://frontend/components/ConnectivityProvider.tsx#L6-L26">ConnectivityProvider.tsx:6-26</a>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L8-L37">ClientAppHooks.tsx:8-37</a>
+- <a href="file://frontend/lib/store.ts#L129-L225">store.ts:129-225</a></p>
+<h2 id="detailed-component-analysis">Detailed Component Analysis</h2>
+<h3 id="button-component">Button Component</h3>
+<ul>
+<li>Implementation pattern: Wraps a base UI button primitive and augments it with variant and size logic using class variance authority. Merges computed classes with user-provided className.</li>
+<li>Data structures: Uses cva variants and default variants to compute a class string.</li>
+<li>Dependencies: Imports cn from utils for merging classes; uses Base UI Button primitive.</li>
+<li>Accessibility: Inherits button semantics; supports focus-visible ring and disabled states.</li>
+<li>Performance: Minimal re-renders; variant computation is deterministic.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+class Button {
++variant : "default"|"outline"|"secondary"|"ghost"|"destructive"|"link"
++size : "default"|"xs"|"sm"|"lg"|"icon"|"icon-xs"|"icon-sm"|"icon-lg"
++className : string
++render()
+}
+class Utils {
++cn(inputs) : string
+}
+Button --&gt; Utils : "merges classes"</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ui/button.tsx#L43-L58">button.tsx:43-58</a>
+- <a href="file://frontend/lib/utils.ts#L4-L6">utils.ts:4-6</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ui/button.tsx#L6-L41">button.tsx:6-41</a>
+- <a href="file://frontend/components/ui/button.tsx#L43-L58">button.tsx:43-58</a>
+- <a href="file://frontend/lib/utils.ts#L4-L6">utils.ts:4-6</a></p>
+<h3 id="appsidebar-component">AppSidebar Component</h3>
+<ul>
+<li>Implementation pattern: Uses Next.js navigation hooks to detect active route and Zustand store to manage collapsed state. Renders navigation items and quick dial entries with icons and labels. Includes animated active indicator and a prominent SOS action.</li>
+<li>Data structures: navItems and quickDials arrays define navigation and emergency contacts.</li>
+<li>Dependencies: motion/react for animations; lucide-react for icons; Zustand store for UI state.</li>
+<li>Accessibility: Uses semantic Link and button elements; includes title attributes; active state indicated visually and via layoutId animation.</li>
+<li>Performance: Uses memoized state reads; animations are optimized with spring physics.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Render AppSidebar"]) --&gt; ReadState["Read pathname and collapsed state from hooks/store"]
+ReadState --&gt; BuildNav["Build nav items with active state"]
+BuildNav --&gt; RenderNav["Render navigation links"]
+RenderNav --&gt; RenderQuickDials["Render quick dial entries"]
+RenderQuickDials --&gt; RenderFooter["Render SOS footer"]
+RenderFooter --&gt; End(["Done"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L170">AppSidebar.tsx:42-170</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/AppSidebar.tsx#L23-L40">AppSidebar.tsx:23-40</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L170">AppSidebar.tsx:42-170</a></p>
+<h3 id="clientapphooks-component">ClientAppHooks Component</h3>
+<ul>
+<li>Implementation pattern: Runs side effects on mount to initialize offline sync listeners and crash detection. Displays a toast notification when a crash is detected.</li>
+<li>Data structures: None; relies on external libraries for offline and crash detection.</li>
+<li>Dependencies: react-hot-toast for notifications; offline and crash detection utilities.</li>
+<li>Accessibility: Toasts are announced; ensure readable messages and sufficient contrast.</li>
+<li>Performance: Side effects are attached once; no ongoing rendering overhead.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant Comp as "ClientAppHooks"
+participant Offline as "Offline Sync Listener"
+participant Crash as "Crash Detection"
+participant Toast as "react-hot-toast"
+Comp-&gt;&gt;Offline : registerOfflineSyncListeners()
+Comp-&gt;&gt;Crash : startCrashDetection(handler)
+Crash--&gt;&gt;Comp : crash detected(force)
+Comp-&gt;&gt;Toast : show error toast with details</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L8-L37">ClientAppHooks.tsx:8-37</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ClientAppHooks.tsx#L8-L37">ClientAppHooks.tsx:8-37</a></p>
+<h3 id="connectivitybadge-component">ConnectivityBadge Component</h3>
+<ul>
+<li>Implementation pattern: Reads current connectivity state from Zustand store and renders a badge with a colored dot and label. Uses aria-live and aria-label for accessibility.</li>
+<li>Data structures: CONFIG maps ConnectivityState to label and color class.</li>
+<li>Dependencies: Zustand store for connectivity state.</li>
+<li>Accessibility: Announces state changes to assistive technologies.</li>
+<li>Performance: Pure render based on store subscription.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Render ConnectivityBadge"]) --&gt; ReadStore["Read connectivity from store"]
+ReadStore --&gt; MapState["Map state to label and color"]
+MapState --&gt; RenderBadge["Render badge with dot and label"]
+RenderBadge --&gt; End(["Done"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L16-L31">ConnectivityBadge.tsx:16-31</a>
+- <a href="file://frontend/lib/store.ts#L61">store.ts:61</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L5-L10">ConnectivityBadge.tsx:5-10</a>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L16-L31">ConnectivityBadge.tsx:16-31</a>
+- <a href="file://frontend/lib/store.ts#L90-L92">store.ts:90-92</a></p>
+<h3 id="networkmonitor-component">NetworkMonitor Component</h3>
+<ul>
+<li>Implementation pattern: Adds online/offline event listeners on mount and updates Zustand store accordingly. Removes listeners on unmount.</li>
+<li>Data structures: None; uses navigator.onLine to determine initial state.</li>
+<li>Dependencies: Zustand store for connectivity state.</li>
+<li>Accessibility: No special accessibility concerns.</li>
+<li>Performance: Minimal overhead; listeners are removed on unmount.</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant NM as "NetworkMonitor"
+participant Browser as "Browser"
+participant Store as "Zustand Store"
+NM-&gt;&gt;Browser : Add online/offline listeners
+Browser--&gt;&gt;NM : online/offline events
+NM-&gt;&gt;Store : setConnectivity(state)
+NM-&gt;&gt;Browser : Remove listeners on cleanup</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/NetworkMonitor.tsx#L6-L34">NetworkMonitor.tsx:6-34</a>
+- <a href="file://frontend/lib/store.ts#L90-L92">store.ts:90-92</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/NetworkMonitor.tsx#L6-L34">NetworkMonitor.tsx:6-34</a>
+- <a href="file://frontend/lib/store.ts#L90-L92">store.ts:90-92</a></p>
+<h3 id="themeprovider-component">ThemeProvider Component</h3>
+<ul>
+<li>Implementation pattern: Manages theme selection, resolves system preference, applies data-theme and class toggles, and persists user choice in localStorage. Exposes a context for consumers.</li>
+<li>Data structures: ThemeContext carries theme, resolvedTheme, and setTheme.</li>
+<li>Dependencies: localStorage for persistence; matchMedia for system preference.</li>
+<li>Accessibility: Respects system preference; ensures smooth transitions.</li>
+<li>Performance: Applies theme once on mount and on preference change; efficient class toggling.</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["Initialize ThemeProvider"]) --&gt; LoadSaved["Load saved theme from localStorage"]
+LoadSaved --&gt; Resolve["Resolve effective theme (system|light|dark)"]
+Resolve --&gt; Apply["Apply data-theme and classes to root"]
+Apply --&gt; Persist["Persist theme in localStorage"]
+Persist --&gt; End(["Done"])</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ThemeProvider.tsx#L19-L62">ThemeProvider.tsx:19-62</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ThemeProvider.tsx#L5-L17">ThemeProvider.tsx:5-17</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L19-L62">ThemeProvider.tsx:19-62</a></p>
+<h2 id="dependency-analysis">Dependency Analysis</h2>
+<p>The components depend on shared utilities and state management:
+- Button depends on cn for class merging and Tailwind utilities for styling.
+- AppSidebar depends on Zustand store for UI state and Next.js navigation for active routes.
+- ClientAppHooks depends on external libraries for offline and crash detection.
+- ConnectivityBadge and NetworkMonitor depend on Zustand store for connectivity state.
+- ThemeProvider depends on localStorage and matchMedia for theme resolution.</p>
+<pre class="mermaid"><code>graph TB
+BTN["Button&lt;br/&gt;button.tsx"] --&gt; U["Utils (cn)&lt;br/&gt;utils.ts"]
+BTN --&gt; TW["Tailwind Utilities&lt;br/&gt;globals.css"]
+SB["AppSidebar&lt;br/&gt;AppSidebar.tsx"] --&gt; ST["Zustand Store&lt;br/&gt;store.ts"]
+CB["ConnectivityBadge&lt;br/&gt;ConnectivityBadge.tsx"] --&gt; ST
+NM["NetworkMonitor&lt;br/&gt;NetworkMonitor.tsx"] --&gt; ST
+TP["ThemeProvider&lt;br/&gt;ThemeProvider.tsx"] --&gt; LS["localStorage"]
+TP --&gt; MM["matchMedia"]</code></pre>
+<p><strong>Diagram sources</strong>
+- <a href="file://frontend/components/ui/button.tsx#L4-L6">button.tsx:4-6</a>
+- <a href="file://frontend/lib/utils.ts#L4-L6">utils.ts:4-6</a>
+- <a href="file://frontend/app/globals.css#L1-L800">globals.css:1-800</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L21">AppSidebar.tsx:21</a>
+- <a href="file://frontend/lib/store.ts#L129-L225">store.ts:129-225</a>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L3">ConnectivityBadge.tsx:3</a>
+- <a href="file://frontend/components/NetworkMonitor.tsx#L4">NetworkMonitor.tsx:4</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L20-L48">ThemeProvider.tsx:20-48</a></p>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ui/button.tsx#L4-L6">button.tsx:4-6</a>
+- <a href="file://frontend/lib/utils.ts#L4-L6">utils.ts:4-6</a>
+- <a href="file://frontend/app/globals.css#L1-L800">globals.css:1-800</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L21">AppSidebar.tsx:21</a>
+- <a href="file://frontend/lib/store.ts#L129-L225">store.ts:129-225</a>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L3">ConnectivityBadge.tsx:3</a>
+- <a href="file://frontend/components/NetworkMonitor.tsx#L4">NetworkMonitor.tsx:4</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L20-L48">ThemeProvider.tsx:20-48</a></p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li>Prefer variant and size props on Button to avoid ad-hoc class concatenation.</li>
+<li>Use cn for class merging to minimize redundant DOM changes.</li>
+<li>Keep AppSidebar navigation arrays static to avoid unnecessary re-renders.</li>
+<li>Debounce or throttle event listeners where appropriate (e.g., resize or scroll).</li>
+<li>Use CSS custom properties for theme tokens to reduce repaint costs.</li>
+<li>Avoid heavy computations inside render; memoize derived values from Zustand store.</li>
+<li>Leverage Tailwind utilities for consistent, atomic styling to reduce CSS bloat.</li>
+</ul>
+<h2 id="troubleshooting-guide">Troubleshooting Guide</h2>
+<ul>
+<li>Button does not apply variant styles:</li>
+<li>Verify variant and size props are passed correctly.</li>
+<li>Ensure Tailwind utilities are included in the build and globals.css is loaded.</li>
+<li>AppSidebar active state not updating:</li>
+<li>Confirm usePathname hook is used and the active route matches the href.</li>
+<li>Check Zustand state updates for isDesktopSidebarCollapsed.</li>
+<li>ConnectivityBadge not reflecting state:</li>
+<li>Ensure store connectivity state is updated by NetworkMonitor or ConnectivityProvider.</li>
+<li>Verify aria-live and aria-label are present for screen readers.</li>
+<li>NetworkMonitor not updating store:</li>
+<li>Confirm online/offline listeners are attached and removed on unmount.</li>
+<li>Check for browser compatibility of navigator.onLine.</li>
+<li>ThemeProvider not applying theme:</li>
+<li>Verify localStorage persistence and matchMedia listeners.</li>
+<li>Ensure data-theme attribute and class toggles are applied to the root element.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/components/ui/button.tsx#L43-L58">button.tsx:43-58</a>
+- <a href="file://frontend/components/AppSidebar.tsx#L42-L170">AppSidebar.tsx:42-170</a>
+- <a href="file://frontend/components/ConnectivityBadge.tsx#L16-L31">ConnectivityBadge.tsx:16-31</a>
+- <a href="file://frontend/components/NetworkMonitor.tsx#L6-L34">NetworkMonitor.tsx:6-34</a>
+- <a href="file://frontend/components/ThemeProvider.tsx#L19-L62">ThemeProvider.tsx:19-62</a>
+- <a href="file://frontend/lib/store.ts#L90-L92">store.ts:90-92</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The core UI components form a cohesive system that emphasizes consistency, accessibility, and performance. They leverage Tailwind CSS for styling, Zustand for state, and React primitives for behavior. By following the documented patterns and guidelines, developers can extend components reliably while maintaining design consistency across the application.</p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="styling-and-design-tokens">Styling and Design Tokens</h3>
+<ul>
+<li>Tailwind configuration extends theme tokens and defines dark mode behavior based on data-theme classes.</li>
+<li>CSS custom properties define semantic colors, shadows, radii, and transitions for consistent theming.</li>
+<li>Utility classes support animations, glassmorphism, and responsive layouts.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/tailwind.config.js#L1-L131">tailwind.config.js:1-131</a>
+- <a href="file://frontend/app/globals.css#L25-L195">globals.css:25-195</a></p>
+<h3 id="provider-composition">Provider Composition</h3>
+<ul>
+<li>Root layout composes ThemeProvider, ConnectivityProvider, ClientAppHooks, and PageShell to establish global behavior and state.</li>
+</ul>
+<p><strong>Section sources</strong>
+- <a href="file://frontend/app/layout.tsx#L38-L85">layout.tsx:38-85</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
