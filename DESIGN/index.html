@@ -2530,7 +2530,7 @@ fine amounts, version numbers.</p>
 <p>Standard card padding: <strong>16px</strong>. Feature card padding: <strong>20px</strong>. Emergency card: <strong>24px</strong>.
 Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 <p>Layout dimensions:
-- Sidebar: 192px wide, full height, fixed
+- Sidebar: 280px wide, full height, fixed
 - Header: 52px tall
 - Bottom nav (mobile): 64px tall
 - Emergency dial bar (sidebar bottom): 80px</p>
@@ -2676,7 +2676,7 @@ Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 </span></code></pre></div></p>
 <h3 id="navigation">Navigation</h3>
 <p><strong>Sidebar (desktop)</strong>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">192px</span><span class="o">;</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100vh</span><span class="o">;</span><span class="w"> </span><span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">fixed</span><span class="o">;</span><span class="w"> </span><span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">280px</span><span class="o">;</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100vh</span><span class="o">;</span><span class="w"> </span><span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">fixed</span><span class="o">;</span><span class="w"> </span><span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
 </span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nt">border-right</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">06</span><span class="o">);</span>
 </span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
 </span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nt">App</span><span class="w"> </span><span class="nt">name</span><span class="o">:</span><span class="w"> </span><span class="nt">15px</span><span class="o">/</span><span class="nt">700</span><span class="w"> </span><span class="p">#</span><span class="nn">F0F4F8</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="s2">&quot;SafeVixAI&quot;</span>
@@ -2980,7 +2980,8 @@ Chat: <code>height: calc(100dvh - 52px - 64px)</code> mobile to fix blank screen
 <li>~~Settings identity card must bind to <code>useAppStore().userProfile.name</code>~~ — <strong>FIXED</strong> ✅ (ProfileCard component)</li>
 <li>~~Global blue token migration~~ — <strong>FIXED</strong> ✅ (zero blue-500/600/400 remaining)</li>
 <li>~~SafeVision AI branding remnants~~ — <strong>FIXED</strong> ✅ (zero matches remaining)</li>
-<li>~~CSS variables referencing legacy blues (#4b8eff, #adc6ff)~~ — <strong>FIXED</strong> ✅ (migrated to #00C896)</li>
+<li>~~Map re-render blinking on GPS update~~ — <strong>FIXED</strong> ✅ (memoized <code>center</code> prop + removed <code>center</code>/<code>zoom</code> from init effect deps; viewport sync handled by dedicated <code>easeTo</code> effect)</li>
+<li>~~Map Ctrl+scroll required to zoom~~ — <strong>FIXED</strong> ✅ (<code>cooperativeGestures: false</code>)</li>
 </ol>
 <hr />
 <h2 id="12-naming-conventions">12. Naming Conventions</h2>
