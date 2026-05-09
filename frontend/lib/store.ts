@@ -59,6 +59,17 @@ export interface UserProfile {
 
 export type AiMode = 'online' | 'offline' | 'loading';
 export type ConnectivityState = 'online' | 'cached' | 'offline' | 'ai-offline';
+export type MapStatus = 'loading' | 'ready' | 'error';
+export type MapProvider = 'maptiler-vector' | 'maptiler-raster' | 'openfreemap' | null;
+
+export interface MapSearchTarget {
+  lat: number;
+  lon: number;
+  label: string;
+  city?: string;
+  state?: string;
+  timestamp: number;
+}
 
 interface AppState {
   // GPS
@@ -91,6 +102,14 @@ interface AppState {
   connectivity: ConnectivityState;
   setConnectivity: (c: ConnectivityState) => void;
 
+  // Map
+  mapStatus: MapStatus;
+  mapProvider: MapProvider;
+  mapError: string | null;
+  setMapState: (state: Partial<Pick<AppState, 'mapStatus' | 'mapProvider' | 'mapError'>>) => void;
+  mapSearchTarget: MapSearchTarget | null;
+  setMapSearchTarget: (target: MapSearchTarget | null) => void;
+
   // User Profile (persisted)
   userProfile: UserProfile;
   setUserProfile: (p: Partial<UserProfile>) => void;
@@ -108,6 +127,8 @@ interface AppState {
   setSystemSidebarOpen: (v: boolean) => void;
   isDesktopSidebarCollapsed: boolean;
   setDesktopSidebarCollapsed: (v: boolean) => void;
+  isThinSidebarEnabled: boolean;
+  setThinSidebarEnabled: (v: boolean) => void;
 
   // Challan Calculator
   challanState: {
@@ -167,6 +188,14 @@ export const useAppStore = create<AppState>()(
       connectivity: 'online',
       setConnectivity: (c) => set({ connectivity: c }),
 
+      // Map
+      mapStatus: 'loading',
+      mapProvider: null,
+      mapError: null,
+      setMapState: (state) => set(state),
+      mapSearchTarget: null,
+      setMapSearchTarget: (target) => set({ mapSearchTarget: target }),
+
       // User Profile
       userProfile: {
         bloodGroup: '',
@@ -191,6 +220,8 @@ export const useAppStore = create<AppState>()(
       setSystemSidebarOpen: (v) => set({ isSystemSidebarOpen: v }),
       isDesktopSidebarCollapsed: false,
       setDesktopSidebarCollapsed: (v) => set({ isDesktopSidebarCollapsed: v }),
+      isThinSidebarEnabled: true,
+      setThinSidebarEnabled: (v) => set({ isThinSidebarEnabled: v }),
 
       // Challan Calculator
       challanState: {
@@ -216,6 +247,7 @@ export const useAppStore = create<AppState>()(
         aiMode: state.aiMode,
         serviceCategory: state.serviceCategory,
         isDesktopSidebarCollapsed: state.isDesktopSidebarCollapsed,
+        isThinSidebarEnabled: state.isThinSidebarEnabled,
       }),
     }
   )

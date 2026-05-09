@@ -37,12 +37,16 @@ const TopSearch = memo(function TopSearch({
   showBack = false,
   backHref = '/'
 }: TopSearchProps) {
-  const { gpsError, gpsLocation, serviceCategory, setServiceCategory, setSystemSidebarOpen } = useAppStore((state) => ({
+  const { gpsError, gpsLocation, serviceCategory, setMapSearchTarget, setServiceCategory, setSystemSidebarOpen, isDesktopSidebarCollapsed, setDesktopSidebarCollapsed, isThinSidebarEnabled } = useAppStore((state) => ({
     gpsError: state.gpsError,
     gpsLocation: state.gpsLocation,
     serviceCategory: state.serviceCategory,
+    setMapSearchTarget: state.setMapSearchTarget,
     setServiceCategory: state.setServiceCategory,
     setSystemSidebarOpen: state.setSystemSidebarOpen,
+    isDesktopSidebarCollapsed: state.isDesktopSidebarCollapsed,
+    setDesktopSidebarCollapsed: state.setDesktopSidebarCollapsed,
+    isThinSidebarEnabled: state.isThinSidebarEnabled,
   }));
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -78,6 +82,14 @@ const TopSearch = memo(function TopSearch({
   };
 
   const selectResult = (r: GeocodingResult) => {
+    setMapSearchTarget({
+      lat: r.lat,
+      lon: r.lon,
+      label: r.label || r.name,
+      city: r.city || undefined,
+      state: r.state || undefined,
+      timestamp: Date.now(),
+    });
     window.dispatchEvent(new CustomEvent('svai:fly-to', { detail: { lat: r.lat, lng: r.lon } }));
     setIsFocused(false);
     setSearchQuery(r.name || r.label);
@@ -89,6 +101,7 @@ const TopSearch = memo(function TopSearch({
   const locationIsApproximate = isApproximateLocation(gpsLocation);
 
   const requestLocation = () => {
+    setMapSearchTarget(null);
     window.dispatchEvent(new CustomEvent('svai:refresh-location'));
   };
 
@@ -140,11 +153,26 @@ const TopSearch = memo(function TopSearch({
           )}
 
           <button 
+            type="button"
             onClick={() => setSystemSidebarOpen(true)}
             className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-slate-700 dark:text-slate-300 lg:hidden mr-1"
           >
             <Menu className="w-6 h-6" />
           </button>
+
+          {isDesktopSidebarCollapsed && !isThinSidebarEnabled ? (
+            <button 
+              type="button"
+              onClick={() => setDesktopSidebarCollapsed(false)}
+              className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-slate-700 dark:text-slate-300 hidden lg:block mr-1"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          ) : (
+            <div className="p-2 hidden lg:flex items-center justify-center text-slate-500 dark:text-slate-400 mr-1">
+              <Search className="w-5 h-5" />
+            </div>
+          )}
 
           <input
             type="text"

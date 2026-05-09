@@ -5,8 +5,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { addTrafficLayer, toggleTrafficLayer } from '@/lib/traffic-layer';
 import { addSafeSpacesLayer } from '@/lib/safe-spaces-layer';
-import { startLocationTracking } from '@/lib/location-tracker';
 import { logClientError } from '@/lib/client-logger';
+import { useAppStore } from '@/lib/store';
 
 const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 const OPENFREEMAP_STYLE_URL =
@@ -26,7 +26,7 @@ const FACILITY_UNCLUSTERED_LAYER_ID = 'svai-facility-points';
 const FACILITY_SELECTED_LAYER_ID = 'svai-facility-selected';
 
 type MapStyleCandidate = {
-  kind: 'maptiler-vector' | 'maptiler-raster' | 'openfreemap';
+  kind: 'maptiler-vector' | 'openfreemap';
   label: string;
   style: unknown;
 };
@@ -323,36 +323,30 @@ export function MapLibreCanvas({
   const [showTraffic, setShowTraffic] = useState(false);
   const [showSafeSpaces, setShowSafeSpaces] = useState(false);
   const { resolvedTheme } = useTheme();
+  const setMapState = useAppStore((state) => state.setMapState);
+  const initialCenterRef = useRef(center);
+  const initialZoomRef = useRef(zoom);
+  const showTrafficRef = useRef(showTraffic);
+
+  useEffect(() => {
+    showTrafficRef.current = showTraffic;
+  }, [showTraffic]);
 
   const STYLE_CANDIDATES = useMemo<MapStyleCandidate[]>(() => {
-    // Read the explicit styles from the .env file!
     const lightStyle = process.env.NEXT_PUBLIC_MAPTILER_STYLE_LIGHT ?? 'streets-v2';
     const darkStyle = process.env.NEXT_PUBLIC_MAPTILER_STYLE_DARK ?? 'dataviz-dark';
-    
     const styleId = resolvedTheme === 'dark' ? darkStyle : lightStyle;
 
     const mapTilerStyleUrl = MAPTILER_KEY
       ? `https://api.maptiler.com/maps/${styleId}/style.json?key=${MAPTILER_KEY}`
       : null;
-    const mapTilerRasterUrl = MAPTILER_KEY
-      ? `https://api.maptiler.com/maps/${styleId}/256/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`
-      : null;
 
     return [
-      ...(mapTilerRasterUrl
-        ? [
-            {
-              kind: 'maptiler-raster',
-              label: 'MapTiler Streets',
-              style: buildMapTilerRasterStyle(mapTilerRasterUrl),
-            } as MapStyleCandidate,
-          ]
-        : []),
       ...(mapTilerStyleUrl
         ? [
             {
               kind: 'maptiler-vector',
-              label: 'MapTiler Streets vector',
+              label: 'MapTiler Streets',
               style: mapTilerStyleUrl,
             } as MapStyleCandidate,
           ]
@@ -375,10 +369,18 @@ export function MapLibreCanvas({
       const activeCandidate = STYLE_CANDIDATES[activeStyleIndexRef.current];
       if (activeCandidate) {
         styleReadyRef.current = false;
+        setStatus('loading');
+        setStatusMessage(`Loading ${activeCandidate.label}...`);
+        setMapState({
+          mapStatus: 'loading',
+          mapProvider: activeCandidate.kind,
+          mapError: null,
+        });
+        setStyleRevision((revision) => revision + 1);
         mapRef.current.setStyle(activeCandidate.style as maplibregl.StyleSpecification);
       }
     }
-  }, [STYLE_CANDIDATES]);
+  }, [STYLE_CANDIDATES, setMapState]);
 
   const liveFacilities = useMemo(
     () => facilities.filter((facility) => facility.coords),
@@ -392,7 +394,6 @@ export function MapLibreCanvas({
 
     let disposed = false;
     let map: maplibregl.Map | null = null;
-    let stopLocationTracking: (() => void) | null = null;
 
     async function initializeMap() {
       setStatus('loading');
@@ -405,17 +406,22 @@ export function MapLibreCanvas({
       }
 
       const getActiveCandidate = () => candidatesRef.current[activeStyleIndexRef.current];
+      setMapState({
+        mapStatus: 'loading',
+        mapProvider: getActiveCandidate().kind,
+        mapError: null,
+      });
 
       map = new maplibregl.Map({
         container: mapNodeRef.current,
         style: getActiveCandidate().style as maplibregl.StyleSpecification,
-        center: [center[1], center[0]],
-        zoom,
+        center: [initialCenterRef.current[1], initialCenterRef.current[0]],
+        zoom: initialZoomRef.current,
         maxZoom: 18,
         minZoom: 3,
         renderWorldCopies: false,
         pitchWithRotate: false,
-        cooperativeGestures: true,
+        cooperativeGestures: false,
         fadeDuration: 0,
       });
 
@@ -428,15 +434,26 @@ export function MapLibreCanvas({
         if (nextIndex >= candidatesRef.current.length) {
           setStatus('error');
           setStatusMessage('Map service is unavailable right now.');
+          setMapState({
+            mapStatus: 'error',
+            mapProvider: getActiveCandidate()?.kind ?? null,
+            mapError: 'Map service is unavailable right now.',
+          });
           return;
         }
 
+        const nextCandidate = candidatesRef.current[nextIndex];
         activeStyleIndexRef.current = nextIndex;
         styleReadyRef.current = false;
         setStatus('loading');
         setStatusMessage(message);
+        setMapState({
+          mapStatus: 'loading',
+          mapProvider: nextCandidate.kind,
+          mapError: null,
+        });
         setStyleRevision((revision) => revision + 1);
-        map.setStyle(candidatesRef.current[nextIndex].style as maplibregl.StyleSpecification);
+        map.setStyle(nextCandidate.style as maplibregl.StyleSpecification);
       };
 
       const handleMapError = (event: unknown) => {
@@ -446,31 +463,27 @@ export function MapLibreCanvas({
         };
         const message = (errorEvent?.error?.message ?? '').toLowerCase();
         const activeCandidate = getActiveCandidate();
-        const isMapTilerFailure =
-          message.includes('maptiler') ||
+        
+        const isHardFailure =
           message.includes('401') ||
           message.includes('403') ||
-          message.includes('sprite') ||
-          message.includes('glyph') ||
-          message.includes('style') ||
-          message.includes('source') ||
-          message.includes('tilejson') ||
-          message.includes('raster') ||
-          message.includes('image');
+          message.includes('fetch') ||
+          message.includes('failed to fetch') ||
+          (message.includes('maptiler') && (message.includes('unavailable') || message.includes('error')));
 
-        if (activeCandidate.kind === 'maptiler-raster' && isMapTilerFailure) {
-          applyNextStyle('MapTiler tiles unavailable, trying vector fallback...');
+        if (activeCandidate.kind === 'maptiler-vector' && isHardFailure) {
+          applyNextStyle('MapTiler unavailable, switching to OpenFreeMap...');
           return;
         }
 
-        if (activeCandidate.kind === 'maptiler-vector' && isMapTilerFailure) {
-          applyNextStyle('MapTiler tiles unavailable, switching to OpenFreeMap...');
-          return;
-        }
-
-        if (!styleReadyRef.current) {
+        if (activeCandidate.kind === 'openfreemap' && !styleReadyRef.current) {
           setStatus('error');
           setStatusMessage('Map service is unavailable right now.');
+          setMapState({
+            mapStatus: 'error',
+            mapProvider: activeCandidate.kind,
+            mapError: 'Map service is unavailable right now.',
+          });
         }
       };
 
@@ -480,7 +493,7 @@ export function MapLibreCanvas({
         const missingId = typeof imageEvent?.id === 'string' ? imageEvent.id.trim() : '';
 
         if (activeCandidate.kind === 'maptiler-vector' && missingId.length === 0) {
-          applyNextStyle('MapTiler vector assets unavailable, switching to OpenFreeMap...');
+          applyNextStyle('MapTiler vector assets unavailable, trying raster fallback...');
         }
       };
 
@@ -492,6 +505,11 @@ export function MapLibreCanvas({
         if (map.isStyleLoaded() && map.areTilesLoaded()) {
           styleReadyRef.current = true;
           setStatus('ready');
+          setMapState({
+            mapStatus: 'ready',
+            mapProvider: getActiveCandidate().kind,
+            mapError: null,
+          });
         }
       };
 
@@ -507,13 +525,12 @@ export function MapLibreCanvas({
       map.once('load', () => {
         map?.resize();
         map?.jumpTo({
-          center: [center[1], center[0]],
-          zoom,
+          center: [initialCenterRef.current[1], initialCenterRef.current[0]],
+          zoom: initialZoomRef.current,
         });
         if (map) {
           addTrafficLayer(map);
-          toggleTrafficLayer(map, showTraffic);
-          stopLocationTracking = startLocationTracking(map);
+          toggleTrafficLayer(map, showTrafficRef.current);
         }
       });
       map.on('idle', syncReadyState);
@@ -526,30 +543,35 @@ export function MapLibreCanvas({
       window.setTimeout(() => {
         if (!disposed && map && !styleReadyRef.current) {
           const activeCandidate = getActiveCandidate();
-          if (activeCandidate.kind === 'maptiler-raster') {
-            applyNextStyle('MapTiler raster style timed out, trying vector fallback...');
-            return;
-          }
           if (activeCandidate.kind === 'maptiler-vector') {
-            applyNextStyle('MapTiler fallback timed out, switching to OpenFreeMap...');
+            applyNextStyle('MapTiler vector timed out, switching to OpenFreeMap...');
             return;
           }
           setStatus('error');
           setStatusMessage('Map style did not finish loading.');
+          setMapState({
+            mapStatus: 'error',
+            mapProvider: activeCandidate.kind,
+            mapError: 'Map style did not finish loading.',
+          });
         }
-      }, 7000);
+      }, 12000);
     }
 
     initializeMap().catch(() => {
       if (!disposed) {
         setStatus('error');
         setStatusMessage('Unable to initialize the map.');
+        setMapState({
+          mapStatus: 'error',
+          mapProvider: null,
+          mapError: 'Unable to initialize the map.',
+        });
       }
     });
 
     return () => {
       disposed = true;
-      stopLocationTracking?.();   // clear geolocation.watchPosition
       map?.remove();
       markerRefs.current.forEach((marker) => marker.remove());
       markerRefs.current = [];
@@ -557,7 +579,8 @@ export function MapLibreCanvas({
       activeStyleIndexRef.current = 0;
       styleReadyRef.current = false;
     };
-  }, [center, navigationPosition, zoom, showTraffic]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigationPosition]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -1168,6 +1191,9 @@ export function MapLibreCanvas({
 
   useEffect(() => {
     if (mapRef.current && mapRef.current.isStyleLoaded()) {
+      if (showTraffic && !mapRef.current.getLayer('traffic-flow')) {
+        addTrafficLayer(mapRef.current);
+      }
       toggleTrafficLayer(mapRef.current, showTraffic);
     }
   }, [showTraffic, styleRevision]);
@@ -1180,8 +1206,7 @@ export function MapLibreCanvas({
       if (!mapRef.current.getLayer('safe-spaces-circles')) {
         addSafeSpacesLayer(mapRef.current, currentLocation.lat, currentLocation.lon).catch((err) => {
           logClientError('Failed to add safe spaces layer', err);
-          setStatus('error');
-          setStatusMessage('Failed to load safe spaces overlay. Please try again later.');
+          setShowSafeSpaces(false);
         });
       }
     }

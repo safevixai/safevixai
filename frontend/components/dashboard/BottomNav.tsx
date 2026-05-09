@@ -29,8 +29,8 @@ const BottomNav = memo(function BottomNav() {
   const active = activeIndex !== -1 ? activeIndex : 0;
 
   return (
-    <div className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-[100] pointer-events-none w-full flex justify-center lg:hidden [@media(max-height:500px)]:hidden">
-      <div className="relative flex items-center justify-around w-[92vw] max-w-sm md:max-w-md bg-white/80 dark:bg-[#1a2133]/80 backdrop-blur-xl rounded-[2.5rem] px-2 py-2 shadow-xl border border-white/20 dark:border-white/10 overflow-hidden pointer-events-auto">
+    <div className="fixed bottom-0 left-0 z-[100] pointer-events-none w-full lg:hidden [@media(max-height:500px)]:hidden">
+      <div className="relative flex items-center justify-around w-full bg-white/90 dark:bg-[#1a2133]/90 backdrop-blur-xl rounded-t-3xl pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_-8px_30px_rgb(0,0,0,0.4)] border-t border-white/20 dark:border-white/10 overflow-hidden pointer-events-auto">
 
         {/* Active Indicator Glow */}
         <motion.div

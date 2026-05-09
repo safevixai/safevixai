@@ -86,15 +86,27 @@ function issueIcon(issue: NearbyRoadIssue) {
 }
 
 export default function MapBackgroundInner() {
-  const { gpsLocation, nearbyRoadIssues, nearbyServices } = useAppStore((state) => ({
+  const { gpsLocation, mapSearchTarget, nearbyRoadIssues, nearbyServices } = useAppStore((state) => ({
     gpsLocation: state.gpsLocation,
+    mapSearchTarget: state.mapSearchTarget,
     nearbyServices: state.nearbyServices,
     nearbyRoadIssues: state.nearbyRoadIssues,
   }));
 
-  const center: [number, number] = gpsLocation
-    ? [gpsLocation.lat, gpsLocation.lon]
-    : FALLBACK_MAP_CENTER;
+  const searchLat = mapSearchTarget?.lat;
+  const searchLon = mapSearchTarget?.lon;
+  const gpsLat = gpsLocation?.lat;
+  const gpsLon = gpsLocation?.lon;
+
+  const center = useMemo<[number, number]>(
+    () => {
+      if (searchLat != null && searchLon != null) return [searchLat, searchLon];
+      if (gpsLat != null && gpsLon != null) return [gpsLat, gpsLon];
+      return FALLBACK_MAP_CENTER;
+    },
+    [searchLat, searchLon, gpsLat, gpsLon]
+  );
+  
   const approximateLocation = isApproximateLocation(gpsLocation);
 
   const facilities = useMemo<MapLibreFacility[]>(
@@ -133,7 +145,7 @@ export default function MapBackgroundInner() {
     <div className="absolute inset-0 z-0 h-full min-h-full w-full overflow-hidden">
       <MapLibreCanvas
         center={center}
-        zoom={gpsLocation ? LIVE_MAP_ZOOM : FALLBACK_MAP_ZOOM}
+        zoom={gpsLocation || mapSearchTarget ? LIVE_MAP_ZOOM : FALLBACK_MAP_ZOOM}
         facilities={facilities}
         issues={issues}
         currentLocation={
@@ -150,7 +162,13 @@ export default function MapBackgroundInner() {
         viewportMode="center"
         navigationPosition="bottom-left"
       />
-      {!gpsLocation ? (
+      {mapSearchTarget ? (
+        <div className="pointer-events-none absolute inset-x-0 bottom-24 z-20 flex justify-center px-4">
+          <div className="rounded-full border border-blue-300/35 bg-slate-950/65 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-100 backdrop-blur-xl">
+            Search area - {mapSearchTarget.label}
+          </div>
+        </div>
+      ) : !gpsLocation ? (
         <div className="pointer-events-none absolute inset-x-0 bottom-24 z-20 flex justify-center px-4">
           <div className="rounded-full border border-white/20 bg-slate-950/55 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-xl">
             Enable location for live nearby results

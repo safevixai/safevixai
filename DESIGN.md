@@ -135,7 +135,7 @@ Standard card padding: **16px**. Feature card padding: **20px**. Emergency card:
 Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.
 
 Layout dimensions:
-- Sidebar: 192px wide, full height, fixed
+- Sidebar: 280px wide, full height, fixed
 - Header: 52px tall
 - Bottom nav (mobile): 64px tall
 - Emergency dial bar (sidebar bottom): 80px
@@ -328,7 +328,7 @@ Emergency: bg #DC2626; animation: pulse 0.8s ease-in-out infinite;
 
 **Sidebar (desktop)**
 ```css
-bg: #0D1119; width: 192px; height: 100vh; position: fixed; left: 0;
+bg: #0D1119; width: 280px; height: 100vh; position: fixed; left: 0;
 border-right: 1px solid rgba(255,255,255,0.06);
 
 App name: 15px/700 #F0F4F8 — "SafeVixAI"
@@ -660,7 +660,8 @@ These are already enterprise-grade — leave them:
 4. ~~Settings identity card must bind to `useAppStore().userProfile.name`~~ — **FIXED** ✅ (ProfileCard component)
 5. ~~Global blue token migration~~ — **FIXED** ✅ (zero blue-500/600/400 remaining)
 6. ~~SafeVision AI branding remnants~~ — **FIXED** ✅ (zero matches remaining)
-7. ~~CSS variables referencing legacy blues (#4b8eff, #adc6ff)~~ — **FIXED** ✅ (migrated to #00C896)
+8. ~~Map re-render blinking on GPS update~~ — **FIXED** ✅ (memoized `center` prop + removed `center`/`zoom` from init effect deps; viewport sync handled by dedicated `easeTo` effect)
+9. ~~Map Ctrl+scroll required to zoom~~ — **FIXED** ✅ (`cooperativeGestures: false`)
 
 ---
 

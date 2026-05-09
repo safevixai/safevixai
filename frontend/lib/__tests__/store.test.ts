@@ -7,6 +7,10 @@ describe('app store persistence', () => {
       isAuthenticated: false,
       authToken: null,
       operatorName: '',
+      mapStatus: 'loading',
+      mapProvider: null,
+      mapError: null,
+      mapSearchTarget: null,
       userProfile: {
         bloodGroup: '',
         vehicleNumber: '',
@@ -44,5 +48,27 @@ describe('app store persistence', () => {
         vehicleNumber: 'TN01AB1234',
       })
     );
+  });
+
+  it('keeps transient map state out of persisted storage', () => {
+    useAppStore.getState().setMapState({
+      mapStatus: 'ready',
+      mapProvider: 'maptiler-vector',
+      mapError: null,
+    });
+    useAppStore.getState().setMapSearchTarget({
+      lat: 13.0827,
+      lon: 80.2707,
+      label: 'Chennai',
+      timestamp: 123,
+    });
+
+    const persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
+
+    expect(useAppStore.getState().mapProvider).toBe('maptiler-vector');
+    expect(useAppStore.getState().mapSearchTarget?.label).toBe('Chennai');
+    expect(persisted.state?.mapStatus).toBeUndefined();
+    expect(persisted.state?.mapProvider).toBeUndefined();
+    expect(persisted.state?.mapSearchTarget).toBeUndefined();
   });
 });

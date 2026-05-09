@@ -1,23 +1,45 @@
 import type maplibregl from 'maplibre-gl';
+import { PUBLIC_API_BASE_URL } from './public-env';
 
-const SAFE_SPACE_COLORS: Record<string, string> = {
-  restaurant: '#F59E0B',
-  cafe: '#F59E0B',
-  pharmacy: '#10B981',
-  hospital: '#EF4444',
-  police: '#3B82F6',
-  fire_station: '#F97316',
-  supermarket: '#8B5CF6',
-  convenience: '#8B5CF6',
-};
+interface SafeSpace {
+  name: string;
+  type: string;
+  lat: number;
+  lon: number;
+  phone?: string | null;
+}
+
+interface SafeSpacesResponse {
+  places?: SafeSpace[];
+  count?: number;
+  radius_meters?: number;
+  source?: string;
+  warning?: string;
+}
+
+function buildSafeSpacesUrl(lat: number, lon: number) {
+  const url = new URL('/api/v1/emergency/safe-spaces', PUBLIC_API_BASE_URL);
+  url.searchParams.set('lat', String(lat));
+  url.searchParams.set('lon', String(lon));
+  url.searchParams.set('radius', '1000');
+  return url.toString();
+}
+
+function normalizeSafeSpaces(payload: SafeSpacesResponse | SafeSpace[]): SafeSpace[] {
+  return Array.isArray(payload) ? payload : payload.places ?? [];
+}
 
 export async function addSafeSpacesLayer(
   map: maplibregl.Map,
   lat: number,
   lon: number
 ): Promise<void> {
-  const res = await fetch(`/api/v1/emergency/safe-spaces?lat=${lat}&lon=${lon}&radius=1000`);
-  const spaces: Array<{ name: string; type: string; lat: number; lon: number; phone?: string }> = await res.json();
+  const res = await fetch(buildSafeSpacesUrl(lat, lon));
+  if (!res.ok) {
+    throw new Error(`Safe spaces request failed with ${res.status}`);
+  }
+
+  const spaces = normalizeSafeSpaces(await res.json());
 
   const features = spaces.map(s => ({
     type: 'Feature' as const,

@@ -16,12 +16,15 @@ import {
   Settings,
   Phone,
   PanelLeftClose,
-  PanelLeftOpen
+  PanelLeftOpen,
+  Menu,
+  X,
+  PanelLeft
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 
 const navItems = [
-  { icon: <MapPin size={20} />, label: 'Map', href: '/', color: 'text-blue-500' },
+  { icon: <MapPin size={20} />, label: 'Map', href: '/', color: 'text-[#1A5C38] dark:text-[#00C896]' },
   { icon: <BotMessageSquare size={20} />, label: 'AI Assistant', href: '/assistant', color: 'text-[#1A5C38] dark:text-[#00C896]' },
   { icon: <MapPinPlus size={20} />, label: 'Locator', href: '/locator', color: 'text-emerald-500' },
   { icon: <HeartPulse size={20} />, label: 'First Aid', href: '/first-aid', color: 'text-red-500' },
@@ -43,43 +46,74 @@ export function AppSidebar() {
   const pathname = usePathname();
   const isDesktopSidebarCollapsed = useAppStore((state) => state.isDesktopSidebarCollapsed);
   const setDesktopSidebarCollapsed = useAppStore((state) => state.setDesktopSidebarCollapsed);
+  const isThinSidebarEnabled = useAppStore((state) => state.isThinSidebarEnabled);
+  const setThinSidebarEnabled = useAppStore((state) => state.setThinSidebarEnabled);
 
   return (
     <motion.aside
       initial={{ x: -280 }}
-      animate={{ x: 0 }}
+      animate={{ x: isDesktopSidebarCollapsed && !isThinSidebarEnabled ? -280 : 0 }}
       transition={{ type: "spring", damping: 25, stiffness: 120 }}
-      className={`fixed left-0 top-0 h-full z-50 bg-white/70 dark:bg-[#0a0f1a]/70 backdrop-blur-3xl flex flex-col border-r border-slate-200/50 dark:border-white/[0.08] shadow-[16px_0_48px_rgba(0,0,0,0.05)] dark:shadow-[16px_0_48px_rgba(0,0,0,0.2)] transition-[width] duration-300 ${isDesktopSidebarCollapsed ? 'w-[88px]' : 'w-[280px]'}`}
+      className={`fixed left-0 top-0 h-full z-50 bg-white/70 dark:bg-[#0a0f1a]/70 backdrop-blur-3xl flex flex-col border-r border-slate-200/50 dark:border-white/[0.08] shadow-[16px_0_48px_rgba(0,0,0,0.05)] dark:shadow-[16px_0_48px_rgba(0,0,0,0.2)] transition-all duration-300 ${!isDesktopSidebarCollapsed ? 'w-[280px]' : isThinSidebarEnabled ? 'w-[88px]' : 'w-[280px]'}`}
     >
 
-      {/* Header */}
-      <div className={`flex items-center border-b border-slate-200 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-xl transition-[padding,justify-content] ${isDesktopSidebarCollapsed ? 'p-4 justify-center' : 'p-6 justify-between'}`}>
-        {!isDesktopSidebarCollapsed && (
-          <div className="flex items-center gap-3">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="whitespace-nowrap">
-              <h2 className="text-xl font-black text-slate-800 dark:text-white tracking-tight leading-none">SafeVixAI</h2>
-              <p className="text-[10px] font-bold text-emerald-600 dark:text-[#00C896] uppercase tracking-widest mt-1">System Integrated</p>
-            </motion.div>
+      {/* Header (Logo and Toggle) or Hamburger */}
+      {!isDesktopSidebarCollapsed ? (
+        <div className="flex flex-col border-b border-slate-200 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-xl shrink-0">
+          <div className="flex items-center justify-between p-6 pb-2">
+            <div className="flex items-center gap-3">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="whitespace-nowrap">
+                <h2 className="text-xl font-black text-slate-800 dark:text-white tracking-tight leading-none">SafeVixAI</h2>
+                <p className="text-[10px] font-bold text-emerald-600 dark:text-[#00C896] uppercase tracking-widest mt-1">System Integrated</p>
+              </motion.div>
+            </div>
+            <button
+              onClick={() => setDesktopSidebarCollapsed(true)}
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
+              title="Close sidebar"
+            >
+              <X size={20} />
+            </button>
           </div>
-        )}
-        <button
-          onClick={() => setDesktopSidebarCollapsed(!isDesktopSidebarCollapsed)}
-          className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
-          title="Toggle Sidebar"
-        >
-          {isDesktopSidebarCollapsed ? <PanelLeftOpen size={28} /> : <PanelLeftClose size={28} />}
-        </button>
-      </div>
+          
+          {/* Toggle Sidebar Button (Google Maps Style) */}
+          <div className="px-2 pb-3">
+            <button
+              onClick={() => setThinSidebarEnabled(!isThinSidebarEnabled)}
+              className="flex items-center w-full transition-colors hover:bg-slate-100/80 dark:hover:bg-[#1f283d] py-3 px-4 rounded-xl justify-between group"
+              title={isThinSidebarEnabled ? "Unpin sidebar" : "Pin sidebar"}
+            >
+              <div className="flex items-center gap-4">
+                <PanelLeft className="w-[20px] h-[20px] text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors" strokeWidth={1.5} />
+                <span className="text-[14px] font-normal text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white whitespace-nowrap transition-colors">Show side bar</span>
+              </div>
+              {/* Material Design Toggle Switch */}
+              <div className={`relative flex items-center shrink-0 w-8 h-3.5 rounded-full transition-colors ${isThinSidebarEnabled ? 'bg-[#008A83]/50 dark:bg-[#008A83]/40' : 'bg-slate-300 dark:bg-slate-600'}`}>
+                <span className={`absolute w-5 h-5 rounded-full transition-transform shadow-md ${isThinSidebarEnabled ? 'bg-[#008A83] translate-x-4' : 'bg-white -translate-x-1'}`} />
+              </div>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-center p-4 border-b border-slate-200 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-xl shrink-0">
+          <button
+            onClick={() => setDesktopSidebarCollapsed(false)}
+            className="p-2 rounded-xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+            title="Expand sidebar"
+          >
+            <Menu size={24} strokeWidth={2} />
+          </button>
+        </div>
+      )}
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto p-4 space-y-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div>
-          {!isDesktopSidebarCollapsed && (
-            <p className="text-[10px] font-semibold tracking-[0.1em] text-slate-400 uppercase mb-3 px-2 whitespace-nowrap">Operations Console</p>
-          )}
+      <nav className="flex-1 overflow-y-auto py-2 space-y-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
+        <div className="px-3">
           <div className="flex flex-col gap-1 relative">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
+              
               return (
                 <Link
                   key={item.href}
@@ -87,7 +121,7 @@ export function AppSidebar() {
                   title={isDesktopSidebarCollapsed ? item.label : undefined}
                   className={`relative flex items-center gap-3 px-3 py-3 rounded-xl transition-all group z-10 ${isActive
                     ? ''
-                    : 'hover:bg-slate-100/50 dark:hover:bg-white-[0.02] font-medium'
+                    : 'hover:bg-slate-100/80 dark:hover:bg-white/[0.04] font-medium'
                     } ${isDesktopSidebarCollapsed ? 'justify-center' : ''}`}
                 >
                   {isActive && (
@@ -101,9 +135,9 @@ export function AppSidebar() {
                     {item.icon}
                   </div>
                   {!isDesktopSidebarCollapsed && (
-                    <span className={`text-[13px] whitespace-nowrap transition-colors ${isActive
+                    <span className={`text-[14px] whitespace-nowrap transition-colors ${isActive
                       ? 'font-bold text-slate-900 dark:text-white'
-                      : 'text-slate-600 dark:text-[#8b949e] group-hover:text-slate-900 dark:group-hover:text-slate-200'
+                      : 'text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white'
                       }`}>
                       {item.label}
                     </span>

@@ -79,6 +79,7 @@ export default function DashboardMapBootstrap() {
   const lastHydrationKeyRef = useRef<string | null>(null);
   const {
     gpsLocation,
+    mapSearchTarget,
     connectivity,
     serviceCategory,
     serviceRadius,
@@ -90,6 +91,7 @@ export default function DashboardMapBootstrap() {
     setServiceSearchMeta,
   } = useAppStore((state) => ({
     gpsLocation: state.gpsLocation,
+    mapSearchTarget: state.mapSearchTarget,
     connectivity: state.connectivity,
     serviceCategory: state.serviceCategory,
     serviceRadius: state.serviceRadius,
@@ -129,7 +131,7 @@ export default function DashboardMapBootstrap() {
   }, [refresh]);
 
   useEffect(() => {
-    if (location || !error) {
+    if (location || mapSearchTarget || !error) {
       return;
     }
 
@@ -149,6 +151,7 @@ export default function DashboardMapBootstrap() {
   }, [
     error,
     location,
+    mapSearchTarget,
     serviceRadius,
     setConnectivity,
     setNearbyRoadIssues,
@@ -157,15 +160,15 @@ export default function DashboardMapBootstrap() {
     setServiceSearchMeta,
   ]);
 
-  const lat = location?.lat ?? gpsLocation?.lat;
-  const lon = location?.lon ?? gpsLocation?.lon;
+  const lat = mapSearchTarget?.lat ?? location?.lat ?? gpsLocation?.lat;
+  const lon = mapSearchTarget?.lon ?? location?.lon ?? gpsLocation?.lon;
   const requestedCategory = useMemo(
     () => (serviceCategory === 'all' ? undefined : serviceCategory),
     [serviceCategory]
   );
   const radiusAttempts = useMemo(() => buildRadiusAttempts(serviceRadius), [serviceRadius]);
   const hydrationKey = lat != null && lon != null
-    ? `${lat.toFixed(4)}:${lon.toFixed(4)}:${requestedCategory ?? 'all'}:${serviceRadius}`
+    ? `${lat.toFixed(4)}:${lon.toFixed(4)}:${requestedCategory ?? 'all'}:${serviceRadius}:${mapSearchTarget?.timestamp ?? 'gps'}`
     : null;
 
   useEffect(() => {
@@ -271,7 +274,7 @@ export default function DashboardMapBootstrap() {
         });
       }
 
-      if (geocodeOk) {
+      if (geocodeOk && !mapSearchTarget) {
         const geocode = geocodeResult.value!;
         setGpsLocation({
           lat: resolvedLat,
@@ -313,6 +316,7 @@ export default function DashboardMapBootstrap() {
     location?.accuracy,
     location?.timestamp,
     lon,
+    mapSearchTarget,
     serviceRadius,
     requestedCategory,
     radiusAttempts,

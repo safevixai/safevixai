@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { AppSidebar } from '@/components/AppSidebar';
 import SystemSidebar from '@/components/dashboard/SystemSidebar';
 import BottomNav from '@/components/dashboard/BottomNav';
+import { RightSidebar } from '@/components/RightSidebar';
 import { NetworkMonitor } from '@/components/NetworkMonitor';
 import { GlobalSOS } from '@/components/GlobalSOS';
 import { useAppStore } from '@/lib/store';
@@ -16,6 +17,7 @@ interface AppFrameProps {
 export function AppFrame({ children }: AppFrameProps) {
   const pathname = usePathname();
   const isDesktopSidebarCollapsed = useAppStore((state) => state.isDesktopSidebarCollapsed);
+  const isThinSidebarEnabled = useAppStore((state) => state.isThinSidebarEnabled);
 
   // Define routes that should NOT have the global navigation shell (e.g. auth, public emergency views)
   const NO_NAV_ROUTES = ['/login', '/bystander', '/emergency-card', '/share-receive', '/track'];
@@ -61,14 +63,17 @@ export function AppFrame({ children }: AppFrameProps) {
       {/* ── Main Content Area ── */}
       <main 
         id="main" 
-        className={`flex-1 relative flex flex-col min-h-dvh w-full transition-all duration-300 pb-20 lg:pb-0 ${
-          isDesktopSidebarCollapsed ? 'lg:ml-[88px]' : 'lg:ml-[280px]'
+        className={`flex-1 relative flex flex-col min-h-dvh min-w-0 transition-all duration-300 pb-[84px] lg:pb-0 ${
+          !isDesktopSidebarCollapsed ? 'lg:ml-[280px]' : isThinSidebarEnabled ? 'lg:ml-[88px]' : 'lg:ml-0'
         }`}
       >
         <div className="relative flex-1 w-full flex flex-col">
           {children}
         </div>
       </main>
+      
+      {/* ── Right Action Panel (Desktop Only) ── */}
+      <RightSidebar />
 
       {/* 3. Mobile Bottom Navigation */}
       <div className="lg:hidden z-40 relative">

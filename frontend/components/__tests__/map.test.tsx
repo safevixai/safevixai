@@ -1,5 +1,7 @@
-import { render, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import maplibregl from 'maplibre-gl';
+import { toggleTrafficLayer } from '@/lib/traffic-layer';
+import { useAppStore } from '@/lib/store';
 import { MapLibreCanvas } from '../maps/MapLibreCanvas';
 
 jest.mock('next-themes', () => ({
@@ -15,10 +17,6 @@ jest.mock('@/lib/safe-spaces-layer', () => ({
   addSafeSpacesLayer: jest.fn(async () => undefined),
 }));
 
-jest.mock('@/lib/location-tracker', () => ({
-  startLocationTracking: jest.fn(() => jest.requireMock('maplibre-gl').default.__stopLocationTracking),
-}));
-
 jest.mock('@/lib/client-logger', () => ({
   logClientError: jest.fn(),
 }));
@@ -26,7 +24,6 @@ jest.mock('@/lib/client-logger', () => ({
 jest.mock('maplibre-gl', () => {
   const mapRemove = jest.fn();
   const markerRemove = jest.fn();
-  const stopLocationTracking = jest.fn();
   const mapInstance = {
     addControl: jest.fn(),
     dragRotate: { disable: jest.fn() },
@@ -34,11 +31,17 @@ jest.mock('maplibre-gl', () => {
     once: jest.fn((_event: string, callback: () => void) => {
       callback();
     }),
-    on: jest.fn(),
+    on: jest.fn((event: string, arg1: unknown, arg2?: unknown) => {
+      const callback = typeof arg1 === 'function' ? arg1 : typeof arg2 === 'function' ? arg2 : null;
+      if (event === 'idle' && callback) {
+        callback();
+      }
+    }),
     off: jest.fn(),
     remove: mapRemove,
     resize: jest.fn(),
     jumpTo: jest.fn(),
+    flyTo: jest.fn(),
     setStyle: jest.fn(),
     isStyleLoaded: jest.fn(() => true),
     areTilesLoaded: jest.fn(() => true),
@@ -88,7 +91,7 @@ jest.mock('maplibre-gl', () => {
   const api = {
     __mapRemove: mapRemove,
     __markerRemove: markerRemove,
-    __stopLocationTracking: stopLocationTracking,
+    __mapInstance: mapInstance,
     Map: jest.fn(() => mapInstance),
     NavigationControl: jest.fn(),
     Marker: MockMarker,
@@ -106,16 +109,20 @@ jest.mock('maplibre-gl', () => {
 describe('MapLibreCanvas', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    useAppStore.setState({
+      mapStatus: 'loading',
+      mapProvider: null,
+      mapError: null,
+    });
   });
 
-  it('removes the map and geolocation watcher on unmount', async () => {
+  it('removes the map on unmount without owning GPS tracking', async () => {
     const { unmount } = render(
       <MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />
     );
 
     const maplibreMock = maplibregl as typeof maplibregl & {
       __mapRemove: jest.Mock;
-      __stopLocationTracking: jest.Mock;
       Map: jest.Mock;
     };
 
@@ -124,6 +131,79 @@ describe('MapLibreCanvas', () => {
     unmount();
 
     expect(maplibreMock.__mapRemove).toHaveBeenCalledTimes(1);
-    expect(maplibreMock.__stopLocationTracking).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps the same map instance when the center changes', async () => {
+    const { rerender } = render(
+      <MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />
+    );
+
+    const maplibreMock = maplibregl as typeof maplibregl & {
+      __mapInstance: { easeTo: jest.Mock };
+      Map: jest.Mock;
+    };
+
+    await waitFor(() => expect(maplibreMock.Map).toHaveBeenCalledTimes(1));
+
+    rerender(<MapLibreCanvas center={[12.9716, 77.5946]} currentLocation={null} />);
+
+    await waitFor(() => expect(maplibreMock.__mapInstance.easeTo).toHaveBeenCalled());
+    expect(maplibreMock.Map).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps the same map instance when facilities update', async () => {
+    const { rerender } = render(
+      <MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} facilities={[]} />
+    );
+
+    const maplibreMock = maplibregl as typeof maplibregl & {
+      Map: jest.Mock;
+    };
+
+    await waitFor(() => expect(maplibreMock.Map).toHaveBeenCalledTimes(1));
+
+    rerender(
+      <MapLibreCanvas
+        center={[13.0827, 80.2707]}
+        currentLocation={null}
+        facilities={[
+          {
+            id: 'hospital-1',
+            name: 'City Hospital',
+            coords: [13.0827, 80.2707],
+            type: 'hospital',
+            accentColor: '#ef4444',
+          },
+        ]}
+      />
+    );
+
+    expect(maplibreMock.Map).toHaveBeenCalledTimes(1);
+  });
+
+  it('toggles traffic without recreating the map', async () => {
+    render(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
+
+    const maplibreMock = maplibregl as typeof maplibregl & {
+      Map: jest.Mock;
+    };
+    const toggleTrafficLayerMock = toggleTrafficLayer as jest.Mock;
+
+    await waitFor(() => expect(screen.getByRole('button', { name: /Traffic: OFF/i })).toBeInTheDocument());
+
+    fireEvent.click(screen.getByRole('button', { name: /Traffic: OFF/i }));
+
+    expect(maplibreMock.Map).toHaveBeenCalledTimes(1);
+    expect(toggleTrafficLayerMock).toHaveBeenCalled();
+  });
+
+  it('publishes frontend map status when the style is ready', async () => {
+    render(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
+
+    await waitFor(() => {
+      expect(useAppStore.getState().mapStatus).toBe('ready');
+      expect(useAppStore.getState().mapProvider).toBeTruthy();
+      expect(useAppStore.getState().mapError).toBeNull();
+    });
   });
 });
