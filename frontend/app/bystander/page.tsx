@@ -140,11 +140,7 @@ export default function BystanderModePage() {
   if (phase === 'entry') {
     return (
       <div className="min-h-screen bg-[#0A0E14] flex flex-col items-center justify-center p-6 font-sans">
-        <div
-          className="fixed inset-0 opacity-[0.03]"
-          style={{ backgroundImage: 'radial-gradient(circle, #ef4444 1px, transparent 1px)', backgroundSize: '28px 28px' }}
-        />
-
+        {/* Spots removed per user request */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

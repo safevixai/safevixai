@@ -41,15 +41,6 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
         }
       `}</style>
 
-      {/* Scan grid background */}
-      <div
-        className="fixed inset-0 opacity-[0.03] no-print"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #00C896 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
-
       {/* Top green scan line animation */}
       <div className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#00C896] to-transparent opacity-60 animate-pulse no-print" />
 

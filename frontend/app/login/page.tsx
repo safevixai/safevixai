@@ -63,8 +63,8 @@ export default function LoginPage() {
 
         if (!supabaseError && data.session?.access_token) {
           const displayName =
-            (data.user?.user_metadata?.name as string | undefined) 
-            data.user?.email 
+            (data.user?.user_metadata?.name as string | undefined) ||
+            data.user?.email ||
             'SafeVixAI User';
           setAuth(data.session.access_token, displayName);
           setUserProfile({ name: displayName });
@@ -113,14 +113,7 @@ export default function LoginPage() {
 
       {/* ── Tactical Background ── */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #00C896 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
-          }}
-        />
+        {/* Spots removed per user request */}
         {/* Top-right green glow */}
         <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#1A5C38]/20 blur-[120px]" />
         {/* Bottom-left glow */}

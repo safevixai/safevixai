@@ -101,14 +101,7 @@ function ShareReceiveInner() {
 
   return (
     <div className="min-h-[100dvh] bg-[#0A0E14] flex items-center justify-center p-6">
-      {/* Scan grid background */}
-      <div
-        className="fixed inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #00C896 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
+      {/* Spots removed per user request */}
 
       {/* Top scan line */}
       <div className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#00C896] to-transparent opacity-60 animate-pulse" />

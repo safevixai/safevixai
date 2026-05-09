@@ -191,9 +191,7 @@ export default function ChatPage() {
     <div className="flex flex-col h-[100dvh] w-full relative overflow-hidden bg-slate-50/50 dark:bg-[#0A0E14]">
       {/* ── Background Decorative Lines (SafeVixAI Pro Aesthetic) ── */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-          style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        {/* Spots removed per user request */}
 
         {/* Ambient Glows */}
         <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#1A5C38]/5 dark:bg-[#1A5C38]/10 blur-[120px] hidden dark:block" />

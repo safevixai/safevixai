@@ -487,11 +487,7 @@ function MobileLocator({
   return (
     <div className="min-h-dvh pb-48 bg-slate-50 dark:bg-[#0D1117] text-slate-900 dark:text-[#d7e3fc] font-['Inter'] selection:bg-[#1A5C38]/30 relative overflow-x-hidden w-full">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Subtle Grid Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-          style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '32px 32px' }}
-        />
+        {/* Spots removed per user request */}
       </div>
 
       <SystemHeader title="Emergency Resource Dispatch" showBack={false} />
