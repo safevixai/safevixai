@@ -80,6 +80,12 @@ frontend/public/workbox-*.js
 frontend/public/worker-*.js
 frontend/public/fallback-*.js
 
+# Playwright output
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+frontend/playwright/.cache/
+
 # Generated PWA cache files
 frontend/public/sw.js.map
 
