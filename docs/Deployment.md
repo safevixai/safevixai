@@ -217,23 +217,28 @@ Set environment variables:
 
 ## Step 6: Deploy Frontend to Vercel
 
-### Via GitHub Integration (Recommended)
+### Via GitHub Actions (Automated CI/CD Pipeline)
 
-1. Vercel Dashboard  New Project  Import from GitHub
-2. Select `SafeVixAI` repository
-3. **Framework Preset:** Next.js (auto-detected)
-4. **Root Directory:** `frontend`
-5. Add Environment Variables:
-   - `NEXT_PUBLIC_API_URL` = `https://safevixai-api.onrender.com`
-   - `NEXT_PUBLIC_SUPABASE_URL` = your Supabase URL
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = your anon key
+The repository is configured with a fully automated CI/CD pipeline using the `amondnet/vercel-action`. The frontend is automatically deployed to Vercel when changes are pushed to the `main` branch, *only* if the E2E and Unit test suites pass successfully.
 
-Vercel auto-deploys on every `git push` to `main`.
+1. Add the following secrets to your GitHub repository (`Settings` > `Secrets and variables` > `Actions`):
+   - `VERCEL_TOKEN`: Generate this at [vercel.com/account/tokens](https://vercel.com/account/tokens)
+   - `VERCEL_ORG_ID`: Found in your Vercel project settings or `.vercel/project.json` after linking locally.
+   - `VERCEL_PROJECT_ID`: Found in your Vercel project settings or `.vercel/project.json`.
 
-### Via CLI (Alternative)
+2. The `.github/workflows/e2e.yml` workflow will automatically trigger on pushes to `main`. It will:
+   - Run Vitest unit tests.
+   - Run Playwright E2E tests against a built version of the app.
+   - If (and only if) all tests pass, deploy the application to Vercel production.
+
+### Via CLI (Manual/Local Testing)
 
 ```bash
 cd frontend
+# Link the project to Vercel (required first time)
+npx vercel link
+
+# Deploy to production
 npx vercel --prod
 ```
 
