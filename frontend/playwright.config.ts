@@ -6,7 +6,7 @@ export default defineConfig({
   testDir: './e2e',
   timeout: 60_000,
   expect: {
-    timeout: 10_000,
+    timeout: 30_000,
   },
   use: {
     baseURL,

@@ -28,10 +28,20 @@ test.describe('SOS and family tracking flow', () => {
       window.open = () => null;
     });
 
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': '*',
+    };
+
     await page.route('**/api/v1/emergency/sos**', async (route) => {
+      if (route.request().method() === 'OPTIONS') {
+        return route.fulfill({ status: 204, headers: corsHeaders });
+      }
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
+        headers: corsHeaders,
         body: JSON.stringify({
           services: [],
           count: 0,
@@ -45,9 +55,13 @@ test.describe('SOS and family tracking flow', () => {
     });
 
     await page.route('**/api/v1/live-tracking/start', async (route) => {
+      if (route.request().method() === 'OPTIONS') {
+        return route.fulfill({ status: 204, headers: corsHeaders });
+      }
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
+        headers: corsHeaders,
         body: JSON.stringify({
           session_id: 'e2e-session',
           tracking_url: `${BASE_URL}/track/e2e-session?token=signed-e2e-token`,
@@ -57,17 +71,24 @@ test.describe('SOS and family tracking flow', () => {
     });
 
     await page.route('**/api/v1/live-tracking/update', async (route) => {
-      await route.fulfill({ status: 204 });
+      if (route.request().method() === 'OPTIONS') {
+        return route.fulfill({ status: 204, headers: corsHeaders });
+      }
+      await route.fulfill({ status: 204, headers: corsHeaders });
     });
 
     await page.route('**/api/v1/live-tracking/session/e2e-session**', async (route) => {
+      if (route.request().method() === 'OPTIONS') {
+        return route.fulfill({ status: 204, headers: corsHeaders });
+      }
       if (route.request().method() === 'DELETE') {
-        await route.fulfill({ status: 204 });
+        await route.fulfill({ status: 204, headers: corsHeaders });
         return;
       }
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
+        headers: corsHeaders,
         body: JSON.stringify({
           session_id: 'e2e-session',
           user_name: 'E2E SafeVix User',
@@ -90,7 +111,7 @@ test.describe('SOS and family tracking flow', () => {
     const sosButton = await page.getByRole('button', { name: /Activate emergency SOS/i }).elementHandle();
     expect(sosButton).not.toBeNull();
     await sosButton!.dispatchEvent('pointerdown');
-    await page.waitForTimeout(2300);
+    await expect(page.getByText('DISPATCHED')).toBeVisible({ timeout: 10000 });
     await sosButton!.dispatchEvent('pointerup');
 
     await expect(page.getByText(/Emergency Declared/i)).toBeVisible();
@@ -98,9 +119,13 @@ test.describe('SOS and family tracking flow', () => {
 
     const familyPage = await browser.newPage();
     await familyPage.route('**/api/v1/live-tracking/session/e2e-session**', async (route) => {
+      if (route.request().method() === 'OPTIONS') {
+        return route.fulfill({ status: 204, headers: corsHeaders });
+      }
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
+        headers: corsHeaders,
         body: JSON.stringify({
           session_id: 'e2e-session',
           user_name: 'E2E SafeVix User',
