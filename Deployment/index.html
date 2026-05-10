@@ -1404,10 +1404,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#via-github-integration-recommended" class="md-nav__link">
+  <a href="#via-github-actions-automated-cicd-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Via GitHub Integration (Recommended)
+        Via GitHub Actions (Automated CI/CD Pipeline)
       
     </span>
   </a>
@@ -1415,10 +1415,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#via-cli-alternative" class="md-nav__link">
+  <a href="#via-cli-manuallocal-testing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Via CLI (Alternative)
+        Via CLI (Manual/Local Testing)
       
     </span>
   </a>
@@ -1919,10 +1919,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#via-github-integration-recommended" class="md-nav__link">
+  <a href="#via-github-actions-automated-cicd-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Via GitHub Integration (Recommended)
+        Via GitHub Actions (Automated CI/CD Pipeline)
       
     </span>
   </a>
@@ -1930,10 +1930,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#via-cli-alternative" class="md-nav__link">
+  <a href="#via-cli-manuallocal-testing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Via CLI (Alternative)
+        Via CLI (Manual/Local Testing)
       
     </span>
   </a>
@@ -2283,21 +2283,29 @@
 </blockquote>
 <hr />
 <h2 id="step-6-deploy-frontend-to-vercel">Step 6: Deploy Frontend to Vercel</h2>
-<h3 id="via-github-integration-recommended">Via GitHub Integration (Recommended)</h3>
+<h3 id="via-github-actions-automated-cicd-pipeline">Via GitHub Actions (Automated CI/CD Pipeline)</h3>
+<p>The repository is configured with a fully automated CI/CD pipeline using the <code>amondnet/vercel-action</code>. The frontend is automatically deployed to Vercel when changes are pushed to the <code>main</code> branch, <em>only</em> if the E2E and Unit test suites pass successfully.</p>
 <ol>
-<li>Vercel Dashboard  New Project  Import from GitHub</li>
-<li>Select <code>SafeVixAI</code> repository</li>
-<li><strong>Framework Preset:</strong> Next.js (auto-detected)</li>
-<li><strong>Root Directory:</strong> <code>frontend</code></li>
-<li>Add Environment Variables:</li>
-<li><code>NEXT_PUBLIC_API_URL</code> = <code>https://safevixai-api.onrender.com</code></li>
-<li><code>NEXT_PUBLIC_SUPABASE_URL</code> = your Supabase URL</li>
-<li><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> = your anon key</li>
+<li>Add the following secrets to your GitHub repository (<code>Settings</code> &gt; <code>Secrets and variables</code> &gt; <code>Actions</code>):</li>
+<li><code>VERCEL_TOKEN</code>: Generate this at <a href="https://vercel.com/account/tokens">vercel.com/account/tokens</a></li>
+<li><code>VERCEL_ORG_ID</code>: Found in your Vercel project settings or <code>.vercel/project.json</code> after linking locally.</li>
+<li>
+<p><code>VERCEL_PROJECT_ID</code>: Found in your Vercel project settings or <code>.vercel/project.json</code>.</p>
+</li>
+<li>
+<p>The <code>.github/workflows/e2e.yml</code> workflow will automatically trigger on pushes to <code>main</code>. It will:</p>
+</li>
+<li>Run Vitest unit tests.</li>
+<li>Run Playwright E2E tests against a built version of the app.</li>
+<li>If (and only if) all tests pass, deploy the application to Vercel production.</li>
 </ol>
-<p>Vercel auto-deploys on every <code>git push</code> to <code>main</code>.</p>
-<h3 id="via-cli-alternative">Via CLI (Alternative)</h3>
+<h3 id="via-cli-manuallocal-testing">Via CLI (Manual/Local Testing)</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>frontend
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>npx<span class="w"> </span>vercel<span class="w"> </span>--prod
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># Link the project to Vercel (required first time)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>npx<span class="w"> </span>vercel<span class="w"> </span>link
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Deploy to production</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>npx<span class="w"> </span>vercel<span class="w"> </span>--prod
 </span></code></pre></div>
 <hr />
 <h2 id="step-7-verify-production-deployment">Step 7: Verify Production Deployment</h2>
