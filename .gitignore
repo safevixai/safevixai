@@ -204,3 +204,9 @@ frontend/public/models/maarg-risk.onnx
 frontend/public/models/yolov8n_pothole.onnx
 
 .vercel
+
+# ============================================================
+# AGENT / KNOWLEDGE GRAPH OUTPUTS
+# ============================================================
+.agents/
+graphify-out/
