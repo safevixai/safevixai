@@ -61,7 +61,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-✅ You should see `(.venv)` at the start of your terminal line.
+ You should see `(.venv)` at the start of your terminal line.
 
 ---
 
@@ -83,7 +83,7 @@ pip install -r requirements.txt
 - **httpx** — async HTTP for Overpass/Nominatim
 - **Pydantic** — request/response validation
 
-> ⚠ First install takes 3-5 minutes (torch/torchaudio are large).
+>  First install takes 3-5 minutes (torch/torchaudio are large).
 
 Verify:
 ```bash
@@ -108,7 +108,7 @@ Edit `backend/.env` and fill in all required values (GROQ_API_KEY, database URLs
 uvicorn main:app --reload --port 8000
 ```
 
-✅ **Verify:**
+ **Verify:**
 - Health check: [http://localhost:8000/health](http://localhost:8000/health)
 - Swagger API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
@@ -165,7 +165,7 @@ ALERT_EMAIL_TO=team-lead@gmail.com         # Recipient (defaults to ALERT_EMAIL)
 uvicorn main:app --reload --port 8010
 ```
 
-✅ **Verify:**
+ **Verify:**
 - Health check: [http://localhost:8010/health](http://localhost:8010/health)
 - Swagger API docs: [http://localhost:8010/docs](http://localhost:8010/docs)
 
@@ -224,7 +224,7 @@ Edit `frontend/.env` and set:
 npm run dev
 ```
 
-✅ App opens at: [http://localhost:3000](http://localhost:3000)
+ App opens at: [http://localhost:3000](http://localhost:3000)
 
 You should see the SafeVixAI tactical dashboard with the map, search bar, and bottom navigation.
 
@@ -246,7 +246,7 @@ npm start
 
 ---
 
-# ⚡ Daily Quick-Start
+#  Daily Quick-Start
 
 Once installed, you only need:
 

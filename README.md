@@ -85,13 +85,13 @@ SafeVixAI/
 
 ---
 
-## 🛡️ Data Intelligence
+## Data Intelligence
 
 The "Intelligence Layer" of SafeVixAI (3.3GB of pre-trained models, road damage datasets, and legal archives) is hosted on the **Hugging Face Dataset Hub** for high-performance delivery.
 
-**[👉 Explore the SafeVixAI Dataset Hub](https://huggingface.co/datasets/SafeVixAI/SafeVixAI-Dataset-Hub)**
+**[Explore the SafeVixAI Dataset Hub](https://huggingface.co/datasets/SafeVixAI/SafeVixAI-Dataset-Hub)**
 
-### 📓 Research Notebooks — Open in Colab
+### Research Notebooks — Open in Colab
 
 > Run all notebooks through **Google Colab** for the easiest setup — free T4 GPU, no local install needed.
 

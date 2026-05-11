@@ -357,7 +357,7 @@ bg: rgba(10,14,20,0.92); backdrop-filter: blur(8px);
 border-bottom: 1px solid rgba(255,255,255,0.06); height: 52px;
 Left: hamburger (mobile) OR SafeVixAI app icon
 Center: search bar (focus ring = green, mic button = green)
-Right: connectivity toggle (Online/Offline) + theme icons (☀/🌙/🖥) +
+Right: connectivity toggle (Online/Offline) + theme icons (/🌙/🖥) +
   operator name chip (green pill, only when authenticated) + "SECURE" badge
   NOTE: NO login button in header — login is only accessible via /login URL
 ```
@@ -399,7 +399,7 @@ Floating SOS: 56px red circle, fixed bottom-right
 
 ### Assistant / Chat (`/assistant`)
 ```
-~~CRITICAL BUG: Blank on mobile.~~ **FIXED** ✅ — uses calc(100dvh - 52px - 64px) + min-h-0 flex.
+~~CRITICAL BUG: Blank on mobile.~~ **FIXED**  — uses calc(100dvh - 52px - 64px) + min-h-0 flex.
 Layout: Full-height chat column
 Messages: flex-col
   User bubble: bg rgba(26,92,56,0.20), right-aligned, 8px radius
@@ -641,27 +641,27 @@ Chat: `height: calc(100dvh - 52px - 64px)` mobile to fix blank screen bug.
 ## 10. Do Not Change
 
 These are already enterprise-grade — leave them:
-- Emergency SOS red gradient card on `/emergency` ✅
-- Challan ₹ amount green monospace display ✅
-- Sidebar with emergency dial numbers pinned at bottom ✅
-- Floating red SOS button placement (bottom-right mobile) ✅
-- Filter chip row on Map and Locator ✅
-- Vehicle selector card grid (Challan) with green active state ✅
-- DARK/LIGHT/SYSTEM theme selector in Settings ✅
-- Bottom nav 5 tabs ✅
+- Emergency SOS red gradient card on `/emergency` 
+- Challan ₹ amount green monospace display 
+- Sidebar with emergency dial numbers pinned at bottom 
+- Floating red SOS button placement (bottom-right mobile) 
+- Filter chip row on Map and Locator 
+- Vehicle selector card grid (Challan) with green active state 
+- DARK/LIGHT/SYSTEM theme selector in Settings 
+- Bottom nav 5 tabs 
 
 ---
 
 ## 11. Bugs — Status
 
-1. ~~`/assistant` blank on mobile~~ — **FIXED** ✅ (min-h-0 flex constraint + calc height)
+1. ~~`/assistant` blank on mobile~~ — **FIXED**  (min-h-0 flex constraint + calc height)
 2. "NORMAL MODE" badge on First Aid — move to header bar (low priority)
-3. ~~Chat bubble z-index issue on `/assistant`~~ — **FIXED** ✅ (proper z-layering)
-4. ~~Settings identity card must bind to `useAppStore().userProfile.name`~~ — **FIXED** ✅ (ProfileCard component)
-5. ~~Global blue token migration~~ — **FIXED** ✅ (zero blue-500/600/400 remaining)
-6. ~~SafeVision AI branding remnants~~ — **FIXED** ✅ (zero matches remaining)
-8. ~~Map re-render blinking on GPS update~~ — **FIXED** ✅ (memoized `center` prop + removed `center`/`zoom` from init effect deps; viewport sync handled by dedicated `easeTo` effect)
-9. ~~Map Ctrl+scroll required to zoom~~ — **FIXED** ✅ (`cooperativeGestures: false`)
+3. ~~Chat bubble z-index issue on `/assistant`~~ — **FIXED**  (proper z-layering)
+4. ~~Settings identity card must bind to `useAppStore().userProfile.name`~~ — **FIXED**  (ProfileCard component)
+5. ~~Global blue token migration~~ — **FIXED**  (zero blue-500/600/400 remaining)
+6. ~~SafeVision AI branding remnants~~ — **FIXED**  (zero matches remaining)
+8. ~~Map re-render blinking on GPS update~~ — **FIXED**  (memoized `center` prop + removed `center`/`zoom` from init effect deps; viewport sync handled by dedicated `easeTo` effect)
+9. ~~Map Ctrl+scroll required to zoom~~ — **FIXED**  (`cooperativeGestures: false`)
 
 ---
 
@@ -694,7 +694,7 @@ The platform uses `alert_service.py` (project root) to send email notifications 
 ### Alert Email Format
 
 Every alert includes:
-1. **Subject**: Prefixed with emoji severity (`🚨` critical, `⚠️` warning, `🔴` infra)
+1. **Subject**: Prefixed with emoji severity (`🚨` critical, `️` warning, `🔴` infra)
 2. **Details**: Service name, endpoint, HTTP status, error message
 3. **3 solutions**: Specific, actionable steps (check keys, check rate limits, check status page)
 4. **Cooldown**: 5 minutes between same-type alerts to prevent inbox flooding
