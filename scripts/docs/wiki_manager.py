@@ -174,11 +174,12 @@ CONTEXT:
 class LLMProvider:
     """Multi-provider LLM with automatic fallback chain.
 
-    Priority: OpenRouter → Mistral → Gemini (based on confirmed availability).
+    Priority: GitHub Models (free via Student Pack) → OpenRouter → Mistral → Gemini.
     Handles 429 rate limits with exponential backoff + provider switching.
     """
 
     def __init__(self):
+        self.github_token = os.environ.get("GITHUB_TOKEN", "")
         self.openrouter_key = os.environ.get("OPENROUTER_API_KEY", "")
         self.mistral_key = os.environ.get("MISTRAL_API_KEY", "")
         self.google_key = os.environ.get("GOOGLE_API_KEY", "")
@@ -187,7 +188,9 @@ class LLMProvider:
         self._build_chain()
 
     def _build_chain(self):
-        # Order by confirmed availability
+        # GitHub Models is primary (free with GitHub Student Developer Pack)
+        if self.github_token:
+            self._providers.append("github-models")
         if self.openrouter_key:
             self._providers.append("openrouter")
         if self.mistral_key:
@@ -197,8 +200,13 @@ class LLMProvider:
 
         if self._providers:
             self.provider = self._providers[0]
-            names = {"openrouter": "OpenRouter/Gemini", "mistral": "Mistral", "gemini": "Gemini Direct"}
-            chain = " → ".join(names.get(p, p) for p in self._providers)
+            names = {
+                "github-models": "GitHub Models (GPT-4o-mini)",
+                "openrouter": "OpenRouter/Gemini",
+                "mistral": "Mistral",
+                "gemini": "Gemini Direct",
+            }
+            chain = " -> ".join(names.get(p, p) for p in self._providers)
             print(f"  LLM chain: {chain}")
         else:
             print("  LLM: None (will use AST-based stubs)")
@@ -220,6 +228,7 @@ class LLMProvider:
     def _try_provider(self, provider, prompt, max_tokens, max_retries=3):
         """Try a single provider with retry + exponential backoff on 429."""
         caller = {
+            "github-models": self._call_github_models,
             "openrouter": self._call_openrouter,
             "mistral": self._call_mistral,
             "gemini": self._call_gemini,
@@ -244,6 +253,25 @@ class LLMProvider:
 
         print(f"    {provider} exhausted after {max_retries} retries")
         return None
+
+    def _call_github_models(self, prompt, max_tokens):
+        """Call GitHub Models API (free with GitHub Student Developer Pack).
+
+        Uses GPT-4o-mini via Azure-hosted inference endpoint.
+        Supports GPT-4o, GPT-4o-mini, Llama, Mistral, and more.
+        """
+        body = json.dumps({
+            "model": "gpt-4o-mini",
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": max_tokens, "temperature": 0.3
+        }).encode("utf-8")
+        req = Request("https://models.inference.ai.azure.com/chat/completions", data=body, headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.github_token}"
+        })
+        resp = urlopen(req, timeout=90)
+        data = json.loads(resp.read().decode("utf-8"))
+        return data["choices"][0]["message"]["content"]
 
     def _call_openrouter(self, prompt, max_tokens):
         body = json.dumps({

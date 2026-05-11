@@ -3,12 +3,6 @@ name: Wiki Documentation Sync
 on:
   push:
     branches: [main]
-    paths:
-      - 'backend/**'
-      - 'chatbot_service/**'
-      - 'frontend/**'
-      - 'data/**'
-      - 'docs/**'
   workflow_dispatch:
     inputs:
       mode:
@@ -44,8 +38,9 @@ jobs:
 
       - name: Run wiki manager
         env:
-          # LLM providers for doc generation (set as GitHub Secrets)
-          # Priority: OpenRouter → Mistral → Gemini (fallback)
+          # Primary: GitHub Models (free via Student Developer Pack)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Fallbacks (set as GitHub Secrets)
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
