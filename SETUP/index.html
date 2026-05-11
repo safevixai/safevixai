@@ -1513,7 +1513,7 @@
 <p><strong>Linux / macOS:</strong>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </span></code></pre></div></p>
-<p>✅ You should see <code>(.venv)</code> at the start of your terminal line.</p>
+<p>You should see <code>(.venv)</code> at the start of your terminal line.</p>
 <hr />
 <h2 id="step-3-install-backend-dependencies">Step 3 — Install Backend Dependencies</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
@@ -1530,7 +1530,7 @@
 - <strong>httpx</strong> — async HTTP for Overpass/Nominatim
 - <strong>Pydantic</strong> — request/response validation</p>
 <blockquote>
-<p>⚠ First install takes 3-5 minutes (torch/torchaudio are large).</p>
+<p>First install takes 3-5 minutes (torch/torchaudio are large).</p>
 </blockquote>
 <p>Verify:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import fastapi, langchain, chromadb; print(&#39;All packages OK&#39;)&quot;</span>
@@ -1544,7 +1544,7 @@
 <h2 id="step-5-run-the-backend">Step 5 — Run the Backend</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
 </span></code></pre></div>
-<p>✅ <strong>Verify:</strong>
+<p><strong>Verify:</strong>
 - Health check: <a href="http://localhost:8000/health">http://localhost:8000/health</a>
 - Swagger API docs: <a href="http://localhost:8000/docs">http://localhost:8000/docs</a></p>
 <hr />
@@ -1580,7 +1580,7 @@
 <h2 id="step-53-run-the-chatbot-service">Step 5.3 — Run the Chatbot Service</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8010</span>
 </span></code></pre></div>
-<p>✅ <strong>Verify:</strong>
+<p><strong>Verify:</strong>
 - Health check: <a href="http://localhost:8010/health">http://localhost:8010/health</a>
 - Swagger API docs: <a href="http://localhost:8010/docs">http://localhost:8010/docs</a></p>
 <hr />
@@ -1620,7 +1620,7 @@
 <h2 id="step-8-run-the-frontend">Step 8 — Run the Frontend</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
 </span></code></pre></div>
-<p>✅ App opens at: <a href="http://localhost:3000">http://localhost:3000</a></p>
+<p>App opens at: <a href="http://localhost:3000">http://localhost:3000</a></p>
 <p>You should see the SafeVixAI tactical dashboard with the map, search bar, and bottom navigation.</p>
 <hr />
 <h2 id="step-9-test-offline-pwa-mode">Step 9 — Test Offline / PWA Mode</h2>
@@ -1636,7 +1636,7 @@
 </span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1"># Navigate to /emergency → protocols should still load from cache</span>
 </span></code></pre></div>
 <hr />
-<h1 id="daily-quick-start">⚡ Daily Quick-Start</h1>
+<h1 id="daily-quick-start">Daily Quick-Start</h1>
 <p>Once installed, you only need:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Terminal 1: Backend</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nb">cd</span><span class="w"> </span>SafeVixAI/backend
