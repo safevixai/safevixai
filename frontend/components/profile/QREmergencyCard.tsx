@@ -97,10 +97,10 @@ export default function QREmergencyCard() {
         </div>
 
         {/* Main Card */}
-        <div className="relative rounded-lg bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-white/10 overflow-hidden shadow-xl">
+        <div className="relative rounded-lg bg-white dark:bg-surface-1 border border-slate-200 dark:border-white/10 overflow-hidden shadow-xl">
 
           {/* Top accent bar */}
-          <div className="h-1.5 w-full bg-gradient-to-r from-[#1A5C38] via-[#00C896] to-[#1A5C38]" />
+          <div className="h-1.5 w-full bg-gradient-to-r from-brand-dim via-brand to-brand-dim" />
 
           {/* Card Body */}
           <div className="p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
@@ -108,19 +108,19 @@ export default function QREmergencyCard() {
             {/* QR Code Block */}
             <div className="relative flex-shrink-0">
               {/* Outer glow ring */}
-              <div className="absolute -inset-2 rounded-lg bg-gradient-to-br from-[#1A5C38]/20 to-[#00C896]/10 blur-md" />
+              <div className="absolute -inset-2 rounded-lg bg-gradient-to-br from-brand-dim/20 to-brand/10 blur-md" />
               <div className="relative p-4 rounded-lg bg-white dark:bg-slate-50 border border-slate-200 dark:border-slate-300 shadow-inner">
                 <QRCodeSVG
                   value={qrUrl}
                   size={120}
                   bgColor="transparent"
-                  fgColor="#0A0E14"
+                  fgColor="#000000"
                   level="H"
                   includeMargin={false}
                 />
                 {/* Center logo overlay */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-8 h-8 rounded-lg bg-[#1A5C38] flex items-center justify-center shadow-lg border-2 border-white">
+                  <div className="w-8 h-8 rounded-lg bg-brand flex items-center justify-center shadow-lg border-2 border-white">
                     <Shield size={14} className="text-white" />
                   </div>
                 </div>
@@ -139,19 +139,19 @@ export default function QREmergencyCard() {
 
               {/* Operator ID badge */}
               <div className="flex items-center gap-2">
-                <div className="px-3 py-1.5 rounded-lg bg-[#1A5C38]/10 dark:bg-[#1A5C38]/20 border border-[#1A5C38]/20">
-                  <span className="text-[10px] font-semibold text-[#1A5C38] dark:text-[#00C896] uppercase tracking-widest font-space">
+                <div className="px-3 py-1.5 rounded-lg bg-brand/10 dark:bg-brand/20 border border-brand/20">
+                  <span className="text-[10px] font-semibold text-brand-dim dark:text-brand uppercase tracking-widest font-space">
                     {displayId}
                   </span>
                 </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
               </div>
 
               {/* Vitals */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                    <Heart size={13} className="text-red-500" />
+                  <div className="w-7 h-7 rounded-lg bg-emergency/10 flex items-center justify-center flex-shrink-0">
+                    <Heart size={13} className="text-emergency" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Blood</p>
@@ -162,8 +162,8 @@ export default function QREmergencyCard() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                    <Car size={13} className="text-emerald-500" />
+                  <div className="w-7 h-7 rounded-lg bg-brand/10 flex items-center justify-center flex-shrink-0">
+                    <Car size={13} className="text-brand" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Vehicle</p>
@@ -209,7 +209,7 @@ export default function QREmergencyCard() {
             </button>
             <button
               onClick={handleShare}
-              className="flex-1 flex items-center justify-center gap-2 h-10 rounded-xl bg-[#1A5C38] hover:bg-[#145230] border border-[#1A5C38]/30 transition-all text-[11px] font-semibold text-white uppercase tracking-wider shadow-md shadow-[#1A5C38]/20"
+              className="flex-1 flex items-center justify-center gap-2 h-10 rounded-xl bg-brand hover:bg-brand-dim border border-brand/30 transition-all text-[11px] font-semibold text-white uppercase tracking-wider shadow-md shadow-brand/20"
             >
               <AnimatePresence mode="wait">
                 {copied ? (
@@ -242,7 +242,7 @@ export default function QREmergencyCard() {
           {/* Tactical bottom watermark */}
           <div className="border-t border-slate-100 dark:border-white/5 px-6 py-2.5 flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <Zap size={10} className="text-[#00C896]" />
+              <Zap size={10} className="text-brand" />
               <span className="text-[8px] font-semibold text-slate-400 uppercase tracking-[0.1em]">
                 SafeVixAI Emergency Protocol
               </span>
@@ -269,16 +269,16 @@ export default function QREmergencyCard() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-sm bg-white dark:bg-[#0D1117] rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-white/10"
+              className="w-full max-w-sm bg-white dark:bg-surface-1 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-white/10"
             >
               {/* Modal Header */}
-              <div className="h-2 bg-gradient-to-r from-[#1A5C38] via-[#00C896] to-[#1A5C38]" />
+              <div className="h-2 bg-gradient-to-r from-brand-dim via-brand to-brand-dim" />
               <div className="p-6 flex flex-col items-center gap-6">
 
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <Shield size={16} className="text-[#1A5C38] dark:text-[#00C896]" />
-                    <span className="text-xs font-semibold text-[#1A5C38] dark:text-[#00C896] uppercase tracking-widest font-space">SafeVixAI</span>
+                    <Shield size={16} className="text-brand-dim dark:text-brand" />
+                    <span className="text-xs font-semibold text-brand-dim dark:text-brand uppercase tracking-widest font-space">SafeVixAI</span>
                   </div>
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">
                     {userProfile.name || 'UNKNOWN OPERATOR'}
@@ -292,12 +292,12 @@ export default function QREmergencyCard() {
                     value={qrUrl}
                     size={180}
                     bgColor="#ffffff"
-                    fgColor="#0A0E14"
+                    fgColor="#000000"
                     level="H"
                     includeMargin={false}
                   />
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-10 h-10 rounded-xl bg-[#1A5C38] flex items-center justify-center shadow-lg border-2 border-white">
+                    <div className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center shadow-lg border-2 border-white">
                       <Shield size={18} className="text-white" />
                     </div>
                   </div>
@@ -305,15 +305,15 @@ export default function QREmergencyCard() {
 
                 {/* Vitals preview */}
                 <div className="w-full grid grid-cols-3 gap-3">
-                  <div className="flex flex-col items-center p-3 rounded-xl bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20">
-                    <Heart size={16} className="text-red-500 mb-1" />
+                  <div className="flex flex-col items-center p-3 rounded-xl bg-red-50 dark:bg-emergency/10 border border-red-200 dark:border-emergency/20">
+                    <Heart size={16} className="text-emergency mb-1" />
                     <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Blood</span>
                     <span className="text-sm font-semibold text-slate-900 dark:text-white">
                       {userProfile.bloodGroup || '—'}
                     </span>
                   </div>
-                  <div className="flex flex-col items-center p-3 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20">
-                    <Car size={16} className="text-emerald-500 mb-1" />
+                  <div className="flex flex-col items-center p-3 rounded-xl bg-emerald-50 dark:bg-brand/10 border border-emerald-200 dark:border-brand/20">
+                    <Car size={16} className="text-brand mb-1" />
                     <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Vehicle</span>
                     <span className="text-[11px] font-semibold text-slate-900 dark:text-white truncate w-full text-center">
                       {userProfile.vehicleNumber || '—'}
@@ -338,7 +338,7 @@ export default function QREmergencyCard() {
                   </button>
                   <button
                     onClick={handleShare}
-                    className="flex-1 h-11 rounded-xl bg-[#1A5C38] text-white text-[11px] font-semibold uppercase tracking-widest hover:bg-[#145230] transition-all shadow-md"
+                    className="flex-1 h-11 rounded-xl bg-brand text-white text-[11px] font-semibold uppercase tracking-widest hover:bg-brand-dim transition-all shadow-md"
                   >
                     Share
                   </button>

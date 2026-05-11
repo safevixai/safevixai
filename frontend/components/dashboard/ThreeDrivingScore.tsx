@@ -49,7 +49,7 @@ function ScoreRing({ score }: { score: number }) {
 
 export default function ThreeDrivingScore({ score = 78 }: { score?: number }) {
   return (
-    <div className="w-[72px] h-[72px] pointer-events-auto bg-white/80 dark:bg-[#1a2133]/80 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.15)] rounded-full relative group select-none overflow-hidden">
+    <div className="w-[72px] h-[72px] pointer-events-auto bg-white/80 dark:bg-surface-2/80 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.15)] rounded-full relative group select-none overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 3.5], fov: 50 }}>
           <ambientLight intensity={0.5} />
@@ -59,7 +59,7 @@ export default function ThreeDrivingScore({ score = 78 }: { score?: number }) {
       </div>
       
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-        <span className="text-xl font-black text-slate-800 dark:text-[#d7e3fc] leading-none drop-shadow-md">{score}</span>
+        <span className="text-xl font-black text-slate-800 dark:text-text-1 leading-none drop-shadow-md">{score}</span>
         <span className="text-[7px] font-bold text-slate-500 dark:text-[#c5c6cd] uppercase tracking-wider">Safe</span>
       </div>
     </div>

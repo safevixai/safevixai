@@ -11,9 +11,9 @@ interface StatusChipProps {
 
 export function StatusChip({ status, label, icon, size = 'sm' }: StatusChipProps) {
   const styles = {
-    success: 'bg-[#1A5C38]/10 text-[#00C896] border-[#1A5C38]/20',
+    success: 'bg-brand/10 text-brand border-brand/20',
     warning: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
-    error: 'bg-[#DC2626]/10 text-[#FF6B6B] border-[#DC2626]/20',
+    error: 'bg-emergency/10 text-emergency border-emergency/20',
     info: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
     neutral: 'bg-slate-500/10 text-slate-400 border-slate-500/20',
   };

@@ -109,19 +109,19 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#0A0E14] flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen w-full bg-bg flex items-center justify-center overflow-hidden">
 
       {/* ── Tactical Background ── */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Spots removed per user request */}
         {/* Top-right green glow */}
-        <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#1A5C38]/20 blur-[120px]" />
+        <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand/20 blur-[120px]" />
         {/* Bottom-left glow */}
-        <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#00C896]/10 blur-[100px]" />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-light/10 blur-[100px]" />
 
         {/* Animated scan line */}
         <div
-          className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00C896]/40 to-transparent transition-none pointer-events-none"
+          className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-light/40 to-transparent transition-none pointer-events-none"
           style={{ top: `${scanLine}%` }}
         />
       </div>
@@ -135,10 +135,10 @@ export default function LoginPage() {
       >
 
         {/* Card */}
-        <div className="relative rounded-xl border border-white/10 bg-[#0D1117]/90 backdrop-blur-2xl overflow-hidden shadow-2xl shadow-black/60">
+        <div className="relative rounded-xl border border-white/10 bg-surface-1/90 backdrop-blur-2xl overflow-hidden shadow-2xl shadow-black/60">
 
           {/* Top accent bar */}
-          <div className="h-1 bg-gradient-to-r from-[#1A5C38] via-[#00C896] to-[#1A5C38]" />
+          <div className="h-1 bg-gradient-to-r from-brand via-brand-light to-brand" />
 
           {/* Card Body */}
           <div className="p-8">
@@ -148,7 +148,7 @@ export default function LoginPage() {
               <motion.div
                 animate={{ boxShadow: ['0 0 20px rgba(0,200,150,0.15)', '0 0 40px rgba(0,200,150,0.35)', '0 0 20px rgba(0,200,150,0.15)'] }}
                 transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
-                className="w-16 h-16 rounded-lg bg-[#1A5C38] flex items-center justify-center border border-[#00C896]/20"
+                className="w-16 h-16 rounded-lg bg-brand flex items-center justify-center border border-brand-light/20"
               >
                 <Shield size={32} className="text-white" />
               </motion.div>
@@ -157,16 +157,16 @@ export default function LoginPage() {
                 <h1 className="text-2xl font-black text-white tracking-tight font-space uppercase">
                   SafeVixAI
                 </h1>
-                <p className="text-[10px] font-bold text-[#00C896] uppercase tracking-[0.1em] mt-0.5">
+                <p className="text-[10px] font-bold text-brand-light uppercase tracking-[0.1em] mt-0.5">
                   Operator Authentication
                 </p>
               </div>
 
               {/* Status indicators */}
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A5C38]/20 border border-[#1A5C38]/30">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00C896] animate-pulse" />
-                  <span className="text-[9px] font-semibold text-[#00C896] uppercase tracking-widest">Sentinel Online</span>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/20 border border-brand/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
+                  <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">Sentinel Online</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                   <Lock size={9} className="text-slate-400" />
@@ -192,7 +192,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={e => { setEmail(e.target.value); setError(''); }}
                     placeholder="operator@safevixai.app"
-                    className="w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-600 text-sm font-medium focus:outline-none focus:border-[#1A5C38] focus:ring-1 focus:ring-[#1A5C38]/40 transition-all"
+                    className="w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-600 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
                   />
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function LoginPage() {
                     value={password}
                     onChange={e => { setPassword(e.target.value); setError(''); }}
                     placeholder="••••••••••••"
-                    className="w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-600 text-sm font-medium focus:outline-none focus:border-[#1A5C38] focus:ring-1 focus:ring-[#1A5C38]/40 transition-all"
+                    className="w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-600 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
                   />
                   <button
                     type="button"
@@ -255,7 +255,7 @@ export default function LoginPage() {
                 type="submit"
                 disabled={loading}
                 whileTap={{ scale: 0.97 }}
-                className="relative h-13 w-full rounded-xl bg-[#1A5C38] hover:bg-[#145230] disabled:opacity-60 disabled:cursor-not-allowed border border-[#1A5C38]/40 text-white font-black text-sm uppercase tracking-widest transition-all shadow-lg shadow-[#1A5C38]/20 overflow-hidden flex items-center justify-center gap-2 mt-1"
+                className="relative h-13 w-full rounded-xl bg-brand hover:bg-[#145230] disabled:opacity-60 disabled:cursor-not-allowed border border-brand/40 text-white font-black text-sm uppercase tracking-widest transition-all shadow-lg shadow-brand/20 overflow-hidden flex items-center justify-center gap-2 mt-1"
                 style={{ height: '52px' }}
               >
                 {/* Shimmer on hover */}
@@ -293,11 +293,11 @@ export default function LoginPage() {
             <button
               onClick={handleDemoMode}
               disabled={loading}
-              className="w-full h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-[#1A5C38]/30 transition-all text-slate-300 hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group"
+              className="w-full h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-brand/30 transition-all text-slate-300 hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group"
             >
-              <Zap size={14} className="text-[#00C896] group-hover:animate-pulse" />
+              <Zap size={14} className="text-brand-light group-hover:animate-pulse" />
               Demo Mode (Hackathon)
-              <ChevronRight size={13} className="text-slate-500 group-hover:text-[#00C896] group-hover:translate-x-0.5 transition-all" />
+              <ChevronRight size={13} className="text-slate-500 group-hover:text-brand-light group-hover:translate-x-0.5 transition-all" />
             </button>
 
             {/* ── Quick-fill Demo Credentials ── */}
@@ -311,7 +311,7 @@ export default function LoginPage() {
                     key={c.email}
                     onClick={() => fillCreds(c)}
                     type="button"
-                    className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/8 border border-white/10 hover:border-[#1A5C38]/30 transition-all text-left"
+                    className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/8 border border-white/10 hover:border-brand/30 transition-all text-left"
                   >
                     <span className={`text-[10px] font-semibold uppercase tracking-wide ${c.color}`}>
                       {c.label}
@@ -326,14 +326,14 @@ export default function LoginPage() {
           {/* Footer */}
           <div className="border-t border-white/5 px-8 py-3 flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <Shield size={10} className="text-[#1A5C38]" />
+              <Shield size={10} className="text-brand" />
               <span className="text-[8px] font-semibold text-slate-600 uppercase tracking-[0.1em]">
                 SafeVixAI Sentinel Protocol
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <Wifi size={9} className="text-[#00C896]" />
-              <span className="text-[8px] font-bold text-[#00C896] uppercase tracking-widest">Secure</span>
+              <Wifi size={9} className="text-brand-light" />
+              <span className="text-[8px] font-bold text-brand-light uppercase tracking-widest">Secure</span>
             </div>
           </div>
         </div>

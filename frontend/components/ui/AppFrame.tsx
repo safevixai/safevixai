@@ -29,7 +29,7 @@ export function AppFrame({ children }: AppFrameProps) {
 
   if (isNoNavRoute) {
     return (
-      <div className="flex min-h-dvh w-full bg-[#0A0E14] text-white transition-colors duration-300">
+      <div className="flex min-h-dvh w-full bg-bg text-text-1 transition-colors duration-300">
         <NetworkMonitor />
         {/* Intentionally omitting GlobalSOS, Sidebar, and BottomNav for these standalone pages */}
         <main className="flex-1 w-full relative flex flex-col">
@@ -40,9 +40,9 @@ export function AppFrame({ children }: AppFrameProps) {
   }
 
   return (
-    <div className="flex min-h-dvh w-full bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
+    <div className="flex min-h-dvh w-full bg-bg text-text-1 transition-colors duration-300">
       {/* ── Skip Link for Accessibility ── */}
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 p-2 bg-[var(--bg-card)] text-[var(--text-primary)] font-bold rounded">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 p-2 bg-surface-1 text-text-1 font-bold rounded">
         Skip to main content
       </a>
 

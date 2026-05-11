@@ -11,9 +11,9 @@ export function EmergencyCTA({ title, subtitle, icon, className = '', ...props }
     <button
       type="button"
       className={`
-        relative w-full overflow-hidden rounded-xl bg-[#DC2626] p-4 text-left text-white shadow-lg
+        relative w-full overflow-hidden rounded-xl bg-emergency p-4 text-left text-white shadow-lg
         transition-transform active:scale-[0.98]
-        hover:bg-[#B91C1C] focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:ring-offset-2 focus:ring-offset-[#0A0E14]
+        hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-emergency focus:ring-offset-2 focus:ring-offset-bg
         ${className}
       `}
       {...props}

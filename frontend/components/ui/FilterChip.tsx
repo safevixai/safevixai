@@ -11,12 +11,11 @@ export function FilterChip({ active = false, label, icon, className = '', ...pro
     <button
       type="button"
       className={`
-        inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors
-        focus:outline-none focus:ring-2 focus:ring-[#1A5C38] focus:ring-offset-1 focus:ring-offset-[#0A0E14]
+        focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1 focus:ring-offset-surface-1
         ${
           active
-            ? 'bg-[#1A5C38]/20 text-[#00C896] border border-[#1A5C38]/40'
-            : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 dark:bg-[#111520] dark:text-slate-400 dark:border-white/5 dark:hover:bg-[#181D2A] dark:hover:text-slate-300'
+            ? 'bg-brand/20 text-brand border border-brand/40'
+            : 'bg-surface-1 text-text-2 border border-border hover:bg-surface-2 dark:bg-surface-2 dark:text-text-2 dark:border-white/5 dark:hover:bg-surface-3 dark:hover:text-text-1'
         }
         ${className}
       `}

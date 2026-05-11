@@ -259,11 +259,11 @@ export default function ReportPage() {
   if (!mounted) return null;
 
   return (
-    <div className="relative min-h-dvh overflow-x-hidden bg-slate-50 text-slate-900 dark:bg-[#020817] dark:text-[#d7e3fc]">
+    <div className="relative min-h-dvh overflow-x-hidden bg-slate-50 text-slate-900 dark:bg-[#020817] dark:text-text-1">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] hidden h-[38rem] w-[38rem] rounded-full bg-cyan-500/10 blur-[150px] dark:block" />
         <div className="absolute left-[22%] top-[4%] hidden h-[20rem] w-[20rem] rounded-full bg-violet-500/8 blur-[120px] dark:block" />
-        <div className="absolute bottom-[-16%] left-[-8%] hidden h-[28rem] w-[28rem] rounded-full bg-[#1A5C38]/12 blur-[140px] dark:block" />
+        <div className="absolute bottom-[-16%] left-[-8%] hidden h-[28rem] w-[28rem] rounded-full bg-brand/12 blur-[140px] dark:block" />
       </div>
 
       {/* ── Unified Tactical Navigation Header ── */}
@@ -278,9 +278,9 @@ export default function ReportPage() {
         {/* ── Dispatch Hero Section ── */}
         <section className="mt-4 flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex w-fit items-center gap-2 rounded-full border border-[#1A5C38]/20 bg-[#1A5C38]/10 px-3 py-1 dark:border-[#1A5C38]/15 dark:bg-[#1A5C38]/12">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1A5C38]/80 animate-pulse"></span>
-              <span className="text-[10px] font-semibold text-[#1A5C38] dark:text-[#00C896] uppercase tracking-widest">Dispatch Sentinel</span>
+            <div className="flex w-fit items-center gap-2 rounded-full border border-brand/20 bg-brand/10 px-3 py-1 dark:border-brand/15 dark:bg-brand/12">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand/80 animate-pulse"></span>
+              <span className="text-[10px] font-semibold text-brand dark:text-brand-light uppercase tracking-widest">Dispatch Sentinel</span>
             </div>
             {approximateLocation && gpsLocation && (
               <div className="flex w-fit items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 dark:border-orange-400/15 dark:bg-orange-500/12">
@@ -313,7 +313,7 @@ export default function ReportPage() {
                     <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Location Lock</div>
                     <h2 className="mt-2 text-xl font-black tracking-tight text-slate-900 dark:text-slate-100">{locationLabel}</h2>
                   </div>
-                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 transition hover:border-[#1A5C38]/20 hover:bg-[#1A5C38]/8 hover:text-[#1A5C38] active:scale-95 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200 dark:hover:border-[#1A5C38]/20 dark:hover:bg-[#1A5C38]/10 dark:hover:text-white" aria-label="Refresh location">
+                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 transition hover:border-brand/20 hover:bg-brand/8 hover:text-brand active:scale-95 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200 dark:hover:border-brand/20 dark:hover:bg-brand/10 dark:hover:text-white" aria-label="Refresh location">
                     {locating ? <Loader2 size={18} className="animate-spin" /> : <RefreshCcw size={18} />}
                   </button>
                 </div>
@@ -339,14 +339,14 @@ export default function ReportPage() {
                   </div>
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200"><Camera size={18} /></div>
                 </div>
-                <label htmlFor="hazard-photo" className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center transition hover:border-[#1A5C38]/30 hover:bg-[#1A5C38]/70 dark:border-slate-800/80 dark:bg-slate-950/45 dark:hover:border-[#1A5C38]/20 dark:hover:bg-[#1A5C38]/10 relative overflow-hidden group">
+                <label htmlFor="hazard-photo" className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center transition hover:border-brand/30 hover:bg-brand/70 dark:border-slate-800/80 dark:bg-slate-950/45 dark:hover:border-brand/20 dark:hover:bg-brand/10 relative overflow-hidden group">
                   {photoBlobUrl && (
                     <div className="absolute inset-0 w-full h-full bg-black/60 z-0">
                       <Image src={photoBlobUrl} alt="Preview" fill unoptimized className="object-cover opacity-60 group-hover:opacity-40 transition" />
                     </div>
                   )}
                   <div className="relative z-10 flex flex-col items-center">
-                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-[#1A5C38]/15 text-[#1A5C38] dark:bg-[#1A5C38]/16 dark:text-white shadow-sm"><Upload size={22} /></div>
+                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-brand/15 text-brand dark:bg-brand/16 dark:text-white shadow-sm"><Upload size={22} /></div>
                     <div className={`mt-4 text-sm font-semibold uppercase tracking-[0.18em] ${photoBlobUrl ? 'text-white' : 'text-slate-800 dark:text-slate-100'}`}>{photoFile ? 'Replace photo' : 'Attach road image'}</div>
                     <p className={`mt-2 max-w-xs text-sm ${photoBlobUrl ? 'text-slate-200' : 'text-slate-500 dark:text-slate-400'}`}>{photoHint}</p>
                   </div>
@@ -377,7 +377,7 @@ export default function ReportPage() {
                           'border-amber-200 bg-amber-50 text-amber-950 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-50',
                           'border-orange-200 bg-orange-50 text-orange-950 dark:border-orange-400/20 dark:bg-orange-500/10 dark:text-orange-50',
                           'border-cyan-200 bg-cyan-50 text-cyan-950 dark:border-cyan-400/20 dark:bg-cyan-500/10 dark:text-cyan-50',
-                          'border-[#1A5C38]/20 bg-[#1A5C38]/8 text-[#0A0E14] dark:border-[#1A5C38]/20 dark:bg-[#1A5C38]/10 dark:text-blue-50',
+                          'border-brand/20 bg-brand/[0.08] text-slate-900 dark:border-brand/20 dark:bg-brand/10 dark:text-blue-50',
                           'border-violet-200 bg-violet-50 text-violet-950 dark:border-violet-400/20 dark:bg-violet-500/10 dark:text-violet-50',
                           'border-rose-200 bg-rose-50 text-rose-950 dark:border-rose-400/20 dark:bg-rose-500/10 dark:text-rose-50',
                         ][index];
@@ -400,7 +400,7 @@ export default function ReportPage() {
                       {SEVERITY_OPTIONS.map(([value, label]) => {
                         const active = value === severity;
                         return (
-                          <button key={value} type="button" onClick={() => setSeverity(value)} className={cx('rounded-lg border px-3 py-4 text-center transition', active ? value >= 4 ? 'border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/20' : 'border-[#1A5C38] bg-[#1A5C38]/80 text-white shadow-lg shadow-[#1A5C38]/20' : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-100')}>
+                          <button key={value} type="button" onClick={() => setSeverity(value)} className={cx('rounded-lg border px-3 py-4 text-center transition', active ? value >= 4 ? 'border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/20' : 'border-brand bg-brand/80 text-white shadow-lg shadow-brand/20' : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-100')}>
                             <div className="text-lg font-black leading-none">{value}</div>
                             <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em]">{label}</div>
                           </button>
@@ -414,7 +414,7 @@ export default function ReportPage() {
                       <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Notes for the authority desk</div>
                       <div className="text-xs font-semibold text-slate-400 dark:text-slate-500">{notes.trim().length}/480</div>
                     </div>
-                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder="Describe lane blockage, vehicle risk, traffic density, or how the hazard presents on the road." className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-medium text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#1A5C38]/40 focus:bg-white dark:border-slate-800/80 dark:bg-slate-950/45 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-[#1A5C38]/40 dark:focus:bg-slate-950/75" />
+                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder="Describe lane blockage, vehicle risk, traffic density, or how the hazard presents on the road." className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-medium text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand/40 focus:bg-white dark:border-slate-800/80 dark:bg-slate-950/45 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand/40 dark:focus:bg-slate-950/75" />
                   </div>
 
                   {submitError ? <div className="rounded-[1.5rem] border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-900 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-100">{submitError}</div> : null}
@@ -484,8 +484,8 @@ export default function ReportPage() {
               <div className="mt-4 divide-y divide-slate-100 dark:divide-slate-800/70">
                 <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Road</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{[reportRoadNumber, reportRoadName].filter(Boolean).join(' - ') || reportType || 'Not available'}</div></div>
                 <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Authority</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{reportAuthority ?? 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Helpline</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{helpline ? <a href={`tel:${helpline}`} className="text-[#1A5C38] dark:text-[#00C896] underline decoration-[#00C896] underline-offset-4 hover:text-[#1A5C38] dark:text-[#00C896]">{helpline}</a> : 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Portal</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="text-[#1A5C38] dark:text-[#00C896] underline decoration-[#00C896] underline-offset-4 hover:text-[#1A5C38] dark:text-[#00C896]">Open official complaint portal</a> : 'Portal not listed'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Helpline</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{helpline ? <a href={`tel:${helpline}`} className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">{helpline}</a> : 'Not available'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Portal</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">Open official complaint portal</a> : 'Portal not listed'}</div></div>
                 <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Escalation</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{authorityPreview?.escalationPath ?? 'Not available'}</div></div>
                 <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Executive engineer</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{authorityPreview?.execEngineer ?? infrastructure?.execEngineer ?? 'Not available'}</div></div>
               </div>
@@ -522,7 +522,7 @@ export default function ReportPage() {
       </main>
 
       <div className="fixed right-4 top-[92px] z-30 flex flex-col gap-3 lg:right-8">
-        <button type="button" onClick={refresh} className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-white/75 text-slate-700 shadow-[0_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-[#1A5C38] dark:border-slate-800/80 dark:bg-slate-950/80 dark:text-slate-100 dark:shadow-[0_20px_40px_rgba(2,6,23,0.4)]" aria-label="Refresh live location">
+        <button type="button" onClick={refresh} className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-white/75 text-slate-700 shadow-[0_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-brand dark:border-slate-800/80 dark:bg-slate-950/80 dark:text-slate-100 dark:shadow-[0_20px_40px_rgba(2,6,23,0.4)]" aria-label="Refresh live location">
           {locating ? <Loader2 size={20} className="animate-spin" /> : <Navigation size={20} />}
         </button>
       </div>

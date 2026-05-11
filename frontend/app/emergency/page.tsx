@@ -128,19 +128,19 @@ export default function EmergencyProtocolsPage() {
 
   if (!mounted) {
     return (
-      <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#0A0E14] text-slate-800 dark:text-[#d7e3fc] overflow-x-hidden flex flex-col">
+      <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col">
         <SystemHeader title="Emergency Protocol Terminal" showBack={false} />
         <main className="flex-1 w-full max-w-7xl mx-auto pt-28 lg:pt-24 pb-44 px-5 sm:px-12 flex flex-col lg:grid lg:grid-cols-[1.2fr,2fr] lg:gap-14 lg:items-start animate-pulse">
           <aside className="lg:sticky lg:top-28 flex flex-col gap-8">
-            <div className="h-20 bg-slate-200 dark:bg-[#1a2133] rounded-lg w-3/4"></div>
-            <div className="h-64 bg-slate-200 dark:bg-[#1a2133] rounded-[2.5rem] w-full"></div>
+            <div className="h-20 bg-slate-200 dark:bg-surface-2 rounded-lg w-3/4"></div>
+            <div className="h-64 bg-slate-200 dark:bg-surface-2 rounded-[2.5rem] w-full"></div>
           </aside>
           <div className="flex flex-col gap-8 pt-8 lg:pt-0">
-            <div className="h-12 bg-slate-200 dark:bg-[#1a2133] rounded-lg w-full"></div>
+            <div className="h-12 bg-slate-200 dark:bg-surface-2 rounded-lg w-full"></div>
             <div className="grid gap-4">
-              <div className="h-24 bg-slate-200 dark:bg-[#1a2133] rounded-xl w-full"></div>
-              <div className="h-24 bg-slate-200 dark:bg-[#1a2133] rounded-xl w-full"></div>
-              <div className="h-24 bg-slate-200 dark:bg-[#1a2133] rounded-xl w-full"></div>
+              <div className="h-24 bg-slate-200 dark:bg-surface-2 rounded-xl w-full"></div>
+              <div className="h-24 bg-slate-200 dark:bg-surface-2 rounded-xl w-full"></div>
+              <div className="h-24 bg-slate-200 dark:bg-surface-2 rounded-xl w-full"></div>
             </div>
           </div>
         </main>
@@ -149,7 +149,7 @@ export default function EmergencyProtocolsPage() {
   }
 
   return (
-    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#0A0E14] text-slate-800 dark:text-[#d7e3fc] overflow-x-hidden flex flex-col transition-colors duration-500">
+    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col transition-colors duration-500">
       
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Emergency Protocol Terminal" showBack={false} />
@@ -300,7 +300,7 @@ export default function EmergencyProtocolsPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ delay: i * 0.05 }}
-                    className={`group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-slate-200 dark:border-white/5 overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-[#0D1117] ring-1 ring-slate-200 dark:ring-white/10 shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
+                    className={`group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-slate-200 dark:border-white/5 overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-surface-1 ring-1 ring-slate-200 dark:ring-white/10 shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
                   >
                     {/* Header: Intel Brief */}
                     <button onClick={() => setExpandedId(isExpanded ? null : protocol.id)} className="w-full flex items-center p-5 sm:p-7 text-left gap-5 relative z-10 transition-colors">

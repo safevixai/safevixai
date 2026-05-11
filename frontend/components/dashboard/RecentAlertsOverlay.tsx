@@ -10,7 +10,7 @@ function getAlertVisual(issueType: string, severity: number) {
   if (severity >= 4) {
     return {
       icon: 'warning',
-      iconClass: 'text-[#ff5545]',
+      iconClass: 'text-emergency',
       borderClass: 'border-red-500/30',
     };
   }
@@ -18,8 +18,8 @@ function getAlertVisual(issueType: string, severity: number) {
   if (normalized.includes('flood') || normalized.includes('rain')) {
     return {
       icon: 'rainy',
-      iconClass: 'text-[#1A5C38] dark:text-[#00C896]',
-      borderClass: 'border-[#1A5C38]/30',
+      iconClass: 'text-brand',
+      borderClass: 'border-brand/30',
     };
   }
 
@@ -61,11 +61,11 @@ export default function RecentAlertsOverlay() {
       className={`fixed bottom-24 lg:bottom-4 left-0 w-full z-40 pointer-events-none pl-4 pr-20 flex flex-col items-center lg:pr-0 transition-all duration-300 ${isDesktopSidebarCollapsed ? 'lg:pl-[88px]' : 'lg:pl-[280px]'}`}
     >
       <div className="w-fit max-w-full pointer-events-auto flex flex-col gap-2">
-        <div className="self-center bg-white/90 dark:bg-[#0D1117]/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-slate-200 dark:border-white/10 shadow-xl flex items-center gap-2">
+        <div className="self-center bg-white/90 dark:bg-surface-1/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-slate-200 dark:border-white/10 shadow-xl flex items-center gap-2">
           <span
-            className={`w-1.5 h-1.5 rounded-full ${nearbyRoadIssues.length > 0 ? 'bg-[#ff5545] animate-pulse shadow-[0_0_8px_rgba(255,85,69,0.8)]' : 'bg-emerald-500'}`}
+            className={`w-1.5 h-1.5 rounded-full ${nearbyRoadIssues.length > 0 ? 'bg-emergency animate-pulse shadow-[0_0_8px_var(--emergency)]' : 'bg-brand'}`}
           />
-          <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-700 dark:text-[#00C896] uppercase font-space">
+          <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-700 dark:text-brand uppercase font-space">
             {summaryLabel}
           </span>
         </div>
@@ -77,7 +77,7 @@ export default function RecentAlertsOverlay() {
               return (
                 <div
                   key={issue.uuid}
-                  className={`snap-center flex-shrink-0 bg-white/90 dark:bg-[#1a2133]/90 backdrop-blur-md rounded-full ${visual.borderClass} px-3 py-1.5 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-[#2a3548] transition-colors relative border`}
+                  className={`snap-center flex-shrink-0 bg-white/90 dark:bg-surface-2/90 backdrop-blur-md rounded-full ${visual.borderClass} px-3 py-1.5 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-surface-3 transition-colors relative border`}
                 >
                   <span
                     className={`material-symbols-outlined text-[18px] ${visual.iconClass}`}
@@ -85,7 +85,7 @@ export default function RecentAlertsOverlay() {
                   >
                     {visual.icon}
                   </span>
-                  <span className="text-xs font-semibold text-slate-800 dark:text-[#d7e3fc] truncate">
+                  <span className="text-xs font-semibold text-slate-800 dark:text-text-1 truncate">
                     {formatIssueType(issue.issueType)}
                   </span>
                 </div>

@@ -24,29 +24,29 @@ export function RightSidebar() {
     secure: {
       label: 'Secure Region',
       sub: `No critical anomalies in ${serviceSearchMeta.radiusUsed ? (serviceSearchMeta.radiusUsed / 1000).toFixed(1) : '5.0'}km radius`,
-      icon: <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
-      bg: 'bg-emerald-500/10 border-emerald-500/20',
-      iconBg: 'bg-emerald-500/20',
-      text: 'text-emerald-700 dark:text-emerald-300',
-      sub_text: 'text-emerald-600/80 dark:text-emerald-400/80',
+      icon: <ShieldCheck className="w-5 h-5 text-brand-light" />,
+      bg: 'bg-brand-light/10 border-brand-light/20',
+      iconBg: 'bg-brand-light/20',
+      text: 'text-brand-light',
+      sub_text: 'text-brand-light/80',
     },
     caution: {
       label: 'Caution Zone',
       sub: `${openIssues} active hazard${openIssues > 1 ? 's' : ''} nearby — proceed with care`,
-      icon: <AlertTriangle className="w-5 h-5 text-amber-500" />,
-      bg: 'bg-amber-500/10 border-amber-500/20',
-      iconBg: 'bg-amber-500/20',
-      text: 'text-amber-700 dark:text-amber-300',
-      sub_text: 'text-amber-600/80 dark:text-amber-400/80',
+      icon: <AlertTriangle className="w-5 h-5 text-text-amber" />,
+      bg: 'bg-text-amber/10 border-text-amber/20',
+      iconBg: 'bg-text-amber/20',
+      text: 'text-text-amber',
+      sub_text: 'text-text-amber/80',
     },
     alert: {
       label: 'High Risk Area',
       sub: `${openIssues} unresolved hazards detected — SOS ready`,
-      icon: <Shield className="w-5 h-5 text-red-500" />,
-      bg: 'bg-red-500/10 border-red-500/20',
-      iconBg: 'bg-red-500/20',
-      text: 'text-red-700 dark:text-red-300',
-      sub_text: 'text-red-600/80 dark:text-red-400/80',
+      icon: <Shield className="w-5 h-5 text-emergency" />,
+      bg: 'bg-emergency/10 border-emergency/20',
+      iconBg: 'bg-emergency/20',
+      text: 'text-emergency',
+      sub_text: 'text-emergency/80',
     },
   };
 
@@ -54,12 +54,12 @@ export function RightSidebar() {
 
   return (
     <aside
-      className={`hidden lg:flex flex-col shrink-0 bg-white/70 dark:bg-[#0D1117]/70 backdrop-blur-3xl transition-all duration-300 relative z-40 ${isPanelOpen ? 'w-[320px] xl:w-[380px] border-l border-slate-200 dark:border-white/10' : 'w-0 border-none'}`}
+      className={`hidden lg:flex flex-col shrink-0 bg-surface-1/95 backdrop-blur-3xl transition-all duration-300 relative z-40 ${isPanelOpen ? 'w-[320px] xl:w-[380px] border-l border-border' : 'w-0 border-none'}`}
     >
       {/* Toggle Button */}
       <button
         onClick={() => setIsPanelOpen(!isPanelOpen)}
-        className={`absolute top-1/2 -translate-y-1/2 w-8 h-16 bg-white dark:bg-[#0D1117] border border-slate-200 dark:border-white/10 rounded-l-xl flex items-center justify-center shadow-lg hover:bg-slate-50 dark:hover:bg-[#161c2d] transition-colors z-50 text-slate-500 dark:text-slate-400 ${isPanelOpen ? '-left-4' : '-left-8'}`}
+        className={`absolute top-1/2 -translate-y-1/2 w-8 h-16 bg-surface-2 border border-border rounded-l-xl flex items-center justify-center shadow-lg hover:bg-surface-3 transition-colors z-50 text-text-3 ${isPanelOpen ? '-left-4' : '-left-8'}`}
         aria-label={isPanelOpen ? 'Collapse panel' : 'Expand panel'}
       >
         {isPanelOpen ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
@@ -68,23 +68,23 @@ export function RightSidebar() {
       <div className={`flex-1 flex flex-col overflow-hidden transition-opacity duration-300 ${isPanelOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="flex-1 overflow-y-auto scrollbar-hide w-[320px] xl:w-[380px]">
           {/* Panel Header */}
-          <div className="sticky top-0 bg-white/50 dark:bg-[#0D1117]/50 backdrop-blur-md border-b border-slate-100 dark:border-white/5 px-6 py-5 z-10">
+          <div className="sticky top-0 bg-surface-2/50 backdrop-blur-md border-b border-border px-6 py-5 z-10">
             <div className="flex items-center justify-between mb-1">
-              <h2 className="text-base font-semibold text-slate-900 dark:text-white uppercase tracking-tight font-space">
+              <h2 className="text-base font-bold text-text-1 uppercase tracking-tight font-mono">
                 Area Intelligence
               </h2>
               {/* Connectivity indicator */}
               <div className={`flex items-center gap-1.5 px-2 py-1 rounded-sm text-[11px] font-semibold uppercase tracking-widest ${
                 connectivity === 'online'
-                  ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
-                  : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                  ? 'bg-brand-light/10 text-brand-light border border-brand-light/20'
+                  : 'bg-text-amber/10 text-text-amber border border-text-amber/20'
               }`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${connectivity === 'online' ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
+                <span className={`w-1.5 h-1.5 rounded-full ${connectivity === 'online' ? 'bg-brand-light animate-pulse' : 'bg-text-amber'}`} />
                 {connectivity === 'online' ? 'Live' : 'Cached'}
               </div>
             </div>
             {gpsLocation && (
-              <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mt-2">
+              <p className="text-[11px] font-semibold text-text-3 font-mono uppercase tracking-widest mt-2">
                 <MapPin size={11} className="inline mr-1" />
                 {gpsLocation.city ?? 'Location detected'}{gpsLocation.state ? `, ${gpsLocation.state}` : ''}
               </p>
@@ -105,21 +105,21 @@ export function RightSidebar() {
 
             {/* Stats Row */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+              <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-surface-2 border border-border">
                 <div className="flex items-center gap-1.5">
-                  <Navigation size={12} className="text-[#1A5C38] dark:text-[#00C896]" />
-                  <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">Services</span>
+                  <Navigation size={12} className="text-brand-light" />
+                  <span className="text-[11px] font-semibold text-text-3 font-mono uppercase tracking-widest">Services</span>
                 </div>
-                <p className="text-2xl font-black text-slate-900 dark:text-white">{serviceCount}</p>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Nearby Found</p>
+                <p className="text-2xl font-black text-text-1">{serviceCount}</p>
+                <p className="text-[11px] font-semibold text-text-3 font-mono uppercase tracking-wider">Nearby Found</p>
               </div>
-              <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+              <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-surface-2 border border-border">
                 <div className="flex items-center gap-1.5">
-                  <AlertTriangle size={12} className="text-amber-500" />
-                  <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">Hazards</span>
+                  <AlertTriangle size={12} className="text-text-amber" />
+                  <span className="text-[11px] font-semibold text-text-3 font-mono uppercase tracking-widest">Hazards</span>
                 </div>
-                <p className="text-2xl font-black text-slate-900 dark:text-white">{issueCount}</p>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                <p className="text-2xl font-black text-text-1">{issueCount}</p>
+                <p className="text-[11px] font-semibold text-text-3 font-mono uppercase tracking-wider">
                   {openIssues} Open
                 </p>
               </div>
@@ -128,27 +128,27 @@ export function RightSidebar() {
             {/* Live Road Issues */}
             {nearbyRoadIssues.length > 0 && (
               <div className="flex flex-col gap-2">
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-[0.05em] px-1 mt-2">Active Hazards</p>
+                <p className="text-[11px] font-semibold text-text-3 uppercase tracking-[0.05em] px-1 mt-2">Active Hazards</p>
                 {nearbyRoadIssues.slice(0, 4).map((issue) => (
                   <div
                     key={issue.uuid}
-                    className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-amber-500/30 transition-colors"
+                    className="flex items-start gap-3 p-3 rounded-xl bg-surface-2 border border-border hover:border-text-amber/30 transition-colors"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <AlertTriangle size={14} className="text-amber-500" />
+                    <div className="w-8 h-8 rounded-lg bg-text-amber/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <AlertTriangle size={14} className="text-text-amber" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-tight truncate">
+                      <p className="text-[13px] font-bold text-text-1 font-mono uppercase tracking-tight truncate">
                         {issue.issueType.replace(/_/g, ' ')}
                       </p>
-                      <p className="text-[11px] font-medium text-slate-400 uppercase tracking-wider mt-0.5">
+                      <p className="text-[11px] font-medium text-text-3 font-mono uppercase tracking-wider mt-0.5">
                         {issue.roadName || 'Unknown Road'} · {(issue.distance / 1000).toFixed(1)}km
                       </p>
                     </div>
-                    <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded flex-shrink-0 ${
+                    <span className={`text-[11px] font-bold font-mono uppercase tracking-wider px-2 py-0.5 rounded flex-shrink-0 ${
                       issue.severity >= 3
-                        ? 'bg-red-500/10 text-red-500'
-                        : 'bg-amber-500/10 text-amber-500'
+                        ? 'bg-emergency/10 text-emergency'
+                        : 'bg-text-amber/10 text-text-amber'
                     }`}>
                       S{issue.severity}
                     </span>
@@ -160,27 +160,27 @@ export function RightSidebar() {
             {/* No data yet */}
             {serviceCount === 0 && issueCount === 0 && (
               <div className="flex flex-col items-center gap-3 py-8 text-center mt-4">
-                <div className="w-12 h-12 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
-                  <Activity size={20} className="text-slate-300 dark:text-slate-600" />
+                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center">
+                  <Activity size={20} className="text-text-3" />
                 </div>
-                <p className="text-[13px] font-semibold text-slate-400 uppercase tracking-widest">Scanning Area...</p>
-                <p className="text-[11px] font-medium text-slate-300 dark:text-slate-600 max-w-[180px] leading-relaxed">
+                <p className="text-[13px] font-semibold text-text-2 uppercase tracking-widest font-mono">Scanning Area...</p>
+                <p className="text-[11px] font-medium text-text-3 max-w-[180px] leading-relaxed">
                   Allow location to activate live hazard intelligence
                 </p>
               </div>
             )}
 
             {/* Driving Score */}
-            <div className="p-4 rounded-lg bg-gradient-to-br from-[#1A5C38]/8 to-[#00C896]/5 border border-[#1A5C38]/20 flex items-center gap-4 mt-2">
-              <div className="w-12 h-12 rounded-xl bg-[#1A5C38]/10 flex items-center justify-center">
-                <Zap size={20} className="text-[#1A5C38] dark:text-[#00C896]" />
+            <div className="p-4 rounded-lg bg-gradient-to-br from-brand/10 to-brand-light/5 border border-brand/20 flex items-center gap-4 mt-2">
+              <div className="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center">
+                <Zap size={20} className="text-brand-light" />
               </div>
               <div className="flex-1">
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">AI Sentinel</p>
-                <p className="text-[13px] font-semibold text-slate-900 dark:text-white uppercase tracking-tight">Monitoring Active</p>
+                <p className="text-[11px] font-semibold text-text-3 uppercase tracking-widest font-mono">AI Sentinel</p>
+                <p className="text-[13px] font-bold text-text-1 uppercase tracking-tight font-mono">Monitoring Active</p>
               </div>
               <div className="flex items-center gap-1">
-                <Circle size={8} className="fill-[#00C896] text-[#00C896] animate-pulse" />
+                <Circle size={8} className="fill-brand-light text-brand-light animate-pulse" />
               </div>
             </div>
           </div>

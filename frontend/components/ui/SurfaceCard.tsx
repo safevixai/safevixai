@@ -24,8 +24,8 @@ export function SurfaceCard({
     <div
       className={`
         rounded-xl border border-slate-200 bg-white
-        dark:border-white/10 dark:bg-[#111520]
-        ${interactive ? 'transition-all hover:border-[#1A5C38]/30 dark:hover:border-white/20 dark:hover:bg-[#181D2A] cursor-pointer' : ''}
+        dark:border-white/10 dark:bg-surface-2
+        ${interactive ? 'transition-all hover:border-brand/30 dark:hover:border-white/20 dark:hover:bg-surface-3 cursor-pointer' : ''}
         ${paddingClasses[padding]}
         ${className}
       `}

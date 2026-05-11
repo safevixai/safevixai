@@ -77,7 +77,7 @@ export default function ProfilePage() {
     : 'NOT SET';
 
   return (
-    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#0A0E14] text-slate-800 dark:text-[#d7e3fc] overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
+    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
       
       {/* ── Unified Tactical Navigation Header ── */}
       <TerminalHeader title="Operator Identity Matrix" subtitle="PROFILE & SETTINGS" />
@@ -114,7 +114,7 @@ export default function ProfilePage() {
             {!isEditing ? (
               <button
                 onClick={handleEdit}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 text-[10px] font-semibold uppercase tracking-widest hover:bg-emerald-50 hover:text-emerald-700 dark:hover:bg-[#1A5C38]/10 dark:hover:text-[#00C896] transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 text-[10px] font-semibold uppercase tracking-widest hover:bg-emerald-50 hover:text-emerald-700 dark:hover:bg-brand/10 dark:hover:text-brand-light transition-all"
               >
                 <Edit3 size={12} />
                 Edit Profile
@@ -150,7 +150,7 @@ export default function ProfilePage() {
                   <User size={40} className="text-slate-300 dark:text-white/20" />
                 )}
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-emerald-500 w-10 h-10 rounded-lg flex items-center justify-center border-4 border-white dark:border-[#0A0E14] shadow-lg">
+              <div className="absolute -bottom-2 -right-2 bg-emerald-500 w-10 h-10 rounded-lg flex items-center justify-center border-4 border-white dark:border-bg shadow-lg">
                 <CheckCircle size={20} className="text-white" />
               </div>
             </div>
@@ -233,7 +233,7 @@ export default function ProfilePage() {
             <SurfaceCard padding="md" className="sm:col-span-2 flex flex-col gap-4">
                <div className="flex items-center justify-between">
                   <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Emergency Contact</p>
-                  <Shield size={16} className="text-[#1A5C38] dark:text-[#00C896]" />
+                  <Shield size={16} className="text-brand dark:text-brand-light" />
                </div>
                <div className="flex flex-col">
                   {isEditing ? (
@@ -242,7 +242,7 @@ export default function ProfilePage() {
                       value={editDraft.emergencyContact}
                       onChange={e => setEditDraft(d => ({ ...d, emergencyContact: e.target.value }))}
                       placeholder="+91 98765 43210"
-                      className="text-xl font-black text-slate-900 dark:text-white tracking-tighter bg-transparent border-b-2 border-[#1A5C38]/60 outline-none placeholder:text-slate-300 dark:placeholder:text-white/20"
+                      className="text-xl font-black text-slate-900 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-slate-300 dark:placeholder:text-white/20"
                     />
                   ) : (
                     <span className="text-xl font-black text-slate-900 dark:text-white tracking-tighter">
@@ -285,7 +285,7 @@ export default function ProfilePage() {
               {[
                 { title: 'Road Safety', score: 'Active User', bgColor: 'bg-emerald-500/10', iconColor: 'text-emerald-500' },
                 { title: 'First Responder', score: 'Trained', bgColor: 'bg-amber-500/10', iconColor: 'text-amber-500' },
-                { title: 'AI Master', score: 'SafeVixAI', bgColor: 'bg-[#1A5C38]/10', iconColor: 'text-[#1A5C38] dark:text-[#00C896]' },
+                { title: 'AI Master', score: 'SafeVixAI', bgColor: 'bg-brand/10', iconColor: 'text-brand dark:text-brand-light' },
               ].map(badge => (
                 <SurfaceCard key={badge.title} padding="md" className="flex-shrink-0 w-40 flex flex-col items-center gap-3">
                    <div className={`p-4 rounded-xl ${badge.bgColor}`}>
@@ -306,7 +306,7 @@ export default function ProfilePage() {
            {isAuthenticated && (
              <button
                onClick={() => { clearAuth(); }}
-               className="w-full h-14 rounded-full border-2 border-[#1A5C38]/30 bg-[#1A5C38]/10 hover:bg-[#1A5C38]/20 text-[10px] font-semibold uppercase tracking-[0.1em] text-emerald-600 dark:text-[#00C896] flex items-center justify-center gap-2 transition-all active:scale-95"
+               className="w-full h-14 rounded-full border-2 border-brand/30 bg-brand/10 hover:bg-brand/20 text-[10px] font-semibold uppercase tracking-[0.1em] text-emerald-600 dark:text-brand-light flex items-center justify-center gap-2 transition-all active:scale-95"
              >
                <LogOut size={14} />
                Sign Out Operator

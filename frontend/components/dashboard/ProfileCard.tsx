@@ -21,7 +21,7 @@ export default function ProfileCard() {
           <div className="w-24 h-24 rounded-full border-4 border-slate-100 dark:border-white/10 ring-4 ring-emerald-500/20 overflow-hidden relative bg-emerald-950 text-emerald-100 flex items-center justify-center">
             <span className="text-3xl font-black tracking-tight font-space">{initials}</span>
           </div>
-          <button aria-label="Emergency profile status" className="absolute bottom-0 right-0 bg-emerald-500 p-2 rounded-full shadow-lg border-2 border-white dark:border-[#0A0E14] active:scale-90 transition-all">
+          <button aria-label="Emergency profile status" className="absolute bottom-0 right-0 bg-emerald-500 p-2 rounded-full shadow-lg border-2 border-white dark:border-bg active:scale-90 transition-all">
             <Zap size={14} className="text-white" />
           </button>
         </div>

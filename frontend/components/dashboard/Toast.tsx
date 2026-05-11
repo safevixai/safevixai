@@ -28,7 +28,7 @@ export default function Toast({ message, type = 'info', isVisible, onClose, dura
   const colors = {
     success: 'bg-emerald-50 border-emerald-200 dark:bg-emerald-500/10 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400',
     error: 'bg-red-50 border-red-200 dark:bg-red-500/10 dark:border-red-500/20 text-red-600 dark:text-red-400',
-    info: 'bg-[#1A5C38]/8 border-blue-200 dark:bg-[#1A5C38]/10 dark:border-[#1A5C38]/20 text-[#1A5C38] dark:text-[#00C896]',
+    info: 'bg-brand/8 border-blue-200 dark:bg-brand/10 dark:border-brand/20 text-brand dark:text-brand-light',
   };
 
   return (

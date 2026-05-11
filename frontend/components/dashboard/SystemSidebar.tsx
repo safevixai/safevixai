@@ -42,16 +42,16 @@ const SystemSidebar = memo(function SystemSidebar() {
   };
 
   const navItems = [
-    { icon: <MapPin size={24} />, label: 'Map', href: '/', color: 'text-[#1A5C38] dark:text-[#00C896]' },
-    { icon: <BotMessageSquare size={24} />, label: 'AI Assistant', href: '/assistant', color: 'text-[#1A5C38] dark:text-[#00C896]' },
-    { icon: <MapPinPlus size={24} />, label: 'Locator', href: '/locator', color: 'text-emerald-500' },
-    { icon: <Users size={24} />, label: 'Tracking', href: '/tracking', color: 'text-indigo-500' },
-    { icon: <HeartPulse size={24} />, label: 'First Aid', href: '/first-aid', color: 'text-red-500' },
-    { icon: <AlertTriangle size={24} />, label: 'Report Road Issue', href: '/report', color: 'text-orange-500' },
-    { icon: <Scale size={24} />, label: 'Challan Calculator', href: '/challan', color: 'text-slate-500' },
-    { icon: <ShieldAlert size={24} />, label: 'Emergency', href: '/emergency', color: 'text-red-600' },
-    { icon: <User size={24} />, label: 'Profile', href: '/profile', color: 'text-sky-500' },
-    { icon: <Settings size={24} />, label: 'Settings', href: '/settings', color: 'text-slate-400' },
+    { icon: <MapPin size={24} />, label: 'Map', href: '/', color: 'text-brand-light' },
+    { icon: <BotMessageSquare size={24} />, label: 'AI Assistant', href: '/assistant', color: 'text-brand-light' },
+    { icon: <MapPinPlus size={24} />, label: 'Locator', href: '/locator', color: 'text-brand-light' },
+    { icon: <Users size={24} />, label: 'Tracking', href: '/tracking', color: 'text-brand-light' },
+    { icon: <HeartPulse size={24} />, label: 'First Aid', href: '/first-aid', color: 'text-emergency' },
+    { icon: <AlertTriangle size={24} />, label: 'Report Road Issue', href: '/report', color: 'text-text-amber' },
+    { icon: <Scale size={24} />, label: 'Challan Calculator', href: '/challan', color: 'text-text-3' },
+    { icon: <ShieldAlert size={24} />, label: 'Emergency', href: '/emergency', color: 'text-emergency' },
+    { icon: <User size={24} />, label: 'Profile', href: '/profile', color: 'text-text-2' },
+    { icon: <Settings size={24} />, label: 'Settings', href: '/settings', color: 'text-text-3' },
   ];
 
   const quickDials = [
@@ -83,27 +83,27 @@ const SystemSidebar = memo(function SystemSidebar() {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation"
-            className="fixed top-0 left-0 h-full w-[85vw] sm:w-[340px] max-w-[340px] bg-[#f8fafc] dark:bg-[#0a0f1a] shadow-2xl z-[101] flex flex-col border-r border-white/10 overflow-hidden lg:hidden"
+            className="fixed top-0 left-0 h-full w-[85vw] sm:w-[340px] max-w-[340px] bg-surface-1 shadow-2xl z-[101] flex flex-col border-r border-border overflow-hidden lg:hidden"
           >
             {/* Header */}
-            <div className="p-6 flex items-center justify-between border-b border-slate-200 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-xl">
+            <div className="p-6 flex items-center justify-between border-b border-border bg-surface-2/50 backdrop-blur-xl">
               <div className="flex items-center gap-3">
                 <div 
-                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1A5C38] to-[#0f3d28] flex items-center justify-center text-white shadow-lg shadow-[#1A5C38]/30"
+                  className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center text-white shadow-lg shadow-brand/30"
                   aria-hidden="true"
                 >
                   <ShieldAlert size={24} />
                 </div>
                 <div>
-                  <h2 className="text-xl font-black text-slate-800 dark:text-white tracking-tight font-space">SafeVixAI</h2>
-                  <p className="text-[10px] font-bold text-emerald-600 dark:text-[#00C896] uppercase tracking-widest">Protocol Active</p>
+                  <h2 className="text-xl font-black text-text-1 tracking-tight font-mono uppercase">SafeVixAI</h2>
+                  <p className="text-[10px] font-bold text-brand-light uppercase tracking-widest font-mono">Protocol Active</p>
                 </div>
               </div>
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close Sidebar"
                 autoFocus
-                className="p-3 hover:bg-slate-200 dark:hover:bg-white/10 rounded-full transition-all text-slate-500 hover:text-slate-800 dark:hover:text-white active:scale-90"
+                className="p-3 hover:bg-surface-3 rounded-full transition-all text-text-3 hover:text-text-1 active:scale-90"
               >
                 <X size={28} strokeWidth={3} />
               </button>
@@ -112,7 +112,7 @@ const SystemSidebar = memo(function SystemSidebar() {
             {/* Main Navigation Grid */}
             <div className="flex-1 overflow-y-auto p-6 space-y-8">
               <div>
-                <p className="text-[10px] font-semibold tracking-[0.1em] text-slate-400 uppercase mb-4">Operations Console</p>
+                <p className="text-[10px] font-semibold tracking-[0.1em] text-text-3 uppercase font-mono mb-4">Operations Console</p>
                 <motion.div 
                   variants={containerVariants}
                   initial="hidden"
@@ -126,17 +126,17 @@ const SystemSidebar = memo(function SystemSidebar() {
                         onClick={() => setOpen(false)}
                         className={`flex flex-col items-center justify-center gap-2 p-3 rounded-lg border transition-all group shadow-sm hover:shadow-md h-24 ${
                           pathname === item.href
-                            ? 'bg-emerald-50 dark:bg-[#1A5C38]/15 border-emerald-200 dark:border-[#1A5C38]/40 ring-2 ring-[#1A5C38]/20'
-                            : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/10'
+                            ? 'bg-brand-light/10 border-brand-light/20 ring-1 ring-brand-light/40'
+                            : 'bg-surface-2 border-border hover:bg-surface-3'
                         }`}
                       >
                         <div className={`${item.color} ${pathname === item.href ? 'scale-110' : ''} group-hover:scale-110 transition-transform`}>
                           {item.icon}
                         </div>
-                        <span className={`text-[10px] font-bold text-center leading-tight ${
+                        <span className={`text-[10px] font-bold text-center leading-tight font-mono uppercase ${
                           pathname === item.href
-                            ? 'text-emerald-700 dark:text-[#00C896]'
-                            : 'text-slate-700 dark:text-slate-300'
+                            ? 'text-brand-light'
+                            : 'text-text-2'
                         }`}>
                           {item.label}
                         </span>
@@ -149,8 +149,8 @@ const SystemSidebar = memo(function SystemSidebar() {
               {/* Quick Dial Section */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold tracking-[0.1em] text-red-500 uppercase">Emergency Quick Dial</p>
-                  <div className="h-px flex-1 bg-red-500/20 ml-4"></div>
+                  <p className="text-[10px] font-semibold tracking-[0.1em] text-emergency uppercase font-mono">Emergency Quick Dial</p>
+                  <div className="h-px flex-1 bg-emergency/20 ml-4"></div>
                 </div>
 
                 <motion.div 
@@ -163,14 +163,14 @@ const SystemSidebar = memo(function SystemSidebar() {
                     <motion.div key={dial.label} variants={itemVariants}>
                       <a
                         href={`tel:${dial.number}`}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-red-500/5 border border-red-500/10 hover:bg-red-500/10 transition-all group"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-emergency/5 border border-emergency/10 hover:bg-emergency/10 transition-all group"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center text-white shadow-lg shadow-red-500/20">
+                        <div className="w-8 h-8 rounded-lg bg-emergency flex items-center justify-center text-white shadow-lg shadow-emergency/20">
                           {dial.icon}
                         </div>
                         <div>
-                          <p className="text-[10px] font-semibold text-red-600 dark:text-red-400 uppercase tracking-tighter">{dial.label}</p>
-                          <p className="text-sm font-semibold text-slate-800 dark:text-white leading-none">{dial.number}</p>
+                          <p className="text-[10px] font-semibold text-emergency uppercase tracking-tighter font-mono">{dial.label}</p>
+                          <p className="text-sm font-bold text-text-1 leading-none font-mono">{dial.number}</p>
                         </div>
                       </a>
                     </motion.div>
@@ -180,11 +180,11 @@ const SystemSidebar = memo(function SystemSidebar() {
             </div>
 
             {/* Primary Action Footer: SOS */}
-            <div className="p-6 bg-slate-100 dark:bg-white/5 border-t border-slate-200 dark:border-white/5">
+            <div className="p-6 bg-surface-2 border-t border-border">
               <Link 
                 href="/sos" 
                 onClick={() => setOpen(false)}
-                className="w-full flex items-center justify-center gap-3 py-4 bg-red-600 hover:bg-red-700 text-white rounded-lg font-black text-lg shadow-xl shadow-red-600/30 transition-all active:scale-95 group overflow-hidden relative"
+                className="w-full flex items-center justify-center gap-3 py-4 bg-emergency text-white rounded-lg font-black text-lg shadow-xl shadow-emergency/30 transition-all active:scale-95 group overflow-hidden relative"
               >
                 <motion.div
                   animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
@@ -194,9 +194,9 @@ const SystemSidebar = memo(function SystemSidebar() {
                 <span className="material-symbols-outlined text-3xl font-black relative z-10" style={{ fontVariationSettings: "'FILL' 1" }}>
                   sos
                 </span>
-                <span className="relative z-10 tracking-widest uppercase">System SOS</span>
+                <span className="relative z-10 tracking-widest uppercase font-mono">System SOS</span>
               </Link>
-              <p className="text-center text-[10px] font-bold text-slate-500 mt-4 tracking-tighter">
+              <p className="text-center text-[10px] font-bold text-text-3 mt-4 tracking-tighter uppercase font-mono">
                 SafeVixAI Sentinel • Professional Responder Tier
               </p>
             </div>

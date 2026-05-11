@@ -60,7 +60,7 @@ export interface UserProfile {
 export type AiMode = 'online' | 'offline' | 'loading';
 export type ConnectivityState = 'online' | 'cached' | 'offline' | 'ai-offline';
 export type MapStatus = 'loading' | 'ready' | 'error';
-export type MapProvider = 'maptiler-vector' | 'maptiler-raster' | 'openfreemap' | null;
+export type MapProvider = 'google-maps' | 'maptiler-vector' | 'maptiler-raster' | 'openfreemap' | null;
 
 export interface MapSearchTarget {
   lat: number;

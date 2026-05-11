@@ -24,15 +24,15 @@ import {
 import { useAppStore } from '@/lib/store';
 
 const navItems = [
-  { icon: <MapPin size={20} />, label: 'Map', href: '/', color: 'text-[#1A5C38] dark:text-[#00C896]' },
-  { icon: <BotMessageSquare size={20} />, label: 'AI Assistant', href: '/assistant', color: 'text-[#1A5C38] dark:text-[#00C896]' },
-  { icon: <MapPinPlus size={20} />, label: 'Locator', href: '/locator', color: 'text-emerald-500' },
-  { icon: <HeartPulse size={20} />, label: 'First Aid', href: '/first-aid', color: 'text-red-500' },
-  { icon: <AlertTriangle size={20} />, label: 'Report Road Issue', href: '/report', color: 'text-orange-500' },
-  { icon: <Scale size={20} />, label: 'Challan Calculator', href: '/challan', color: 'text-slate-500' },
-  { icon: <ShieldAlert size={20} />, label: 'Emergency', href: '/emergency', color: 'text-red-600' },
-  { icon: <User size={20} />, label: 'Profile', href: '/profile', color: 'text-sky-500' },
-  { icon: <Settings size={20} />, label: 'Settings', href: '/settings', color: 'text-slate-400' },
+  { icon: <MapPin size={20} />, label: 'Map', href: '/', color: 'text-brand-light' },
+  { icon: <BotMessageSquare size={20} />, label: 'AI Assistant', href: '/assistant', color: 'text-brand-light' },
+  { icon: <MapPinPlus size={20} />, label: 'Locator', href: '/locator', color: 'text-brand-light' },
+  { icon: <HeartPulse size={20} />, label: 'First Aid', href: '/first-aid', color: 'text-emergency' },
+  { icon: <AlertTriangle size={20} />, label: 'Report Road Issue', href: '/report', color: 'text-amber-500' },
+  { icon: <Scale size={20} />, label: 'Challan Calculator', href: '/challan', color: 'text-text-3' },
+  { icon: <ShieldAlert size={20} />, label: 'Emergency', href: '/emergency', color: 'text-emergency' },
+  { icon: <User size={20} />, label: 'Profile', href: '/profile', color: 'text-brand-light' },
+  { icon: <Settings size={20} />, label: 'Settings', href: '/settings', color: 'text-text-3' },
 ];
 
 const quickDials = [
@@ -54,22 +54,22 @@ export function AppSidebar() {
       initial={{ x: -280 }}
       animate={{ x: isDesktopSidebarCollapsed && !isThinSidebarEnabled ? -280 : 0 }}
       transition={{ type: "spring", damping: 25, stiffness: 120 }}
-      className={`fixed left-0 top-0 h-full z-50 bg-white/70 dark:bg-[#0a0f1a]/70 backdrop-blur-3xl flex flex-col border-r border-slate-200/50 dark:border-white/[0.08] shadow-[16px_0_48px_rgba(0,0,0,0.05)] dark:shadow-[16px_0_48px_rgba(0,0,0,0.2)] transition-all duration-300 ${!isDesktopSidebarCollapsed ? 'w-[280px]' : isThinSidebarEnabled ? 'w-[88px]' : 'w-[280px]'}`}
+      className={`fixed left-0 top-0 h-full z-50 bg-surface-1/95 backdrop-blur-3xl flex flex-col border-r border-border shadow-panel transition-all duration-300 ${!isDesktopSidebarCollapsed ? 'w-[280px]' : isThinSidebarEnabled ? 'w-[88px]' : 'w-[280px]'}`}
     >
 
       {/* Header (Logo and Toggle) or Hamburger */}
       {!isDesktopSidebarCollapsed ? (
-        <div className="flex flex-col border-b border-slate-200 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-xl shrink-0">
+        <div className="flex flex-col border-b border-border bg-surface-2/50 backdrop-blur-xl shrink-0">
           <div className="flex items-center justify-between p-6 pb-2">
             <div className="flex items-center gap-3">
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="whitespace-nowrap">
-                <h2 className="text-xl font-black text-slate-800 dark:text-white tracking-tight leading-none">SafeVixAI</h2>
-                <p className="text-[10px] font-bold text-emerald-600 dark:text-[#00C896] uppercase tracking-widest mt-1">System Integrated</p>
+                <h2 className="text-xl font-black text-text-1 tracking-tight leading-none font-mono">SAFEVIX_AI</h2>
+                <p className="text-[10px] font-bold text-brand-light uppercase tracking-widest mt-1">System Integrated</p>
               </motion.div>
             </div>
-            <button
+              <button
               onClick={() => setDesktopSidebarCollapsed(true)}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
+              className="p-1.5 rounded-lg text-text-3 hover:text-text-1 hover:bg-surface-3 transition-colors"
               title="Close sidebar"
             >
               <X size={20} />
@@ -80,25 +80,25 @@ export function AppSidebar() {
           <div className="px-2 pb-3">
             <button
               onClick={() => setThinSidebarEnabled(!isThinSidebarEnabled)}
-              className="flex items-center w-full transition-colors hover:bg-slate-100/80 dark:hover:bg-[#1f283d] py-3 px-4 rounded-xl justify-between group"
+              className="flex items-center w-full transition-colors hover:bg-surface-3 py-3 px-4 rounded-xl justify-between group"
               title={isThinSidebarEnabled ? "Unpin sidebar" : "Pin sidebar"}
             >
               <div className="flex items-center gap-4">
-                <PanelLeft className="w-[20px] h-[20px] text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors" strokeWidth={1.5} />
-                <span className="text-[14px] font-normal text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white whitespace-nowrap transition-colors">Show side bar</span>
+                <PanelLeft className="w-[20px] h-[20px] text-text-3 group-hover:text-text-1 transition-colors" strokeWidth={1.5} />
+                <span className="text-[14px] font-normal text-text-2 group-hover:text-text-1 whitespace-nowrap transition-colors">Show side bar</span>
               </div>
               {/* Material Design Toggle Switch */}
-              <div className={`relative flex items-center shrink-0 w-8 h-3.5 rounded-full transition-colors ${isThinSidebarEnabled ? 'bg-[#008A83]/50 dark:bg-[#008A83]/40' : 'bg-slate-300 dark:bg-slate-600'}`}>
-                <span className={`absolute w-5 h-5 rounded-full transition-transform shadow-md ${isThinSidebarEnabled ? 'bg-[#008A83] translate-x-4' : 'bg-white -translate-x-1'}`} />
+              <div className={`relative flex items-center shrink-0 w-8 h-3.5 rounded-full transition-colors ${isThinSidebarEnabled ? 'bg-brand/50' : 'bg-surface-3'}`}>
+                <span className={`absolute w-5 h-5 rounded-full transition-transform shadow-md ${isThinSidebarEnabled ? 'bg-brand-light translate-x-4' : 'bg-text-2 -translate-x-1'}`} />
               </div>
             </button>
           </div>
         </div>
       ) : (
-        <div className="flex justify-center p-4 border-b border-slate-200 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-xl shrink-0">
+        <div className="flex justify-center p-4 border-b border-border bg-surface-2/50 backdrop-blur-xl shrink-0">
           <button
             onClick={() => setDesktopSidebarCollapsed(false)}
-            className="p-2 rounded-xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+            className="p-2 rounded-xl text-text-3 hover:text-text-1 hover:bg-surface-3 transition-colors"
             title="Expand sidebar"
           >
             <Menu size={24} strokeWidth={2} />
@@ -121,13 +121,13 @@ export function AppSidebar() {
                   title={isDesktopSidebarCollapsed ? item.label : undefined}
                   className={`relative flex items-center gap-3 px-3 py-3 rounded-xl transition-all group z-10 ${isActive
                     ? ''
-                    : 'hover:bg-slate-100/80 dark:hover:bg-white/[0.04] font-medium'
+                    : 'hover:bg-surface-2 font-medium'
                     } ${isDesktopSidebarCollapsed ? 'justify-center' : ''}`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="sidebar-active-pill"
-                      className="absolute inset-0 bg-white dark:bg-[#1f2937]/80 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)] border border-slate-200/50 dark:border-white-[0.05] -z-10"
+                      className="absolute inset-0 bg-brand/10 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-brand/20 -z-10"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -135,9 +135,9 @@ export function AppSidebar() {
                     {item.icon}
                   </div>
                   {!isDesktopSidebarCollapsed && (
-                    <span className={`text-[14px] whitespace-nowrap transition-colors ${isActive
-                      ? 'font-bold text-slate-900 dark:text-white'
-                      : 'text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white'
+                    <span className={`text-[14px] whitespace-nowrap transition-colors font-mono tracking-tight uppercase ${isActive
+                      ? 'font-bold text-text-1'
+                      : 'text-text-2 group-hover:text-text-1'
                       }`}>
                       {item.label}
                     </span>
@@ -151,23 +151,23 @@ export function AppSidebar() {
         {/* Quick Dial Section */}
         {!isDesktopSidebarCollapsed && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <div className="flex items-center justify-between px-2 mb-3">
-              <p className="text-[10px] font-semibold tracking-[0.1em] text-red-500 uppercase whitespace-nowrap">Emergency Dial</p>
-              <div className="h-px flex-1 bg-red-500/20 ml-3"></div>
+            <div className="flex items-center justify-between px-2 mb-3 mt-4">
+              <p className="text-[10px] font-semibold tracking-[0.1em] text-emergency uppercase whitespace-nowrap">Emergency Dial</p>
+              <div className="h-px flex-1 bg-emergency-dim ml-3"></div>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {quickDials.map((dial) => (
                 <a
                   key={dial.label}
                   href={`tel:${dial.number}`}
-                  className="relative flex flex-col items-center justify-center p-3 rounded-xl bg-slate-50 dark:bg-[#111827]/80 hover:bg-slate-100 dark:hover:bg-[#1a2133] border border-slate-200/50 dark:border-white/[0.05] transition-all group overflow-hidden"
+                  className="relative flex flex-col items-center justify-center p-3 rounded-xl bg-surface-2 hover:bg-surface-3 border border-border transition-all group overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/[0.02] to-transparent pointer-events-none" />
-                  <div className="text-red-500 mb-1 group-hover:scale-110 transition-[transform,color] group-hover:text-red-600 dark:group-hover:text-red-400">
+                  <div className="absolute inset-0 bg-gradient-to-br from-emergency/[0.05] to-transparent pointer-events-none" />
+                  <div className="text-emergency mb-1 group-hover:scale-110 transition-[transform,color]">
                     {dial.icon}
                   </div>
-                  <p className="text-[9px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest whitespace-nowrap mb-0.5">{dial.label}</p>
-                  <p className="text-xs font-semibold text-slate-800 dark:text-[#e2e8f0] leading-none whitespace-nowrap group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">{dial.number}</p>
+                  <p className="text-[9px] font-semibold text-text-3 font-mono uppercase tracking-widest whitespace-nowrap mb-0.5">{dial.label}</p>
+                  <p className="text-xs font-bold text-text-1 font-mono leading-none whitespace-nowrap group-hover:text-emergency transition-colors">{dial.number}</p>
                 </a>
               ))}
             </div>
@@ -176,9 +176,9 @@ export function AppSidebar() {
       </nav>
 
       {/* Primary Action Footer: SOS */}
-      <div className={`p-4 bg-gradient-to-b from-transparent to-slate-100/50 dark:to-black/30 border-t border-slate-200 dark:border-white/[0.05] shrink-0 flex flex-col items-center`}>
+      <div className={`p-4 bg-gradient-to-b from-transparent to-surface-2 border-t border-border shrink-0 flex flex-col items-center`}>
         <Link href="/sos" className="w-full">
-          <button title={isDesktopSidebarCollapsed ? "System SOS" : undefined} className={`w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-b from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl font-black shadow-[0_4px_20px_rgba(220,38,38,0.4)] border border-red-400/50 hover:shadow-[0_4px_25px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] group overflow-hidden relative ${isDesktopSidebarCollapsed ? 'px-0' : ''}`}>
+          <button title={isDesktopSidebarCollapsed ? "System SOS" : undefined} className={`w-full flex items-center justify-center gap-2 py-3 bg-emergency hover:bg-red-700 text-white rounded-xl font-black shadow-[0_4px_20px_rgba(220,38,38,0.4)] border border-red-400/50 hover:shadow-[0_4px_25px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] group overflow-hidden relative ${isDesktopSidebarCollapsed ? 'px-0' : ''}`}>
             <motion.div
               animate={{ opacity: [0.3, 0.6, 0.3] }}
               transition={{ repeat: Infinity, duration: 2.5 }}
@@ -188,13 +188,13 @@ export function AppSidebar() {
               sos
             </span>
             {!isDesktopSidebarCollapsed && (
-              <span className="relative z-10 tracking-[0.1em] font-black uppercase text-[13px] whitespace-nowrap drop-shadow-sm">System SOS</span>
+              <span className="relative z-10 tracking-[0.1em] font-black uppercase text-[13px] whitespace-nowrap drop-shadow-sm font-mono">System SOS</span>
             )}
           </button>
         </Link>
         {!isDesktopSidebarCollapsed && (
-          <div className="flex items-center justify-center gap-2 mt-3 text-[10px] font-bold text-slate-500 whitespace-nowrap">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="flex items-center justify-center gap-2 mt-3 text-[10px] font-bold text-text-3 font-mono whitespace-nowrap">
+            <div className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
             SYSTEM ONLINE
           </div>
         )}

@@ -9,9 +9,9 @@ import { useAppStore } from '@/lib/store';
 // ── Driving Score 2.0 (High-Fidelity Gauge) ──
 const DrivingScore = ({ score }: { score: number }) => {
   const getStatus = (s: number) => {
-    if (s >= 80) return { label: 'OPTIMAL', color: '#53e16f', glow: 'rgba(83, 225, 111, 0.5)' };
-    if (s >= 60) return { label: 'CAUTION', color: '#f5d44f', glow: 'rgba(245, 212, 79, 0.5)' };
-    return { label: 'CRITICAL', color: '#ff5545', glow: 'rgba(255, 85, 69, 0.5)' };
+    if (s >= 80) return { label: 'OPTIMAL', color: 'var(--brand-light)', glow: 'var(--brand-dim)' };
+    if (s >= 60) return { label: 'CAUTION', color: 'var(--text-amber)', glow: 'rgba(245, 212, 79, 0.5)' };
+    return { label: 'CRITICAL', color: 'var(--emergency)', glow: 'var(--emergency-dim)' };
   };
 
   const { label, color, glow } = getStatus(score);
@@ -26,16 +26,16 @@ const DrivingScore = ({ score }: { score: number }) => {
     >
       {/* Label (Sliding out) */}
       <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-        <div className="self-center bg-white/90 dark:bg-[#0D1117]/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-slate-200 dark:border-white/10 shadow-xl flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ff5545] animate-pulse shadow-[0_0_8px_rgba(255,85,69,0.8)]"></span>
-          <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-700 dark:text-[#00C896] uppercase font-space">
+        <div className="self-center bg-white/90 dark:bg-surface-1/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-slate-200 dark:border-white/10 shadow-xl flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emergency animate-pulse shadow-[0_0_8px_var(--emergency)]"></span>
+          <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-700 dark:text-brand uppercase font-space">
             Priority Vectors Detected
           </span>
         </div>
         <p className="text-xs font-semibold tracking-widest font-space" style={{ color }}>{label}</p>
       </div>
 
-      <div className="relative w-14 h-14 rounded-full bg-white/95 dark:bg-[#0a0f1a]/90 backdrop-blur-xl shadow-2xl ring-1 ring-white/40 dark:ring-white/10 flex items-center justify-center cursor-help transition-all duration-500 overflow-hidden">
+      <div className="relative w-14 h-14 rounded-full bg-white/95 dark:bg-surface-1/90 backdrop-blur-xl shadow-2xl ring-1 ring-white/40 dark:ring-white/10 flex items-center justify-center cursor-help transition-all duration-500 overflow-hidden">
         {/* Subtle Neon Glow Backdrop */}
         <div
           className="absolute inset-0 blur-xl opacity-20"
@@ -100,11 +100,11 @@ const HUDButton = ({ icon, label, color = "#c5c6cd", href, onClick, isCustom }: 
       whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.05)' }}
       whileTap={{ scale: 0.9 }}
       onClick={onClick}
-      className={`relative w-12 h-12 flex items-center justify-center rounded-full bg-white/95 dark:bg-[#1a2133]/90 backdrop-blur-xl ring-1 ring-white/40 dark:ring-white/10 shadow-2xl transition-all group/btn ${isCustom ? '' : 'pointer-events-auto'}`}
+      className={`relative w-12 h-12 flex items-center justify-center rounded-full bg-white/95 dark:bg-surface-2/90 backdrop-blur-xl ring-1 ring-white/40 dark:ring-white/10 shadow-2xl transition-all group/btn ${isCustom ? '' : 'pointer-events-auto'}`}
     >
       {/* Side Label */}
       <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-0 group-hover/btn:opacity-100 transition-all duration-300 pointer-events-none translate-x-2 group-hover/btn:translate-x-0">
-        <span className="bg-white/95 dark:bg-[#0D1117]/90 backdrop-blur-xl px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 text-[10px] font-semibold tracking-[0.15em] text-slate-800 dark:text-blue-200 uppercase whitespace-nowrap shadow-2xl font-space">
+        <span className="bg-white/95 dark:bg-surface-1/90 backdrop-blur-xl px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 text-[10px] font-semibold tracking-[0.15em] text-slate-800 dark:text-blue-200 uppercase whitespace-nowrap shadow-2xl font-space">
           {label}
         </span>
       </div>
@@ -162,7 +162,7 @@ export default function FloatingSidebarControls() {
           icon={<ShieldAlert size={20} strokeWidth={2.5} />}
           label="Emergency Protocols"
           href="/emergency"
-          color="#ff5545"
+          color="var(--emergency)"
         />
       </div>
 
@@ -174,7 +174,7 @@ export default function FloatingSidebarControls() {
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}
-          className="relative w-16 h-16 bg-[#ff5545] rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(255,85,69,0.4)] group z-50 overflow-hidden"
+          className="relative w-16 h-16 bg-emergency rounded-full flex items-center justify-center shadow-[0_0_40px_var(--emergency)] group z-50 overflow-hidden"
         >
           {/* Multi-layered Tactical Ripples */}
           <motion.div

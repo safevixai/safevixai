@@ -20,7 +20,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <main className="min-h-screen bg-[#0A0E14] text-slate-100 flex items-center justify-center px-6">
+    <main className="min-h-screen bg-bg text-slate-100 flex items-center justify-center px-6">
       <section className="w-full max-w-xl border border-red-500/25 bg-red-950/20 rounded-lg p-6 shadow-2xl">
         <div className="flex items-start gap-4">
           <div className="mt-1 rounded-full bg-red-500/15 p-3 text-red-300">
@@ -39,7 +39,7 @@ export default function GlobalError({
               <button
                 type="button"
                 onClick={reset}
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-[#0A0E14] transition hover:bg-red-300"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-bg transition hover:bg-red-300"
               >
                 <RefreshCw aria-hidden="true" size={16} />
                 Retry

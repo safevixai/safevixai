@@ -19,7 +19,7 @@ const MapBackground = dynamic(
     ssr: false,
     loading: () => (
       <div className="absolute inset-0 bg-slate-200/50 dark:bg-slate-800/50 animate-pulse flex items-center justify-center">
-        <div className="w-12 h-12 rounded-full border-4 border-[#1A5C38]/20 border-t-[#1A5C38] animate-spin" />
+        <div className="w-12 h-12 rounded-full border-4 border-brand/20 border-t-brand animate-spin" />
       </div>
     )
   });
@@ -73,7 +73,7 @@ export default function V2Dashboard() {
   const sc = statusConfig[areaStatus];
 
   return (
-    <div className="relative isolate h-[100dvh] min-h-dvh w-full overflow-hidden bg-[var(--bg-root-dark)] text-slate-800 dark:text-[#d7e3fc] flex">
+    <div className="relative isolate h-[calc(100dvh-52px)] min-h-[calc(100dvh-52px)] w-full overflow-hidden bg-surface-1 text-text-1 flex">
       <div className="relative flex-1 h-full w-full overflow-hidden">
         <DashboardMapBootstrap />
         <MapBackground />

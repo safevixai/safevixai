@@ -171,12 +171,12 @@ export function ChatInterface() {
 
   // ── Render ───────────────────────────────────────────────────────────────
   return (
-    <div className="flex flex-col h-full bg-slate-50 dark:bg-[#0A0E14]">
+    <div className="flex flex-col h-full bg-slate-50 dark:bg-bg">
       {/* HEADER / MODE TOGGLE */}
       <div className="flex justify-between items-center px-4 py-3 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-white/5 backdrop-blur-xl">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#1A5C38]/10 flex items-center justify-center">
-            <Bot size={16} className="text-[#1A5C38] dark:text-[#00C896]" />
+          <div className="w-8 h-8 rounded-xl bg-brand/10 flex items-center justify-center">
+            <Bot size={16} className="text-brand" />
           </div>
           <span className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tight">
             SafeVixAI Chat
@@ -190,7 +190,7 @@ export function ChatInterface() {
             onClick={() => setAiMode('online')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all ${
               aiMode === 'online'
-                ? 'bg-[#1A5C38] text-white shadow-sm'
+                ? 'bg-brand text-brand-foreground shadow-sm'
                 : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
             }`}
           >
@@ -201,7 +201,7 @@ export function ChatInterface() {
             onClick={() => setAiMode('offline')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all ${
               aiMode === 'offline'
-                ? 'bg-[#1A5C38] text-white shadow-sm'
+                ? 'bg-brand text-brand-foreground shadow-sm'
                 : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
             }`}
           >
@@ -225,7 +225,7 @@ export function ChatInterface() {
               >
                 <div
                   className={`w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0 mt-1 ${
-                    isUser ? 'bg-[#1A5C38] text-white' : 'bg-emerald-500/10 text-emerald-500'
+                    isUser ? 'bg-brand text-brand-foreground' : 'bg-brand/10 text-brand-light'
                   }`}
                 >
                   {isUser ? <UserCircle size={14} /> : <Bot size={14} />}
@@ -234,8 +234,8 @@ export function ChatInterface() {
                 <div
                   className={`px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
                     isUser
-                      ? 'bg-[#1A5C38] text-white rounded-lg rounded-tr-sm shadow-md'
-                      : 'bg-white dark:bg-white/5 text-slate-800 dark:text-[#d7e3fc] rounded-lg rounded-tl-sm border border-slate-200 dark:border-white/10 shadow-sm'
+                      ? 'bg-brand/20 text-text-1 rounded-lg rounded-tr-sm border border-brand/30 shadow-md'
+                      : 'bg-surface-2 text-text-1 rounded-lg rounded-tl-sm border border-border shadow-sm'
                   }`}
                 >
                   {msg.content || (msg.streaming ? '' : '…')}
@@ -294,7 +294,7 @@ export function ChatInterface() {
             }
             disabled={isLoading}
             aria-label="Chat message input"
-            className="flex-1 px-4 py-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-sm text-slate-800 dark:text-[#d7e3fc] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1A5C38]/30 focus:border-[#1A5C38]/50 transition-all"
+            className="flex-1 px-4 py-3 rounded-lg bg-surface-1 border border-border text-sm text-text-1 placeholder:text-text-3 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand/50 transition-all"
           />
           <button
             type="submit"
@@ -302,8 +302,8 @@ export function ChatInterface() {
             aria-label="Send message"
             className={`w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all active:scale-90 ${
               !input.trim() || isLoading
-                ? 'bg-slate-100 dark:bg-white/5 text-slate-300 dark:text-slate-600 cursor-not-allowed'
-                : 'bg-[#1A5C38] text-white shadow-md shadow-blue-600/20 hover:bg-blue-700'
+                ? 'bg-surface-3 text-text-3 cursor-not-allowed'
+                : 'bg-brand text-brand-foreground shadow-md hover:bg-brand/90'
             }`}
           >
             {isLoading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}

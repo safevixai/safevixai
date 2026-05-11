@@ -118,7 +118,7 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#0A0E14] text-slate-800 dark:text-[#d7e3fc] overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
+    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
 
       <TerminalHeader title="System Configuration" subtitle="DEVICE PREFERENCES" />
 
@@ -140,18 +140,18 @@ export default function SettingsPage() {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-4 p-5 rounded-lg bg-[#1A5C38]/5 dark:bg-[#1A5C38]/10 border border-[#1A5C38]/20"
+              className="flex items-center gap-4 p-5 rounded-lg bg-brand/5 dark:bg-brand/10 border border-brand/20"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#1A5C38] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#1A5C38]/20">
+              <div className="w-12 h-12 rounded-xl bg-brand flex items-center justify-center flex-shrink-0 shadow-lg shadow-brand/20">
                 <User size={20} className="text-white" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Active Operator</p>
                 <p className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tight truncate">{operatorName}</p>
               </div>
-              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#1A5C38]/10 border border-[#1A5C38]/20">
-                <ShieldCheck size={12} className="text-[#00C896]" />
-                <span className="text-[9px] font-semibold text-[#00C896] uppercase tracking-widest">JWT</span>
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand/10 border border-brand/20">
+                <ShieldCheck size={12} className="text-brand-light" />
+                <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">JWT</span>
               </div>
             </motion.div>
           )}
@@ -175,8 +175,8 @@ export default function SettingsPage() {
                     key={t.id}
                     onClick={() => setTheme(t.id as 'light' | 'dark' | 'system')}
                     className={`flex flex-col items-center gap-3 p-4 rounded-xl border transition-all ${isActive
-                      ? 'border-[#1A5C38] bg-[#1A5C38]/8 text-[#1A5C38] dark:border-[#00C896]/40 dark:bg-[#1A5C38]/15 dark:text-[#00C896] shadow-sm'
-                      : 'border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-400 hover:border-[#1A5C38]/30 hover:text-slate-600'}`}
+                      ? 'border-brand bg-brand/8 text-brand dark:border-brand-light/40 dark:bg-brand/15 dark:text-brand-light shadow-sm'
+                      : 'border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-400 hover:border-brand/30 hover:text-slate-600'}`}
                   >
                     {t.icon}
                     <span className="text-[10px] font-semibold uppercase tracking-widest leading-none">{t.label}</span>
@@ -282,8 +282,8 @@ export default function SettingsPage() {
             {/* Export data */}
             <div className="border-t border-slate-100 dark:border-white/5 pt-5 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-[#1A5C38]/10 flex items-center justify-center">
-                  <Download size={18} className="text-[#1A5C38] dark:text-[#00C896]" />
+                <div className="w-11 h-11 rounded-xl bg-brand/10 flex items-center justify-center">
+                  <Download size={18} className="text-brand dark:text-brand-light" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tight">Export Profile</p>
@@ -292,7 +292,7 @@ export default function SettingsPage() {
               </div>
               <button
                 onClick={handleExport}
-                className="px-5 py-2.5 bg-[#1A5C38]/10 text-[#1A5C38] dark:text-[#00C896] text-[10px] font-semibold uppercase tracking-widest rounded-xl border border-[#1A5C38]/20 hover:bg-[#1A5C38]/20 active:scale-95 transition-all"
+                className="px-5 py-2.5 bg-brand/10 text-brand dark:text-brand-light text-[10px] font-semibold uppercase tracking-widest rounded-xl border border-brand/20 hover:bg-brand/20 active:scale-95 transition-all"
               >
                 Export
               </button>
@@ -301,7 +301,7 @@ export default function SettingsPage() {
             {/* App info */}
             <div className="border-t border-slate-100 dark:border-white/5 pt-5 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Terminal size={14} className="text-[#00C896]" />
+                <Terminal size={14} className="text-brand-light" />
                 <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-tighter">SafeVixAI v2.4.0-SVA</span>
               </div>
               <CheckCircle size={14} className="text-emerald-500" />
@@ -313,7 +313,7 @@ export default function SettingsPage() {
         <Section title="System">
           <SurfaceCard padding="md">
             <SettingRow
-              icon={<User size={18} className="text-[#1A5C38] dark:text-[#00C896]" />}
+              icon={<User size={18} className="text-brand dark:text-brand-light" />}
               title="Edit Profile"
               description="Identity & Emergency Data"
               onClick={() => router.push('/profile')}

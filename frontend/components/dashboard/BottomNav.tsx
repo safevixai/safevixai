@@ -30,12 +30,12 @@ const BottomNav = memo(function BottomNav() {
 
   return (
     <div className="fixed bottom-0 left-0 z-[100] pointer-events-none w-full lg:hidden [@media(max-height:500px)]:hidden">
-      <div className="relative flex items-center justify-around w-full bg-white/90 dark:bg-[#1a2133]/90 backdrop-blur-xl rounded-t-3xl pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_-8px_30px_rgb(0,0,0,0.4)] border-t border-white/20 dark:border-white/10 overflow-hidden pointer-events-auto">
+      <div className="relative flex items-center justify-around w-full bg-surface-1/90 backdrop-blur-xl rounded-t-3xl pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_-8px_30px_rgb(0,0,0,0.4)] border-t border-border overflow-hidden pointer-events-auto">
 
         {/* Active Indicator Glow */}
         <motion.div
           layoutId="active-indicator"
-          className="absolute w-12 h-12 bg-gradient-to-r from-emerald-500 to-[#00C896] rounded-full blur-2xl -z-10"
+          className="absolute w-12 h-12 bg-gradient-to-r from-brand to-brand-light rounded-full blur-2xl -z-10"
           animate={{
             left: `calc(${active * (100 / items.length)}% + ${100 / items.length / 2}%)`,
             translateX: "-50%",
@@ -61,7 +61,7 @@ const BottomNav = memo(function BottomNav() {
               {isActive && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-x-2 top-0.5 bottom-4 bg-[#1A5C38] dark:bg-[#1A5C38] rounded-2xl -z-10"
+                  className="absolute inset-x-2 top-0.5 bottom-4 bg-brand/80 rounded-2xl -z-10"
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
@@ -70,7 +70,7 @@ const BottomNav = memo(function BottomNav() {
                 animate={{ scale: isActive ? 1.2 : 1 }}
                 className={`flex items-center justify-center w-9 h-9 relative z-10 transition-colors ${isActive
                   ? 'text-white'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-[#00C896]'
+                  : 'text-text-2 hover:text-brand-light'
                   }`}
               >
                 {/* Dynamically Render Lucide Node or Material Symbol */}
@@ -87,7 +87,7 @@ const BottomNav = memo(function BottomNav() {
               </motion.div>
 
               {/* Persistent Text Label */}
-              <span className={`text-[9px] font-bold mt-1 tracking-wide ${isActive ? 'text-emerald-700 dark:text-[#00C896]' : 'text-slate-600 dark:text-slate-400'}`}>
+              <span className={`text-[9px] font-bold mt-1 tracking-wide uppercase font-mono ${isActive ? 'text-brand-light' : 'text-text-3'}`}>
                 {item.label}
               </span>
 

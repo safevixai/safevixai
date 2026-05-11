@@ -80,7 +80,7 @@ export default function ChallanPage() {
   const finalFine = result ? (isRepeat && result.repeat_fine ? result.repeat_fine : result.base_fine) : 0;
 
   return (
-    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#0A0E14] text-slate-800 dark:text-[#d7e3fc] overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
+    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
       
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Challan Terminal" showBack={false} />
@@ -208,7 +208,7 @@ export default function ChallanPage() {
                   className="w-full bg-transparent border-2 border-slate-200 dark:border-white/10 rounded-xl p-6 text-lg font-black text-slate-900 dark:text-white appearance-none focus:border-emerald-500 transition-all outline-none cursor-pointer"
                 >
                   {VIOLATIONS.map(v => (
-                    <option key={v.id} value={v.id} className="bg-white dark:bg-[#0A0E14]">{v.label}</option>
+                    <option key={v.id} value={v.id} className="bg-white dark:bg-bg">{v.label}</option>
                   ))}
                 </select>
                 <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
@@ -262,7 +262,7 @@ export default function ChallanPage() {
                     className="w-full bg-transparent border-2 border-slate-200 dark:border-white/10 rounded-lg py-4 px-5 text-sm font-bold text-slate-900 dark:text-white appearance-none focus:border-emerald-500 transition-all outline-none cursor-pointer"
                   >
                     {STATES.map(s => (
-                      <option key={s} value={s} className="bg-white dark:bg-[#0A0E14]">{s}</option>
+                      <option key={s} value={s} className="bg-white dark:bg-bg">{s}</option>
                     ))}
                   </select>
                   <MapPin size={16} className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />

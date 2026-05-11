@@ -20,7 +20,7 @@ export function GlobalSOS() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Emergency SOS"
-            className="w-14 h-14 bg-gradient-to-br from-[#ff5545] to-[#c0000a] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255,85,69,0.4)] text-white font-black text-sm tracking-widest relative overflow-hidden group"
+            className="w-14 h-14 bg-gradient-to-br from-emergency to-red-800 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255,85,69,0.4)] text-white font-black text-sm tracking-widest relative overflow-hidden group"
           >
             <motion.div
               animate={{ scale: [1, 2], opacity: [0.4, 0] }}
@@ -39,7 +39,7 @@ export function GlobalSOS() {
             whileHover={{ scale: 1.1, rotate: 2 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Emergency SOS"
-            className="w-20 h-20 bg-gradient-to-br from-[#ff5545] to-[#c0000a] rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(255,85,69,0.4)] text-white font-black tracking-tighter relative overflow-hidden group"
+            className="w-20 h-20 bg-gradient-to-br from-emergency to-red-800 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(255,85,69,0.4)] text-white font-black tracking-tighter relative overflow-hidden group"
           >
             <motion.div
               animate={{ scale: [1, 2, 2.5], opacity: [0.5, 0.2, 0] }}

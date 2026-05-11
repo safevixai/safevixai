@@ -23,9 +23,9 @@ import { Shield, Loader2, MapPin, ExternalLink } from 'lucide-react';
 
 function ShareReceiveLoading() {
   return (
-    <div className="min-h-[100dvh] bg-[#0A0E14] flex items-center justify-center p-6">
+    <div className="min-h-[100dvh] bg-bg flex items-center justify-center p-6">
       <div className="flex flex-col items-center gap-4">
-        <Loader2 size={32} className="text-[#00C896] animate-spin" />
+        <Loader2 size={32} className="text-brand-light animate-spin" />
         <p className="text-sm font-bold text-white uppercase tracking-wider">
           Initializing Share Target...
         </p>
@@ -100,20 +100,20 @@ function ShareReceiveInner() {
   }, [searchParams, router]);
 
   return (
-    <div className="min-h-[100dvh] bg-[#0A0E14] flex items-center justify-center p-6">
+    <div className="min-h-[100dvh] bg-bg flex items-center justify-center p-6">
       {/* Spots removed per user request */}
 
       {/* Top scan line */}
-      <div className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#00C896] to-transparent opacity-60 animate-pulse" />
+      <div className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-light to-transparent opacity-60 animate-pulse" />
 
       <div className="relative text-center max-w-sm mx-auto">
         {/* Logo */}
         <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-14 h-14 rounded-xl bg-[#1A5C38] flex items-center justify-center shadow-lg shadow-[#1A5C38]/40">
+          <div className="w-14 h-14 rounded-xl bg-brand flex items-center justify-center shadow-lg shadow-brand/40">
             <Shield size={28} className="text-white" />
           </div>
           <div className="text-left">
-            <p className="text-[11px] font-black text-[#00C896] uppercase tracking-[0.25em]">SafeVixAI</p>
+            <p className="text-[11px] font-black text-brand-light uppercase tracking-[0.25em]">SafeVixAI</p>
             <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Share Target Active</p>
           </div>
         </div>
@@ -121,7 +121,7 @@ function ShareReceiveInner() {
         {/* Status */}
         {status === 'parsing' && (
           <div className="flex flex-col items-center gap-4">
-            <Loader2 size={32} className="text-[#00C896] animate-spin" />
+            <Loader2 size={32} className="text-brand-light animate-spin" />
             <p className="text-sm font-bold text-white uppercase tracking-wider">
               Parsing shared location...
             </p>
@@ -133,13 +133,13 @@ function ShareReceiveInner() {
 
         {status === 'redirecting' && parsedCoords && (
           <div className="flex flex-col items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-[#1A5C38]/20 border-2 border-[#00C896] flex items-center justify-center animate-pulse">
-              <MapPin size={28} className="text-[#00C896]" />
+            <div className="w-16 h-16 rounded-full bg-brand/20 border-2 border-brand-light flex items-center justify-center animate-pulse">
+              <MapPin size={28} className="text-brand-light" />
             </div>
             <p className="text-sm font-bold text-white uppercase tracking-wider">
               Location Received
             </p>
-            <p className="text-[11px] font-mono text-[#00C896]">
+            <p className="text-[11px] font-mono text-brand-light">
               {parsedCoords.lat}, {parsedCoords.lon}
             </p>
             <p className="text-[10px] text-slate-500 uppercase tracking-widest">

@@ -262,8 +262,8 @@ function EmptyState({
   const hasNearbyServicesInOtherFilters = activeFilter !== 'All' && searchMeta.count > 0;
 
   return (
-    <div className="rounded-lg border border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#1a2133]/40 backdrop-blur-xl p-6 text-center">
-      <h3 className="text-base font-black text-slate-900 dark:text-[#d7e3fc]">
+    <div className="rounded-lg border border-slate-200 dark:border-white/5 bg-white/80 dark:bg-surface-2/40 backdrop-blur-xl p-6 text-center">
+      <h3 className="text-base font-black text-slate-900 dark:text-text-1">
         {locating ? 'Locating nearby services...' : 'No services found for this filter'}
       </h3>
       <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
@@ -317,11 +317,11 @@ function RouteStatusCard({
 
   if (loadingLabel) {
     return (
-      <div className="rounded-lg border border-[#1A5C38]/20 bg-[#1A5C38]/90 p-4 shadow-sm dark:border-[#1A5C38]/20 dark:bg-[#1A5C38]/10">
-        <div className="flex items-center gap-3 text-[#1A5C38] dark:text-[#00C896]">
+      <div className="rounded-lg border border-brand/20 bg-brand/90 p-4 shadow-sm dark:border-brand/20 dark:bg-brand/10">
+        <div className="flex items-center gap-3 text-brand dark:text-brand-light">
           <Loader2 size={16} className="animate-spin" />
           <div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1A5C38] dark:text-[#00C896]">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:text-brand-light">
               Building Route
             </div>
             <p className="mt-1 text-sm font-semibold">Calculating the clearest drive to {loadingLabel}.</p>
@@ -485,7 +485,7 @@ function MobileLocator({
     : null;
 
   return (
-    <div className="min-h-dvh pb-48 bg-slate-50 dark:bg-[#0D1117] text-slate-900 dark:text-[#d7e3fc] font-['Inter'] selection:bg-[#1A5C38]/30 relative overflow-x-hidden w-full">
+    <div className="min-h-dvh pb-48 bg-slate-50 dark:bg-surface-1 text-slate-900 dark:text-text-1 font-['Inter'] selection:bg-brand/30 relative overflow-x-hidden w-full">
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Spots removed per user request */}
       </div>
@@ -501,7 +501,7 @@ function MobileLocator({
           <h1 className="text-slate-900 dark:text-slate-100 font-black tracking-tight text-xl font-space uppercase">
             Emergency Locator
           </h1>
-          <p className="text-[11px] text-slate-500 dark:text-[#00C896] font-bold opacity-80 mt-1 tracking-wider uppercase">
+          <p className="text-[11px] text-slate-500 dark:text-brand-light font-bold opacity-80 mt-1 tracking-wider uppercase">
             {address} - {coverageSummary}
           </p>
         </div>
@@ -558,7 +558,7 @@ function MobileLocator({
         </section>
 
         <section className="mt-6 px-4 relative">
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-slate-50 dark:from-[#0D1117] to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-slate-50 dark:from-surface-1 to-transparent z-20 pointer-events-none" />
 
           <div className="flex overflow-x-auto gap-3 pb-4 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-12">
             {FILTER_CHIPS.map((chip) => (
@@ -567,8 +567,8 @@ function MobileLocator({
                 onClick={() => setActiveFilter(chip)}
                 aria-label={`Filter by ${chip}`}
                 className={`flex-none px-5 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 flex items-center gap-2 ${activeFilter === chip
-                    ? 'bg-[#1A5C38] text-white shadow-lg shadow-[#1A5C38]/30 ring-1 ring-white/20'
-                    : 'bg-white dark:bg-[#1a2133]/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 shadow-sm'
+                    ? 'bg-brand text-white shadow-lg shadow-brand/30 ring-1 ring-white/20'
+                    : 'bg-white dark:bg-surface-2/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 shadow-sm'
                   }`}
               >
                 {chip}
@@ -615,8 +615,8 @@ function MobileLocator({
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   className={`group relative rounded-lg p-5 backdrop-blur-xl shadow-sm transition-all ${selectedServiceId === service.id
-                      ? 'border border-[#1A5C38]/30 bg-[#1A5C38]/90 dark:border-[#1A5C38]/40 dark:bg-[#0D1117]/70'
-                      : 'border border-slate-200 bg-white/80 dark:border-white/5 dark:bg-[#1a2133]/40 hover:bg-white dark:hover:bg-[#1f283d]/60'
+                      ? 'border border-brand/30 bg-brand/90 dark:border-brand/40 dark:bg-surface-1/70'
+                      : 'border border-slate-200 bg-white/80 dark:border-white/5 dark:bg-surface-2/40 hover:bg-white dark:hover:bg-surface-3/60'
                     }`}
                 >
                   <div className="absolute left-0 top-0 bottom-0 w-1.5" style={{ backgroundColor: service.accentColor }} />
@@ -630,7 +630,7 @@ function MobileLocator({
                         <ServiceIcon type={service.type} className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="text-slate-900 dark:text-[#d7e3fc] font-black text-base tracking-tight font-space">
+                        <h3 className="text-slate-900 dark:text-text-1 font-black text-base tracking-tight font-space">
                           {service.name}
                         </h3>
                         <div className="flex items-center gap-1.5 mt-0.5">
@@ -639,8 +639,8 @@ function MobileLocator({
                         </div>
                       </div>
                     </div>
-                    <div className="bg-[#1A5C38]/8 dark:bg-[#1A5C38]/10 px-3 py-1 rounded-lg border border-[#1A5C38]/20 dark:border-[#1A5C38]/20">
-                      <span className="text-[10px] font-semibold text-[#1A5C38] dark:text-[#00C896] tracking-tight">{service.distance}</span>
+                    <div className="bg-brand/[0.08] dark:bg-brand/10 px-3 py-1 rounded-lg border border-brand/20 dark:border-brand/20">
+                      <span className="text-[10px] font-semibold text-brand dark:text-brand-light tracking-tight">{service.distance}</span>
                     </div>
                   </div>
 
@@ -751,19 +751,19 @@ function DesktopLocator({
   }, []);
 
   return (
-    <div className="w-full h-dvh bg-slate-50 dark:bg-[#0D1117] text-slate-900 dark:text-[#dae6ff] font-['Inter'] relative overflow-hidden flex flex-col">
+    <div className="w-full h-dvh bg-slate-50 dark:bg-surface-1 text-slate-900 dark:text-text-1 font-['Inter'] relative overflow-hidden flex flex-col">
       <SystemHeader title="Emergency Resource Dispatch" showBack={false} />
 
       <main className="flex-1 flex w-full relative z-0 overflow-hidden lg:mt-0">
-        <section className="flex-1 h-full relative overflow-hidden bg-slate-200 dark:bg-[#061327] border-r border-slate-200 dark:border-white/5">
+        <section className="flex-1 h-full relative overflow-hidden bg-slate-200 dark:bg-bg border-r border-slate-200 dark:border-white/5">
           <div className="absolute top-20 left-6 right-6 z-20 flex justify-center">
-            <div className="flex gap-1 bg-white/90 dark:bg-[#0A0E14]/80 backdrop-blur-2xl p-1.5 rounded-lg border border-slate-200 dark:border-white/10 shadow-2xl overflow-x-auto [scrollbar-width:none]">
+            <div className="flex gap-1 bg-white/90 dark:bg-bg/80 backdrop-blur-2xl p-1.5 rounded-lg border border-slate-200 dark:border-white/10 shadow-2xl overflow-x-auto [scrollbar-width:none]">
               {FILTER_CHIPS.map((chip) => (
                 <button
                   key={chip}
                   onClick={() => setActiveFilter(chip)}
                   className={`px-3 lg:px-5 py-2.5 rounded-xl font-black text-[8px] lg:text-[9px] uppercase tracking-widest transition-all whitespace-nowrap ${activeFilter === chip
-                      ? 'bg-[#1A5C38] text-white shadow-xl'
+                      ? 'bg-brand text-white shadow-xl'
                       : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5'
                     }`}
                 >
@@ -812,24 +812,24 @@ function DesktopLocator({
             <div className="absolute inset-0 pointer-events-none bg-slate-900/5 dark:bg-black/20 mix-blend-color z-10" />
           </div>
 
-          <div className="absolute bottom-8 left-8 z-20 bg-white/90 dark:bg-[#0D1117]/90 backdrop-blur-md p-4 rounded-lg border border-slate-200 dark:border-white/10 shadow-xl min-w-[180px] hidden lg:block">
+          <div className="absolute bottom-8 left-8 z-20 bg-white/90 dark:bg-surface-1/90 backdrop-blur-md p-4 rounded-lg border border-slate-200 dark:border-white/10 shadow-xl min-w-[180px] hidden lg:block">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">Telemetry Active</span>
             </div>
-            <div className="text-sm font-semibold text-slate-800 dark:text-[#00C896] tracking-tight">{address}</div>
+            <div className="text-sm font-semibold text-slate-800 dark:text-brand-light tracking-tight">{address}</div>
             <div className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{coverageSummary}</div>
           </div>
         </section>
 
-        <section className="w-[300px] lg:w-[340px] xl:w-[360px] h-full bg-white dark:bg-[#0D1117] flex flex-col z-20 shadow-2xl overflow-hidden shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.1)] dark:shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.5)] border-l border-slate-200 dark:border-white/5">
+        <section className="w-[300px] lg:w-[340px] xl:w-[360px] h-full bg-white dark:bg-surface-1 flex flex-col z-20 shadow-2xl overflow-hidden shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.1)] dark:shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.5)] border-l border-slate-200 dark:border-white/5">
           <div className="p-6 lg:p-8 pb-4 shrink-0">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-[#1A5C38] flex items-center justify-center shadow-lg shadow-[#1A5C38]/20 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center shadow-lg shadow-brand/20 shrink-0">
                 <MapPin className="text-white w-5 h-5" />
               </div>
               <div className="overflow-hidden">
-                <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1A5C38] dark:text-[#00C896] whitespace-nowrap">
+                <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:text-brand-light whitespace-nowrap">
                   Locator Subsystem
                 </h2>
                 <h1 className="text-xl lg:text-2xl font-black tracking-tight text-slate-800 dark:text-white leading-none truncate">
@@ -881,14 +881,14 @@ function DesktopLocator({
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     className={`group rounded-lg p-5 lg:p-6 transition-all ${selectedServiceId === service.id
-                        ? 'border border-[#1A5C38]/30 bg-[#1A5C38]/8 dark:border-[#1A5C38]/40 dark:bg-[#0D1117]/70'
-                        : 'border border-slate-200 bg-slate-50 hover:bg-slate-100 dark:border-white/5 dark:bg-[#152640]/40 dark:hover:bg-[#1a2c48]/60'
+                        ? 'border border-brand/30 bg-brand/[0.08] dark:border-brand/40 dark:bg-surface-1/70'
+                        : 'border border-slate-200 bg-slate-50 hover:bg-slate-100 dark:border-white/5 dark:bg-surface-1/40 dark:hover:bg-surface-2/60'
                       }`}
                   >
                     <div className="flex justify-between items-start">
                       <div className="flex gap-4 lg:gap-5">
                         <div
-                          className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg shrink-0 flex items-center justify-center bg-white dark:bg-[#030e20] shadow-sm border border-slate-100 dark:border-white/10"
+                          className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg shrink-0 flex items-center justify-center bg-white dark:bg-bg shadow-sm border border-slate-100 dark:border-white/10"
                           style={{ color: service.accentColor }}
                         >
                           <ServiceIcon type={service.type} className="w-6 h-6 lg:w-7 lg:h-7" />
@@ -920,7 +920,7 @@ function DesktopLocator({
                       <button
                         type="button"
                         onClick={() => onLocateService(service)}
-                        className="px-4 py-2.5 rounded-xl bg-[#1A5C38] text-white font-bold text-[9px] lg:text-[10px] uppercase tracking-widest hover:bg-[#1A5C38]/80 disabled:cursor-not-allowed disabled:opacity-70 flex items-center justify-center gap-2"
+                        className="px-4 py-2.5 rounded-xl bg-brand text-white font-bold text-[9px] lg:text-[10px] uppercase tracking-widest hover:bg-brand/80 disabled:cursor-not-allowed disabled:opacity-70 flex items-center justify-center gap-2"
                         disabled={routeLoadingId === service.id}
                       >
                         {routeLoadingId === service.id ? (
@@ -954,8 +954,8 @@ function DesktopLocator({
               { n: '100', l: 'POL' },
               { n: '101', l: 'FIRE' },
             ].map((dial) => (
-              <button key={dial.n} className="flex flex-col items-center justify-center py-3 lg:py-4 bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/5 hover:border-[#1A5C38]/50 transition-all group">
-                <span className="text-base lg:text-lg font-black text-slate-800 dark:text-white group-hover:text-[#1A5C38] dark:text-[#00C896]">{dial.n}</span>
+              <button key={dial.n} className="flex flex-col items-center justify-center py-3 lg:py-4 bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/5 hover:border-brand/50 transition-all group">
+                <span className="text-base lg:text-lg font-black text-slate-800 dark:text-white group-hover:text-brand dark:text-brand-light">{dial.n}</span>
                 <span className="text-[7px] lg:text-[8px] font-bold text-slate-400 uppercase tracking-widest">{dial.l}</span>
               </button>
             ))}
