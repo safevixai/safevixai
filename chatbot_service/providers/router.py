@@ -121,10 +121,10 @@ class ProviderRouter:
 
         # Fallback chain — tried in order when provider fails
         self._fallback_chain = [
-            'groq',        # 1. Fastest English — 300+ tok/s
-            'cerebras',    # 2. Speed overflow — 2000+ tok/s
-            'gemini',      # 3. Large context, 1M tok/day
-            'github',      # 4. Free with GitHub account
+            'github',      # 1. Free with GitHub account (Student Pack)
+            'groq',        # 2. Fastest English — 300+ tok/s
+            'cerebras',    # 3. Speed overflow — 2000+ tok/s
+            'gemini',      # 4. Large context, 1M tok/day
             'nvidia',      # 5. GPU-optimized
             'openrouter',  # 6. Gateway to 20+ models
             'mistral',     # 7. 1B tok/month free
