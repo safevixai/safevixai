@@ -29,7 +29,7 @@ export default function HazardViewfinder({
         {imageSrc ? (
           <Image alt="Hazard evidence" src={imageSrc} fill className="object-cover opacity-60 grayscale mix-blend-luminosity transition-all duration-700 group-hover:grayscale-0" unoptimized />
         ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-slate-900/50">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-bg/50">
             <div className="relative">
               <motion.div animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ repeat: Infinity, duration: 4 }} className="h-32 w-32 rounded-full border border-emergency/20" />
               <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 10, ease: 'linear' }} className="absolute inset-0 flex items-center justify-center">
@@ -38,7 +38,7 @@ export default function HazardViewfinder({
             </div>
             <div className="flex flex-col items-center gap-2 text-center">
               <span className="animate-pulse font-space text-[10px] font-semibold uppercase tracking-[0.4em] text-emergency/40">Camera uplink waiting</span>
-              <span className="font-mono text-[8px] font-bold uppercase tracking-widest text-slate-600">Add a real road photo for faster authority verification</span>
+              <span className="font-mono text-[8px] font-bold uppercase tracking-widest text-text-2">Add a real road photo for faster authority verification</span>
             </div>
           </div>
         )}
@@ -52,7 +52,7 @@ export default function HazardViewfinder({
               <span className="h-1.5 w-1.5 rounded-full bg-emergency animate-pulse" />
               <span className="font-space text-[10px] font-semibold uppercase tracking-[0.1em] text-white">{statusLabel}</span>
             </div>
-            <span className="pl-1 font-mono text-[9px] font-bold uppercase tracking-tight text-slate-400">Vector: {locationLabel}</span>
+            <span className="pl-1 font-mono text-[9px] font-bold uppercase tracking-tight text-text-2">Vector: {locationLabel}</span>
           </div>
 
           <div className="flex flex-col items-end gap-1">
@@ -60,7 +60,7 @@ export default function HazardViewfinder({
               <Cpu size={12} className="text-brand" />
               <span className="font-space text-[10px] font-semibold uppercase tracking-widest text-brand">AI Core {confidence}%</span>
             </div>
-            <span className="font-mono text-[9px] font-bold uppercase tracking-tight text-slate-500">Signal: {signalLabel}</span>
+            <span className="font-mono text-[9px] font-bold uppercase tracking-tight text-text-2">Signal: {signalLabel}</span>
           </div>
         </div>
 
@@ -94,7 +94,7 @@ export default function HazardViewfinder({
               {isDetecting ? 'Analyzing risk...' : 'Ready to dispatch'}
             </motion.div>
           </div>
-          <span className="pl-1 font-space text-[9px] font-semibold uppercase tracking-[0.1em] text-slate-400 opacity-70">{viewportId}</span>
+          <span className="pl-1 font-space text-[9px] font-semibold uppercase tracking-[0.1em] text-text-2 opacity-70">{viewportId}</span>
         </div>
       </div>
 

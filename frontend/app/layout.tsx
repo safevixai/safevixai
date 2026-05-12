@@ -1,9 +1,15 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
+import { Toaster } from 'react-hot-toast';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space', display: 'swap' });
 import { AppFrame } from '@/components/ui/AppFrame';
 import { AnalyticsProvider } from '@/lib/analytics-provider';
 import { EnterpriseClientAppHooks } from '@/components/EnterpriseClientAppHooks';
@@ -28,7 +34,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: 'var(--bg-primary)' },
+    { media: '(prefers-color-scheme: dark)', color: '#0A0E14' },
     { media: '(prefers-color-scheme: light)', color: '#F0F4F8' },
   ],
   width: 'device-width',
@@ -38,21 +44,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="font-sans">
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable} font-sans`}>
       <head>
         <link rel="icon" type="image/png" href="/icons/favicon.png" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@300..700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
         <Script src="/theme-init.js" strategy="beforeInteractive" />
       </head>
       <body>
@@ -61,6 +57,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ConnectivityProvider>
               <EnterpriseClientAppHooks />
               <AppFrame>{children}</AppFrame>
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 5000,
+                  style: {
+                    background: 'var(--surface-4)',
+                    border: '1px solid var(--border-md)',
+                    color: 'var(--text-1)',
+                    borderRadius: 'var(--r-lg)',
+                    boxShadow: 'var(--shadow-panel)',
+                    fontFamily: 'var(--font-inter)',
+                    fontSize: '13px',
+                  },
+                  success: {
+                    iconTheme: {
+                      primary: 'var(--brand-light)',
+                      secondary: '#0A0E14',
+                    },
+                  },
+                  error: {
+                    iconTheme: {
+                      primary: 'var(--emergency)',
+                      secondary: '#FFFFFF',
+                    },
+                  },
+                }}
+              />
             </ConnectivityProvider>
           </ThemeProvider>
         </AnalyticsProvider>

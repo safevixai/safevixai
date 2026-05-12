@@ -162,7 +162,7 @@ export default function BystanderModePage() {
  <span className="text-red-400">An Accident</span>
  </h1>
 
- <p className="text-slate-400 text-sm leading-relaxed mb-8">
+ <p className="text-text-2 text-sm leading-relaxed mb-8">
  SafeVixAI will capture your location, guide you through first aid,
  call emergency services, and notify the nearest hospital — automatically.
  </p>
@@ -176,7 +176,7 @@ export default function BystanderModePage() {
  Activate Bystander Mode
  </motion.button>
 
- <p className="mt-4 text-[10px] text-slate-600 uppercase tracking-widest">
+ <p className="mt-4 text-[10px] text-text-2 uppercase tracking-widest">
  No login required · Works offline · Feeds accident into road reporter
  </p>
  </motion.div>
@@ -190,8 +190,8 @@ export default function BystanderModePage() {
  <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 font-sans">
  <Loader2 size={48} className="text-red-400 animate-spin mb-6" />
  <h2 className="text-2xl font-black text-white uppercase tracking-tight mb-2">Capturing Location…</h2>
- <p className="text-slate-400 text-sm">GPS locking on accident coordinates</p>
- <p className="mt-6 text-[10px] text-slate-600 uppercase tracking-widest">Stay calm · Help is coming</p>
+ <p className="text-text-2 text-sm">GPS locking on accident coordinates</p>
+ <p className="mt-6 text-[10px] text-text-2 uppercase tracking-widest">Stay calm · Help is coming</p>
  </div>
  );
  }
@@ -201,11 +201,11 @@ export default function BystanderModePage() {
  return (
  <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 font-sans">
  <div className="w-full max-w-sm text-center">
- <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-500/40 flex items-center justify-center">
- <CheckCircle2 size={36} className="text-emerald-400" />
+ <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-brand-light/ border-2 border-brand-light/40 flex items-center justify-center">
+ <CheckCircle2 size={36} className="text-brand-light" />
  </div>
  <h2 className="text-3xl font-black text-white uppercase mb-3">All Steps Done</h2>
- <p className="text-slate-400 text-sm mb-6">You did everything right. Stay with the victim until help arrives.</p>
+ <p className="text-text-2 text-sm mb-6">You did everything right. Stay with the victim until help arrives.</p>
 
  <a
  href="tel:108"
@@ -241,7 +241,7 @@ export default function BystanderModePage() {
  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
  <span className="text-[10px] font-black text-red-400 uppercase tracking-widest">Bystander Protocol Active</span>
  </div>
- <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+ <span className="text-[10px] font-bold text-brand-light uppercase tracking-widest">
  {completedSteps.size}/{BYSTANDER_STEPS.length} done
  </span>
  </div>
@@ -264,15 +264,15 @@ export default function BystanderModePage() {
  href={mapsUrl}
  target="_blank"
  rel="noreferrer"
- className="flex items-center gap-3 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl mb-3"
+ className="flex items-center gap-3 p-3 bg-brand-light/10 border border-brand-light/20 rounded-xl mb-3"
  >
- <Navigation size={18} className="text-emerald-400 flex-shrink-0" />
+ <Navigation size={18} className="text-brand-light flex-shrink-0" />
  <div className="min-w-0">
- <p className="text-[9px] font-black text-emerald-400 uppercase tracking-widest">GPS Captured · Tap to open</p>
+ <p className="text-[9px] font-black text-brand-light uppercase tracking-widest">GPS Captured · Tap to open</p>
  <p className="text-xs font-mono text-white truncate">{gps.lat.toFixed(5)}, {gps.lon.toFixed(5)}</p>
  </div>
  {accidentReported && (
- <span className="ml-auto text-[8px] font-black text-emerald-400 bg-emerald-500/20 px-2 py-1 rounded-full">Reported</span>
+ <span className="ml-auto text-[8px] font-black text-brand-light bg-brand-light/ px-2 py-1 rounded-full">Reported</span>
  )}
  </a>
  )}
@@ -285,10 +285,10 @@ export default function BystanderModePage() {
  )}
 
  {nearestHospital && (
- <div className="flex items-center gap-3 p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl mb-3">
- <Activity size={18} className="text-blue-400 flex-shrink-0" />
+ <div className="flex items-center gap-3 p-3 bg-brand/10 border border-brand/20 rounded-xl mb-3">
+ <Activity size={18} className="text-brand-light flex-shrink-0" />
  <div>
- <p className="text-[9px] font-black text-blue-400 uppercase tracking-widest">Nearest Hospital</p>
+ <p className="text-[9px] font-black text-brand-light uppercase tracking-widest">Nearest Hospital</p>
  <p className="text-xs font-bold text-white">{nearestHospital.name} · {nearestHospital.distance}</p>
  </div>
  </div>
@@ -298,7 +298,7 @@ export default function BystanderModePage() {
 
  {/* Steps */}
  <div className="flex-1 px-4 py-2 pb-28 space-y-3">
- <h2 className="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1 mb-2">
+ <h2 className="text-[10px] font-black text-text-2 uppercase tracking-widest px-1 mb-2">
  Follow these steps — tap each one when done
  </h2>
 
@@ -311,14 +311,14 @@ export default function BystanderModePage() {
  onClick={() => toggleStep(step.id)}
  className={`w-full text-left flex items-start gap-4 p-4 rounded-xl border transition-all ${
  done
- ? 'bg-emerald-500/10 border-emerald-500/30 opacity-60'
+ ? 'bg-brand-light/10 border-brand-light/30 opacity-60'
  : step.critical
  ? 'bg-red-500/10 border-red-500/40 shadow-lg shadow-red-500/10'
  : 'bg-white/5 border-white/10'
  }`}
  >
  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black text-sm flex-shrink-0 ${
- done ? 'bg-emerald-500 text-white' : step.critical ? 'bg-red-500 text-white' : 'bg-white/10 text-white'
+ done ? 'bg-brand-light text-white' : step.critical ? 'bg-red-500 text-white' : 'bg-white/10 text-white'
  }`}>
  {done ? <CheckCircle2 size={18} /> : step.id}
  </div>
@@ -326,7 +326,7 @@ export default function BystanderModePage() {
  {step.critical && !done && (
  <span className="text-[8px] font-black text-red-400 uppercase tracking-widest block mb-1"> Critical</span>
  )}
- <p className={`text-sm font-bold leading-relaxed ${done ? 'text-slate-500 line-through' : 'text-white'}`}>
+ <p className={`text-sm font-bold leading-relaxed ${done ? 'text-text-2 line-through' : 'text-white'}`}>
  {step.text}
  </p>
  </div>

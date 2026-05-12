@@ -12,9 +12,9 @@ const EmergencyMapInner = dynamic<MapInnerProps>(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full relative isolate rounded-lg overflow-hidden border border-[var(--outline-variant)] bg-[var(--bg-card)] flex flex-col items-center justify-center gap-3">
-        <Loader2 size={24} className="animate-spin text-[var(--icon-primary)] opacity-50" />
-        <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)]">
+      <div className="w-full h-full relative isolate rounded-lg overflow-hidden border border-[var(--border)] bg-[var(--surface-1)] flex flex-col items-center justify-center gap-3">
+        <Loader2 size={24} className="animate-spin text-[var(--brand)] opacity-50" />
+        <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-2)]">
           Initializing Map Subsystem...
         </span>
       </div>

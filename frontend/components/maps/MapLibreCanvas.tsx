@@ -24,6 +24,8 @@ const FACILITY_CLUSTER_LAYER_ID = 'svai-facility-clusters';
 const FACILITY_CLUSTER_COUNT_LAYER_ID = 'svai-facility-cluster-count';
 const FACILITY_UNCLUSTERED_LAYER_ID = 'svai-facility-points';
 const FACILITY_SELECTED_LAYER_ID = 'svai-facility-selected';
+const HEATMAP_SOURCE_ID = 'svai-heatmap-source';
+const HEATMAP_LAYER_ID = 'svai-heatmap-layer';
 
 type MapStyleCandidate = {
  kind: 'google-maps' | 'maptiler-vector' | 'openfreemap';
@@ -52,7 +54,7 @@ function buildGoogleMapsRasterStyle(isDark: boolean) {
  id: 'svai-google-raster-background',
  type: 'background',
  paint: {
- 'background-color': isDark ? '#1a1a1a' : '#eef2f7',
+ 'background-color': isDark ? '#050a14' : '#f0f4f8',
  },
  },
  {
@@ -144,16 +146,17 @@ export interface MapLibreFacility {
 }
 
 export interface MapLibreIssue {
- id: string;
- label: string;
- coords: [number, number];
- accentColor: string;
- icon?: string;
- overline?: string;
- description?: string;
- status?: string;
- roadName?: string;
-}
+  id: string;
+  label: string;
+  coords: [number, number];
+  accentColor: string;
+  icon?: string;
+  overline?: string;
+  description?: string;
+  status?: string;
+  roadName?: string;
+  severity?: number;
+ }
 
 export interface MapLibreCurrentLocation {
  lat: number;
@@ -200,15 +203,15 @@ interface MapLibreCanvasProps {
 }
 
 function iconForType(type: string) {
- const normalized = type.toLowerCase();
- if (normalized.includes('hospital')) return 'local_hospital';
- if (normalized.includes('ambulance')) return 'emergency';
- if (normalized.includes('pharmacy')) return 'medication';
- if (normalized.includes('police')) return 'local_police';
- if (normalized.includes('fire')) return 'local_fire_department';
- if (normalized.includes('tow')) return 'tow';
- if (normalized.includes('mechanic')) return 'build';
- return 'place';
+  const normalized = type.toLowerCase();
+  if (normalized.includes('hospital')) return '🏥';
+  if (normalized.includes('ambulance')) return '🚑';
+  if (normalized.includes('pharmacy')) return '💊';
+  if (normalized.includes('police')) return '👮';
+  if (normalized.includes('fire')) return '🚒';
+  if (normalized.includes('tow')) return '🪝';
+  if (normalized.includes('mechanic')) return '🔧';
+  return '📍';
 }
 
 function buildMarkerElement({
@@ -249,12 +252,12 @@ function buildMarkerElement({
  shell.style.boxShadow = `0 16px 34px rgba(2, 6, 23, 0.34), 0 0 0 8px color-mix(in srgb, ${color} 24%, transparent)`;
  }
 
- glyph.className = 'material-symbols-outlined';
- glyph.textContent = kind === 'current' ? 'my_location' : icon;
- glyph.style.fontVariationSettings = "'FILL' 1, 'wght' 500, 'opsz' 24";
- glyph.style.fontSize = kind === 'current' ? '13px' : kind === 'issue' ? '18px' : '19px';
- glyph.style.lineHeight = '1';
- glyph.style.color = kind === 'current' ? '#ffffff' : color;
+  glyph.textContent = kind === 'current' ? '🎯' : icon;
+  glyph.style.fontSize = kind === 'current' ? '14px' : kind === 'issue' ? '18px' : '20px';
+  glyph.style.fontWeight = '700';
+  glyph.style.lineHeight = '1';
+  glyph.style.color = kind === 'current' ? '#ffffff' : color;
+  glyph.style.userSelect = 'none';
 
  shell.appendChild(glyph);
  marker.appendChild(shell);
@@ -262,48 +265,49 @@ function buildMarkerElement({
 }
 
 function buildPopupContent(title: string, overline?: string, details: string[] = []) {
- const wrapper = document.createElement('div');
- const heading = document.createElement('div');
-
- wrapper.style.minWidth = '220px';
- wrapper.style.maxWidth = '220px';
- wrapper.style.fontFamily = 'Inter, sans-serif';
- wrapper.style.color = '#0f172a';
-
- heading.textContent = title;
- heading.style.fontWeight = '800';
- heading.style.fontSize = '14px';
- heading.style.letterSpacing = '-0.02em';
- heading.style.whiteSpace = 'nowrap';
- heading.style.overflow = 'hidden';
- heading.style.textOverflow = 'ellipsis';
- wrapper.appendChild(heading);
-
- if (overline) {
- const label = document.createElement('div');
- label.textContent = overline;
- label.style.marginTop = '4px';
- label.style.fontSize = '11px';
- label.style.fontWeight = '700';
- label.style.color = '#475569';
- wrapper.appendChild(label);
+  const wrapper = document.createElement('div');
+  const heading = document.createElement('div');
+ 
+  wrapper.style.minWidth = '220px';
+  wrapper.style.maxWidth = '220px';
+  wrapper.style.fontFamily = 'var(--font-space), monospace';
+  wrapper.style.color = 'var(--text-1)';
+ 
+  heading.textContent = title;
+  heading.style.fontWeight = '800';
+  heading.style.fontSize = '14px';
+  heading.style.letterSpacing = '-0.02em';
+  heading.style.whiteSpace = 'nowrap';
+  heading.style.overflow = 'hidden';
+  heading.style.textOverflow = 'ellipsis';
+  heading.style.color = 'var(--text-1)';
+  wrapper.appendChild(heading);
+ 
+  if (overline) {
+  const label = document.createElement('div');
+  label.textContent = overline;
+  label.style.marginTop = '4px';
+  label.style.fontSize = '11px';
+  label.style.fontWeight = '700';
+  label.style.color = 'var(--text-3)';
+  wrapper.appendChild(label);
+  }
+ 
+  details.filter(Boolean).forEach((detail, index) => {
+  const row = document.createElement('div');
+  row.textContent = detail;
+  row.style.marginTop = index === 0 ? '10px' : '6px';
+  row.style.fontSize = '12px';
+  row.style.lineHeight = '1.45';
+  row.style.color = 'var(--text-2)';
+  row.style.whiteSpace = 'nowrap';
+  row.style.overflow = 'hidden';
+  row.style.textOverflow = 'ellipsis';
+  wrapper.appendChild(row);
+  });
+ 
+  return wrapper;
  }
-
- details.filter(Boolean).forEach((detail, index) => {
- const row = document.createElement('div');
- row.textContent = detail;
- row.style.marginTop = index === 0 ? '10px' : '6px';
- row.style.fontSize = '12px';
- row.style.lineHeight = '1.45';
- row.style.color = '#334155';
- row.style.whiteSpace = 'nowrap';
- row.style.overflow = 'hidden';
- row.style.textOverflow = 'ellipsis';
- wrapper.appendChild(row);
- });
-
- return wrapper;
-}
 
 function buildAccuracyFeature(lat: number, lon: number, accuracyMeters: number): PolygonFeature {
  const steps = 48;
@@ -352,11 +356,12 @@ export function MapLibreCanvas({
  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
  const [statusMessage, setStatusMessage] = useState<string>('Loading map...');
  const [styleRevision, setStyleRevision] = useState(0);
- const [showTraffic, setShowTraffic] = useState(false);
- const [showSafeSpaces, setShowSafeSpaces] = useState(false);
- const [showSatellite, setShowSatellite] = useState(false);
+ const showTraffic = useAppStore((state) => state.showTraffic);
+ const showSafeSpaces = useAppStore((state) => state.showSafeSpaces);
+ const showSatellite = useAppStore((state) => state.showSatellite);
  const { resolvedTheme } = useTheme();
  const setMapState = useAppStore((state) => state.setMapState);
+ const showHazardHeatmap = useAppStore((state) => state.showHazardHeatmap);
  const initialCenterRef = useRef(center);
  const initialZoomRef = useRef(zoom);
  const showTrafficRef = useRef(showTraffic);
@@ -663,7 +668,7 @@ export function MapLibreCanvas({
  type: 'fill',
  source: ACCURACY_SOURCE_ID,
  paint: {
- 'fill-color': '#2563eb',
+ 'fill-color': '#00c896',
  'fill-opacity': 0.12,
  },
  });
@@ -672,7 +677,7 @@ export function MapLibreCanvas({
  type: 'line',
  source: ACCURACY_SOURCE_ID,
  paint: {
- 'line-color': '#2563eb',
+ 'line-color': '#00c896',
  'line-width': 2,
  'line-opacity': 0.55,
  },
@@ -805,7 +810,7 @@ export function MapLibreCanvas({
  'line-join': 'round',
  },
  paint: {
- 'line-color': '#7c93d7',
+ 'line-color': '#00c896',
  'line-width': 4,
  'line-opacity': 0.45,
  'line-dasharray': [1, 1.4],
@@ -896,11 +901,11 @@ export function MapLibreCanvas({
  'circle-color': [
  'step',
  ['get', 'point_count'],
- '#2563eb',
+ '#00c896',
  8,
- '#1d4ed8',
+ '#00a87d',
  16,
- '#1e3a8a',
+ '#008a67',
  ],
  'circle-radius': [
  'step',
@@ -1100,7 +1105,7 @@ export function MapLibreCanvas({
  markerRefs.current.push(
  new maplibregl.Marker({
  element: buildMarkerElement({
- color: '#2563eb',
+ color: '#00c896',
  icon: 'my_location',
  kind: 'current',
  }),
@@ -1158,6 +1163,105 @@ export function MapLibreCanvas({
  }
  }
  }, [currentLocation, issues, styleRevision, liveFacilities, selectedFacilityId]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const syncHeatmapLayer = () => {
+      const hasSource = Boolean(map.getSource(HEATMAP_SOURCE_ID));
+      
+      if (!showHazardHeatmap || issues.length === 0) {
+        if (map.getLayer(HEATMAP_LAYER_ID)) {
+          map.removeLayer(HEATMAP_LAYER_ID);
+        }
+        if (hasSource) {
+          map.removeSource(HEATMAP_SOURCE_ID);
+        }
+        return;
+      }
+
+      const collection = {
+        type: 'FeatureCollection',
+        features: issues.map(issue => ({
+          type: 'Feature',
+          properties: { severity: issue.severity || 1 },
+          geometry: {
+            type: 'Point',
+            coordinates: [issue.coords[1], issue.coords[0]],
+          },
+        })),
+      } as GeoJSON.FeatureCollection<GeoJSON.Point>;
+
+      if (hasSource) {
+        (map.getSource(HEATMAP_SOURCE_ID) as maplibregl.GeoJSONSource).setData(collection);
+      } else {
+        map.addSource(HEATMAP_SOURCE_ID, {
+          type: 'geojson',
+          data: collection,
+        });
+      }
+
+      if (!map.getLayer(HEATMAP_LAYER_ID)) {
+        map.addLayer({
+          id: HEATMAP_LAYER_ID,
+          type: 'heatmap',
+          source: HEATMAP_SOURCE_ID,
+          maxzoom: 15,
+          paint: {
+            // increase weight based on severity
+            'heatmap-weight': [
+              'interpolate',
+              ['linear'],
+              ['get', 'severity'],
+              1, 0.2,
+              5, 1
+            ],
+            // increase intensity as zoom increases
+            'heatmap-intensity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 1,
+              15, 3
+            ],
+            // color ramp
+            'heatmap-color': [
+              'interpolate',
+              ['linear'],
+              ['heatmap-density'],
+              0, 'rgba(0, 200, 150, 0)',
+              0.2, '#00c896',
+              0.5, '#00a87d',
+              0.8, '#008a67'
+            ],
+            // radius based on zoom
+            'heatmap-radius': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 2,
+              15, 20
+            ],
+            // opacity transition
+            'heatmap-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              7, 1,
+              15, 0
+            ],
+          }
+        }, FACILITY_UNCLUSTERED_LAYER_ID); // insert below markers
+      }
+    };
+
+    if (map.isStyleLoaded()) {
+      syncHeatmapLayer();
+    } else {
+      map.once('load', syncHeatmapLayer);
+    }
+  }, [showHazardHeatmap, issues, styleRevision]);
 
  useEffect(() => {
  const map = mapRef.current;
@@ -1244,72 +1348,36 @@ export function MapLibreCanvas({
  if (!mapRef.current.getLayer('safe-spaces-circles')) {
  addSafeSpacesLayer(mapRef.current, currentLocation.lat, currentLocation.lon).catch((err) => {
  logClientError('Failed to add safe spaces layer', err);
- setShowSafeSpaces(false);
+ useAppStore.getState().setShowSafeSpaces(false);
  });
  }
  }
  }, [showSafeSpaces, currentLocation, styleRevision]);
 
- useEffect(() => {
- if (!mapRef.current || !mapRef.current.isStyleLoaded()) return;
- 
- const hasLayer = mapRef.current.getLayer('safe-spaces-circles');
- if (hasLayer) {
- mapRef.current.setLayoutProperty('safe-spaces-circles', 'visibility', showSafeSpaces ? 'visible' : 'none');
- }
- }, [showSafeSpaces, styleRevision]);
+  useEffect(() => {
+    if (!mapRef.current || !mapRef.current.isStyleLoaded()) return;
 
- return (
- <div className={className}>
- <div ref={mapNodeRef} className="absolute inset-0 h-full w-full overflow-hidden" />
- {status !== 'ready' ? (
- <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-950/18 backdrop-blur-[1px]">
- <div className="rounded-lg border border-white/10 bg-bg/85 px-4 py-3 text-center shadow-2xl">
- <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-blue-300">
- {status === 'error' ? 'Map Offline' : 'Initializing Map'}
- </div>
- <div className="mt-2 text-sm font-semibold text-slate-100">{statusMessage}</div>
- </div>
- </div>
- ) : null}
- 
- {/* Toggles Overlay */}
- {status === 'ready' && (
- <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
- <button
- onClick={() => setShowSatellite(s => !s)}
- className={`px-3 py-2 rounded-full text-xs font-bold shadow-lg transition-colors border ${
- showSatellite 
- ? 'bg-blue-600 text-white border-blue-700' 
- : 'bg-white text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
- }`}
- >
- {showSatellite ? ' Satellite: ON' : ' Satellite: OFF'}
- </button>
+    if (mapRef.current.getLayer('safe-spaces-circles')) {
+      mapRef.current.setLayoutProperty('safe-spaces-circles', 'visibility', showSafeSpaces ? 'visible' : 'none');
+    }
+    if (mapRef.current.getLayer('safe-spaces-labels')) {
+      mapRef.current.setLayoutProperty('safe-spaces-labels', 'visibility', showSafeSpaces ? 'visible' : 'none');
+    }
+  }, [showSafeSpaces, styleRevision]);
 
- <button
- onClick={() => setShowTraffic(t => !t)}
- className={`px-3 py-2 rounded-full text-xs font-bold shadow-lg transition-colors border ${
- showTraffic 
- ? 'bg-amber-500 text-white border-amber-600' 
- : 'bg-white text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
- }`}
- >
- {showTraffic ? ' Traffic: ON' : ' Traffic: OFF'}
- </button>
- 
- <button
- onClick={() => setShowSafeSpaces(s => !s)}
- className={`px-3 py-2 rounded-full text-xs font-bold shadow-lg transition-colors border ${
- showSafeSpaces 
- ? 'bg-emerald-500 text-white border-emerald-600' 
- : 'bg-white text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
- }`}
- >
- {showSafeSpaces ? '️ Safe Spaces: ON' : '️ Safe Spaces: OFF'}
- </button>
- </div>
- )}
- </div>
- );
+  return (
+  <div className={className}>
+  <div ref={mapNodeRef} className="absolute inset-0 h-full w-full overflow-hidden" />
+  {status !== 'ready' ? (
+  <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-surface-1/80 backdrop-blur-[1px]">
+  <div className="rounded-lg border border-white/10 bg-surface-1/85 px-4 py-3 text-center shadow-2xl">
+  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-light">
+  {status === 'error' ? 'Map Offline' : 'Initializing Map'}
+  </div>
+  <div className="mt-2 text-sm font-semibold text-text-1">{statusMessage}</div>
+  </div>
+  </div>
+  ) : null}
+  </div>
+  );
 }

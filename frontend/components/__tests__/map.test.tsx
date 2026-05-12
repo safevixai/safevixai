@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import maplibregl from 'maplibre-gl';
 import { toggleTrafficLayer } from '@/lib/traffic-layer';
 import { useAppStore } from '@/lib/store';
@@ -182,19 +182,24 @@ describe('MapLibreCanvas', () => {
   });
 
   it('toggles traffic without recreating the map', async () => {
-    render(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
+    const { rerender } = render(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
 
     const maplibreMock = maplibregl as typeof maplibregl & {
       Map: jest.Mock;
     };
     const toggleTrafficLayerMock = toggleTrafficLayer as jest.Mock;
 
-    await waitFor(() => expect(screen.getByRole('button', { name: /Traffic: OFF/i })).toBeInTheDocument());
+    await act(async () => {
+      useAppStore.setState({ showTraffic: true });
+    });
+    
+    // Rerender to ensure useEffect triggers on store/revision updates
+    rerender(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
 
-    fireEvent.click(screen.getByRole('button', { name: /Traffic: OFF/i }));
-
+    await waitFor(() => {
+      expect(toggleTrafficLayerMock).toHaveBeenCalled();
+    });
     expect(maplibreMock.Map).toHaveBeenCalledTimes(1);
-    expect(toggleTrafficLayerMock).toHaveBeenCalled();
   });
 
   it('publishes frontend map status when the style is ready', async () => {

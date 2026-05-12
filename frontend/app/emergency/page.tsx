@@ -11,6 +11,7 @@ import {
 import { useTheme } from '@/components/ThemeProvider';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
+import { useAppStore } from '@/lib/store';
 
 const CATEGORIES = ['All', 'Medical', 'Fire', 'Accident', 'Criminal'] as const;
 type Category = typeof CATEGORIES[number];
@@ -109,6 +110,7 @@ export default function EmergencyProtocolsPage() {
   const [expandedId, setExpandedId] = useState<string | null>('cpr');
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
+  const userProfile = useAppStore((state) => state.userProfile);
 
   useEffect(() => {
     setMounted(true);
@@ -128,19 +130,19 @@ export default function EmergencyProtocolsPage() {
 
   if (!mounted) {
     return (
-      <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col">
+      <div className="sv-page relative flex flex-col overflow-x-hidden">
         <SystemHeader title="Emergency Protocol Terminal" showBack={false} />
         <main className="flex-1 w-full max-w-7xl mx-auto pt-28 lg:pt-24 pb-44 px-5 sm:px-12 flex flex-col lg:grid lg:grid-cols-[1.2fr,2fr] lg:gap-14 lg:items-start animate-pulse">
           <aside className="lg:sticky lg:top-28 flex flex-col gap-8">
-            <div className="h-20 bg-slate-200 dark:bg-surface-2 rounded-lg w-3/4"></div>
-            <div className="h-64 bg-slate-200 dark:bg-surface-2 rounded-[2.5rem] w-full"></div>
+            <div className="h-20 bg-surface-2 rounded-lg w-3/4"></div>
+            <div className="h-64 bg-surface-2 rounded-[2.5rem] w-full"></div>
           </aside>
           <div className="flex flex-col gap-8 pt-8 lg:pt-0">
-            <div className="h-12 bg-slate-200 dark:bg-surface-2 rounded-lg w-full"></div>
+            <div className="h-12 bg-surface-2 rounded-lg w-full"></div>
             <div className="grid gap-4">
-              <div className="h-24 bg-slate-200 dark:bg-surface-2 rounded-xl w-full"></div>
-              <div className="h-24 bg-slate-200 dark:bg-surface-2 rounded-xl w-full"></div>
-              <div className="h-24 bg-slate-200 dark:bg-surface-2 rounded-xl w-full"></div>
+              <div className="h-24 bg-surface-2 rounded-xl w-full"></div>
+              <div className="h-24 bg-surface-2 rounded-xl w-full"></div>
+              <div className="h-24 bg-surface-2 rounded-xl w-full"></div>
             </div>
           </div>
         </main>
@@ -149,7 +151,7 @@ export default function EmergencyProtocolsPage() {
   }
 
   return (
-    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col transition-colors duration-500">
+    <div className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
       
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Emergency Protocol Terminal" showBack={false} />
@@ -169,16 +171,16 @@ export default function EmergencyProtocolsPage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
                 <span className="text-[10px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-[0.1em] font-space leading-none">Tactical Center</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-[0.1em] font-space leading-none">Satellite Lock</span>
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light/10 border border-brand-light/20 w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-light"></span>
+                <span className="text-[10px] font-semibold text-brand dark:text-brand-light uppercase tracking-[0.1em] font-space leading-none">Satellite Lock</span>
               </div>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white uppercase font-space leading-tight">
+              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-text-1 uppercase font-space leading-tight">
                 Protocol Terminal
               </h1>
-              <p className="max-w-md text-[13px] font-medium text-slate-500 dark:text-slate-400 mt-2 uppercase tracking-wider opacity-80 leading-relaxed font-space">
+              <p className="max-w-md text-[13px] font-medium text-text-3 mt-2 uppercase tracking-wider opacity-80 leading-relaxed font-space">
                 Real-time emergency override & standard hardware-grade guidance. High-gravity environment active.
               </p>
             </div>
@@ -213,10 +215,16 @@ export default function EmergencyProtocolsPage() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                   <a href="tel:112" className="group/btn relative w-full h-16 px-8 bg-white rounded-lg flex items-center justify-center gap-3 shadow-xl overflow-hidden active:scale-95 transition-all ring-2 ring-white/30 animate-pulse">
+                   <a href="tel:112" className="group/btn relative w-full h-16 px-8 bg-white rounded-lg flex items-center justify-center gap-3 shadow-xl overflow-hidden active:scale-95 transition-all ring-2 ring-white/30 animate-pulse mb-2">
                      <span className="text-red-700 font-black text-sm tracking-[0.1em] uppercase font-space relative z-10">CALL 112 NOW</span>
                      <ArrowRight size={18} className="text-red-700 relative z-10 transition-transform group-hover/btn:translate-x-1" />
                    </a>
+                   {userProfile?.emergencyContact && (
+                     <a href={`tel:${userProfile.emergencyContact}`} className="group/btn relative w-full h-14 px-8 bg-brand-light/10 border border-brand-light/30 rounded-lg flex items-center justify-center gap-3 shadow-sm hover:bg-brand-light/20 transition-all active:scale-95">
+                       <Phone size={16} className="text-brand-light relative z-10" />
+                       <span className="text-brand-light font-black text-xs tracking-[0.1em] uppercase font-space relative z-10">QUICK DIAL: {userProfile.name ? `${userProfile.name}'S CONTACT` : 'EMERGENCY CONTACT'}</span>
+                     </a>
+                   )}
                    <div className="flex items-center justify-between px-2 text-[10px] font-semibold uppercase text-red-200/60 tracking-[0.1em]">
                       <span>Armed & Ready</span>
                       <span>Secure Connection</span>
@@ -240,11 +248,11 @@ export default function EmergencyProtocolsPage() {
         {/* Module 2: Tactical Filter Bay */}
         <section className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400 font-space flex items-center gap-2">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space flex items-center gap-2">
               <Activity size={14} className="text-red-500" />
               Filter by Category
             </h3>
-            <span className="text-[10px] font-bold text-slate-400 font-mono italic">SVA_V4.2_INTEL</span>
+            <span className="text-[10px] font-bold text-text-3 font-mono italic">SVA_V4.2_INTEL</span>
           </div>
           
           <div className="flex gap-2.5 overflow-x-auto pb-6 scrollbar-hide -mx-1 px-1">
@@ -257,8 +265,8 @@ export default function EmergencyProtocolsPage() {
                   onClick={() => setActiveCategory(cat)} 
                   className={`group relative flex-shrink-0 px-6 py-3 rounded-lg text-[10px] font-semibold uppercase tracking-widest transition-all active:scale-90 border-2 ${
                     isActive 
-                      ? (cat === 'All' ? 'text-white dark:text-slate-900 border-transparent bg-transparent shadow-lg' : 'text-slate-900 dark:text-slate-950 border-transparent bg-transparent shadow-lg')
-                      : 'bg-white dark:bg-white/5 border-slate-100 dark:border-white/5 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-white/10'
+                      ? (cat === 'All' ? 'text-white dark:text-text-1 border-transparent bg-transparent shadow-lg' : 'text-text-1 dark:text-bg border-transparent bg-transparent shadow-lg')
+                      : 'bg-white dark:bg-white/5 border-border text-text-3 hover:border-text-3 dark:hover:border-white/10'
                   }`}
                 >
                   {isActive && (
@@ -281,10 +289,10 @@ export default function EmergencyProtocolsPage() {
         {/* Module 3: Protocol Intelligence folders */}
         <section className="flex flex-col gap-4">
           <div className="flex items-center justify-between px-2">
-            <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest font-space">{filtered.length} INTEL FOLDERS ACCESSED</span>
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-               <BookOpen size={10} className="text-emerald-500" />
-               <span className="text-[9px] font-semibold text-emerald-500 uppercase tracking-widest">OFFLINE READY</span>
+            <span className="text-[10px] font-semibold text-text-3 uppercase tracking-widest font-space">{filtered.length} INTEL FOLDERS ACCESSED</span>
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light/10 border border-brand-light/20">
+               <BookOpen size={10} className="text-brand-light" />
+               <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">OFFLINE READY</span>
             </div>
           </div>
 
@@ -300,7 +308,7 @@ export default function EmergencyProtocolsPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ delay: i * 0.05 }}
-                    className={`group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-slate-200 dark:border-white/5 overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-surface-1 ring-1 ring-slate-200 dark:ring-white/10 shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
+                    className={`group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-border overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-surface-1 ring-1 ring-border shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
                   >
                     {/* Header: Intel Brief */}
                     <button onClick={() => setExpandedId(isExpanded ? null : protocol.id)} className="w-full flex items-center p-5 sm:p-7 text-left gap-5 relative z-10 transition-colors">
@@ -311,20 +319,20 @@ export default function EmergencyProtocolsPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-[9px] font-semibold uppercase tracking-widest px-1.5 py-0.5 rounded-md" style={{ backgroundColor: `${protocol.accentColor}22`, color: protocol.accentColor }}>{protocol.category}</span>
-                          {protocol.meta && <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest">{protocol.meta.level} PRIORITY</span>}
+                          {protocol.meta && <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">{protocol.meta.level} PRIORITY</span>}
                         </div>
                         <h3 className="text-lg font-black dark:text-white uppercase font-space tracking-tight leading-none mb-1.5 truncate">{protocol.title}</h3>
-                        <p className="text-xs font-bold text-slate-500 dark:text-slate-400 truncate opacity-80">{protocol.subtitle}</p>
+                        <p className="text-xs font-bold text-text-2 dark:text-text-2 truncate opacity-80">{protocol.subtitle}</p>
                       </div>
 
                       <div className="flex flex-col items-end gap-3 shrink-0">
                         <div className="hidden sm:flex gap-1">
                            {[...Array(3)].map((_, j) => (
-                             <div key={j} className="w-1 h-3 rounded-full bg-slate-200 dark:bg-white/10" style={{ backgroundColor: j === 0 ? protocol.accentColor : '' }} />
+                             <div key={j} className="w-1 h-3 rounded-full bg-surface-3" style={{ backgroundColor: j === 0 ? protocol.accentColor : '' }} />
                            ))}
                         </div>
                         <motion.div animate={{ rotate: isExpanded ? 180 : 0 }}>
-                          <ChevronDown size={20} className="text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white transition-colors" />
+                          <ChevronDown size={20} className="text-text-3 group-hover:text-text-1 transition-colors" />
                         </motion.div>
                       </div>
                     </button>
@@ -339,23 +347,23 @@ export default function EmergencyProtocolsPage() {
                            className="overflow-hidden"
                         >
                            <div className="px-5 sm:px-8 pb-8 pt-2">
-                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-white/5 to-transparent" />
+                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
                              
                              <div className="mt-6 flex flex-col gap-6">
                                <div className="flex items-center justify-between">
-                                  <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest font-space flex items-center gap-2">
+                                  <label className="text-[10px] font-semibold text-text-3 uppercase tracking-widest font-space flex items-center gap-2">
                                      <Cpu size={14} className="text-red-500/60" />
                                      Step-by-Step Tactical Guide
                                   </label>
-                                  {protocol.meta && <span className="text-[10px] font-mono text-emerald-500 tracking-tighter">EST: {protocol.meta.time}</span>}
+                                  {protocol.meta && <span className="text-[10px] font-mono text-brand-light tracking-tighter">EST: {protocol.meta.time}</span>}
                                </div>
 
                                <div className="space-y-4">
                                  {protocol.steps.map((step, i) => (
                                    <motion.div key={i} initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.1 }} className="flex gap-4 items-start group/step">
                                       <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-semibold transition-all" style={{ backgroundColor: protocol.glowColor, color: protocol.accentColor }}>{i + 1}</div>
-                                      <div className="flex-1 pt-1.5 border-b border-slate-100 dark:border-white/5 pb-4 group-last/step:border-none">
-                                         <p className="text-sm font-bold dark:text-slate-200 leading-relaxed font-mono tracking-tight">{step}</p>
+                                      <div className="flex-1 pt-1.5 border-b border-border pb-4 group-last/step:border-none">
+                                         <p className="text-sm font-bold text-text-2 leading-relaxed font-mono tracking-tight">{step}</p>
                                       </div>
                                    </motion.div>
                                  ))}
@@ -386,8 +394,8 @@ export default function EmergencyProtocolsPage() {
         </section>
 
           <div className="mt-8 flex flex-col items-center gap-4 py-8">
-             <div className="w-12 h-px bg-slate-200 dark:bg-white/10" />
-             <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.1em] font-space opacity-50">Sentinel V4.2 Protocol Feed</p>
+             <div className="w-12 h-px bg-border" />
+             <p className="text-[10px] font-semibold text-text-3 uppercase tracking-[0.1em] font-space opacity-50">Sentinel V4.2 Protocol Feed</p>
           </div>
         </div>
       </main>

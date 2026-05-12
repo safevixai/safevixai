@@ -76,20 +76,20 @@ export default function QREmergencyCard() {
       >
         {/* Section Header */}
         <div className="flex items-center justify-between px-2">
-          <h3 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-400 font-space">
+          <h3 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-2 font-space">
             QR Emergency Card
           </h3>
           {isProfileComplete ? (
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-              <CheckCircle2 size={10} className="text-emerald-500" />
-              <span className="text-[9px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-light/10 border border-brand-light/20">
+              <CheckCircle2 size={10} className="text-brand-light" />
+              <span className="text-[9px] font-semibold text-brand-dim dark:text-brand-light uppercase tracking-widest">
                 Card Ready
               </span>
             </div>
           ) : (
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
-              <AlertTriangle size={10} className="text-amber-500" />
-              <span className="text-[9px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-warning/10 border border-warning/20">
+              <AlertTriangle size={10} className="text-warning" />
+              <span className="text-[9px] font-semibold text-warning-dim dark:text-warning uppercase tracking-widest">
                 Incomplete
               </span>
             </div>
@@ -97,7 +97,7 @@ export default function QREmergencyCard() {
         </div>
 
         {/* Main Card */}
-        <div className="relative rounded-lg bg-white dark:bg-surface-1 border border-slate-200 dark:border-white/10 overflow-hidden shadow-xl">
+        <div className="relative rounded-lg bg-white dark:bg-surface-1 border border-border-md dark:border-white/10 overflow-hidden shadow-xl">
 
           {/* Top accent bar */}
           <div className="h-1.5 w-full bg-gradient-to-r from-brand-dim via-brand to-brand-dim" />
@@ -109,7 +109,7 @@ export default function QREmergencyCard() {
             <div className="relative flex-shrink-0">
               {/* Outer glow ring */}
               <div className="absolute -inset-2 rounded-lg bg-gradient-to-br from-brand-dim/20 to-brand/10 blur-md" />
-              <div className="relative p-4 rounded-lg bg-white dark:bg-slate-50 border border-slate-200 dark:border-slate-300 shadow-inner">
+              <div className="relative p-4 rounded-lg bg-white dark:bg-surface-2 border border-border-md dark:border-border-md shadow-inner">
                 <QRCodeSVG
                   value={qrUrl}
                   size={120}
@@ -128,7 +128,7 @@ export default function QREmergencyCard() {
 
               {/* "SCAN IN EMERGENCY" label */}
               <div className="mt-2 text-center">
-                <span className="text-[8px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em]">
+                <span className="text-[8px] font-semibold text-text-2 dark:text-text-2 uppercase tracking-[0.25em]">
                   Scan in emergency
                 </span>
               </div>
@@ -154,9 +154,9 @@ export default function QREmergencyCard() {
                     <Heart size={13} className="text-emergency" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Blood</p>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
-                      {userProfile.bloodGroup || <span className="text-slate-300 dark:text-white/20 font-normal text-xs">Not set</span>}
+                    <p className="text-[8px] font-bold text-text-2 uppercase tracking-wider">Blood</p>
+                    <p className="text-sm font-semibold text-text-1 dark:text-white truncate">
+                      {userProfile.bloodGroup || <span className="text-text-3 dark:text-white/20 font-normal text-xs">Not set</span>}
                     </p>
                   </div>
                 </div>
@@ -166,21 +166,21 @@ export default function QREmergencyCard() {
                     <Car size={13} className="text-brand" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Vehicle</p>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
-                      {userProfile.vehicleNumber || <span className="text-slate-300 dark:text-white/20 font-normal text-xs">Not set</span>}
+                    <p className="text-[8px] font-bold text-text-2 uppercase tracking-wider">Vehicle</p>
+                    <p className="text-sm font-semibold text-text-1 dark:text-white truncate">
+                      {userProfile.vehicleNumber || <span className="text-text-3 dark:text-white/20 font-normal text-xs">Not set</span>}
                     </p>
                   </div>
                 </div>
 
                 <div className="col-span-2 flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-                    <Phone size={13} className="text-amber-500" />
+                  <div className="w-7 h-7 rounded-lg bg-warning/10 flex items-center justify-center flex-shrink-0">
+                    <Phone size={13} className="text-warning" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Emergency Contact</p>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
-                      {userProfile.emergencyContact || <span className="text-slate-300 dark:text-white/20 font-normal text-xs">Not set</span>}
+                    <p className="text-[8px] font-bold text-text-2 uppercase tracking-wider">Emergency Contact</p>
+                    <p className="text-sm font-semibold text-text-1 dark:text-white truncate">
+                      {userProfile.emergencyContact || <span className="text-text-3 dark:text-white/20 font-normal text-xs">Not set</span>}
                     </p>
                   </div>
                 </div>
@@ -188,9 +188,9 @@ export default function QREmergencyCard() {
 
               {/* Warning if not complete */}
               {!isProfileComplete && (
-                <div className="flex items-start gap-2 p-3 rounded-xl bg-amber-500/5 border border-amber-500/20">
-                  <AlertTriangle size={12} className="text-amber-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-[10px] font-bold text-amber-600 dark:text-amber-400 leading-relaxed">
+                <div className="flex items-start gap-2 p-3 rounded-xl bg-warning/5 border border-warning/20">
+                  <AlertTriangle size={12} className="text-warning flex-shrink-0 mt-0.5" />
+                  <p className="text-[10px] font-bold text-warning-dim dark:text-warning leading-relaxed">
                     Complete your profile above to activate the emergency card. First responders need blood group and emergency contact.
                   </p>
                 </div>
@@ -202,7 +202,7 @@ export default function QREmergencyCard() {
           <div className="px-6 pb-5 flex items-center gap-3">
             <button
               onClick={() => setShowPreview(true)}
-              className="flex-1 flex items-center justify-center gap-2 h-10 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 transition-all text-[11px] font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider"
+              className="flex-1 flex items-center justify-center gap-2 h-10 rounded-xl bg-surface-2 dark:bg-white/5 hover:bg-surface-3 dark:hover:bg-white/10 border border-border-md dark:border-white/10 transition-all text-[11px] font-semibold text-text-2 dark:text-text-3 uppercase tracking-wider"
             >
               <Eye size={13} />
               Preview
@@ -240,14 +240,14 @@ export default function QREmergencyCard() {
           </div>
 
           {/* Tactical bottom watermark */}
-          <div className="border-t border-slate-100 dark:border-white/5 px-6 py-2.5 flex items-center justify-between">
+          <div className="border-t border-border-md dark:border-white/5 px-6 py-2.5 flex items-center justify-between">
             <div className="flex items-center gap-1.5">
               <Zap size={10} className="text-brand" />
-              <span className="text-[8px] font-semibold text-slate-400 uppercase tracking-[0.1em]">
+              <span className="text-[8px] font-semibold text-text-2 uppercase tracking-[0.1em]">
                 SafeVixAI Emergency Protocol
               </span>
             </div>
-            <span className="text-[8px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-widest">
+            <span className="text-[8px] font-bold text-text-3 dark:text-text-2 uppercase tracking-widest">
               QR-EMER-V2
             </span>
           </div>
@@ -269,7 +269,7 @@ export default function QREmergencyCard() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-sm bg-white dark:bg-surface-1 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-white/10"
+              className="w-full max-w-sm bg-white dark:bg-surface-1 rounded-xl overflow-hidden shadow-2xl border border-border-md dark:border-white/10"
             >
               {/* Modal Header */}
               <div className="h-2 bg-gradient-to-r from-brand-dim via-brand to-brand-dim" />
@@ -280,14 +280,14 @@ export default function QREmergencyCard() {
                     <Shield size={16} className="text-brand-dim dark:text-brand" />
                     <span className="text-xs font-semibold text-brand-dim dark:text-brand uppercase tracking-widest font-space">SafeVixAI</span>
                   </div>
-                  <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">
+                  <h2 className="text-2xl font-black text-text-1 dark:text-white uppercase tracking-tight">
                     {userProfile.name || 'UNKNOWN OPERATOR'}
                   </h2>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">{displayId}</p>
+                  <p className="text-[10px] font-bold text-text-2 uppercase tracking-widest mt-1">{displayId}</p>
                 </div>
 
                 {/* Large QR */}
-                <div className="relative p-5 rounded-lg bg-white border-2 border-slate-100 shadow-inner">
+                <div className="relative p-5 rounded-lg bg-white border-2 border-border-md shadow-inner">
                   <QRCodeSVG
                     value={qrUrl}
                     size={180}
@@ -305,24 +305,24 @@ export default function QREmergencyCard() {
 
                 {/* Vitals preview */}
                 <div className="w-full grid grid-cols-3 gap-3">
-                  <div className="flex flex-col items-center p-3 rounded-xl bg-red-50 dark:bg-emergency/10 border border-red-200 dark:border-emergency/20">
+                  <div className="flex flex-col items-center p-3 rounded-xl bg-emergency/10 dark:bg-emergency/10 border border-emergency/20 dark:border-emergency/20">
                     <Heart size={16} className="text-emergency mb-1" />
-                    <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Blood</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">
+                    <span className="text-[8px] font-bold text-text-2 uppercase tracking-wider">Blood</span>
+                    <span className="text-sm font-semibold text-text-1 dark:text-white">
                       {userProfile.bloodGroup || '—'}
                     </span>
                   </div>
-                  <div className="flex flex-col items-center p-3 rounded-xl bg-emerald-50 dark:bg-brand/10 border border-emerald-200 dark:border-brand/20">
+                  <div className="flex flex-col items-center p-3 rounded-xl bg-brand-light/10 dark:bg-brand/10 border border-brand-light/20 dark:border-brand/20">
                     <Car size={16} className="text-brand mb-1" />
-                    <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Vehicle</span>
-                    <span className="text-[11px] font-semibold text-slate-900 dark:text-white truncate w-full text-center">
+                    <span className="text-[8px] font-bold text-text-2 uppercase tracking-wider">Vehicle</span>
+                    <span className="text-[11px] font-semibold text-text-1 dark:text-white truncate w-full text-center">
                       {userProfile.vehicleNumber || '—'}
                     </span>
                   </div>
-                  <div className="flex flex-col items-center p-3 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20">
-                    <Phone size={16} className="text-amber-500 mb-1" />
-                    <span className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">SOS</span>
-                    <span className="text-[10px] font-semibold text-slate-900 dark:text-white truncate w-full text-center">
+                  <div className="flex flex-col items-center p-3 rounded-xl bg-warning/10 dark:bg-warning/10 border border-warning/20 dark:border-warning/20">
+                    <Phone size={16} className="text-warning mb-1" />
+                    <span className="text-[8px] font-bold text-text-2 uppercase tracking-wider">SOS</span>
+                    <span className="text-[10px] font-semibold text-text-1 dark:text-white truncate w-full text-center">
                       {userProfile.emergencyContact || '—'}
                     </span>
                   </div>
@@ -332,7 +332,7 @@ export default function QREmergencyCard() {
                 <div className="w-full flex gap-3">
                   <button
                     onClick={() => setShowPreview(false)}
-                    className="flex-1 h-11 rounded-xl border border-slate-200 dark:border-white/10 text-[11px] font-semibold text-slate-500 uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
+                    className="flex-1 h-11 rounded-xl border border-border-md dark:border-white/10 text-[11px] font-semibold text-text-2 uppercase tracking-widest hover:bg-surface-2 dark:hover:bg-white/5 transition-all"
                   >
                     Close
                   </button>

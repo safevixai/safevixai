@@ -14,14 +14,14 @@ import {
 // ── Accent colors per category ────────────────────────────────────────────────
 
 const ACCENT_COLORS: Record<NearbyService['category'], string> = {
- hospital: 'var(--accent-red)',
- ambulance: 'var(--accent-red)',
- police: 'var(--accent-blue)',
- fire: 'var(--accent-orange)',
- towing: 'var(--accent-amber)',
- pharmacy: 'var(--accent-purple)',
- puncture: 'var(--accent-green)',
- showroom: 'var(--accent-blue)',
+ hospital: 'var(--emergency)',
+ ambulance: 'var(--emergency)',
+ police: '#3B82F6', // Standard blue for police
+ fire: 'var(--warning)',
+ towing: 'var(--warning)',
+ pharmacy: '#818CF8', // Purple for medical
+ puncture: 'var(--brand-light)',
+ showroom: '#3B82F6',
 };
 
 const CATEGORY_LABELS: Record<NearbyService['category'], string> = {
@@ -74,7 +74,7 @@ export function ServiceCard({ service, className = '' }: Props) {
  {service.source === 'offline' && (
  <span style={{
  marginLeft: '0.5rem',
- color: 'var(--text-muted)',
+ color: 'var(--text-3)',
  fontWeight: 400,
  }}>
  · offline cache

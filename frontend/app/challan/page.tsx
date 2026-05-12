@@ -80,7 +80,7 @@ export default function ChallanPage() {
   const finalFine = result ? (isRepeat && result.repeat_fine ? result.repeat_fine : result.base_fine) : 0;
 
   return (
-    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
+    <div className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
       
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Challan Terminal" showBack={false} />
@@ -93,11 +93,11 @@ export default function ChallanPage() {
         {/* ── Left Column: System Summary & Real-time Quote ── */}
         <aside className="lg:sticky lg:top-28 flex flex-col gap-8 order-2 lg:order-1 mt-10 lg:mt-0">
           <section className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-[0.1em] font-space leading-none">Terminal Active</span>
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light/10 border border-brand-light/20 w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse"></span>
+              <span className="text-[10px] font-semibold text-brand dark:text-brand-light uppercase tracking-[0.1em] font-space leading-none">Terminal Active</span>
             </div>
-            <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase font-space leading-tight">
+            <h1 className="text-3xl font-black tracking-tight text-text-1 uppercase font-space leading-tight">
               Estimation<br />Terminal
             </h1>
           </section>
@@ -105,30 +105,30 @@ export default function ChallanPage() {
           {/* ── Big Result Card (The "Star" of the UI) ── */}
           <motion.section 
             layout
-            className="relative p-8 rounded-[2.5rem] bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 shadow-2xl shadow-slate-200/50 dark:shadow-none overflow-hidden group"
+            className="relative p-8 rounded-[2.5rem] bg-white dark:bg-white/5 border border-border shadow-2xl shadow-surface-3/50 dark:shadow-none overflow-hidden group"
           >
             {/* Background Glow */}
-            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-emerald-500/10 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-700" />
+            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-brand-light/10 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-700" />
             
             <div className="relative z-10 flex flex-col gap-6">
                <div className="flex flex-col gap-1">
-                 <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.1em] font-space">Total Liability</p>
+                 <p className="text-[10px] font-semibold text-text-3 uppercase tracking-[0.1em] font-space">Total Liability</p>
                  <motion.h2 
                    key={finalFine}
                    initial={{ opacity: 0, scale: 0.9 }}
                    animate={{ opacity: 1, scale: 1 }}
-                   className={`text-5xl sm:text-7xl font-black text-emerald-600 dark:text-emerald-400 tracking-tighter ${isLoading ? 'opacity-50 blur-sm transition-all' : ''}`}
+                   className={`text-5xl sm:text-7xl font-black text-brand dark:text-brand-light tracking-tighter ${isLoading ? 'opacity-50 blur-sm transition-all' : ''}`}
                  >
                    ₹{finalFine.toLocaleString('en-IN')}
                  </motion.h2>
                </div>
 
                <div className="flex flex-col gap-3">
-                 <div className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5">
-                    <Scale size={16} className="text-emerald-500" />
+                 <div className="flex items-center gap-2 p-3 rounded-xl bg-surface-2 border border-border">
+                    <Scale size={16} className="text-brand-light" />
                     <div className="flex flex-col">
-                      <span className="text-[11px] font-semibold text-slate-900 dark:text-white tracking-tight leading-none uppercase">{activeViolation.mva}</span>
-                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">{isRepeat ? 'Repeat Offence (2x)' : 'First Occurrence'}</span>
+                      <span className="text-[11px] font-semibold text-text-1 tracking-tight leading-none uppercase">{activeViolation.mva}</span>
+                      <span className="text-[9px] font-bold text-text-3 uppercase tracking-widest mt-1">{isRepeat ? 'Repeat Offence (2x)' : 'First Occurrence'}</span>
                     </div>
                  </div>
 
@@ -153,10 +153,10 @@ export default function ChallanPage() {
                      setShowDetailToast(true);
                      setTimeout(() => setShowDetailToast(false), 3000);
                    }}
-                   className="w-full h-16 bg-slate-900 dark:bg-emerald-500 rounded-lg flex items-center justify-center gap-3 shadow-xl hover:scale-[1.02] active:scale-95 transition-all group/btn"
+                   className="w-full h-16 bg-brand dark:bg-brand-light rounded-lg flex items-center justify-center gap-3 shadow-xl hover:scale-[1.02] active:scale-95 transition-all group/btn"
                  >
-                    <span className="text-white dark:text-slate-900 font-black text-sm tracking-[0.1em] uppercase font-space">DETAILED REPORT</span>
-                    <ArrowRight size={18} className="text-white dark:text-slate-900 group-hover/btn:translate-x-1 transition-transform" />
+                    <span className="text-white dark:text-text-1 font-black text-sm tracking-[0.1em] uppercase font-space">DETAILED REPORT</span>
+                    <ArrowRight size={18} className="text-white dark:text-text-1 group-hover/btn:translate-x-1 transition-transform" />
                  </button>
                  <AnimatePresence>
                    {showDetailToast && (
@@ -164,7 +164,7 @@ export default function ChallanPage() {
                        initial={{ opacity: 0, y: 10 }}
                        animate={{ opacity: 1, y: 0 }}
                        exit={{ opacity: 0, y: 10 }}
-                       className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-800 text-white text-[10px] uppercase tracking-widest font-bold rounded-full shadow-xl whitespace-nowrap"
+                       className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-surface-3 text-text-1 text-[10px] uppercase tracking-widest font-bold rounded-full shadow-xl whitespace-nowrap"
                      >
                        Detailed report currently offline
                      </motion.div>
@@ -176,13 +176,13 @@ export default function ChallanPage() {
 
           {/* Quick Meta */}
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5">
-                <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest mb-1">Max Penalty</p>
-                <p className="text-xs font-semibold text-slate-900 dark:text-white">₹{activeViolation.max}</p>
+             <div className="p-4 rounded-xl bg-surface-2 border border-border">
+                <p className="text-[9px] font-semibold text-text-3 uppercase tracking-widest mb-1">Max Penalty</p>
+                <p className="text-xs font-semibold text-text-1">₹{activeViolation.max}</p>
              </div>
-             <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5">
-                <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest mb-1">Act Sync</p>
-                <p className="text-xs font-semibold text-emerald-500">MVA_ACT_2019</p>
+             <div className="p-4 rounded-xl bg-surface-2 border border-border">
+                <p className="text-[9px] font-semibold text-text-3 uppercase tracking-widest mb-1">Act Sync</p>
+                <p className="text-xs font-semibold text-brand-light">MVA_ACT_2019</p>
              </div>
           </div>
         </aside>
@@ -192,11 +192,11 @@ export default function ChallanPage() {
            {/* Section 1: Violation */}
            <section className="flex flex-col gap-6">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400 font-space flex items-center gap-2">
-                  <Activity size={14} className="text-emerald-500" />
+                <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space flex items-center gap-2">
+                  <Activity size={14} className="text-brand-light" />
                   01. Violation Protocol
                 </h3>
-                <div className="px-3 py-1 rounded-full bg-slate-900 dark:bg-emerald-500 text-white dark:text-slate-900 text-[9px] font-semibold uppercase tracking-widest">
+                <div className="px-3 py-1 rounded-full bg-brand dark:bg-brand-light text-white dark:text-text-1 text-[9px] font-semibold uppercase tracking-widest">
                   {jurisdiction.split(' ')[0]}
                 </div>
               </div>
@@ -205,13 +205,13 @@ export default function ChallanPage() {
                 <select 
                   value={violationId}
                   onChange={(e) => setChallanState({ violation: e.target.value })}
-                  className="w-full bg-transparent border-2 border-slate-200 dark:border-white/10 rounded-xl p-6 text-lg font-black text-slate-900 dark:text-white appearance-none focus:border-emerald-500 transition-all outline-none cursor-pointer"
+                  className="w-full bg-transparent border-2 border-border rounded-xl p-6 text-lg font-black text-text-1 appearance-none focus:border-brand-light transition-all outline-none cursor-pointer"
                 >
                   {VIOLATIONS.map(v => (
                     <option key={v.id} value={v.id} className="bg-white dark:bg-bg">{v.label}</option>
                   ))}
                 </select>
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-text-3">
                   <ArrowRight size={24} className="rotate-90" />
                 </div>
               </div>
@@ -219,8 +219,8 @@ export default function ChallanPage() {
 
            {/* Section 2: Vehicle Selection (The "Big" UI) */}
            <section className="flex flex-col gap-6">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400 font-space flex items-center gap-2">
-                <Car size={14} className="text-emerald-500" />
+              <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space flex items-center gap-2">
+                <Car size={14} className="text-brand-light" />
                 02. Vehicle Identification
               </h3>
               
@@ -231,18 +231,18 @@ export default function ChallanPage() {
                      onClick={() => setChallanState({ vehicle: cls.id })}
                      className={`flex flex-col items-center justify-center gap-4 p-6 rounded-[2rem] border-2 transition-all duration-300 active:scale-95 ${
                        vehicleId === cls.id 
-                        ? 'bg-emerald-500 border-emerald-600/30 text-slate-900 shadow-xl shadow-emerald-500/20 ring-2 ring-emerald-500/20' 
-                        : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/5 text-slate-400 hover:border-slate-400 dark:hover:border-white/10 hover:shadow-md'
+                        ? 'bg-brand-light border-brand-light/30 text-text-1 shadow-xl shadow-brand-light/20 ring-2 ring-brand-light/20' 
+                        : 'bg-white dark:bg-white/5 border-border text-text-3 hover:border-text-3 dark:hover:border-white/10 hover:shadow-md'
                      }`}
                    >
-                     <div className={`p-4 rounded-lg ${vehicleId === cls.id ? 'bg-white/30' : 'bg-slate-100 dark:bg-white/5'}`}>
+                     <div className={`p-4 rounded-lg ${vehicleId === cls.id ? 'bg-white/30' : 'bg-surface-2'}`}>
                        {cls.icon}
                      </div>
                      <div className="flex flex-col items-center">
-                       <span className={`text-xs font-semibold uppercase tracking-widest ${vehicleId === cls.id ? 'text-slate-900' : 'text-slate-900 dark:text-white'}`}>
+                       <span className={`text-xs font-semibold uppercase tracking-widest ${vehicleId === cls.id ? 'text-text-1' : 'text-text-1'}`}>
                          {cls.title}
                        </span>
-                       <span className={`text-[8px] font-bold uppercase mt-1 opacity-60 ${vehicleId === cls.id ? 'text-slate-900' : 'text-slate-400'}`}>
+                       <span className={`text-[8px] font-bold uppercase mt-1 opacity-60 ${vehicleId === cls.id ? 'text-text-1' : 'text-text-3'}`}>
                          {cls.id === 'HTV' ? 'Heavy' : cls.id === '2W' ? 'Light' : 'Standard'}
                        </span>
                      </div>
@@ -254,33 +254,33 @@ export default function ChallanPage() {
            {/* Section 3: Parameters & Jurisdiction */}
            <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-4">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400 font-space">03. Jurisdiction</h3>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space">03. Jurisdiction</h3>
                 <div className="relative">
                   <select 
                     value={jurisdiction}
                     onChange={(e) => setChallanState({ jurisdiction: e.target.value })}
-                    className="w-full bg-transparent border-2 border-slate-200 dark:border-white/10 rounded-lg py-4 px-5 text-sm font-bold text-slate-900 dark:text-white appearance-none focus:border-emerald-500 transition-all outline-none cursor-pointer"
+                    className="w-full bg-transparent border-2 border-border rounded-lg py-4 px-5 text-sm font-bold text-text-1 appearance-none focus:border-brand-light transition-all outline-none cursor-pointer"
                   >
                     {STATES.map(s => (
                       <option key={s} value={s} className="bg-white dark:bg-bg">{s}</option>
                     ))}
                   </select>
-                  <MapPin size={16} className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                  <MapPin size={16} className="absolute right-5 top-1/2 -translate-y-1/2 text-text-3 pointer-events-none" />
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400 font-space">04. History</h3>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space">04. History</h3>
                 <button 
                   onClick={() => setChallanState({ isRepeat: !isRepeat })}
                   className={`w-full h-[58px] rounded-lg border-2 flex items-center justify-between px-6 transition-all ${
                     isRepeat 
                     ? 'bg-red-500/10 border-red-500/20 text-red-600' 
-                    : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400'
+                    : 'bg-white dark:bg-white/5 border-border text-text-3'
                   }`}
                 >
                   <span className="text-[10px] font-semibold uppercase tracking-widest">Repeat Offender?</span>
-                  <div className={`w-10 h-5 rounded-full relative transition-colors ${isRepeat ? 'bg-red-500' : 'bg-slate-200 dark:bg-white/10'}`}>
+                  <div className={`w-10 h-5 rounded-full relative transition-colors ${isRepeat ? 'bg-red-500' : 'bg-surface-3'}`}>
                     <motion.div 
                       layout
                       initial={false}
@@ -294,13 +294,13 @@ export default function ChallanPage() {
            </section>
 
            {/* AI Insight Footer */}
-           <div className="p-6 rounded-[2rem] bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                <Zap size={20} className="text-emerald-500" />
+           <div className="p-6 rounded-[2rem] bg-gradient-to-br from-brand-light/10 to-transparent border border-brand-light/20 flex gap-4">
+              <div className="w-10 h-10 rounded-xl bg-brand-light/20 flex items-center justify-center flex-shrink-0">
+                <Zap size={20} className="text-brand-light" />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-[10px] font-semibold text-emerald-500 uppercase tracking-widest">AI Tactical Insight</p>
-                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p className="text-[10px] font-semibold text-brand-light uppercase tracking-widest">AI Tactical Insight</p>
+                <p className="text-[11px] font-medium text-text-2 leading-relaxed">
                   {result?.description || `Based on recent MVA amendments, high-risk offences like DUI (${activeViolation.mva}) have immediate license disqualification protocols active in ${jurisdiction.split(' ')[0]}.`}
                 </p>
               </div>

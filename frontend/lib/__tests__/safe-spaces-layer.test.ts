@@ -54,5 +54,6 @@ describe('addSafeSpacesLayer', () => {
       },
     });
     expect(map.addLayer).toHaveBeenCalledWith(expect.objectContaining({ id: 'safe-spaces-circles' }));
+    expect(map.addLayer).toHaveBeenCalledWith(expect.objectContaining({ id: 'safe-spaces-labels' }));
   });
 });

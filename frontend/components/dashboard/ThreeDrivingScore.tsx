@@ -59,8 +59,8 @@ export default function ThreeDrivingScore({ score = 78 }: { score?: number }) {
       </div>
       
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-        <span className="text-xl font-black text-slate-800 dark:text-text-1 leading-none drop-shadow-md">{score}</span>
-        <span className="text-[7px] font-bold text-slate-500 dark:text-[#c5c6cd] uppercase tracking-wider">Safe</span>
+        <span className="text-xl font-black text-text-1 dark:text-text-1 leading-none drop-shadow-md">{score}</span>
+        <span className="text-[7px] font-bold text-text-2 dark:text-[#c5c6cd] uppercase tracking-wider">Safe</span>
       </div>
     </div>
   );

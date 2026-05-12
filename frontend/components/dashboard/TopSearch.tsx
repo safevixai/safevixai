@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, memo } from 'react';
 import Link from 'next/link';
-import { Menu, Mic, MapPin, Moon, Sun, Monitor, Search, ArrowLeft } from 'lucide-react';
+import { Menu, Mic, MapPin, Moon, Sun, Monitor, Search, ArrowLeft, Layers, Hospital, Shield, Ambulance, Flame, Pill } from 'lucide-react';
 import { motion } from 'motion/react';
 import { formatAccuracyLabel, formatLocationLabel, isApproximateLocation } from '@/lib/location-utils';
 import { useAppStore } from '@/lib/store';
@@ -19,16 +19,16 @@ interface TopSearchProps {
 const MAP_FILTER_CHIPS: Array<{
   label: string;
   value: 'all' | 'hospital' | 'police' | 'ambulance' | 'fire' | 'pharmacy';
-  icon: string;
+  icon: React.ReactNode;
   color: string;
   bg: string;
 }> = [
-  { label: 'All', value: 'all', icon: 'layers', color: 'text-text-2', bg: 'bg-surface-3' },
-  { label: 'Hospitals', value: 'hospital', icon: 'local_hospital', color: 'text-emergency', bg: 'bg-emergency/10' },
-  { label: 'Police', value: 'police', icon: 'local_police', color: 'text-brand-light', bg: 'bg-brand/10' },
-  { label: 'Ambulance', value: 'ambulance', icon: 'emergency', color: 'text-text-green', bg: 'bg-brand/10' },
-  { label: 'Fire', value: 'fire', icon: 'local_fire_department', color: 'text-text-amber', bg: 'bg-text-amber/10' },
-  { label: 'Pharmacy', value: 'pharmacy', icon: 'medication', color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
+  { label: 'All', value: 'all', icon: <Layers size={16} strokeWidth={2.5} />, color: 'text-text-2', bg: 'bg-surface-3' },
+  { label: 'Hospitals', value: 'hospital', icon: <Hospital size={16} strokeWidth={2.5} />, color: 'text-emergency', bg: 'bg-emergency/10' },
+  { label: 'Police', value: 'police', icon: <Shield size={16} strokeWidth={2.5} />, color: 'text-brand-light', bg: 'bg-brand/10' },
+  { label: 'Ambulance', value: 'ambulance', icon: <Ambulance size={16} strokeWidth={2.5} />, color: 'text-text-green', bg: 'bg-brand/10' },
+  { label: 'Fire', value: 'fire', icon: <Flame size={16} strokeWidth={2.5} />, color: 'text-text-amber', bg: 'bg-text-amber/10' },
+  { label: 'Pharmacy', value: 'pharmacy', icon: <Pill size={16} strokeWidth={2.5} />, color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
 ];
 
 const TopSearch = memo(function TopSearch({ 
@@ -122,16 +122,16 @@ const TopSearch = memo(function TopSearch({
             type="button"
             onClick={requestLocation}
             title={gpsError ?? 'Refresh current location'}
-            className="flex items-center h-full gap-2 bg-white/95 dark:bg-surface-2/95 backdrop-blur-2xl ring-0 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-full px-5 hover:bg-white dark:hover:bg-[#1f283d] transition-all cursor-pointer group"
+            className="flex items-center h-full gap-2 bg-surface-1/95 dark:bg-surface-2/95 backdrop-blur-2xl ring-0 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-full px-5 hover:bg-surface-2 dark:hover:bg-surface-3 transition-all cursor-pointer group"
           >
-            <div className="bg-emerald-500/10 p-1.5 rounded-full">
-              <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <div className="bg-success/10 p-1.5 rounded-full">
+              <MapPin className="w-4 h-4 text-success" />
             </div>
-            <span className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors whitespace-nowrap truncate max-w-[200px]">
+            <span className="text-sm font-bold text-text-1 group-hover:text-success transition-colors whitespace-nowrap truncate max-w-[200px]">
               {locationLabel}
             </span>
             {locationAccuracy ? (
-              <span className={`hidden min-[1320px]:inline text-[10px] font-semibold uppercase tracking-[0.18em] ${locationIsApproximate ? 'text-amber-500 dark:text-amber-300' : 'text-slate-400 dark:text-slate-500'}`}>
+              <span className={`hidden min-[1320px]:inline text-[10px] font-semibold uppercase tracking-[0.18em] ${locationIsApproximate ? 'text-warning' : 'text-text-3'}`}>
                 {locationAccuracy}
               </span>
             ) : null}
@@ -143,11 +143,11 @@ const TopSearch = memo(function TopSearch({
           onSubmit={handleSearch}
           role="search"
           aria-label="Search"
-          className={`w-full sm:max-w-md md:max-w-none md:flex-1 lg:flex-none lg:w-full lg:max-w-xl pointer-events-auto flex items-center h-[52px] bg-white/95 dark:bg-surface-2/95 backdrop-blur-2xl rounded-full px-4 transition-all duration-300 border ${isFocused ? 'border-brand/50 shadow-sm ring-1 ring-brand/20' : 'border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]'}`}
+          className={`w-full sm:max-w-md md:max-w-none md:flex-1 lg:flex-none lg:w-full lg:max-w-xl pointer-events-auto flex items-center h-[52px] bg-surface-1/95 dark:bg-surface-2/95 backdrop-blur-2xl rounded-full px-4 transition-all duration-300 border ${isFocused ? 'border-brand/50 shadow-sm ring-1 ring-brand/20' : 'border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]'}`}
         >
           
           {showBack && (
-            <Link href={backHref} className="p-2 mr-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-slate-700 dark:text-slate-300 lg:hidden group flex items-center justify-center">
+            <Link href={backHref} className="p-2 mr-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-text-1 lg:hidden group flex items-center justify-center">
               <ArrowLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
             </Link>
           )}
@@ -155,7 +155,7 @@ const TopSearch = memo(function TopSearch({
           <button 
             type="button"
             onClick={() => setSystemSidebarOpen(true)}
-            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-slate-700 dark:text-slate-300 lg:hidden mr-1"
+            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-text-1 lg:hidden mr-1"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -164,12 +164,12 @@ const TopSearch = memo(function TopSearch({
             <button 
               type="button"
               onClick={() => setDesktopSidebarCollapsed(false)}
-              className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-slate-700 dark:text-slate-300 hidden lg:block mr-1"
+              className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-text-1 hidden lg:block mr-1"
             >
               <Menu className="w-6 h-6" />
             </button>
           ) : (
-            <div className="p-2 hidden lg:flex items-center justify-center text-slate-500 dark:text-slate-400 mr-1">
+            <div className="p-2 hidden lg:flex items-center justify-center text-text-2 mr-1">
               <Search className="w-5 h-5" />
             </div>
           )}
@@ -182,7 +182,7 @@ const TopSearch = memo(function TopSearch({
             aria-label="Search input"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 px-2 text-slate-800 dark:text-text-1 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium text-base h-full w-full"
+            className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 px-2 text-text-1 placeholder:text-text-3 font-medium text-base h-full w-full"
           />
 
           <button type="button" className="p-2 rounded-full bg-brand/10 text-brand hover:bg-brand/20 active:scale-95 transition-all ml-2">
@@ -191,9 +191,9 @@ const TopSearch = memo(function TopSearch({
           
           {/* Autocomplete Dropdown */}
           {isFocused && (searchQuery.length > 1 || results.length > 0) && (
-            <div className="absolute top-[calc(100%+8px)] left-0 w-full bg-white dark:bg-surface-2 rounded-lg shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden z-50">
+            <div className="absolute top-[calc(100%+8px)] left-0 w-full bg-surface-1 dark:bg-surface-2 rounded-lg shadow-xl border border-border overflow-hidden z-50">
               {isSearching && results.length === 0 ? (
-                <div className="p-4 text-center text-sm text-slate-500">Searching...</div>
+                <div className="p-4 text-center text-sm text-text-2">Searching...</div>
               ) : results.length > 0 ? (
                 <ul>
                   {results.map((r, i) => (
@@ -201,16 +201,16 @@ const TopSearch = memo(function TopSearch({
                       <button
                         type="button"
                         onClick={() => selectResult(r)}
-                        className="w-full text-left px-4 py-3 hover:bg-slate-50 dark:hover:bg-[#1f283d] transition-colors flex flex-col border-b border-slate-100 dark:border-slate-800/50 last:border-0"
+                        className="w-full text-left px-4 py-3 hover:bg-surface-3 transition-colors flex flex-col border-b border-border last:border-0"
                       >
-                        <span className="font-semibold text-slate-800 dark:text-text-1">{r.name}</span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400">{r.label}</span>
+                        <span className="font-semibold text-text-1">{r.name}</span>
+                        <span className="text-xs text-text-3">{r.label}</span>
                       </button>
                     </li>
                   ))}
                 </ul>
               ) : searchQuery.length > 2 && !isSearching ? (
-                <div className="p-4 text-center text-sm text-slate-500">No places found in India.</div>
+                <div className="p-4 text-center text-sm text-text-2">No places found in India.</div>
               ) : null}
             </div>
           )}
@@ -219,24 +219,24 @@ const TopSearch = memo(function TopSearch({
         {/* Right Side: Theme Toggle on Tablet/Desktop */}
         <div className="hidden md:flex pointer-events-auto h-[52px]">
           {mounted && (
-            <div className="flex items-center h-full gap-1 bg-white/90 dark:bg-surface-2/90 backdrop-blur-xl ring-1 ring-white/40 dark:ring-white/10 shadow-2xl rounded-full px-1.5">
+            <div className="flex items-center h-full gap-1 bg-surface-1/90 dark:bg-surface-2/90 backdrop-blur-xl ring-1 ring-border shadow-2xl rounded-full px-1.5">
               <button 
                 onClick={() => setTheme('light')}
-                className={`p-2 rounded-full transition-all ${theme === 'light' ? 'bg-brand/15 text-brand' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                className={`p-2 rounded-full transition-all ${theme === 'light' ? 'bg-brand/15 text-brand' : 'text-text-3 hover:text-text-1'}`}
                 title="Light Mode"
               >
                 <Sun className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => setTheme('dark')}
-                className={`p-2 rounded-full transition-all ${theme === 'dark' ? 'bg-brand/15 text-brand' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                className={`p-2 rounded-full transition-all ${theme === 'dark' ? 'bg-brand/15 text-brand' : 'text-text-3 hover:text-text-1'}`}
                 title="Dark Mode"
               >
                 <Moon className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => setTheme('system')}
-                className={`p-2 rounded-full transition-all ${theme === 'system' ? 'bg-brand/15 text-brand' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'}`}
+                className={`p-2 rounded-full transition-all ${theme === 'system' ? 'bg-brand/15 text-brand' : 'text-text-3 hover:text-text-1'}`}
                 title="System Theme"
               >
                 <Monitor className="w-5 h-5" />
@@ -259,16 +259,16 @@ const TopSearch = memo(function TopSearch({
               type="button"
               onClick={requestLocation}
               title={gpsError ?? 'Refresh current location'}
-              className="min-[1100px]:hidden flex items-center gap-2 px-3 py-1.5 bg-white/90 dark:bg-surface-2/90 backdrop-blur-xl rounded-full shadow-lg ring-1 ring-white/40 dark:ring-white/10 whitespace-nowrap active:scale-95 transition-transform hover:shadow-2xl"
+              className="min-[1100px]:hidden flex items-center gap-2 px-3 py-1.5 bg-surface-1/90 dark:bg-surface-2/90 backdrop-blur-xl rounded-full shadow-lg ring-1 ring-border whitespace-nowrap active:scale-95 transition-transform hover:shadow-2xl"
             >
-              <div className="bg-emerald-500/10 p-1 rounded-full flex items-center justify-center">
-                <MapPin className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <div className="bg-success/10 p-1 rounded-full flex items-center justify-center">
+                <MapPin className="h-4 w-4 text-success" />
               </div>
-              <span className="text-sm font-semibold text-slate-800 dark:text-text-1 truncate max-w-[200px]">
+              <span className="text-sm font-semibold text-text-1 truncate max-w-[200px]">
                 {gpsError ? 'Enable Location' : gpsLocation ? 'Refresh Location' : 'Use My Location'}
               </span>
               {locationIsApproximate && locationAccuracy ? (
-                <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-500 dark:text-amber-300">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-warning">
                   {locationAccuracy}
                 </span>
               ) : null}
@@ -283,13 +283,8 @@ const TopSearch = memo(function TopSearch({
                 data-active={isActive}
                 aria-pressed={isActive}
               >
-                <div className={`${isActive ? 'bg-brand/15' : chip.bg} p-1 rounded-full flex items-center justify-center`}>
-                  <span
-                    className={`material-symbols-outlined text-[16px] ${isActive ? 'text-brand' : chip.color}`}
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                  >
-                    {chip.icon}
-                  </span>
+                <div className={`${isActive ? 'bg-brand/15' : chip.bg} p-1 rounded-full flex items-center justify-center ${isActive ? 'text-brand' : chip.color}`}>
+                  {chip.icon}
                 </div>
                 <span className={`text-sm font-semibold ${isActive ? 'text-brand' : 'text-text-1'}`}>
                   {chip.label}

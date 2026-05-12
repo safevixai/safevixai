@@ -20,7 +20,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <main className="min-h-screen bg-bg text-slate-100 flex items-center justify-center px-6">
+    <main className="min-h-screen bg-bg text-text-1 flex items-center justify-center px-6">
       <section className="w-full max-w-xl border border-red-500/25 bg-red-950/20 rounded-lg p-6 shadow-2xl">
         <div className="flex items-start gap-4">
           <div className="mt-1 rounded-full bg-red-500/15 p-3 text-red-300">
@@ -29,11 +29,11 @@ export default function GlobalError({
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.24em] text-red-200/70">System Recovery</p>
             <h1 className="text-2xl font-black tracking-tight">SafeVixAI hit a recoverable error</h1>
-            <p className="text-sm leading-6 text-slate-300">
+            <p className="text-sm leading-6 text-text-3">
               The current screen failed to render safely. Your emergency shortcuts remain available from the home screen.
             </p>
             {error.digest && (
-              <p className="font-mono text-xs text-slate-500">Digest: {error.digest}</p>
+              <p className="font-mono text-xs text-text-2">Digest: {error.digest}</p>
             )}
             <div className="flex flex-wrap gap-3 pt-2">
               <button
@@ -46,7 +46,7 @@ export default function GlobalError({
               </button>
               <Link
                 href="/"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-700 px-4 text-sm font-bold text-slate-100 transition hover:bg-white/10"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-md px-4 text-sm font-bold text-text-1 transition hover:bg-white/10"
               >
                 <Home aria-hidden="true" size={16} />
                 Home

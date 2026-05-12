@@ -9,6 +9,7 @@ import { RightSidebar } from '@/components/RightSidebar';
 import { NetworkMonitor } from '@/components/NetworkMonitor';
 import { GlobalSOS } from '@/components/GlobalSOS';
 import { useAppStore } from '@/lib/store';
+import { Menu } from 'lucide-react';
 
 interface AppFrameProps {
   children: ReactNode;
@@ -17,6 +18,7 @@ interface AppFrameProps {
 export function AppFrame({ children }: AppFrameProps) {
   const pathname = usePathname();
   const isDesktopSidebarCollapsed = useAppStore((state) => state.isDesktopSidebarCollapsed);
+  const setDesktopSidebarCollapsed = useAppStore((state) => state.setDesktopSidebarCollapsed);
   const isThinSidebarEnabled = useAppStore((state) => state.isThinSidebarEnabled);
 
   // Define routes that should NOT have the global navigation shell (e.g. auth, public emergency views)
@@ -55,6 +57,15 @@ export function AppFrame({ children }: AppFrameProps) {
       {/* 1. Desktop Sidebar */}
       <div className="hidden lg:block">
         <AppSidebar />
+        {isDesktopSidebarCollapsed && !isThinSidebarEnabled && (
+          <button
+            onClick={() => setDesktopSidebarCollapsed(false)}
+            className="fixed top-4 left-4 z-50 p-2.5 bg-surface-2/90 backdrop-blur-xl border border-border rounded-xl shadow-lg hover:bg-surface-3 transition-all text-text-1"
+            title="Expand Sidebar"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
       {/* 2. Mobile Sidebar Drawer */}

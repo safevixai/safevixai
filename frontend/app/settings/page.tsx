@@ -96,7 +96,7 @@ export default function SettingsPage() {
   // ── Section helper ──
   const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <section className="flex flex-col gap-4">
-      <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-400 font-space px-2">{title}</h2>
+      <h2 className="sv-section-label px-2">{title}</h2>
       <div className="flex flex-col gap-3">{children}</div>
     </section>
   );
@@ -110,7 +110,7 @@ export default function SettingsPage() {
     onChange: (v: boolean) => void; danger?: boolean;
   }) => (
     <SettingRow
-      icon={<div className={danger ? "text-red-500" : "text-emerald-500"}>{icon}</div>}
+      icon={<div className={danger ? "text-text-red" : "text-brand-light"}>{icon}</div>}
       title={label}
       description={sub}
       rightElement={<Toggle checked={checked} onChange={onChange} ariaLabel={`Toggle ${label}`} />}
@@ -118,20 +118,20 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="relative w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-x-hidden flex flex-col transition-colors duration-500 font-inter">
+    <div className="sv-page relative flex flex-col transition-colors duration-500">
 
       <TerminalHeader title="System Configuration" subtitle="DEVICE PREFERENCES" />
 
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
-      <main className="flex-1 w-full max-w-2xl mx-auto pt-28 lg:pt-24 pb-44 px-6 space-y-10 relative z-10">
+      <main className="sv-page-main max-w-2xl space-y-10 relative z-10">
 
         {/* ── OPERATOR IDENTITY ── */}
         <section className="flex flex-col gap-5">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 w-fit">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-[0.1em] font-space leading-none">
+          <div className="sv-chip sv-chip-active w-fit">
+            <span className="sv-status-dot" />
+            <span className="sv-micro leading-none">
               {isAuthenticated ? 'Authenticated Operator' : 'Identity Matrix Active'}
             </span>
           </div>
@@ -140,14 +140,14 @@ export default function SettingsPage() {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-4 p-5 rounded-lg bg-brand/5 dark:bg-brand/10 border border-brand/20"
+              className="flex items-center gap-4 rounded-card border border-border-green bg-brand-dim p-5 shadow-card"
             >
               <div className="w-12 h-12 rounded-xl bg-brand flex items-center justify-center flex-shrink-0 shadow-lg shadow-brand/20">
                 <User size={20} className="text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Active Operator</p>
-                <p className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tight truncate">{operatorName}</p>
+                <p className="sv-micro text-text-3">Active Operator</p>
+                <p className="sv-h2 truncate uppercase">{operatorName}</p>
               </div>
               <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand/10 border border-brand/20">
                 <ShieldCheck size={12} className="text-brand-light" />
@@ -162,7 +162,7 @@ export default function SettingsPage() {
         {/* ── VISUAL INTERFACE ── */}
         <Section title="Visual Interface">
           <SurfaceCard padding="lg">
-            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">Appearance Mode</p>
+            <p className="sv-micro mb-4 text-text-3">Appearance Mode</p>
             <div className="grid grid-cols-3 gap-3">
               {[
                 { id: 'light', icon: <Sun size={20} />, label: 'Light' },
@@ -174,12 +174,12 @@ export default function SettingsPage() {
                   <button
                     key={t.id}
                     onClick={() => setTheme(t.id as 'light' | 'dark' | 'system')}
-                    className={`flex flex-col items-center gap-3 p-4 rounded-xl border transition-all ${isActive
-                      ? 'border-brand bg-brand/8 text-brand dark:border-brand-light/40 dark:bg-brand/15 dark:text-brand-light shadow-sm'
-                      : 'border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-400 hover:border-brand/30 hover:text-slate-600'}`}
+                    className={`flex flex-col items-center gap-3 rounded-card border p-4 transition-all ${isActive
+                      ? 'border-border-green bg-brand-dim text-brand-light shadow-brand'
+                      : 'border-border bg-surface-2 text-text-3 hover:border-border-green hover:text-text-1'}`}
                   >
                     {t.icon}
-                    <span className="text-[10px] font-semibold uppercase tracking-widest leading-none">{t.label}</span>
+                    <span className="sv-micro leading-none">{t.label}</span>
                   </button>
                 );
               })}
@@ -209,12 +209,12 @@ export default function SettingsPage() {
         <Section title="Navigation">
           <SurfaceCard padding="lg">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                <Map size={20} className="text-blue-500" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-card border border-border-green bg-brand-dim">
+                <Map size={20} className="text-brand-light" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tight">Preferred Navigation App</p>
-                <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5">Used for &ldquo;Get Directions&rdquo; in Locator</p>
+                <p className="sv-h2 uppercase">Preferred Navigation App</p>
+                <p className="sv-micro mt-0.5 text-text-3">Used for &ldquo;Get Directions&rdquo; in Locator</p>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-3">
@@ -224,14 +224,14 @@ export default function SettingsPage() {
                   <button
                     key={app.key}
                     onClick={() => { setNavApp(app.key); setPreferredNavApp(app.key); showToast(`Navigation set to ${app.label}`, 'success'); }}
-                    className={`flex flex-col items-center gap-3 p-4 rounded-xl border transition-all ${
+                    className={`flex flex-col items-center gap-3 rounded-card border p-4 transition-all ${
                       isActive
-                        ? 'border-blue-500 bg-blue-500/8 text-blue-500 dark:border-blue-400/40 dark:bg-blue-500/15 dark:text-blue-400 shadow-sm'
-                        : 'border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-400 hover:border-blue-500/30 hover:text-slate-600'
+                        ? 'border-border-green bg-brand-dim text-brand-light shadow-brand'
+                        : 'border-border bg-surface-2 text-text-3 hover:border-border-green hover:text-text-1'
                     }`}
                   >
                     <span className="text-2xl">{app.emoji}</span>
-                    <span className="text-[10px] font-semibold uppercase tracking-widest leading-none">{app.label.replace('Google ', '')}</span>
+                    <span className="sv-micro leading-none">{app.label.replace('Google ', '')}</span>
                   </button>
                 );
               })}
@@ -253,7 +253,7 @@ export default function SettingsPage() {
               checked={analyticsOptIn} onChange={setAnalyticsOptIn} />
           </SurfaceCard>
 
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 leading-relaxed">
+          <p className="sv-micro px-2 leading-relaxed text-text-3">
             SafeVixAI does not sell your data. All location data stays on-device or is transmitted only during active SOS dispatch.
           </p>
         </Section>
@@ -263,12 +263,12 @@ export default function SettingsPage() {
           <SurfaceCard padding="lg">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-slate-500/10 flex items-center justify-center">
-                  <Database size={20} className="text-slate-500" />
+                <div className="w-11 h-11 rounded-xl bg-surface-3 flex items-center justify-center">
+                  <Database size={20} className="text-text-3" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tight">Offline Cache</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">First Aid · Hazard DB · Route Index</p>
+                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">Offline Cache</p>
+                  <p className="text-[10px] font-bold text-text-3 uppercase tracking-widest mt-0.5">First Aid · Hazard DB · Route Index</p>
                 </div>
               </div>
               <button
@@ -280,14 +280,14 @@ export default function SettingsPage() {
             </div>
 
             {/* Export data */}
-            <div className="border-t border-slate-100 dark:border-white/5 pt-5 flex items-center justify-between">
+            <div className="border-t border-border pt-5 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-xl bg-brand/10 flex items-center justify-center">
                   <Download size={18} className="text-brand dark:text-brand-light" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tight">Export Profile</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">JSON · GDPR Compliant</p>
+                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">Export Profile</p>
+                  <p className="text-[10px] font-bold text-text-3 uppercase tracking-widest mt-0.5">JSON · GDPR Compliant</p>
                 </div>
               </div>
               <button
@@ -299,12 +299,12 @@ export default function SettingsPage() {
             </div>
 
             {/* App info */}
-            <div className="border-t border-slate-100 dark:border-white/5 pt-5 flex items-center justify-between">
+            <div className="border-t border-border pt-5 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Terminal size={14} className="text-brand-light" />
-                <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-tighter">SafeVixAI v2.4.0-SVA</span>
+                <span className="text-[10px] font-semibold text-text-3 uppercase tracking-tighter">SafeVixAI v2.4.0-SVA</span>
               </div>
-              <CheckCircle size={14} className="text-emerald-500" />
+              <CheckCircle size={14} className="text-brand-light" />
             </div>
           </SurfaceCard>
         </Section>
@@ -317,20 +317,20 @@ export default function SettingsPage() {
               title="Edit Profile"
               description="Identity & Emergency Data"
               onClick={() => router.push('/profile')}
-              rightElement={<ChevronRight size={16} className="text-slate-300 dark:text-slate-600" />}
+              rightElement={<ChevronRight size={16} className="text-text-3" />}
             />
             <SettingRow
               icon={<Shield size={18} className="text-red-500" />}
               title="Emergency Protocols"
               description="First Response Procedures"
               onClick={() => router.push('/emergency')}
-              rightElement={<ChevronRight size={16} className="text-slate-300 dark:text-slate-600" />}
+              rightElement={<ChevronRight size={16} className="text-text-3" />}
             />
             <SettingRow
-              icon={<Info size={18} className="text-emerald-500" />}
+              icon={<Info size={18} className="text-brand-light" />}
               title="Build Info"
-              description="IIT Madras Hackathon 2024"
-              rightElement={<span className="text-[10px] font-mono font-bold text-slate-400">v2.4.0</span>}
+              description="IIT Madras Hackathon 2026"
+              rightElement={<span className="text-[10px] font-mono font-bold text-text-3">v2.4.0</span>}
             />
           </SurfaceCard>
         </Section>

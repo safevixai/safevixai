@@ -171,27 +171,27 @@ export function ChatInterface() {
 
   // ── Render ───────────────────────────────────────────────────────────────
   return (
-    <div className="flex flex-col h-full bg-slate-50 dark:bg-bg">
+    <div className="flex flex-col h-full bg-surface-2 dark:bg-bg">
       {/* HEADER / MODE TOGGLE */}
-      <div className="flex justify-between items-center px-4 py-3 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-white/5 backdrop-blur-xl">
+      <div className="flex justify-between items-center px-4 py-3 border-b border-border-md dark:border-white/5 bg-white/80 dark:bg-white/5 backdrop-blur-xl">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-brand/10 flex items-center justify-center">
             <Bot size={16} className="text-brand" />
           </div>
-          <span className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-tight">
+          <span className="text-sm font-semibold text-text-1 dark:text-white uppercase tracking-tight">
             SafeVixAI Chat
           </span>
           <ConnectivityBadge />
         </div>
 
         {/* Mode toggle */}
-        <div className="flex items-center bg-slate-100 dark:bg-white/5 rounded-full p-0.5 border border-slate-200 dark:border-white/10">
+        <div className="flex items-center bg-surface-2 dark:bg-white/5 rounded-full p-0.5 border border-border-md dark:border-white/10">
           <button
             onClick={() => setAiMode('online')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all ${
               aiMode === 'online'
                 ? 'bg-brand text-brand-foreground shadow-sm'
-                : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
+                : 'text-text-2 hover:text-text-1 dark:hover:text-text-3'
             }`}
           >
             <Wifi size={12} />
@@ -202,7 +202,7 @@ export function ChatInterface() {
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all ${
               aiMode === 'offline'
                 ? 'bg-brand text-brand-foreground shadow-sm'
-                : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
+                : 'text-text-2 hover:text-text-1 dark:hover:text-text-3'
             }`}
           >
             <WifiOff size={12} />
@@ -252,7 +252,7 @@ export function ChatInterface() {
                   {msg.sources.map((src) => (
                     <span
                       key={src}
-                      className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-white/10"
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-surface-2 dark:bg-white/5 text-text-2 dark:text-text-2 border border-border-md dark:border-white/10"
                     >
                       {src}
                     </span>
@@ -266,13 +266,13 @@ export function ChatInterface() {
         {/* Loading dots (shown before first streaming token arrives) */}
         {isLoading && !messages.some((m) => m.streaming) && (
           <div className="flex items-start gap-2.5 self-start">
-            <div className="w-7 h-7 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-              <Bot size={14} className="text-emerald-500" />
+            <div className="w-7 h-7 rounded-xl bg-brand-light/10 flex items-center justify-center">
+              <Bot size={14} className="text-brand-light" />
             </div>
-            <div className="px-4 py-3 bg-white dark:bg-white/5 rounded-lg rounded-tl-sm border border-slate-200 dark:border-white/10 flex gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 animate-bounce" style={{ animationDelay: '300ms' }} />
+            <div className="px-4 py-3 bg-white dark:bg-white/5 rounded-lg rounded-tl-sm border border-border-md dark:border-white/10 flex gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-text-3 dark:bg-text-3 animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-2 h-2 rounded-full bg-text-3 dark:bg-text-3 animate-bounce" style={{ animationDelay: '150ms' }} />
+              <span className="w-2 h-2 rounded-full bg-text-3 dark:bg-text-3 animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
           </div>
         )}
@@ -280,7 +280,7 @@ export function ChatInterface() {
       </div>
 
       {/* INPUT */}
-      <div className="px-4 py-3 bg-white/80 dark:bg-white/5 backdrop-blur-xl border-t border-slate-200 dark:border-white/5">
+      <div className="px-4 py-3 bg-white/80 dark:bg-white/5 backdrop-blur-xl border-t border-border-md dark:border-white/5">
         <form onSubmit={handleSubmit} className="flex items-center gap-3">
           <input
             type="text"

@@ -28,7 +28,7 @@ const navItems = [
   { icon: <BotMessageSquare size={20} />, label: 'AI Assistant', href: '/assistant', color: 'text-brand-light' },
   { icon: <MapPinPlus size={20} />, label: 'Locator', href: '/locator', color: 'text-brand-light' },
   { icon: <HeartPulse size={20} />, label: 'First Aid', href: '/first-aid', color: 'text-emergency' },
-  { icon: <AlertTriangle size={20} />, label: 'Report Road Issue', href: '/report', color: 'text-amber-500' },
+  { icon: <AlertTriangle size={20} />, label: 'Report Road Issue', href: '/report', color: 'text-warning' },
   { icon: <Scale size={20} />, label: 'Challan Calculator', href: '/challan', color: 'text-text-3' },
   { icon: <ShieldAlert size={20} />, label: 'Emergency', href: '/emergency', color: 'text-emergency' },
   { icon: <User size={20} />, label: 'Profile', href: '/profile', color: 'text-brand-light' },
@@ -54,7 +54,11 @@ export function AppSidebar() {
       initial={{ x: -280 }}
       animate={{ x: isDesktopSidebarCollapsed && !isThinSidebarEnabled ? -280 : 0 }}
       transition={{ type: "spring", damping: 25, stiffness: 120 }}
-      className={`fixed left-0 top-0 h-full z-50 bg-surface-1/95 backdrop-blur-3xl flex flex-col border-r border-border shadow-panel transition-all duration-300 ${!isDesktopSidebarCollapsed ? 'w-[280px]' : isThinSidebarEnabled ? 'w-[88px]' : 'w-[280px]'}`}
+      className={`fixed left-0 top-0 h-full z-50 bg-surface-1/95 backdrop-blur-3xl flex flex-col border-r border-border transition-all duration-300 ${
+        isDesktopSidebarCollapsed && !isThinSidebarEnabled
+          ? 'opacity-0 pointer-events-none shadow-none'
+          : 'opacity-100 pointer-events-auto shadow-panel'
+      } ${!isDesktopSidebarCollapsed ? 'w-[280px]' : isThinSidebarEnabled ? 'w-[88px]' : 'w-[280px]'}`}
     >
 
       {/* Header (Logo and Toggle) or Hamburger */}
@@ -178,15 +182,13 @@ export function AppSidebar() {
       {/* Primary Action Footer: SOS */}
       <div className={`p-4 bg-gradient-to-b from-transparent to-surface-2 border-t border-border shrink-0 flex flex-col items-center`}>
         <Link href="/sos" className="w-full">
-          <button title={isDesktopSidebarCollapsed ? "System SOS" : undefined} className={`w-full flex items-center justify-center gap-2 py-3 bg-emergency hover:bg-red-700 text-white rounded-xl font-black shadow-[0_4px_20px_rgba(220,38,38,0.4)] border border-red-400/50 hover:shadow-[0_4px_25px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] group overflow-hidden relative ${isDesktopSidebarCollapsed ? 'px-0' : ''}`}>
+          <button title={isDesktopSidebarCollapsed ? "System SOS" : undefined} className={`w-full flex items-center justify-center gap-2 py-3 bg-emergency hover:bg-emergency-dark text-white rounded-xl font-black shadow-[0_4px_20px_rgba(220,38,38,0.4)] border border-red-400/50 hover:shadow-[0_4px_25px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] group overflow-hidden relative ${isDesktopSidebarCollapsed ? 'px-0' : ''}`}>
             <motion.div
               animate={{ opacity: [0.3, 0.6, 0.3] }}
               transition={{ repeat: Infinity, duration: 2.5 }}
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -rotate-45 translate-x-[-100%] group-hover:animate-shimmer"
             />
-            <span className="material-symbols-outlined text-2xl font-black relative z-10 shrink-0 drop-shadow-md" style={{ fontVariationSettings: "'FILL' 1" }}>
-              sos
-            </span>
+            <ShieldAlert className="w-7 h-7 relative z-10 shrink-0 drop-shadow-md text-white" strokeWidth={2.5} />
             {!isDesktopSidebarCollapsed && (
               <span className="relative z-10 tracking-[0.1em] font-black uppercase text-[13px] whitespace-nowrap drop-shadow-sm font-mono">System SOS</span>
             )}

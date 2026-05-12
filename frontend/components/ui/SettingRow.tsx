@@ -17,20 +17,20 @@ export function SettingRow({ icon, title, description, rightElement, onClick }: 
       onClick={onClick}
       className={`
         flex w-full items-center justify-between py-4 text-left
-        border-b border-slate-100 dark:border-white/5 last:border-0
-        ${isClickable ? 'cursor-pointer transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.02] px-2 -mx-2 rounded-lg' : ''}
+        border-b border-border last:border-0
+        ${isClickable ? 'cursor-pointer transition-colors hover:bg-surface-2 px-2 -mx-2 rounded-card' : ''}
       `}
     >
       <div className="flex items-center gap-4">
         {icon && (
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 dark:bg-[#111520] dark:text-slate-400 border border-slate-200 dark:border-white/10">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-card border border-border bg-surface-2 text-text-2">
             {icon}
           </div>
         )}
         <div className="flex flex-col">
-          <span className="text-sm font-semibold text-slate-900 dark:text-white">{title}</span>
+          <span className="text-body font-semibold text-text-1">{title}</span>
           {description && (
-            <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{description}</span>
+            <span className="text-caption text-text-3 mt-0.5">{description}</span>
           )}
         </div>
       </div>

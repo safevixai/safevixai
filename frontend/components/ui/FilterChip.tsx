@@ -11,11 +11,11 @@ export function FilterChip({ active = false, label, icon, className = '', ...pro
     <button
       type="button"
       className={`
-        focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1 focus:ring-offset-surface-1
+        sv-chip focus:outline-none focus:ring-2 focus:ring-brand-light/40 focus:ring-offset-1 focus:ring-offset-bg
         ${
           active
-            ? 'bg-brand/20 text-brand border border-brand/40'
-            : 'bg-surface-1 text-text-2 border border-border hover:bg-surface-2 dark:bg-surface-2 dark:text-text-2 dark:border-white/5 dark:hover:bg-surface-3 dark:hover:text-text-1'
+            ? 'sv-chip-active'
+            : 'hover:border-border-md hover:bg-surface-2 hover:text-text-1'
         }
         ${className}
       `}

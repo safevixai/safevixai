@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { AlertCircle, CloudRain, Car, AlertTriangle } from 'lucide-react';
 
 import { useAppStore } from '@/lib/store';
 
@@ -9,7 +10,7 @@ function getAlertVisual(issueType: string, severity: number) {
 
   if (severity >= 4) {
     return {
-      icon: 'warning',
+      icon: <AlertCircle size={18} strokeWidth={2.5} />,
       iconClass: 'text-emergency',
       borderClass: 'border-red-500/30',
     };
@@ -17,7 +18,7 @@ function getAlertVisual(issueType: string, severity: number) {
 
   if (normalized.includes('flood') || normalized.includes('rain')) {
     return {
-      icon: 'rainy',
+      icon: <CloudRain size={18} strokeWidth={2.5} />,
       iconClass: 'text-brand',
       borderClass: 'border-brand/30',
     };
@@ -25,15 +26,15 @@ function getAlertVisual(issueType: string, severity: number) {
 
   if (normalized.includes('traffic') || normalized.includes('accident')) {
     return {
-      icon: 'traffic',
+      icon: <Car size={18} strokeWidth={2.5} />,
       iconClass: 'text-orange-500',
       borderClass: 'border-orange-500/30',
     };
   }
 
   return {
-    icon: 'report_problem',
-    iconClass: 'text-amber-500',
+    icon: <AlertTriangle size={18} strokeWidth={2.5} />,
+    iconClass: 'text-warning',
     borderClass: 'border-amber-500/30',
   };
 }
@@ -61,11 +62,11 @@ export default function RecentAlertsOverlay() {
       className={`fixed bottom-24 lg:bottom-4 left-0 w-full z-40 pointer-events-none pl-4 pr-20 flex flex-col items-center lg:pr-0 transition-all duration-300 ${isDesktopSidebarCollapsed ? 'lg:pl-[88px]' : 'lg:pl-[280px]'}`}
     >
       <div className="w-fit max-w-full pointer-events-auto flex flex-col gap-2">
-        <div className="self-center bg-white/90 dark:bg-surface-1/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-slate-200 dark:border-white/10 shadow-xl flex items-center gap-2">
+        <div className="self-center bg-white/90 dark:bg-surface-1/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-border-md dark:border-white/10 shadow-xl flex items-center gap-2">
           <span
             className={`w-1.5 h-1.5 rounded-full ${nearbyRoadIssues.length > 0 ? 'bg-emergency animate-pulse shadow-[0_0_8px_var(--emergency)]' : 'bg-brand'}`}
           />
-          <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-700 dark:text-brand uppercase font-space">
+          <span className="text-[10px] font-semibold tracking-[0.1em] text-text-1 dark:text-brand uppercase font-space">
             {summaryLabel}
           </span>
         </div>
@@ -77,15 +78,12 @@ export default function RecentAlertsOverlay() {
               return (
                 <div
                   key={issue.uuid}
-                  className={`snap-center flex-shrink-0 bg-white/90 dark:bg-surface-2/90 backdrop-blur-md rounded-full ${visual.borderClass} px-3 py-1.5 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-surface-3 transition-colors relative border`}
+                  className={`snap-center flex-shrink-0 bg-white/90 dark:bg-surface-2/90 backdrop-blur-md rounded-full ${visual.borderClass} px-3 py-1.5 shadow-lg flex items-center justify-center gap-2 cursor-pointer hover:bg-surface-2 dark:hover:bg-surface-3 transition-colors relative border`}
                 >
-                  <span
-                    className={`material-symbols-outlined text-[18px] ${visual.iconClass}`}
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                  >
+                  <div className={visual.iconClass}>
                     {visual.icon}
-                  </span>
-                  <span className="text-xs font-semibold text-slate-800 dark:text-text-1 truncate">
+                  </div>
+                  <span className="text-xs font-semibold text-text-1 dark:text-text-1 truncate">
                     {formatIssueType(issue.issueType)}
                   </span>
                 </div>

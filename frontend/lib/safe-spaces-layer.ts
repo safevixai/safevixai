@@ -80,4 +80,24 @@ export async function addSafeSpacesLayer(
       'circle-stroke-color': '#FFFFFF',
     },
   });
+
+  map.addLayer({
+    id: 'safe-spaces-labels',
+    type: 'symbol',
+    source: 'safe-spaces',
+    layout: {
+      'text-field': ['get', 'name'],
+      'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+      'text-size': 11,
+      'text-offset': [0, 1.2],
+      'text-anchor': 'top',
+      'text-allow-overlap': false,
+      'text-ignore-placement': false,
+    },
+    paint: {
+      'text-color': '#FFFFFF',
+      'text-halo-color': 'rgba(0, 0, 0, 0.8)',
+      'text-halo-width': 1.5,
+    },
+  });
 }

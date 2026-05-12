@@ -15,7 +15,7 @@ const OFFENSES = [
 export function ViolationsList() {
   return (
     <div className="card-glass" style={{ padding: '1.25rem' }}>
-      <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '1rem' }}>
+      <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-1)', marginBottom: '1rem' }}>
         Common Violations Directory
       </h3>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -26,26 +26,26 @@ export function ViolationsList() {
               display: 'flex', 
               flexDirection: 'column',
               padding: '0.75rem',
-              border: '1px solid var(--outline-variant)',
+              background: 'var(--surface-2)',
+              border: '1px solid var(--border)',
               borderRadius: '8px',
-              background: 'var(--bg-card-high)' 
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+              <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-1)' }}>
                 {o.desc}
               </span>
-              <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--accent-orange)', whiteSpace: 'nowrap', marginLeft: '8px' }}>
+              <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--warning)', whiteSpace: 'nowrap', marginLeft: '8px' }}>
                 {o.amount}
               </span>
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-2)', marginTop: '4px' }}>
               Section {o.section} of MV Act 1988
             </div>
           </div>
         ))}
       </div>
-      <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+      <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-3)' }}>
         Source: Motor Vehicles (Amendment) Act 2019
       </div>
     </div>

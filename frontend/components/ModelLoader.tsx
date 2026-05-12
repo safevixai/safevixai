@@ -28,7 +28,7 @@ export function ModelLoader() {
         width: '64px',
         height: '64px',
         borderRadius: '50%',
-        background: 'var(--bg-card-high)',
+        background: 'var(--surface-2)',
         border: '3px solid var(--accent-purple)',
         borderTopColor: 'transparent',
         animation: 'spin 1s linear infinite',
@@ -38,11 +38,11 @@ export function ModelLoader() {
       <div style={{ fontSize: '1.25rem', fontWeight: 600, color: '#fff', marginBottom: '0.5rem' }}>
         Loading Offline AI Model
       </div>
-      <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '300px' }}>
+      <div style={{ fontSize: '0.875rem', color: 'var(--text-2)', marginBottom: '1.5rem', maxWidth: '300px' }}>
         Downloading Phi-3 Mini for on-device inference. This requires ~1.5GB of initial download but works completely offline forever.
       </div>
 
-      <div style={{ width: '100%', maxWidth: '300px', height: '6px', background: 'var(--bg-card)', borderRadius: '99px', overflow: 'hidden' }}>
+      <div style={{ width: '100%', maxWidth: '300px', height: '6px', background: 'var(--surface-1)', borderRadius: '99px', overflow: 'hidden' }}>
         <div 
           style={{ 
             height: '100%', 

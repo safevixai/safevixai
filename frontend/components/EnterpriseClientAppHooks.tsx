@@ -9,6 +9,51 @@ import { enqueueSOS, registerOfflineSyncListeners } from '@/lib/offline-sos-queu
 import { CRASH_COUNTDOWN_SECONDS, STANDARD_GRAVITY_MS2 } from '@/lib/safety-constants'
 import { useAppStore } from '@/lib/store'
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth'
+import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
+import { WifiOff, Loader2 } from 'lucide-react'
+
+function SystemBanners() {
+  const connectivity = useAppStore(state => state.connectivity)
+  const [warming, setWarming] = useState(false)
+
+  useEffect(() => {
+    // Check if backend needs warming up (e.g., cold starts)
+    const checkHealth = async () => {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout means it's likely waking up
+        
+        const res = await fetch(`${PUBLIC_CHATBOT_BASE_URL}/speech/status`, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (!res.ok) throw new Error('Not ready');
+        setWarming(false);
+      } catch (err) {
+        if ((err as Error).name === 'AbortError') {
+          setWarming(true);
+          // Wait a bit and it will likely be up. In a real scenario we'd poll.
+        }
+      }
+    };
+    checkHealth();
+  }, []);
+
+  return (
+    <>
+      {connectivity === 'offline' && (
+        <div className="fixed top-0 left-0 w-full z-[9999] bg-red-500 text-white text-xs font-bold px-4 py-1.5 flex items-center justify-center gap-2 shadow-md">
+          <WifiOff size={14} />
+          YOU ARE OFFLINE. SOS WILL BE SAVED LOCALLY.
+        </div>
+      )}
+      {warming && connectivity !== 'offline' && (
+        <div className="fixed top-0 left-0 w-full z-[9999] bg-brand text-white text-xs font-bold px-4 py-1.5 flex items-center justify-center gap-2 shadow-md">
+          <Loader2 size={14} className="animate-spin" />
+          WARMING UP SAFEVIXAI ASSISTANT SERVICES...
+        </div>
+      )}
+    </>
+  )
+}
 
 export function EnterpriseClientAppHooks() {
   const { crashDetectionEnabled, gpsLocation } = useAppStore((state) => ({
@@ -101,10 +146,12 @@ export function EnterpriseClientAppHooks() {
     return () => window.clearTimeout(timeout)
   }, [crashCountdown, dispatching, gpsLocation])
 
-  if (!crashCountdown) return null
+  if (!crashCountdown) return <SystemBanners />
 
   return (
-    <div
+    <>
+      <SystemBanners />
+      <div
       className="fixed inset-x-4 top-4 z-[1000] mx-auto max-w-md rounded-xl border border-red-500/40 bg-red-950/95 p-4 text-white shadow-2xl"
       role="alertdialog"
       aria-live="assertive"
@@ -141,5 +188,6 @@ export function EnterpriseClientAppHooks() {
         </div>
       </div>
     </div>
+    </>
   )
 }

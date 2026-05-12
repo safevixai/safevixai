@@ -54,41 +54,50 @@ export function RightSidebar() {
 
   return (
     <aside
-      className={`hidden lg:flex flex-col shrink-0 bg-surface-1/95 backdrop-blur-3xl transition-all duration-300 relative z-40 ${isPanelOpen ? 'w-[320px] xl:w-[380px] border-l border-border' : 'w-0 border-none'}`}
+      className={`fixed inset-x-0 bottom-0 z-40 flex flex-col bg-surface-1/95 backdrop-blur-3xl transition-all duration-300 border-t border-border rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.12)] lg:shadow-none lg:relative lg:inset-auto lg:h-full lg:rounded-none lg:border-t-0 lg:border-l shrink-0 ${isPanelOpen ? 'translate-y-0 lg:w-[320px] xl:w-[380px]' : 'translate-y-[calc(100%-60px)] lg:translate-y-0 lg:w-0 lg:border-none'}`}
+      style={{ maxHeight: '80dvh' }}
     >
-      {/* Toggle Button */}
+      {/* Desktop Toggle Button */}
       <button
         onClick={() => setIsPanelOpen(!isPanelOpen)}
-        className={`absolute top-1/2 -translate-y-1/2 w-8 h-16 bg-surface-2 border border-border rounded-l-xl flex items-center justify-center shadow-lg hover:bg-surface-3 transition-colors z-50 text-text-3 ${isPanelOpen ? '-left-4' : '-left-8'}`}
+        className={`hidden lg:flex absolute top-1/2 -translate-y-1/2 w-8 h-16 bg-surface-2 border border-border rounded-l-xl items-center justify-center shadow-lg hover:bg-surface-3 transition-colors z-50 text-text-3 ${isPanelOpen ? '-left-4' : '-left-8'}`}
         aria-label={isPanelOpen ? 'Collapse panel' : 'Expand panel'}
       >
         {isPanelOpen ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
       </button>
 
-      <div className={`flex-1 flex flex-col overflow-hidden transition-opacity duration-300 ${isPanelOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <div className="flex-1 overflow-y-auto scrollbar-hide w-[320px] xl:w-[380px]">
+      {/* Mobile Drag Handle / Toggle */}
+      <div 
+        className="lg:hidden w-full h-14 absolute top-0 left-0 z-50 flex flex-col items-center justify-start pt-2 cursor-pointer"
+        onClick={() => setIsPanelOpen(!isPanelOpen)}
+      >
+        <div className="w-12 h-1.5 bg-border rounded-full" />
+      </div>
+
+      <div className={`flex-1 flex flex-col overflow-hidden transition-opacity duration-300 ${isPanelOpen ? 'opacity-100' : 'opacity-100 lg:opacity-0 lg:pointer-events-none'}`}>
+        <div className="flex-1 overflow-y-auto scrollbar-hide w-full lg:w-[320px] xl:w-[380px] pt-4 lg:pt-0">
           {/* Panel Header */}
-          <div className="sticky top-0 bg-surface-2/50 backdrop-blur-md border-b border-border px-6 py-5 z-10">
-            <div className="flex items-center justify-between mb-1">
+          <div className="sticky top-0 bg-surface-2/90 backdrop-blur-md border-b border-border px-6 py-4 z-10 flex items-center justify-between">
+            <div>
               <h2 className="text-base font-bold text-text-1 uppercase tracking-tight font-mono">
                 Area Intelligence
               </h2>
-              {/* Connectivity indicator */}
-              <div className={`flex items-center gap-1.5 px-2 py-1 rounded-sm text-[11px] font-semibold uppercase tracking-widest ${
-                connectivity === 'online'
-                  ? 'bg-brand-light/10 text-brand-light border border-brand-light/20'
-                  : 'bg-text-amber/10 text-text-amber border border-text-amber/20'
-              }`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${connectivity === 'online' ? 'bg-brand-light animate-pulse' : 'bg-text-amber'}`} />
-                {connectivity === 'online' ? 'Live' : 'Cached'}
-              </div>
+              {gpsLocation && (
+                <p className="text-[11px] font-semibold text-text-3 font-mono uppercase tracking-widest mt-1">
+                  <MapPin size={11} className="inline mr-1" />
+                  {gpsLocation.city ?? 'Location detected'}{gpsLocation.state ? `, ${gpsLocation.state}` : ''}
+                </p>
+              )}
             </div>
-            {gpsLocation && (
-              <p className="text-[11px] font-semibold text-text-3 font-mono uppercase tracking-widest mt-2">
-                <MapPin size={11} className="inline mr-1" />
-                {gpsLocation.city ?? 'Location detected'}{gpsLocation.state ? `, ${gpsLocation.state}` : ''}
-              </p>
-            )}
+            {/* Connectivity indicator */}
+            <div className={`flex items-center gap-1.5 px-2 py-1 rounded-sm text-[11px] font-semibold uppercase tracking-widest ${
+              connectivity === 'online'
+                ? 'bg-brand-light/10 text-brand-light border border-brand-light/20'
+                : 'bg-text-amber/10 text-text-amber border border-text-amber/20'
+            }`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${connectivity === 'online' ? 'bg-brand-light animate-pulse' : 'bg-text-amber'}`} />
+              {connectivity === 'online' ? 'Live' : 'Cached'}
+            </div>
           </div>
 
           <div className="p-5 space-y-4">
@@ -171,7 +180,7 @@ export function RightSidebar() {
             )}
 
             {/* Driving Score */}
-            <div className="p-4 rounded-lg bg-gradient-to-br from-brand/10 to-brand-light/5 border border-brand/20 flex items-center gap-4 mt-2">
+            <div className="p-4 rounded-lg bg-gradient-to-br from-brand/10 to-brand-light/5 border border-brand/20 flex items-center gap-4 mt-2 mb-10 lg:mb-2">
               <div className="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center">
                 <Zap size={20} className="text-brand-light" />
               </div>

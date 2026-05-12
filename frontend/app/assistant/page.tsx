@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
  ArrowLeft, ShieldCheck, BookOpen, Copy,
  HelpCircle, Mic, Paperclip, Send, ThumbsUp, ThumbsDown, RotateCcw,
- Search, Menu
+ Search, Menu, Volume2, VolumeX
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import TopSearch from '@/components/dashboard/TopSearch';
@@ -16,6 +16,7 @@ import PureMultimodalInput, { Attachment } from '@/components/chat/multimodal-ai
 import { useGeolocation } from '@/lib/geolocation';
 import { logClientError } from '@/lib/client-logger';
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
+import { getLanguageByCode } from '@/lib/languages';
 
 const CHATBOT_URL = PUBLIC_CHATBOT_BASE_URL;
 
@@ -101,9 +102,34 @@ export default function ChatPage() {
  const setSystemSidebarOpen = useAppStore((state) => state.setSystemSidebarOpen);
  const { location } = useGeolocation();
  const [sessionId] = useState(() => `assistant-${Date.now()}`);
+ const [selectedLanguage, setSelectedLanguage] = useState('en');
  const scrollRef = useRef<HTMLDivElement>(null);
  const textareaRef = useRef<HTMLTextAreaElement>(null);
  const welcomeAdded = useRef(false);
+ const [autoRead, setAutoRead] = useState(false);
+
+ const [isSpeaking, setIsSpeaking] = useState(false);
+
+ const speakText = useCallback((text: string) => {
+   if (!('speechSynthesis' in window)) return;
+   window.speechSynthesis.cancel();
+   
+   const utterance = new SpeechSynthesisUtterance(text);
+   const langObj = getLanguageByCode(selectedLanguage);
+   utterance.lang = langObj?.synthesisCode || 'en-IN';
+   
+   utterance.onstart = () => setIsSpeaking(true);
+   utterance.onend = () => setIsSpeaking(false);
+   utterance.onerror = () => setIsSpeaking(false);
+   
+   window.speechSynthesis.speak(utterance);
+ }, [selectedLanguage]);
+
+ const stopSpeaking = useCallback(() => {
+   if (!('speechSynthesis' in window)) return;
+   window.speechSynthesis.cancel();
+   setIsSpeaking(false);
+ }, []);
 
  useEffect(() => {
  // Guard against React StrictMode double-mount
@@ -140,66 +166,92 @@ export default function ChatPage() {
  }, [input]);
 
  const handleSend = useCallback(async (text: string) => {
- if (!text.trim()) return;
+  if (!text.trim()) return;
 
- const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
- const userMsg: Message = { id: Date.now().toString(), role: 'user', text, timestamp: time };
- setMessages(prev => [...prev, userMsg]);
- setInput('');
- setLoading(true);
+  const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const userMsg: Message = { id: Date.now().toString(), role: 'user', text, timestamp: time };
+  setMessages(prev => [...prev, userMsg]);
+  setInput('');
+  setLoading(true);
 
- // Streaming assistant placeholder
- const assistantId = `ai-${Date.now() + 1}`;
- setMessages(prev => [...prev, { id: assistantId, role: 'ai', text: '', timestamp: time }]);
+  // Streaming assistant placeholder
+  const assistantId = `ai-${Date.now() + 1}`;
+  setMessages(prev => [...prev, { id: assistantId, role: 'ai', text: '', timestamp: time }]);
 
- try {
- let accumulated = '';
- for await (const event of streamChat(text, sessionId, location?.lat, location?.lon)) {
- if (event.type === 'token' && event.text) {
- accumulated += event.text;
- setMessages(prev =>
- prev.map(m => m.id === assistantId ? { ...m, text: accumulated } : m)
- );
- } else if (event.type === 'done') {
- const sources = event.sources ?? [];
- setMessages(prev =>
- prev.map(m =>
- m.id === assistantId
- ? { ...m, text: accumulated || 'No response received.', citations: sources }
- : m
- )
- );
- } else if (event.type === 'error') {
- throw new Error(event.message ?? 'Stream error');
- }
- }
- } catch (err) {
- logClientError('Chat error:', err);
- setMessages(prev =>
- prev.map(m =>
- m.id === assistantId
- ? { ...m, text: 'Connection error. Please check your network or try again.' }
- : m
- )
- );
- } finally {
- setLoading(false);
- }
- }, [sessionId, location]);
+  try {
+  let accumulated = '';
+  for await (const event of streamChat(text, sessionId, location?.lat, location?.lon)) {
+  if (event.type === 'token' && event.text) {
+  accumulated += event.text;
+  setMessages(prev =>
+  prev.map(m => m.id === assistantId ? { ...m, text: accumulated } : m)
+  );
+  } else if (event.type === 'done') {
+  const sources = event.sources ?? [];
+  setMessages(prev =>
+  prev.map(m =>
+  m.id === assistantId
+  ? { ...m, text: accumulated || 'No response received.', citations: sources }
+  : m
+  )
+  );
+  if (autoRead && accumulated) {
+     speakText(accumulated);
+   }
+  } else if (event.type === 'error') {
+  throw new Error(event.message ?? 'Stream error');
+  }
+  }
+  } catch (err) {
+  logClientError('Chat error:', err);
+  setMessages(prev =>
+  prev.map(m =>
+  m.id === assistantId
+  ? { ...m, text: 'Neural link interrupted. Please verify connectivity and retry protocol.' }
+  : m
+  )
+  );
+  } finally {
+  setLoading(false);
+  }
+  }, [sessionId, location, autoRead, speakText]);
 
  return (
- <div className="flex flex-col flex-1 h-full w-full relative overflow-hidden bg-surface-1">
+ <div className="absolute inset-0 flex flex-col w-full overflow-hidden bg-surface-1">
  {/* ── Background Decorative Lines (SafeVixAI Pro Aesthetic) ── */}
  <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
  {/* Spots removed per user request */}
 
  {/* Ambient Glows */}
  <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand/5 dark:bg-brand/10 blur-[120px] hidden dark:block" />
- <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] rounded-full bg-emerald-400/5 dark:bg-emerald-500/10 blur-[100px] hidden dark:block" />
+ <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] rounded-full bg-brand-light/5 dark:bg-brand-light/10 blur-[100px] hidden dark:block" />
  </div>
 
- {/* ── Unified Tactical Navigation Header ── */}
- <TerminalHeader title="AI Assistant HUD" subtitle="LEGAL & EMERGENCY QUERY" />
+  {/* ── Unified Tactical Navigation Header ── */}
+    <TerminalHeader title="Assistant HUD" subtitle="TACTICAL INTEL & LEGAL" rightElement={
+      <div className="flex items-center gap-2">
+        {isSpeaking && (
+          <button
+            onClick={stopSpeaking}
+            className="p-2 rounded-full transition-all bg-red-500/10 text-red-500 border border-red-500/30 animate-pulse"
+            title="Stop Reading"
+          >
+            <VolumeX size={16} />
+          </button>
+        )}
+        <button
+          onClick={() => {
+            setAutoRead(!autoRead);
+            if (autoRead) stopSpeaking();
+            setToastMessage(autoRead ? "Audio disabled" : "Audio enabled");
+          }}
+          className={`p-2 rounded-full transition-colors border ${autoRead ? 'bg-brand/20 text-brand border-brand/30 shadow-[0_0_15px_rgba(0,200,150,0.2)]' : 'bg-surface-2 text-text-3 border-border hover:text-text-1'}`}
+          title={autoRead ? "Disable Auto-read" : "Enable Auto-read"}
+        >
+          {autoRead ? <Volume2 size={16} /> : <VolumeX size={16} />}
+        </button>
+      </div>
+    } />
 
  <div className="lg:hidden relative z-40">
  <TopSearch isMapPage={false} forceShow={true} showBack={false} />
@@ -212,7 +264,7 @@ export default function ChatPage() {
  initial={{ opacity: 0, y: -20, x: '-50%' }}
  animate={{ opacity: 1, y: 0, x: '-50%' }}
  exit={{ opacity: 0, y: -20, x: '-50%' }}
- className="fixed top-20 left-1/2 z-50 bg-slate-800 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-full shadow-lg text-sm font-medium"
+ className="fixed top-20 left-1/2 z-50 bg-surface-3 text-text-1 px-4 py-2 rounded-full shadow-lg text-sm font-medium"
  >
  {toastMessage}
  </motion.div>
@@ -232,7 +284,7 @@ export default function ChatPage() {
  animate={{ opacity: 1, y: 0 }}
  className="self-center mt-2"
  >
- <div className="bg-white dark:bg-white/5 px-4 py-2 rounded-full border border-slate-200 dark:border-white/5 shadow-sm backdrop-blur-md">
+ <div className="bg-white dark:bg-white/5 px-4 py-2 rounded-full border border-border shadow-sm backdrop-blur-md">
  <span className="text-brand dark:text-brand-light text-[10px] uppercase tracking-[0.1em] font-black font-space">
  {msg.text}
  </span>
@@ -253,7 +305,7 @@ export default function ChatPage() {
  <div className="bg-brand/20 rounded-t-2xl rounded-bl-2xl px-5 py-3.5 shadow-lg shadow-brand/10 border border-brand/30">
  <p className="text-text-1 text-[15px] leading-relaxed font-medium">{msg.text}</p>
  </div>
- <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-slate-400 dark:text-slate-500 mr-2 font-medium tracking-wide shadow-sm">{msg.timestamp} • SafeVixAI</time>
+ <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 mr-2 font-medium tracking-wide shadow-sm">{msg.timestamp} • SafeVixAI</time>
  </div>
  </motion.div>
  );
@@ -292,29 +344,40 @@ export default function ChatPage() {
  </SurfaceCard>
 
  <div className="flex items-center gap-4 ml-2 mb-1">
- <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-slate-400 dark:text-slate-500 font-medium tracking-wide">{msg.timestamp} • SafeVixAI</time>
+ <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 font-medium tracking-wide">{msg.timestamp} • SafeVixAI</time>
  <div className="flex gap-1.5 ml-1">
- <button 
- onClick={() => setToastMessage("Copied to clipboard!")}
- className="text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
- >
- <Copy size={13} strokeWidth={2} />
- </button>
+  <button 
+  onClick={() => setToastMessage("Copied to clipboard!")}
+  className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
+  title="Copy"
+  >
+  <Copy size={13} strokeWidth={2} />
+  </button>
+  <button 
+  onClick={() => {
+    speakText(msg.text);
+    setToastMessage("Reading aloud...");
+  }}
+  className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
+  title="Read Aloud"
+  >
+  <Volume2 size={13} strokeWidth={2} />
+  </button>
  <button 
  onClick={() => setToastMessage("Feedback recorded")}
- className="text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
+ className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
  >
  <ThumbsUp size={13} strokeWidth={2} />
  </button>
  <button 
  onClick={() => setToastMessage("Feedback recorded")}
- className="text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
+ className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
  >
  <ThumbsDown size={13} strokeWidth={2} />
  </button>
  <button 
  onClick={() => setToastMessage("Retrying...")}
- className="text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 ml-1"
+ className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2 ml-1"
  >
  <RotateCcw size={13} strokeWidth={2} />
  </button>
@@ -350,7 +413,7 @@ export default function ChatPage() {
  exit={{ opacity: 0, scale: 0.95 }}
  className="self-start w-full mt-2"
  >
- <p className="text-xs text-slate-400 dark:text-slate-500 mb-3 font-semibold px-2 uppercase tracking-widest">Suggested Inquiries</p>
+ <p className="text-xs text-text-3 mb-3 font-semibold px-2 uppercase tracking-widest">Suggested Inquiries</p>
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
  {SUGGESTED_STARTERS.map((text, i) => (
  <button
@@ -368,7 +431,7 @@ export default function ChatPage() {
  {messages.length > 2 && (
  <button 
  onClick={() => setShowSuggestions(false)}
- className="mt-4 text-xs font-semibold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 underline underline-offset-2 transition-colors mx-auto block"
+ className="mt-4 text-xs font-semibold text-text-3 hover:text-text-1 underline underline-offset-2 transition-colors mx-auto block"
  >
  Hide Suggestions
  </button>
@@ -380,7 +443,7 @@ export default function ChatPage() {
  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="self-center">
  <button 
  onClick={() => setShowSuggestions(true)}
- className="px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm"
+ className="px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-border text-xs font-semibold text-text-2 hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm"
  >
  Show Suggested Inquiries
  </button>
@@ -410,13 +473,15 @@ export default function ChatPage() {
  <div className="absolute bottom-0 w-full z-50 flex justify-between items-end bg-gradient-to-t from-surface-1 via-surface-1/90 to-transparent pt-16 pb-28 lg:pb-6 px-4 sm:px-6 pointer-events-none">
  <div className="max-w-4xl mx-auto w-full flex flex-col relative items-end pointer-events-none">
  <div className="w-full flex items-end gap-2 sm:gap-3 pointer-events-auto">
- <PureMultimodalInput
- value={input}
- onChange={setInput}
- onSendMessage={({ input }) => handleSend(input)}
- isGenerating={loading}
- canSend={!loading}
- />
+  <PureMultimodalInput
+  value={input}
+  onChange={setInput}
+  onSendMessage={({ input }) => handleSend(input)}
+  isGenerating={loading}
+  canSend={!loading}
+  selectedLanguage={selectedLanguage}
+  onLanguageChange={setSelectedLanguage}
+  />
  </div>
  </div>
  </div>

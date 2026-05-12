@@ -169,8 +169,8 @@ export default function LoginPage() {
                   <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">Sentinel Online</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                  <Lock size={9} className="text-slate-400" />
-                  <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-widest">JWT Secured</span>
+                  <Lock size={9} className="text-text-2" />
+                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">JWT Secured</span>
                 </div>
               </div>
             </div>
@@ -180,11 +180,11 @@ export default function LoginPage() {
 
               {/* Email */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[9px] font-semibold text-slate-400 uppercase tracking-[0.25em] pl-1">
+                <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
                   Operator Email
                 </label>
                 <div className="relative">
-                  <Mail size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+                  <Mail size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                   <input
                     ref={emailRef}
                     type="email"
@@ -192,30 +192,30 @@ export default function LoginPage() {
                     value={email}
                     onChange={e => { setEmail(e.target.value); setError(''); }}
                     placeholder="operator@safevixai.app"
-                    className="w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-600 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
+                    className="w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
                   />
                 </div>
               </div>
 
               {/* Password */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[9px] font-semibold text-slate-400 uppercase tracking-[0.25em] pl-1">
+                <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
                   Access Key
                 </label>
                 <div className="relative">
-                  <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+                  <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                   <input
                     type={showPwd ? 'text' : 'password'}
                     autoComplete="current-password"
                     value={password}
                     onChange={e => { setPassword(e.target.value); setError(''); }}
                     placeholder="••••••••••••"
-                    className="w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-600 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
+                    className="w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPwd(v => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-500 hover:text-slate-300 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-text-4 hover:text-text-3 transition-colors"
                     aria-label={showPwd ? 'Hide password' : 'Show password'}
                   >
                     {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -242,10 +242,10 @@ export default function LoginPage() {
                     key="success"
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20"
+                    className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-brand-light/10 border border-brand-light/20"
                   >
-                    <CheckCircle2 size={14} className="text-emerald-400 flex-shrink-0" />
-                    <span className="text-[12px] font-bold text-emerald-400">{success}</span>
+                    <CheckCircle2 size={14} className="text-brand-light flex-shrink-0" />
+                    <span className="text-[12px] font-bold text-brand-light">{success}</span>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -285,7 +285,7 @@ export default function LoginPage() {
             {/* ── Divider ── */}
             <div className="flex items-center gap-3 my-5">
               <div className="flex-1 h-px bg-white/8" />
-              <span className="text-[9px] font-semibold text-slate-600 uppercase tracking-widest">or</span>
+              <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">or</span>
               <div className="flex-1 h-px bg-white/8" />
             </div>
 
@@ -293,16 +293,16 @@ export default function LoginPage() {
             <button
               onClick={handleDemoMode}
               disabled={loading}
-              className="w-full h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-brand/30 transition-all text-slate-300 hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group"
+              className="w-full h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-brand/30 transition-all text-text-2 hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group"
             >
               <Zap size={14} className="text-brand-light group-hover:animate-pulse" />
               Demo Mode (Hackathon)
-              <ChevronRight size={13} className="text-slate-500 group-hover:text-brand-light group-hover:translate-x-0.5 transition-all" />
+              <ChevronRight size={13} className="text-text-4 group-hover:text-brand-light group-hover:translate-x-0.5 transition-all" />
             </button>
 
             {/* ── Quick-fill Demo Credentials ── */}
             <div className="mt-5 flex flex-col gap-2">
-              <p className="text-[8px] font-semibold text-slate-600 uppercase tracking-[0.1em] text-center mb-1">
+              <p className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em] text-center mb-1">
                 Demo Credentials
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -316,7 +316,7 @@ export default function LoginPage() {
                     <span className={`text-[10px] font-semibold uppercase tracking-wide ${c.color}`}>
                       {c.label}
                     </span>
-                    <span className="text-[9px] font-mono text-slate-500 truncate w-full">{c.email}</span>
+                    <span className="text-[9px] font-mono text-text-4 truncate w-full">{c.email}</span>
                   </button>
                 ))}
               </div>
@@ -327,7 +327,7 @@ export default function LoginPage() {
           <div className="border-t border-white/5 px-8 py-3 flex items-center justify-between">
             <div className="flex items-center gap-1.5">
               <Shield size={10} className="text-brand" />
-              <span className="text-[8px] font-semibold text-slate-600 uppercase tracking-[0.1em]">
+              <span className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em]">
                 SafeVixAI Sentinel Protocol
               </span>
             </div>
@@ -339,8 +339,8 @@ export default function LoginPage() {
         </div>
 
         {/* Outside card — version tag */}
-        <p className="text-center text-[9px] font-bold text-slate-700 uppercase tracking-[0.1em] mt-5">
-          SafeVixAI v2.4 · IIT Madras Hackathon 2024
+        <p className="text-center text-[9px] font-bold text-text-3 uppercase tracking-[0.1em] mt-5">
+          SafeVixAI v2.4 · IIT Madras Hackathon 2026
         </p>
       </motion.div>
     </div>

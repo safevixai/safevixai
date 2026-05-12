@@ -13,10 +13,13 @@ import React, {
 
 import equal from 'fast-deep-equal';
 import { AnimatePresence, motion } from 'motion/react';
-import { Loader2 as LoaderIcon, X as XIcon, Mic, Send } from 'lucide-react';
+import { Loader2 as LoaderIcon, X as XIcon, Mic, Send, Globe } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import { logClientError } from '@/lib/client-logger';
+import { SUPPORTED_LANGUAGES, getLanguageByCode } from '@/lib/languages';
+import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
+import Image from 'next/image';
 
 const clsx = (...args: unknown[]) => args.filter(Boolean).join(' ');
 
@@ -50,9 +53,9 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-brand text-white hover:bg-brand/90 shadow-[0_4px_15px_rgba(37,99,235,0.3)] dark:shadow-[0_4px_15px_rgba(37,99,235,0.2)] active:scale-95 duration-150',
         destructive: 'border border-red-500/20 bg-red-400/20 text-red-500 hover:bg-red-400/30',
-        outline: 'border border-slate-300 dark:border-slate-700 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300',
-        secondary: 'bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700',
-        ghost: 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50',
+        outline: 'border border-border-md dark:border-border-md bg-transparent hover:bg-surface-2 dark:hover:bg-surface-3 text-text-1 dark:text-text-3',
+        secondary: 'bg-surface-3 dark:bg-surface-3 text-text-1 dark:text-text-1 hover:bg-surface-3 dark:hover:bg-border-md',
+        ghost: 'text-text-2 dark:text-text-2 hover:text-text-2 dark:hover:text-text-3 hover:bg-surface-2 dark:hover:bg-surface-3/50',
         link: 'text-brand underline-offset-4 hover:underline',
       },
       size: {
@@ -86,7 +89,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentProps<'tex
     return (
       <textarea
         className={cn(
-          'flex min-h-[40px] w-full bg-transparent px-3 py-2 text-lg md:text-xl placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 text-slate-800 dark:text-slate-200 resize-none overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden',
+          'flex min-h-[40px] w-full bg-transparent px-3 py-2 text-lg md:text-xl placeholder:text-text-2 dark:placeholder:text-text-2 focus-visible:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 text-text-1 dark:text-text-1 resize-none overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden',
           className,
         )}
         ref={ref}
@@ -121,7 +124,7 @@ function PureAttachmentsButton({
   return (
     <button
       data-testid="attachments-button"
-      className="p-2 h-fit rounded-full hover:bg-slate-200 dark:hover:bg-slate-700/50 !text-slate-600 dark:!text-white transition-colors disabled:opacity-50"
+      className="p-2 h-fit rounded-full hover:bg-surface-3 dark:hover:bg-surface-3/50 !text-text-2 dark:!text-white transition-colors disabled:opacity-50"
       onClick={(event) => {
         event.preventDefault();
         fileInputRef.current?.click();
@@ -137,26 +140,155 @@ function PureAttachmentsButton({
 const AttachmentsButton = memo(PureAttachmentsButton, (prev, next) => prev.disabled === next.disabled);
 
 
-// Added Mic Button Component based on User Request
-function PureMicButton({ disabled }: { disabled?: boolean }) {
+function PureMicButton({ 
+  disabled, 
+  onTranscript, 
+  isGenerating,
+  selectedLanguage = 'en'
+}: { 
+  disabled?: boolean;
+  onTranscript: (text: string) => void;
+  isGenerating?: boolean;
+  selectedLanguage?: string;
+}) {
   const [isActive, setIsActive] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<BlobPart[]>([]);
+  const recognitionRef = useRef<any>(null);
+
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorderRef.current = mediaRecorder;
+      audioChunksRef.current = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = async () => {
+        setIsProcessing(true);
+        try {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+          const formData = new FormData();
+          formData.append('audio', audioBlob, 'recording.webm');
+          
+          const langObj = getLanguageByCode(selectedLanguage);
+          const targetLangCode = langObj?.speechTargetCode || 'eng';
+
+          // Send to translation backend
+          const url = new URL(`${PUBLIC_CHATBOT_BASE_URL}/speech/translate`);
+          url.searchParams.append('target_language', targetLangCode);
+
+          const res = await fetch(url.toString(), {
+            method: 'POST',
+            body: audioBlob,
+            headers: {
+              'Content-Type': 'audio/webm'
+            }
+          });
+          
+          if (!res.ok) throw new Error('Translation failed');
+          
+          const data = await res.json();
+          if (data && data.text) {
+            onTranscript(data.text);
+          }
+        } catch (error) {
+          console.error("Backend speech translation failed, falling back to Web Speech API", error);
+          // We could start Web Speech API here or we should just show error.
+          // Since we already recorded, it's too late for Web Speech API for this chunk.
+        } finally {
+          setIsProcessing(false);
+          setIsActive(false);
+          // Stop all tracks
+          stream.getTracks().forEach(track => track.stop());
+        }
+      };
+
+      mediaRecorder.start();
+      setIsActive(true);
+    } catch (err) {
+      console.error("Microphone access denied or error:", err);
+      // Fallback to Web Speech API immediately if getUserMedia fails
+      startWebSpeech();
+    }
+  };
+
+  const startWebSpeech = () => {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      console.error("Web Speech API not supported");
+      return;
+    }
+    
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    const langObj = getLanguageByCode(selectedLanguage);
+    recognition.lang = langObj?.recognitionCode || 'en-IN';
+    
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      onTranscript(transcript);
+    };
+    
+    recognition.onend = () => {
+      setIsActive(false);
+    };
+    
+    recognition.onerror = (event: any) => {
+      console.error("Web Speech error", event.error);
+      setIsActive(false);
+    };
+    
+    recognitionRef.current = recognition;
+    recognition.start();
+    setIsActive(true);
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+      mediaRecorderRef.current.stop();
+    } else if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsActive(false);
+    } else {
+      setIsActive(false);
+    }
+  };
+
+  const handleClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    if (isActive) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  };
 
   return (
     <button
       data-testid="mic-button"
       className={cn(
-        "p-2 h-fit rounded-full transition-all duration-200 !text-slate-600 dark:!text-white",
-        isActive ? "!text-red-500 dark:!text-red-400 bg-red-500/10 hover:bg-red-500/20" : "hover:bg-slate-200 dark:hover:bg-slate-700/50"
+        "p-2 h-fit rounded-full transition-all duration-200",
+        isActive 
+          ? "text-red-500 bg-red-500/10 hover:bg-red-500/20" 
+          : "text-text-2 hover:bg-surface-3 dark:text-text-2 dark:hover:bg-surface-3/50 hover:text-text-1 dark:hover:text-text-1"
       )}
-      onClick={(event) => {
-        event.preventDefault();
-        setIsActive(!isActive);
-        // Web Speech API integration pending
-      }}
-      disabled={disabled}
+      onClick={handleClick}
+      disabled={disabled || isGenerating || isProcessing}
       aria-label="Use microphone"
     >
-      <Mic size={26} className={cn(isActive && "animate-pulse")} />
+      {isProcessing ? (
+        <LoaderIcon size={26} className="animate-spin text-brand" />
+      ) : (
+        <Mic size={26} className={cn(isActive && "animate-pulse")} />
+      )}
     </button>
   );
 }
@@ -167,7 +299,7 @@ function PureStopButton({ onStop }: { onStop: () => void }) {
   return (
     <Button
       data-testid="stop-button"
-      className="p-2 h-fit rounded-full flex items-center justify-center hover:bg-slate-700/50 text-slate-400 hover:text-slate-200"
+      className="p-2 h-fit rounded-full flex items-center justify-center hover:bg-surface-3/50 text-text-2 hover:text-text-1"
       onClick={(event) => {
         event.preventDefault();
         onStop();
@@ -242,17 +374,18 @@ const PreviewAttachment = ({
 
   return (
     <div data-testid="input-attachment-preview" className="flex flex-col gap-1 shrink-0">
-      <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-xl relative flex flex-col items-center justify-center overflow-hidden border border-slate-200 dark:border-slate-700">
+      <div className="w-16 h-16 bg-surface-2 dark:bg-surface-3 rounded-xl relative flex flex-col items-center justify-center overflow-hidden border border-border-md dark:border-border-md">
         {contentType?.startsWith('image/') && url ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             key={url}
             src={url}
             alt={name ?? 'An image attachment'}
-            className="rounded-xl size-full object-cover"
+            fill
+            className="rounded-xl object-cover"
+            unoptimized
           />
         ) : (
-          <div className="flex items-center justify-center text-[10px] font-bold text-slate-500 uppercase tracking-wider text-center p-1">
+          <div className="flex items-center justify-center text-[10px] font-bold text-text-2 uppercase tracking-wider text-center p-1">
             {name?.split('.').pop() || 'FILE'}
           </div>
         )}
@@ -262,7 +395,7 @@ const PreviewAttachment = ({
             data-testid="input-attachment-loader"
             className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-black/50 backdrop-blur-sm"
           >
-            <LoaderIcon className="size-4 animate-spin text-slate-700 dark:text-slate-300" />
+            <LoaderIcon className="size-4 animate-spin text-text-1 dark:text-text-3" />
           </div>
         )}
       </div>
@@ -286,6 +419,8 @@ export interface MultimodalInputProps {
   // Local fallback states if not provided by parent
   value?: string;
   onChange?: (val: string) => void;
+  selectedLanguage?: string;
+  onLanguageChange?: (lang: string) => void;
 }
 
 export function PureMultimodalInput({
@@ -300,7 +435,9 @@ export function PureMultimodalInput({
   className,
   selectedVisibilityType = 'public',
   value,
-  onChange
+  onChange,
+  selectedLanguage: externalLanguage,
+  onLanguageChange: externalOnLanguageChange
 }: MultimodalInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -310,8 +447,15 @@ export function PureMultimodalInput({
   const [localAttachments, setLocalAttachments] = useState<Array<Attachment>>([]);
   const [uploadQueue, setUploadQueue] = useState<Array<string>>([]);
 
+  const [localLanguage, setLocalLanguage] = useState('en');
+
   const input = value !== undefined ? value : localInput;
   const setInput = onChange ? onChange : setLocalInput;
+
+  const language = externalLanguage || localLanguage;
+  const setLanguage = externalOnLanguageChange || setLocalLanguage;
+
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   const attachments = externalAttachments || localAttachments;
   const setAttachments = externalSetAttachments || setLocalAttachments;
@@ -475,7 +619,54 @@ export function PureMultimodalInput({
         )}
 
         {/* Input & Action Row */}
-        <div className="flex items-center gap-1 w-full pl-1 pr-1 pb-1">
+        <div className="flex items-center gap-1 w-full pl-1 pr-1 pb-1 relative">
+          <div className="relative flex items-center">
+            <button
+              type="button"
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              className={cn(
+                "p-2 rounded-full transition-colors flex items-center justify-center",
+                language !== 'en' ? "text-brand bg-brand/10" : "text-text-2 hover:bg-surface-3"
+              )}
+              title="Select Language"
+            >
+              <Globe size={24} />
+            </button>
+            
+            <AnimatePresence>
+              {isLangMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute bottom-full left-0 mb-2 w-48 bg-surface-1 border border-border rounded-2xl shadow-2xl overflow-hidden z-50 py-1"
+                >
+                  <div className="px-3 py-2 text-[10px] font-bold text-text-3 uppercase tracking-widest border-b border-border/50 mb-1">
+                    Language Selection
+                  </div>
+                  <div className="max-h-[240px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    {SUPPORTED_LANGUAGES.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setIsLangMenuOpen(false);
+                        }}
+                        className={cn(
+                          "w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center justify-between",
+                          language === lang.code ? "bg-brand/10 text-brand" : "text-text-1 hover:bg-surface-2"
+                        )}
+                      >
+                        <span>{lang.name}</span>
+                        <span className="text-[10px] opacity-50 uppercase">{lang.code}</span>
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <AttachmentsButton fileInputRef={fileInputRef} disabled={isAttachmentDisabled} />
 
           <Textarea
@@ -486,7 +677,7 @@ export function PureMultimodalInput({
             rows={1}
             autoFocus
             disabled={!canSend || isGenerating || uploadQueue.length > 0}
-            className="text-slate-800 dark:text-slate-200 placeholder:text-slate-500 py-3 font-medium max-h-[120px] overflow-y-auto w-full"
+            className="text-text-1 dark:text-text-1 placeholder:text-text-2 py-3 font-medium max-h-[120px] overflow-y-auto w-full"
             onKeyDown={(event) => {
               if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
                 event.preventDefault();
@@ -498,7 +689,14 @@ export function PureMultimodalInput({
             }}
           />
 
-          <MicButton />
+          <MicButton 
+            disabled={isGenerating || uploadQueue.length > 0 || !canSend} 
+            isGenerating={isGenerating}
+            selectedLanguage={language}
+            onTranscript={(text) => {
+              setInput(input ? `${input} ${text}` : text);
+            }} 
+          />
 
           <div className="flex items-center">
             {isGenerating ? (

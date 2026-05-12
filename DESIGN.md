@@ -10,6 +10,30 @@ influenced_by: Linear (sidebar precision + dark depth) + VoltAgent (terminal ene
 
 # SafeVixAI — Complete Design System
 
+## Current UI/UX Audit - 2026-05-12
+
+SafeVixAI has a strong tactical enterprise direction, but the frontend is not yet fully enterprise-complete. The build passes, the primary safety flows are preserved, and the map/home migration is materially better. Remaining polish work must be treated as blocking before calling the UI final.
+
+Current gaps to close:
+
+- Remove remaining legacy Tailwind palette tokens from app and component surfaces unless they are intentional emergency colors.
+- Replace arbitrary hex/rgb Tailwind classes with semantic tokens from `globals.css` and `tailwind.config.js`.
+- Replace the remaining raw `<img>` in the chat attachment preview with `next/image` or a safe optimized preview path.
+- Remove the external Google Material Symbols stylesheet or self-host/replace it with Lucide icons.
+- Fix mojibake/encoding artifacts in docs and UI strings before demo.
+- Normalize large radii: regular cards should use 8px, controls 6px, large panels 12px, and only SOS/avatars/pills should use larger radii.
+- Voice UI must show honest states: recording, processing, unavailable, backend warming, unsupported browser, and transcript inserted.
+
+Speech UX status:
+
+- Mic input exists in the assistant input, but the endpoint path and language-code mapping are not correct yet.
+- Browser speech output exists, but it is hardcoded to `en-IN`; it must follow the selected language.
+- Backend TTS does not exist; do not represent voice output as server-powered.
+
+Enterprise rule: a page is not enterprise-ready just because it compiles. It must be token-consistent, responsive at 375/768/1440px, keyboard accessible, visually calm under dense data, and truthful about backend state.
+
+---
+
 ## Philosophy
 
 SafeVixAI is a life-safety command terminal, not a consumer app. The UI communicates two modes:

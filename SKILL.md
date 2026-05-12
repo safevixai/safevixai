@@ -5,6 +5,32 @@ description: Development guide for the SafeVixAI Next.js 15 frontend — a tacti
 
 # SafeVixAI Frontend Skill
 
+## Current Implementation Notes - 2026-05-12
+
+Use these notes before touching the frontend:
+
+- Source of truth for public URLs is `frontend/lib/public-env.ts`.
+- Use `NEXT_PUBLIC_API_URL` for the main backend and `NEXT_PUBLIC_CHATBOT_URL` for the chatbot service.
+- Do not read `process.env.NEXT_PUBLIC_CHATBOT_BASE_URL` in client components; it is not the validated project env var.
+- Chat routes are under `/api/v1/chat/*`.
+- Speech routes are currently under `/speech/*`, not `/api/v1/speech/*`.
+- Mic input must call `${PUBLIC_CHATBOT_BASE_URL}/speech/translate`.
+- `target_language` must use backend/model codes, not raw UI codes. Add a language mapping layer in `frontend/lib/languages.ts`.
+- Browser recognition codes are locale codes such as `hi-IN`; backend speech target codes are model codes such as `hin`.
+- Browser speech output must use the selected language recognition/synthesis locale and must provide a stop control.
+- Backend speech currently performs speech-to-text / speech translation only. Do not claim backend TTS is implemented.
+- Keep emergency flows stable while polishing UI: 112, 102, 100, 1033, crash countdown, offline SOS queue, map heatmap, and QR emergency card.
+
+Current verification commands:
+
+```bash
+cd frontend && npm run build
+cd chatbot_service && python -m pytest tests/test_voice.py tests/test_e2e.py -q
+rg -n "api/v1/speech|NEXT_PUBLIC_CHATBOT_BASE_URL|utterance.lang = 'en-IN'|<img|fonts.googleapis.com" frontend
+```
+
+---
+
 ## What it is
 A **Next.js 15** (App Router) + **React 19** + **TypeScript** + **Tailwind CSS** frontend for an AI-powered road safety platform. The design system is called **"Tactical Safety Command Terminal"** — a dark-mode-first interface with emerald-green brand accents and red emergency signals, influenced by Linear (sidebar precision) and VoltAgent (terminal energy).
 

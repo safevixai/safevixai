@@ -10,7 +10,7 @@ import { startFamilyTracking, beginLocationBroadcast, notifyContactsViaWhatsApp 
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { motion, AnimatePresence } from 'motion/react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, AlertTriangle, Activity, Shield, Heart, Share2, MessageSquare, UserCheck, Edit } from 'lucide-react';
 
 export default function EmergencyPage() {
  const { crashDetectionEnabled, userProfile } = useAppStore();
@@ -166,7 +166,7 @@ export default function EmergencyPage() {
  }, [coords]);
 
  return (
- <div className="bg-slate-50 dark:bg-surface-1 text-slate-900 dark:text-text-1 font-['Inter'] selection:bg-red-500/30 selection:text-red-900 dark:selection:text-red-950 min-h-dvh flex flex-col relative overflow-x-hidden transition-colors duration-500">
+ <div className="bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-red-500/30 selection:text-red-900 dark:selection:text-red-950 min-h-dvh flex flex-col relative overflow-x-hidden transition-colors duration-500">
  
  {/* -- Unified Tactical Navigation Header -- */}
  <SystemHeader title="Emergency SOS Terminal" showBack={false} />
@@ -182,9 +182,9 @@ export default function EmergencyPage() {
  <section className="flex flex-col items-center justify-center space-y-6">
  <div className="relative group">
  {/* G-Force Badge */}
- <div className="absolute -top-4 -right-4 z-10 bg-white/90 dark:bg-[#2a3548]/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-slate-200 dark:border-[#5b403f]/15 shadow-sm flex items-center gap-2">
- <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
- <span className="text-[10px] font-semibold tracking-widest text-slate-800 dark:text-text-1 uppercase">
+ <div className="absolute -top-4 -right-4 z-10 bg-white/90 dark:bg-[#2a3548]/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-border-md dark:border-[#5b403f]/15 shadow-sm flex items-center gap-2">
+ <span className="w-2 h-2 rounded-full bg-brand-light animate-pulse"></span>
+ <span className="text-[10px] font-semibold tracking-widest text-text-1 dark:text-text-1 uppercase">
  {gForce.toFixed(1)}G IMPACT
  </span>
  </div>
@@ -209,9 +209,7 @@ export default function EmergencyPage() {
  />
  )}
  
- <span className="material-symbols-outlined text-6xl mb-2 relative z-10" style={{ fontVariationSettings: "'FILL' 1" }}>
- emergency
- </span>
+ <AlertTriangle className="w-16 h-16 mb-2 relative z-10 text-white" />
  <span className="text-3xl font-black tracking-tighter relative z-10">
  {activated ? 'DISPATCHED' : 'SOS'}
  </span>
@@ -228,33 +226,33 @@ export default function EmergencyPage() {
  )}
  {dispatchState === 'dispatched' && (
  <>
- <span className="text-emerald-600 dark:text-brand-light font-black tracking-[0.1em] uppercase text-xs">Emergency Declared</span>
- <p className="text-emerald-700/80 dark:text-[#e4bebc] text-xs mt-1 font-medium">Nearest emergency services located. Use share links below to send your exact location.</p>
+ <span className="text-brand dark:text-brand-light font-black tracking-[0.1em] uppercase text-xs">Emergency Declared</span>
+ <p className="text-brand dark:text-[#e4bebc] text-xs mt-1 font-medium">Nearest emergency services located. Use share links below to send your exact location.</p>
  </>
  )}
  {(dispatchState === 'failed' || dispatchState === 'idle') && (
  <>
  <span className="text-orange-500 font-black tracking-[0.1em] uppercase text-xs">SOS Activated ?? Use Share Links</span>
- <p className="text-slate-500 dark:text-[#e4bebc] text-xs mt-1 font-medium">
+ <p className="text-text-2 dark:text-[#e4bebc] text-xs mt-1 font-medium">
  {!isOnline ? 'Offline mode ?? share your location via WhatsApp or SMS below.' : 'Backend unreachable ?? share your location manually using the links below.'}
  </p>
  </>
  )}
- <button onClick={cancelDispatch} className="mt-4 px-5 py-2 bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-white rounded-full font-bold uppercase text-[10px] tracking-wider hover:bg-slate-300 dark:hover:bg-white/20 transition-colors">
+ <button onClick={cancelDispatch} className="mt-4 px-5 py-2 bg-surface-3 dark:bg-white/10 text-text-1 dark:text-white rounded-full font-bold uppercase text-[10px] tracking-wider hover:bg-surface-3 dark:hover:bg-white/20 transition-colors">
  Cancel Dispatch
  </button>
  {/* Live Tracking Link */}
  {trackingUrl && (
- <div className="mt-4 w-full bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700/40 rounded-xl p-3">
- <p className="text-[9px] font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400 mb-1">
+ <div className="mt-4 w-full bg-brand-light/10 dark:bg-brand/10 border border-brand-light/20 dark:border-brand/20 rounded-xl p-3">
+ <p className="text-[9px] font-bold uppercase tracking-widest text-brand dark:text-brand-light mb-1">
  Family Live Tracking Active
  </p>
- <p className="text-[10px] text-emerald-800 dark:text-emerald-300 font-semibold break-all">
+ <p className="text-[10px] text-brand dark:text-brand-light font-semibold break-all">
  {trackingUrl}
  </p>
  <button
  onClick={() => navigator.clipboard?.writeText(trackingUrl)}
- className="mt-2 text-[9px] font-bold text-emerald-700 dark:text-emerald-400 underline"
+ className="mt-2 text-[9px] font-bold text-brand dark:text-brand-light underline"
  >
  Copy Link
  </button>
@@ -264,7 +262,7 @@ export default function EmergencyPage() {
  ) : (
  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
  <span className="text-red-500 dark:text-[#ffb4aa] font-black tracking-[0.1em] uppercase text-xs">Hold to Activate</span>
- <p className="text-slate-500 dark:text-[#e4bebc] text-xs mt-1 font-medium">Automatic Emergency Dispatch system armed</p>
+ <p className="text-text-2 dark:text-[#e4bebc] text-xs mt-1 font-medium">Automatic Emergency Dispatch system armed</p>
  </motion.div>
  )}
  </div>
@@ -272,33 +270,33 @@ export default function EmergencyPage() {
 
  {/* -- MIDDLE: QUICK DIAL CARDS -- */}
  <section className="grid grid-cols-3 gap-3">
- <a href="tel:112" className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-red-500/30">
+ <a href="tel:112" className="bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-red-500/30">
  <div className="w-12 h-12 rounded-lg bg-red-100 dark:bg-emergency/15 flex items-center justify-center text-red-600 dark:text-emergency">
- <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>medical_services</span>
+ <Activity className="w-6 h-6" />
  </div>
  <div className="text-center">
- <p className="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">112</p>
+ <p className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">112</p>
  <p className="text-[10px] font-bold uppercase text-red-600 dark:text-[#ffb4aa]">Emergency</p>
  </div>
  </a>
  
- <a href="tel:100" className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-sky-500/30">
+ <a href="tel:100" className="bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-sky-500/30">
  <div className="w-12 h-12 rounded-lg bg-sky-100 dark:bg-sky-500/15 flex items-center justify-center text-sky-600 dark:text-sky-400">
- <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>shield</span>
+ <Shield className="w-6 h-6" />
  </div>
  <div className="text-center">
- <p className="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">100</p>
+ <p className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">100</p>
  <p className="text-[10px] font-bold uppercase text-sky-600 dark:text-sky-400">Police</p>
  </div>
  </a>
 
- <a href="tel:102" className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-emerald-500/30">
- <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-[#05b046]/15 flex items-center justify-center text-emerald-600 dark:text-[#05b046]">
- <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>ecg_heart</span>
+ <a href="tel:102" className="bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-brand-light/30">
+ <div className="w-12 h-12 rounded-lg bg-brand-light/15 dark:bg-[#05b046]/15 flex items-center justify-center text-brand dark:text-[#05b046]">
+ <Heart className="w-6 h-6" />
  </div>
  <div className="text-center">
- <p className="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">102</p>
- <p className="text-[10px] font-bold uppercase text-emerald-600 dark:text-brand-light">Ambulance</p>
+ <p className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">102</p>
+ <p className="text-[10px] font-bold uppercase text-brand dark:text-brand-light">Ambulance</p>
  </div>
  </a>
  </section>
@@ -306,29 +304,29 @@ export default function EmergencyPage() {
  {/* -- SECTION: SHARE LOCATION -- */}
  <section className="space-y-4">
  <div className="flex justify-between items-end">
- <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-400 font-space px-2">Share Location</h2>
- <span className="text-[9px] font-bold text-emerald-600 dark:text-brand-light uppercase tracking-widest bg-emerald-100 dark:bg-brand-light/10 px-2.5 py-1 rounded-full">
+ <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-2 font-space px-2">Share Location</h2>
+ <span className="text-[9px] font-bold text-brand dark:text-brand-light uppercase tracking-widest bg-brand-light/15 dark:bg-brand-light/10 px-2.5 py-1 rounded-full">
  Real-time Fix
  </span>
  </div>
 
- <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-md rounded-xl p-6 space-y-6">
+ <div className="bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-md rounded-xl p-6 space-y-6">
  <div className="flex items-start gap-4">
  <div className="flex-1 space-y-1">
- <p className="text-slate-500 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest">GPS Coordinates Preview</p>
- <div className="text-lg font-mono font-bold tracking-tight text-slate-800 dark:text-text-1">
+ <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest">GPS Coordinates Preview</p>
+ <div className="text-lg font-mono font-bold tracking-tight text-text-1 dark:text-text-1">
  {geoError ? (
  <span className="text-red-500 dark:text-red-400 text-sm">{geoError}</span>
  ) : coords ? (
  `Lat: ${coords.lat.toFixed(4)}, Long: ${coords.lng.toFixed(4)}`
  ) : (
- <span className="flex items-center gap-2 text-slate-400">
+ <span className="flex items-center gap-2 text-text-2">
  <Loader2 size={16} className="animate-spin" /> Resolving GPS...
  </span>
  )}
  </div>
  </div>
- <div className="w-16 h-16 rounded-lg overflow-hidden bg-slate-200 dark:bg-[#2a3548] flex-shrink-0 relative">
+ <div className="w-16 h-16 rounded-lg overflow-hidden bg-surface-3 dark:bg-[#2a3548] flex-shrink-0 relative">
  <Image 
  className="object-cover grayscale opacity-50" 
  alt="Map" 
@@ -341,11 +339,11 @@ export default function EmergencyPage() {
 
  <div className="grid grid-cols-2 gap-4">
  <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#05b046] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all shadow-md shadow-[#05b046]/20">
- <span className="material-symbols-outlined text-[16px]">share</span>
+ <Share2 className="w-4 h-4" />
  WhatsApp
  </a>
- <a href={smsLink} className="flex items-center justify-center gap-2 bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-slate-200 dark:border-white/10 shadow-sm">
- <span className="material-symbols-outlined text-[16px]">sms</span>
+ <a href={smsLink} className="flex items-center justify-center gap-2 bg-surface-2 dark:bg-white/5 text-text-1 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-border-md dark:border-white/10 shadow-sm">
+ <MessageSquare className="w-4 h-4" />
  SMS Backup
  </a>
  </div>
@@ -354,43 +352,43 @@ export default function EmergencyPage() {
 
  {/* -- CARD: CRASH PROFILE -- */}
  <section className="space-y-4">
- <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-400 font-space px-2">Crash Profile</h2>
- <div className="bg-white/80 dark:bg-white/5 backdrop-blur-md rounded-xl p-6 border border-slate-200 dark:border-white/10 shadow-sm relative overflow-hidden">
+ <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-2 font-space px-2">Crash Profile</h2>
+ <div className="bg-white/80 dark:bg-white/5 backdrop-blur-md rounded-xl p-6 border border-border-md dark:border-white/10 shadow-sm relative overflow-hidden">
  {/* Decorative background elements */}
  <div className="absolute -bottom-4 -right-4 opacity-[0.03] dark:opacity-5 rotate-12">
- <span className="material-symbols-outlined text-[8rem]">contact_emergency</span>
+ <UserCheck className="w-32 h-32 text-text-3" />
  </div>
  
  <div className="grid grid-cols-2 gap-y-6 gap-x-4 relative z-10">
  <div>
- <p className="text-slate-500 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Blood Group</p>
+ <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Blood Group</p>
  <p className="text-xl font-black text-red-600 dark:text-[#ffb4aa]">
- {userProfile.bloodGroup || <span className="text-slate-400 text-sm font-bold normal-case">Not set ?? add in Profile</span>}
+ {userProfile.bloodGroup || <span className="text-text-2 text-sm font-bold normal-case">Not set ?? add in Profile</span>}
  </p>
  </div>
  <div>
- <p className="text-slate-500 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Primary Contact</p>
- <p className="text-lg font-bold text-slate-900 dark:text-text-1 truncate">
- {userProfile.emergencyContact || <span className="text-slate-400 text-sm font-bold normal-case">Not set</span>}
+ <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Primary Contact</p>
+ <p className="text-lg font-bold text-text-1 dark:text-text-1 truncate">
+ {userProfile.emergencyContact || <span className="text-text-2 text-sm font-bold normal-case">Not set</span>}
  </p>
  </div>
  <div>
- <p className="text-slate-500 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Vehicle ID</p>
+ <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Vehicle ID</p>
  <p className="text-base font-mono font-bold text-brand dark:text-brand-light">
- {userProfile.vehicleNumber || <span className="text-slate-400 text-sm font-bold font-sans normal-case">Not set</span>}
+ {userProfile.vehicleNumber || <span className="text-text-2 text-sm font-bold font-sans normal-case">Not set</span>}
  </p>
  </div>
  <div>
- <p className="text-slate-500 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Operator</p>
- <p className="text-sm font-bold text-slate-800 dark:text-text-1">
- {userProfile.name || <span className="text-slate-400 italic">Set name in Profile</span>}
+ <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Operator</p>
+ <p className="text-sm font-bold text-text-1 dark:text-text-1">
+ {userProfile.name || <span className="text-text-2 italic">Set name in Profile</span>}
  </p>
  </div>
  </div>
  {/* Prompt to fill profile if empty */}
  {!userProfile.name && !userProfile.bloodGroup && (
  <a href="/profile" className="mt-5 flex items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-brand dark:text-brand-light hover:underline">
- <span className="material-symbols-outlined text-[14px]">edit</span>
+ <Edit className="w-3.5 h-3.5" />
  Complete your profile for accurate SOS dispatch
  </a>
  )}

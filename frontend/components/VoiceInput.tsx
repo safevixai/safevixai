@@ -1,14 +1,20 @@
 'use client';
+/**
+ * SafeVixAI Enterprise Voice Input
+ * Enterprise-grade voice recognition with semantic theme integration.
+ */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Mic, MicOff, Loader2 } from 'lucide-react';
+import { getLanguageByCode } from '@/lib/languages';
 
 interface VoiceInputProps {
   onResult: (text: string) => void;
   className?: string;
+  language?: string;
 }
 
-// Web Speech API types (not in default TS lib)
+// Web Speech API types
 interface IWindow extends Window {
   SpeechRecognition?: new () => ISpeechRecognition;
   webkitSpeechRecognition?: new () => ISpeechRecognition;
@@ -24,28 +30,11 @@ interface ISpeechRecognition extends EventTarget {
   abort(): void;
   onstart: (() => void) | null;
   onend: (() => void) | null;
-  onerror: ((e: Event) => void) | null;
-  onresult: ((e: ISpeechRecognitionEvent) => void) | null;
+  onerror: ((e: any) => void) | null;
+  onresult: ((e: any) => void) | null;
 }
 
-interface ISpeechRecognitionEvent extends Event {
-  results: ISpeechRecognitionResultList;
-}
-
-interface ISpeechRecognitionResultList {
-  [index: number]: ISpeechRecognitionResult;
-}
-
-interface ISpeechRecognitionResult {
-  [index: number]: ISpeechRecognitionAlternative;
-}
-
-interface ISpeechRecognitionAlternative {
-  transcript: string;
-  confidence: number;
-}
-
-export function VoiceInput({ onResult, className = '' }: VoiceInputProps) {
+export function VoiceInput({ onResult, className = '', language = 'en' }: VoiceInputProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const recognitionRef = useRef<ISpeechRecognition | null>(null);
@@ -62,7 +51,8 @@ export function VoiceInput({ onResult, className = '' }: VoiceInputProps) {
     if (!SpeechAPI) return;
 
     const recognition = new SpeechAPI();
-    recognition.lang = 'en-IN';
+    const langObj = getLanguageByCode(language);
+    recognition.lang = langObj?.recognitionCode || 'en-IN';
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
@@ -72,7 +62,7 @@ export function VoiceInput({ onResult, className = '' }: VoiceInputProps) {
       setIsRecording(true);
     };
 
-    recognition.onresult = (e: ISpeechRecognitionEvent) => {
+    recognition.onresult = (e: any) => {
       const transcript = e.results[0][0].transcript;
       handleResult(transcript);
       setIsRecording(false);
@@ -90,53 +80,52 @@ export function VoiceInput({ onResult, className = '' }: VoiceInputProps) {
 
     recognitionRef.current = recognition;
     return () => { recognition.abort(); };
-  }, [handleResult]);
+  }, [handleResult, language]);
 
   const toggle = () => {
     if (!recognitionRef.current) {
-      // Graceful fallback for browsers without Speech API
-      handleResult('Is it safe to move an accident victim?');
+      // Graceful fallback for demo if no API available
+      handleResult('Reporting a road hazard at my current location.');
       return;
     }
     if (isRecording) {
       recognitionRef.current.stop();
-      setIsRecording(false);
     } else {
       setIsLoading(true);
-      recognitionRef.current.start();
+      try {
+        recognitionRef.current.start();
+      } catch (e) {
+        setIsLoading(false);
+      }
     }
   };
 
   return (
     <button
       onClick={toggle}
+      disabled={isLoading}
       aria-label={isRecording ? 'Stop recording' : 'Start voice input'}
-      className={`relative flex items-center justify-center rounded-full transition-all active:scale-90 ${className}`}
+      className={`relative flex items-center justify-center rounded-full transition-all active:scale-90 border-2 shrink-0 ${
+        isRecording 
+          ? 'border-emergency bg-emergency/10 text-emergency shadow-[0_0_20px_rgba(220,38,38,0.3)]' 
+          : 'border-border bg-surface-1 text-text-2 hover:border-border-md hover:text-text-1'
+      } ${className}`}
       style={{
         width: '44px',
         height: '44px',
-        border: isRecording
-          ? '2px solid var(--accent-red)'
-          : '2px solid var(--outline-variant)',
-        backgroundColor: isRecording
-          ? 'color-mix(in srgb, var(--accent-red) 15%, transparent)'
-          : 'var(--bg-card)',
-        color: isRecording ? 'var(--accent-red)' : 'var(--text-secondary)',
-        boxShadow: isRecording ? 'var(--glow-red)' : 'none',
-        flexShrink: 0,
       }}
     >
       {isLoading ? (
-        <Loader2 size={18} className="animate-spin" />
+        <Loader2 size={18} className="animate-spin text-brand" />
       ) : isRecording ? (
         <MicOff size={18} className="animate-pulse" />
       ) : (
         <Mic size={18} />
       )}
+      
       {isRecording && (
         <span
-          className="absolute inset-0 rounded-full animate-ping"
-          style={{ backgroundColor: 'color-mix(in srgb, var(--accent-red) 20%, transparent)' }}
+          className="absolute inset-0 rounded-full animate-ping opacity-25 bg-emergency"
         />
       )}
     </button>

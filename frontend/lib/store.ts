@@ -103,6 +103,16 @@ interface AppState {
   setConnectivity: (c: ConnectivityState) => void;
 
   // Map
+  showHazardHeatmap: boolean;
+  setShowHazardHeatmap: (v: boolean) => void;
+  showSatellite: boolean;
+  setShowSatellite: (v: boolean) => void;
+  showTraffic: boolean;
+  setShowTraffic: (v: boolean) => void;
+  showSafeSpaces: boolean;
+  setShowSafeSpaces: (v: boolean) => void;
+  showEmergencyServices: boolean;
+  setShowEmergencyServices: (v: boolean) => void;
   mapStatus: MapStatus;
   mapProvider: MapProvider;
   mapError: string | null;
@@ -189,6 +199,16 @@ export const useAppStore = create<AppState>()(
       setConnectivity: (c) => set({ connectivity: c }),
 
       // Map
+      showHazardHeatmap: true,
+      setShowHazardHeatmap: (v) => set({ showHazardHeatmap: v }),
+      showSatellite: false,
+      setShowSatellite: (v) => set({ showSatellite: v }),
+      showTraffic: false,
+      setShowTraffic: (v) => set({ showTraffic: v }),
+      showSafeSpaces: false,
+      setShowSafeSpaces: (v) => set({ showSafeSpaces: v }),
+      showEmergencyServices: true,
+      setShowEmergencyServices: (v) => set({ showEmergencyServices: v }),
       mapStatus: 'loading',
       mapProvider: null,
       mapError: null,
@@ -248,6 +268,11 @@ export const useAppStore = create<AppState>()(
         serviceCategory: state.serviceCategory,
         isDesktopSidebarCollapsed: state.isDesktopSidebarCollapsed,
         isThinSidebarEnabled: state.isThinSidebarEnabled,
+        showHazardHeatmap: state.showHazardHeatmap,
+        showSatellite: state.showSatellite,
+        showTraffic: state.showTraffic,
+        showSafeSpaces: state.showSafeSpaces,
+        showEmergencyServices: state.showEmergencyServices,
       }),
     }
   )

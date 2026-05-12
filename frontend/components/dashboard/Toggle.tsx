@@ -16,7 +16,7 @@ export default function Toggle({ checked, onChange, ariaLabel }: ToggleProps) {
         onChange={(e) => onChange(e.target.checked)} 
         aria-label={ariaLabel}
       />
-      <div className="w-12 h-6 bg-slate-200 dark:bg-white/10 rounded-full peer peer-focus:ring-2 peer-focus:ring-emerald-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+      <div className="w-11 h-6 rounded-pill border border-border bg-surface-3 transition-all peer peer-focus:ring-2 peer-focus:ring-brand-light/40 peer-checked:bg-brand after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:h-[18px] after:w-[18px] after:rounded-full after:bg-white after:shadow-card after:transition-all peer-checked:after:translate-x-5"></div>
     </label>
   );
 }

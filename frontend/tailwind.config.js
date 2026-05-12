@@ -17,16 +17,27 @@ module.exports = {
         
         brand: {
           DEFAULT: "var(--brand)",
+          hover: "var(--brand-hover)",
           light: "var(--brand-light)",
           dim: "var(--brand-dim)",
+          foreground: "#FFFFFF",
         },
         
         emergency: {
           DEFAULT: "var(--emergency)",
+          dark: "var(--emergency-dark)",
           dim: "var(--emergency-dim)",
+        },
+        warning: {
+          DEFAULT: "var(--warning)",
+          dim: "var(--warning-dim)",
         },
         
         "challan-amount": "var(--challan-amount)",
+        "border-md": "var(--border-md)",
+        "border-warm": "var(--border-warm)",
+        "border-green": "var(--border-green)",
+        "border-red": "var(--border-red)",
 
         text: {
           1: "var(--text-1)",
@@ -70,6 +81,35 @@ module.exports = {
         sans: ['Inter', 'Inter Variable', '-apple-system', 'sans-serif'],
         space: ['Space Grotesk', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'SF Mono', 'ui-monospace', 'monospace'],
+      },
+      fontSize: {
+        terminal: ['11px', { lineHeight: '1.3', letterSpacing: '0.10em' }],
+        micro: ['11px', { lineHeight: '1.3', letterSpacing: '0.08em' }],
+        caption: ['12px', { lineHeight: '1.4' }],
+        body: ['14px', { lineHeight: '1.6' }],
+        'body-sm': ['13px', { lineHeight: '1.5' }],
+        h1: ['20px', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
+        h2: ['16px', { lineHeight: '1.4' }],
+        codename: ['24px', { lineHeight: '1', letterSpacing: '-0.02em' }],
+        amount: ['48px', { lineHeight: '1', letterSpacing: '-0.03em' }],
+      },
+      borderRadius: {
+        sm: 'var(--r-sm)',
+        md: 'var(--r-md)',
+        lg: 'var(--r-lg)',
+        xl: 'var(--r-xl)',
+        hero: 'var(--r-hero)',
+        pill: 'var(--r-pill)',
+        card: 'var(--r-lg)',
+        control: 'var(--r-md)',
+        panel: 'var(--r-xl)',
+      },
+      boxShadow: {
+        card: 'var(--shadow-card)',
+        panel: 'var(--shadow-panel)',
+        modal: 'var(--shadow-modal)',
+        emergency: 'var(--glow-red)',
+        brand: 'var(--glow-green)',
       },
       animation: {
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",

@@ -76,9 +76,9 @@ const CameraViewport = ({ onError }: { onError: (err: string | null) => void }) 
   }, [onError]);
 
   if (error) return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/40 backdrop-blur-sm text-slate-400 font-bold uppercase tracking-widest text-[10px] px-12 text-center gap-3">
-      <div className="p-3 rounded-full bg-slate-800/50 border border-white/5">
-        <CameraOff size={24} className="text-slate-500" />
+    <div className="absolute inset-0 flex flex-col items-center justify-center bg-bg/40 backdrop-blur-sm text-text-3 font-bold uppercase tracking-widest text-[10px] px-12 text-center gap-3">
+      <div className="p-3 rounded-full bg-surface-2/50 border border-white/5">
+        <CameraOff size={24} className="text-text-3" />
       </div>
       <span>{error} — Enable permissions in settings to activate AI diagnostics</span>
     </div>
@@ -97,8 +97,8 @@ const CameraViewport = ({ onError }: { onError: (err: string | null) => void }) 
       <div className="absolute inset-0 border-[1px] border-white/10 pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-brand/20 rounded-full animate-pulse"></div>
       <div className="absolute top-4 left-4 flex items-center gap-2">
-        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-        <span className="text-[9px] font-mono text-emerald-400 tracking-widest uppercase">Sentinel-X Active</span>
+        <div className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
+        <span className="text-[9px] font-mono text-brand-light tracking-widest uppercase">Sentinel-X Active</span>
       </div>
     </div>
   );
@@ -243,7 +243,7 @@ export default function FirstAidPage() {
   if (!mounted) return null;
 
   return (
-    <div className="relative w-full h-[100dvh] bg-[#f8fafc] dark:bg-bg text-slate-800 dark:text-text-1 overflow-hidden flex flex-col">
+    <div className="sv-page relative flex flex-col h-[100dvh] overflow-hidden">
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="First Aid Dispatch HUD" showBack={false} />
       
@@ -265,7 +265,7 @@ export default function FirstAidPage() {
             {/* Emergency Mode Toggle */}
             <button 
               onClick={() => setEmergencyMode(!emergencyMode)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 font-bold text-xs uppercase tracking-widest ${emergencyMode ? 'bg-red-500 text-white border-red-400 shadow-[0_0_20px_rgba(239,68,68,0.4)]' : 'bg-slate-100 dark:bg-white/5 text-slate-500 border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10'}`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 font-bold text-xs uppercase tracking-widest ${emergencyMode ? 'bg-red-500 text-white border-red-400 shadow-[0_0_20px_rgba(239,68,68,0.4)]' : 'bg-surface-2 dark:bg-white/5 text-text-3 border-border dark:border-white/10 hover:bg-surface-3 dark:hover:bg-white/10'}`}
             >
               <AlertTriangle size={14} className={emergencyMode ? 'animate-pulse' : ''} />
               {emergencyMode ? 'Emergency Active' : 'Normal Mode'}
@@ -281,18 +281,18 @@ export default function FirstAidPage() {
               <div className="flex items-center justify-between mb-3 px-2">
                 <div className="flex items-center gap-2">
                   <Globe size={14} className="text-brand dark:text-brand-light" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand dark:text-brand-light font-space">System Status: <span className="text-emerald-500">Operational</span></span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand dark:text-brand-light font-space">System Status: <span className="text-brand-light">Operational</span></span>
                 </div>
                 <div className="flex items-center gap-1">
-                   <div className="w-1 h-1 rounded-full bg-slate-400" />
-                   <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">L-09 Mission Ready</span>
+                   <div className="w-1 h-1 rounded-full bg-text-2" />
+                   <span className="text-[8px] font-bold text-text-3 uppercase tracking-widest">L-09 Mission Ready</span>
                 </div>
               </div>
               <div className="absolute -inset-0.5 bg-gradient-to-r from-brand/10 to-brand-light/10 rounded-lg blur opacity-20 transition duration-500 group-hover:opacity-40"></div>
-              <div className="relative bg-white/60 dark:bg-surface-2/40 backdrop-blur-xl p-3 sm:p-4 rounded-lg flex items-center gap-4 border border-slate-300/80 dark:border-white/5 focus-within:border-brand/30 transition-all duration-300">
-                <Search className="text-slate-400 dark:text-slate-500 shrink-0" size={18} />
+              <div className="relative bg-white/60 dark:bg-surface-2/40 backdrop-blur-xl p-3 sm:p-4 rounded-lg flex items-center gap-4 border border-border/80 dark:border-white/5 focus-within:border-brand/30 transition-all duration-300">
+                <Search className="text-text-3 dark:text-text-3 shrink-0" size={18} />
                 <input 
-                  className="bg-transparent border-none text-slate-800 dark:text-text-1 placeholder:text-slate-500/40 focus:ring-0 w-full text-base focus:outline-none font-medium" 
+                  className="bg-transparent border-none text-text-1 dark:text-text-1 placeholder:text-text-3/40 focus:ring-0 w-full text-base focus:outline-none font-medium" 
                   placeholder="Search emergency protocol..." 
                   type="text"
                   value={searchQuery}
@@ -347,7 +347,7 @@ export default function FirstAidPage() {
                     className={`group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 transition-all duration-300 border ${
                       isCritical 
                         ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
-                        : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-slate-300/80 dark:border-white/5 hover:border-brand/30'
+                        : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-border/80 dark:border-white/5 hover:border-brand/30'
                     } ${emergencyMode && key === 'cpr' ? 'md:col-span-2 lg:col-span-3 py-12' : ''}`}
                   >
                     {/* Status Badge */}
@@ -358,8 +358,8 @@ export default function FirstAidPage() {
                           Priority P0
                         </div>
                       )}
-                      <div className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-emerald-500/20 flex items-center gap-1">
-                        <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                      <div className="bg-brand-light/10 text-brand-dim dark:text-brand-light px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-brand-light/20 flex items-center gap-1">
+                        <div className="w-1 h-1 rounded-full bg-brand-light animate-pulse" />
                         Offline
                       </div>
                     </div>
@@ -382,7 +382,7 @@ export default function FirstAidPage() {
                           }`}>
                             {guide.title}
                           </h2>
-                          <p className={`text-slate-500 dark:text-slate-400 font-medium leading-relaxed ${
+                          <p className={`text-text-3 dark:text-text-3 font-medium leading-relaxed ${
                             emergencyMode && key === 'cpr' ? 'text-lg max-w-xl' : 'text-sm'
                           }`}>
                             {guide.subtitle}
@@ -394,7 +394,7 @@ export default function FirstAidPage() {
                         <button className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 ${
                           isCritical 
                             ? 'bg-red-500 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40' 
-                            : 'bg-slate-800 dark:bg-white/10 text-white hover:bg-slate-900 dark:hover:bg-white/20'
+                            : 'bg-surface-3 dark:bg-white/10 text-white hover:bg-surface-1 dark:hover:bg-white/20'
                         }`}>
                           Start Guide <ChevronRight size={16} />
                         </button>
@@ -416,7 +416,7 @@ export default function FirstAidPage() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="group cursor-pointer relative bg-gradient-to-br from-slate-800 to-slate-900 dark:from-surface-2 dark:to-bg rounded-xl p-8 border border-white/5 flex items-center justify-between col-span-1 md:col-span-2 lg:col-span-1 hover:border-brand/20 transition-all shadow-xl shadow-black/20"
+              className="group cursor-pointer relative bg-gradient-to-br from-surface-3 to-surface-1 dark:from-surface-2 dark:to-bg rounded-xl p-8 border border-white/5 flex items-center justify-between col-span-1 md:col-span-2 lg:col-span-1 hover:border-brand/20 transition-all shadow-xl shadow-black/20"
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -424,7 +424,7 @@ export default function FirstAidPage() {
                   <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest font-space">Inventory HUD</span>
                 </div>
                 <h3 className="text-xl font-black text-white font-space uppercase">First Aid Kit</h3>
-                <p className="text-slate-400 text-xs font-medium">Inventory checklist & alerts</p>
+                <p className="text-text-3 text-xs font-medium">Inventory checklist & alerts</p>
               </div>
               <button className="bg-white/10 p-4 rounded-lg text-white group-hover:bg-brand/80 group-hover:text-white transition-all duration-300">
                 <ChevronRight size={24} />
@@ -434,15 +434,15 @@ export default function FirstAidPage() {
         </motion.div>
 
         {/* ── AI Vision Assessment: Live Simulation ── */}
-        <section className="mt-12 mb-20 bg-white/30 dark:bg-white/[0.02] border border-slate-300 dark:border-white/5 rounded-[2.5rem] p-6 sm:p-10 shadow-sm">
+        <section className="mt-12 mb-20 bg-white/30 dark:bg-white/[0.02] border border-border dark:border-white/5 rounded-[2.5rem] p-6 sm:p-10 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Camera size={14} className="text-brand dark:text-brand-light" />
                 <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand dark:text-brand-light font-space">Diagnostic Module SVX-1</span>
               </div>
-              <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight font-space uppercase mb-2">AI Vision Assessment</h3>
-              <p className="text-slate-500 dark:text-slate-400 font-medium text-sm max-w-lg leading-relaxed">Real-time identification of trauma, bleeding patterns, and skeletal anomalies using multi-spectral computer vision.</p>
+              <h3 className="text-3xl font-black text-text-1 dark:text-white tracking-tight font-space uppercase mb-2">AI Vision Assessment</h3>
+              <p className="text-text-3 dark:text-text-3 font-medium text-sm max-w-lg leading-relaxed">Real-time identification of trauma, bleeding patterns, and skeletal anomalies using multi-spectral computer vision.</p>
             </div>
             
             <button 
@@ -454,14 +454,14 @@ export default function FirstAidPage() {
             </button>
           </div>
           
-          <div className="relative rounded-[2rem] overflow-hidden group border border-slate-300 dark:border-white/10 bg-slate-950 aspect-video sm:aspect-[16/9] sm:h-auto max-h-[500px] shadow-2xl">
+          <div className="relative rounded-[2rem] overflow-hidden group border border-border dark:border-white/10 bg-bg aspect-video sm:aspect-[16/9] sm:h-auto max-h-[500px] shadow-2xl">
             {/* Camera Viewport */}
             {isScanning ? (
               <CameraViewport onError={setCameraError} />
             ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 gap-4 bg-slate-900/40">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-text-3 gap-4 bg-bg/40">
                 <Camera size={48} className="opacity-20" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Scanner Offline. Invoke full scan to initialize.</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-text-3">Scanner Offline. Invoke full scan to initialize.</span>
               </div>
             )}
 
@@ -489,7 +489,7 @@ export default function FirstAidPage() {
                   <div className="w-10 h-10 border-b border-l border-brand/40" />
                   <div className="bg-black/80 backdrop-blur-md px-5 py-4 rounded-lg border border-white/5 flex items-center gap-4">
                      <div className="flex flex-col">
-                       <span className="text-[8px] font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Focus State</span>
+                       <span className="text-[8px] font-semibold text-text-3 uppercase tracking-widest mb-0.5">Focus State</span>
                        <span className="text-[10px] font-bold text-white font-mono">AWAITING_INPUT</span>
                      </div>
                      <div className="w-2 h-2 rounded-full bg-brand/80 animate-pulse shadow-[0_0_10px_var(--brand-dim)]" />
@@ -513,11 +513,11 @@ export default function FirstAidPage() {
             className="fixed inset-0 z-[100] bg-[#f8fafc]/90 dark:bg-bg/95 backdrop-blur-xl flex flex-col overflow-hidden"
           >
             {/* Top Navigation HUD */}
-            <div className="p-4 sm:p-6 border-b border-slate-200 dark:border-white/10 flex items-center justify-between bg-white/50 dark:bg-bg/50 backdrop-blur-md">
+            <div className="p-4 sm:p-6 border-b border-border dark:border-white/10 flex items-center justify-between bg-white/50 dark:bg-bg/50 backdrop-blur-md">
               <div className="flex items-center gap-4">
                 <button 
                   onClick={() => setActiveGuide(null)}
-                  className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/5 text-slate-600 dark:text-slate-400 transition-colors"
+                  className="p-2 rounded-full hover:bg-surface-3 dark:hover:bg-white/5 text-text-2 dark:text-text-3 transition-colors"
                 >
                   <ArrowLeft size={20} />
                 </button>
@@ -526,7 +526,7 @@ export default function FirstAidPage() {
                     <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                     <span className="text-[9px] font-semibold uppercase tracking-[0.1em] text-red-500 font-space">Live Protocol</span>
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white font-space uppercase">
+                  <h2 className="text-xl sm:text-2xl font-black text-text-1 dark:text-white font-space uppercase">
                     {GUIDES[activeGuide].title}
                   </h2>
                 </div>
@@ -542,7 +542,7 @@ export default function FirstAidPage() {
                 </a>
                 <button 
                   onClick={() => setActiveGuide(null)}
-                  className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                  className="p-2 text-text-3 hover:text-text-2 dark:hover:text-white"
                 >
                   <X size={24} />
                 </button>
@@ -565,14 +565,14 @@ export default function FirstAidPage() {
             >
               <div className="max-w-3xl mx-auto space-y-8">
                 {/* Protocol Header Card */}
-                <div className="bg-white dark:bg-surface-2 rounded-xl p-6 sm:p-8 border border-slate-300 dark:border-white/5 shadow-xl">
+                <div className="bg-white dark:bg-surface-2 rounded-xl p-6 sm:p-8 border border-border dark:border-white/5 shadow-xl">
                   <div className="flex items-start gap-6">
                     <div className="p-5 rounded-lg bg-red-500/10 text-red-500 hidden sm:block">
                       <HeartPulse size={40} />
                     </div>
                     <div>
                       <h3 className="text-sm font-semibold text-red-500 uppercase tracking-widest font-space mb-2">Instructions</h3>
-                      <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
+                      <p className="text-lg sm:text-xl text-text-2 dark:text-text-1 font-medium leading-relaxed">
                         <TypingText text={GUIDES[activeGuide].subtitle} />
                       </p>
                     </div>
@@ -580,8 +580,8 @@ export default function FirstAidPage() {
 
                   {/* CPR Metronome Integration */}
                   {activeGuide === 'cpr' && (
-                    <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col items-center">
-                      <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-4">Compression Metronome (100 BPM)</p>
+                    <div className="mt-8 pt-8 border-t border-border-md dark:border-white/5 flex flex-col items-center">
+                      <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-4">Compression Metronome (100 BPM)</p>
                       <div className="relative">
                         <motion.div 
                           animate={{ scale: [1, 1.4, 1], opacity: [0.3, 1, 0.3] }}
@@ -602,8 +602,8 @@ export default function FirstAidPage() {
                 {/* Tactical Step List */}
                 <div className="space-y-4">
                    <div className="flex items-center justify-between px-2">
-                     <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-[0.25em] font-space">Sequential Actions</h3>
-                     <span className="text-[10px] font-semibold text-emerald-500 uppercase tracking-widest">
+                     <h3 className="text-xs font-semibold text-text-3 uppercase tracking-[0.25em] font-space">Sequential Actions</h3>
+                     <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest">
                        {completedSteps.size} / {GUIDES[activeGuide].steps.length} Complete
                      </span>
                    </div>
@@ -617,14 +617,14 @@ export default function FirstAidPage() {
                       onClick={() => toggleStep(idx)}
                       className={`group cursor-pointer p-5 sm:p-6 rounded-lg border transition-all duration-300 flex gap-5 items-start ${
                         completedSteps.has(idx) 
-                          ? 'bg-emerald-50 text-emerald-900 border-emerald-200 dark:bg-emerald-500/5 dark:text-emerald-400 dark:border-emerald-500/20 opacity-60 scale-[0.98]' 
-                          : 'bg-white dark:bg-surface-2/60 dark:hover:bg-surface-2 border-slate-200 dark:border-white/5 text-slate-800 dark:text-text-1'
+                          ? 'bg-brand-light/10 text-brand border-brand-light/20 dark:bg-brand-light/ dark:text-brand-light dark:border-brand-light/20 opacity-60 scale-[0.98]' 
+                          : 'bg-white dark:bg-surface-2/60 dark:hover:bg-surface-2 border-border dark:border-white/5 text-text-1 dark:text-text-1'
                       }`}
                     >
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black flex-shrink-0 text-xs transition-colors ${
                         completedSteps.has(idx) 
-                          ? 'bg-emerald-500 text-white' 
-                          : 'bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-400'
+                          ? 'bg-brand-light text-white' 
+                          : 'bg-surface-2 dark:bg-white/10 text-text-3 dark:text-text-3'
                       }`}>
                         {completedSteps.has(idx) ? <CheckCircle2 size={16} /> : idx + 1}
                       </div>
@@ -646,7 +646,7 @@ export default function FirstAidPage() {
                 <div className="pt-8 pb-12 flex flex-col sm:flex-row gap-4 items-center justify-center">
                   <button 
                     onClick={() => setActiveGuide(null)}
-                    className="w-full sm:w-auto px-10 py-4 bg-slate-800 dark:bg-white/10 text-white font-black uppercase tracking-widest text-xs rounded-lg active:scale-95 transition-all"
+                    className="w-full sm:w-auto px-10 py-4 bg-surface-3 dark:bg-white/10 text-white font-black uppercase tracking-widest text-xs rounded-lg active:scale-95 transition-all"
                   >
                     Terminate Protocol
                   </button>

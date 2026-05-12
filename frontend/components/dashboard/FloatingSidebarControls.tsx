@@ -3,7 +3,17 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
-import { ShieldAlert } from 'lucide-react';
+import {
+  ShieldAlert,
+  Layers,
+  LocateFixed,
+  Satellite,
+  TrafficCone,
+  Shield,
+  Flame,
+  Cross,
+  X,
+} from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 
 // ── Driving Score 2.0 (High-Fidelity Gauge) ──
@@ -26,9 +36,9 @@ const DrivingScore = ({ score }: { score: number }) => {
     >
       {/* Label (Sliding out) */}
       <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-        <div className="self-center bg-white/90 dark:bg-surface-1/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-slate-200 dark:border-white/10 shadow-xl flex items-center gap-2">
+        <div className="self-center bg-white/90 dark:bg-surface-1/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-border-md dark:border-white/10 shadow-xl flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-emergency animate-pulse shadow-[0_0_8px_var(--emergency)]"></span>
-          <span className="text-[10px] font-semibold tracking-[0.1em] text-slate-700 dark:text-brand uppercase font-space">
+          <span className="text-[10px] font-semibold tracking-[0.1em] text-text-1 dark:text-brand uppercase font-space">
             Priority Vectors Detected
           </span>
         </div>
@@ -84,39 +94,96 @@ const DrivingScore = ({ score }: { score: number }) => {
   );
 };
 
+// ── Layer Toggle Item ──
+interface LayerToggleProps {
+  icon: React.ReactNode;
+  label: string;
+  active: boolean;
+  onToggle: () => void;
+  disabled?: boolean;
+  disabledReason?: string;
+  activeColor?: string;
+}
+
+const LayerToggle = ({
+  icon,
+  label,
+  active,
+  onToggle,
+  disabled = false,
+  disabledReason,
+  activeColor = 'var(--brand)',
+}: LayerToggleProps) => (
+  <button
+    role="button"
+    aria-label={`Toggle ${label} layer`}
+    aria-pressed={active}
+    aria-disabled={disabled}
+    disabled={disabled}
+    onClick={onToggle}
+    className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-left transition-all duration-200 ${
+      disabled
+        ? 'opacity-40 cursor-not-allowed'
+        : active
+          ? 'bg-brand/10 dark:bg-brand/15'
+          : 'hover:bg-white/60 dark:hover:bg-white/5'
+    }`}
+    title={disabled ? disabledReason : undefined}
+  >
+    <div
+      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+        active && !disabled ? 'text-white' : 'text-text-2'
+      }`}
+      style={active && !disabled ? { backgroundColor: activeColor } : { backgroundColor: 'var(--surface-3)' }}
+    >
+      {icon}
+    </div>
+    <div className="flex-1 min-w-0">
+      <span className={`text-sm font-semibold block ${active && !disabled ? 'text-text-1' : 'text-text-2'}`}>
+        {label}
+      </span>
+      {disabled && disabledReason && (
+        <span className="text-[10px] text-text-3 block mt-0.5">{disabledReason}</span>
+      )}
+    </div>
+    {/* Active dot indicator */}
+    <div
+      className={`w-2 h-2 rounded-full shrink-0 transition-all duration-200 ${
+        active && !disabled ? 'scale-100' : 'scale-0'
+      }`}
+      style={{ backgroundColor: activeColor }}
+    />
+  </button>
+);
+
 // ── Tactical HUD Button ──
 interface HUDButtonProps {
-  icon: string | React.ReactNode;
+  icon: React.ReactNode;
   label: string;
   color?: string;
   href?: string;
   onClick?: () => void;
-  isCustom?: boolean; // For SOS button logic
+  ariaLabel?: string;
 }
 
-const HUDButton = ({ icon, label, color = "#c5c6cd", href, onClick, isCustom }: HUDButtonProps) => {
+const HUDButton = ({ icon, label, color = "#c5c6cd", href, onClick, ariaLabel }: HUDButtonProps) => {
   const ButtonContent = (
     <motion.button
       whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.05)' }}
       whileTap={{ scale: 0.9 }}
       onClick={onClick}
-      className={`relative w-12 h-12 flex items-center justify-center rounded-full bg-white/95 dark:bg-surface-2/90 backdrop-blur-xl ring-1 ring-white/40 dark:ring-white/10 shadow-2xl transition-all group/btn ${isCustom ? '' : 'pointer-events-auto'}`}
+      aria-label={ariaLabel ?? label}
+      className="relative w-12 h-12 flex items-center justify-center rounded-full bg-white/95 dark:bg-surface-2/90 backdrop-blur-xl ring-1 ring-white/40 dark:ring-white/10 shadow-2xl transition-all group/btn pointer-events-auto"
     >
       {/* Side Label */}
       <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-0 group-hover/btn:opacity-100 transition-all duration-300 pointer-events-none translate-x-2 group-hover/btn:translate-x-0">
-        <span className="bg-white/95 dark:bg-surface-1/90 backdrop-blur-xl px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 text-[10px] font-semibold tracking-[0.15em] text-slate-800 dark:text-blue-200 uppercase whitespace-nowrap shadow-2xl font-space">
+        <span className="bg-white/95 dark:bg-surface-1/90 backdrop-blur-xl px-3 py-1.5 rounded-lg border border-border-md dark:border-white/10 text-[10px] font-semibold tracking-[0.15em] text-text-1 dark:text-brand-light uppercase whitespace-nowrap shadow-2xl font-space">
           {label}
         </span>
       </div>
 
       <div className="transition-transform duration-300 group-hover/btn:rotate-12" style={{ color }}>
-        {typeof icon === 'string' ? (
-          <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 0" }}>
-            {icon}
-          </span>
-        ) : (
-          icon
-        )}
+        {icon}
       </div>
     </motion.button>
   );
@@ -128,15 +195,32 @@ const HUDButton = ({ icon, label, color = "#c5c6cd", href, onClick, isCustom }: 
   return <div className="pointer-events-auto">{ButtonContent}</div>;
 };
 
+// ── Check if traffic API key is available ──
+const TRAFFIC_KEY_AVAILABLE = !!process.env.NEXT_PUBLIC_TOMTOM_KEY;
+
 // ── Main Dashboard HUD ──
 export default function FloatingSidebarControls() {
   const [isScanning, setIsScanning] = useState(false);
+  const [showLayersMenu, setShowLayersMenu] = useState(false);
   const drivingScore = useAppStore((state) => state.drivingScore);
+
+  // Layer states from Zustand
+  const showHazardHeatmap = useAppStore((s) => s.showHazardHeatmap);
+  const setShowHazardHeatmap = useAppStore((s) => s.setShowHazardHeatmap);
+  const showSatellite = useAppStore((s) => s.showSatellite);
+  const setShowSatellite = useAppStore((s) => s.setShowSatellite);
+  const showTraffic = useAppStore((s) => s.showTraffic);
+  const setShowTraffic = useAppStore((s) => s.setShowTraffic);
+  const showSafeSpaces = useAppStore((s) => s.showSafeSpaces);
+  const setShowSafeSpaces = useAppStore((s) => s.setShowSafeSpaces);
+  const showEmergencyServices = useAppStore((s) => s.showEmergencyServices);
+  const setShowEmergencyServices = useAppStore((s) => s.setShowEmergencyServices);
+
+  const activeLayerCount = [showSatellite, showTraffic, showSafeSpaces, showHazardHeatmap, showEmergencyServices].filter(Boolean).length;
 
   const handleRelocate = () => {
     setIsScanning(true);
     window.dispatchEvent(new CustomEvent('svai:refresh-location'));
-    // Simulate tactical scan
     setTimeout(() => setIsScanning(false), 2000);
   };
 
@@ -152,19 +236,142 @@ export default function FloatingSidebarControls() {
 
       {/* ── Control Stack ── */}
       <div className="flex flex-col gap-3">
+        <div className="relative pointer-events-auto">
+          <HUDButton
+            icon={<Layers size={20} strokeWidth={2.5} />}
+            label="Map Layers"
+            ariaLabel={`Map Layers – ${activeLayerCount} active`}
+            onClick={() => setShowLayersMenu(!showLayersMenu)}
+            color={showLayersMenu ? 'var(--brand)' : undefined}
+          />
+          {activeLayerCount > 0 && (
+            <span className="absolute -top-1 -left-1 w-5 h-5 rounded-full bg-brand text-white text-[10px] font-bold flex items-center justify-center shadow-lg pointer-events-none z-10">
+              {activeLayerCount}
+            </span>
+          )}
+        </div>
+
         <HUDButton
-          icon="my_location"
+          icon={<LocateFixed size={20} strokeWidth={2.5} />}
           label="Relocate Sentinel"
+          ariaLabel="Re-center map on current location"
           onClick={handleRelocate}
         />
 
         <HUDButton
           icon={<ShieldAlert size={20} strokeWidth={2.5} />}
           label="Emergency Protocols"
+          ariaLabel="Open emergency protocols"
           href="/emergency"
           color="var(--emergency)"
         />
       </div>
+
+      {/* ── Consolidated Layer Menu ── */}
+      <AnimatePresence>
+        {showLayersMenu && (
+          <motion.div
+            initial={{ opacity: 0, x: 20, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 20, scale: 0.95 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="absolute right-[72px] bottom-[60px] bg-white/95 dark:bg-surface-2/95 backdrop-blur-2xl border border-border-md dark:border-white/10 rounded-2xl shadow-2xl w-64 pointer-events-auto z-50 overflow-hidden"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 pt-4 pb-2">
+              <h4 className="text-xs font-bold text-text-3 uppercase tracking-[0.15em] font-space">
+                Map Layers
+              </h4>
+              <button
+                onClick={() => setShowLayersMenu(false)}
+                className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-surface-3 transition-colors text-text-3"
+                aria-label="Close layer menu"
+              >
+                <X size={14} strokeWidth={2.5} />
+              </button>
+            </div>
+
+            {/* Layer Toggles */}
+            <div className="px-2 pb-2 flex flex-col gap-0.5">
+              <LayerToggle
+                icon={<Satellite size={16} strokeWidth={2.5} />}
+                label="Satellite"
+                active={showSatellite}
+                onToggle={() => setShowSatellite(!showSatellite)}
+                activeColor="#3B82F6"
+              />
+
+              <LayerToggle
+                icon={<TrafficCone size={16} strokeWidth={2.5} />}
+                label="Traffic"
+                active={showTraffic}
+                onToggle={() => {
+                  if (TRAFFIC_KEY_AVAILABLE) setShowTraffic(!showTraffic);
+                }}
+                disabled={!TRAFFIC_KEY_AVAILABLE}
+                disabledReason="TomTom API key not configured"
+                activeColor="#F59E0B"
+              />
+
+              <LayerToggle
+                icon={<Shield size={16} strokeWidth={2.5} />}
+                label="Safe Spaces"
+                active={showSafeSpaces}
+                onToggle={() => setShowSafeSpaces(!showSafeSpaces)}
+                activeColor="var(--brand-light)"
+              />
+
+              <LayerToggle
+                icon={<Flame size={16} strokeWidth={2.5} />}
+                label="Hazard Heatmap"
+                active={showHazardHeatmap}
+                onToggle={() => setShowHazardHeatmap(!showHazardHeatmap)}
+                activeColor="var(--emergency)"
+              />
+
+              <LayerToggle
+                icon={<Cross size={16} strokeWidth={2.5} />}
+                label="Emergency Services"
+                active={showEmergencyServices}
+                onToggle={() => setShowEmergencyServices(!showEmergencyServices)}
+                activeColor="var(--brand)"
+              />
+            </div>
+
+            {/* Heatmap Legend — only shown when heatmap is active */}
+            <AnimatePresence>
+              {showHazardHeatmap && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mx-3 mb-3 pt-3 border-t border-border dark:border-white/10">
+                    <p className="text-[10px] font-semibold text-text-3 uppercase tracking-widest mb-2 font-space">
+                      Hazard Legend
+                    </p>
+                    <div className="flex flex-col gap-2 text-xs">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-emergency shadow-[0_0_8px_var(--emergency)]" />
+                        <span className="text-text-2">High Severity (S4+)</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-warning shadow-[0_0_8px_var(--warning)]" />
+                        <span className="text-text-2">Traffic &amp; Accident</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]" />
+                        <span className="text-text-2">Weather &amp; Flood</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Priority Action: SOS ── */}
       <Link href="/sos" className="pointer-events-auto mt-2">
@@ -174,6 +381,7 @@ export default function FloatingSidebarControls() {
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}
+          aria-label="Emergency SOS – tap for immediate help"
           className="relative w-16 h-16 bg-emergency rounded-full flex items-center justify-center shadow-[0_0_40px_var(--emergency)] group z-50 overflow-hidden"
         >
           {/* Multi-layered Tactical Ripples */}
@@ -192,7 +400,7 @@ export default function FloatingSidebarControls() {
             SOS
           </span>
 
-          {/* Dynamic "Scanning" Overlay effect for buttons (Optional/UX) */}
+          {/* Dynamic "Scanning" Overlay effect */}
           <AnimatePresence>
             {isScanning && (
               <motion.div

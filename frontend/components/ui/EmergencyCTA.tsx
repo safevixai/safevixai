@@ -13,7 +13,7 @@ export function EmergencyCTA({ title, subtitle, icon, className = '', ...props }
       className={`
         relative w-full overflow-hidden rounded-xl bg-emergency p-4 text-left text-white shadow-lg
         transition-transform active:scale-[0.98]
-        hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-emergency focus:ring-offset-2 focus:ring-offset-bg
+        hover:bg-emergency-dark focus:outline-none focus:ring-2 focus:ring-emergency focus:ring-offset-2 focus:ring-offset-bg
         ${className}
       `}
       {...props}

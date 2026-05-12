@@ -201,9 +201,9 @@ export default function ReportPage() {
   const accuracyLabel = formatAccuracyLabel(gpsLocation);
   const accuracyMeters = gpsLocation?.accuracy ?? 15;
   const accuracyColor = accuracyMeters < 10 
-    ? 'text-emerald-500 dark:text-emerald-400' 
+    ? 'text-brand-light dark:text-brand-light' 
     : accuracyMeters < 30 
-      ? 'text-amber-500 dark:text-amber-400' 
+      ? 'text-warning dark:text-amber-400' 
       : 'text-red-500 dark:text-red-400';
   const approximateLocation = isApproximateLocation(gpsLocation);
   const photoHint = photoFile ? `${photoFile.name} - ${(photoFile.size / (1024 * 1024)).toFixed(2)} MB` : 'JPG, PNG, or WEBP. Optional, but it speeds up verification.';
@@ -259,7 +259,7 @@ export default function ReportPage() {
   if (!mounted) return null;
 
   return (
-    <div className="relative min-h-dvh overflow-x-hidden bg-slate-50 text-slate-900 dark:bg-[#020817] dark:text-text-1">
+    <div className="sv-page relative overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] hidden h-[38rem] w-[38rem] rounded-full bg-cyan-500/10 blur-[150px] dark:block" />
         <div className="absolute left-[22%] top-[4%] hidden h-[20rem] w-[20rem] rounded-full bg-violet-500/8 blur-[120px] dark:block" />
@@ -290,10 +290,10 @@ export default function ReportPage() {
             )}
           </div>
           <div className="flex flex-col">
-            <h1 className="text-2xl font-black tracking-tight text-slate-900 uppercase font-space leading-tight dark:bg-gradient-to-r dark:from-white dark:via-slate-100 dark:to-cyan-200 dark:bg-clip-text dark:text-transparent sm:text-3xl">
+            <h1 className="text-2xl font-black tracking-tight text-text-1 uppercase font-space leading-tight dark:bg-gradient-to-r dark:from-white dark:via-text-1 dark:to-cyan-200 dark:bg-clip-text dark:text-transparent sm:text-3xl">
               Real-Time Road Hazard Reporting
             </h1>
-            <p className="max-w-2xl text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider opacity-70">
+            <p className="max-w-2xl text-xs sm:text-sm font-medium text-text-3 mt-1 uppercase tracking-wider opacity-70">
               Uplinking live road intel to matching authorities. Precision reporting for safer transit networks.
             </p>
           </div>
@@ -310,36 +310,36 @@ export default function ReportPage() {
               <SurfaceCard>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Location Lock</div>
-                    <h2 className="mt-2 text-xl font-black tracking-tight text-slate-900 dark:text-slate-100">{locationLabel}</h2>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Location Lock</div>
+                    <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{locationLabel}</h2>
                   </div>
-                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 transition hover:border-brand/20 hover:bg-brand/8 hover:text-brand active:scale-95 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200 dark:hover:border-brand/20 dark:hover:bg-brand/10 dark:hover:text-white" aria-label="Refresh location">
+                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2 transition hover:border-brand/20 hover:bg-brand/8 hover:text-brand active:scale-95" aria-label="Refresh location">
                     {locating ? <Loader2 size={18} className="animate-spin" /> : <RefreshCcw size={18} />}
                   </button>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{gpsError ?? locationSubtitle}</p>
+                <p className="mt-3 text-sm leading-6 text-text-2">{gpsError ?? locationSubtitle}</p>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800/80 dark:bg-slate-950/45">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Accuracy</div>
-                    <div className={cx("mt-2 text-sm font-semibold", gpsLocation ? accuracyColor : "text-slate-800 dark:text-slate-100")}>{accuracyLabel ?? 'Pending device fix'}</div>
+                  <div className="rounded-lg border border-border bg-surface-2 px-4 py-3">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Accuracy</div>
+                    <div className={cx("mt-2 text-sm font-semibold", gpsLocation ? accuracyColor : "text-text-1")}>{accuracyLabel ?? 'Pending device fix'}</div>
                   </div>
-                  <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800/80 dark:bg-slate-950/45">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Coordinates</div>
-                    <div className="mt-2 text-sm font-semibold text-slate-800 dark:text-slate-100">{gpsLocation ? `${gpsLocation.lat.toFixed(5)}, ${gpsLocation.lon.toFixed(5)}` : '--'}</div>
+                  <div className="rounded-lg border border-border bg-surface-2 px-4 py-3">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Coordinates</div>
+                    <div className="mt-2 text-sm font-semibold text-text-1">{gpsLocation ? `${gpsLocation.lat.toFixed(5)}, ${gpsLocation.lon.toFixed(5)}` : '--'}</div>
                   </div>
                 </div>
-                {approximateLocation && gpsLocation ? <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-[linear-gradient(180deg,rgba(245,158,11,0.14),rgba(120,53,15,0.16))] dark:text-amber-100">Your browser is giving an approximate location. You can still report, but a sharper GPS fix will improve road ownership matching.</div> : null}
+                {approximateLocation && gpsLocation ? <div className="mt-4 rounded-lg border border-warning/20 bg-warning/10 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-[linear-gradient(180deg,rgba(245,158,11,0.14),rgba(120,53,15,0.16))] dark:text-warning">Your browser is giving an approximate location. You can still report, but a sharper GPS fix will improve road ownership matching.</div> : null}
               </SurfaceCard>
 
               <SurfaceCard>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Evidence Capture</div>
-                    <h2 className="mt-2 text-xl font-black tracking-tight text-slate-900 dark:text-slate-100">Optional photo uplink</h2>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Evidence Capture</div>
+                    <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">Optional photo uplink</h2>
                   </div>
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-600 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200"><Camera size={18} /></div>
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2"><Camera size={18} /></div>
                 </div>
-                <label htmlFor="hazard-photo" className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center transition hover:border-brand/30 hover:bg-brand/70 dark:border-slate-800/80 dark:bg-slate-950/45 dark:hover:border-brand/20 dark:hover:bg-brand/10 relative overflow-hidden group">
+                <label htmlFor="hazard-photo" className="mt-4 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-border bg-surface-2 px-5 py-8 text-center transition hover:border-brand/30 hover:bg-brand/70 dark:hover:border-brand/20 dark:hover:bg-brand/10 relative overflow-hidden group">
                   {photoBlobUrl && (
                     <div className="absolute inset-0 w-full h-full bg-black/60 z-0">
                       <Image src={photoBlobUrl} alt="Preview" fill unoptimized className="object-cover opacity-60 group-hover:opacity-40 transition" />
@@ -347,8 +347,8 @@ export default function ReportPage() {
                   )}
                   <div className="relative z-10 flex flex-col items-center">
                     <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-brand/15 text-brand dark:bg-brand/16 dark:text-white shadow-sm"><Upload size={22} /></div>
-                    <div className={`mt-4 text-sm font-semibold uppercase tracking-[0.18em] ${photoBlobUrl ? 'text-white' : 'text-slate-800 dark:text-slate-100'}`}>{photoFile ? 'Replace photo' : 'Attach road image'}</div>
-                    <p className={`mt-2 max-w-xs text-sm ${photoBlobUrl ? 'text-slate-200' : 'text-slate-500 dark:text-slate-400'}`}>{photoHint}</p>
+                    <div className={`mt-4 text-sm font-semibold uppercase tracking-[0.18em] ${photoBlobUrl ? 'text-white' : 'text-text-1'}`}>{photoFile ? 'Replace photo' : 'Attach road image'}</div>
+                    <p className={`mt-2 max-w-xs text-sm ${photoBlobUrl ? 'text-text-1' : 'text-text-3'}`}>{photoHint}</p>
                   </div>
                 </label>
                 <input id="hazard-photo" type="file" accept="image/jpeg,image/png,image/webp" className="hidden" onChange={handlePhotoChange} />
@@ -360,29 +360,29 @@ export default function ReportPage() {
             <SurfaceCard>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Report Dispatch Form</div>
-                  <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 dark:text-slate-100">Flag the hazard with live authority routing</h2>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Report Dispatch Form</div>
+                  <h2 className="mt-2 text-2xl font-black tracking-tight text-text-1">Flag the hazard with live authority routing</h2>
                 </div>
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-100"><Send size={18} /></div>
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2"><Send size={18} /></div>
               </div>
 
               {!submittedReport ? (
                 <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Hazard type</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Hazard type</div>
                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
                       {ISSUE_OPTIONS.map(([value, label, detail], index) => {
                         const active = value === selectedType;
                         const activeAccent = [
-                          'border-amber-200 bg-amber-50 text-amber-950 dark:border-amber-400/20 dark:bg-amber-500/10 dark:text-amber-50',
+                          'border-warning/20 bg-warning/10 text-amber-950 dark:border-amber-400/20 dark:bg-warning/10 dark:text-amber-50',
                           'border-orange-200 bg-orange-50 text-orange-950 dark:border-orange-400/20 dark:bg-orange-500/10 dark:text-orange-50',
                           'border-cyan-200 bg-cyan-50 text-cyan-950 dark:border-cyan-400/20 dark:bg-cyan-500/10 dark:text-cyan-50',
-                          'border-brand/20 bg-brand/[0.08] text-slate-900 dark:border-brand/20 dark:bg-brand/10 dark:text-blue-50',
+                          'border-brand/20 bg-brand/[0.08] text-text-1 dark:border-brand/20 dark:bg-brand/10 dark:text-text-1',
                           'border-violet-200 bg-violet-50 text-violet-950 dark:border-violet-400/20 dark:bg-violet-500/10 dark:text-violet-50',
                           'border-rose-200 bg-rose-50 text-rose-950 dark:border-rose-400/20 dark:bg-rose-500/10 dark:text-rose-50',
                         ][index];
                         return (
-                          <button key={value} type="button" onClick={() => setSelectedType(value)} className={cx('rounded-[1.5rem] border px-4 py-4 text-left transition', active ? activeAccent : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-200 dark:hover:border-slate-700 dark:hover:bg-slate-950/80')}>
+                          <button key={value} type="button" onClick={() => setSelectedType(value)} className={cx('rounded-[1.5rem] border px-4 py-4 text-left transition', active ? activeAccent : 'border-border bg-surface-2 text-text-2 hover:border-border hover:bg-white dark:hover:border-white/10 dark:hover:bg-surface-3')}>
                             <div className="text-sm font-semibold uppercase tracking-[0.16em]">{label}</div>
                             <p className="mt-2 text-sm font-medium opacity-80">{detail}</p>
                           </button>
@@ -393,14 +393,14 @@ export default function ReportPage() {
 
                   <div>
                     <div className="flex items-center justify-between gap-3">
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Severity</div>
-                      <div className="text-sm font-semibold text-slate-600 dark:text-slate-300">{severityMeta[1]} - {severityMeta[2]}</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Severity</div>
+                      <div className="text-sm font-semibold text-text-2">{severityMeta[1]} - {severityMeta[2]}</div>
                     </div>
                     <div className="mt-3 grid grid-cols-5 gap-2">
                       {SEVERITY_OPTIONS.map(([value, label]) => {
                         const active = value === severity;
                         return (
-                          <button key={value} type="button" onClick={() => setSeverity(value)} className={cx('rounded-lg border px-3 py-4 text-center transition', active ? value >= 4 ? 'border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/20' : 'border-brand bg-brand/80 text-white shadow-lg shadow-brand/20' : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-100')}>
+                          <button key={value} type="button" onClick={() => setSeverity(value)} className={cx('rounded-lg border px-3 py-4 text-center transition', active ? value >= 4 ? 'border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/20' : 'border-brand bg-brand/80 text-white shadow-lg shadow-brand/20' : 'border-border bg-surface-2 text-text-2 hover:border-border dark:text-text-1')}>
                             <div className="text-lg font-black leading-none">{value}</div>
                             <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em]">{label}</div>
                           </button>
@@ -411,61 +411,61 @@ export default function ReportPage() {
 
                   <div>
                     <div className="flex items-center justify-between gap-3">
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Notes for the authority desk</div>
-                      <div className="text-xs font-semibold text-slate-400 dark:text-slate-500">{notes.trim().length}/480</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Notes for the authority desk</div>
+                      <div className="text-xs font-semibold text-text-3">{notes.trim().length}/480</div>
                     </div>
-                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder="Describe lane blockage, vehicle risk, traffic density, or how the hazard presents on the road." className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-medium text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand/40 focus:bg-white dark:border-slate-800/80 dark:bg-slate-950/45 dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-brand/40 dark:focus:bg-slate-950/75" />
+                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder="Describe lane blockage, vehicle risk, traffic density, or how the hazard presents on the road." className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-4 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-white dark:focus:border-brand/40 dark:focus:bg-surface-3" />
                   </div>
 
-                  {submitError ? <div className="rounded-[1.5rem] border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-900 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-100">{submitError}</div> : null}
+                  {submitError ? <div className="rounded-[1.5rem] border border-emergency/20 bg-emergency/10 px-4 py-3 text-sm font-semibold text-red-900 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-100">{submitError}</div> : null}
 
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <button type="submit" disabled={submitting || !gpsLocation || !selectedType} className="inline-flex flex-1 items-center justify-center gap-3 rounded-[1.6rem] bg-gradient-to-r from-orange-500 via-rose-500 to-red-500 px-5 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_24px_80px_rgba(239,68,68,0.24)] transition hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0">
                       {submitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                       {submitting ? 'Submitting...' : 'Submit live report'}
                     </button>
-                    <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-3 rounded-[1.6rem] border border-slate-200 bg-slate-100 px-5 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-slate-300 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20 dark:hover:bg-white/10">
+                    <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-3 rounded-[1.6rem] border border-border bg-surface-2 px-5 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-text-2 transition hover:border-border hover:bg-white dark:hover:border-white/20 dark:hover:bg-white/10">
                       <RefreshCcw size={18} />Reset
                     </button>
                   </div>
                 </form>
               ) : (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-8 flex flex-col items-center justify-center text-center py-10">
-                  <div className="w-24 h-24 rounded-full bg-emerald-500/20 flex items-center justify-center animate-pulse mb-6">
-                    <CheckCircle2 size={48} className="text-emerald-500" />
+                  <div className="w-24 h-24 rounded-full bg-brand-light/20 flex items-center justify-center animate-pulse mb-6">
+                    <CheckCircle2 size={48} className="text-brand-light" />
                   </div>
-                  <h3 className="text-3xl font-black text-slate-900 dark:text-white font-space tracking-tight">Report Uplinked</h3>
-                  <p className="mt-3 text-slate-500 max-w-sm">Your hazard report has been successfully dispatched to the regional authority dashboard.</p>
+                  <h3 className="text-3xl font-black text-text-1 font-space tracking-tight">Report Uplinked</h3>
+                  <p className="mt-3 text-text-3 max-w-sm">Your hazard report has been successfully dispatched to the regional authority dashboard.</p>
                 </motion.div>
               )}
             </SurfaceCard>
             <AnimatePresence initial={false}>
               {submittedReport ? (
                 <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-                  <SurfaceCard className="border-emerald-200/80 bg-emerald-50/90 dark:border-emerald-400/20 dark:bg-emerald-500/10">
+                  <SurfaceCard className="border-brand-light/20 bg-brand-light/10 dark:border-brand-light/20 dark:bg-brand-light/10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-500/20 dark:text-emerald-100"><span className="h-1.5 w-1.5 rounded-full bg-current" />Report uplinked</span>
-                        <h3 className="mt-3 text-2xl font-black tracking-tight text-emerald-950 dark:text-emerald-50">Complaint reference {submittedReport.complaintRef ?? submittedReport.uuid}</h3>
-                        <p className="mt-2 text-sm font-semibold text-emerald-900/80 dark:text-emerald-100/80">The report is now tagged to {submittedReport.authorityName} for the {submittedReport.roadType} network.</p>
+                        <span className="inline-flex items-center gap-2 rounded-full border border-brand-light/20 bg-brand-light/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:border-brand-light/20 dark:bg-brand-light/10 dark:text-brand-light"><span className="h-1.5 w-1.5 rounded-full bg-current" />Report uplinked</span>
+                        <h3 className="mt-3 text-2xl font-black tracking-tight text-text-1 dark:text-brand-light">Complaint reference {submittedReport.complaintRef ?? submittedReport.uuid}</h3>
+                        <p className="mt-2 text-sm font-semibold text-text-2 dark:text-brand-light">The report is now tagged to {submittedReport.authorityName} for the {submittedReport.roadType} network.</p>
                       </div>
-                      <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-lg shadow-emerald-600/25"><CheckCircle2 size={22} /></div>
+                      <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-brand text-white shadow-lg shadow-brand/20"><CheckCircle2 size={22} /></div>
                     </div>
                     <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-lg border border-emerald-200/70 bg-white/80 px-4 py-3 dark:border-emerald-400/15 dark:bg-emerald-950/20">
-                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700/70 dark:text-emerald-100/70">Authority desk</div>
-                        <div className="mt-2 text-lg font-black text-emerald-950 dark:text-emerald-50">{submittedReport.authorityName}</div>
-                        <a href={`tel:${submittedReport.authorityPhone}`} className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 dark:text-emerald-100"><Phone size={14} />{submittedReport.authorityPhone}</a>
+                      <div className="rounded-lg border border-brand-light/20 bg-white/80 px-4 py-3 dark:border-brand-light/20 dark:bg-brand/10">
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">Authority desk</div>
+                        <div className="mt-2 text-lg font-black text-text-1 dark:text-brand-light">{submittedReport.authorityName}</div>
+                        <a href={`tel:${submittedReport.authorityPhone}`} className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand underline decoration-brand-light underline-offset-4 dark:text-brand-light"><Phone size={14} />{submittedReport.authorityPhone}</a>
                       </div>
-                      <div className="rounded-lg border border-emerald-200/70 bg-white/80 px-4 py-3 dark:border-emerald-400/15 dark:bg-emerald-950/20">
-                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700/70 dark:text-emerald-100/70">Tagged road asset</div>
-                        <div className="mt-2 text-lg font-black text-emerald-950 dark:text-emerald-50">{[submittedReport.roadNumber, submittedReport.roadName].filter(Boolean).join(' - ') || submittedReport.roadType}</div>
-                        <div className="mt-2 text-sm font-semibold text-emerald-900/80 dark:text-emerald-100/80">{submittedReport.roadType}</div>
+                      <div className="rounded-lg border border-brand-light/20 bg-white/80 px-4 py-3 dark:border-brand-light/20 dark:bg-brand/10">
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">Tagged road asset</div>
+                        <div className="mt-2 text-lg font-black text-text-1 dark:text-brand-light">{[submittedReport.roadNumber, submittedReport.roadName].filter(Boolean).join(' - ') || submittedReport.roadType}</div>
+                        <div className="mt-2 text-sm font-semibold text-text-2 dark:text-brand-light">{submittedReport.roadType}</div>
                       </div>
                     </div>
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                      {portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-500"><Navigation size={16} />Open complaint portal</a> : null}
-                      <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-emerald-800 transition hover:border-emerald-400 dark:border-emerald-400/15 dark:bg-emerald-950/20 dark:text-emerald-100 dark:hover:bg-emerald-950/35"><RefreshCcw size={16} />File another report</button>
+                      {portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-brand/20 transition hover:bg-brand-light"><Navigation size={16} />Open complaint portal</a> : null}
+                      <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-light/20 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-brand transition hover:border-brand-light dark:border-brand-light/20 dark:bg-brand/10 dark:text-brand-light dark:hover:bg-brand/20"><RefreshCcw size={16} />File another report</button>
                     </div>
                   </SurfaceCard>
                 </motion.div>
@@ -475,45 +475,45 @@ export default function ReportPage() {
             <SurfaceCard>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Live Authority Match</div>
-                  <h2 className="mt-2 text-xl font-black tracking-tight text-slate-900 dark:text-slate-100">{reportAuthority ?? 'Waiting for road ownership lookup'}</h2>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Live Authority Match</div>
+                  <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{reportAuthority ?? 'Waiting for road ownership lookup'}</h2>
                 </div>
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-100">{contextLoading ? <Loader2 size={18} className="animate-spin" /> : <ShieldAlert size={18} />}</div>
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2">{contextLoading ? <Loader2 size={18} className="animate-spin" /> : <ShieldAlert size={18} />}</div>
               </div>
-              {contextError ? <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-[linear-gradient(180deg,rgba(245,158,11,0.14),rgba(120,53,15,0.16))] dark:text-amber-100">{contextError}</div> : null}
-              <div className="mt-4 divide-y divide-slate-100 dark:divide-slate-800/70">
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Road</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{[reportRoadNumber, reportRoadName].filter(Boolean).join(' - ') || reportType || 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Authority</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{reportAuthority ?? 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Helpline</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{helpline ? <a href={`tel:${helpline}`} className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">{helpline}</a> : 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Portal</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">Open official complaint portal</a> : 'Portal not listed'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Escalation</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{authorityPreview?.escalationPath ?? 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Executive engineer</div><div className="max-w-[65%] text-right text-sm font-semibold text-slate-800 dark:text-slate-100">{authorityPreview?.execEngineer ?? infrastructure?.execEngineer ?? 'Not available'}</div></div>
+              {contextError ? <div className="mt-4 rounded-lg border border-warning/20 bg-warning/10 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-[linear-gradient(180deg,rgba(245,158,11,0.14),rgba(120,53,15,0.16))] dark:text-warning">{contextError}</div> : null}
+              <div className="mt-4 divide-y divide-border">
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Road</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{[reportRoadNumber, reportRoadName].filter(Boolean).join(' - ') || reportType || 'Not available'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Authority</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{reportAuthority ?? 'Not available'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Helpline</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{helpline ? <a href={`tel:${helpline}`} className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">{helpline}</a> : 'Not available'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Portal</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">Open official complaint portal</a> : 'Portal not listed'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Escalation</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{authorityPreview?.escalationPath ?? 'Not available'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Executive engineer</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{authorityPreview?.execEngineer ?? infrastructure?.execEngineer ?? 'Not available'}</div></div>
               </div>
             </SurfaceCard>
 
             <SurfaceCard>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Road Asset Intelligence</div>
-                  <h2 className="mt-2 text-xl font-black tracking-tight text-slate-900 dark:text-slate-100">{reportRoadNumber ?? reportRoadName ?? 'Infrastructure metadata pending'}</h2>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Road Asset Intelligence</div>
+                  <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{reportRoadNumber ?? reportRoadName ?? 'Infrastructure metadata pending'}</h2>
                 </div>
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-slate-100 text-slate-700 dark:border-slate-800/80 dark:bg-slate-950/55 dark:text-slate-100"><MapPin size={18} /></div>
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2"><MapPin size={18} /></div>
               </div>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800/80 dark:bg-slate-950/45"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Road type</div><div className="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100">{reportType ?? 'Waiting for live match'}</div></div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800/80 dark:bg-slate-950/45"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Contractor</div><div className="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100">{infrastructure?.contractorName ?? submittedReport?.contractorName ?? 'Not published'}</div></div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800/80 dark:bg-slate-950/45"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Budget sanctioned</div><div className="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100">{formatMoney(submittedReport?.budgetSanctioned ?? infrastructure?.budgetSanctioned ?? null)}</div></div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800/80 dark:bg-slate-950/45"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Next maintenance</div><div className="mt-2 text-sm font-semibold text-slate-900 dark:text-slate-100">{submittedReport?.nextMaintenance ?? infrastructure?.nextMaintenance ?? authorityPreview?.nextMaintenance ?? 'Not scheduled'}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Road type</div><div className="mt-2 text-sm font-semibold text-text-1">{reportType ?? 'Waiting for live match'}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Contractor</div><div className="mt-2 text-sm font-semibold text-text-1">{infrastructure?.contractorName ?? submittedReport?.contractorName ?? 'Not published'}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Budget sanctioned</div><div className="mt-2 text-sm font-semibold text-text-1">{formatMoney(submittedReport?.budgetSanctioned ?? infrastructure?.budgetSanctioned ?? null)}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Next maintenance</div><div className="mt-2 text-sm font-semibold text-text-1">{submittedReport?.nextMaintenance ?? infrastructure?.nextMaintenance ?? authorityPreview?.nextMaintenance ?? 'Not scheduled'}</div></div>
               </div>
             </SurfaceCard>
 
             {/* Powered by SafeVixAI notice */}
-            <SurfaceCard className="border-slate-200/80 bg-slate-100/80 dark:border-slate-800/80 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.9),rgba(30,41,59,0.7))]">
+            <SurfaceCard className="border-border">
               <div className="flex items-start gap-3">
-                <div className="mt-0.5 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900"><ShieldAlert size={18} /></div>
+                <div className="mt-0.5 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand text-white dark:bg-brand-light dark:text-text-1"><ShieldAlert size={18} /></div>
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">SafeVixAI Platform</div>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">Reports are dispatched to the correct road-owning authority using live GPS coordinates, real-time infrastructure data, and India&apos;s road ownership database. Your report helps make roads safer.</p>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-3">SafeVixAI Platform</div>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-text-2">Reports are dispatched to the correct road-owning authority using live GPS coordinates, real-time infrastructure data, and India&apos;s road ownership database. Your report helps make roads safer.</p>
                 </div>
               </div>
             </SurfaceCard>
@@ -522,13 +522,13 @@ export default function ReportPage() {
       </main>
 
       <div className="fixed right-4 top-[92px] z-30 flex flex-col gap-3 lg:right-8">
-        <button type="button" onClick={refresh} className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-white/75 text-slate-700 shadow-[0_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-brand dark:border-slate-800/80 dark:bg-slate-950/80 dark:text-slate-100 dark:shadow-[0_20px_40px_rgba(2,6,23,0.4)]" aria-label="Refresh live location">
+        <button type="button" onClick={refresh} className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-border bg-surface-1/75 text-text-2 shadow-[0_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-brand" aria-label="Refresh live location">
           {locating ? <Loader2 size={20} className="animate-spin" /> : <Navigation size={20} />}
         </button>
       </div>
 
       <div className="fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] right-4 z-30 lg:hidden">
-        <Link href="/locator" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/85 px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-800 shadow-xl backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/80 dark:text-slate-100">
+        <Link href="/locator" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-1/85 px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-text-1 shadow-xl backdrop-blur-xl">
           <Mic size={16} />Nearby help
         </Link>
       </div>

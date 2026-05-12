@@ -18,7 +18,7 @@ const MapBackground = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="absolute inset-0 bg-slate-200/50 dark:bg-slate-800/50 animate-pulse flex items-center justify-center">
+      <div className="absolute inset-0 bg-surface-3/50 dark:bg-surface-3/50 animate-pulse flex items-center justify-center">
         <div className="w-12 h-12 rounded-full border-4 border-brand/20 border-t-brand animate-spin" />
       </div>
     )
@@ -44,17 +44,17 @@ export default function V2Dashboard() {
     secure: {
       label: 'Secure Region',
       sub: `No critical anomalies in ${serviceSearchMeta.radiusUsed ? (serviceSearchMeta.radiusUsed / 1000).toFixed(1) : '5.0'}km radius`,
-      icon: <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
-      bg: 'bg-emerald-500/10 border-emerald-500/20',
-      iconBg: 'bg-emerald-500/20',
-      text: 'text-emerald-700 dark:text-emerald-300',
-      sub_text: 'text-emerald-600/80 dark:text-emerald-400/80',
+      icon: <ShieldCheck className="w-5 h-5 text-brand-dim dark:text-brand-light" />,
+      bg: 'bg-brand-light/10 border-brand-light/20',
+      iconBg: 'bg-brand-light/20',
+      text: 'text-brand dark:text-brand-light',
+      sub_text: 'text-brand/80 dark:text-brand-light/80',
     },
     caution: {
       label: 'Caution Zone',
       sub: `${openIssues} active hazard${openIssues > 1 ? 's' : ''} nearby — proceed with care`,
-      icon: <AlertTriangle className="w-5 h-5 text-amber-500" />,
-      bg: 'bg-amber-500/10 border-amber-500/20',
+      icon: <AlertTriangle className="w-5 h-5 text-warning" />,
+      bg: 'bg-warning/10 border-warning/20',
       iconBg: 'bg-amber-500/20',
       text: 'text-amber-700 dark:text-amber-300',
       sub_text: 'text-amber-600/80 dark:text-amber-400/80',

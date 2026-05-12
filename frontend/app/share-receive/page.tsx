@@ -114,7 +114,7 @@ function ShareReceiveInner() {
           </div>
           <div className="text-left">
             <p className="text-[11px] font-black text-brand-light uppercase tracking-[0.25em]">SafeVixAI</p>
-            <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Share Target Active</p>
+            <p className="text-[9px] font-bold text-text-2 uppercase tracking-widest">Share Target Active</p>
           </div>
         </div>
 
@@ -125,7 +125,7 @@ function ShareReceiveInner() {
             <p className="text-sm font-bold text-white uppercase tracking-wider">
               Parsing shared location...
             </p>
-            <p className="text-[10px] text-slate-500 uppercase tracking-widest">
+            <p className="text-[10px] text-text-2 uppercase tracking-widest">
               Extracting GPS from shared content
             </p>
           </div>
@@ -142,7 +142,7 @@ function ShareReceiveInner() {
             <p className="text-[11px] font-mono text-brand-light">
               {parsedCoords.lat}, {parsedCoords.lon}
             </p>
-            <p className="text-[10px] text-slate-500 uppercase tracking-widest">
+            <p className="text-[10px] text-text-2 uppercase tracking-widest">
               Activating Emergency Locator...
             </p>
           </div>
@@ -150,13 +150,13 @@ function ShareReceiveInner() {
 
         {status === 'no-gps' && (
           <div className="flex flex-col items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-amber-500/10 border-2 border-amber-500/30 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-warning/10 border-2 border-amber-500/30 flex items-center justify-center">
               <ExternalLink size={28} className="text-amber-400" />
             </div>
             <p className="text-sm font-bold text-white uppercase tracking-wider">
               No GPS Coordinates Found
             </p>
-            <p className="text-[10px] text-slate-500 uppercase tracking-widest leading-relaxed max-w-xs">
+            <p className="text-[10px] text-text-2 uppercase tracking-widest leading-relaxed max-w-xs">
               Redirecting to locator — your device GPS will be used instead
             </p>
           </div>

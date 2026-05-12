@@ -73,17 +73,7 @@ const BottomNav = memo(function BottomNav() {
                   : 'text-text-2 hover:text-brand-light'
                   }`}
               >
-                {/* Dynamically Render Lucide Node or Material Symbol */}
-                {typeof item.icon === 'string' ? (
-                  <span
-                    className="material-symbols-outlined text-[24px]"
-                    style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}
-                  >
-                    {item.icon}
-                  </span>
-                ) : (
-                  item.icon
-                )}
+                {item.icon}
               </motion.div>
 
               {/* Persistent Text Label */}

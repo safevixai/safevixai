@@ -191,9 +191,7 @@ const SystemSidebar = memo(function SystemSidebar() {
                   transition={{ repeat: Infinity, duration: 2 }}
                   className="absolute inset-0 bg-white/10"
                 />
-                <span className="material-symbols-outlined text-3xl font-black relative z-10" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  sos
-                </span>
+                <ShieldAlert className="w-8 h-8 relative z-10 text-white" strokeWidth={3} />
                 <span className="relative z-10 tracking-widest uppercase font-mono">System SOS</span>
               </Link>
               <p className="text-center text-[10px] font-bold text-text-3 mt-4 tracking-tighter uppercase font-mono">

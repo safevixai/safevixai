@@ -5,6 +5,33 @@
 
 ---
 
+## Current Agent Brief - 2026-05-12
+
+Treat this section as the operational truth before changing code.
+
+- Frontend build currently passes with `npm run build` from `frontend/`.
+- Chatbot smoke tests currently pass with `python -m pytest tests/test_voice.py tests/test_e2e.py -q` from `chatbot_service/`.
+- The app is not yet fully enterprise-polished: a style audit still finds legacy Tailwind color tokens, arbitrary hex/rgb classes, one raw `<img>`, and the Google Material Symbols stylesheet.
+- Assistant voice input is partially implemented, but not end-to-end complete. The chat input records with `MediaRecorder`, but it calls `/api/v1/speech/translate`; the chatbot service exposes `/speech/translate`.
+- The frontend must use `NEXT_PUBLIC_CHATBOT_URL` through `frontend/lib/public-env.ts`. Do not invent `NEXT_PUBLIC_CHATBOT_BASE_URL`.
+- Speech language mapping is incomplete. UI language codes like `hi` and `ta` must be mapped to backend speech model codes such as `hin` and `tam` before calling the speech endpoint.
+- Backend speech is speech-to-text / speech translation only. There is no backend text-to-speech endpoint yet.
+- Assistant voice output uses browser `speechSynthesis`; it must set the utterance language from the selected language, not hardcode `en-IN`.
+- Keep all safety-critical flows intact: 112, 102, 100, 1033, floating SOS, crash countdown, offline SOS queue, profile QR emergency card, map clustering, and hazard heatmap.
+
+Speech endpoint truth:
+
+```text
+POST /speech/translate
+GET  /speech/status
+POST /api/v1/chat/
+POST /api/v1/chat/stream
+```
+
+Do not document or call `/api/v1/speech/*` unless the backend router is explicitly changed.
+
+---
+
 ## Identity
 
 **SafeVixAI** is a full-stack, AI-powered road safety PWA for the IIT Madras Road Safety Hackathon 2026.

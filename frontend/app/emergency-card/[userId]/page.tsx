@@ -60,7 +60,7 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
  </div>
  <div className="text-left">
  <p className="text-[10px] font-black text-brand-light uppercase tracking-[0.25em]">SafeVixAI</p>
- <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Emergency Protocol</p>
+ <p className="text-[8px] font-bold text-text-2 uppercase tracking-widest">Emergency Protocol</p>
  </div>
  </div>
  <div className="flex items-center justify-center gap-2">
@@ -87,7 +87,7 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
 
  {/* Person info */}
  <div className="px-6 pt-6 pb-4">
- <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">Patient / Operator</p>
+ <p className="text-[9px] font-bold text-text-2 uppercase tracking-widest mb-1">Patient / Operator</p>
  <h1 className="text-3xl font-black text-white uppercase tracking-tight leading-none mb-1">
  {name || <span className="text-white/20">Unknown</span>}
  </h1>
@@ -113,12 +113,12 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
  </div>
 
  {/* Vehicle */}
- <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex flex-col gap-2">
- <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
- <Car size={16} className="text-emerald-400" />
+ <div className="p-4 rounded-lg bg-brand-light/10 border border-brand-light/20 flex flex-col gap-2">
+ <div className="w-8 h-8 rounded-lg bg-brand-light/ flex items-center justify-center">
+ <Car size={16} className="text-brand-light" />
  </div>
  <div>
- <p className="text-[8px] font-semibold text-emerald-400/70 uppercase tracking-widest">Vehicle</p>
+ <p className="text-[8px] font-semibold text-brand-light/70 uppercase tracking-widest">Vehicle</p>
  <p className="text-sm font-semibold text-white leading-tight mt-0.5">
  {vehicle || <span className="text-white/20">—</span>}
  </p>
@@ -126,7 +126,7 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
  </div>
 
  {/* Emergency Contact */}
- <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/20 flex flex-col gap-2">
+ <div className="p-4 rounded-lg bg-warning/10 border border-warning/20 flex flex-col gap-2">
  <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
  <Phone size={16} className="text-amber-400" />
  </div>
@@ -154,12 +154,12 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
 
  {/* Insurance */}
  {insurance && (
- <div className="mx-6 mb-4 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
- <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
- <FileText size={16} className="text-blue-400" />
+ <div className="mx-6 mb-4 p-4 rounded-lg bg-brand/10 border border-brand/20 flex items-start gap-3">
+ <div className="w-8 h-8 rounded-lg bg-brand/20 flex items-center justify-center flex-shrink-0">
+ <FileText size={16} className="text-brand-light" />
  </div>
  <div>
- <p className="text-[8px] font-semibold text-blue-400/70 uppercase tracking-widest">Insurance Provider</p>
+ <p className="text-[8px] font-semibold text-brand-light/70 uppercase tracking-widest">Insurance Provider</p>
  <p className="text-sm font-semibold text-white leading-tight mt-0.5">{insurance}</p>
  </div>
  </div>
@@ -188,13 +188,13 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
 
  {/* Quick Dial Emergency Numbers */}
  <div className="border-t border-white/5 px-6 py-4">
- <p className="text-[8px] font-semibold text-slate-500 uppercase tracking-widest mb-3">India Emergency Lines</p>
+ <p className="text-[8px] font-semibold text-text-2 uppercase tracking-widest mb-3">India Emergency Lines</p>
  <div className="grid grid-cols-4 gap-2">
  {[
- { label: 'Police', num: '100', color: 'text-blue-400 bg-blue-400/10 border-blue-400/20' },
+ { label: 'Police', num: '100', color: 'text-brand-light bg-brand-light/10 border-brand-light/20' },
  { label: 'Ambulance', num: '102', color: 'text-red-400 bg-red-400/10 border-red-400/20' },
  { label: 'Fire', num: '101', color: 'text-orange-400 bg-orange-400/10 border-orange-400/20' },
- { label: 'Helpline', num: '112', color: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20' },
+ { label: 'Helpline', num: '112', color: 'text-brand-light bg-brand-light/10 border-brand-light/' },
  ].map((d) => (
  <a
  key={d.num}
@@ -210,7 +210,7 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
 
  {/* Footer */}
  <div className="border-t border-white/5 px-6 py-3 flex items-center justify-between">
- <span className="text-[8px] font-semibold text-slate-600 uppercase tracking-widest">
+ <span className="text-[8px] font-semibold text-text-2 uppercase tracking-widest">
  Powered by SafeVixAI
  </span>
  <div className="flex items-center gap-1">
@@ -221,7 +221,7 @@ export default async function EmergencyCardPage({ params, searchParams }: PagePr
  </div>
 
  {/* Bottom note */}
- <p className="text-center text-[9px] font-bold text-slate-600 uppercase tracking-widest mt-6">
+ <p className="text-center text-[9px] font-bold text-text-2 uppercase tracking-widest mt-6">
  Scanned from SafeVixAI Emergency QR Card · No login required
  </p>
  </div>

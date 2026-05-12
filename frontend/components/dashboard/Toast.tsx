@@ -26,9 +26,9 @@ export default function Toast({ message, type = 'info', isVisible, onClose, dura
 
   const Icon = type === 'success' ? CheckCircle : type === 'error' ? AlertCircle : Info;
   const colors = {
-    success: 'bg-emerald-50 border-emerald-200 dark:bg-emerald-500/10 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400',
-    error: 'bg-red-50 border-red-200 dark:bg-red-500/10 dark:border-red-500/20 text-red-600 dark:text-red-400',
-    info: 'bg-brand/8 border-blue-200 dark:bg-brand/10 dark:border-brand/20 text-brand dark:text-brand-light',
+    success: 'bg-brand-light/10 border-brand-light/20 dark:bg-brand-light/10 dark:border-brand-light/20 text-brand-dim dark:text-brand-light',
+    error: 'bg-emergency/10 border-emergency/20 dark:bg-red-500/10 dark:border-red-500/20 text-red-600 dark:text-red-400',
+    info: 'bg-brand/8 border-brand-light/30 dark:bg-brand/10 dark:border-brand/20 text-brand dark:text-brand-light',
   };
 
   return (

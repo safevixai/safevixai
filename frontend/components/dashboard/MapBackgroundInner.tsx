@@ -36,38 +36,38 @@ function serviceIcon(category: NearbyService['category']) {
 function serviceColor(category: NearbyService['category']) {
   switch (category) {
     case 'hospital':
-      return '#ef4444';
+      return '#e11d48'; // var(--emergency)
     case 'police':
-      return '#3b82f6';
+      return '#3b82f6'; // var(--brand)
     case 'ambulance':
-      return '#10b981';
+      return '#10b981'; // var(--text-green)
     case 'fire':
-      return '#f97316';
+      return '#f59e0b'; // var(--text-amber)
     case 'pharmacy':
-      return '#06b6d4';
+      return '#06b6d4'; // cyan
     case 'puncture':
-      return '#8b5cf6';
+      return '#8b5cf6'; // purple
     case 'showroom':
-      return '#64748b';
+      return '#64748b'; // var(--text-3)
     case 'towing':
     default:
-      return '#f59e0b';
+      return '#f59e0b'; // var(--text-amber)
   }
 }
 
 function issueColor(issue: NearbyRoadIssue) {
   if (issue.severity >= 4) {
-    return '#ff5545';
+    return '#e11d48'; // var(--emergency)
   }
 
   const normalizedType = issue.issueType.toLowerCase();
   if (normalizedType.includes('flood') || normalizedType.includes('rain')) {
-    return '#3b82f6';
+    return '#3b82f6'; // var(--brand)
   }
   if (normalizedType.includes('traffic') || normalizedType.includes('accident')) {
-    return '#f97316';
+    return '#f59e0b'; // var(--text-amber)
   }
-  return '#f59e0b';
+  return '#f59e0b'; // var(--text-amber)
 }
 
 function issueIcon(issue: NearbyRoadIssue) {
@@ -137,6 +137,7 @@ export default function MapBackgroundInner() {
         description: issue.description,
         status: issue.status.replaceAll('_', ' '),
         roadName: issue.roadName,
+        severity: issue.severity,
       })),
     [nearbyRoadIssues]
   );
@@ -164,19 +165,19 @@ export default function MapBackgroundInner() {
       />
       {mapSearchTarget ? (
         <div className="pointer-events-none absolute inset-x-0 bottom-24 z-20 flex justify-center px-4">
-          <div className="rounded-full border border-blue-300/35 bg-slate-950/65 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-100 backdrop-blur-xl">
+          <div className="rounded-full border border-brand-light/30 bg-surface-1/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-1 backdrop-blur-xl">
             Search area - {mapSearchTarget.label}
           </div>
         </div>
       ) : !gpsLocation ? (
         <div className="pointer-events-none absolute inset-x-0 bottom-24 z-20 flex justify-center px-4">
-          <div className="rounded-full border border-white/20 bg-slate-950/55 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-xl">
+          <div className="rounded-full border border-white/20 bg-surface-1/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-xl">
             Enable location for live nearby results
           </div>
         </div>
       ) : approximateLocation ? (
         <div className="pointer-events-none absolute inset-x-0 bottom-24 z-20 flex justify-center px-4">
-          <div className="rounded-full border border-amber-300/35 bg-slate-950/65 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-100 backdrop-blur-xl">
+          <div className="rounded-full border border-warning/30 bg-surface-1/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-warning backdrop-blur-xl">
             Approximate device location · move outdoors or enable precise GPS
           </div>
         </div>

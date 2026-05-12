@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation';
 // Load map without SSR (Leaflet requires browser)
 const EmergencyMap = dynamic(
  () => import('@/components/EmergencyMap').then((m) => m.EmergencyMap),
- { ssr: false, loading: () => <div className="flex-1 bg-slate-900 animate-pulse" /> }
+ { ssr: false, loading: () => <div className="flex-1 bg-surface-1 animate-pulse" /> }
 );
 
 interface PageProps {
@@ -69,14 +69,14 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  // ── Expired ──────────────────────────────────────────────────────────────
  if (expired) {
  return (
- <div className="min-h-dvh bg-slate-950 flex items-center justify-center p-4">
- <div className="max-w-sm w-full bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center">
+ <div className="min-h-dvh bg-bg flex items-center justify-center p-4">
+ <div className="max-w-sm w-full bg-surface-1 border border-border-md rounded-2xl p-8 text-center">
  <div className="text-5xl mb-4"></div>
  <h1 className="text-white font-black text-xl mb-2">Session Ended</h1>
- <p className="text-slate-400 text-sm">
+ <p className="text-text-2 text-sm">
  The emergency tracking session has been closed. The person is likely safe.
  </p>
- <p className="text-slate-500 text-xs mt-4">
+ <p className="text-text-2 text-xs mt-4">
  If you still cannot reach them, call 112.
  </p>
  </div>
@@ -87,11 +87,11 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  // ── Loading ───────────────────────────────────────────────────────────────
  if (loading) {
  return (
- <div className="min-h-dvh bg-slate-950 flex items-center justify-center p-4">
+ <div className="min-h-dvh bg-bg flex items-center justify-center p-4">
  <div className="max-w-sm w-full text-center">
  <div className="w-16 h-16 mx-auto border-4 border-red-500 border-t-transparent rounded-full animate-spin mb-6" />
  <h1 className="text-white font-black text-xl mb-2">Connecting to Live Tracking...</h1>
- <p className="text-slate-400 text-sm">Finding location. This may take a few seconds.</p>
+ <p className="text-text-2 text-sm">Finding location. This may take a few seconds.</p>
  </div>
  </div>
  );
@@ -99,7 +99,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
 
  // ── Live View ─────────────────────────────────────────────────────────────
  return (
- <div className="min-h-dvh bg-slate-950 flex flex-col">
+ <div className="min-h-dvh bg-bg flex flex-col">
  {/* Header */}
  <header className="bg-red-600 px-4 py-3 flex items-center justify-between">
  <div>
@@ -117,21 +117,21 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  </header>
 
  {/* Vital Info Bar */}
- <div className="bg-slate-900 border-b border-slate-800 px-4 py-3 grid grid-cols-3 gap-2">
+ <div className="bg-surface-1 border-b border-border-md px-4 py-3 grid grid-cols-3 gap-2">
  <div className="text-center">
- <div className="text-slate-400 text-[9px] uppercase tracking-widest font-bold">Blood Group</div>
+ <div className="text-text-2 text-[9px] uppercase tracking-widest font-bold">Blood Group</div>
  <div className="text-white font-black text-base">
  {location?.blood_group || '—'}
  </div>
  </div>
- <div className="text-center border-x border-slate-700">
- <div className="text-slate-400 text-[9px] uppercase tracking-widest font-bold">Speed</div>
+ <div className="text-center border-x border-border-md">
+ <div className="text-text-2 text-[9px] uppercase tracking-widest font-bold">Speed</div>
  <div className="text-white font-black text-base">
  {location?.speed_kmh != null ? `${Math.round(location.speed_kmh)} km/h` : '— km/h'}
  </div>
  </div>
  <div className="text-center">
- <div className="text-slate-400 text-[9px] uppercase tracking-widest font-bold">Battery</div>
+ <div className="text-text-2 text-[9px] uppercase tracking-widest font-bold">Battery</div>
  <div
  className={`font-black text-base ${
  (location?.battery_percent ?? 100) < 20 ? 'text-red-400' : 'text-white'
@@ -161,9 +161,9 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  </div>
 
  {/* Vehicle Info + Emergency CTA */}
- <div className="bg-slate-900 border-t border-slate-800 px-4 py-4 space-y-3">
+ <div className="bg-surface-1 border-t border-border-md px-4 py-4 space-y-3">
  {location?.vehicle_number && (
- <div className="text-center text-slate-400 text-xs">
+ <div className="text-center text-text-2 text-xs">
  Vehicle: <span className="text-white font-bold">{location.vehicle_number}</span>
  </div>
  )}
@@ -171,7 +171,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  <div className="grid grid-cols-2 gap-3">
  <a
  href="tel:112"
- className="bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all"
+ className="bg-red-600 hover:bg-emergency-dark text-white text-center py-3 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all"
  >
  Call 112
  </a>
@@ -183,7 +183,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  </a>
  </div>
 
- <p className="text-slate-500 text-[10px] text-center">
+ <p className="text-text-2 text-[10px] text-center">
  Location updates every 5 seconds · Session valid for 4 hours · Powered by SafeVixAI
  </p>
  </div>

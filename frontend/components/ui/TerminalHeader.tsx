@@ -13,26 +13,29 @@ export function TerminalHeader({
   status = 'online',
   rightElement,
 }: TerminalHeaderProps) {
+  const statusLabel = status === 'emergency' ? 'Emergency Active' : status === 'offline' ? 'Offline' : 'Sentinel Active';
+
   return (
-    <div className="flex items-center justify-between py-3 px-4 md:px-6 border-b border-border bg-surface-1 sticky top-0 z-40">
+    <div className="sv-terminal-header">
       <div className="flex items-center gap-3">
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
-            <h1 className="text-sm md:text-base font-bold tracking-tight text-text-1 uppercase font-mono">
+            <h1 className="sv-terminal-overline text-text-1">
               {title}
             </h1>
             {status === 'online' && (
-              <span className="flex h-2 w-2 rounded-full bg-brand-light animate-pulse" title="System Online" />
+              <span className="sv-status-dot" title="System Online" />
             )}
             {status === 'emergency' && (
-              <span className="flex h-2 w-2 rounded-full bg-emergency animate-ping" title="Emergency Active" />
+              <span className="flex h-1.5 w-1.5 rounded-full bg-emergency animate-ping" title="Emergency Active" />
             )}
             {status === 'offline' && (
-              <span className="flex h-2 w-2 rounded-full bg-text-3" title="System Offline" />
+              <span className="flex h-1.5 w-1.5 rounded-full bg-text-3" title="System Offline" />
             )}
+            <span className="hidden sm:inline text-micro font-medium text-brand-light">{statusLabel}</span>
           </div>
           {subtitle && (
-            <span className="text-[10px] md:text-xs font-semibold tracking-wider text-text-3 uppercase font-mono mt-0.5">
+            <span className="text-caption font-medium tracking-[0.05em] text-text-3 uppercase mt-0.5">
               {subtitle}
             </span>
           )}
