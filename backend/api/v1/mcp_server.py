@@ -557,3 +557,28 @@ sse_app = Starlette(
         Mount("/messages/", app=_sse_transport.handle_post_message),
     ]
 )
+
+
+# Expose standard FastAPI router for metadata and clean v1 module inclusion
+from fastapi import APIRouter
+
+router = APIRouter(prefix="/mcp_info", tags=["MCP Server"])
+
+@router.get("/")
+async def get_mcp_info() -> dict:
+    return {
+        "service": "SafeVixAI MCP Server",
+        "mounted_at": "/mcp",
+        "sse_endpoint": "/mcp/sse",
+        "messages_endpoint": "/mcp/messages/",
+        "tools": [
+            "get_emergency_services",
+            "report_road_issue",
+            "calculate_challan",
+            "get_road_weather",
+            "calculate_safe_route",
+            "get_first_aid_guide",
+            "get_location_from_what3words",
+        ]
+    }
+
