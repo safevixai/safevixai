@@ -735,6 +735,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#current-implementation-notes-2026-05-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Implementation Notes - 2026-05-12
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-it-is" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1562,6 +1573,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#current-implementation-notes-2026-05-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Implementation Notes - 2026-05-12
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-it-is" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1770,6 +1792,27 @@
 
 
 <h1 id="safevixai-frontend-skill">SafeVixAI Frontend Skill</h1>
+<h2 id="current-implementation-notes-2026-05-12">Current Implementation Notes - 2026-05-12</h2>
+<p>Use these notes before touching the frontend:</p>
+<ul>
+<li>Source of truth for public URLs is <code>frontend/lib/public-env.ts</code>.</li>
+<li>Use <code>NEXT_PUBLIC_API_URL</code> for the main backend and <code>NEXT_PUBLIC_CHATBOT_URL</code> for the chatbot service.</li>
+<li>Do not read <code>process.env.NEXT_PUBLIC_CHATBOT_BASE_URL</code> in client components; it is not the validated project env var.</li>
+<li>Chat routes are under <code>/api/v1/chat/*</code>.</li>
+<li>Speech routes are currently under <code>/speech/*</code>, not <code>/api/v1/speech/*</code>.</li>
+<li>Mic input must call <code>${PUBLIC_CHATBOT_BASE_URL}/speech/translate</code>.</li>
+<li><code>target_language</code> must use backend/model codes, not raw UI codes. Add a language mapping layer in <code>frontend/lib/languages.ts</code>.</li>
+<li>Browser recognition codes are locale codes such as <code>hi-IN</code>; backend speech target codes are model codes such as <code>hin</code>.</li>
+<li>Browser speech output must use the selected language recognition/synthesis locale and must provide a stop control.</li>
+<li>Backend speech currently performs speech-to-text / speech translation only. Do not claim backend TTS is implemented.</li>
+<li>Keep emergency flows stable while polishing UI: 112, 102, 100, 1033, crash countdown, offline SOS queue, map heatmap, and QR emergency card.</li>
+</ul>
+<p>Current verification commands:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>chatbot_service<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/test_voice.py<span class="w"> </span>tests/test_e2e.py<span class="w"> </span>-q
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>rg<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;api/v1/speech|NEXT_PUBLIC_CHATBOT_BASE_URL|utterance.lang = &#39;en-IN&#39;|&lt;img|fonts.googleapis.com&quot;</span><span class="w"> </span>frontend
+</span></code></pre></div>
+<hr />
 <h2 id="what-it-is">What it is</h2>
 <p>A <strong>Next.js 15</strong> (App Router) + <strong>React 19</strong> + <strong>TypeScript</strong> + <strong>Tailwind CSS</strong> frontend for an AI-powered road safety platform. The design system is called <strong>"Tactical Safety Command Terminal"</strong> — a dark-mode-first interface with emerald-green brand accents and red emergency signals, influenced by Linear (sidebar precision) and VoltAgent (terminal energy).</p>
 <h2 id="design-system-tactical-safety-command-terminal">Design System — Tactical Safety Command Terminal</h2>
@@ -1821,90 +1864,90 @@
 <li><strong>Primary:</strong> Lucide React icons (<code>lucide-react</code>)</li>
 </ul>
 <h2 id="project-structure">Project Structure</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>frontend/
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── app/
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── page.tsx              ← Dashboard / Map Home
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── layout.tsx            ← Root layout (fonts, providers, theme)
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── error.tsx             ← Global error boundary (catches unhandled errors)
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── globals.css           ← Design tokens + CSS variables + Tailwind config
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── assistant/page.tsx    ← AI Chat Assistant (SSE streaming)
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── bystander/page.tsx    ← Bystander Mode (witness accident assistance)
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── locator/page.tsx      ← Emergency Service Locator + Map
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   ├── first-aid/page.tsx    ← First Aid Guide + AI Vision
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── report/page.tsx       ← Road Hazard Reporter
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   ├── challan/page.tsx      ← Traffic Challan Calculator
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   ├── emergency/page.tsx    ← Emergency Protocol Terminal
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   ├── sos/page.tsx          ← SOS Dispatch Terminal
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   ├── profile/page.tsx      ← Operator Identity Matrix (+ QR Emergency Card)
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   ├── login/page.tsx        ← Operator Authentication (OTP flow)
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   ├── emergency-card/[userId]/page.tsx ← Public QR Emergency Card (no login)
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   ├── settings/page.tsx     ← System Settings
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│   ├── share-receive/page.tsx ← Share/Receive location via deep link
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   ├── track/page.tsx        ← Family live tracking viewer (Supabase Realtime)
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│   └── tracking/page.tsx     ← GPS tracking management
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>├── components/
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│   ├── AppSidebar.tsx        ← Desktop sidebar navigation (192px, full-height)
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│   ├── AuthorityCard.tsx     ← Road authority info card
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│   ├── ChallanCalculator.tsx ← Challan computation component
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│   ├── ChatInterface.tsx     ← Chat UI (online/offline toggle)
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│   ├── ClientAppHooks.tsx    ← Global sensor listeners (crash detection, offline sync)
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│   ├── ConnectivityBadge.tsx ← Online/Offline status indicator
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│   ├── ConnectivityProvider.tsx ← Network state context provider
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│   ├── DrivingScoreBar.tsx   ← Driving safety score display
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│   ├── EmergencyMap.tsx      ← Emergency map wrapper (dynamic)
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│   ├── EmergencyMapInner.tsx ← Map rendering internals
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│   ├── EmergencyNumbers.tsx  ← 112/102/100 quick dial grid
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│   ├── EnterpriseClientAppHooks.tsx ← Enterprise-grade sensor hooks
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>│   ├── FirstAidCard.tsx      ← First aid scenario card
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│   ├── GlobalSOS.tsx         ← Floating SOS button (all pages except map/sos)
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│   ├── ModelLoader.tsx       ← AI model loading indicator
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│   ├── NetworkMonitor.tsx    ← Network connectivity monitor
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│   ├── PageShell.tsx         ← Layout wrapper with GlobalSOS
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│   ├── PotholeDetector.tsx   ← In-browser YOLO pothole detection
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│   ├── ReportForm.tsx        ← Road report submission form
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│   ├── ServiceCard.tsx       ← Emergency service result card
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>│   ├── SOSButton.tsx         ← SOS dispatch button with pulse animation
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>│   ├── ThemeProvider.tsx     ← Theme context provider
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>│   ├── ViolationsList.tsx    ← Traffic violations list
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>│   ├── VoiceInput.tsx        ← Web Speech API voice input
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>│   ├── dashboard/            ← 15 dashboard components (BottomNav, SystemHeader, SystemSidebar, TopSearch, ProfileCard, FloatingSidebarControls, Toast, SkeletonCard, etc.)
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>│   ├── chat/                 ← multimodal-ai-chat-input.tsx
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>│   ├── maps/                 ← MapLibreCanvas.tsx (dynamic import, SSR disabled)
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>│   ├── profile/              ← QREmergencyCard.tsx
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>│   ├── report/               ← HazardViewfinder.tsx (camera viewport)
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>│   └── ui/                   ← shadcn/ui primitive components
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>└── lib/
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    ├── store.ts              ← Zustand global state (GPS, services, AI mode, auth)
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    ├── api.ts                ← Backend API client (JWT Bearer token injected)
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    ├── public-env.ts         ← Validated NEXT_PUBLIC env vars (fail-fast if missing)
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    ├── safety-constants.ts   ← Crash/SOS/tracking constants (thresholds, timeouts)
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    ├── client-logger.ts      ← Client-side error logging utility
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    ├── geolocation.ts        ← GPS utilities
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    ├── sos-share.ts          ← SOS link generators
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    ├── offline-sos-queue.ts  ← IndexedDB queue for offline SOS dispatch
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    ├── crash-detection.ts    ← DeviceMotionEvent crash detection engine
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    ├── live-tracking.ts      ← Family live tracking via Supabase Realtime
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    ├── deep-link.ts          ← App deep linking (share/receive)
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    ├── navigation-launch.ts  ← Turn-by-turn navigation launcher
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    ├── routing.ts            ← Route calculation (OSRM)
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    ├── share.ts              ← Web Share API utilities
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    ├── emergency-numbers.ts  ← Emergency number database
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    ├── analytics-provider.tsx ← PostHog analytics wrapper
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    ├── offline-ai.ts         ← WebLLM Phi-3 offline AI
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    ├── duckdb-challan.ts     ← DuckDB-Wasm offline challan calculator
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    ├── traffic-layer.ts      ← Traffic data map layer
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    ├── safe-spaces-layer.ts  ← Safe spaces map layer
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    ├── edge-ai.ts            ← Edge AI model utilities
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    ├── location-tracker.ts   ← Background location tracking
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    ├── location-utils.ts     ← Location calculation utilities
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    ├── reverse-geocode.ts    ← Reverse geocoding
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    ├── geocoding.ts          ← Forward geocoding (Photon/BigDataCloud)
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    ├── map-defaults.ts       ← Map default settings (center, zoom)
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    ├── maps-fallback.ts      ← Map tile fallback logic
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    ├── offline-rag.ts        ← Offline RAG search
-</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    ├── india-locations.ts    ← India city/state data
-</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    ├── user-profile.ts       ← User profile management
-</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    └── utils.ts              ← Shared utility functions
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>frontend/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── app/
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── page.tsx              ← Dashboard / Map Home
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   ├── layout.tsx            ← Root layout (fonts, providers, theme)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   ├── error.tsx             ← Global error boundary (catches unhandled errors)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── globals.css           ← Design tokens + CSS variables + Tailwind config
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── assistant/page.tsx    ← AI Chat Assistant (SSE streaming)
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── bystander/page.tsx    ← Bystander Mode (witness accident assistance)
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   ├── locator/page.tsx      ← Emergency Service Locator + Map
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ├── first-aid/page.tsx    ← First Aid Guide + AI Vision
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   ├── report/page.tsx       ← Road Hazard Reporter
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── challan/page.tsx      ← Traffic Challan Calculator
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── emergency/page.tsx    ← Emergency Protocol Terminal
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── sos/page.tsx          ← SOS Dispatch Terminal
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   ├── profile/page.tsx      ← Operator Identity Matrix (+ QR Emergency Card)
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   ├── login/page.tsx        ← Operator Authentication (OTP flow)
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   ├── emergency-card/[userId]/page.tsx ← Public QR Emergency Card (no login)
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   ├── settings/page.tsx     ← System Settings
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── share-receive/page.tsx ← Share/Receive location via deep link
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   ├── track/page.tsx        ← Family live tracking viewer (Supabase Realtime)
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   └── tracking/page.tsx     ← GPS tracking management
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── components/
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── AppSidebar.tsx        ← Desktop sidebar navigation (192px, full-height)
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── AuthorityCard.tsx     ← Road authority info card
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   ├── ChallanCalculator.tsx ← Challan computation component
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│   ├── ChatInterface.tsx     ← Chat UI (online/offline toggle)
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   ├── ClientAppHooks.tsx    ← Global sensor listeners (crash detection, offline sync)
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│   ├── ConnectivityBadge.tsx ← Online/Offline status indicator
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>│   ├── ConnectivityProvider.tsx ← Network state context provider
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>│   ├── DrivingScoreBar.tsx   ← Driving safety score display
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>│   ├── EmergencyMap.tsx      ← Emergency map wrapper (dynamic)
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>│   ├── EmergencyMapInner.tsx ← Map rendering internals
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>│   ├── EmergencyNumbers.tsx  ← 112/102/100 quick dial grid
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>│   ├── EnterpriseClientAppHooks.tsx ← Enterprise-grade sensor hooks
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>│   ├── FirstAidCard.tsx      ← First aid scenario card
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>│   ├── GlobalSOS.tsx         ← Floating SOS button (all pages except map/sos)
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>│   ├── ModelLoader.tsx       ← AI model loading indicator
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>│   ├── NetworkMonitor.tsx    ← Network connectivity monitor
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>│   ├── PageShell.tsx         ← Layout wrapper with GlobalSOS
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>│   ├── PotholeDetector.tsx   ← In-browser YOLO pothole detection
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>│   ├── ReportForm.tsx        ← Road report submission form
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>│   ├── ServiceCard.tsx       ← Emergency service result card
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>│   ├── SOSButton.tsx         ← SOS dispatch button with pulse animation
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>│   ├── ThemeProvider.tsx     ← Theme context provider
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>│   ├── ViolationsList.tsx    ← Traffic violations list
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>│   ├── VoiceInput.tsx        ← Web Speech API voice input
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>│   ├── dashboard/            ← 15 dashboard components (BottomNav, SystemHeader, SystemSidebar, TopSearch, ProfileCard, FloatingSidebarControls, Toast, SkeletonCard, etc.)
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>│   ├── chat/                 ← multimodal-ai-chat-input.tsx
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>│   ├── maps/                 ← MapLibreCanvas.tsx (dynamic import, SSR disabled)
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>│   ├── profile/              ← QREmergencyCard.tsx
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>│   ├── report/               ← HazardViewfinder.tsx (camera viewport)
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>│   └── ui/                   ← shadcn/ui primitive components
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>└── lib/
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>    ├── store.ts              ← Zustand global state (GPS, services, AI mode, auth)
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    ├── api.ts                ← Backend API client (JWT Bearer token injected)
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    ├── public-env.ts         ← Validated NEXT_PUBLIC env vars (fail-fast if missing)
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    ├── safety-constants.ts   ← Crash/SOS/tracking constants (thresholds, timeouts)
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    ├── client-logger.ts      ← Client-side error logging utility
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    ├── geolocation.ts        ← GPS utilities
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    ├── sos-share.ts          ← SOS link generators
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    ├── offline-sos-queue.ts  ← IndexedDB queue for offline SOS dispatch
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    ├── crash-detection.ts    ← DeviceMotionEvent crash detection engine
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    ├── live-tracking.ts      ← Family live tracking via Supabase Realtime
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    ├── deep-link.ts          ← App deep linking (share/receive)
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    ├── navigation-launch.ts  ← Turn-by-turn navigation launcher
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>    ├── routing.ts            ← Route calculation (OSRM)
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>    ├── share.ts              ← Web Share API utilities
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>    ├── emergency-numbers.ts  ← Emergency number database
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>    ├── analytics-provider.tsx ← PostHog analytics wrapper
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>    ├── offline-ai.ts         ← WebLLM Phi-3 offline AI
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>    ├── duckdb-challan.ts     ← DuckDB-Wasm offline challan calculator
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    ├── traffic-layer.ts      ← Traffic data map layer
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>    ├── safe-spaces-layer.ts  ← Safe spaces map layer
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>    ├── edge-ai.ts            ← Edge AI model utilities
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    ├── location-tracker.ts   ← Background location tracking
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>    ├── location-utils.ts     ← Location calculation utilities
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    ├── reverse-geocode.ts    ← Reverse geocoding
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    ├── geocoding.ts          ← Forward geocoding (Photon/BigDataCloud)
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    ├── map-defaults.ts       ← Map default settings (center, zoom)
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    ├── maps-fallback.ts      ← Map tile fallback logic
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    ├── offline-rag.ts        ← Offline RAG search
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    ├── india-locations.ts    ← India city/state data
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    ├── user-profile.ts       ← User profile management
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>    └── utils.ts              ← Shared utility functions
 </span></code></pre></div>
 <h2 id="navigation-architecture">Navigation Architecture</h2>
 <ul>
@@ -1928,12 +1971,12 @@
 <li><strong>Environment validation</strong> — all <code>NEXT_PUBLIC_*</code> URLs validated via <code>lib/public-env.ts</code> — missing vars throw at import time</li>
 </ol>
 <h2 id="css-variables-quick-reference">CSS Variables (Quick Reference)</h2>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nv">--navbar-bottom-h</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nv">--card-radius</span><span class="p">:</span><span class="w">     </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span><span class="w">   </span><span class="c">/* rounded-lg */</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nv">--btn-radius</span><span class="p">:</span><span class="w">      </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span><span class="w">   </span><span class="c">/* rounded-md */</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nv">--sidebar-width</span><span class="p">:</span><span class="w">   </span><span class="mi">192</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nv">--navbar-bottom-h</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nv">--card-radius</span><span class="p">:</span><span class="w">     </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span><span class="w">   </span><span class="c">/* rounded-lg */</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nv">--btn-radius</span><span class="p">:</span><span class="w">      </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span><span class="w">   </span><span class="c">/* rounded-md */</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nv">--sidebar-width</span><span class="p">:</span><span class="w">   </span><span class="mi">192</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
 </span></code></pre></div>
 <h2 id="dependencies">Dependencies</h2>
 <table>
