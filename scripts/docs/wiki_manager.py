@@ -35,6 +35,13 @@ from email.mime.text import MIMEText
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
+# Inject project root to sys.path to access alert_service singleton
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+try:
+    from alert_service import get_alert_service
+except Exception:
+    get_alert_service = None
+
 # ── Paths ────────────────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent.parent
 WIKI_CONTENT = ROOT / "docs" / "wiki" / "content"
@@ -845,6 +852,15 @@ def run_update():
                             f"Updated {updated} files before failure, {failed} total failures.",
                             f"Provider chain: {', '.join(llm._providers)}"
                         )
+                        if get_alert_service:
+                            try:
+                                get_alert_service().alert_wiki_generation_failed(
+                                    module_name=f"{info['section']}/{title}.md",
+                                    consecutive_fails=consecutive_fails,
+                                    error_msg=f"Updated {updated} files before failure. Chain: {', '.join(llm._providers)}"
+                                )
+                            except Exception:
+                                pass
                         break
 
     print(f"\n  Total: {updated} updated, {failed} failed")

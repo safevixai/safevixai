@@ -23,6 +23,13 @@ from docx.shared import Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
+# Inject project root to sys.path to access alert_service singleton
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+try:
+    from alert_service import get_alert_service
+except Exception:
+    get_alert_service = None
+
 # Fix Windows cp1252 encoding crashes with emoji print statements
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -34,9 +41,10 @@ except Exception:
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 REPO = os.environ.get("GITHUB_REPOSITORY", "SafeVixAI/SafeVixAI")
 GH_HEADERS = {
-    "Authorization": f"token {GITHUB_TOKEN}",
     "Accept": "application/vnd.github.v3+json",
 }
+if GITHUB_TOKEN:
+    GH_HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 IST = timezone(timedelta(hours=5, minutes=30))
 
 SERVICES = {
@@ -129,6 +137,17 @@ def fetch_service_health():
             results[name] = {"status": "DOWN", "error": "Connection refused / DNS failure"}
         except Exception as e:
             results[name] = {"status": "DOWN", "error": str(e)[:60]}
+
+        if results[name]["status"] == "DOWN" and get_alert_service:
+            try:
+                get_alert_service().alert_external_api_failed(
+                    service_name=f"Deployment ping ({name})",
+                    endpoint=url,
+                    status_code=0,
+                    error_msg=results[name]["error"],
+                )
+            except Exception:
+                pass
     return results
 
 
