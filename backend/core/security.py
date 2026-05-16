@@ -7,7 +7,7 @@ from typing import Any
 
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from jose import JWTError, jwt
+import jwt
 
 import logging
 
@@ -76,14 +76,12 @@ def _decode_app_token(token: str) -> dict[str, Any]:
 
 def _decode_supabase_token(token: str) -> dict[str, Any]:
     if not SUPABASE_JWT_SECRET:
-        raise JWTError("SUPABASE_JWT_SECRET is not configured")
-    options = {"verify_aud": bool(SUPABASE_JWT_AUDIENCE)}
+        raise jwt.InvalidTokenError("SUPABASE_JWT_SECRET is not configured")
     payload = jwt.decode(
         token,
         SUPABASE_JWT_SECRET,
         algorithms=[ALGORITHM],
         audience=SUPABASE_JWT_AUDIENCE or None,
-        options=options,
     )
     return _normalize_user_payload(payload, provider="supabase")
 
@@ -94,10 +92,10 @@ def _decode_bearer_token(token: str) -> dict[str, Any]:
         raise _unauthorized()
     try:
         return _decode_app_token(token)
-    except JWTError as app_error:
+    except (jwt.InvalidTokenError, jwt.ExpiredSignatureError) as app_error:
         try:
             return _decode_supabase_token(token)
-        except JWTError:
+        except (jwt.InvalidTokenError, jwt.ExpiredSignatureError):
             logger.info("Bearer token rejected by app and Supabase JWT validators")
             raise _unauthorized() from app_error
 

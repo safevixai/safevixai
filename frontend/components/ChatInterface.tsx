@@ -27,9 +27,14 @@ async function* streamChat(
   lat?: number,
   lon?: number,
 ): AsyncGenerator<{ type: string; text?: string; intent?: string; sources?: string[]; session_id?: string; message?: string }> {
+  // H5 FIX: Include auth token in chat streaming request
+  const authToken = useAppStore.getState().authToken;
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+
   const resp = await fetch(`${CHATBOT_URL}/api/v1/chat/stream`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify({ message, session_id, lat, lon }),
   });
 
@@ -74,7 +79,7 @@ export function ChatInterface() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [sessionId] = useState(() => `session-${Date.now()}`);
+  const [sessionId] = useState(() => typeof crypto !== 'undefined' && crypto.randomUUID ? `session-${crypto.randomUUID()}` : `session-${Date.now()}`);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

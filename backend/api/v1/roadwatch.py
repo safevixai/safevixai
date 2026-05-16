@@ -25,7 +25,9 @@ def get_roadwatch_service(request: Request) -> RoadWatchService:
 
 
 @router.get('/issues', response_model=RoadIssuesResponse)
+@limiter.limit("30/minute")
 async def get_nearby_issues(
+    request: Request,
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     radius: int = Query(default=5000, ge=100, le=50000),

@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import logging
+import re
+import unicodedata
 from dataclasses import dataclass, field
 
 import httpx
@@ -32,13 +34,48 @@ PROHIBITED_PATTERNS = [
     "jailbreak",
     "forget everything",
     "new instructions",
-    "hypothetical scenario where you ignore"
+    "hypothetical scenario where you ignore",
+    "pretend you are",
+    "act as if",
+    "override",
+    "reveal your instructions",
+    "show me your prompt",
+    "what are your instructions",
+    "do not follow",
+    "do anything now",
 ]
 
+# Regex for common obfuscation: zero-width chars, invisible separators, and control chars
+_INVISIBLE_CHARS_RE = re.compile(r'[\u200b\u200c\u200d\u200e\u200f\ufeff\u00ad\u2060\u2063\u180e]')
+
+
+def _normalize_text(text: str) -> str:
+    """
+    H2 FIX: Normalize Unicode to defeat homoglyph and invisible-character attacks.
+
+    Steps:
+    1. NFKD decomposition (e.g., fullwidth 'Ａ' → 'A', ligatures → components)
+    2. Strip invisible/zero-width characters used for obfuscation
+    3. Collapse whitespace (e.g., multiple spaces, tabs → single space)
+    """
+    # Decompose Unicode (e.g., 'ｉｇｎｏｒｅ' → 'ignore')
+    normalized = unicodedata.normalize('NFKD', text)
+    # Strip invisible characters
+    normalized = _INVISIBLE_CHARS_RE.sub('', normalized)
+    # Collapse whitespace (catches tab, nbsp, etc.)
+    normalized = re.sub(r'\s+', ' ', normalized)
+    return normalized
+
+
 def check_prompt_injection(message: str) -> bool:
-    """Returns True if a prompt injection attack is detected."""
-    msg_lower = message.lower()
-    return any(pattern in msg_lower for pattern in PROHIBITED_PATTERNS)
+    """
+    Returns True if a prompt injection attack is detected.
+
+    H2 FIX: Now applies Unicode NFKD normalization and invisible char stripping
+    before pattern matching, defeating homoglyph and zero-width obfuscation attacks.
+    """
+    normalized = _normalize_text(message).lower()
+    return any(pattern in normalized for pattern in PROHIBITED_PATTERNS)
 
 
 @dataclass(slots=True)
@@ -179,15 +216,15 @@ class TemplateProvider:
 
         lines: list[str] = []
         if request.intent == "emergency":
-            lines.append("🚨 Emergency: Call 112 (universal) or 102 (ambulance) immediately.")
+            lines.append("Emergency: Call 112 (universal) or 102 (ambulance) immediately.")
         elif request.intent == "first_aid":
-            lines.append("🩹 First-aid guidance:")
+            lines.append("First-aid guidance:")
         elif request.intent == "challan":
-            lines.append("📋 Traffic challan under the Motor Vehicles Act 2019:")
+            lines.append("Traffic challan under the Motor Vehicles Act 2019:")
         elif request.intent == "legal":
-            lines.append("⚖️ Legal reference (Motor Vehicles Act):")
+            lines.append("Legal reference (Motor Vehicles Act):")
         elif request.intent == "road_issue":
-            lines.append("🛣️ Road issue guidance:")
+            lines.append("Road issue guidance:")
         elif request.intent == "road_weather":
             lines.append("Road-weather guidance:")
         elif request.intent == "safe_route":

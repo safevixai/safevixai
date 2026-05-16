@@ -4,7 +4,7 @@ from typing import Dict, Set
 import json
 import logging
 from redis.asyncio import Redis
-from jose import JWTError, jwt
+import jwt
 
 from core.config import get_settings
 from core.security import ALGORITHM, SECRET_KEY
@@ -48,7 +48,7 @@ def _is_valid_ws_token(token: str | None) -> bool:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return bool(payload.get("sub"))
-    except JWTError:
+    except (jwt.InvalidTokenError, jwt.ExpiredSignatureError):
         return False
 
 class RedisConnectionManager:

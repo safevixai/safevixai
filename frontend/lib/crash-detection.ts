@@ -15,6 +15,9 @@ let isCrashDetected = false;
 type CrashCallback = (force: number) => void;
 let listeners: CrashCallback[] = [];
 
+// H9 FIX: Track whether the devicemotion listener is already registered
+let motionListenerRegistered = false;
+
 /**
  * Handle incoming device motion data.
  */
@@ -44,11 +47,19 @@ function handleDeviceMotion(event: DeviceMotionEvent) {
 /**
  * Initializes real DeviceMotion listeners if supported.
  * Note: iOS 13+ requires user permission to access DeviceMotionEvent.
+ *
+ * H9 FIX: Deduplicates callback registration — prevents accumulating duplicate
+ * listeners if startCrashDetection is called multiple times with the same callback.
  */
 export async function startCrashDetection(onCrashDetected: CrashCallback) {
   if (typeof window === 'undefined') return;
   
+  // H9 FIX: Prevent duplicate listener registration
+  if (listeners.includes(onCrashDetected)) return;
   listeners.push(onCrashDetected);
+
+  // Only register the devicemotion handler once
+  if (motionListenerRegistered) return;
 
   // Request permission for iOS 13+ devices
   if (typeof (DeviceMotionEvent as any).requestPermission === 'function') {
@@ -56,12 +67,14 @@ export async function startCrashDetection(onCrashDetected: CrashCallback) {
       const permissionState = await (DeviceMotionEvent as any).requestPermission();
       if (permissionState === 'granted') {
         window.addEventListener('devicemotion', handleDeviceMotion, true);
+        motionListenerRegistered = true;
       }
     } catch {
       return;
     }
   } else {
     window.addEventListener('devicemotion', handleDeviceMotion, true);
+    motionListenerRegistered = true;
   }
 }
 
@@ -69,8 +82,9 @@ export function stopCrashDetection(onCrashDetected: CrashCallback) {
   if (typeof window === 'undefined') return;
   
   listeners = listeners.filter((cb) => cb !== onCrashDetected);
-  if (listeners.length === 0) {
+  if (listeners.length === 0 && motionListenerRegistered) {
     window.removeEventListener('devicemotion', handleDeviceMotion, true);
+    motionListenerRegistered = false;
   }
 }
 

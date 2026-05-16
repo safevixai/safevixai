@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from jose import JWTError, jwt
+import jwt
 from pydantic import BaseModel, Field
 
 from core.config import get_settings
@@ -168,7 +168,7 @@ async def get_session(
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         if payload.get("purpose") != "tracking_view" or payload.get("sub") != str(session_id):
             raise HTTPException(status_code=403, detail="Invalid tracking link")
-    except JWTError as exc:
+    except (jwt.InvalidTokenError, jwt.ExpiredSignatureError) as exc:
         raise HTTPException(status_code=403, detail="Invalid or expired tracking link") from exc
 
     async for session in get_async_session():

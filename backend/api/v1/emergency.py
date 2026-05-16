@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
 from core.limiter import limiter
 from core.security import get_current_user_optional
 from models.schemas import EmergencyNumbersResponse, EmergencyResponse, SosResponse
+from models.sos_incident import SosIncident
 from services.emergency_locator import EMERGENCY_NUMBERS, EmergencyLocatorService
 from services.exceptions import ExternalServiceError
 
@@ -20,7 +20,9 @@ def get_emergency_service(request: Request) -> EmergencyLocatorService:
 
 
 @router.get('/nearby', response_model=EmergencyResponse)
+@limiter.limit("30/minute")
 async def get_nearby_services(
+    request: Request,
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     categories: str | None = Query(default=None, description='Comma-separated emergency categories'),
@@ -65,19 +67,15 @@ async def create_sos_incident(
     emergency_service: EmergencyLocatorService = Depends(get_emergency_service),
     current_user: dict | None = Depends(get_current_user_optional),
 ) -> SosResponse:
+    # H7 FIX: Use ORM model instead of raw SQL text()
     try:
-        await db.execute(
-            text(
-                "INSERT INTO sos_incidents (user_id, lat, lon, user_agent) "
-                "VALUES (:user_id, :lat, :lon, :ua)"
-            ),
-            {
-                "user_id": str(current_user["sub"]) if current_user else None,
-                "lat": lat,
-                "lon": lon,
-                "ua": request.headers.get('user-agent', '')[:255],
-            },
+        incident = SosIncident(
+            user_id=str(current_user["sub"]) if current_user else None,
+            lat=lat,
+            lon=lon,
+            user_agent=request.headers.get('user-agent', '')[:255],
         )
+        db.add(incident)
         await db.commit()
         return await emergency_service.build_sos_payload(db=db, lat=lat, lon=lon)
     except ExternalServiceError as exc:

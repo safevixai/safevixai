@@ -15,8 +15,11 @@ const mockDb = {
   add: jest.fn(async (_storeName: string, value: Record<string, unknown>) => {
     mockRecords.push({ ...value, id: mockRecords.length + 1 });
   }),
+  // C5 FIX: Updated mock to match new per-item transaction pattern.
+  // The code now accesses `tx.store` (idb property style) instead of `tx.objectStore()`.
   transaction: jest.fn(() => ({
     objectStore: () => mockStore,
+    store: mockStore,
     done: Promise.resolve(),
   })),
 };

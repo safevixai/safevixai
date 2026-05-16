@@ -131,6 +131,10 @@ export async function enqueueRoadReport(
 /**
  * Syncs all queued SOS requests to the backend.
  * Called automatically when connection is restored.
+ *
+ * C5 FIX: Uses per-item transactions instead of a single batch transaction.
+ * Each item is deleted only after its sync is confirmed, preventing data loss
+ * if sync fails partway through the queue.
  */
 export async function syncOfflineSOSQueue(): Promise<void> {
   if (typeof window !== 'undefined' && !navigator.onLine) {
@@ -140,11 +144,11 @@ export async function syncOfflineSOSQueue(): Promise<void> {
   const db = await initDB();
   if (!db) return;
 
-  const tx = db.transaction('sos-queue', 'readwrite');
-  const store = tx.objectStore('sos-queue');
-  
-  const allKeys = await store.getAllKeys();
-  const allItems = await store.getAll();
+  // Read items in a readonly transaction first
+  const readTx = db.transaction('sos-queue', 'readonly');
+  const allKeys = await readTx.store.getAllKeys();
+  const allItems = await readTx.store.getAll();
+  await readTx.done;
 
   if (allItems.length === 0) {
     return;
@@ -169,18 +173,24 @@ export async function syncOfflineSOSQueue(): Promise<void> {
       window.clearTimeout(timeout);
 
       if (res.ok) {
-        await store.delete(key);
+        // Delete in its own transaction — atomic per item
+        const deleteTx = db.transaction('sos-queue', 'readwrite');
+        await deleteTx.store.delete(key);
+        await deleteTx.done;
       } else {
+        // Server rejected — stop trying remaining items
         break;
       }
     } catch {
+      // Network error — stop trying, will retry on next online event
       break;
     }
   }
-
-  await tx.done;
 }
 
+/**
+ * C5 FIX: Per-item transaction for road report sync as well.
+ */
 export async function syncOfflineRoadReportQueue(): Promise<void> {
   if (typeof window !== 'undefined' && !navigator.onLine) {
     return;
@@ -189,10 +199,11 @@ export async function syncOfflineRoadReportQueue(): Promise<void> {
   const db = await initDB();
   if (!db) return;
 
-  const tx = db.transaction('road-report-queue', 'readwrite');
-  const store = tx.objectStore('road-report-queue');
-  const allKeys = await store.getAllKeys();
-  const allItems = await store.getAll();
+  // Read items in a readonly transaction first
+  const readTx = db.transaction('road-report-queue', 'readonly');
+  const allKeys = await readTx.store.getAllKeys();
+  const allItems = await readTx.store.getAll();
+  await readTx.done;
 
   if (allItems.length === 0) {
     return;
@@ -226,7 +237,10 @@ export async function syncOfflineRoadReportQueue(): Promise<void> {
       window.clearTimeout(timeout);
 
       if (res.ok) {
-        await store.delete(key);
+        // Delete in its own transaction — atomic per item
+        const deleteTx = db.transaction('road-report-queue', 'readwrite');
+        await deleteTx.store.delete(key);
+        await deleteTx.done;
       } else {
         break;
       }
@@ -234,8 +248,6 @@ export async function syncOfflineRoadReportQueue(): Promise<void> {
       break;
     }
   }
-
-  await tx.done;
 }
 
 /**
