@@ -16,7 +16,7 @@ slowapi==0.1.9
 pydantic==2.13.2
 pydantic-settings==2.13.1
 python-dotenv==1.2.2
-python-multipart==0.0.27
+python-multipart==0.0.28
 
 # --- LLM / RAG ---
 langchain==1.2.15
