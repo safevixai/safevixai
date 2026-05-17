@@ -73,6 +73,7 @@ jobs:
         working-directory: ./frontend
         env:
           E2E_BASE_URL: http://127.0.0.1:3000
+          E2E_PORT: "3000"
         run: npm run test:e2e
 
   deploy:
