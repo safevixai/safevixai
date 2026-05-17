@@ -4,9 +4,10 @@ import hashlib
 import hmac
 import os
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 
+from core.limiter import limiter
 from core.security import create_access_token, get_current_user
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
@@ -42,7 +43,8 @@ def _configured_operator() -> dict[str, str] | None:
     return {"email": email, "password_hash": password_hash, "name": name}
 
 @router.post("/login", response_model=LoginResponse)
-async def login(body: LoginRequest):
+@limiter.limit("5/minute")
+async def login(request: Request, body: LoginRequest):
     operator = _configured_operator()
     if operator is None:
         raise HTTPException(status_code=503, detail="Operator login is not configured")

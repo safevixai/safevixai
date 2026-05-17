@@ -5,7 +5,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, Request
 import jwt
 from pydantic import BaseModel, Field
 
@@ -22,7 +22,7 @@ router = APIRouter(prefix="/api/v1/live-tracking", tags=["Live Tracking"])
 
 class StartTrackingRequest(BaseModel):
     user_name: str = Field(min_length=1, max_length=80)
-    blood_group: Optional[str] = Field(default=None, max_length=12)
+    blood_group: Optional[str] = Field(default=None, max_length=12, pattern=r"^(A|B|AB|O)[+-]$")
     vehicle_number: Optional[str] = Field(default=None, max_length=20, pattern=r"^[A-Za-z0-9 -]+$")
     latitude: float = Field(ge=-90, le=90)
     longitude: float = Field(ge=-180, le=180)
@@ -99,12 +99,18 @@ async def start_tracking(
         await session.commit()
 
     settings = get_settings()
-    frontend_url = settings.frontend_url or str(request.base_url).rstrip("/").replace(":8000", ":3000")
+    origin = request.headers.get("origin")
+    allowed_origins = set(settings.cors_origins)
+    frontend_url = settings.frontend_url
+    if not frontend_url and origin and (origin in allowed_origins or "*" in allowed_origins):
+        frontend_url = origin.rstrip("/")
+    if not frontend_url:
+        frontend_url = str(request.base_url).rstrip("/")
     view_token = create_access_token(
         data={"sub": session_id, "purpose": "tracking_view"},
         expires_delta=timedelta(hours=4),
     )
-    tracking_url = f"{frontend_url}/track/{session_id}?token={view_token}"
+    tracking_url = f"{frontend_url}/track/{session_id}#token={view_token}"
 
     logger.info("Live tracking session started: %s", session_id)
     return StartTrackingResponse(
@@ -157,15 +163,23 @@ async def update_location(
 @router.get("/session/{session_id}", response_model=TrackingSessionResponse)
 async def get_session(
     session_id: uuid.UUID,
-    token: str = Query(..., min_length=20, max_length=4096),
+    token: str | None = Query(default=None, min_length=20, max_length=4096),
+    authorization: str | None = Header(default=None),
 ):
     """
     Get the current location for a tracking session.
     PUBLIC endpoint — no authentication required.
     Used by family members who open the signed tracking link.
     """
+    bearer_token = None
+    if authorization and authorization.lower().startswith("bearer "):
+        bearer_token = authorization.split(" ", 1)[1].strip()
+    view_token = bearer_token or token
+    if not view_token:
+        raise HTTPException(status_code=403, detail="Tracking token required")
+
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(view_token, SECRET_KEY, algorithms=[ALGORITHM])
         if payload.get("purpose") != "tracking_view" or payload.get("sub") != str(session_id):
             raise HTTPException(status_code=403, detail="Invalid tracking link")
     except (jwt.InvalidTokenError, jwt.ExpiredSignatureError) as exc:

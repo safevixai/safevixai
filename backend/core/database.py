@@ -14,12 +14,18 @@ class Base(DeclarativeBase):
 
 
 settings = get_settings()
+connect_args = (
+    {'prepared_statement_cache_size': 0}
+    if settings.database_url.startswith('postgresql+asyncpg://')
+    else {}
+)
 
 # NOTE: Use `prepared_statement_cache_size=0` (not `statement_cache_size`) in
 # the DATABASE_URL query string — that is the correct SQLAlchemy asyncpg
 # dialect parameter for Supabase's transaction pooler.
 engine: AsyncEngine = create_async_engine(
     settings.database_url,
+    connect_args=connect_args,
     pool_pre_ping=True,
     pool_size=settings.db_pool_size,
     max_overflow=settings.db_max_overflow,

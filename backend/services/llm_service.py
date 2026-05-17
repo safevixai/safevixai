@@ -32,13 +32,13 @@ class LLMService:
         session_id = request.session_id or str(uuid4())
         try:
             response = await asyncio.wait_for(
-                self._client.post('/chat', json=payload),
+                self._client.post('/chat/', json=payload),
                 timeout=self.settings.chatbot_request_timeout_seconds,
             )
             response.raise_for_status()
             data = response.json()
             return ChatResponse.model_validate(data)
-        except TimeoutError:
+        except (asyncio.TimeoutError, TimeoutError):
             logger.warning(
                 "Chatbot service timed out after %.1fs for session %s",
                 self.settings.chatbot_request_timeout_seconds,

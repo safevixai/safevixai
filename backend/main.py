@@ -136,8 +136,10 @@ def create_app() -> FastAPI:
                 'routing_preview':     'GET  /api/v1/routing/preview?origin_lat=&origin_lon=&destination_lat=&destination_lon=',
                 'geocode_search':      'GET  /api/v1/geocode/search?q=',
                 'chat':                'POST /api/v1/chat/',
-                'mcp_server_sse':      'GET  /mcp/sse',
-                'mcp_server_msg':      'POST /mcp/messages',
+                **({
+                    'mcp_server_sse': 'GET  /mcp/sse',
+                    'mcp_server_msg': 'POST /mcp/messages',
+                } if settings.mcp_enabled else {}),
             },
             'built_for': 'IIT Madras Road Safety Hackathon 2026',
         }
@@ -172,9 +174,11 @@ def create_app() -> FastAPI:
 
     app.include_router(api_router)
     
-    # Mount Model Context Protocol (MCP) Server
-    from api.v1.mcp_server import sse_app as mcp_app
-    app.mount('/mcp', mcp_app)
+    if settings.mcp_enabled:
+        from api.v1.mcp_server import router as mcp_info_router
+        from api.v1.mcp_server import sse_app as mcp_app
+        app.include_router(mcp_info_router)
+        app.mount('/mcp', mcp_app)
     
     return app
 

@@ -105,6 +105,7 @@ async def submit_road_issue(
 async def verify_road_report(
     report_id: str,
     db: AsyncSession = Depends(get_db),
+    roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
     current_user: dict = Depends(get_current_user),
 ) -> dict:
     """
@@ -125,10 +126,11 @@ async def verify_road_report(
     logger = logging.getLogger(__name__)
 
     # For now, create a mock report dict — in production this queries Supabase
-    report_data = {
-        "id": report_id,
-        "status": "verified",
-    }
+    try:
+        report_data = await roadwatch_service.verify_report(db=db, report_id=report_id)
+    except ServiceValidationError as exc:
+        status_code = 404 if 'not found' in str(exc).lower() else 422
+        raise HTTPException(status_code=status_code, detail=str(exc)) from exc
 
     # Trigger OSM contribution asynchronously
     osm = get_osm_contributor()
@@ -144,7 +146,8 @@ async def verify_road_report(
 
     return {
         "report_id": report_id,
-        "status": "verified",
+        "status": report_data["status"],
+        "verified_by": current_user.get("sub"),
         "osm_contribution": osm_result,
         "waze_feed": "included_in_next_poll",
     }
