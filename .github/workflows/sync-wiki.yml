@@ -73,7 +73,7 @@ jobs:
           echo "LLM-generated: $RICH_DOCS | AST stubs: $LLM_DOCS"
 
       - name: Create Pull Request for Wiki Updates
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "docs(wiki): auto-sync wiki documentation [automated]"
           title: "docs(wiki): Auto-sync Wiki Documentation"
