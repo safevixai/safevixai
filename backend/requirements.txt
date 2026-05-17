@@ -46,5 +46,5 @@ pydantic==2.13.2
 pydantic-settings==2.13.1
 python-dotenv==1.2.2
 python-multipart==0.0.27
-pypdf==6.10.2
+pypdf==6.11.0
 aiofiles==25.1.0
