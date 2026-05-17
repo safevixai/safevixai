@@ -806,8 +806,12 @@ export interface ChallanQuery {
 }
 
 export interface ChallanResult {
+  violation_code: string;
+  vehicle_class: string;
+  state_code: string;
   base_fine: number;
   repeat_fine: number | null;
+  amount_due: number;
   section: string;
   description: string;
   state_override?: string;

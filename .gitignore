@@ -186,8 +186,9 @@ chatbot_service/data/qa_pairs/mhqa-main/
 # Speech finetuning model weights (7GB Indic Seamless — download separately)
 chatbot_service/data/speech_finetuning/indic-seamless/
 
-# KEEP THIS — Render needs the pre-built vectorstore
-# chatbot_service/data/chroma_db/ (COMMENTED OUT SO IT COMMITS!)
+# Render rebuilds the lightweight local-hash vectorstore from committed source docs.
+# Keep large local ChromaDB binaries out of Git and Docker build context.
+chatbot_service/data/chroma_db/
 # ============================================================
 # FRONTEND MODELS (committed individually when ready)
 # ============================================================

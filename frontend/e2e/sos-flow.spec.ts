@@ -1,10 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-const BASE_URL = process.env.E2E_BASE_URL ?? 'http://localhost:3000';
+const BASE_URL = process.env.E2E_BASE_URL ?? 'http://127.0.0.1:3100';
 
 test.describe('SOS and family tracking flow', () => {
   test('dispatches SOS, creates a signed tracking link, opens family view, and stops tracking', async ({
-    browser,
     context,
     page,
   }) => {
@@ -28,60 +27,70 @@ test.describe('SOS and family tracking flow', () => {
       window.open = () => null;
     });
 
-    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-    page.on('pageerror', err => console.log('PAGE ERROR:', err.message));
-    page.on('requestfailed', req => console.log('REQUEST FAILED:', req.url(), req.failure()?.errorText));
-
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': '*',
     };
 
-    await page.route('**/api/v1/emergency/sos**', async (route) => {
-      if (route.request().method() === 'OPTIONS') {
-        return route.fulfill({ status: 204, headers: corsHeaders });
-      }
+    await context.route('**/speech/status', async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
         headers: corsHeaders,
-        body: JSON.stringify({
-          services: [],
-          count: 0,
-          radius_used: 0,
-          source: 'e2e',
-          numbers: {
-            national_emergency: { service: '112', coverage: 'Pan-India' },
-          },
-        }),
+        body: JSON.stringify({ status: 'ok', providers: [] }),
       });
     });
 
-    await page.route('**/api/v1/live-tracking/start', async (route) => {
-      if (route.request().method() === 'OPTIONS') {
+    await context.route('**/*', async (route) => {
+      const request = route.request();
+      const url = request.url();
+      const method = request.method();
+      if (url.includes('/speech/status')) {
+        return route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          headers: corsHeaders,
+          body: JSON.stringify({ status: 'ok', providers: [] }),
+        });
+      }
+      if (method === 'OPTIONS' && url.includes('/api/v1/')) {
         return route.fulfill({ status: 204, headers: corsHeaders });
       }
-      await route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        headers: corsHeaders,
-        body: JSON.stringify({
-          session_id: 'e2e-session',
-          tracking_url: `${BASE_URL}/track/e2e-session?token=signed-e2e-token`,
-          expires_at: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
-        }),
-      });
-    });
-
-    await page.route('**/api/v1/live-tracking/update', async (route) => {
-      if (route.request().method() === 'OPTIONS') {
+      if (url.includes('/api/v1/emergency/sos')) {
+        return route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          headers: corsHeaders,
+          body: JSON.stringify({
+            services: [],
+            count: 0,
+            radius_used: 0,
+            source: 'e2e',
+            numbers: {
+              national_emergency: { service: '112', coverage: 'Pan-India' },
+            },
+          }),
+        });
+      }
+      if (url.includes('/api/v1/live-tracking/start')) {
+        return route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          headers: corsHeaders,
+          body: JSON.stringify({
+            session_id: 'e2e-session',
+            tracking_url: `${BASE_URL}/track/e2e-session#token=signed-e2e-token`,
+            expires_at: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+          }),
+        });
+      }
+      if (url.includes('/api/v1/live-tracking/update')) {
         return route.fulfill({ status: 204, headers: corsHeaders });
       }
-      await route.fulfill({ status: 204, headers: corsHeaders });
-    });
-
-    await page.route('**/api/v1/live-tracking/session/e2e-session**', async (route) => {
+      if (!url.includes('/api/v1/live-tracking/session/e2e-session')) {
+        return route.continue();
+      }
       if (route.request().method() === 'OPTIONS') {
         return route.fulfill({ status: 204, headers: corsHeaders });
       }
@@ -111,6 +120,10 @@ test.describe('SOS and family tracking flow', () => {
 
     await page.goto(`${BASE_URL}/sos`);
     await expect(page.getByText(/Hold to Activate/i)).toBeVisible();
+    await expect(page.getByText(/Lat:\s*13\.0827,\s*Long:\s*80\.2707/i)).toBeVisible({
+      timeout: 15000,
+    });
+    await expect(page.getByText(/E2E SafeVix User/i)).toBeVisible();
 
     const sosButton = await page.getByRole('button', { name: /Activate emergency SOS/i }).elementHandle();
     expect(sosButton).not.toBeNull();
@@ -121,31 +134,8 @@ test.describe('SOS and family tracking flow', () => {
     await expect(page.getByText(/Emergency Declared/i)).toBeVisible();
     await expect(page.getByText(/Family Live Tracking Active/i)).toBeVisible();
 
-    const familyPage = await browser.newPage();
-    await familyPage.route('**/api/v1/live-tracking/session/e2e-session**', async (route) => {
-      if (route.request().method() === 'OPTIONS') {
-        return route.fulfill({ status: 204, headers: corsHeaders });
-      }
-      await route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        headers: corsHeaders,
-        body: JSON.stringify({
-          session_id: 'e2e-session',
-          user_name: 'E2E SafeVix User',
-          blood_group: 'O+',
-          vehicle_number: 'TN01AB1234',
-          latitude: 13.083,
-          longitude: 80.271,
-          accuracy: 10,
-          speed_kmh: null,
-          battery_percent: 79,
-          is_active: true,
-          updated_at: new Date().toISOString(),
-        }),
-      });
-    });
-    await familyPage.goto(`${BASE_URL}/track/e2e-session?token=signed-e2e-token`);
+    const familyPage = await context.newPage();
+    await familyPage.goto(`${BASE_URL}/track/e2e-session#token=signed-e2e-token`);
     await expect(familyPage.getByText(/E2E SafeVix User/i)).toBeVisible();
 
     const stopStatus = await page.evaluate(async () => {

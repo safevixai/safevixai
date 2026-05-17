@@ -16,11 +16,12 @@ class Settings(BaseSettings):
     cors_origins_env: str = Field(default='*', validation_alias='CORS_ORIGINS')
     frontend_url: str | None = Field(default=None, validation_alias='FRONTEND_URL')
     admin_secret: str | None = None
+    enable_mcp: bool = False
 
     database_url: str = 'postgresql+asyncpg://postgres:postgres@localhost:5432/safevixai'
     redis_url: str | None = None
-    db_pool_size: int = 5
-    db_max_overflow: int = 10
+    db_pool_size: int = 1
+    db_max_overflow: int = 1
     db_pool_timeout_seconds: float = 30.0
     db_pool_recycle_seconds: int = 1800
 
@@ -47,10 +48,13 @@ class Settings(BaseSettings):
     upstream_retry_attempts: int = 2
     upstream_retry_backoff_seconds: float = 1.5
     data_gov_api_key: str | None = None
+    supabase_url: str | None = None
+    supabase_service_role_key: str | None = None
+    road_photo_bucket: str = 'road-photos'
 
     chatbot_mode: str = 'external_service'
     chatbot_ready: bool = False
-    chatbot_service_url: str = 'http://localhost:8010'
+    chatbot_service_url: str = 'http://localhost:8010/api/v1'
     chatbot_request_timeout_seconds: float = 20.0
 
     data_dir: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[1] / 'data')
@@ -114,6 +118,12 @@ class Settings(BaseSettings):
             return ['image/jpeg', 'image/png', 'image/webp']
         return [item.strip().lower() for item in value.split(',') if item.strip()]
 
+    @property
+    def mcp_enabled(self) -> bool:
+        if self.environment == 'production':
+            return False
+        return self.enable_mcp or self.environment in {'development', 'test'}
+
     @field_validator('local_upload_base_url', mode='before')
     @classmethod
     def normalize_upload_base_url(cls, value: Any) -> str | None:
@@ -144,13 +154,16 @@ class Settings(BaseSettings):
     @classmethod
     def normalize_chatbot_service_url(cls, value: Any) -> str:
         if value is None:
-            return 'http://localhost:8010'
+            return 'http://localhost:8010/api/v1'
         if not isinstance(value, str):
             raise ValueError('chatbot_service_url must be a string')
         normalized = value.strip()
         if not normalized:
-            return 'http://localhost:8010'
-        return normalized.rstrip('/')
+            return 'http://localhost:8010/api/v1'
+        normalized = normalized.rstrip('/')
+        if normalized.endswith('/api/v1'):
+            return normalized
+        return f'{normalized}/api/v1'
 
     @field_validator('frontend_url', mode='before')
     @classmethod

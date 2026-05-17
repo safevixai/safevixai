@@ -15,6 +15,12 @@ except Exception:  # pragma: no cover - optional dependency at runtime
 
 MAX_TEXT_CHARS = 120_000
 MAX_CSV_ROWS = 250
+EXCLUDED_DATA_DIRS = {
+    'chroma_db',
+    'qa_pairs',
+    'pothole_training',
+    'speech_finetuning',
+}
 
 
 @dataclass(slots=True)
@@ -32,7 +38,7 @@ def load_documents(data_dir: Path) -> list[LoadedDocument]:
     for path in sorted(data_dir.rglob('*')):
         if not path.is_file():
             continue
-        if 'chroma_db' in path.parts:
+        if any(part in EXCLUDED_DATA_DIRS for part in path.parts):
             continue
         loader = _LOADER_BY_SUFFIX.get(path.suffix.lower())
         if loader is None:

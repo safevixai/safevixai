@@ -18,7 +18,11 @@ interface PageProps {
 export default function FamilyTrackingPage({ params }: PageProps) {
  const { session_id } = use(params);
  const searchParams = useSearchParams();
- const token = searchParams.get('token') || '';
+ const legacyToken = searchParams.get('token') || '';
+ const [tokenState, setTokenState] = useState<{ ready: boolean; value: string }>({
+ ready: false,
+ value: '',
+ });
  const [location, setLocation] = useState<LiveLocation | null>(null);
  const [expired, setExpired] = useState(false);
  const [loading, setLoading] = useState(true);
@@ -26,7 +30,13 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  const stopRef = useRef<(() => void) | null>(null);
 
  useEffect(() => {
- if (!session_id || !token) {
+ const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+ setTokenState({ ready: true, value: hashParams.get('token') || legacyToken });
+ }, [legacyToken]);
+
+ useEffect(() => {
+ if (!tokenState.ready) return;
+ if (!session_id || !tokenState.value) {
  setExpired(true);
  setLoading(false);
  return;
@@ -34,7 +44,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
 
  stopRef.current = subscribeToTracking(
  session_id,
- token,
+ tokenState.value,
  (loc) => {
  setLocation(loc);
  setLastUpdated(new Date());
@@ -48,7 +58,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
  );
 
  return () => stopRef.current?.();
- }, [session_id, token]);
+ }, [session_id, tokenState]);
 
  const formatTime = (d: Date) =>
  d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });

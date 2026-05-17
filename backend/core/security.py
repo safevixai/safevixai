@@ -18,6 +18,8 @@ logger = logging.getLogger(__name__)
 _ENVIRONMENT = os.environ.get("ENVIRONMENT", "development").lower()
 _env_secret = os.environ.get("JWT_SECRET_KEY")
 if _env_secret:
+    if _ENVIRONMENT == "production" and len(_env_secret.encode("utf-8")) < 32:
+        raise RuntimeError("JWT_SECRET_KEY must be at least 32 bytes when ENVIRONMENT=production")
     SECRET_KEY = _env_secret
 elif _ENVIRONMENT == "production":
     raise RuntimeError("JWT_SECRET_KEY is required when ENVIRONMENT=production")

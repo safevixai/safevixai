@@ -18,6 +18,14 @@ function authHeaders(): HeadersInit {
  return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
+function openEmergencyWhatsApp(phone: string, message: string): void {
+ const cleaned = phone.replace(/[\s\-()]/g, '');
+ if (!/^\+?[1-9]\d{7,14}$/.test(cleaned)) return;
+ const normalized = cleaned.startsWith('+') ? cleaned.slice(1) : cleaned;
+ const popup = window.open(`https://wa.me/${normalized}?text=${message}`, '_blank', 'noopener,noreferrer');
+ if (popup) popup.opener = null;
+}
+
 export interface TrackingSession {
  session_id: string;
  tracking_url: string;
@@ -161,14 +169,12 @@ export function notifyContactsViaWhatsApp(
  if (contacts.length === 0) return;
 
  // Open the first contact immediately (user-gesture context allows this)
- const cleaned0 = contacts[0].replace(/[\s\-()]/g, '');
- window.open(`https://wa.me/${cleaned0}?text=${message}`, '_blank');
+ openEmergencyWhatsApp(contacts[0], message);
 
  // Queue remaining contacts with delays to avoid popup blocking
  contacts.slice(1).forEach((phone, index) => {
-  const cleaned = phone.replace(/[\s\-()]/g, '');
   setTimeout(() => {
-   window.open(`https://wa.me/${cleaned}?text=${message}`, '_blank');
+   openEmergencyWhatsApp(phone, message);
   }, (index + 1) * 1500);
  });
 }
@@ -192,8 +198,9 @@ export function subscribeToTracking(
  const poll = async () => {
   if (!active) return;
   try {
-   const params = new URLSearchParams({ token });
-   const res = await fetch(`${API_BASE}/api/v1/live-tracking/session/${sessionId}?${params}`);
+   const res = await fetch(`${API_BASE}/api/v1/live-tracking/session/${sessionId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+   });
    if (res.status === 404) {
     onExpired();
     active = false;

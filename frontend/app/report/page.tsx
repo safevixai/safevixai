@@ -165,7 +165,7 @@ export default function ReportPage() {
       } else {
         setAuthorityPreview(null);
         nextError =
-          nextError 
+          nextError ??
           extractApiError(
             authorityResult.reason,
             'Road ownership lookup is temporarily unavailable.'
@@ -177,7 +177,7 @@ export default function ReportPage() {
       } else {
         setInfrastructure(null);
         nextError =
-          nextError 
+          nextError ??
           extractApiError(
             infrastructureResult.reason,
             'Road infrastructure data could not be loaded right now.'

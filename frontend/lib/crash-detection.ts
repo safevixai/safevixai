@@ -53,6 +53,7 @@ function handleDeviceMotion(event: DeviceMotionEvent) {
  */
 export async function startCrashDetection(onCrashDetected: CrashCallback) {
   if (typeof window === 'undefined') return;
+  if (typeof DeviceMotionEvent === 'undefined') return;
   
   // H9 FIX: Prevent duplicate listener registration
   if (listeners.includes(onCrashDetected)) return;
@@ -62,9 +63,9 @@ export async function startCrashDetection(onCrashDetected: CrashCallback) {
   if (motionListenerRegistered) return;
 
   // Request permission for iOS 13+ devices
-  if (typeof (DeviceMotionEvent as any).requestPermission === 'function') {
+  if (typeof (DeviceMotionEvent as unknown as { requestPermission?: () => Promise<PermissionState> }).requestPermission === 'function') {
     try {
-      const permissionState = await (DeviceMotionEvent as any).requestPermission();
+      const permissionState = await (DeviceMotionEvent as unknown as { requestPermission: () => Promise<PermissionState> }).requestPermission();
       if (permissionState === 'granted') {
         window.addEventListener('devicemotion', handleDeviceMotion, true);
         motionListenerRegistered = true;

@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import contextlib
+import logging
 import uuid
+from datetime import datetime
 from pathlib import Path
 
 import aiofiles
+import httpx
 from fastapi import UploadFile
 from geoalchemy2 import Geography, WKTElement
 from sqlalchemy import cast, func, select
@@ -40,6 +43,8 @@ _IMAGE_MAGIC_SIGNATURES: list[bytes] = [
     b'\x89PNG\r\n\x1a\n',               # PNG
     b'RIFF',                             # WebP (RIFF....WEBP)
 ]
+
+logger = logging.getLogger(__name__)
 
 
 def _is_valid_image_magic(header: bytes) -> bool:
@@ -252,6 +257,47 @@ class RoadWatchService:
             status=issue.status,
         )
 
+    async def verify_report(self, *, db: AsyncSession, report_id: str) -> dict:
+        """Mark a RoadWatch report as acknowledged and return contribution-ready data."""
+        try:
+            report_uuid = uuid.UUID(report_id)
+        except ValueError as exc:
+            raise ServiceValidationError('report_id must be a valid UUID') from exc
+
+        lat_expr = func.ST_Y(RoadIssue.location).label('lat')
+        lon_expr = func.ST_X(RoadIssue.location).label('lon')
+        row = (
+            await db.execute(
+                select(RoadIssue, lat_expr, lon_expr).where(RoadIssue.uuid == report_uuid)
+            )
+        ).first()
+        if row is None:
+            raise ServiceValidationError('Road report not found')
+
+        issue, lat, lon = row
+        issue.status = 'acknowledged'
+        issue.status_updated = datetime.utcnow()
+        await db.commit()
+        await db.refresh(issue)
+        await self.cache.increment(ISSUES_CACHE_VERSION_KEY)
+
+        return {
+            'id': str(issue.uuid),
+            'uuid': str(issue.uuid),
+            'status': issue.status,
+            'lat': float(lat),
+            'lon': float(lon),
+            'issue_type': issue.issue_type,
+            'severity': issue.severity,
+            'description': issue.description,
+            'road_name': issue.road_name,
+            'road_type': issue.road_type,
+            'road_number': issue.road_number,
+            'location_address': issue.location_address,
+            'authority_name': issue.authority_name,
+            'complaint_ref': issue.complaint_ref,
+        }
+
     async def _lookup_infrastructure(
         self,
         *,
@@ -287,30 +333,45 @@ class RoadWatchService:
 
             suffix = Path(photo.filename).suffix.lower() or UPLOAD_EXTENSION_BY_CONTENT_TYPE.get(content_type, '.jpg')
             file_name = f'{issue_uuid}{suffix}'
-            target = self.settings.upload_dir / file_name
             max_bytes = self.settings.max_upload_bytes
             written = 0
+            chunks: list[bytes] = []
 
-            async with aiofiles.open(target, 'wb') as handle:
-                first_chunk = True
-                while True:
-                    chunk = await photo.read(1024 * 1024)
-                    if not chunk:
-                        break
-                    # Validate magic bytes on first chunk before writing anything to disk
-                    if first_chunk:
-                        first_chunk = False
-                        header = chunk[:12]
-                        if not _is_valid_image_magic(header):
-                            raise ServiceValidationError(
-                                'Uploaded file does not appear to be a valid JPEG, PNG, or WebP image.'
-                            )
-                    written += len(chunk)
-                    if written > max_bytes:
+            first_chunk = True
+            while True:
+                chunk = await photo.read(1024 * 1024)
+                if not chunk:
+                    break
+                # Validate magic bytes on first chunk before writing anywhere
+                if first_chunk:
+                    first_chunk = False
+                    header = chunk[:12]
+                    if not _is_valid_image_magic(header):
                         raise ServiceValidationError(
-                            f'Photo exceeds max upload size of {max_bytes // (1024 * 1024)} MB'
+                            'Uploaded file does not appear to be a valid JPEG, PNG, or WebP image.'
                         )
-                    await handle.write(chunk)
+                written += len(chunk)
+                if written > max_bytes:
+                    raise ServiceValidationError(
+                        f'Photo exceeds max upload size of {max_bytes // (1024 * 1024)} MB'
+                    )
+                chunks.append(chunk)
+
+            if not chunks:
+                return None
+
+            payload = b''.join(chunks)
+            uploaded_url = await self._upload_photo_to_supabase(
+                file_name=file_name,
+                content_type=content_type or 'image/jpeg',
+                payload=payload,
+            )
+            if uploaded_url:
+                return uploaded_url
+
+            target = self.settings.upload_dir / file_name
+            async with aiofiles.open(target, 'wb') as handle:
+                await handle.write(payload)
         except Exception:
             if target is not None:
                 with contextlib.suppress(FileNotFoundError):
@@ -322,3 +383,37 @@ class RoadWatchService:
         if self.settings.local_upload_base_url:
             return f'{self.settings.local_upload_base_url}/{file_name}'
         return f'/uploads/{file_name}'
+
+    async def _upload_photo_to_supabase(
+        self,
+        *,
+        file_name: str,
+        content_type: str,
+        payload: bytes,
+    ) -> str | None:
+        supabase_url = (self.settings.supabase_url or '').rstrip('/')
+        service_key = self.settings.supabase_service_role_key
+        bucket = self.settings.road_photo_bucket.strip() or 'road-photos'
+        if not supabase_url or not service_key:
+            return None
+
+        object_path = f'roadwatch/{file_name}'
+        upload_url = f'{supabase_url}/storage/v1/object/{bucket}/{object_path}'
+        try:
+            async with httpx.AsyncClient(timeout=20) as client:
+                response = await client.post(
+                    upload_url,
+                    content=payload,
+                    headers={
+                        'Authorization': f'Bearer {service_key}',
+                        'apikey': service_key,
+                        'Content-Type': content_type,
+                        'x-upsert': 'false',
+                    },
+                )
+                response.raise_for_status()
+        except httpx.HTTPError as exc:
+            logger.warning('Supabase Storage upload failed; falling back to local upload: %s', exc)
+            return None
+
+        return f'{supabase_url}/storage/v1/object/public/{bucket}/{object_path}'

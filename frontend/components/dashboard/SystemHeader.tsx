@@ -7,6 +7,8 @@ import { ArrowLeft, Search, Mic, Sun, Moon, Monitor, Menu, ShieldCheck, User } f
 import { useAppStore } from '@/lib/store';
 import { useTheme } from '@/components/ThemeProvider';
 
+type ThemeChoice = 'light' | 'dark' | 'system';
+
 interface SystemHeaderProps {
   title?: string;
   showBack?: boolean;
@@ -134,14 +136,14 @@ const SystemHeader = memo(function SystemHeader({
         {/* Theme Switcher */}
         {mounted && (
           <div className="flex items-center h-8 gap-1 bg-surface-2 rounded-full p-1 border border-border shadow-sm">
-            {[
+            {([
               { id: 'light', icon: <Sun size={14} />, title: 'Light' },
               { id: 'dark', icon: <Moon size={14} />, title: 'Dark' },
               { id: 'system', icon: <Monitor size={14} />, title: 'Auto' }
-            ].map((t) => (
+            ] satisfies Array<{ id: ThemeChoice; icon: React.ReactNode; title: string }>).map((t) => (
               <button
                 key={t.id}
-                onClick={() => setTheme(t.id as any)}
+                onClick={() => setTheme(t.id)}
                 title={t.title}
                 className={`p-1 rounded-full transition-all ${theme === t.id ? 'bg-brand/20 text-brand-light shadow-sm' : 'text-text-3 hover:text-text-1'}`}
               >

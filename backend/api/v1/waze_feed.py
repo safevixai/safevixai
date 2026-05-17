@@ -117,7 +117,7 @@ async def get_waze_cifs_feed(db: AsyncSession = Depends(get_db)) -> dict[str, An
                 severity
             FROM road_issues
             WHERE created_at >= :cutoff
-              AND status IN ('verified', 'confirmed', 'acknowledged', 'in_progress')
+              AND status IN ('acknowledged', 'in_progress')
             ORDER BY created_at DESC
             LIMIT 200
         """),

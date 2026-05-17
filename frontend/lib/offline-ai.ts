@@ -17,6 +17,7 @@
 'use client';
 
 import { logClientError, logClientWarning } from './client-logger';
+import { FEATURES } from './features';
 
 // ── Types ─────────────────────────────────────────────────────────────────
 
@@ -38,17 +39,43 @@ export interface OfflineAIProgress {
 
 export type ProgressCallback = (progress: OfflineAIProgress) => void;
 
+type GeneratedMessage = { content?: string };
+type GeneratedOutput = string | GeneratedMessage[];
+type TransformersPipeline = (
+  messages: unknown,
+  options: { max_new_tokens: number },
+) => Promise<Array<{ generated_text?: GeneratedOutput }>>;
+
+interface DownloadProgressEvent {
+  progress?: number;
+  loaded?: number;
+  total?: number;
+}
+
+interface ChromeAISession {
+  prompt(prompt: string): Promise<string>;
+}
+
+interface ChromeAIWindow extends Window {
+  ai?: {
+    languageModel?: {
+      capabilities(): Promise<{ available?: string }>;
+      create(options: { systemPrompt: string }): Promise<ChromeAISession>;
+    };
+  };
+}
+
 // ── Internal state ────────────────────────────────────────────────────────
 
-let _pipeline: any = null;
-let _systemSession: any = null;  // Chrome Built-in AI session
+let _pipeline: TransformersPipeline | null = null;
+let _systemSession: ChromeAISession | null = null;  // Chrome Built-in AI session
 let _status: OfflineAIStatus = 'idle';
 
 // ── System AI check (Chrome / Android AICore) ─────────────────────────────
 
 async function checkSystemAI(): Promise<boolean> {
   try {
-    const win = window as any;
+    const win = window as ChromeAIWindow;
     // Chrome 127+ Built-in AI API (uses Gemma system-wide)
     if (win.ai?.languageModel) {
       const caps = await win.ai.languageModel.capabilities();
@@ -62,7 +89,7 @@ async function checkSystemAI(): Promise<boolean> {
         return true;
       }
     }
-  } catch (_) {
+  } catch {
     // Chrome AI not available — fall through to Transformers.js
   }
   return false;
@@ -73,6 +100,15 @@ async function checkSystemAI(): Promise<boolean> {
 async function loadTransformersGemma(
   onProgress?: ProgressCallback,
 ): Promise<void> {
+  const memoryGb =
+    typeof navigator !== 'undefined' && 'deviceMemory' in navigator
+      ? Number((navigator as Navigator & { deviceMemory?: number }).deviceMemory)
+      : undefined;
+
+  if (memoryGb !== undefined && memoryGb < 4) {
+    throw new Error('Offline AI model disabled on devices with less than 4GB memory');
+  }
+
   // Dynamic import so the Transformers.js bundle is only loaded when needed
   const { pipeline, env } = await import('@huggingface/transformers');
 
@@ -86,13 +122,14 @@ async function loadTransformersGemma(
     message: 'Starting Gemma 4 download… (1.3GB — cached on WiFi)',
   });
 
-  _pipeline = await pipeline(
+  const loadedPipeline = await pipeline(
     'text-generation',
     'google/gemma-4-E2B-it',
     {
       device: 'webgpu',   // GPU acceleration — falls back to WASM automatically
       dtype: 'q4',        // 4-bit quantized — fits in ~1.3GB
-      progress_callback: (p: any) => {
+      progress_callback: (progressInfo: unknown) => {
+        const p = progressInfo as DownloadProgressEvent;
         const pct = Math.round((p.progress || 0) * 100);
         const loaded = p.loaded || 0;
         const total = p.total || 0;
@@ -109,6 +146,7 @@ async function loadTransformersGemma(
       },
     },
   );
+  _pipeline = loadedPipeline as unknown as TransformersPipeline;
 }
 
 // ── Public API ────────────────────────────────────────────────────────────
@@ -139,6 +177,16 @@ export async function getOfflineAI(
     _status = 'ready';
     onProgress?.({ status: 'system_available', percent: 100, message: 'System AI ready (0MB download!)' });
     return { type: 'system' };
+  }
+
+  if (!FEATURES.webllmOffline) {
+    _status = 'error';
+    onProgress?.({
+      status: 'error',
+      percent: 0,
+      message: 'Large offline AI model download is disabled. Using cached answers.',
+    });
+    return { type: 'fallback' };
   }
 
   // Fall back to Transformers.js Gemma 4 download

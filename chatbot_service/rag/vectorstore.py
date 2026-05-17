@@ -10,6 +10,12 @@ from rag.embeddings import build_embedding_function, normalize_text, score_query
 
 logger = logging.getLogger(__name__)
 
+EXCLUDED_INDEX_CATEGORIES = {
+    'qa_pairs',
+    'pothole_training',
+    'speech_finetuning',
+}
+
 
 @dataclass(slots=True)
 class DocumentChunk:
@@ -47,15 +53,13 @@ class LocalVectorStore:
             try:
                 if collection.count() > 0:
                     if self.index_path.exists():
-                        raw = json.loads(self.index_path.read_text(encoding='utf-8'))
-                        self._chunks = [DocumentChunk(**item) for item in raw]
+                        self._chunks = self._load_index_file()
                         return self._chunks
             except Exception as exc:
                 logger.warning('Unable to read Chroma collection metadata: %s', exc)
 
         if self.index_path.exists():
-            raw = json.loads(self.index_path.read_text(encoding='utf-8'))
-            self._chunks = [DocumentChunk(**item) for item in raw]
+            self._chunks = self._load_index_file()
             if collection is not None:
                 self._upsert_chroma(collection, self._chunks)
             return self._chunks
@@ -68,16 +72,31 @@ class LocalVectorStore:
         chunks: list[DocumentChunk] = []
         for document in documents:
             chunks.extend(self._chunk_document(document))
-        self._chunks = chunks
+        self._chunks = self._filter_chunks(chunks)
+        self._write_index_file(self._chunks)
+        collection = self._get_collection()
+        if collection is not None:
+            self._upsert_chroma(collection, self._chunks)
+        return self._chunks
+
+    def _load_index_file(self) -> list[DocumentChunk]:
+        raw = json.loads(self.index_path.read_text(encoding='utf-8'))
+        all_chunks = [DocumentChunk(**item) for item in raw]
+        chunks = self._filter_chunks(all_chunks)
+        if len(chunks) != len(all_chunks):
+            self._write_index_file(chunks)
+        return chunks
+
+    def _write_index_file(self, chunks: list[DocumentChunk]) -> None:
         self.persist_dir.mkdir(parents=True, exist_ok=True)
         self.index_path.write_text(
             json.dumps([asdict(chunk) for chunk in chunks], ensure_ascii=False, indent=2),
             encoding='utf-8',
         )
-        collection = self._get_collection()
-        if collection is not None:
-            self._upsert_chroma(collection, chunks)
-        return self._chunks
+
+    @staticmethod
+    def _filter_chunks(chunks: list[DocumentChunk]) -> list[DocumentChunk]:
+        return [chunk for chunk in chunks if chunk.category not in EXCLUDED_INDEX_CATEGORIES]
 
     def search(
         self,
@@ -197,6 +216,8 @@ class LocalVectorStore:
                 category=str(metadata.get('category') or 'general'),
                 content=content or '',
             )
+            if chunk.category in EXCLUDED_INDEX_CATEGORIES:
+                continue
             score = 1.0 / (1.0 + float(distance or 0.0))
             matches.append((chunk, score))
         return matches

@@ -39,8 +39,36 @@ interface SafeVixDB extends DBSchema {
   };
 }
 
-let dbPromise: Promise<IDBPDatabase<SafeVixDB>> | null = null;
+interface SyncManagerRegistration extends ServiceWorkerRegistration {
+  sync?: {
+    register(tag: string): Promise<void>;
+  };
+}
+
+let dbPromise: Promise<IDBPDatabase<SafeVixDB> | null> | null = null;
+let indexedDbUnavailable = false;
 let offlineSyncListenersRegistered = false;
+const SOS_FALLBACK_KEY = 'safevix:sos-queue:fallback';
+const ROAD_REPORT_FALLBACK_KEY = 'safevix:road-report-queue:fallback';
+
+function readFallbackQueue<T>(key: string): T[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    return JSON.parse(window.sessionStorage.getItem(key) || '[]') as T[];
+  } catch {
+    window.sessionStorage.removeItem(key);
+    return [];
+  }
+}
+
+function writeFallbackQueue<T>(key: string, items: T[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.sessionStorage.setItem(key, JSON.stringify(items));
+  } catch {
+    // Private mode can block all storage. Keep the app alive and let callers show UX.
+  }
+}
 
 async function ensureServiceWorkerRegistration(): Promise<void> {
   if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
@@ -56,6 +84,7 @@ async function ensureServiceWorkerRegistration(): Promise<void> {
  */
 export function initDB() {
   if (typeof window === 'undefined') return null;
+  if (indexedDbUnavailable) return null;
   
   if (!dbPromise) {
     dbPromise = openDB<SafeVixDB>('safevix-offline-db', 2, {
@@ -75,6 +104,10 @@ export function initDB() {
           store.createIndex('by-timestamp', 'timestamp');
         }
       },
+    }).catch(() => {
+      indexedDbUnavailable = true;
+      dbPromise = null;
+      return null;
     });
   }
   return dbPromise;
@@ -86,20 +119,25 @@ export function initDB() {
  */
 export async function enqueueSOS(data: Omit<SOSData, 'timestamp'>): Promise<void> {
   const db = await initDB();
-  if (!db) return;
-
   const sosEntry: SOSData = {
     ...data,
     apiUrl: PUBLIC_API_BASE_URL,
     timestamp: new Date().toISOString(),
   };
 
+  if (!db) {
+    const items = readFallbackQueue<SOSData>(SOS_FALLBACK_KEY);
+    items.push(sosEntry);
+    writeFallbackQueue(SOS_FALLBACK_KEY, items);
+    return;
+  }
+
   await db.add('sos-queue', sosEntry);
   
   if ('serviceWorker' in navigator && 'SyncManager' in window) {
     try {
-      const registration = await navigator.serviceWorker.ready;
-      await (registration as any).sync.register('sos-queue-flush');
+      const registration = (await navigator.serviceWorker.ready) as SyncManagerRegistration;
+      await registration.sync?.register('sos-queue-flush');
     } catch {
       return;
     }
@@ -110,7 +148,20 @@ export async function enqueueRoadReport(
   data: Omit<RoadReportQueueData, 'timestamp' | 'apiUrl'>
 ): Promise<void> {
   const db = await initDB();
-  if (!db) return;
+  if (!db) {
+    const items = readFallbackQueue<Omit<RoadReportQueueData, 'photo'>>(ROAD_REPORT_FALLBACK_KEY);
+    items.push({
+      lat: data.lat,
+      lon: data.lon,
+      issue_type: data.issue_type,
+      severity: data.severity,
+      description: data.description,
+      apiUrl: PUBLIC_API_BASE_URL,
+      timestamp: new Date().toISOString(),
+    });
+    writeFallbackQueue(ROAD_REPORT_FALLBACK_KEY, items);
+    return;
+  }
 
   await db.add('road-report-queue', {
     ...data,
@@ -120,8 +171,8 @@ export async function enqueueRoadReport(
 
   if ('serviceWorker' in navigator && 'SyncManager' in window) {
     try {
-      const registration = await navigator.serviceWorker.ready;
-      await (registration as any).sync.register('road-report-queue-flush');
+      const registration = (await navigator.serviceWorker.ready) as SyncManagerRegistration;
+      await registration.sync?.register('road-report-queue-flush');
     } catch {
       return;
     }
@@ -142,7 +193,10 @@ export async function syncOfflineSOSQueue(): Promise<void> {
   }
 
   const db = await initDB();
-  if (!db) return;
+  if (!db) {
+    await syncFallbackSOSQueue();
+    return;
+  }
 
   // Read items in a readonly transaction first
   const readTx = db.transaction('sos-queue', 'readonly');
@@ -186,6 +240,7 @@ export async function syncOfflineSOSQueue(): Promise<void> {
       break;
     }
   }
+  await syncFallbackSOSQueue();
 }
 
 /**
@@ -197,7 +252,10 @@ export async function syncOfflineRoadReportQueue(): Promise<void> {
   }
 
   const db = await initDB();
-  if (!db) return;
+  if (!db) {
+    await syncFallbackRoadReportQueue();
+    return;
+  }
 
   // Read items in a readonly transaction first
   const readTx = db.transaction('road-report-queue', 'readonly');
@@ -248,6 +306,60 @@ export async function syncOfflineRoadReportQueue(): Promise<void> {
       break;
     }
   }
+  await syncFallbackRoadReportQueue();
+}
+
+async function syncFallbackSOSQueue(): Promise<void> {
+  const items = readFallbackQueue<SOSData>(SOS_FALLBACK_KEY);
+  if (items.length === 0) return;
+
+  const remaining: SOSData[] = [];
+  for (const item of items) {
+    try {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), OFFLINE_SOS_SYNC_TIMEOUT_MS);
+      const res = await fetch(`${PUBLIC_API_BASE_URL}/api/v1/emergency/sos?lat=${item.lat}&lon=${item.lon}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+      });
+      window.clearTimeout(timeout);
+      if (!res.ok) remaining.push(item);
+    } catch {
+      remaining.push(item);
+    }
+  }
+  writeFallbackQueue(SOS_FALLBACK_KEY, remaining);
+}
+
+async function syncFallbackRoadReportQueue(): Promise<void> {
+  const items = readFallbackQueue<Omit<RoadReportQueueData, 'photo'>>(ROAD_REPORT_FALLBACK_KEY);
+  if (items.length === 0) return;
+
+  const remaining: Omit<RoadReportQueueData, 'photo'>[] = [];
+  for (const item of items) {
+    try {
+      const formData = new FormData();
+      formData.append('lat', String(item.lat));
+      formData.append('lon', String(item.lon));
+      formData.append('issue_type', item.issue_type);
+      formData.append('severity', String(item.severity));
+      if (item.description?.trim()) formData.append('description', item.description.trim());
+
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), OFFLINE_SOS_SYNC_TIMEOUT_MS);
+      const res = await fetch(`${PUBLIC_API_BASE_URL}/api/v1/roads/report`, {
+        method: 'POST',
+        body: formData,
+        signal: controller.signal,
+      });
+      window.clearTimeout(timeout);
+      if (!res.ok) remaining.push(item);
+    } catch {
+      remaining.push(item);
+    }
+  }
+  writeFallbackQueue(ROAD_REPORT_FALLBACK_KEY, remaining);
 }
 
 /**

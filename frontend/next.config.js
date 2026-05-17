@@ -1,3 +1,48 @@
+const isDevelopment = process.env.NODE_ENV !== 'production';
+const localConnectOrigins = [process.env.NEXT_PUBLIC_API_URL, process.env.NEXT_PUBLIC_CHATBOT_URL]
+  .filter(Boolean)
+  .flatMap((value) => {
+    try {
+      const url = new URL(value);
+      return ['localhost', '127.0.0.1', '::1'].includes(url.hostname)
+        ? [`${url.protocol}//${url.host}`]
+        : [];
+    } catch {
+      return [];
+    }
+  });
+const allowLocalConnect = isDevelopment || localConnectOrigins.length > 0;
+const scriptSrc = [
+  "'self'",
+  "'unsafe-inline'",
+  ...(isDevelopment ? ["'unsafe-eval'"] : []),
+  "'wasm-unsafe-eval'",
+  'https://cdn.jsdelivr.net',
+].join(' ');
+const connectSrc = [
+  "'self'",
+  'https:',
+  'wss:',
+  ...(allowLocalConnect
+    ? ['http://localhost:*', 'http://127.0.0.1:*', 'ws://localhost:*', 'ws://127.0.0.1:*']
+    : []),
+  ...localConnectOrigins,
+].join(' ');
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src ${scriptSrc}`,
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' data: https:",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  `connect-src ${connectSrc}`,
+  "worker-src 'self' blob:",
+  "child-src 'self' blob:",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -12,7 +57,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'huggingface.co' },
     ],
   },
-  // No orphan redirects needed — /emergency and /settings routes now exist
+  // No orphan redirects needed; /emergency and /settings routes now exist.
   async redirects() {
     return [];
   },
@@ -35,30 +80,53 @@ const nextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=self, microphone=self, geolocation=self, browsing-topics=()',
+            value: 'camera=(), microphone=(self), geolocation=(self), browsing-topics=()',
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss:; worker-src 'self' blob:; child-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none';",
+            value: `${contentSecurityPolicy};`,
+          },
+        ],
+      },
+      {
+        source: '/emergency-card/:path*',
+        headers: [
+          {
+            key: 'Referrer-Policy',
+            value: 'no-referrer',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
+      {
+        source: '/track/:path*',
+        headers: [
+          {
+            key: 'Referrer-Policy',
+            value: 'no-referrer',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
           },
         ],
       },
     ];
   },
   webpack: (config) => {
-    // Base fallbacks
     config.resolve.fallback = { fs: false, path: false };
 
-    // ── @xenova/transformers — WASM + Web Worker support ──────────────────
     // Transformers.js runs models via WebAssembly and offloads to Web Workers.
-    // Without this, Next.js blocks both and the offline AI won't load.
+    // Without this, Next.js blocks both and the offline AI will not load.
     config.experiments = {
       ...config.experiments,
-      asyncWebAssembly: true,   // enables .wasm module imports
-      layers: true,             // required for asyncWebAssembly in Next.js 13+
+      asyncWebAssembly: true,
+      layers: true,
     };
 
-    // Handle worker files from @xenova/transformers
     config.module.rules.push({
       test: /\.worker\.js$/,
       use: { loader: 'worker-loader', options: { inline: 'no-fallback' } },
@@ -69,4 +137,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-

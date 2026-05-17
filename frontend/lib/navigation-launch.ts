@@ -24,6 +24,11 @@ export interface NavDestination {
 
 const PREF_KEY = 'svai_preferred_nav_app';
 
+function openExternal(url: string): void {
+ const popup = window.open(url, '_blank', 'noopener,noreferrer');
+ if (popup) popup.opener = null;
+}
+
 // ── Individual Launchers ──────────────────────────────────────────────────────
 
 /**
@@ -37,7 +42,7 @@ export function openGoogleMaps(dest: NavDestination): void {
  travelmode: 'driving',
  });
  if (dest.name) params.set('destination_place_id', dest.name);
- window.open(`https://www.google.com/maps/dir/?${params}`, '_blank');
+ openExternal(`https://www.google.com/maps/dir/?${params}`);
 }
 
 /**
@@ -46,7 +51,7 @@ export function openGoogleMaps(dest: NavDestination): void {
  */
 export function openWaze(dest: NavDestination): void {
  const url = `https://waze.com/ul?ll=${dest.lat},${dest.lon}&navigate=yes`;
- window.open(url, '_blank');
+ openExternal(url);
 }
 
 /**
@@ -59,7 +64,7 @@ export function openAppleMaps(dest: NavDestination): void {
  dirflg: 'd', // driving
  });
  if (dest.name) params.set('q', dest.name);
- window.open(`https://maps.apple.com/?${params}`, '_blank');
+ openExternal(`https://maps.apple.com/?${params}`);
 }
 
 // ── Platform Detection ────────────────────────────────────────────────────────

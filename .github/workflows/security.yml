@@ -2,9 +2,11 @@ name: Security & SAST Audit
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
   schedule:
-    - cron: '0 0 * * 0'  # Weekly on Sundays
+    - cron: "0 0 * * 0"
 
 permissions:
   contents: read
@@ -29,7 +31,7 @@ jobs:
 
       - name: Frontend NPM Audit (High/Critical only)
         working-directory: ./frontend
-        run: npm audit --audit-level=high || echo "High/Critical npm vulnerabilities found — review required."
+        run: npm audit --audit-level=high
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -37,27 +39,32 @@ jobs:
           python-version: "3.11"
 
       - name: Install Python Security Tools
-        run: pip install bandit safety
+        run: pip install bandit pip-audit
 
-      - name: Bandit SAST — Backend
+      - name: Bandit SAST - Backend
         working-directory: ./backend
-        # -lll = High confidence + High severity only (ignores low-noise warnings)
-        run: bandit -r . -lll --exclude ./tests || echo "Backend SAST warnings found — review required."
+        run: bandit -r . -lll --exclude ./tests,./.venv,./data
 
-      - name: Bandit SAST — Chatbot Service
+      - name: Bandit SAST - Chatbot Service
         working-directory: ./chatbot_service
-        run: bandit -r . -lll --exclude ./tests || echo "Chatbot SAST warnings found — review required."
+        run: bandit -r . -lll --exclude ./tests,./.venv,./data
 
-      - name: Safety — Backend Dependency CVE Scan
+      - name: Pip Audit - Backend Dependency CVE Scan
         working-directory: ./backend
         run: |
           if [ -f requirements.txt ]; then
-            safety check -r requirements.txt || echo "Safety CVE warnings — review required."
+            pip-audit -r requirements.txt
+          fi
+          if [ -f requirements-render.txt ]; then
+            pip-audit -r requirements-render.txt
           fi
 
-      - name: Safety — Chatbot Dependency CVE Scan
+      - name: Pip Audit - Chatbot Dependency CVE Scan
         working-directory: ./chatbot_service
         run: |
           if [ -f requirements.txt ]; then
-            safety check -r requirements.txt || echo "Safety CVE warnings — review required."
+            pip-audit -r requirements.txt
+          fi
+          if [ -f requirements-render.txt ]; then
+            pip-audit -r requirements-render.txt
           fi

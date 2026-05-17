@@ -49,6 +49,58 @@ PROHIBITED_PATTERNS = [
 _INVISIBLE_CHARS_RE = re.compile(r'[\u200b\u200c\u200d\u200e\u200f\ufeff\u00ad\u2060\u2063\u180e]')
 
 
+class ProviderError(RuntimeError):
+    """Base class for upstream provider failures that the router can classify."""
+
+
+class RateLimitError(ProviderError):
+    def __init__(self, provider: str, retry_after: int) -> None:
+        self.provider = provider
+        self.retry_after = retry_after
+        super().__init__(f"{provider} rate limited. Retry after {retry_after}s")
+
+
+class QuotaExhaustedError(ProviderError):
+    pass
+
+
+class InvalidProviderKeyError(ProviderError):
+    pass
+
+
+class ModelUnavailableError(ProviderError):
+    pass
+
+
+class ProviderUnavailableError(ProviderError):
+    pass
+
+
+def raise_for_provider_status(response: httpx.Response, *, provider: str, model: str) -> None:
+    """Translate provider HTTP status codes into explicit router actions."""
+    if response.status_code < 400:
+        return
+
+    body = response.text[:500]
+    body_lower = body.lower()
+    if response.status_code == 429:
+        retry_after_raw = response.headers.get("Retry-After", "60")
+        try:
+            retry_after = max(1, int(float(retry_after_raw)))
+        except ValueError:
+            retry_after = 60
+        raise RateLimitError(provider, retry_after)
+    if response.status_code == 402:
+        raise QuotaExhaustedError(f"{provider} quota exhausted for model {model}")
+    if response.status_code == 403:
+        raise InvalidProviderKeyError(f"{provider} rejected API key or access for model {model}")
+    if response.status_code == 404 and "model" in body_lower:
+        raise ModelUnavailableError(f"{provider} model unavailable or deprecated: {model}")
+    if response.status_code in {500, 503, 504}:
+        raise ProviderUnavailableError(f"{provider} unavailable ({response.status_code}): {body}")
+    response.raise_for_status()
+
+
 def _normalize_text(text: str) -> str:
     """
     H2 FIX: Normalize Unicode to defeat homoglyph and invisible-character attacks.
@@ -190,7 +242,7 @@ class HttpProvider:
         }
 
         resp = await self._get_client().post(self.base_url(), headers=headers, json=payload)
-        resp.raise_for_status()
+        raise_for_provider_status(resp, provider=self.name, model=model)
         data = resp.json()
         text = data["choices"][0]["message"]["content"]
         return ProviderResult(text=text, provider=self.name, model=model)

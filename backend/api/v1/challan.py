@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.database import get_db
 from models.schemas import ChallanQuery, ChallanResponse
 from services.challan_service import ChallanService
-from services.exceptions import ServiceValidationError
+from services.exceptions import ExternalServiceError, ServiceValidationError
 
 
 router = APIRouter(prefix='/api/v1/challan', tags=['Challan'])
@@ -24,5 +24,7 @@ async def calculate_challan(
 ) -> ChallanResponse:
     try:
         return await challan_service.calculate_with_db(payload, db=db)
+    except ExternalServiceError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
     except ServiceValidationError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc

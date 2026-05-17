@@ -8,7 +8,7 @@ interface FirstAidCardProps {
   steps: string[];
 }
 
-/** Converts **bold** markers to React <strong> elements — no dangerouslySetInnerHTML. */
+/** Converts **bold** markers to React <strong> elements without injecting raw HTML. */
 function renderStep(step: string): ReactNode {
   const parts = step.split(/\*\*(.*?)\*\*/g);
   return parts.map((part, i) =>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { SearchX } from 'lucide-react';
+import { SearchX, type LucideIcon } from 'lucide-react';
 
 export default function EmptyState({ 
   title, 
@@ -11,7 +11,7 @@ export default function EmptyState({
 }: { 
   title: string; 
   description: string; 
-  icon?: any; 
+  icon?: LucideIcon;
 }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full py-12 flex flex-col items-center justify-center text-center">

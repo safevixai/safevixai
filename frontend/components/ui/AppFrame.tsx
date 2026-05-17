@@ -83,8 +83,10 @@ export function AppFrame({ children }: AppFrameProps) {
         </div>
       </main>
       
-      {/* ── Right Action Panel (Desktop Only) ── */}
-      <RightSidebar />
+      {/* Right action panel is desktop-only; mobile uses bottom navigation and full-screen pages. */}
+      <div className="hidden lg:block">
+        <RightSidebar />
+      </div>
 
       {/* 3. Mobile Bottom Navigation */}
       <div className="lg:hidden z-40 relative">

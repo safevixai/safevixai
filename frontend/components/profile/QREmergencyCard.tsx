@@ -33,7 +33,24 @@ export default function QREmergencyCard() {
       ? window.location.origin
       : 'https://safevixai.app';
 
-  const qrUrl = `${baseUrl}/emergency-card/${encodeURIComponent(displayId)}?name=${encodeURIComponent(userProfile.name || '')}&blood=${encodeURIComponent(userProfile.bloodGroup || '')}&vehicle=${encodeURIComponent(userProfile.vehicleNumber || '')}&contact=${encodeURIComponent(userProfile.emergencyContact || '')}`;
+  const emergencyPayload = {
+    name: userProfile.name || '',
+    blood: userProfile.bloodGroup || '',
+    vehicle: userProfile.vehicleNumber || '',
+    contact: userProfile.emergencyContact || '',
+  };
+
+  const encodePayload = (payload: typeof emergencyPayload) => {
+    if (typeof window === 'undefined') return '';
+    const bytes = new TextEncoder().encode(JSON.stringify(payload));
+    let binary = '';
+    bytes.forEach((byte) => {
+      binary += String.fromCharCode(byte);
+    });
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  };
+
+  const qrUrl = `${baseUrl}/emergency-card/${encodeURIComponent(displayId)}#data=${encodePayload(emergencyPayload)}`;
 
   const isProfileComplete = !!(
     userProfile.name &&
@@ -56,7 +73,7 @@ export default function QREmergencyCard() {
       try {
         await navigator.share({
           title: 'SafeVixAI Emergency Card',
-          text: `Emergency card for ${userProfile.name || 'Unknown'} — Blood: ${userProfile.bloodGroup || 'N/A'}`,
+          text: `Emergency card for ${userProfile.name || 'Unknown'}`,
           url: qrUrl,
         });
       } catch { /* user dismissed */ }

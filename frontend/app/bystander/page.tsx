@@ -126,12 +126,14 @@ export default function BystanderModePage() {
  speak('Calling 1-0-8. Ambulance Emergency.');
  if (gps) {
  // Pre-open WhatsApp or call based on availability
- window.open(
+ const popup = window.open(
  `https://wa.me/91112?text=${encodeURIComponent(
  ` ROAD ACCIDENT witnessed at:\nGPS: https://maps.google.com/?q=${gps.lat},${gps.lon}\nNearest hospital: ${nearestHospital?.name || 'Unknown'}\nPlease send ambulance immediately.`
  )}`,
- '_blank'
+ '_blank',
+ 'noopener,noreferrer',
  );
+ if (popup) popup.opener = null;
  }
  window.location.href = 'tel:108';
  }

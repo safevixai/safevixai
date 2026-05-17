@@ -7,7 +7,7 @@ from pathlib import Path
 from core.config import Settings
 from models.challan import ChallanRule, StateChallanOverride
 from models.schemas import ChallanQuery, ChallanResponse
-from services.exceptions import ServiceValidationError
+from services.exceptions import ExternalServiceError, ServiceValidationError
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -211,11 +211,13 @@ class ChallanService:
                 {"violation_code": violation_code, "vehicle_class": vehicle_class},
             )
             row = result.mappings().first()
-        except Exception:
-            return self.calculate(query)
+        except Exception as exc:
+            raise ExternalServiceError('Challan database lookup is unavailable') from exc
 
         if row is None:
-            return self.calculate(query)
+            raise ServiceValidationError(
+                f'Unsupported or unseeded violation code "{query.violation_code}" for vehicle "{query.vehicle_class}".'
+            )
 
         base_fine = int(row["base_fine"])
         repeat_fine = int(row["repeat_fine"]) if row["repeat_fine"] is not None else None

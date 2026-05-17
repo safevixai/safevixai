@@ -10,7 +10,7 @@ from __future__ import annotations
 import os
 
 import httpx
-from providers.base import HttpProvider, ProviderRequest, ProviderResult, build_messages
+from providers.base import HttpProvider, ProviderRequest, ProviderResult, build_messages, raise_for_provider_status
 
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
@@ -63,7 +63,7 @@ class GeminiProvider(HttpProvider):
 
         url = f"{GEMINI_BASE}/{model}:generateContent?key={api_key}"
         resp = await self._get_client().post(url, json=body)
-        resp.raise_for_status()
+        raise_for_provider_status(resp, provider=self.name, model=model)
 
         data = resp.json()
         text = data["candidates"][0]["content"]["parts"][0]["text"]

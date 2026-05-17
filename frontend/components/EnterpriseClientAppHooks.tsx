@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Session } from '@supabase/supabase-js'
 import { triggerSos } from '@/lib/api'
@@ -10,6 +10,8 @@ import { CRASH_COUNTDOWN_SECONDS, STANDARD_GRAVITY_MS2 } from '@/lib/safety-cons
 import { useAppStore } from '@/lib/store'
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth'
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
+import { FEATURES } from '@/lib/features'
+import { beginLocationBroadcast, startFamilyTracking } from '@/lib/live-tracking'
 import { WifiOff, Loader2 } from 'lucide-react'
 
 function SystemBanners() {
@@ -56,15 +58,21 @@ function SystemBanners() {
 }
 
 export function EnterpriseClientAppHooks() {
-  const { crashDetectionEnabled, gpsLocation } = useAppStore((state) => ({
+  const { crashDetectionEnabled, gpsLocation, userProfile } = useAppStore((state) => ({
     crashDetectionEnabled: state.crashDetectionEnabled,
     gpsLocation: state.gpsLocation,
+    userProfile: state.userProfile,
   }))
   const [crashCountdown, setCrashCountdown] = useState<{ force: number; remaining: number } | null>(null)
   const [dispatching, setDispatching] = useState(false)
+  const stopCrashTrackingRef = useRef<(() => void) | null>(null)
 
   useEffect(() => {
     registerOfflineSyncListeners()
+    return () => {
+      stopCrashTrackingRef.current?.()
+      stopCrashTrackingRef.current = null
+    }
   }, [])
 
   useEffect(() => {
@@ -94,7 +102,7 @@ export function EnterpriseClientAppHooks() {
   }, [])
 
   useEffect(() => {
-    if (!crashDetectionEnabled) return
+    if (!FEATURES.crashDetection || !crashDetectionEnabled) return
     const handleCrashDetected = (force: number) => {
       setCrashCountdown({ force, remaining: CRASH_COUNTDOWN_SECONDS })
     }
@@ -119,6 +127,28 @@ export function EnterpriseClientAppHooks() {
         setDispatching(true)
         try {
           await triggerSos({ lat: gpsLocation.lat, lon: gpsLocation.lon })
+          if (userProfile.name.trim()) {
+            try {
+              const trackingSession = await startFamilyTracking({
+                userName: userProfile.name,
+                bloodGroup: userProfile.bloodGroup || undefined,
+                vehicleNumber: userProfile.vehicleNumber || undefined,
+                latitude: gpsLocation.lat,
+                longitude: gpsLocation.lon,
+              })
+              stopCrashTrackingRef.current?.()
+              stopCrashTrackingRef.current = beginLocationBroadcast(trackingSession.session_id)
+              toast.success(`Family tracking started: ${trackingSession.tracking_url}`, {
+                duration: 12000,
+                position: 'top-center',
+              })
+            } catch {
+              toast.error('Auto-SOS sent, but family tracking could not be started. Open SOS to share manually.', {
+                duration: 8000,
+                position: 'top-center',
+              })
+            }
+          }
           toast.success('Auto-SOS dispatched with your current location.', {
             duration: 8000,
             position: 'top-center',
@@ -144,7 +174,7 @@ export function EnterpriseClientAppHooks() {
       )
     }, 1000)
     return () => window.clearTimeout(timeout)
-  }, [crashCountdown, dispatching, gpsLocation])
+  }, [crashCountdown, dispatching, gpsLocation, userProfile])
 
   if (!crashCountdown) return <SystemBanners />
 

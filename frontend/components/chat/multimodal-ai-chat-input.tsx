@@ -16,7 +16,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Loader2 as LoaderIcon, X as XIcon, Mic, Send, Globe } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
-import { logClientError } from '@/lib/client-logger';
+import { logClientError, logClientWarning } from '@/lib/client-logger';
 import { SUPPORTED_LANGUAGES, getLanguageByCode } from '@/lib/languages';
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
 import Image from 'next/image';
@@ -39,6 +39,36 @@ export interface UIMessage {
 }
 
 export type VisibilityType = 'public' | 'private' | 'unlisted' | string;
+
+interface SpeechRecognitionResultEventLike {
+  results: {
+    [index: number]: {
+      [index: number]: {
+        transcript: string;
+      };
+    };
+  };
+}
+
+interface SpeechRecognitionErrorEventLike {
+  error?: string;
+}
+
+interface SpeechRecognitionLike {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  onresult: ((event: SpeechRecognitionResultEventLike) => void) | null;
+  onend: (() => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEventLike) => void) | null;
+  start(): void;
+  stop(): void;
+}
+
+interface BrowserSpeechWindow extends Window {
+  SpeechRecognition?: new () => SpeechRecognitionLike;
+  webkitSpeechRecognition?: new () => SpeechRecognitionLike;
+}
 
 // Utility Functions
 const cn = (...inputs: unknown[]) => {
@@ -155,7 +185,7 @@ function PureMicButton({
   const [isProcessing, setIsProcessing] = useState(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<BlobPart[]>([]);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
   const startRecording = async () => {
     try {
@@ -199,7 +229,7 @@ function PureMicButton({
             onTranscript(data.text);
           }
         } catch (error) {
-          console.error("Backend speech translation failed, falling back to Web Speech API", error);
+          logClientWarning('Backend speech translation failed, falling back to Web Speech API', error);
           // We could start Web Speech API here or we should just show error.
           // Since we already recorded, it's too late for Web Speech API for this chunk.
         } finally {
@@ -213,26 +243,27 @@ function PureMicButton({
       mediaRecorder.start();
       setIsActive(true);
     } catch (err) {
-      console.error("Microphone access denied or error:", err);
+      logClientWarning('Microphone access denied or error:', err);
       // Fallback to Web Speech API immediately if getUserMedia fails
       startWebSpeech();
     }
   };
 
   const startWebSpeech = () => {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      console.error("Web Speech API not supported");
+    const speechWindow = window as BrowserSpeechWindow;
+    const SpeechRecognition = speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      logClientWarning('Web Speech API not supported');
       return;
     }
-    
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
     const langObj = getLanguageByCode(selectedLanguage);
     recognition.lang = langObj?.recognitionCode || 'en-IN';
     
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       onTranscript(transcript);
     };
@@ -241,8 +272,8 @@ function PureMicButton({
       setIsActive(false);
     };
     
-    recognition.onerror = (event: any) => {
-      console.error("Web Speech error", event.error);
+    recognition.onerror = (event) => {
+      logClientWarning('Web Speech error', event.error);
       setIsActive(false);
     };
     

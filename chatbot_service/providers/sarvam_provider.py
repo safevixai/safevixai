@@ -28,7 +28,7 @@ import logging
 import os
 
 import httpx
-from providers.base import HttpProvider, ProviderRequest, ProviderResult, build_messages
+from providers.base import HttpProvider, ProviderRequest, ProviderResult, build_messages, raise_for_provider_status
 
 logger = logging.getLogger(__name__)
 
@@ -109,7 +109,7 @@ class SarvamProvider(HttpProvider):
 
         logger.debug("SarvamProvider → %s (model=%s, direct=%s)", url, model, self._use_direct_api())
         resp = await client.post(url, headers=headers, json=payload)
-        resp.raise_for_status()
+        raise_for_provider_status(resp, provider=self.name, model=model)
 
         data = resp.json()
         text = data["choices"][0]["message"]["content"]
