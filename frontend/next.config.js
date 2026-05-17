@@ -1,4 +1,17 @@
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const localConnectOrigins = [process.env.NEXT_PUBLIC_API_URL, process.env.NEXT_PUBLIC_CHATBOT_URL]
+  .filter(Boolean)
+  .flatMap((value) => {
+    try {
+      const url = new URL(value);
+      return ['localhost', '127.0.0.1', '::1'].includes(url.hostname)
+        ? [`${url.protocol}//${url.host}`]
+        : [];
+    } catch {
+      return [];
+    }
+  });
+const allowLocalConnect = isDevelopment || localConnectOrigins.length > 0;
 const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
@@ -10,9 +23,10 @@ const connectSrc = [
   "'self'",
   'https:',
   'wss:',
-  ...(isDevelopment
+  ...(allowLocalConnect
     ? ['http://localhost:*', 'http://127.0.0.1:*', 'ws://localhost:*', 'ws://127.0.0.1:*']
     : []),
+  ...localConnectOrigins,
 ].join(' ');
 const contentSecurityPolicy = [
   "default-src 'self'",

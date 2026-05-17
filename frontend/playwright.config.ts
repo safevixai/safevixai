@@ -1,8 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const host = process.env.E2E_HOST ?? '127.0.0.1';
-const port = process.env.E2E_PORT ?? '3100';
-const baseURL = process.env.E2E_BASE_URL ?? `http://${host}:${port}`;
+const explicitBaseURL = process.env.E2E_BASE_URL;
+const parsedBaseURL = explicitBaseURL ? new URL(explicitBaseURL) : null;
+const host = process.env.E2E_HOST ?? parsedBaseURL?.hostname ?? '127.0.0.1';
+const port = process.env.E2E_PORT ?? parsedBaseURL?.port ?? '3100';
+const baseURL = explicitBaseURL ?? `http://${host}:${port}`;
 
 export default defineConfig({
   testDir: './e2e',
@@ -25,7 +27,7 @@ export default defineConfig({
   webServer: {
     command: `npm run start -- --hostname ${host} --port ${port}`,
     url: baseURL,
-    reuseExistingServer: false,
+    reuseExistingServer: process.env.CI !== 'true',
     timeout: 120 * 1000,
   },
 });
