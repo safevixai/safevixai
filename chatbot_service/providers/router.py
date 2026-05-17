@@ -14,9 +14,19 @@ from __future__ import annotations
 import asyncio
 import logging
 import re
+import time
 
 from config import Settings
-from providers.base import ProviderRequest, ProviderResult, TemplateProvider
+from providers.base import (
+    InvalidProviderKeyError,
+    ModelUnavailableError,
+    ProviderRequest,
+    ProviderResult,
+    ProviderUnavailableError,
+    QuotaExhaustedError,
+    RateLimitError,
+    TemplateProvider,
+)
 from providers.cerebras_provider import CerebrasProvider
 from providers.gemini_provider import GeminiProvider
 from providers.github_models_provider import GitHubModelsProvider
@@ -118,9 +128,13 @@ class ProviderRouter:
         }
         self.default_provider = settings.default_llm_provider
         self.provider_timeout_seconds = max(0.001, float(settings.http_timeout_seconds))
+        self._unavailable_until: dict[str, float] = {}
 
         # Fallback chain — tried in order when provider fails
         self._fallback_chain = [
+            'groq',
+            'cerebras',
+            'sarvam_30b',
             'github',      # 1. Free with GitHub account (Student Pack)
             'groq',        # 2. Fastest English — 300+ tok/s
             'cerebras',    # 3. Speed overflow — 2000+ tok/s
@@ -131,6 +145,7 @@ class ProviderRouter:
             'together',    # 8. $25 credit bank
             'template',    # 9. Always works (deterministic fallback)
         ]
+        self._fallback_chain = list(dict.fromkeys(self._fallback_chain))
 
     def _select_provider_name(
         self,
@@ -178,6 +193,8 @@ class ProviderRouter:
         provider = self.providers.get(primary) or self.providers.get('groq') or self.providers['template']
 
         try:
+            if self._provider_unavailable(primary):
+                raise ProviderUnavailableError(f"{primary} is temporarily disabled by circuit breaker")
             result = await self._generate_with_timeout(provider, request)
             # Attach routing metadata
             result.provider_used = primary  # type: ignore[attr-defined]
@@ -187,6 +204,7 @@ class ProviderRouter:
                 result.india_badge = True  # type: ignore[attr-defined]
             return result
         except Exception as primary_err:
+            self._mark_provider_failure(primary, primary_err)
             if not try_fallbacks:
                 raise
 
@@ -194,6 +212,9 @@ class ProviderRouter:
             failed_providers = [primary]
             for fallback_name in self._fallback_chain:
                 if fallback_name == primary:
+                    continue
+                if self._provider_unavailable(fallback_name):
+                    failed_providers.append(fallback_name)
                     continue
                 try:
                     fallback = self.providers[fallback_name]
@@ -206,6 +227,7 @@ class ProviderRouter:
                     )
                     return result
                 except Exception as fallback_err:
+                    self._mark_provider_failure(fallback_name, fallback_err)
                     failed_providers.append(fallback_name)
                     logger.warning(
                         "LLM fallback provider %s failed: %s",
@@ -241,3 +263,37 @@ class ProviderRouter:
             raise TimeoutError(
                 f"{provider.name} timed out after {self.provider_timeout_seconds:.1f}s"
             ) from exc
+
+    def _provider_unavailable(self, provider_name: str) -> bool:
+        if provider_name == 'template':
+            return False
+        until = self._unavailable_until.get(provider_name)
+        if until is None:
+            return False
+        if until <= time.time():
+            self._unavailable_until.pop(provider_name, None)
+            return False
+        return True
+
+    def _mark_provider_failure(self, provider_name: str, exc: Exception) -> None:
+        if provider_name == 'template':
+            return
+        duration = 0
+        if isinstance(exc, RateLimitError):
+            duration = exc.retry_after
+        elif isinstance(exc, QuotaExhaustedError):
+            duration = 24 * 60 * 60
+        elif isinstance(exc, (InvalidProviderKeyError, ModelUnavailableError)):
+            duration = 60 * 60
+        elif isinstance(exc, ProviderUnavailableError):
+            duration = 5 * 60
+        elif isinstance(exc, TimeoutError):
+            duration = 60
+        if duration > 0:
+            self._unavailable_until[provider_name] = time.time() + duration
+            logger.warning(
+                "Provider %s disabled for %ss after %s",
+                provider_name,
+                duration,
+                exc.__class__.__name__,
+            )

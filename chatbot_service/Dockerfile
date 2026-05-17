@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc g++ libpq-dev curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --prefix=/install -r requirements.txt
+COPY requirements-render.txt .
+RUN pip install --prefix=/install -r requirements-render.txt
 
 # ── Stage 2: Runtime image ────────────────────────────────────────────────────
 FROM python:3.11-slim
