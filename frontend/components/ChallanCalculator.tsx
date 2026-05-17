@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAppStore } from '@/lib/store';
-import { calculateChallan } from '@/lib/api';
+import { calculateChallan, type ChallanResult } from '@/lib/api';
 import { logClientError } from '@/lib/client-logger';
 
 /**
@@ -16,7 +16,8 @@ const ChallanCalculator: React.FC = () => {
  const [vehicleClass, setVehicleClass] = useState('2W');
  const [stateCode, setStateCode] = useState('TN');
  const [isRepeat, setIsRepeat] = useState(false);
- const [result, setResult] = useState<any>(null);
+ const [result, setResult] = useState<(ChallanResult & { source: string }) | null>(null);
+ const [error, setError] = useState<string | null>(null);
  const [loading, setLoading] = useState(false);
 
  const { connectivity } = useAppStore();
@@ -29,14 +30,37 @@ const ChallanCalculator: React.FC = () => {
  { code: '181', label: 'License', icon: '' },
  { code: '179', label: 'Disobedience', icon: '' },
  ];
+ const STATES = [
+ { code: 'AP', label: 'Andhra Pradesh' }, { code: 'AR', label: 'Arunachal Pradesh' },
+ { code: 'AS', label: 'Assam' }, { code: 'BR', label: 'Bihar' },
+ { code: 'CG', label: 'Chhattisgarh' }, { code: 'GA', label: 'Goa' },
+ { code: 'GJ', label: 'Gujarat' }, { code: 'HR', label: 'Haryana' },
+ { code: 'HP', label: 'Himachal Pradesh' }, { code: 'JH', label: 'Jharkhand' },
+ { code: 'KA', label: 'Karnataka' }, { code: 'KL', label: 'Kerala' },
+ { code: 'MP', label: 'Madhya Pradesh' }, { code: 'MH', label: 'Maharashtra' },
+ { code: 'MN', label: 'Manipur' }, { code: 'ML', label: 'Meghalaya' },
+ { code: 'MZ', label: 'Mizoram' }, { code: 'NL', label: 'Nagaland' },
+ { code: 'OD', label: 'Odisha' }, { code: 'PB', label: 'Punjab' },
+ { code: 'RJ', label: 'Rajasthan' }, { code: 'SK', label: 'Sikkim' },
+ { code: 'TN', label: 'Tamil Nadu' }, { code: 'TS', label: 'Telangana' },
+ { code: 'TR', label: 'Tripura' }, { code: 'UP', label: 'Uttar Pradesh' },
+ { code: 'UK', label: 'Uttarakhand' }, { code: 'WB', label: 'West Bengal' },
+ { code: 'AN', label: 'Andaman & Nicobar' }, { code: 'CH', label: 'Chandigarh' },
+ { code: 'DN', label: 'Dadra/Nagar Haveli/Daman/Diu' }, { code: 'DL', label: 'Delhi' },
+ { code: 'JK', label: 'Jammu & Kashmir' }, { code: 'LA', label: 'Ladakh' },
+ { code: 'LD', label: 'Lakshadweep' }, { code: 'PY', label: 'Puducherry' },
+ ];
 
  const handleCalculate = async () => {
  setLoading(true);
  setResult(null);
+ setError(null);
 
  try {
- // Functional calculation logic preserved
- if (connectivity === 'online') {
+ if (connectivity !== 'online') {
+ setError('Challan lookup needs the backend because fine data is authoritative and state-specific.');
+ return;
+ }
  const data = await calculateChallan({
  violation_code: violationCode,
  vehicle_class: vehicleClass,
@@ -44,19 +68,9 @@ const ChallanCalculator: React.FC = () => {
  is_repeat: isRepeat
  });
  setResult({ ...data, source: 'online' });
- } else {
- // Mock offline fallback (duckdb logic would go here)
- await new Promise(r => setTimeout(r, 800));
- setResult({
- section: violationCode,
- description: `Fine for ${violationCode} violation in ${stateCode}`,
- base_fine: 1000,
- repeat_fine: 3000,
- source: 'offline_engine'
- });
- }
  } catch (err) {
  logClientError('Calculation failed:', err);
+ setError('Unable to calculate this challan right now. Please retry once the backend is reachable.');
  } finally {
  setLoading(false);
  }
@@ -108,10 +122,9 @@ const ChallanCalculator: React.FC = () => {
  onChange={(e) => setStateCode(e.target.value)}
  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
  >
- <option value="TN">Tamil Nadu</option>
- <option value="KA">Karnataka</option>
- <option value="MH">Maharashtra</option>
- <option value="DL">Delhi</option>
+ {STATES.map((state) => (
+ <option key={state.code} value={state.code}>{state.label}</option>
+ ))}
  </select>
  </div>
  </div>
@@ -138,6 +151,11 @@ const ChallanCalculator: React.FC = () => {
  </div>
 
  {/* Result Display */}
+ {error && (
+ <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm font-semibold text-red-300">
+ {error}
+ </div>
+ )}
  <AnimatePresence>
  {result && (
  <motion.div 
@@ -160,7 +178,7 @@ const ChallanCalculator: React.FC = () => {
 
  <div className="flex items-baseline gap-2">
  <span className="text-5xl font-black text-text-1 tracking-tighter">
- ₹{isRepeat ? (result.repeat_fine || result.base_fine * 3) : result.base_fine}
+ ₹{result.amount_due}
  </span>
  {isRepeat && (
  <span className="text-[10px] font-semibold text-emergency uppercase tracking-widest">Multiplied Penalty</span>

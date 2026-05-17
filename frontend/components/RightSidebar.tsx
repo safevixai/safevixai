@@ -5,7 +5,7 @@ import { useAppStore } from '../lib/store';
 import { ChevronRight, ChevronLeft, AlertTriangle, ShieldCheck, MapPin, Navigation, Zap, Activity, Shield, Circle } from 'lucide-react';
 
 export function RightSidebar() {
-  const [isPanelOpen, setIsPanelOpen] = React.useState(true);
+  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
   const {
     gpsLocation,
     nearbyServices,
@@ -19,6 +19,15 @@ export function RightSidebar() {
   const openIssues = nearbyRoadIssues.filter(i => i.status === 'open').length;
 
   const areaStatus = openIssues === 0 ? 'secure' : openIssues <= 2 ? 'caution' : 'alert';
+
+  React.useEffect(() => {
+    const query = window.matchMedia('(min-width: 1024px)');
+    const syncPanelToViewport = () => setIsPanelOpen(query.matches);
+
+    syncPanelToViewport();
+    query.addEventListener('change', syncPanelToViewport);
+    return () => query.removeEventListener('change', syncPanelToViewport);
+  }, []);
 
   const statusConfig = {
     secure: {
@@ -55,7 +64,6 @@ export function RightSidebar() {
   return (
     <aside
       className={`fixed inset-x-0 bottom-0 z-40 flex flex-col bg-surface-1/95 backdrop-blur-3xl transition-all duration-300 border-t border-border rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.12)] lg:shadow-none lg:relative lg:inset-auto lg:h-full lg:rounded-none lg:border-t-0 lg:border-l shrink-0 ${isPanelOpen ? 'translate-y-0 lg:w-[320px] xl:w-[380px]' : 'translate-y-[calc(100%-60px)] lg:translate-y-0 lg:w-0 lg:border-none'}`}
-      style={{ maxHeight: '80dvh' }}
     >
       {/* Desktop Toggle Button */}
       <button
@@ -66,13 +74,15 @@ export function RightSidebar() {
         {isPanelOpen ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
       </button>
 
-      {/* Mobile Drag Handle / Toggle */}
-      <div 
+      <button
+        type="button"
         className="lg:hidden w-full h-14 absolute top-0 left-0 z-50 flex flex-col items-center justify-start pt-2 cursor-pointer"
         onClick={() => setIsPanelOpen(!isPanelOpen)}
+        aria-expanded={isPanelOpen}
+        aria-label={isPanelOpen ? 'Collapse area intelligence panel' : 'Expand area intelligence panel'}
       >
         <div className="w-12 h-1.5 bg-border rounded-full" />
-      </div>
+      </button>
 
       <div className={`flex-1 flex flex-col overflow-hidden transition-opacity duration-300 ${isPanelOpen ? 'opacity-100' : 'opacity-100 lg:opacity-0 lg:pointer-events-none'}`}>
         <div className="flex-1 overflow-y-auto scrollbar-hide w-full lg:w-[320px] xl:w-[380px] pt-4 lg:pt-0">

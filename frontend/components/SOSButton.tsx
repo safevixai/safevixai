@@ -16,7 +16,8 @@ export function SOSButton() {
 
  const triggerWhatsApp = async () => {
  const link = await generateSosWhatsAppLink(userProfile, gpsLocation);
- window.open(link, '_blank');
+ const popup = window.open(link, '_blank', 'noopener,noreferrer');
+ if (popup) popup.opener = null;
  setIsExpanding(false);
  };
 

@@ -53,11 +53,19 @@ export default function EmergencyPage() {
  const g = Math.sqrt((a.x ?? 0) ** 2 + (a.y ?? 0) ** 2 + (a.z ?? 0) ** 2) / 9.81;
  setGForce(Math.round(g * 10) / 10);
  };
+ const MotionEventCtor = typeof DeviceMotionEvent === 'undefined'
+ ? null
+ : DeviceMotionEvent as unknown as { requestPermission?: () => Promise<PermissionState> };
+ const canAttachMotionListener = !MotionEventCtor?.requestPermission;
+ if (canAttachMotionListener) {
  window.addEventListener('devicemotion', handler);
+ }
  return () => {
  window.removeEventListener('online', up);
  window.removeEventListener('offline', dn);
+ if (canAttachMotionListener) {
  window.removeEventListener('devicemotion', handler);
+ }
  if (rafRef.current) cancelAnimationFrame(rafRef.current);
  };
  }, []);
@@ -161,9 +169,9 @@ export default function EmergencyPage() {
 
  useEffect(() => {
  const gpsLoc = coords ? { lat: coords.lat, lon: coords.lng, accuracy: 10, timestamp: Date.now() } : null;
- generateSosWhatsAppLink(null, gpsLoc).then(setWaLink).catch(() => setWaLink(''));
- setSmsLink(generateSosSmsLink(null, gpsLoc));
- }, [coords]);
+ generateSosWhatsAppLink(userProfile, gpsLoc).then(setWaLink).catch(() => setWaLink(''));
+ setSmsLink(generateSosSmsLink(userProfile, gpsLoc));
+ }, [coords, userProfile]);
 
  return (
  <div className="bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-red-500/30 selection:text-red-900 dark:selection:text-red-950 min-h-dvh flex flex-col relative overflow-x-hidden transition-colors duration-500">
@@ -332,6 +340,7 @@ export default function EmergencyPage() {
  alt="Map" 
  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxWfyjGCG1gokyFVyuNR3r3F3sIyjrxuOfSXC3e_I_RTY919UFsdJPbMzQ7GKb38btRBgMPfq7ZCNBEOYu1kN7MrpUfudNwoY_G_lSV8SWbmWGsqAYRVuCpG4aFFbWJqDnimCDoj5CZF5VHdB07tke6yTdrZFtbQb6NiEGlKFHNyHjVjhOBXGtoBl9SwNT_izOAE-ijZ0pJsbmTMg7hkyfUB7yKre1vWVPByMzreduHY6ZjER15dALHvqGJtucwXewQU_gLTiiuoqg"
  fill
+ priority
  unoptimized
  />
  </div>

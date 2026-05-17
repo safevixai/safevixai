@@ -7,6 +7,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Mic, MicOff, Loader2 } from 'lucide-react';
 import { getLanguageByCode } from '@/lib/languages';
+import { logClientWarning } from '@/lib/client-logger';
 
 interface VoiceInputProps {
   onResult: (text: string) => void;
@@ -30,8 +31,22 @@ interface ISpeechRecognition extends EventTarget {
   abort(): void;
   onstart: (() => void) | null;
   onend: (() => void) | null;
-  onerror: ((e: any) => void) | null;
-  onresult: ((e: any) => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEventLike) => void) | null;
+  onresult: ((event: SpeechRecognitionResultEventLike) => void) | null;
+}
+
+interface SpeechRecognitionResultEventLike {
+  results: {
+    [index: number]: {
+      [index: number]: {
+        transcript: string;
+      };
+    };
+  };
+}
+
+interface SpeechRecognitionErrorEventLike {
+  error?: string;
 }
 
 export function VoiceInput({ onResult, className = '', language = 'en' }: VoiceInputProps) {
@@ -62,13 +77,14 @@ export function VoiceInput({ onResult, className = '', language = 'en' }: VoiceI
       setIsRecording(true);
     };
 
-    recognition.onresult = (e: any) => {
+    recognition.onresult = (e) => {
       const transcript = e.results[0][0].transcript;
       handleResult(transcript);
       setIsRecording(false);
     };
 
-    recognition.onerror = () => {
+    recognition.onerror = (event) => {
+      logClientWarning('Speech recognition error', event.error);
       setIsRecording(false);
       setIsLoading(false);
     };
@@ -94,7 +110,8 @@ export function VoiceInput({ onResult, className = '', language = 'en' }: VoiceI
       setIsLoading(true);
       try {
         recognitionRef.current.start();
-      } catch (e) {
+      } catch (error) {
+        logClientWarning('Speech recognition start failed', error);
         setIsLoading(false);
       }
     }

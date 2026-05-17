@@ -23,6 +23,23 @@ export interface GeocodingResult {
   label: string; // Formatted display string
 }
 
+interface PhotonFeature {
+  properties?: {
+    name?: string;
+    city?: string;
+    county?: string;
+    state?: string;
+    country?: string;
+  };
+  geometry?: {
+    coordinates?: [number, number];
+  };
+}
+
+interface PhotonResponse {
+  features?: PhotonFeature[];
+}
+
 /**
  * Search for places using Photon (Komoot) geocoding API.
  * Results are biased toward India.
@@ -44,10 +61,10 @@ export async function searchPlaces(
     const res = await fetch(`${PHOTON_URL}?${params}`);
     if (!res.ok) return [];
 
-    const data = await res.json();
+    const data = (await res.json()) as PhotonResponse;
     const features = data.features || [];
 
-    return features.map((f: any) => {
+    return features.map((f) => {
       const props = f.properties || {};
       const [lon, lat] = f.geometry?.coordinates || [0, 0];
 

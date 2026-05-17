@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, type RootState } from '@react-three/fiber';
 import { Torus, Text } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -9,7 +9,7 @@ function ScoreRing({ score }: { score: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   // Rotate slowly over time
-  useFrame((state: any) => {
+  useFrame((state: RootState) => {
     if (meshRef.current) {
       meshRef.current.rotation.z = state.clock.elapsedTime * -0.5;
       // Slight floating motion

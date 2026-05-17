@@ -9,6 +9,21 @@
 
 const OSRM_URL = 'https://router.project-osrm.org/route/v1/driving';
 
+type MapLibreMapLike = {
+  getLayer(id: string): unknown;
+  removeLayer(id: string): void;
+  getSource(id: string): unknown;
+  removeSource(id: string): void;
+  addSource(id: string, source: { type: 'geojson'; data: GeoJSON.Feature<GeoJSON.Geometry> }): void;
+  addLayer(layer: {
+    id: string;
+    type: 'line';
+    source: string;
+    layout: Record<string, string>;
+    paint: Record<string, string | number>;
+  }): void;
+};
+
 export interface RouteResult {
   /** Total distance in meters */
   distanceMeters: number;
@@ -84,7 +99,7 @@ function formatDuration(seconds: number): string {
  * Call this after getRoute() to render the route visually.
  */
 export function addRouteToMap(
-  map: any, // maplibregl.Map
+  map: MapLibreMapLike,
   geometry: GeoJSON.Geometry,
   options: {
     sourceId?: string;
@@ -133,7 +148,7 @@ export function addRouteToMap(
  * Remove a route from the map.
  */
 export function removeRouteFromMap(
-  map: any,
+  map: MapLibreMapLike,
   sourceId: string = 'route-source',
   layerId: string = 'route-layer'
 ): void {
