@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'motion/react';
+import { gsap } from '@/lib/gsap';
 import {
  ArrowLeft, ShieldCheck, BookOpen, Copy,
  HelpCircle, Mic, Paperclip, Send, ThumbsUp, ThumbsDown, RotateCcw,
@@ -72,17 +72,17 @@ const MOCK_RESPONSES: Record<string, Message> = {
  dui: {
  id: 'mock-dui',
  role: 'ai',
- text: 'Under current regulations, first-time offenders face imprisonment up to 6 months and/or a fine up to ₹10,000 for Drunk Driving (BAC > 30mg/100ml). Subsequent offenses within 3 years increase the penalty significantly.',
+ text: 'Under current regulations, first-time offenders face imprisonment up to 6 months and/or a fine up to â‚¹10,000 for Drunk Driving (BAC > 30mg/100ml). Subsequent offenses within 3 years increase the penalty significantly.',
  timestamp: '',
- citations: ['MV Act §185', 'Fine: ₹10,000', 'Custody: Max 6 Mo.'],
+ citations: ['MV Act Â§185', 'Fine: â‚¹10,000', 'Custody: Max 6 Mo.'],
  suggestedQueries: ['What if the breathalyzer test was faulty?', 'Bail procedure details']
  },
  default: {
  id: 'mock-default',
  role: 'ai',
- text: 'Under the Motor Vehicles Act 1988, the general penalty for traffic violations not covered under specific sections is ₹500 for the first offense and ₹1,500 for repeat violations.',
+ text: 'Under the Motor Vehicles Act 1988, the general penalty for traffic violations not covered under specific sections is â‚¹500 for the first offense and â‚¹1,500 for repeat violations.',
  timestamp: '',
- citations: ['MV Act §177', 'Gen. Penalty: ₹500']
+ citations: ['MV Act Â§177', 'Gen. Penalty: â‚¹500']
  }
 };
 
@@ -218,7 +218,7 @@ export default function ChatPage() {
 
  return (
  <div className="absolute inset-0 flex flex-col w-full overflow-hidden bg-surface-1">
- {/* ── Background Decorative Lines (SafeVixAI Pro Aesthetic) ── */}
+ {/* â”€â”€ Background Decorative Lines (SafeVixAI Pro Aesthetic) â”€â”€ */}
  <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
  {/* Spots removed per user request */}
 
@@ -227,7 +227,7 @@ export default function ChatPage() {
  <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] rounded-full bg-brand-light/5 dark:bg-brand-light/10 blur-[100px] hidden dark:block" />
  </div>
 
-  {/* ── Unified Tactical Navigation Header ── */}
+  {/* â”€â”€ Unified Tactical Navigation Header â”€â”€ */}
     <TerminalHeader title="Assistant HUD" subtitle="TACTICAL INTEL & LEGAL" rightElement={
       <div className="flex items-center gap-2">
         {isSpeaking && (
@@ -257,67 +257,52 @@ export default function ChatPage() {
  <TopSearch isMapPage={false} forceShow={true} showBack={false} />
  </div>
 
- {/* ── Toast Notification ── */}
- <AnimatePresence>
+ {/* â”€â”€ Toast Notification â”€â”€ */}
+ 
  {toastMessage && (
- <motion.div
- initial={{ opacity: 0, y: -20, x: '-50%' }}
- animate={{ opacity: 1, y: 0, x: '-50%' }}
- exit={{ opacity: 0, y: -20, x: '-50%' }}
- className="fixed top-20 left-1/2 z-50 bg-surface-3 text-text-1 px-4 py-2 rounded-full shadow-lg text-sm font-medium"
+ <div style={{ animation: "fadeInDown 0.2s ease-out" }}
+ className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-surface-3 text-text-1 px-4 py-2 rounded-full shadow-lg text-sm font-medium"
  >
  {toastMessage}
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
+ 
 
- {/* ── Chat Canvas ── */}
+ {/* â”€â”€ Chat Canvas â”€â”€ */}
  <main ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 overflow-x-hidden pt-28 lg:pt-24 pb-48 lg:pb-36 flex flex-col max-w-4xl mx-auto w-full relative z-10 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
  <div className="space-y-8 flex flex-col w-full pb-8">
- <AnimatePresence initial={false}>
+ 
  {messages.map((msg) => {
  if (msg.role === 'system') {
  return (
- <motion.div
- key={msg.id}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- className="self-center mt-2"
+ <div key={msg.id} className="self-center mt-2" style={{ animation: "fadeInUp 0.3s ease-out" }}
  >
  <div className="bg-white dark:bg-white/5 px-4 py-2 rounded-full border border-border shadow-sm backdrop-blur-md">
  <span className="text-brand dark:text-brand-light text-[10px] uppercase tracking-[0.1em] font-black font-space">
  {msg.text}
  </span>
  </div>
- </motion.div>
+ </div>
  );
  }
 
  if (msg.role === 'user') {
  return (
- <motion.div
- key={msg.id}
- initial={{ opacity: 0, scale: 0.95, x: 20 }}
- animate={{ opacity: 1, scale: 1, x: 0 }}
- className="self-end max-w-[85%] sm:max-w-[75%]"
+ <div key={msg.id} style={{ animation: "slideInRight 0.3s ease-out" }} className="self-end max-w-[85%] sm:max-w-[75%]"
  >
  <div className="flex flex-col items-end gap-2">
  <div className="bg-brand/20 rounded-t-2xl rounded-bl-2xl px-5 py-3.5 shadow-lg shadow-brand/10 border border-brand/30">
  <p className="text-text-1 text-[15px] leading-relaxed font-medium">{msg.text}</p>
  </div>
- <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 mr-2 font-medium tracking-wide shadow-sm">{msg.timestamp} • SafeVixAI</time>
+ <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 mr-2 font-medium tracking-wide shadow-sm">{msg.timestamp} â€¢ SafeVixAI</time>
  </div>
- </motion.div>
+ </div>
  );
  }
 
  if (msg.role === 'ai') {
  return (
- <motion.div
- key={msg.id}
- initial={{ opacity: 0, scale: 0.95, x: -20 }}
- animate={{ opacity: 1, scale: 1, x: 0 }}
- className="self-start max-w-[90%] sm:max-w-[85%]"
+ <div key={msg.id} style={{ animation: "slideInLeft 0.3s ease-out" }} className="self-start max-w-[90%] sm:max-w-[85%]"
  >
  <div className="flex flex-col items-start gap-2 w-full">
  <SurfaceCard padding="lg" className="rounded-tl-sm shadow-md shadow-black/10 bg-surface-2 backdrop-blur-xl border-border">
@@ -344,7 +329,7 @@ export default function ChatPage() {
  </SurfaceCard>
 
  <div className="flex items-center gap-4 ml-2 mb-1">
- <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 font-medium tracking-wide">{msg.timestamp} • SafeVixAI</time>
+ <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 font-medium tracking-wide">{msg.timestamp} â€¢ SafeVixAI</time>
  <div className="flex gap-1.5 ml-1">
   <button 
   onClick={() => setToastMessage("Copied to clipboard!")}
@@ -401,16 +386,13 @@ export default function ChatPage() {
  </div>
  )}
  </div>
- </motion.div>
+ </div>
  );
  }
  })}
 
  {((messages.length <= 2) || showSuggestions) && !loading && (
- <motion.div
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, scale: 0.95 }}
+ <div style={{ animation: "fadeInUp 0.3s ease-out" }}
  className="self-start w-full mt-2"
  >
  <p className="text-xs text-text-3 mb-3 font-semibold px-2 uppercase tracking-widest">Suggested Inquiries</p>
@@ -436,25 +418,23 @@ export default function ChatPage() {
  Hide Suggestions
  </button>
  )}
- </motion.div>
+ </div>
  )}
 
  {messages.length > 2 && !showSuggestions && !loading && (
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="self-center">
+ <div style={{ animation: "fadeIn 0.3s ease-out" }} className="self-center">
  <button 
  onClick={() => setShowSuggestions(true)}
  className="px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-border text-xs font-semibold text-text-2 hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm"
  >
  Show Suggested Inquiries
  </button>
- </motion.div>
+ </div>
  )}
 
  {/* Skeleton Loading State */}
  {loading && (
- <motion.div
- initial={{ opacity: 0, scale: 0.95, x: -20 }}
- animate={{ opacity: 1, scale: 1, x: 0 }}
+ <div style={{ animation: "slideInLeft 0.3s ease-out" }}
  className="self-start max-w-[90%] sm:max-w-[85%]"
  >
  <SurfaceCard padding="lg" className="rounded-tl-sm shadow-md shadow-black/10 bg-surface-2 backdrop-blur-xl border-border flex gap-1.5 items-center w-fit">
@@ -462,14 +442,14 @@ export default function ChatPage() {
  <span className="w-2.5 h-2.5 bg-brand/70 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
  <span className="w-2.5 h-2.5 bg-brand/70 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
  </SurfaceCard>
- </motion.div>
+ </div>
  )}
 
- </AnimatePresence>
+ 
  </div>
  </main>
 
- {/* ── Bottom Input Shell ── */}
+ {/* â”€â”€ Bottom Input Shell â”€â”€ */}
  <div className="absolute bottom-0 w-full z-50 flex justify-between items-end bg-gradient-to-t from-surface-1 via-surface-1/90 to-transparent pt-16 pb-28 lg:pb-6 px-4 sm:px-6 pointer-events-none">
  <div className="max-w-4xl mx-auto w-full flex flex-col relative items-end pointer-events-none">
  <div className="w-full flex items-end gap-2 sm:gap-3 pointer-events-auto">
@@ -488,3 +468,4 @@ export default function ChatPage() {
  </div>
  );
 }
+

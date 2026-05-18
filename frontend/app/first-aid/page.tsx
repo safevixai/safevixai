@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from '@/lib/gsap';
 import { 
   HeartPulse, Activity, Flame, Bone, Droplets, 
   Search, ArrowLeft, X, CheckCircle2, 
@@ -242,6 +243,8 @@ export default function FirstAidPage() {
 
   if (!mounted) return null;
 
+  const filteredGuideKeys = guideKeys.filter(key => !emergencyMode || ['cpr', 'choking', 'bleeding'].includes(key));
+
   return (
     <div className="sv-page relative flex flex-col h-[100dvh] overflow-hidden">
       {/* ── Unified Tactical Navigation Header ── */}
@@ -273,9 +276,7 @@ export default function FirstAidPage() {
           </div>
           {/* ── Search HUD ── */}
           {!emergencyMode && (
-            <motion.section 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <section 
               className="mb-10 relative group"
             >
               <div className="flex items-center justify-between mb-3 px-2">
@@ -299,139 +300,16 @@ export default function FirstAidPage() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-            </motion.section>
+            </section>
           )}
 
         {/* ── Protocol Grid ── */}
-        <motion.div 
-          layout
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.3
-              }
-            }
-          }}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {guideKeys
-              .filter(key => !emergencyMode || ['cpr', 'choking', 'bleeding'].includes(key))
-              .map((key, index) => {
-                const guide = GUIDES[key];
-                const isCritical = ['cpr', 'bleeding'].includes(key);
-                
-                return (
-                  <motion.div
-                    key={key}
-                    layout
-                    variants={{
-                      hidden: { opacity: 0, y: 20, scale: 0.95 },
-                      show: { 
-                        opacity: 1, 
-                        y: 0, 
-                        scale: 1,
-                        transition: { type: "spring", damping: 25, stiffness: 300 }
-                      }
-                    }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    onClick={() => {
-                      setActiveGuide(key);
-                      setCompletedSteps(new Set());
-                    }}
-                    className={`group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 transition-all duration-300 border ${
-                      isCritical 
-                        ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
-                        : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-border/80 dark:border-white/5 hover:border-brand/30'
-                    } ${emergencyMode && key === 'cpr' ? 'md:col-span-2 lg:col-span-3 py-12' : ''}`}
-                  >
-                    {/* Status Badge */}
-                    <div className="absolute top-4 right-6 flex items-center gap-2">
-                      {isCritical && (
-                        <div className="bg-red-500/10 text-red-500 px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-red-500/20 flex items-center gap-1">
-                          <AlertTriangle size={10} />
-                          Priority P0
-                        </div>
-                      )}
-                      <div className="bg-brand-light/10 text-brand-dim dark:text-brand-light px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-brand-light/20 flex items-center gap-1">
-                        <div className="w-1 h-1 rounded-full bg-brand-light animate-pulse" />
-                        Offline
-                      </div>
-                    </div>
-
-                    <div className={`flex flex-col h-full justify-between gap-8 relative z-10 ${emergencyMode && key === 'cpr' ? 'md:flex-row md:items-center' : ''}`}>
-                      <div className="flex flex-col gap-5">
-                        <div className={`p-4 rounded-lg w-fit transition-transform group-hover:scale-110 duration-500 ${
-                          isCritical ? 'bg-red-500/10 text-red-500' : 'bg-brand/10 text-brand dark:text-brand-light'
-                        }`}>
-                          {key === 'cpr' && <HeartPulse size={emergencyMode ? 48 : 32} />}
-                          {key === 'choking' && <Activity size={32} />}
-                          {key === 'bleeding' && <Droplets size={32} />}
-                          {key === 'burns' && <Flame size={32} />}
-                          {key === 'fractures' && <Bone size={32} />}
-                        </div>
-                        
-                        <div>
-                          <h2 className={`font-black tracking-tight dark:text-white mb-2 font-space uppercase ${
-                            emergencyMode && key === 'cpr' ? 'text-4xl sm:text-5xl' : 'text-2xl'
-                          }`}>
-                            {guide.title}
-                          </h2>
-                          <p className={`text-text-3 dark:text-text-3 font-medium leading-relaxed ${
-                            emergencyMode && key === 'cpr' ? 'text-lg max-w-xl' : 'text-sm'
-                          }`}>
-                            {guide.subtitle}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <button className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 ${
-                          isCritical 
-                            ? 'bg-red-500 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40' 
-                            : 'bg-surface-3 dark:bg-white/10 text-white hover:bg-surface-1 dark:hover:bg-white/20'
-                        }`}>
-                          Start Guide <ChevronRight size={16} />
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Decorative Background Elements */}
-                    <div className="absolute -bottom-6 -right-6 opacity-[0.03] dark:opacity-[0.05] group-hover:opacity-10 transition-opacity duration-700 pointer-events-none">
-                       {key === 'cpr' && <HeartPulse size={180} />}
-                       {key === 'bleeding' && <Droplets size={180} />}
-                    </div>
-                  </motion.div>
-                );
-              })}
-          </AnimatePresence>
-
-          {/* Quick Access Kit Card */}
-          {!emergencyMode && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="group cursor-pointer relative bg-gradient-to-br from-surface-3 to-surface-1 dark:from-surface-2 dark:to-bg rounded-xl p-8 border border-white/5 flex items-center justify-between col-span-1 md:col-span-2 lg:col-span-1 hover:border-brand/20 transition-all shadow-xl shadow-black/20"
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Clock size={14} className="text-brand-light" />
-                  <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest font-space">Inventory HUD</span>
-                </div>
-                <h3 className="text-xl font-black text-white font-space uppercase">First Aid Kit</h3>
-                <p className="text-text-3 text-xs font-medium">Inventory checklist & alerts</p>
-              </div>
-              <button className="bg-white/10 p-4 rounded-lg text-white group-hover:bg-brand/80 group-hover:text-white transition-all duration-300">
-                <ChevronRight size={24} />
-              </button>
-            </motion.div>
-          )}
-        </motion.div>
+        <ProtocolGrid
+          guideKeys={filteredGuideKeys}
+          guides={GUIDES}
+          emergencyMode={emergencyMode}
+          onGuideSelect={(key) => { setActiveGuide(key); setCompletedSteps(new Set()); }}
+        />
 
         {/* ── AI Vision Assessment: Live Simulation ── */}
         <section className="mt-12 mb-20 bg-white/30 dark:bg-white/[0.02] border border-border dark:border-white/5 rounded-[2.5rem] p-6 sm:p-10 shadow-sm">
@@ -504,165 +382,283 @@ export default function FirstAidPage() {
     </main>
 
       {/* ── Active Guide Modal: Survival HUD ── */}
-      <AnimatePresence>
-        {activeGuide && GUIDES[activeGuide] && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#f8fafc]/90 dark:bg-bg/95 backdrop-blur-xl flex flex-col overflow-hidden"
+          <GuideModal
+            activeGuide={activeGuide}
+            guides={GUIDES}
+            completedSteps={completedSteps}
+            toggleStep={toggleStep}
+            scrollProgress={scrollProgress}
+            modalScrollRef={modalScrollRef}
+            handleModalScroll={handleModalScroll}
+            onClose={() => setActiveGuide(null)}
+          />
+    </div>
+  );
+}
+
+// ── ProtocolGrid: GSAP stagger grid ──
+function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
+  guideKeys: string[];
+  guides: Record<string, Guide>;
+  emergencyMode: boolean;
+  onGuideSelect: (key: string) => void;
+}) {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!gridRef.current) return;
+    const cards = gridRef.current.querySelectorAll('.protocol-card');
+    gsap.fromTo(cards,
+      { opacity: 0, y: 20, scale: 0.95 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.08, ease: 'power2.out' }
+    );
+  }, { scope: gridRef, dependencies: [guideKeys.length, emergencyMode] });
+
+  return (
+    <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {guideKeys.map((key) => {
+        const guide = guides[key];
+        const isCritical = ['cpr', 'bleeding'].includes(key);
+        return (
+          <div
+            key={key}
+            onClick={() => onGuideSelect(key)}
+            className={`protocol-card group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 transition-all duration-300 border ${
+              isCritical 
+                ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
+                : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-border/80 dark:border-white/5 hover:border-brand/30'
+            } ${emergencyMode && key === 'cpr' ? 'md:col-span-2 lg:col-span-3 py-12' : ''}`}
           >
-            {/* Top Navigation HUD */}
-            <div className="p-4 sm:p-6 border-b border-border dark:border-white/10 flex items-center justify-between bg-white/50 dark:bg-bg/50 backdrop-blur-md">
-              <div className="flex items-center gap-4">
-                <button 
-                  onClick={() => setActiveGuide(null)}
-                  className="p-2 rounded-full hover:bg-surface-3 dark:hover:bg-white/5 text-text-2 dark:text-text-3 transition-colors"
-                >
-                  <ArrowLeft size={20} />
-                </button>
+            <div className="absolute top-4 right-6 flex items-center gap-2">
+              {isCritical && (
+                <div className="bg-red-500/10 text-red-500 px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-red-500/20 flex items-center gap-1">
+                  <AlertTriangle size={10} />
+                  Priority P0
+                </div>
+              )}
+              <div className="bg-brand-light/10 text-brand-dim dark:text-brand-light px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-brand-light/20 flex items-center gap-1">
+                <div className="w-1 h-1 rounded-full bg-brand-light animate-pulse" />
+                Offline
+              </div>
+            </div>
+            <div className={`flex flex-col h-full justify-between gap-8 relative z-10 ${emergencyMode && key === 'cpr' ? 'md:flex-row md:items-center' : ''}`}>
+              <div className="flex flex-col gap-5">
+                <div className={`p-4 rounded-lg w-fit transition-transform group-hover:scale-110 duration-500 ${
+                  isCritical ? 'bg-red-500/10 text-red-500' : 'bg-brand/10 text-brand dark:text-brand-light'
+                }`}>
+                  {key === 'cpr' && <HeartPulse size={emergencyMode ? 48 : 32} />}
+                  {key === 'choking' && <Activity size={32} />}
+                  {key === 'bleeding' && <Droplets size={32} />}
+                  {key === 'burns' && <Flame size={32} />}
+                  {key === 'fractures' && <Bone size={32} />}
+                </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.1em] text-red-500 font-space">Live Protocol</span>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-black text-text-1 dark:text-white font-space uppercase">
-                    {GUIDES[activeGuide].title}
-                  </h2>
+                  <h2 className={`font-black tracking-tight dark:text-white mb-2 font-space uppercase ${
+                    emergencyMode && key === 'cpr' ? 'text-4xl sm:text-5xl' : 'text-2xl'
+                  }`}>{guide.title}</h2>
+                  <p className={`text-text-3 font-medium leading-relaxed ${
+                    emergencyMode && key === 'cpr' ? 'text-lg max-w-xl' : 'text-sm'
+                  }`}>{guide.subtitle}</p>
                 </div>
               </div>
-
-              <div className="flex items-center gap-2">
-                <a 
-                  href="tel:112"
-                  className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/25 active:scale-95 transition-transform"
-                >
-                  <Phone size={14} />
-                  Call 112
-                </a>
-                <button 
-                  onClick={() => setActiveGuide(null)}
-                  className="p-2 text-text-3 hover:text-text-2 dark:hover:text-white"
-                >
-                  <X size={24} />
+              <div className="flex items-center gap-4">
+                <button className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 ${
+                  isCritical 
+                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40' 
+                    : 'bg-surface-3 dark:bg-white/10 text-white hover:bg-surface-1 dark:hover:bg-white/20'
+                }`}>
+                  Start Guide <ChevronRight size={16} />
                 </button>
               </div>
             </div>
-            
-            {/* Progress Bar */}
-            <div className="h-1 bg-red-500/20 w-full relative">
-               <motion.div 
-                 className="absolute inset-y-0 left-0 bg-red-500" 
-                 initial={{ width: 0 }}
-                 animate={{ width: `${scrollProgress}%` }}
-               />
+            <div className="absolute -bottom-6 -right-6 opacity-[0.03] dark:opacity-[0.05] group-hover:opacity-10 transition-opacity duration-700 pointer-events-none">
+              {key === 'cpr' && <HeartPulse size={180} />}
+              {key === 'bleeding' && <Droplets size={180} />}
             </div>
-            
-            <div 
-              ref={modalScrollRef}
-              onScroll={handleModalScroll}
-              className="flex-1 overflow-y-auto px-4 sm:px-6 py-8"
-            >
-              <div className="max-w-3xl mx-auto space-y-8">
-                {/* Protocol Header Card */}
-                <div className="bg-white dark:bg-surface-2 rounded-xl p-6 sm:p-8 border border-border dark:border-white/5 shadow-xl">
-                  <div className="flex items-start gap-6">
-                    <div className="p-5 rounded-lg bg-red-500/10 text-red-500 hidden sm:block">
-                      <HeartPulse size={40} />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-red-500 uppercase tracking-widest font-space mb-2">Instructions</h3>
-                      <p className="text-lg sm:text-xl text-text-2 dark:text-text-1 font-medium leading-relaxed">
-                        <TypingText text={GUIDES[activeGuide].subtitle} />
-                      </p>
-                    </div>
-                  </div>
+          </div>
+        );
+      })}
 
-                  {/* CPR Metronome Integration */}
-                  {activeGuide === 'cpr' && (
-                    <div className="mt-8 pt-8 border-t border-border-md dark:border-white/5 flex flex-col items-center">
-                      <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-4">Compression Metronome (100 BPM)</p>
-                      <div className="relative">
-                        <motion.div 
-                          animate={{ scale: [1, 1.4, 1], opacity: [0.3, 1, 0.3] }}
-                          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
-                          className="w-24 h-24 rounded-full bg-red-500/20 border-2 border-red-500/40 flex items-center justify-center"
-                        >
-                          <div className="w-12 h-12 rounded-full bg-red-500 shadow-[0_0_30px_rgba(239,68,68,0.5)]" />
-                        </motion.div>
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                           <span className="text-white font-black text-sm uppercase">PULSE</span>
-                        </div>
-                      </div>
-                      <p className="mt-4 text-xs font-bold text-red-500 uppercase tracking-widest animate-pulse">Push Hard, Push Fast</p>
+      {!emergencyMode && (
+        <div className="group cursor-pointer relative bg-gradient-to-br from-surface-3 to-surface-1 dark:from-surface-2 dark:to-bg rounded-xl p-8 border border-white/5 flex items-center justify-between col-span-1 md:col-span-2 lg:col-span-1 hover:border-brand/20 transition-all shadow-xl shadow-black/20">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <Clock size={14} className="text-brand-light" />
+              <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest font-space">Inventory HUD</span>
+            </div>
+            <h3 className="text-xl font-black text-white font-space uppercase">First Aid Kit</h3>
+            <p className="text-text-3 text-xs font-medium">Inventory checklist & alerts</p>
+          </div>
+          <button className="bg-white/10 p-4 rounded-lg text-white group-hover:bg-brand/80 group-hover:text-white transition-all duration-300">
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── GuideModal: GSAP animated modal with step stagger + CPR metronome ──
+function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollProgress, modalScrollRef, handleModalScroll, onClose }: {
+  activeGuide: string | null;
+  guides: Record<string, Guide>;
+  completedSteps: Set<number>;
+  toggleStep: (idx: number) => void;
+  scrollProgress: number;
+  modalScrollRef: React.RefObject<HTMLDivElement | null>;
+  handleModalScroll: () => void;
+  onClose: () => void;
+}) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const metronomeRef = useRef<HTMLDivElement>(null);
+
+  // GSAP entry animation
+  useGSAP(() => {
+    if (!activeGuide || !overlayRef.current) return;
+    gsap.fromTo(overlayRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.25, ease: 'power2.out' }
+    );
+  }, [activeGuide]);
+
+  // GSAP step stagger
+  useGSAP(() => {
+    if (!activeGuide || !stepsRef.current) return;
+    const steps = stepsRef.current.querySelectorAll('.step-item');
+    gsap.fromTo(steps,
+      { opacity: 0, x: -10 },
+      { opacity: 1, x: 0, duration: 0.25, stagger: 0.08, delay: 0.2, ease: 'power2.out' }
+    );
+  }, [activeGuide]);
+
+  // CPR metronome GSAP
+  useGSAP(() => {
+    if (!metronomeRef.current || activeGuide !== 'cpr') return;
+    const el = metronomeRef.current;
+    gsap.to(el, {
+      scale: 1.4, opacity: 0.3,
+      duration: 0.3, yoyo: true, repeat: -1, ease: 'sine.inOut'
+    });
+  }, [activeGuide]);
+
+  // Progress bar
+  useGSAP(() => {
+    if (!progressBarRef.current) return;
+    gsap.to(progressBarRef.current, { scaleX: scrollProgress / 100, transformOrigin: 'left', duration: 0.1 });
+  }, [scrollProgress]);
+
+  if (!activeGuide || !guides[activeGuide]) return null;
+
+  const guide = guides[activeGuide];
+
+  return (
+    <div
+      ref={overlayRef}
+      className="fixed inset-0 z-[100] bg-[#f8fafc]/90 dark:bg-bg/95 backdrop-blur-xl flex flex-col overflow-hidden"
+    >
+      <div className="p-4 sm:p-6 border-b border-border dark:border-white/10 flex items-center justify-between bg-white/50 dark:bg-bg/50 backdrop-blur-md">
+        <div className="flex items-center gap-4">
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-surface-3 dark:hover:bg-white/5 text-text-2 dark:text-text-3 transition-colors">
+            <ArrowLeft size={20} />
+          </button>
+          <div>
+            <div className="flex items-center gap-2 mb-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              <span className="text-[9px] font-semibold uppercase tracking-[0.1em] text-red-500 font-space">Live Protocol</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-text-1 dark:text-white font-space uppercase">{guide.title}</h2>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <a href="tel:112" className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/25 active:scale-95 transition-transform">
+            <Phone size={14} /> Call 112
+          </a>
+          <button onClick={onClose} className="p-2 text-text-3 hover:text-text-2 dark:hover:text-white">
+            <X size={24} />
+          </button>
+        </div>
+      </div>
+
+      <div className="h-1 bg-red-500/20 w-full relative">
+        <div ref={progressBarRef} className="absolute inset-y-0 left-0 bg-red-500" style={{ width: 0 }} />
+      </div>
+
+      <div ref={modalScrollRef} onScroll={handleModalScroll} className="flex-1 overflow-y-auto px-4 sm:px-6 py-8">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="bg-white dark:bg-surface-2 rounded-xl p-6 sm:p-8 border border-border dark:border-white/5 shadow-xl">
+            <div className="flex items-start gap-6">
+              <div className="p-5 rounded-lg bg-red-500/10 text-red-500 hidden sm:block"><HeartPulse size={40} /></div>
+              <div>
+                <h3 className="text-sm font-semibold text-red-500 uppercase tracking-widest font-space mb-2">Instructions</h3>
+                <p className="text-lg sm:text-xl text-text-2 dark:text-text-1 font-medium leading-relaxed">
+                  <TypingText text={guide.subtitle} />
+                </p>
+              </div>
+            </div>
+
+            {activeGuide === 'cpr' && (
+              <div className="mt-8 pt-8 border-t border-border-md dark:border-white/5 flex flex-col items-center">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-4">Compression Metronome (100 BPM)</p>
+                <div className="relative">
+                  <div ref={metronomeRef} className="w-24 h-24 rounded-full bg-red-500/20 border-2 border-red-500/40 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-red-500 shadow-[0_0_30px_rgba(239,68,68,0.5)]" />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span className="text-white font-black text-sm uppercase">PULSE</span>
+                  </div>
+                </div>
+                <p className="mt-4 text-xs font-bold text-red-500 uppercase tracking-widest animate-pulse">Push Hard, Push Fast</p>
+              </div>
+            )}
+          </div>
+
+          <div ref={stepsRef} className="space-y-4">
+            <div className="flex items-center justify-between px-2">
+              <h3 className="text-xs font-semibold text-text-3 uppercase tracking-[0.25em] font-space">Sequential Actions</h3>
+              <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest">
+                {completedSteps.size} / {guide.steps.length} Complete
+              </span>
+            </div>
+            {guide.steps.map((step, idx) => (
+              <div
+                key={idx}
+                className={`step-item group cursor-pointer p-5 sm:p-6 rounded-lg border transition-all duration-300 flex gap-5 items-start ${
+                  completedSteps.has(idx)
+                    ? 'bg-brand-light/10 text-brand border-brand-light/20 dark:text-brand-light dark:border-brand-light/20 opacity-60 scale-[0.98]'
+                    : 'bg-white dark:bg-surface-2/60 dark:hover:bg-surface-2 border-border dark:border-white/5 text-text-1'
+                }`}
+                onClick={() => toggleStep(idx)}
+              >
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black flex-shrink-0 text-xs transition-colors ${
+                  completedSteps.has(idx) ? 'bg-brand-light text-white' : 'bg-surface-2 dark:bg-white/10 text-text-3'
+                }`}>
+                  {completedSteps.has(idx) ? <CheckCircle2 size={16} /> : idx + 1}
+                </div>
+                <div className="flex-1 space-y-1">
+                  <p className="font-bold leading-relaxed">{step}</p>
+                  {idx === 0 && !completedSteps.has(idx) && (
+                    <div className="flex items-center gap-1.5 text-red-500 animate-pulse">
+                      <AlertTriangle size={12} />
+                      <span className="text-[10px] font-semibold uppercase tracking-widest">Critical Foundation</span>
                     </div>
                   )}
                 </div>
-
-                {/* Tactical Step List */}
-                <div className="space-y-4">
-                   <div className="flex items-center justify-between px-2">
-                     <h3 className="text-xs font-semibold text-text-3 uppercase tracking-[0.25em] font-space">Sequential Actions</h3>
-                     <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest">
-                       {completedSteps.size} / {GUIDES[activeGuide].steps.length} Complete
-                     </span>
-                   </div>
-
-                  {GUIDES[activeGuide].steps.map((step, idx) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + (idx * 0.1) }}
-                      onClick={() => toggleStep(idx)}
-                      className={`group cursor-pointer p-5 sm:p-6 rounded-lg border transition-all duration-300 flex gap-5 items-start ${
-                        completedSteps.has(idx) 
-                          ? 'bg-brand-light/10 text-brand border-brand-light/20 dark:bg-brand-light/ dark:text-brand-light dark:border-brand-light/20 opacity-60 scale-[0.98]' 
-                          : 'bg-white dark:bg-surface-2/60 dark:hover:bg-surface-2 border-border dark:border-white/5 text-text-1 dark:text-text-1'
-                      }`}
-                    >
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black flex-shrink-0 text-xs transition-colors ${
-                        completedSteps.has(idx) 
-                          ? 'bg-brand-light text-white' 
-                          : 'bg-surface-2 dark:bg-white/10 text-text-3 dark:text-text-3'
-                      }`}>
-                        {completedSteps.has(idx) ? <CheckCircle2 size={16} /> : idx + 1}
-                      </div>
-
-                      <div className="flex-1 space-y-1">
-                        <p className="font-bold leading-relaxed">{step}</p>
-                        {idx === 0 && !completedSteps.has(idx) && (
-                          <div className="flex items-center gap-1.5 text-red-500 animate-pulse">
-                            <AlertTriangle size={12} />
-                            <span className="text-[10px] font-semibold uppercase tracking-widest">Critical Foundation</span>
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Final Call to Action */}
-                <div className="pt-8 pb-12 flex flex-col sm:flex-row gap-4 items-center justify-center">
-                  <button 
-                    onClick={() => setActiveGuide(null)}
-                    className="w-full sm:w-auto px-10 py-4 bg-surface-3 dark:bg-white/10 text-white font-black uppercase tracking-widest text-xs rounded-lg active:scale-95 transition-all"
-                  >
-                    Terminate Protocol
-                  </button>
-                  <a 
-                    href="tel:108"
-                    className="w-full sm:w-auto px-10 py-4 bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-lg shadow-xl shadow-red-500/20 animate-pulse flex items-center justify-center gap-2 active:scale-95 transition-all"
-                  >
-                    <Phone size={16} />
-                    Emergency Hotline
-                  </a>
-                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+          </div>
+
+          <div className="pt-8 pb-12 flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <button onClick={onClose} className="w-full sm:w-auto px-10 py-4 bg-surface-3 dark:bg-white/10 text-white font-black uppercase tracking-widest text-xs rounded-lg active:scale-95 transition-all">
+              Terminate Protocol
+            </button>
+            <a href="tel:108" className="w-full sm:w-auto px-10 py-4 bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-lg shadow-xl shadow-red-500/20 animate-pulse flex items-center justify-center gap-2 active:scale-95 transition-all">
+              <Phone size={16} /> Emergency Hotline
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

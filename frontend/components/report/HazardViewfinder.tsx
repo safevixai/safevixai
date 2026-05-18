@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { Crosshair, Cpu, Scan, ShieldAlert } from 'lucide-react';
 import Image from 'next/image';
 
@@ -31,10 +30,10 @@ export default function HazardViewfinder({
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-bg/50">
             <div className="relative">
-              <motion.div animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ repeat: Infinity, duration: 4 }} className="h-32 w-32 rounded-full border border-emergency/20" />
-              <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 10, ease: 'linear' }} className="absolute inset-0 flex items-center justify-center">
+              <div className="h-32 w-32 rounded-full border border-emergency/20" />
+              <div className="absolute inset-0 flex items-center justify-center">
                 <Scan className="text-emergency/20" size={60} strokeWidth={0.5} />
-              </motion.div>
+              </div>
             </div>
             <div className="flex flex-col items-center gap-2 text-center">
               <span className="animate-pulse font-space text-[10px] font-semibold uppercase tracking-[0.4em] text-emergency/40">Camera uplink waiting</span>
@@ -66,16 +65,16 @@ export default function HazardViewfinder({
 
         <div className="absolute inset-0 flex items-center justify-center p-12">
           <div className="relative h-full w-full max-h-[280px] max-w-[280px]">
-            <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-emergency/60" />
-            <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2, delay: 0.5 }} className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-emergency/60" />
-            <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2, delay: 1 }} className="absolute bottom-0 left-0 h-8 w-8 border-b-2 border-l-2 border-emergency/60" />
-            <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2, delay: 1.5 }} className="absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-emergency/60" />
+            <div className="absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-emergency/60" />
+            <div className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-emergency/60" />
+            <div className="absolute bottom-0 left-0 h-8 w-8 border-b-2 border-l-2 border-emergency/60" />
+            <div className="absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-emergency/60" />
 
-            {isDetecting ? <motion.div initial={{ top: '10%', opacity: 0 }} animate={{ top: ['10%', '90%', '10%'], opacity: [0, 1, 0.1] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }} className="absolute left-0 z-30 h-0.5 w-full bg-gradient-to-r from-transparent via-emergency to-transparent shadow-[0_0_15px_var(--emergency)]" /> : null}
+            {isDetecting ? <div className="absolute left-0 z-30 h-0.5 w-full bg-gradient-to-r from-transparent via-emergency to-transparent shadow-[0_0_15px_var(--emergency)]" /> : null}
 
             <div className="absolute inset-0 flex items-center justify-center opacity-20">
-              <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.1, 0.3] }} transition={{ repeat: Infinity, duration: 4 }} className="h-full w-full rounded-full border border-emergency/80" />
-              <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.05, 0.2] }} transition={{ repeat: Infinity, duration: 6 }} className="absolute h-2/3 w-2/3 rounded-full border border-emergency/80" />
+              <div className="h-full w-full rounded-full border border-emergency/80" />
+              <div className="absolute h-2/3 w-2/3 rounded-full border border-emergency/80" />
             </div>
 
             <div className="absolute inset-0 flex items-center justify-center">
@@ -90,9 +89,9 @@ export default function HazardViewfinder({
               <ShieldAlert size={12} className="text-white" />
               <span className="font-space text-[10px] font-semibold uppercase tracking-widest text-white">Confirmed hazard</span>
             </div>
-            <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 0.8 }} className="rounded-md border border-emergency/20 bg-emergency/10 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-emergency">
+            <div className="rounded-md border border-emergency/20 bg-emergency/10 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-emergency">
               {isDetecting ? 'Analyzing risk...' : 'Ready to dispatch'}
-            </motion.div>
+            </div>
           </div>
           <span className="pl-1 font-space text-[9px] font-semibold uppercase tracking-[0.1em] text-text-2 opacity-70">{viewportId}</span>
         </div>

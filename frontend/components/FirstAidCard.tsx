@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 
 interface FirstAidCardProps {
   title: string;
@@ -20,7 +20,7 @@ function renderStep(step: string): ReactNode {
   );
 }
 
-export function FirstAidCard({ title, icon, steps }: FirstAidCardProps) {
+export const FirstAidCard = memo(function FirstAidCard({ title, icon, steps }: FirstAidCardProps) {
   return (
     <div
       className="card-glass"
@@ -117,4 +117,4 @@ export function FirstAidCard({ title, icon, steps }: FirstAidCardProps) {
       </div>
     </div>
   );
-}
+});

@@ -3,11 +3,11 @@
 import React, { useState, useEffect, memo } from 'react';
 import Link from 'next/link';
 import { Menu, Mic, MapPin, Moon, Sun, Monitor, Search, ArrowLeft, Layers, Hospital, Shield, Ambulance, Flame, Pill } from 'lucide-react';
-import { motion } from 'motion/react';
 import { formatAccuracyLabel, formatLocationLabel, isApproximateLocation } from '@/lib/location-utils';
 import { useAppStore } from '@/lib/store';
 import { useTheme } from '@/components/ThemeProvider';
 import { searchPlaces, GeocodingResult } from '@/lib/geocoding';
+import { useDebouncedCallback } from 'use-debounce';
 
 interface TopSearchProps {
   isMapPage?: boolean;
@@ -59,20 +59,22 @@ const TopSearch = memo(function TopSearch({
     setMounted(true);
   }, []);
 
+  const debouncedSearch = useDebouncedCallback(async (query: string) => {
+    setIsSearching(true);
+    const res = await searchPlaces(query);
+    setResults(res);
+    setIsSearching(false);
+  }, 400);
+
   useEffect(() => {
     if (!searchQuery.trim() || searchQuery.length < 2) {
       setResults([]);
       setIsSearching(false);
+      debouncedSearch.cancel();
       return;
     }
-    const timer = setTimeout(async () => {
-      setIsSearching(true);
-      const res = await searchPlaces(searchQuery);
-      setResults(res);
-      setIsSearching(false);
-    }, 400);
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
+    debouncedSearch(searchQuery);
+  }, [searchQuery, debouncedSearch]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -109,10 +111,7 @@ const TopSearch = memo(function TopSearch({
     <div className={`absolute top-0 left-0 w-full z-40 px-4 pb-2 pt-[calc(0.75rem+env(safe-area-inset-top))] md:pb-6 md:pt-[calc(1.5rem+env(safe-area-inset-top))] pointer-events-none flex flex-col items-center ${(!isMapPage && !forceShow) ? 'lg:hidden' : ''}`}>
       
       {/* Top Row: Search Bar (Center) & Desktop Controls */}
-      <motion.div 
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      <div
         className="w-full flex items-center justify-center md:justify-between lg:justify-center relative md:gap-4 lg:gap-6 md:px-4 lg:px-0"
       >
         
@@ -244,14 +243,11 @@ const TopSearch = memo(function TopSearch({
             </div>
           )}
         </div>
-      </motion.div>
+      </div>
 
       {/* Floating Chips Row */}
       {isMapPage && (
-        <motion.div 
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        <div
           className="mt-3 overflow-x-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pointer-events-auto"
         >
           <div className="flex items-center gap-2 px-1 w-max mx-auto">
@@ -292,7 +288,7 @@ const TopSearch = memo(function TopSearch({
               </button>
             )})}
           </div>
-        </motion.div>
+        </div>
       )}
 
     </div>

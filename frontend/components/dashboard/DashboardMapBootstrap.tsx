@@ -185,6 +185,8 @@ export default function DashboardMapBootstrap() {
     }
     lastHydrationKeyRef.current = hydrationKey;
 
+    const controller = new AbortController();
+
     async function loadServicesWithFallback() {
       let latestFailure: unknown = null;
 
@@ -195,7 +197,7 @@ export default function DashboardMapBootstrap() {
             lon: resolvedLon,
             radius,
             categories: requestedCategory,
-            limit: 24,
+            limit: 24, signal: controller.signal,
           });
 
           if (response.services.length > 0 || radius === radiusAttempts[radiusAttempts.length - 1]) {
@@ -229,7 +231,7 @@ export default function DashboardMapBootstrap() {
           lat: resolvedLat,
           lon: resolvedLon,
           radius: serviceRadius,
-          limit: 12,
+          limit: 12, signal: controller.signal,
         }),
         getAddressFromGPS(resolvedLat, resolvedLon),
       ]);
@@ -303,7 +305,7 @@ export default function DashboardMapBootstrap() {
     });
 
     return () => {
-      cancelled = true;
+      cancelled = true; controller.abort();
     };
   }, [
     gpsLocation?.accuracy,

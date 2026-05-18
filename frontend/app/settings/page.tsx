@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'motion/react';
 import {
   getPreferredNavApp,
   setPreferredNavApp,
@@ -28,6 +27,7 @@ import { SettingRow } from '@/components/ui/SettingRow';
 import ProfileCard from '@/components/dashboard/ProfileCard';
 import Toggle from '@/components/dashboard/Toggle';
 import Toast from '@/components/dashboard/Toast';
+import { usePageEntry } from '@/hooks/usePageEntry';
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -40,6 +40,7 @@ export default function SettingsPage() {
     userProfile,
   } = useAppStore();
   const { theme, setTheme } = useTheme();
+  const pageRef = usePageEntry();
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); document.title = 'System Settings | SafeVixAI'; }, []);
@@ -118,7 +119,7 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="sv-page relative flex flex-col transition-colors duration-500">
+    <div ref={pageRef} className="sv-page relative flex flex-col transition-colors duration-500">
 
       <TerminalHeader title="System Configuration" subtitle="DEVICE PREFERENCES" />
 
@@ -137,9 +138,7 @@ export default function SettingsPage() {
           </div>
 
           {isAuthenticated && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
               className="flex items-center gap-4 rounded-card border border-border-green bg-brand-dim p-5 shadow-card"
             >
               <div className="w-12 h-12 rounded-xl bg-brand flex items-center justify-center flex-shrink-0 shadow-lg shadow-brand/20">
@@ -153,7 +152,7 @@ export default function SettingsPage() {
                 <ShieldCheck size={12} className="text-brand-light" />
                 <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">JWT</span>
               </div>
-            </motion.div>
+            </div>
           )}
 
           <ProfileCard />

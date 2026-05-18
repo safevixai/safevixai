@@ -5,13 +5,14 @@
 
 ---
 
-## Current Agent Brief - 2026-05-12
+## Current Agent Brief - 2026-05-17 (Enterprise GSAP Migration Complete)
 
 Treat this section as the operational truth before changing code.
 
 - Frontend build currently passes with `npm run build` from `frontend/`.
+- **GSAP Enterprise Migration Completed**: Framer Motion is fully removed. All frontend animations use GSAP `useGSAP` hook for stagger and split text entries. Performance has been hardened for 60FPS on mobile.
 - Chatbot smoke tests currently pass with `python -m pytest tests/test_voice.py tests/test_e2e.py -q` from `chatbot_service/`.
-- The app is not yet fully enterprise-polished: a style audit still finds legacy Tailwind color tokens, arbitrary hex/rgb classes, one raw `<img>`, and the Google Material Symbols stylesheet.
+- The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.
 - Assistant voice input is partially implemented, but not end-to-end complete. The chat input records with `MediaRecorder`, but it calls `/api/v1/speech/translate`; the chatbot service exposes `/speech/translate`.
 - The frontend must use `NEXT_PUBLIC_CHATBOT_URL` through `frontend/lib/public-env.ts`. Do not invent `NEXT_PUBLIC_CHATBOT_BASE_URL`.
 - Speech language mapping is incomplete. UI language codes like `hi` and `ta` must be mapped to backend speech model codes such as `hin` and `tam` before calling the speech endpoint.

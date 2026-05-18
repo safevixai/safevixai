@@ -9,11 +9,14 @@ import { generateSosWhatsAppLink, generateSosSmsLink } from '@/lib/sos-share';
 import { startFamilyTracking, beginLocationBroadcast, notifyContactsViaWhatsApp } from '@/lib/live-tracking';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
-import { motion, AnimatePresence } from 'motion/react';
 import { Loader2, AlertTriangle, Activity, Shield, Heart, Share2, MessageSquare, UserCheck, Edit } from 'lucide-react';
+import { haptics } from '@/lib/haptics';
+import { sounds } from '@/lib/sounds';
+import { usePageEntry } from '@/hooks/usePageEntry';
 
 export default function EmergencyPage() {
- const { crashDetectionEnabled, userProfile } = useAppStore();
+ const { crashDetectionEnabled, userProfile, soundsEnabled } = useAppStore();
+ const pageRef = usePageEntry();
  const [holding, setHolding] = useState(false);
  const [holdProgress, setHoldProgress] = useState(0);
  const [activated, setActivated] = useState(false);
@@ -74,6 +77,7 @@ export default function EmergencyPage() {
  if (activated) return;
  setHolding(true);
  setHoldProgress(0);
+ haptics.medium();
 
  const startTime = performance.now();
  const duration = 2000; // 2 seconds
@@ -88,6 +92,8 @@ export default function EmergencyPage() {
  } else {
  setHolding(false);
  setActivated(true);
+ haptics.sos();
+ if (soundsEnabled) sounds.sosSent();
  if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
  }
  };
@@ -174,7 +180,7 @@ export default function EmergencyPage() {
  }, [coords, userProfile]);
 
  return (
- <div className="bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-red-500/30 selection:text-red-900 dark:selection:text-red-950 min-h-dvh flex flex-col relative overflow-x-hidden transition-colors duration-500">
+ <div ref={pageRef} className="bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-red-500/30 selection:text-red-900 dark:selection:text-red-950 min-h-dvh flex flex-col relative overflow-x-hidden transition-colors duration-500">
  
  {/* -- Unified Tactical Navigation Header -- */}
  <SystemHeader title="Emergency SOS Terminal" showBack={false} />
@@ -226,7 +232,7 @@ export default function EmergencyPage() {
  
  <div className="text-center min-h-[80px]">
  {activated ? (
- <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+ <div>
  {dispatchState === 'dispatching' && (
  <span className="text-yellow-500 font-black tracking-[0.1em] uppercase text-xs flex items-center justify-center gap-2">
  <Loader2 size={14} className="animate-spin" /> Contacting Emergency Services...
@@ -266,12 +272,12 @@ export default function EmergencyPage() {
  </button>
  </div>
  )}
- </motion.div>
+ </div>
  ) : (
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+ <div>
  <span className="text-red-500 dark:text-[#ffb4aa] font-black tracking-[0.1em] uppercase text-xs">Hold to Activate</span>
  <p className="text-text-2 dark:text-[#e4bebc] text-xs mt-1 font-medium">Automatic Emergency Dispatch system armed</p>
- </motion.div>
+ </div>
  )}
  </div>
  </section>

@@ -1,7 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
 import { useAppStore } from '@/lib/store';
+import { gsap } from '@/lib/gsap';
+import { ProgressRing } from './ProgressRing';
+import { haptics } from '@/lib/haptics';
+import { sounds } from '@/lib/sounds';
 
 interface CrashCountdownProps {
   severity: string;
@@ -12,12 +17,26 @@ interface CrashCountdownProps {
 export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdownProps) {
   const [seconds, setSeconds] = useState(20);
   const userProfile = useAppStore((state) => state.userProfile);
+  const soundsEnabled = useAppStore((state) => state.soundsEnabled);
   const dispatched = useRef(false);
+  const numRef = useRef<HTMLParagraphElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const cancelBtnRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (typeof navigator !== 'undefined' && navigator.vibrate) {
-      navigator.vibrate([500, 200, 500, 200, 500]);
+  // Initial haptic + entry animation
+  useGSAP(() => {
+    haptics.sos();
+
+    if (cancelBtnRef.current) {
+      gsap.fromTo(cancelBtnRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, delay: 0.3, ease: 'power2.out' }
+      );
     }
+  }, { scope: bgRef });
+
+  // Countdown timer
+  useEffect(() => {
     const t = window.setInterval(() => {
       setSeconds((s) => {
         if (s <= 1 && !dispatched.current) {
@@ -31,8 +50,42 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
     return () => clearInterval(t);
   }, [onDispatch]);
 
+  // GSAP animations per second tick
+  useGSAP(() => {
+    if (!numRef.current) return;
+
+    // Number flips down - like a mechanical counter
+    gsap.fromTo(numRef.current,
+      { opacity: 0, y: -20, scale: 1.1 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: 'power3.out' }
+    );
+
+    // Background gets more red/intense as count drops
+    if (bgRef.current && seconds <= 10) {
+      gsap.to(bgRef.current, {
+        background: 'linear-gradient(135deg, #2D0808 0%, #4A0A0A 100%)',
+        duration: 0.5
+      });
+    }
+
+    // Flash effect for last 5 seconds
+    if (bgRef.current && seconds <= 5) {
+      gsap.to(bgRef.current, {
+        opacity: 0.85, duration: 0.1,
+        yoyo: true, repeat: 3
+      });
+      haptics.heavy();
+    }
+
+    // Sound tick
+    if (soundsEnabled) {
+      sounds.countdown(seconds);
+    }
+  }, { dependencies: [seconds, soundsEnabled], scope: bgRef });
+
   return (
     <div
+      ref={bgRef}
       role="alertdialog"
       aria-live="assertive"
       aria-modal="true"
@@ -50,11 +103,8 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
     >
       {/* Severity badge */}
       <span
+        className="sv-micro"
         style={{
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
           color: 'rgba(255, 255, 255, 0.6)',
           marginBottom: 8,
         }}
@@ -62,16 +112,20 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
         {severity.toUpperCase()} CRASH DETECTED
       </span>
 
-      {/* Countdown number */}
+      {/* Countdown number - mechanical counter */}
       <p
+        ref={numRef}
         aria-label={`${seconds} seconds to auto SOS`}
+        className="crash-countdown-num"
         style={{
           fontSize: 96,
           fontWeight: 800,
-          color: 'white',
+          color: seconds <= 5 ? '#FF0000' : 'white',
           lineHeight: 1,
           margin: 0,
           fontVariantNumeric: 'tabular-nums',
+          fontFamily: 'var(--font-mono)',
+          transition: 'color 0.3s ease',
         }}
       >
         {seconds}
@@ -91,8 +145,9 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
         </span>
       </div>
 
-      {/* Cancel button */}
+      {/* Cancel button - explicit language */}
       <button
+        ref={cancelBtnRef}
         onClick={onCancel}
         autoFocus
         style={{
@@ -108,36 +163,13 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
           minHeight: 56,
         }}
       >
-        I AM SAFE — CANCEL
+        I AM SAFE — CANCEL SOS
       </button>
 
-      {/* Progress ring */}
-      <svg style={{ position: 'absolute', top: 24, right: 24 }} width="48" height="48">
-        <circle
-          cx="24"
-          cy="24"
-          r="20"
-          fill="none"
-          stroke="rgba(255, 255, 255, 0.15)"
-          strokeWidth="3"
-        />
-        <circle
-          cx="24"
-          cy="24"
-          r="20"
-          fill="none"
-          stroke="white"
-          strokeWidth="3"
-          strokeDasharray={`${2 * Math.PI * 20}`}
-          strokeDashoffset={`${2 * Math.PI * 20 * (1 - seconds / 20)}`}
-          strokeLinecap="round"
-          style={{
-            transition: 'stroke-dashoffset 1s linear',
-            transform: 'rotate(-90deg)',
-            transformOrigin: 'center',
-          }}
-        />
-      </svg>
+      {/* Progress ring - GSAP animated */}
+      <div style={{ position: 'absolute', top: 24, right: 24 }}>
+        <ProgressRing seconds={seconds} total={20} size={64} />
+      </div>
     </div>
   );
 }

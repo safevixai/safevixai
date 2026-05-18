@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { useAppStore } from '@/lib/store';
 import { calculateChallan, type ChallanResult } from '@/lib/api';
 import { logClientError } from '@/lib/client-logger';
@@ -156,11 +155,8 @@ const ChallanCalculator: React.FC = () => {
  {error}
  </div>
  )}
- <AnimatePresence>
- {result && (
- <motion.div 
- initial={{ y: 20, opacity: 0 }}
- animate={{ y: 0, opacity: 1 }}
+  {result && (
+ <div
  className="bg-surface-1 border-2 border-brand/20 p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden"
  >
  <div className="absolute top-0 right-0 w-32 h-32 bg-emergency/5 blur-[60px] rounded-full" />
@@ -194,9 +190,8 @@ const ChallanCalculator: React.FC = () => {
  </button>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
 };

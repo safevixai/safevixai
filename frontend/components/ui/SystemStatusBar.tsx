@@ -27,7 +27,7 @@ export function SystemStatusBar() {
         }
       } catch {
         setStatus('down');
-        setMessage('Server waking up — please wait 30 seconds');
+        setMessage('Connecting... (~30 seconds on first load)');
       }
     };
 

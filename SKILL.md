@@ -5,7 +5,9 @@ description: Development guide for the SafeVixAI Next.js 15 frontend — a tacti
 
 # SafeVixAI Frontend Skill
 
-## Current Implementation Notes - 2026-05-12
+## Current Implementation Notes - 2026-05-17 (Enterprise GSAP Migration Complete)
+
+**GSAP Migration Status:** The frontend is 100% GSAP-powered. Do NOT use Framer Motion. All route entries use `usePageEntry` from `hooks/usePageEntry.ts`. Animations rely purely on GPU-composited properties (transform, opacity) with strict `will-change` management for 60FPS mobile performance.
 
 Use these notes before touching the frontend:
 
@@ -202,7 +204,8 @@ frontend/
 | Next.js | 15.x | React framework (App Router) |
 | React | 19.x | UI library |
 | Tailwind CSS | 3.x | Utility-first CSS |
-| `motion` | 12.x | Animations (framer-motion v12) |
+| `gsap` | 3.15.x | Core animation engine |
+| `@gsap/react` | 2.1.x | React GSAP hooks |
 | `maplibre-gl` | 5.x | Vector map rendering |
 | `zustand` | 5.x | Global state management |
 | `lucide-react` | 0.4x | Icon library |

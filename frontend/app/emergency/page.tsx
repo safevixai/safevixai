@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
   Shield, ArrowLeft, ChevronDown, ChevronUp,
@@ -12,6 +11,10 @@ import { useTheme } from '@/components/ThemeProvider';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { useAppStore } from '@/lib/store';
+import { useGSAP } from '@gsap/react';
+import { gsap } from '@/lib/gsap';
+import { useSplitTextEntry } from '@/hooks/useSplitTextEntry';
+import { haptics } from '@/lib/haptics';
 
 const CATEGORIES = ['All', 'Medical', 'Fire', 'Accident', 'Criminal'] as const;
 type Category = typeof CATEGORIES[number];
@@ -112,10 +115,61 @@ export default function EmergencyProtocolsPage() {
   const { theme } = useTheme();
   const userProfile = useAppStore((state) => state.userProfile);
 
+  // GSAP refs
+  const sosCardRef = useRef<HTMLDivElement>(null);
+  const callBtnRef = useRef<HTMLAnchorElement>(null);
+  const protocolGridRef = useRef<HTMLDivElement>(null);
+  const floatingBtnRef = useRef<HTMLButtonElement>(null);
+  const titleRef = useSplitTextEntry(0.1);
+
   useEffect(() => {
     setMounted(true);
     document.title = 'Emergency Protocols | SafeVixAI';
   }, []);
+
+  // GSAP Emergency Animations - fast snap
+  useGSAP(() => {
+    if (!mounted || !sosCardRef.current) return;
+
+    // SOS Card snaps into place
+    gsap.fromTo(sosCardRef.current,
+      { opacity: 0, scale: 0.95 },
+      { opacity: 1, scale: 1, duration: 0.25, ease: 'emergency' }
+    );
+
+    // Continuous red glow pulse - signals urgency
+    gsap.to(sosCardRef.current, {
+      boxShadow: '0 0 32px rgba(220,38,38,0.6), 0 0 0 1px rgba(220,38,38,0.5)',
+      duration: 1.2, yoyo: true, repeat: -1, ease: 'sine.inOut'
+    });
+
+    // CALL 112 button attention pulse
+    if (callBtnRef.current) {
+      gsap.to(callBtnRef.current, {
+        scale: 1.02, duration: 0.8,
+        yoyo: true, repeat: -1, ease: 'sine.inOut'
+      });
+    }
+
+    // Floating SOS button pulse
+    if (floatingBtnRef.current) {
+      gsap.to(floatingBtnRef.current, {
+        boxShadow: '0 0 40px rgba(239,68,68,0.6)',
+        duration: 1.5, yoyo: true, repeat: -1, ease: 'sine.inOut'
+      });
+    }
+  }, { dependencies: [mounted] });
+
+  // Animate protocol cards on filter change
+  useGSAP(() => {
+    if (!mounted || !protocolGridRef.current) return;
+
+    const cards = protocolGridRef.current.querySelectorAll('.protocol-card');
+    gsap.fromTo(cards,
+      { opacity: 0, scale: 0.95, y: 12 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.3, stagger: 0.05, ease: 'power2.out' }
+    );
+  }, { dependencies: [activeCategory, mounted] });
 
   const filtered = PROTOCOLS.filter(
     p => activeCategory === 'All' || p.category === activeCategory
@@ -177,7 +231,7 @@ export default function EmergencyProtocolsPage() {
               </div>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-text-1 uppercase font-space leading-tight">
+              <h1 ref={titleRef as React.RefObject<HTMLHeadingElement>} className="text-3xl sm:text-4xl font-black tracking-tight text-text-1 uppercase font-space leading-tight">
                 Protocol Terminal
               </h1>
               <p className="max-w-md text-[13px] font-medium text-text-3 mt-2 uppercase tracking-wider opacity-80 leading-relaxed font-space">
@@ -186,16 +240,15 @@ export default function EmergencyProtocolsPage() {
             </div>
           </section>
 
-          {/* Module 1: Hazard Override Terminal (SOS) - Refined for density */}
+          {/* Module 1: Hazard Override Terminal (SOS) */}
           <section className="relative group">
-            <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="relative rounded-[2.5rem] overflow-hidden p-8 bg-gradient-to-br from-red-600 to-red-900 shadow-2xl shadow-red-600/30 border border-white/10"
+            <div 
+               ref={sosCardRef}
+               className="emergency-sos-card relative rounded-[2.5rem] overflow-hidden p-8 bg-gradient-to-br from-red-600 to-red-900 shadow-2xl shadow-red-600/30 border border-white/10"
             >
               {/* Background Animations */}
               <div className="absolute inset-0 z-0 pointer-events-none">
-                <motion.div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]" animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ repeat: Infinity, duration: 4 }} />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)] animate-pulse" style={{ animationDuration: '4s' }} />
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </div>
 
@@ -215,7 +268,7 @@ export default function EmergencyProtocolsPage() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                   <a href="tel:112" className="group/btn relative w-full h-16 px-8 bg-white rounded-lg flex items-center justify-center gap-3 shadow-xl overflow-hidden active:scale-95 transition-all ring-2 ring-white/30 animate-pulse mb-2">
+                   <a ref={callBtnRef} href="tel:112" className="group/btn relative w-full h-16 px-8 bg-white rounded-lg flex items-center justify-center gap-3 shadow-xl overflow-hidden active:scale-95 transition-all ring-2 ring-white/30 mb-2">
                      <span className="text-red-700 font-black text-sm tracking-[0.1em] uppercase font-space relative z-10">CALL 112 NOW</span>
                      <ArrowRight size={18} className="text-red-700 relative z-10 transition-transform group-hover/btn:translate-x-1" />
                    </a>
@@ -231,14 +284,7 @@ export default function EmergencyProtocolsPage() {
                    </div>
                 </div>
               </div>
-
-              {/* Hardware Scan Effect */}
-              <motion.div 
-                animate={{ y: [0, 400, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="absolute left-0 top-0 h-10 w-full bg-gradient-to-b from-white/10 to-transparent pointer-events-none"
-              />
-            </motion.div>
+            </div>
           </section>
         </aside>
 
@@ -270,9 +316,8 @@ export default function EmergencyProtocolsPage() {
                   }`}
                 >
                   {isActive && (
-                    <motion.div 
-                      layoutId="filterGlow" 
-                      className="absolute inset-0 rounded-[18px] z-[-1]" 
+                    <div 
+                      className="absolute inset-0 rounded-[18px] z-[-1] transition-all duration-300" 
                       style={{ 
                         background: cat === 'All' ? (theme === 'dark' ? '#ffffff' : '#0f172a') : color, 
                         boxShadow: `0 8px 20px ${cat === 'All' ? (theme === 'dark' ? '#ffffff44' : '#0f172a44') : color + '44'}` 
@@ -296,100 +341,19 @@ export default function EmergencyProtocolsPage() {
             </div>
           </div>
 
-          <div className="grid gap-4">
-            <AnimatePresence mode="popLayout">
+          <div ref={protocolGridRef} className="grid gap-4">
               {filtered.map((protocol, i) => {
                 const isExpanded = expandedId === protocol.id;
                 return (
-                  <motion.div 
-                    layout
+                  <ProtocolCard
                     key={protocol.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ delay: i * 0.05 }}
-                    className={`group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-border overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-surface-1 ring-1 ring-border shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
-                  >
-                    {/* Header: Intel Brief */}
-                    <button onClick={() => setExpandedId(isExpanded ? null : protocol.id)} className="w-full flex items-center p-5 sm:p-7 text-left gap-5 relative z-10 transition-colors">
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center shrink-0 border transition-all" style={{ backgroundColor: protocol.glowColor, borderColor: `${protocol.accentColor}33`, color: protocol.accentColor }}>
-                        {protocol.icon}
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-[9px] font-semibold uppercase tracking-widest px-1.5 py-0.5 rounded-md" style={{ backgroundColor: `${protocol.accentColor}22`, color: protocol.accentColor }}>{protocol.category}</span>
-                          {protocol.meta && <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">{protocol.meta.level} PRIORITY</span>}
-                        </div>
-                        <h3 className="text-lg font-black dark:text-white uppercase font-space tracking-tight leading-none mb-1.5 truncate">{protocol.title}</h3>
-                        <p className="text-xs font-bold text-text-2 dark:text-text-2 truncate opacity-80">{protocol.subtitle}</p>
-                      </div>
-
-                      <div className="flex flex-col items-end gap-3 shrink-0">
-                        <div className="hidden sm:flex gap-1">
-                           {[...Array(3)].map((_, j) => (
-                             <div key={j} className="w-1 h-3 rounded-full bg-surface-3" style={{ backgroundColor: j === 0 ? protocol.accentColor : '' }} />
-                           ))}
-                        </div>
-                        <motion.div animate={{ rotate: isExpanded ? 180 : 0 }}>
-                          <ChevronDown size={20} className="text-text-3 group-hover:text-text-1 transition-colors" />
-                        </motion.div>
-                      </div>
-                    </button>
-
-                    {/* Content: Active Guidance HUD */}
-                    <AnimatePresence initial={false}>
-                      {isExpanded && (
-                        <motion.div 
-                           initial={{ height: 0, opacity: 0 }}
-                           animate={{ height: 'auto', opacity: 1 }}
-                           exit={{ height: 0, opacity: 0 }}
-                           className="overflow-hidden"
-                        >
-                           <div className="px-5 sm:px-8 pb-8 pt-2">
-                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-                             
-                             <div className="mt-6 flex flex-col gap-6">
-                               <div className="flex items-center justify-between">
-                                  <label className="text-[10px] font-semibold text-text-3 uppercase tracking-widest font-space flex items-center gap-2">
-                                     <Cpu size={14} className="text-red-500/60" />
-                                     Step-by-Step Tactical Guide
-                                  </label>
-                                  {protocol.meta && <span className="text-[10px] font-mono text-brand-light tracking-tighter">EST: {protocol.meta.time}</span>}
-                               </div>
-
-                               <div className="space-y-4">
-                                 {protocol.steps.map((step, i) => (
-                                   <motion.div key={i} initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.1 }} className="flex gap-4 items-start group/step">
-                                      <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-semibold transition-all" style={{ backgroundColor: protocol.glowColor, color: protocol.accentColor }}>{i + 1}</div>
-                                      <div className="flex-1 pt-1.5 border-b border-border pb-4 group-last/step:border-none">
-                                         <p className="text-sm font-bold text-text-2 leading-relaxed font-mono tracking-tight">{step}</p>
-                                      </div>
-                                   </motion.div>
-                                 ))}
-                               </div>
-
-                               {protocol.callNumber && (
-                                 <motion.a 
-                                   initial={{ y: 20, opacity: 0 }}
-                                   animate={{ y: 0, opacity: 1 }}
-                                   href={`tel:${protocol.callNumber}`}
-                                   className="relative w-full h-14 rounded-lg flex items-center justify-center gap-3 overflow-hidden shadow-xl"
-                                   style={{ background: protocol.glowColor }}
-                                 >
-                                    <Phone size={20} style={{ color: protocol.accentColor }} />
-                                    <span className="font-black text-[11px] tracking-[0.1em] uppercase font-space" style={{ color: protocol.accentColor }}>Dispatch {protocol.callNumber}</span>
-                                 </motion.a>
-                               )}
-                             </div>
-                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
+                    protocol={protocol}
+                    isExpanded={isExpanded}
+                    onToggle={() => setExpandedId(isExpanded ? null : protocol.id)}
+                    theme={theme}
+                  />
                 );
               })}
-            </AnimatePresence>
           </div>
         </section>
 
@@ -401,16 +365,127 @@ export default function EmergencyProtocolsPage() {
       </main>
       {/* Floating Tactical SOS */}
       <a href="tel:112" className="fixed bottom-[110px] right-6 sm:right-12 z-50">
-        <motion.button 
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.5)] text-white relative overflow-hidden"
+        <button 
+          ref={floatingBtnRef}
+          className="sos-button w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.5)] text-white relative overflow-hidden hover:scale-110 active:scale-90 transition-transform"
         >
-          <motion.div animate={{ scale: [1, 2], opacity: [0.3, 0] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute inset-0 rounded-full bg-white" />
+          <span className="absolute inset-0 rounded-full bg-white animate-ping opacity-30" />
           <Phone size={24} className="relative z-10" />
-        </motion.button>
+        </button>
       </a>
 
+    </div>
+  );
+}
+
+// ── Protocol Card Component with GSAP ──
+function ProtocolCard({ protocol, isExpanded, onToggle, theme }: {
+  protocol: Protocol;
+  isExpanded: boolean;
+  onToggle: () => void;
+  theme: string;
+}) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const chevronRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chevronRef.current) {
+      gsap.to(chevronRef.current, { rotate: isExpanded ? 180 : 0, duration: 0.2, ease: 'power2.out' });
+    }
+  }, [isExpanded]);
+
+  // Animate expand/collapse
+  useEffect(() => {
+    if (!contentRef.current) return;
+    if (isExpanded) {
+      gsap.set(contentRef.current, { display: 'block' });
+      gsap.fromTo(contentRef.current,
+        { height: 0, opacity: 0 },
+        { height: 'auto', opacity: 1, duration: 0.3, ease: 'power2.out' }
+      );
+      // Stagger steps in
+      const steps = contentRef.current.querySelectorAll('.step-item');
+      gsap.fromTo(steps,
+        { x: -10, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.2, stagger: 0.08, ease: 'power2.out', delay: 0.1 }
+      );
+    } else {
+      gsap.to(contentRef.current, {
+        height: 0, opacity: 0, duration: 0.2, ease: 'power2.in',
+        onComplete: () => { if (contentRef.current) gsap.set(contentRef.current, { display: 'none' }); }
+      });
+    }
+  }, [isExpanded]);
+
+  return (
+    <div
+      className={`protocol-card group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-border overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-surface-1 ring-1 ring-border shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
+    >
+      {/* Header: Intel Brief */}
+      <button onClick={onToggle} className="w-full flex items-center p-5 sm:p-7 text-left gap-5 relative z-10 transition-colors">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center shrink-0 border transition-all" style={{ backgroundColor: protocol.glowColor, borderColor: `${protocol.accentColor}33`, color: protocol.accentColor }}>
+          {protocol.icon}
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[9px] font-semibold uppercase tracking-widest px-1.5 py-0.5 rounded-md" style={{ backgroundColor: `${protocol.accentColor}22`, color: protocol.accentColor }}>{protocol.category}</span>
+            {protocol.meta && <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">{protocol.meta.level} PRIORITY</span>}
+          </div>
+          <h3 className="text-lg font-black dark:text-white uppercase font-space tracking-tight leading-none mb-1.5 truncate">{protocol.title}</h3>
+          <p className="text-xs font-bold text-text-2 dark:text-text-2 truncate opacity-80">{protocol.subtitle}</p>
+        </div>
+
+        <div className="flex flex-col items-end gap-3 shrink-0">
+          <div className="hidden sm:flex gap-1">
+             {[...Array(3)].map((_, j) => (
+               <div key={j} className="w-1 h-3 rounded-full bg-surface-3" style={{ backgroundColor: j === 0 ? protocol.accentColor : '' }} />
+             ))}
+          </div>
+          <div ref={chevronRef}>
+            <ChevronDown size={20} className="text-text-3 group-hover:text-text-1 transition-colors" />
+          </div>
+        </div>
+      </button>
+
+      {/* Content: Active Guidance HUD */}
+      <div ref={contentRef} style={{ overflow: 'hidden', display: isExpanded ? 'block' : 'none' }}>
+         <div className="px-5 sm:px-8 pb-8 pt-2">
+           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+           
+           <div className="mt-6 flex flex-col gap-6">
+             <div className="flex items-center justify-between">
+                <label className="text-[10px] font-semibold text-text-3 uppercase tracking-widest font-space flex items-center gap-2">
+                   <Cpu size={14} className="text-red-500/60" />
+                   Step-by-Step Tactical Guide
+                </label>
+                {protocol.meta && <span className="text-[10px] font-mono text-brand-light tracking-tighter">EST: {protocol.meta.time}</span>}
+             </div>
+
+             <div className="space-y-4">
+               {protocol.steps.map((step, i) => (
+                 <div key={i} className="step-item flex gap-4 items-start group/step">
+                    <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-semibold transition-all" style={{ backgroundColor: protocol.glowColor, color: protocol.accentColor }}>{i + 1}</div>
+                    <div className="flex-1 pt-1.5 border-b border-border pb-4 group-last/step:border-none">
+                       <p className="text-sm font-bold text-text-2 leading-relaxed font-mono tracking-tight">{step}</p>
+                    </div>
+                 </div>
+               ))}
+             </div>
+
+             {protocol.callNumber && (
+               <a 
+                 href={`tel:${protocol.callNumber}`}
+                 className="relative w-full h-14 rounded-lg flex items-center justify-center gap-3 overflow-hidden shadow-xl hover:brightness-110 transition-all active:scale-95"
+                 style={{ background: protocol.glowColor }}
+               >
+                  <Phone size={20} style={{ color: protocol.accentColor }} />
+                  <span className="font-black text-[11px] tracking-[0.1em] uppercase font-space" style={{ color: protocol.accentColor }}>Dispatch {protocol.callNumber}</span>
+               </a>
+             )}
+           </div>
+         </div>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 import { useAppStore } from '@/lib/store';
 import { submitReport } from '@/lib/api';
 import { enqueueRoadReport } from '@/lib/offline-sos-queue';
@@ -13,7 +12,7 @@ const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 /**
  * ReportForm — High-Fidelity Road Reporter HUD
  * Implements Stitch Design: `0099684f88464a39b36d0193b2a24c28`
- * Features: Multi-step layout, glassmorphism cards, and functional offline sync.
+ * Features: Multi-step, glassmorphism cards, and functional offline sync.
  */
 const ReportForm: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -83,9 +82,7 @@ const ReportForm: React.FC = () => {
 
   if (submitted) {
     return (
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+      <div
         className="bg-surface-1/60 backdrop-blur-3xl border border-brand/20 p-8 rounded-[2rem] text-center"
       >
         <div className="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-brand/30">
@@ -103,7 +100,7 @@ const ReportForm: React.FC = () => {
         >
           Begin New Recon
         </button>
-      </motion.div>
+      </div>
     );
   }
 
@@ -119,13 +116,9 @@ const ReportForm: React.FC = () => {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {step === 1 ? (
-          <motion.div 
+              {step === 1 ? (
+          <div 
             key="step1"
-            initial={{ x: 20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -20, opacity: 0 }}
             className="space-y-4"
           >
             <div className="grid grid-cols-2 gap-3">
@@ -167,13 +160,10 @@ const ReportForm: React.FC = () => {
             >
               Configure Details
             </button>
-          </motion.div>
+          </div>
         ) : (
-          <motion.div 
+          <div 
             key="step2"
-            initial={{ x: 20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -20, opacity: 0 }}
             className="space-y-4"
           >
             <textarea 
@@ -211,9 +201,8 @@ const ReportForm: React.FC = () => {
                 {loading ? 'Transmitting Data...' : 'Broadcast Report'}
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </div>
   );
 };

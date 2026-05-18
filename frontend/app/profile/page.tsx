@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -17,6 +16,7 @@ import { SurfaceCard } from '@/components/ui/SurfaceCard';
 import { SettingRow } from '@/components/ui/SettingRow';
 import Toggle from '@/components/dashboard/Toggle';
 import QREmergencyCard from '@/components/profile/QREmergencyCard';
+import { usePageEntry } from '@/hooks/usePageEntry';
 
 export default function ProfilePage() {
   const { 
@@ -28,6 +28,7 @@ export default function ProfilePage() {
     operatorName,
     isAuthenticated,
   } = useAppStore();
+  const pageRef = usePageEntry();
 
   const [offlineMode, setOfflineMode] = useState(false);
   const [pushNotifs, setPushNotifs] = useState(true);
@@ -77,7 +78,7 @@ export default function ProfilePage() {
     : 'NOT SET';
 
   return (
-    <div className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
+    <div ref={pageRef} className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
       
       {/* ── Unified Tactical Navigation Header ── */}
       <TerminalHeader title="Operator Identity Matrix" subtitle="PROFILE & SETTINGS" />
@@ -88,19 +89,14 @@ export default function ProfilePage() {
       <main className="flex-1 w-full max-w-2xl mx-auto pt-28 lg:pt-24 pb-44 px-6 space-y-12 relative z-10">
         
         {/* ── Save Flash Banner ── */}
-        <AnimatePresence>
-          {saveFlash && (
-            <motion.div
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
+                  {saveFlash && (
+            <div
               className="fixed top-24 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-brand-light text-white px-6 py-3 rounded-full shadow-xl text-sm font-semibold uppercase tracking-widest"
             >
               <CheckCircle size={16} />
               Profile Saved
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
 
         {/* ── Section 1: Hero Identity Matrix ── */}
         <section className="flex flex-col gap-8 relative">

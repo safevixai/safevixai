@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface ToggleProps {
   checked: boolean;
@@ -6,7 +6,7 @@ interface ToggleProps {
   ariaLabel?: string;
 }
 
-export default function Toggle({ checked, onChange, ariaLabel }: ToggleProps) {
+const Toggle = memo(function Toggle({ checked, onChange, ariaLabel }: ToggleProps) {
   return (
     <label className="relative inline-flex items-center cursor-pointer">
       <input 
@@ -19,4 +19,6 @@ export default function Toggle({ checked, onChange, ariaLabel }: ToggleProps) {
       <div className="w-11 h-6 rounded-pill border border-border bg-surface-3 transition-all peer peer-focus:ring-2 peer-focus:ring-brand-light/40 peer-checked:bg-brand after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:h-[18px] after:w-[18px] after:rounded-full after:bg-white after:shadow-card after:transition-all peer-checked:after:translate-x-5"></div>
     </label>
   );
-}
+});
+
+export default Toggle;

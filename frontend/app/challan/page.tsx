@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from '@/lib/gsap';
 import Link from 'next/link';
 import { 
   Shield, Car, Truck, Bike, Bus, AlertTriangle, 
@@ -62,7 +63,51 @@ export default function ChallanPage() {
 
   const [showDetailToast, setShowDetailToast] = useState(false);
 
+  // GSAP refs
+  const fineRef = useRef<HTMLHeadingElement>(null);
+  const resultCardRef = useRef<HTMLElement>(null);
+  const dangerRef = useRef<HTMLDivElement>(null);
+  const toastRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
+  const vehicleGridRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => { document.title = 'Challan Calculator | SafeVixAI'; }, []);
+
+
+
+  // GSAP: Toggle animation
+  useGSAP(() => {
+    if (!toggleRef.current) return;
+    gsap.to(toggleRef.current, {
+      x: isRepeat ? 22 : 2,
+      duration: 0.2,
+      ease: 'bounce',
+    });
+  }, { dependencies: [isRepeat] });
+
+  // GSAP: Vehicle cards stagger
+  useGSAP(() => {
+    if (!vehicleGridRef.current) return;
+    gsap.fromTo(vehicleGridRef.current.children,
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.3, stagger: 0.06, ease: 'power2.out' }
+    );
+  }, { scope: vehicleGridRef });
+
+
+
+  // GSAP: Toast
+  useGSAP(() => {
+    if (!toastRef.current) return;
+    if (showDetailToast) {
+      gsap.fromTo(toastRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.2 }
+      );
+    } else {
+      gsap.to(toastRef.current, { opacity: 0, y: 10, duration: 0.2 });
+    }
+  }, { dependencies: [showDetailToast] });
 
   const activeViolation = VIOLATIONS.find(v => v.id === violationId) || VIOLATIONS[0];
   
@@ -78,6 +123,39 @@ export default function ChallanPage() {
   );
   
   const finalFine = result ? (isRepeat && result.repeat_fine ? result.repeat_fine : result.base_fine) : 0;
+
+  // GSAP: Animate fine amount on change
+  useGSAP(() => {
+    if (!fineRef.current) return;
+    
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: finalFine,
+      duration: 1.5,
+      ease: 'power2.out',
+      onUpdate: () => {
+        if (fineRef.current) {
+          fineRef.current.innerText = `₹${Math.round(obj.val).toLocaleString('en-IN')}`;
+        }
+      }
+    });
+
+    gsap.fromTo(fineRef.current,
+      { opacity: 0, scale: 0.9 },
+      { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }
+    );
+  }, { dependencies: [finalFine] });
+
+  // GSAP: Danger badge
+  useGSAP(() => {
+    if (!dangerRef.current) return;
+    if (activeViolation.danger) {
+      gsap.fromTo(dangerRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+      );
+    }
+  }, { dependencies: [activeViolation.danger] });
 
   return (
     <div className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
@@ -103,8 +181,8 @@ export default function ChallanPage() {
           </section>
 
           {/* ── Big Result Card (The "Star" of the UI) ── */}
-          <motion.section 
-            layout
+          <section 
+            ref={resultCardRef}
             className="relative p-8 rounded-[2.5rem] bg-white dark:bg-white/5 border border-border shadow-2xl shadow-surface-3/50 dark:shadow-none overflow-hidden group"
           >
             {/* Background Glow */}
@@ -113,14 +191,12 @@ export default function ChallanPage() {
             <div className="relative z-10 flex flex-col gap-6">
                <div className="flex flex-col gap-1">
                  <p className="text-[10px] font-semibold text-text-3 uppercase tracking-[0.1em] font-space">Total Liability</p>
-                 <motion.h2 
-                   key={finalFine}
-                   initial={{ opacity: 0, scale: 0.9 }}
-                   animate={{ opacity: 1, scale: 1 }}
+                 <h2 
+                   ref={fineRef}
                    className={`text-5xl sm:text-7xl font-black text-brand dark:text-brand-light tracking-tighter ${isLoading ? 'opacity-50 blur-sm transition-all' : ''}`}
                  >
-                   ₹{finalFine.toLocaleString('en-IN')}
-                 </motion.h2>
+                   ₹0
+                 </h2>
                </div>
 
                <div className="flex flex-col gap-3">
@@ -132,19 +208,15 @@ export default function ChallanPage() {
                     </div>
                  </div>
 
-                 <AnimatePresence mode="wait">
-                   {activeViolation.danger && (
-                     <motion.div 
-                       initial={{ opacity: 0, y: 10 }}
-                       animate={{ opacity: 1, y: 0 }}
-                       exit={{ opacity: 0, y: -10 }}
-                       className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/20"
-                     >
-                       <AlertTriangle size={12} className="text-red-500" />
-                       <span className="text-[10px] font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider">{activeViolation.danger}</span>
-                     </motion.div>
-                   )}
-                 </AnimatePresence>
+                 {activeViolation.danger && (
+                   <div 
+                     ref={dangerRef}
+                     className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/20"
+                   >
+                     <AlertTriangle size={12} className="text-red-500" />
+                     <span className="text-[10px] font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider">{activeViolation.danger}</span>
+                   </div>
+                 )}
                </div>
 
                <div className="relative">
@@ -158,21 +230,16 @@ export default function ChallanPage() {
                     <span className="text-white dark:text-text-1 font-black text-sm tracking-[0.1em] uppercase font-space">DETAILED REPORT</span>
                     <ArrowRight size={18} className="text-white dark:text-text-1 group-hover/btn:translate-x-1 transition-transform" />
                  </button>
-                 <AnimatePresence>
-                   {showDetailToast && (
-                     <motion.div 
-                       initial={{ opacity: 0, y: 10 }}
-                       animate={{ opacity: 1, y: 0 }}
-                       exit={{ opacity: 0, y: 10 }}
-                       className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-surface-3 text-text-1 text-[10px] uppercase tracking-widest font-bold rounded-full shadow-xl whitespace-nowrap"
-                     >
-                       Detailed report currently offline
-                     </motion.div>
-                   )}
-                 </AnimatePresence>
+                 <div 
+                   ref={toastRef}
+                   style={{ opacity: 0 }}
+                   className="absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 bg-surface-3 text-text-1 text-[10px] uppercase tracking-widest font-bold rounded-full shadow-xl whitespace-nowrap"
+                 >
+                   Detailed report currently offline
+                 </div>
                </div>
             </div>
-          </motion.section>
+          </section>
 
           {/* Quick Meta */}
           <div className="grid grid-cols-2 gap-4">
@@ -224,7 +291,7 @@ export default function ChallanPage() {
                 02. Vehicle Identification
               </h3>
               
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div ref={vehicleGridRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                  {VEHICLE_CLASSES.map(cls => (
                    <button 
                      key={cls.id}
@@ -281,12 +348,10 @@ export default function ChallanPage() {
                 >
                   <span className="text-[10px] font-semibold uppercase tracking-widest">Repeat Offender?</span>
                   <div className={`w-10 h-5 rounded-full relative transition-colors ${isRepeat ? 'bg-red-500' : 'bg-surface-3'}`}>
-                    <motion.div 
-                      layout
-                      initial={false}
-                      animate={{ x: isRepeat ? 22 : 2 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    <div 
+                      ref={toggleRef}
                       className="absolute top-1 w-3 h-3 rounded-full bg-white shadow-sm" 
+                      style={{ transform: `translateX(${isRepeat ? 22 : 2}px)` }}
                     />
                   </div>
                 </button>

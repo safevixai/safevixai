@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { registerOfflineSyncListeners } from '@/lib/offline-sos-queue'
 import { startCrashDetection, stopCrashDetection } from '@/lib/crash-detection'
 import { STANDARD_GRAVITY_MS2 } from '@/lib/safety-constants'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner';
 
 export function ClientAppHooks() {
  useEffect(() => {

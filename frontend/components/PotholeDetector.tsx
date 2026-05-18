@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { logClientError } from '@/lib/client-logger';
 
 /**
@@ -85,45 +84,34 @@ const PotholeDetector: React.FC = () => {
       </div>
 
       {/* Target Reticle */}
-      <AnimatePresence>
-        {(isScanning || detected) && (
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+              {(isScanning || detected) && (
+          <div
             className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-dashed ${
               detected ? 'border-emergency shadow-[0_0_30px_rgba(220,38,38,0.3)]' : 'border-brand/40'
             } rounded-full flex items-center justify-center`}
           >
             {isScanning && (
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              <div
                 className="absolute inset-2 border-t-2 border-brand rounded-full"
               />
             )}
             <div className="text-[10px] uppercase font-black tracking-tighter text-brand/60">
               {isScanning ? 'Analyzing...' : 'Locked'}
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
       {/* Result HUD Overlay */}
-      <AnimatePresence>
-        {detected && (
-          <motion.div 
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+              {detected && (
+          <div
             className="absolute top-8 left-1/2 -translate-x-1/2 bg-emergency text-white px-6 py-2 rounded-full shadow-2xl flex items-center gap-3"
           >
             <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
             <span className="text-[11px] font-semibold uppercase tracking-widest whitespace-nowrap">
               PH-CRATER DETECTED ({confidence}%)
             </span>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
       {/* Tactical Controller Plate */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4">

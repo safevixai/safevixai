@@ -140,6 +140,10 @@ interface AppState {
   isThinSidebarEnabled: boolean;
   setThinSidebarEnabled: (v: boolean) => void;
 
+  // Sound & Haptics
+  soundsEnabled: boolean;
+  setSoundsEnabled: (v: boolean) => void;
+
   // Challan Calculator
   challanState: {
     violation: string;
@@ -243,6 +247,10 @@ export const useAppStore = create<AppState>()(
       isThinSidebarEnabled: true,
       setThinSidebarEnabled: (v) => set({ isThinSidebarEnabled: v }),
 
+      // Sound & Haptics
+      soundsEnabled: false,
+      setSoundsEnabled: (v) => set({ soundsEnabled: v }),
+
       // Challan Calculator
       challanState: {
         violation: 'dui',
@@ -273,6 +281,7 @@ export const useAppStore = create<AppState>()(
         showTraffic: state.showTraffic,
         showSafeSpaces: state.showSafeSpaces,
         showEmergencyServices: state.showEmergencyServices,
+        soundsEnabled: state.soundsEnabled,
       }),
     }
   )

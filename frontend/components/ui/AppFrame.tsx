@@ -8,6 +8,7 @@ import BottomNav from '@/components/dashboard/BottomNav';
 import { RightSidebar } from '@/components/RightSidebar';
 import { NetworkMonitor } from '@/components/NetworkMonitor';
 import { GlobalSOS } from '@/components/GlobalSOS';
+import { CommandPalette } from '@/components/search/CommandPalette';
 import { useAppStore } from '@/lib/store';
 import { Menu } from 'lucide-react';
 
@@ -51,6 +52,7 @@ export function AppFrame({ children }: AppFrameProps) {
       {/* ── Global Utilities ── */}
       <NetworkMonitor />
       <GlobalSOS />
+      <CommandPalette />
 
       {/* ── Navigation Shell ── */}
       

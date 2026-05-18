@@ -94,6 +94,7 @@ export interface NearbyServicesParams {
   radius?: number;
   categories?: EmergencyServiceCategory | EmergencyServiceCategory[] | string | string[];
   limit?: number;
+  signal?: AbortSignal;
 }
 
 export interface EmergencyNumbersResponse {
@@ -618,6 +619,7 @@ export async function fetchNearbyServices(params: NearbyServicesParams): Promise
       categories: csvParam(params.categories),
       limit: params.limit,
     },
+    signal: params.signal,
   });
 
   return normalizeEmergencyResponse(data);
@@ -683,6 +685,7 @@ export async function fetchRoadIssues(params: {
   radius?: number;
   limit?: number;
   statuses?: RoadIssueStatus | RoadIssueStatus[] | string | string[];
+  signal?: AbortSignal;
 }): Promise<RoadIssuesResponse> {
   const { data } = await client.get('/api/v1/roads/issues', {
     params: {
@@ -692,6 +695,7 @@ export async function fetchRoadIssues(params: {
       limit: params.limit,
       statuses: csvParam(params.statuses),
     },
+    signal: params.signal,
   });
 
   const issues = (data.issues ?? []).map(normalizeRoadIssue);

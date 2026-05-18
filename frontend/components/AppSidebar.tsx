@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'motion/react';
 import {
   MapPin,
   BotMessageSquare,
@@ -50,10 +49,7 @@ export function AppSidebar() {
   const setThinSidebarEnabled = useAppStore((state) => state.setThinSidebarEnabled);
 
   return (
-    <motion.aside
-      initial={{ x: -280 }}
-      animate={{ x: isDesktopSidebarCollapsed && !isThinSidebarEnabled ? -280 : 0 }}
-      transition={{ type: "spring", damping: 25, stiffness: 120 }}
+    <aside
       className={`fixed left-0 top-0 h-full z-50 bg-surface-1/95 backdrop-blur-3xl flex flex-col border-r border-border transition-all duration-300 ${
         isDesktopSidebarCollapsed && !isThinSidebarEnabled
           ? 'opacity-0 pointer-events-none shadow-none'
@@ -66,10 +62,10 @@ export function AppSidebar() {
         <div className="flex flex-col border-b border-border bg-surface-2/50 backdrop-blur-xl shrink-0">
           <div className="flex items-center justify-between p-6 pb-2">
             <div className="flex items-center gap-3">
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="whitespace-nowrap">
+              <div className="whitespace-nowrap">
                 <h2 className="text-xl font-black text-text-1 tracking-tight leading-none font-mono">SAFEVIX_AI</h2>
                 <p className="text-[10px] font-bold text-brand-light uppercase tracking-widest mt-1">System Integrated</p>
-              </motion.div>
+              </div>
             </div>
               <button
               onClick={() => setDesktopSidebarCollapsed(true)}
@@ -129,10 +125,9 @@ export function AppSidebar() {
                     } ${isDesktopSidebarCollapsed ? 'justify-center' : ''}`}
                 >
                   {isActive && (
-                    <motion.div
-                      layoutId="sidebar-active-pill"
+                    <div
+                      
                       className="absolute inset-0 bg-brand/10 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-brand/20 -z-10"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
                   <div className={`${item.color} ${isActive ? 'scale-110' : 'group-hover:scale-110'} p-1.5 rounded-lg bg-current/10 transition-transform shrink-0`}>
@@ -154,7 +149,7 @@ export function AppSidebar() {
 
         {/* Quick Dial Section */}
         {!isDesktopSidebarCollapsed && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <div>
             <div className="flex items-center justify-between px-2 mb-3 mt-4">
               <p className="text-[10px] font-semibold tracking-[0.1em] text-emergency uppercase whitespace-nowrap">Emergency Dial</p>
               <div className="h-px flex-1 bg-emergency-dim ml-3"></div>
@@ -175,7 +170,7 @@ export function AppSidebar() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
       </nav>
 
@@ -183,9 +178,7 @@ export function AppSidebar() {
       <div className={`p-4 bg-gradient-to-b from-transparent to-surface-2 border-t border-border shrink-0 flex flex-col items-center`}>
         <Link href="/sos" className="w-full">
           <button title={isDesktopSidebarCollapsed ? "System SOS" : undefined} className={`w-full flex items-center justify-center gap-2 py-3 bg-emergency hover:bg-emergency-dark text-white rounded-xl font-black shadow-[0_4px_20px_rgba(220,38,38,0.4)] border border-red-400/50 hover:shadow-[0_4px_25px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] group overflow-hidden relative ${isDesktopSidebarCollapsed ? 'px-0' : ''}`}>
-            <motion.div
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ repeat: Infinity, duration: 2.5 }}
+            <div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -rotate-45 translate-x-[-100%] group-hover:animate-shimmer"
             />
             <ShieldAlert className="w-7 h-7 relative z-10 shrink-0 drop-shadow-md text-white" strokeWidth={2.5} />
@@ -201,6 +194,6 @@ export function AppSidebar() {
           </div>
         )}
       </div>
-    </motion.aside>
+    </aside>
   );
 }

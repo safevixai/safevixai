@@ -1,11 +1,12 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'sonner';
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { GSAPProvider } from '@/components/providers/GSAPProvider';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
@@ -49,42 +50,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" href="/icons/favicon.png" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
         <meta name="mobile-web-app-capable" content="yes" />
+        {/* Flash-free theme init - runs before React hydration to prevent FOUC */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            var stored = localStorage.getItem('svai-theme');
+            var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            var theme = stored === 'system' || !stored ? system : stored;
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.classList.add(theme);
+          })();
+        ` }} />
         <Script src="/theme-init.js" strategy="beforeInteractive" />
       </head>
       <body>
         <AnalyticsProvider>
           <ThemeProvider>
-            <ConnectivityProvider>
-              <EnterpriseClientAppHooks />
-              <AppFrame>{children}</AppFrame>
+            <GSAPProvider>
+              <ConnectivityProvider>
+                <EnterpriseClientAppHooks />
+                <AppFrame>{children}</AppFrame>
               <Toaster
                 position="top-right"
                 toastOptions={{
-                  duration: 5000,
                   style: {
                     background: 'var(--surface-4)',
                     border: '1px solid var(--border-md)',
                     color: 'var(--text-1)',
-                    borderRadius: 'var(--r-lg)',
-                    boxShadow: 'var(--shadow-panel)',
                     fontFamily: 'var(--font-inter)',
                     fontSize: '13px',
                   },
-                  success: {
-                    iconTheme: {
-                      primary: 'var(--brand-light)',
-                      secondary: '#0A0E14',
-                    },
-                  },
-                  error: {
-                    iconTheme: {
-                      primary: 'var(--emergency)',
-                      secondary: '#FFFFFF',
-                    },
-                  },
                 }}
               />
-            </ConnectivityProvider>
+              </ConnectivityProvider>
+            </GSAPProvider>
           </ThemeProvider>
         </AnalyticsProvider>
       </body>

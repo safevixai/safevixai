@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'motion/react';
 import {
   Shield, Eye, EyeOff, LogIn, AlertTriangle,
   CheckCircle2, Zap, Lock, Mail, ChevronRight,
@@ -11,6 +10,7 @@ import {
 import { PUBLIC_API_BASE_URL } from '@/lib/public-env';
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { useAppStore } from '@/lib/store';
+import { usePageEntry } from '@/hooks/usePageEntry';
 
 const API_URL = PUBLIC_API_BASE_URL;
 const DEMO_CREDS: Array<{ label: string; email: string; password: string; color: string }> = [];
@@ -18,6 +18,7 @@ const DEMO_CREDS: Array<{ label: string; email: string; password: string; color:
 export default function LoginPage() {
   const router = useRouter();
   const { setAuth, isAuthenticated, setUserProfile } = useAppStore();
+  const pageRef = usePageEntry();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -109,7 +110,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-bg flex items-center justify-center overflow-hidden">
+    <div ref={pageRef} className="relative min-h-screen w-full bg-bg flex items-center justify-center overflow-hidden">
 
       {/* ── Tactical Background ── */}
       <div className="absolute inset-0 pointer-events-none">
@@ -127,10 +128,7 @@ export default function LoginPage() {
       </div>
 
       {/* ── Main Login Panel ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 32, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: 'spring', damping: 24, stiffness: 200 }}
+      <div
         className="relative w-full max-w-md mx-4"
       >
 
@@ -145,13 +143,11 @@ export default function LoginPage() {
 
             {/* Logo + Brand */}
             <div className="flex flex-col items-center gap-4 mb-8">
-              <motion.div
-                animate={{ boxShadow: ['0 0 20px rgba(0,200,150,0.15)', '0 0 40px rgba(0,200,150,0.35)', '0 0 20px rgba(0,200,150,0.15)'] }}
-                transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
+              <div
                 className="w-16 h-16 rounded-lg bg-brand flex items-center justify-center border border-brand-light/20"
               >
                 <Shield size={32} className="text-white" />
-              </motion.div>
+              </div>
 
               <div className="text-center">
                 <h1 className="text-2xl font-black text-white tracking-tight font-space uppercase">
@@ -224,51 +220,39 @@ export default function LoginPage() {
               </div>
 
               {/* Error / Success messages */}
-              <AnimatePresence mode="wait">
-                {error && (
-                  <motion.div
+                              {error && (
+                  <div
                     key="error"
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
                     className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20"
                   >
                     <AlertTriangle size={14} className="text-red-400 flex-shrink-0" />
                     <span className="text-[12px] font-bold text-red-400">{error}</span>
-                  </motion.div>
+                  </div>
                 )}
                 {success && (
-                  <motion.div
+                  <div
                     key="success"
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
                     className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-brand-light/10 border border-brand-light/20"
                   >
                     <CheckCircle2 size={14} className="text-brand-light flex-shrink-0" />
                     <span className="text-[12px] font-bold text-brand-light">{success}</span>
-                  </motion.div>
+                  </div>
                 )}
-              </AnimatePresence>
 
               {/* Submit Button */}
-              <motion.button
+              <button
                 type="submit"
                 disabled={loading}
-                whileTap={{ scale: 0.97 }}
                 className="relative h-13 w-full rounded-xl bg-brand hover:bg-[#145230] disabled:opacity-60 disabled:cursor-not-allowed border border-brand/40 text-white font-black text-sm uppercase tracking-widest transition-all shadow-lg shadow-brand/20 overflow-hidden flex items-center justify-center gap-2 mt-1"
                 style={{ height: '52px' }}
               >
                 {/* Shimmer on hover */}
-                <motion.div
+                <div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12"
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ repeat: Infinity, duration: 3, ease: 'linear', repeatDelay: 1 }}
                 />
                 {loading ? (
                   <>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration: 0.8, ease: 'linear' }}
+                    <div
                       className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
                     />
                     <span>Authenticating...</span>
@@ -279,7 +263,7 @@ export default function LoginPage() {
                     <span>Enter Command Center</span>
                   </>
                 )}
-              </motion.button>
+              </button>
             </form>
 
             {/* ── Divider ── */}
@@ -342,7 +326,7 @@ export default function LoginPage() {
         <p className="text-center text-[9px] font-bold text-text-3 uppercase tracking-[0.1em] mt-5">
           SafeVixAI v2.4 · IIT Madras Hackathon 2026
         </p>
-      </motion.div>
+      </div>
     </div>
   );
 }

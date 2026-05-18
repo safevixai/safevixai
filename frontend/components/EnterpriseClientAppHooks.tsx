@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner';
 import type { Session } from '@supabase/supabase-js'
 import { triggerSos } from '@/lib/api'
 import { startCrashDetection, stopCrashDetection } from '@/lib/crash-detection'
@@ -50,7 +50,7 @@ function SystemBanners() {
       {warming && connectivity !== 'offline' && (
         <div className="fixed top-0 left-0 w-full z-[9999] bg-brand text-white text-xs font-bold px-4 py-1.5 flex items-center justify-center gap-2 shadow-md">
           <Loader2 size={14} className="animate-spin" />
-          WARMING UP SAFEVIXAI ASSISTANT SERVICES...
+          CONNECTING... (~30 SECONDS ON FIRST LOAD)
         </div>
       )}
     </>
@@ -149,13 +149,13 @@ export function EnterpriseClientAppHooks() {
               })
             }
           }
-          toast.success('Auto-SOS dispatched with your current location.', {
+          toast.success('SOS sent to emergency contacts — they can track you now.', {
             duration: 8000,
             position: 'top-center',
           })
         } catch {
           await enqueueSOS({ lat: gpsLocation.lat, lon: gpsLocation.lon })
-          toast.error('Network unavailable. SOS saved offline and will retry automatically.', {
+          toast.error('Network unavailable — SOS saved offline and will retry automatically.', {
             duration: 8000,
             position: 'top-center',
           })
@@ -206,7 +206,7 @@ export function EnterpriseClientAppHooks() {
             className="h-11 flex-1 rounded-lg bg-white text-sm font-bold text-red-950"
             onClick={() => setCrashCountdown(null)}
           >
-            I am safe
+            I am safe — cancel SOS
           </button>
           <button
             type="button"

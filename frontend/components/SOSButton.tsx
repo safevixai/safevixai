@@ -1,21 +1,24 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { AlertCircle } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { generateSosWhatsAppLink, generateSosSmsLink } from '@/lib/sos-share';
+import { haptics } from '@/lib/haptics';
+import { sounds } from '@/lib/sounds';
 
 /**
  * SOSButton — Pulsative Tactical Emergency Trigger
  * Features: Double-tap verification, pulse animation, WhatsApp + SMS share.
  */
 export function SOSButton() {
- const { userProfile, gpsLocation } = useAppStore();
+ const { userProfile, gpsLocation, soundsEnabled } = useAppStore();
  const [isExpanding, setIsExpanding] = useState(false);
 
  const triggerWhatsApp = async () => {
  const link = await generateSosWhatsAppLink(userProfile, gpsLocation);
+ haptics.sos();
+ if (soundsEnabled) sounds.sosSent();
  const popup = window.open(link, '_blank', 'noopener,noreferrer');
  if (popup) popup.opener = null;
  setIsExpanding(false);
@@ -23,18 +26,16 @@ export function SOSButton() {
 
  const triggerSms = async () => {
  const link = await generateSosSmsLink(userProfile, gpsLocation);
+ haptics.sos();
+ if (soundsEnabled) sounds.sosSent();
  window.location.href = link;
  setIsExpanding(false);
  };
 
  return (
  <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[9999] pointer-events-none">
- <AnimatePresence>
- {isExpanding && (
- <motion.div
- initial={{ scale: 0.8, opacity: 0, y: 50 }}
- animate={{ scale: 1, opacity: 1, y: -100 }}
- exit={{ scale: 0.8, opacity: 0, y: 50 }}
+  {isExpanding && (
+ <div
  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 backdrop-blur-3xl rounded-[2.5rem] p-6 pointer-events-auto"
  style={{
   backgroundColor: 'color-mix(in srgb, var(--bg) 95%, transparent)',
@@ -84,12 +85,11 @@ export function SOSButton() {
  Cancel
  </button>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
 
  <button
- onClick={() => setIsExpanding(!isExpanding)}
+ onClick={() => { setIsExpanding(!isExpanding); haptics.heavy(); }}
  className="relative group pointer-events-auto active:scale-90 transition-all"
  aria-label="Emergency SOS"
  >

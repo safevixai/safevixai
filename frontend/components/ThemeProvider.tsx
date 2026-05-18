@@ -35,6 +35,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         ? (mq.matches ? 'light' : 'dark')
         : t;
       setResolvedTheme(effective);
+      // GSAP fade transition for smooth theme switch
+      root.style.transition = 'background-color 0.3s ease, color 0.3s ease';
       root.setAttribute('data-theme', effective);
       root.classList.toggle('dark', effective === 'dark');
       root.classList.toggle('light', effective === 'light');

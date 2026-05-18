@@ -172,7 +172,7 @@ export default function MapBackgroundInner() {
       ) : !gpsLocation ? (
         <div className="pointer-events-none absolute inset-x-0 bottom-24 z-20 flex justify-center px-4">
           <div className="rounded-full border border-white/20 bg-surface-1/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-xl">
-            Enable location for live nearby results
+            Allow location to find hospitals near you
           </div>
         </div>
       ) : approximateLocation ? (

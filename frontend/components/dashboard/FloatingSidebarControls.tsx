@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'motion/react';
 import {
   ShieldAlert,
   Layers,
@@ -30,8 +29,7 @@ const DrivingScore = ({ score }: { score: number }) => {
   const offset = circumference - (circumference * score) / 100;
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
+    <div
       className="relative flex flex-col items-center group pointer-events-auto"
     >
       {/* Label (Sliding out) */}
@@ -63,10 +61,7 @@ const DrivingScore = ({ score }: { score: number }) => {
             strokeWidth="4"
           />
           {/* Progress Gauge */}
-          <motion.circle
-            initial={{ strokeDashoffset: circumference }}
-            animate={{ strokeDashoffset: offset }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+          <circle
             cx="28"
             cy="28"
             r={radius}
@@ -80,17 +75,15 @@ const DrivingScore = ({ score }: { score: number }) => {
         </svg>
 
         <div className="z-10 flex flex-col items-center">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          <span
             className="text-lg font-black leading-none tracking-tighter"
             style={{ color }}
           >
             {score}
-          </motion.span>
+          </span>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -168,9 +161,7 @@ interface HUDButtonProps {
 
 const HUDButton = ({ icon, label, color = "#c5c6cd", href, onClick, ariaLabel }: HUDButtonProps) => {
   const ButtonContent = (
-    <motion.button
-      whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.05)' }}
-      whileTap={{ scale: 0.9 }}
+    <button
       onClick={onClick}
       aria-label={ariaLabel ?? label}
       className="relative w-12 h-12 flex items-center justify-center rounded-full bg-white/95 dark:bg-surface-2/90 backdrop-blur-xl ring-1 ring-white/40 dark:ring-white/10 shadow-2xl transition-all group/btn pointer-events-auto"
@@ -185,7 +176,7 @@ const HUDButton = ({ icon, label, color = "#c5c6cd", href, onClick, ariaLabel }:
       <div className="transition-transform duration-300 group-hover/btn:rotate-12" style={{ color }}>
         {icon}
       </div>
-    </motion.button>
+    </button>
   );
 
   if (href) {
@@ -225,10 +216,7 @@ export default function FloatingSidebarControls() {
   };
 
   return (
-    <motion.div
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ delay: 0.4, type: "spring", damping: 20, stiffness: 100 }}
+    <div
       className="absolute right-4 bottom-24 lg:bottom-8 z-40 flex flex-col items-center gap-5 pointer-events-none"
     >
       {/* ── Driver Analytics ── */}
@@ -268,13 +256,8 @@ export default function FloatingSidebarControls() {
       </div>
 
       {/* ── Consolidated Layer Menu ── */}
-      <AnimatePresence>
-        {showLayersMenu && (
-          <motion.div
-            initial={{ opacity: 0, x: 20, scale: 0.95 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 20, scale: 0.95 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              {showLayersMenu && (
+          <div
             className="absolute right-[72px] bottom-[60px] bg-white/95 dark:bg-surface-2/95 backdrop-blur-2xl border border-border-md dark:border-white/10 rounded-2xl shadow-2xl w-64 pointer-events-auto z-50 overflow-hidden"
           >
             {/* Header */}
@@ -339,12 +322,8 @@ export default function FloatingSidebarControls() {
             </div>
 
             {/* Heatmap Legend — only shown when heatmap is active */}
-            <AnimatePresence>
-              {showHazardHeatmap && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
+                          {showHazardHeatmap && (
+                <div
                   className="overflow-hidden"
                 >
                   <div className="mx-3 mb-3 pt-3 border-t border-border dark:border-white/10">
@@ -366,33 +345,25 @@ export default function FloatingSidebarControls() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
       {/* ── Priority Action: SOS ── */}
       <Link href="/sos" className="pointer-events-auto mt-2">
-        <motion.button
+        <button
           onClick={() => {
              try { if (navigator?.vibrate) navigator.vibrate(50); } catch (e) {}
           }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.8 }}
           aria-label="Emergency SOS – tap for immediate help"
           className="relative w-16 h-16 bg-emergency rounded-full flex items-center justify-center shadow-[0_0_40px_var(--emergency)] group z-50 overflow-hidden"
         >
           {/* Multi-layered Tactical Ripples */}
-          <motion.div
-            animate={{ scale: [1, 2, 2.5], opacity: [0.5, 0.2, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeOut" }}
+          <div
             className="absolute inset-0 rounded-full border-2 border-white/30"
           />
-          <motion.div
-            animate={{ scale: [1, 1.8, 2], opacity: [0.3, 0.1, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeOut", delay: 0.5 }}
+          <div
             className="absolute inset-0 rounded-full border-2 border-white/20"
           />
 
@@ -401,19 +372,13 @@ export default function FloatingSidebarControls() {
           </span>
 
           {/* Dynamic "Scanning" Overlay effect */}
-          <AnimatePresence>
-            {isScanning && (
-              <motion.div
-                initial={{ top: "-100%" }}
-                animate={{ top: "100%" }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8, repeat: 2, ease: "linear" }}
+                      {isScanning && (
+              <div
                 className="absolute inset-x-0 h-10 w-full bg-white/20 blur-xl pointer-events-none z-20"
               />
             )}
-          </AnimatePresence>
-        </motion.button>
+        </button>
       </Link>
-    </motion.div>
+    </div>
   );
 }

@@ -4,7 +4,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'motion/react';
 import {
   AlertTriangle,
   Camera,
@@ -19,6 +18,7 @@ import {
   ShieldAlert,
   Upload,
 } from 'lucide-react';
+import { usePageEntry } from '@/hooks/usePageEntry';
 
 import TopSearch from '@/components/dashboard/TopSearch';
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
@@ -86,6 +86,7 @@ function normalizeExternalUrl(url: string | null | undefined) {
 
 export default function ReportPage() {
   const [mounted, setMounted] = useState(false);
+  const pageRef = usePageEntry();
   const [selectedType, setSelectedType] = useState<(typeof ISSUE_OPTIONS)[number][0] | null>(null);
   const [severity, setSeverity] = useState<number>(3);
   const [notes, setNotes] = useState('');
@@ -259,7 +260,7 @@ export default function ReportPage() {
   if (!mounted) return null;
 
   return (
-    <div className="sv-page relative overflow-x-hidden">
+    <div ref={pageRef} className="sv-page relative overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] hidden h-[38rem] w-[38rem] rounded-full bg-cyan-500/10 blur-[150px] dark:block" />
         <div className="absolute left-[22%] top-[4%] hidden h-[20rem] w-[20rem] rounded-full bg-violet-500/8 blur-[120px] dark:block" />
@@ -430,18 +431,17 @@ export default function ReportPage() {
                   </div>
                 </form>
               ) : (
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-8 flex flex-col items-center justify-center text-center py-10">
+                <div className="mt-8 flex flex-col items-center justify-center text-center py-10">
                   <div className="w-24 h-24 rounded-full bg-brand-light/20 flex items-center justify-center animate-pulse mb-6">
                     <CheckCircle2 size={48} className="text-brand-light" />
                   </div>
                   <h3 className="text-3xl font-black text-text-1 font-space tracking-tight">Report Uplinked</h3>
                   <p className="mt-3 text-text-3 max-w-sm">Your hazard report has been successfully dispatched to the regional authority dashboard.</p>
-                </motion.div>
+                </div>
               )}
             </SurfaceCard>
-            <AnimatePresence initial={false}>
-              {submittedReport ? (
-                <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+                          {submittedReport ? (
+                <div>
                   <SurfaceCard className="border-brand-light/20 bg-brand-light/10 dark:border-brand-light/20 dark:bg-brand-light/10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
@@ -468,9 +468,8 @@ export default function ReportPage() {
                       <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-light/20 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-brand transition hover:border-brand-light dark:border-brand-light/20 dark:bg-brand/10 dark:text-brand-light dark:hover:bg-brand/20"><RefreshCcw size={16} />File another report</button>
                     </div>
                   </SurfaceCard>
-                </motion.div>
+                </div>
               ) : null}
-            </AnimatePresence>
 
             <SurfaceCard>
               <div className="flex items-start justify-between gap-3">

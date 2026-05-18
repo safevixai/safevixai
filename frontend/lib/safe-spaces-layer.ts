@@ -55,6 +55,11 @@ export async function addSafeSpacesLayer(
     return;
   }
 
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+  const strokeColor = isDark ? '#1C2127' : '#F8FAFC';
+  const textColor = isDark ? '#F1F5F9' : '#0F172A';
+  const textHaloColor = isDark ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)';
+
   map.addSource('safe-spaces', {
     type: 'geojson',
     data: { type: 'FeatureCollection', features },
@@ -77,7 +82,7 @@ export async function addSafeSpacesLayer(
         '#8B5CF6', // default
       ],
       'circle-stroke-width': 2,
-      'circle-stroke-color': '#FFFFFF',
+      'circle-stroke-color': strokeColor,
     },
   });
 
@@ -95,8 +100,8 @@ export async function addSafeSpacesLayer(
       'text-ignore-placement': false,
     },
     paint: {
-      'text-color': '#FFFFFF',
-      'text-halo-color': 'rgba(0, 0, 0, 0.8)',
+      'text-color': textColor,
+      'text-halo-color': textHaloColor,
       'text-halo-width': 1.5,
     },
   });

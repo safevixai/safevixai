@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo, useCallback, useMemo } from 'react';
 import { NearbyService } from '@/lib/store';
 import {
  openBestNavApp,
@@ -16,10 +16,10 @@ import {
 const ACCENT_COLORS: Record<NearbyService['category'], string> = {
  hospital: 'var(--emergency)',
  ambulance: 'var(--emergency)',
- police: '#3B82F6', // Standard blue for police
+ police: '#3B82F6',
  fire: 'var(--warning)',
  towing: 'var(--warning)',
- pharmacy: '#818CF8', // Purple for medical
+ pharmacy: '#818CF8',
  puncture: 'var(--brand-light)',
  showroom: '#3B82F6',
 };
@@ -46,18 +46,18 @@ function formatDistance(metres: number): string {
  : `${(metres / 1000).toFixed(1)} km`;
 }
 
-export function ServiceCard({ service, className = '' }: Props) {
+export const ServiceCard = memo(function ServiceCard({ service, className = '' }: Props) {
  const color = ACCENT_COLORS[service.category];
  const label = CATEGORY_LABELS[service.category];
  const [showNavChoice, setShowNavChoice] = useState(false);
 
- const dest = { lat: service.lat, lon: service.lon, name: service.name };
+ const dest = useMemo(() => ({ lat: service.lat, lon: service.lon, name: service.name }), [service.lat, service.lon, service.name]);
 
- const handleNavSelect = (app: NavApp) => {
+ const handleNavSelect = useCallback((app: NavApp) => {
  setPreferredNavApp(app);
  openNavApp(app, dest);
  setShowNavChoice(false);
- };
+ }, [dest]);
 
  return (
  <div className={`service-card ${className}`} role="article" aria-label={service.name}>
@@ -152,4 +152,5 @@ export function ServiceCard({ service, className = '' }: Props) {
  </div>
  </div>
  );
-}
+});
+

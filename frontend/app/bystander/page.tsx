@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import {
  Eye, MapPin, Phone, AlertTriangle, CheckCircle2,
  Navigation, Heart, Activity, ArrowRight, Mic, MicOff,
  Loader2, ShieldAlert, ChevronRight, X, Map
 } from 'lucide-react';
 import { fetchNearbyServices, submitReport } from '@/lib/api';
+import { usePageEntry } from '@/hooks/usePageEntry';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface GpsPos { lat: number; lon: number }
@@ -38,6 +38,7 @@ function speak(text: string) {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 export default function BystanderModePage() {
+ const pageRef = usePageEntry();
  const [phase, setPhase] = useState<'entry' | 'gps' | 'steps' | 'done'>('entry');
  const [gps, setGps] = useState<GpsPos | null>(null);
  const [gpsError, setGpsError] = useState<string | null>(null);
@@ -141,12 +142,9 @@ export default function BystanderModePage() {
  // ── Entry Screen ─────────────────────────────────────────────────────────────
  if (phase === 'entry') {
  return (
- <div className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 font-sans">
+ <div ref={pageRef} className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 font-sans">
  {/* Spots removed per user request */}
- <motion.div
- initial={{ scale: 0.8, opacity: 0 }}
- animate={{ scale: 1, opacity: 1 }}
- transition={{ type: 'spring', damping: 18 }}
+ <div
  className="w-full max-w-sm text-center"
  >
  {/* Icon */}
@@ -169,19 +167,18 @@ export default function BystanderModePage() {
  call emergency services, and notify the nearest hospital — automatically.
  </p>
 
- <motion.button
- whileTap={{ scale: 0.95 }}
+ <button
  onClick={startGPS}
  className="w-full h-16 bg-red-500 hover:bg-red-600 text-white font-black text-lg uppercase tracking-widest rounded-2xl shadow-2xl shadow-red-500/30 flex items-center justify-center gap-3 transition-all"
  >
  <MapPin size={24} />
  Activate Bystander Mode
- </motion.button>
+ </button>
 
  <p className="mt-4 text-[10px] text-text-2 uppercase tracking-widest">
  No login required · Works offline · Feeds accident into road reporter
  </p>
- </motion.div>
+ </div>
  </div>
  );
  }
@@ -250,10 +247,9 @@ export default function BystanderModePage() {
 
  {/* Progress bar */}
  <div className="h-1 bg-white/5 rounded-full overflow-hidden">
- <motion.div
- className="h-full bg-red-500 rounded-full"
- animate={{ width: `${(completedSteps.size / BYSTANDER_STEPS.length) * 100}%` }}
- transition={{ type: 'spring' }}
+ <div
+ className="h-full bg-red-500 rounded-full transition-all duration-300"
+ style={{ width: `${(completedSteps.size / BYSTANDER_STEPS.length) * 100}%` }}
  />
  </div>
  </div>
@@ -307,9 +303,8 @@ export default function BystanderModePage() {
  {BYSTANDER_STEPS.map((step) => {
  const done = completedSteps.has(step.id);
  return (
- <motion.button
+ <button
  key={step.id}
- whileTap={{ scale: 0.97 }}
  onClick={() => toggleStep(step.id)}
  className={`w-full text-left flex items-start gap-4 p-4 rounded-xl border transition-all ${
  done
@@ -332,7 +327,7 @@ export default function BystanderModePage() {
  {step.text}
  </p>
  </div>
- </motion.button>
+ </button>
  );
  })}
  </div>

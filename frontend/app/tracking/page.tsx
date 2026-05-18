@@ -8,6 +8,7 @@ import { GROUP_TRACKING_BROADCAST_INTERVAL_MS } from '@/lib/safety-constants';
 import { EmergencyMap } from '@/components/EmergencyMap';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { Loader2, Users, MapPin, Navigation } from 'lucide-react';
+import { usePageEntry } from '@/hooks/usePageEntry';
 
 interface FamilyMember {
   user_id: string;
@@ -18,6 +19,7 @@ interface FamilyMember {
 
 export default function TrackingPage() {
   const { gpsLocation, userProfile, authToken } = useAppStore();
+  const pageRef = usePageEntry();
   const [groupId, setGroupId] = useState('');
   const [userId, setUserId] = useState(userProfile?.name || '');
   const [connected, setConnected] = useState(false);
@@ -105,7 +107,7 @@ export default function TrackingPage() {
   }));
 
   return (
-    <div className="min-h-dvh bg-bg dark:bg-surface-1 flex flex-col font-['Inter'] relative overflow-hidden">
+    <div ref={pageRef} className="min-h-dvh bg-bg dark:bg-surface-1 flex flex-col font-['Inter'] relative overflow-hidden">
       <SystemHeader title="Live Family Tracking" showBack={true} />
 
       {!connected ? (

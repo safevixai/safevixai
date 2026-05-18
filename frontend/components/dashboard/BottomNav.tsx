@@ -3,7 +3,6 @@
 import React, { memo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'motion/react';
 import { MapPin, BotMessageSquare, MapPinPlus, AlertTriangle, HeartPulse } from 'lucide-react';
 
 interface NavItem {
@@ -33,14 +32,12 @@ const BottomNav = memo(function BottomNav() {
       <div className="relative flex items-center justify-around w-full bg-surface-1/90 backdrop-blur-xl rounded-t-3xl pb-[env(safe-area-inset-bottom)] pt-2 shadow-[0_-8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_-8px_30px_rgb(0,0,0,0.4)] border-t border-border overflow-hidden pointer-events-auto">
 
         {/* Active Indicator Glow */}
-        <motion.div
-          layoutId="active-indicator"
-          className="absolute w-12 h-12 bg-gradient-to-r from-brand to-brand-light rounded-full blur-2xl -z-10"
-          animate={{
+        <div
+          className="absolute w-12 h-12 bg-gradient-to-r from-brand to-brand-light rounded-full blur-2xl -z-10 transition-all duration-300"
+          style={{
             left: `calc(${active * (100 / items.length)}% + ${100 / items.length / 2}%)`,
-            translateX: "-50%",
+            transform: 'translateX(-50%)',
           }}
-          transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />
 
         {items.map((item, index) => {
@@ -59,22 +56,18 @@ const BottomNav = memo(function BottomNav() {
             >
               {/* Button & Pill */}
               {isActive && (
-                <motion.div
-                  layoutId="active-pill"
+                <div
                   className="absolute inset-x-2 top-0.5 bottom-4 bg-brand/80 rounded-2xl -z-10"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                animate={{ scale: isActive ? 1.2 : 1 }}
+              <div
                 className={`flex items-center justify-center w-9 h-9 relative z-10 transition-colors ${isActive
                   ? 'text-white'
                   : 'text-text-2 hover:text-brand-light'
                   }`}
               >
                 {item.icon}
-              </motion.div>
+              </div>
 
               {/* Persistent Text Label */}
               <span className={`text-[9px] font-bold mt-1 tracking-wide uppercase font-mono ${isActive ? 'text-brand-light' : 'text-text-3'}`}>

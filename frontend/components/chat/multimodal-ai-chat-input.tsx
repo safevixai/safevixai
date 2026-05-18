@@ -12,7 +12,6 @@ import React, {
 } from 'react';
 
 import equal from 'fast-deep-equal';
-import { AnimatePresence, motion } from 'motion/react';
 import { Loader2 as LoaderIcon, X as XIcon, Mic, Send, Globe } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
@@ -626,9 +625,8 @@ export function PureMultimodalInput({
         {/* Attachments Preview row */}
         {(attachments.length > 0 || uploadQueue.length > 0) && (
           <div className="flex pt-2 px-3 pb-2 gap-3 overflow-x-auto items-end scroll-smooth [scrollbar-width:none]">
-            <AnimatePresence>
-              {attachments.map((attachment) => (
-                <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} key={attachment.url || attachment.name} className="relative group shrink-0">
+                          {attachments.map((attachment) => (
+                <div key={attachment.url || attachment.name} className="relative group shrink-0">
                   <PreviewAttachment attachment={attachment} isUploading={false} />
                   <Button
                     variant="destructive"
@@ -638,14 +636,13 @@ export function PureMultimodalInput({
                   >
                     <XIcon className="size-3" />
                   </Button>
-                </motion.div>
+                </div>
               ))}
               {uploadQueue.map((filename, index) => (
-                <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} key={`upload-${filename}-${index}`} className="shrink-0">
+                <div key={`upload-${filename}-${index}`} className="shrink-0">
                   <PreviewAttachment attachment={{ url: '', name: filename, contentType: '', size: 0 }} isUploading={true} />
-                </motion.div>
+                </div>
               ))}
-            </AnimatePresence>
           </div>
         )}
 
@@ -664,12 +661,8 @@ export function PureMultimodalInput({
               <Globe size={24} />
             </button>
             
-            <AnimatePresence>
-              {isLangMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          {isLangMenuOpen && (
+                <div
                   className="absolute bottom-full left-0 mb-2 w-48 bg-surface-1 border border-border rounded-2xl shadow-2xl overflow-hidden z-50 py-1"
                 >
                   <div className="px-3 py-2 text-[10px] font-bold text-text-3 uppercase tracking-widest border-b border-border/50 mb-1">
@@ -693,9 +686,8 @@ export function PureMultimodalInput({
                       </button>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
           </div>
 
           <AttachmentsButton fileInputRef={fileInputRef} disabled={isAttachmentDisabled} />

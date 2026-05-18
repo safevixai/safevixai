@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
 
 type ToastType = 'success' | 'error' | 'info';
@@ -31,24 +30,20 @@ export default function Toast({ message, type = 'info', isVisible, onClose, dura
     info: 'bg-brand/8 border-brand-light/30 dark:bg-brand/10 dark:border-brand/20 text-brand dark:text-brand-light',
   };
 
+  if (!isVisible) return null;
+
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="fixed bottom-24 lg:bottom-10 left-1/2 -translate-x-1/2 z-[200]"
-        >
-          <div className={`flex items-center gap-3 px-5 py-3 rounded-lg border shadow-lg backdrop-blur-md ${colors[type]}`}>
-            <Icon size={18} />
-            <span className="text-[11px] font-semibold uppercase tracking-widest leading-none mt-0.5">{message}</span>
-            <button onClick={onClose} className="ml-2 hover:bg-black/5 dark:hover:bg-white/10 p-1 rounded-full transition-colors">
-              <X size={14} />
-            </button>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      className="fixed bottom-24 lg:bottom-10 left-1/2 -translate-x-1/2 z-[200]"
+      style={{ animation: 'fadeInUp 0.2s ease-out' }}
+    >
+      <div className={`flex items-center gap-3 px-5 py-3 rounded-lg border shadow-lg backdrop-blur-md ${colors[type]}`}>
+        <Icon size={18} />
+        <span className="text-[11px] font-semibold uppercase tracking-widest leading-none mt-0.5">{message}</span>
+        <button onClick={onClose} className="ml-2 hover:bg-black/5 dark:hover:bg-white/10 p-1 rounded-full transition-colors">
+          <X size={14} />
+        </button>
+      </div>
+    </div>
   );
 }
