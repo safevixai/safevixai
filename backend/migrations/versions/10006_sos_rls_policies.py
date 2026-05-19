@@ -6,6 +6,7 @@ Create Date: 2026-05-18 00:00:00.000000
 """
 
 from alembic import op
+from sqlalchemy import text
 
 
 revision = '10006_sos_rls_policies'
@@ -20,7 +21,7 @@ def upgrade() -> None:
     # Skip RLS policies if role doesn't exist (e.g., in CI/test environments)
     conn = op.get_bind()
     result = conn.execute(
-        "SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'"
+        text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
     )
     if not result.fetchone():
         return  # Skip RLS setup in non-Supabase environments
