@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import uuid
 from datetime import date, datetime
@@ -15,6 +15,7 @@ class RoadIssue(Base):
     __tablename__ = 'road_issues'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    org_id: Mapped[str | None] = mapped_column(String(36), nullable=True, index=True)  # Phase 0.6: Multi-tenant isolation
     uuid: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), unique=True, nullable=False, default=uuid.uuid4)
     issue_type: Mapped[str] = mapped_column(String(64), nullable=False)
     severity: Mapped[int] = mapped_column(Integer, nullable=False)
@@ -36,13 +37,14 @@ class RoadIssue(Base):
     complaint_ref: Mapped[str | None] = mapped_column(String(128), nullable=True)
     status: Mapped[str] = mapped_column(String(32), default='open')
     status_updated: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
 
 class RoadInfrastructure(Base):
     __tablename__ = 'road_infrastructure'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    org_id: Mapped[str | None] = mapped_column(String(36), nullable=True, index=True)  # Phase 0.6: Multi-tenant isolation
     road_id: Mapped[str] = mapped_column(String(128), unique=True, nullable=False)
     road_name: Mapped[str | None] = mapped_column(Text, nullable=True)
     road_type: Mapped[str | None] = mapped_column(String(64), nullable=True)
