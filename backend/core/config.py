@@ -17,11 +17,14 @@ class Settings(BaseSettings):
     frontend_url: str | None = Field(default=None, validation_alias='FRONTEND_URL')
     admin_secret: str | None = None
     enable_mcp: bool = False
+    sentry_dsn: str | None = Field(default=None, validation_alias='SENTRY_DSN')
+    jwks_url: str | None = Field(default=None, validation_alias='JWKS_URL')
 
     database_url: str = 'postgresql+asyncpg://postgres:postgres@localhost:5432/safevixai'
     redis_url: str | None = None
-    db_pool_size: int = 1
-    db_max_overflow: int = 1
+    # P1-05: Increased pool size from 1 to 10 (audit H8) to prevent severe connection bottlenecks
+    db_pool_size: int = 10
+    db_max_overflow: int = 20
     db_pool_timeout_seconds: float = 30.0
     db_pool_recycle_seconds: int = 1800
 
