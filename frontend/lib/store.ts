@@ -155,10 +155,11 @@ interface AppState {
 
   // Auth
   isAuthenticated: boolean;
-  authToken: string | null;
   operatorName: string;
-  setAuth: (token: string, name: string) => void;
+  authToken: string | null;
+  setAuth: (name: string, token?: string) => void;
   clearAuth: () => void;
+  setAuthToken: (token: string | null) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -262,14 +263,14 @@ export const useAppStore = create<AppState>()(
 
       // Auth
       isAuthenticated: false,
-      authToken: null,
       operatorName: '',
-      setAuth: (token, name) => set({ isAuthenticated: true, authToken: token, operatorName: name }),
-      clearAuth: () => set({ isAuthenticated: false, authToken: null, operatorName: '' }),
+      authToken: null,
+      setAuth: (name, token) => set({ isAuthenticated: true, operatorName: name, authToken: token || null }),
+      clearAuth: () => set({ isAuthenticated: false, operatorName: '', authToken: null }),
+      setAuthToken: (token) => set({ authToken: token }),
     }),
     {
       name: 'svai-storage',
-      // Auth tokens are intentionally kept in memory so XSS cannot replay a persisted bearer token.
       partialize: (state) => ({
         userProfile: state.userProfile,
         aiMode: state.aiMode,
@@ -286,3 +287,53 @@ export const useAppStore = create<AppState>()(
     }
   )
 );
+
+// P1-07: Granular selectors (audit H9)
+// Components should use these instead of the full `useAppStore()` to prevent
+// unnecessary re-renders when unrelated state slices change.
+
+// GPS
+export const useGpsLocation = () => useAppStore((s) => s.gpsLocation);
+export const useGpsError = () => useAppStore((s) => s.gpsError);
+export const useSetGpsLocation = () => useAppStore((s) => s.setGpsLocation);
+export const useSetGpsError = () => useAppStore((s) => s.setGpsError);
+
+// Services
+export const useNearbyServices = () => useAppStore((s) => s.nearbyServices);
+export const useServiceRadius = () => useAppStore((s) => s.serviceRadius);
+export const useServiceCategory = () => useAppStore((s) => s.serviceCategory);
+export const useServiceSearchMeta = () => useAppStore((s) => s.serviceSearchMeta);
+export const useNearbyRoadIssues = () => useAppStore((s) => s.nearbyRoadIssues);
+export const useRoadIssueSearchMeta = () => useAppStore((s) => s.roadIssueSearchMeta);
+
+// AI / Connectivity
+export const useAiMode = () => useAppStore((s) => s.aiMode);
+export const useModelLoadProgress = () => useAppStore((s) => s.modelLoadProgress);
+export const useConnectivity = () => useAppStore((s) => s.connectivity);
+
+// Map layers
+export const useShowHazardHeatmap = () => useAppStore((s) => s.showHazardHeatmap);
+export const useShowSatellite = () => useAppStore((s) => s.showSatellite);
+export const useShowTraffic = () => useAppStore((s) => s.showTraffic);
+export const useShowSafeSpaces = () => useAppStore((s) => s.showSafeSpaces);
+export const useShowEmergencyServices = () => useAppStore((s) => s.showEmergencyServices);
+export const useMapStatus = () => useAppStore((s) => s.mapStatus);
+export const useMapProvider = () => useAppStore((s) => s.mapProvider);
+export const useMapError = () => useAppStore((s) => s.mapError);
+export const useMapSearchTarget = () => useAppStore((s) => s.mapSearchTarget);
+
+// User profile
+export const useUserProfile = () => useAppStore((s) => s.userProfile);
+export const useDrivingScore = () => useAppStore((s) => s.drivingScore);
+export const useCrashDetectionEnabled = () => useAppStore((s) => s.crashDetectionEnabled);
+
+// UI
+export const useIsDesktopSidebarCollapsed = () => useAppStore((s) => s.isDesktopSidebarCollapsed);
+export const useIsThinSidebarEnabled = () => useAppStore((s) => s.isThinSidebarEnabled);
+export const useSoundsEnabled = () => useAppStore((s) => s.soundsEnabled);
+export const useChallanState = () => useAppStore((s) => s.challanState);
+
+// Auth
+export const useIsAuthenticated = () => useAppStore((s) => s.isAuthenticated);
+export const useOperatorName = () => useAppStore((s) => s.operatorName);
+export const useAuthToken = () => useAppStore((s) => s.authToken);
