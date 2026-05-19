@@ -87,6 +87,8 @@ def upgrade() -> None:
     if result.fetchone():
         op.execute("ALTER TABLE traffic_violations ENABLE ROW LEVEL SECURITY;")
         op.execute("ALTER TABLE state_fine_overrides ENABLE ROW LEVEL SECURITY;")
+        op.execute('DROP POLICY IF EXISTS "Public can read traffic violations" ON traffic_violations;')
+        op.execute('DROP POLICY IF EXISTS "Public can read state fine overrides" ON state_fine_overrides;')
         op.execute("""
             CREATE POLICY "Public can read traffic violations"
             ON traffic_violations FOR SELECT
@@ -103,6 +105,8 @@ def upgrade() -> None:
         # Standard PostgreSQL: create policies without role restriction
         op.execute("ALTER TABLE traffic_violations ENABLE ROW LEVEL SECURITY;")
         op.execute("ALTER TABLE state_fine_overrides ENABLE ROW LEVEL SECURITY;")
+        op.execute('DROP POLICY IF EXISTS "Public can read traffic violations" ON traffic_violations;')
+        op.execute('DROP POLICY IF EXISTS "Public can read state fine overrides" ON state_fine_overrides;')
         op.execute("""
             CREATE POLICY "Public can read traffic violations"
             ON traffic_violations FOR SELECT
@@ -113,19 +117,6 @@ def upgrade() -> None:
             ON state_fine_overrides FOR SELECT
             USING (true);
         """)
-
-    op.execute("ALTER TABLE traffic_violations ENABLE ROW LEVEL SECURITY;")
-    op.execute("ALTER TABLE state_fine_overrides ENABLE ROW LEVEL SECURITY;")
-    op.execute("""
-        CREATE POLICY "Public can read traffic violations"
-        ON traffic_violations FOR SELECT
-        USING (true);
-    """)
-    op.execute("""
-        CREATE POLICY "Public can read state fine overrides"
-        ON state_fine_overrides FOR SELECT
-        USING (true);
-    """)
 
 
 def downgrade() -> None:
