@@ -225,6 +225,5 @@ docs/verification_report.json
 # ============================================================
 # TEST OUTPUTS & CACHE
 # ============================================================
-chatbot_service/cache/
 tests/
 frontend/tests/a11y/
