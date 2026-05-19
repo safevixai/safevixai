@@ -5,14 +5,15 @@
 
 ---
 
-## Current Agent Brief - 2026-05-17 (Enterprise GSAP Migration Complete)
+## Current Agent Brief - 2026-05-18 (Post-Audit Updates)
 
 Treat this section as the operational truth before changing code.
 
 - Frontend build currently passes with `npm run build` from `frontend/`.
-- **GSAP Enterprise Migration Completed**: Framer Motion is fully removed. All frontend animations use GSAP `useGSAP` hook for stagger and split text entries. Performance has been hardened for 60FPS on mobile.
+- **GSAP Enterprise Migration Completed**: Framer Motion source imports fully removed. All frontend animations use GSAP `useGSAP` hook for stagger and split text entries. Orphaned dependency remains in `package-lock.json` — run `npm uninstall framer-motion` to clean.
 - Chatbot smoke tests currently pass with `python -m pytest tests/test_voice.py tests/test_e2e.py -q` from `chatbot_service/`.
 - The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.
+- **Audit completed 2026-05-18**: Frontend 58/100, Backend 54/100, Chatbot 50/100. See `docs/audit/` for full reports.
 - Assistant voice input is partially implemented, but not end-to-end complete. The chat input records with `MediaRecorder`, but it calls `/api/v1/speech/translate`; the chatbot service exposes `/speech/translate`.
 - The frontend must use `NEXT_PUBLIC_CHATBOT_URL` through `frontend/lib/public-env.ts`. Do not invent `NEXT_PUBLIC_CHATBOT_BASE_URL`.
 - Speech language mapping is incomplete. UI language codes like `hi` and `ta` must be mapped to backend speech model codes such as `hin` and `tam` before calling the speech endpoint.
@@ -328,7 +329,7 @@ Backend connects to chatbot at `http://chatbot:8010` (Docker network name).
 - **State:** Zustand (`lib/store.ts`) — GPS, services, AI mode
 - **Maps:** MapLibre GL (`components/maps/`) — NOT Leaflet (legacy references exist in docs)
 - **Icons:** `lucide-react`
-- **Animations:** `motion` (framer-motion v12)
+- **Animations:** `gsap` + `@gsap/react` (Framer Motion source removed, orphaned dep in package-lock.json)
 - **Offline AI:** `@mlc-ai/web-llm` (Phi-3 Mini) + `@huggingface/transformers` (YOLO)
 - **Offline SQL:** `@duckdb/duckdb-wasm` for challan calculations
 - **shadcn/ui:** Configured via `components.json` — components in `components/ui/`
