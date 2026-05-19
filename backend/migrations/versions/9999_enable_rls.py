@@ -14,6 +14,15 @@ branch_labels = None
 depends_on = None
 
 def upgrade() -> None:
+    # Check if 'authenticated' role exists (Supabase-specific)
+    # Skip RLS policies if role doesn't exist (e.g., in CI/test environments)
+    conn = op.get_bind()
+    result = conn.execute(
+        "SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'"
+    )
+    if not result.fetchone():
+        return  # Skip RLS setup in non-Supabase environments
+    
     # Enable RLS on all tables
     tables = [
         'user_profiles',

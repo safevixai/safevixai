@@ -16,6 +16,15 @@ depends_on = None
 
 def upgrade() -> None:
     """P0-10: Add RLS policies for sos_incidents to prevent data leakage (audit C10)."""
+    # Check if 'authenticated' role exists (Supabase-specific)
+    # Skip RLS policies if role doesn't exist (e.g., in CI/test environments)
+    conn = op.get_bind()
+    result = conn.execute(
+        "SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'"
+    )
+    if not result.fetchone():
+        return  # Skip RLS setup in non-Supabase environments
+    
     op.execute(
         """
         DO $$
