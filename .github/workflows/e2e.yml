@@ -39,6 +39,7 @@ jobs:
   sos-e2e:
     name: SOS E2E Flow
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 

@@ -9,7 +9,7 @@ import sqlalchemy as sa
 from alembic import op
 
 revision = "10007"
-down_revision = "10006"
+down_revision = "10006_sos_rls_policies"
 branch_labels = None
 depends_on = None
 
