@@ -34,7 +34,7 @@ jobs:
 
       - name: Run Tests
         working-directory: ./frontend
-        run: npm run test -- --run
+        run: npm test
 
   sos-e2e:
     name: SOS E2E Flow
