@@ -1,17 +1,30 @@
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const localConnectOrigins = [process.env.NEXT_PUBLIC_API_URL, process.env.NEXT_PUBLIC_CHATBOT_URL]
+// Extract valid backend origins for CSP connect-src
+const backendOrigins = [process.env.NEXT_PUBLIC_API_URL, process.env.NEXT_PUBLIC_CHATBOT_URL]
   .filter(Boolean)
   .flatMap((value) => {
     try {
       const url = new URL(value);
-      return ['localhost', '127.0.0.1', '::1'].includes(url.hostname)
-        ? [`${url.protocol}//${url.host}`]
-        : [];
+      const wsProtocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+      return [`${url.protocol}//${url.host}`, `${wsProtocol}//${url.host}`];
     } catch {
       return [];
     }
   });
-const allowLocalConnect = isDevelopment || localConnectOrigins.length > 0;
+
+const externalApis = [
+  'https://api.tomtom.com',
+  'https://api.bigdatacloud.net',
+  'https://router.project-osrm.org',
+  'https://countriesnow.space',
+  'https://photon.komoot.io',
+  'https://app.posthog.com',
+  'https://tiles.openfreemap.org',
+  'https://mt1.google.com',
+  'https://api.maptiler.com',
+  'https://api.what3words.com',
+];
+
 const scriptSrc = [
   "'self'",
   "'unsafe-inline'",
@@ -19,14 +32,14 @@ const scriptSrc = [
   "'wasm-unsafe-eval'",
   'https://cdn.jsdelivr.net',
 ].join(' ');
+
 const connectSrc = [
   "'self'",
-  'https:',
-  'wss:',
-  ...(allowLocalConnect
+  ...(isDevelopment
     ? ['http://localhost:*', 'http://127.0.0.1:*', 'ws://localhost:*', 'ws://127.0.0.1:*']
     : []),
-  ...localConnectOrigins,
+  ...backendOrigins,
+  ...externalApis,
 ].join(' ');
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -46,6 +59,9 @@ const contentSecurityPolicy = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // D5: Enable standalone output so the Dockerfile can use .next/standalone
+  // (copies only production-required node_modules into the final image).
+  output: 'standalone',
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
@@ -73,6 +89,10 @@ const nextConfig = {
           {
             key: 'X-Frame-Options',
             value: 'DENY',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
           },
           {
             key: 'Referrer-Policy',

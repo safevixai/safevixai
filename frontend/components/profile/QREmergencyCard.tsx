@@ -9,6 +9,7 @@ import {
   Zap, Eye
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
 
 interface UserProfile {
   name?: string;
@@ -18,7 +19,7 @@ interface UserProfile {
 }
 
 export default function QREmergencyCard() {
-  const { userProfile } = useAppStore() as { userProfile: UserProfile };
+  const { userProfile } = useAppStore(useShallow((s) => ({ userProfile: s.userProfile })));
   const [showPreview, setShowPreview] = useState(false);
   const [copied, setCopied] = useState(false);
 

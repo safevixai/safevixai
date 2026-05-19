@@ -13,9 +13,10 @@ import { Loader2, AlertTriangle, Activity, Shield, Heart, Share2, MessageSquare,
 import { haptics } from '@/lib/haptics';
 import { sounds } from '@/lib/sounds';
 import { usePageEntry } from '@/hooks/usePageEntry';
+import { useShallow } from 'zustand/react/shallow';
 
 export default function EmergencyPage() {
- const { crashDetectionEnabled, userProfile, soundsEnabled } = useAppStore();
+ const { crashDetectionEnabled, userProfile, soundsEnabled } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, userProfile: s.userProfile, soundsEnabled: s.soundsEnabled })));
  const pageRef = usePageEntry();
  const [holding, setHolding] = useState(false);
  const [holdProgress, setHoldProgress] = useState(0);

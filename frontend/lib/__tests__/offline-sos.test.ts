@@ -15,8 +15,6 @@ const mockDb = {
   add: jest.fn(async (_storeName: string, value: Record<string, unknown>) => {
     mockRecords.push({ ...value, id: mockRecords.length + 1 });
   }),
-  // C5 FIX: Updated mock to match new per-item transaction pattern.
-  // The code now accesses `tx.store` (idb property style) instead of `tx.objectStore()`.
   transaction: jest.fn(() => ({
     objectStore: () => mockStore,
     store: mockStore,
@@ -73,4 +71,32 @@ describe('offline SOS queue', () => {
     );
     expect(mockRecords).toHaveLength(0);
   });
+
+  it('queues SOS when offline and flushes when online', async () => {
+    Object.defineProperty(navigator, 'onLine', { value: false, configurable: true });
+
+    await enqueueSOS({ lat: 13.0827, lon: 80.2707 });
+
+    expect(mockRecords).toHaveLength(1);
+
+    Object.defineProperty(navigator, 'onLine', { value: true, configurable: true });
+    await syncOfflineSOSQueue();
+
+    expect(mockRecords).toHaveLength(0);
+  });
+
+  it('retries failed flush on next online event', async () => {
+    (global.fetch as jest.Mock).mockResolvedValueOnce({ ok: false });
+
+    await enqueueSOS({ lat: 13.0827, lon: 80.2707 });
+    await syncOfflineSOSQueue();
+
+    expect(mockRecords).toHaveLength(1);
+
+    (global.fetch as jest.Mock).mockResolvedValueOnce({ ok: true });
+    await syncOfflineSOSQueue();
+
+    expect(mockRecords).toHaveLength(0);
+  });
+
 });

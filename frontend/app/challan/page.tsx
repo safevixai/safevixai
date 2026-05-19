@@ -15,6 +15,7 @@ import { useTheme } from '@/components/ThemeProvider';
 import { useAppStore } from '@/lib/store';
 import useSWR from 'swr';
 import { calculateChallan } from '@/lib/api';
+import { useShallow } from 'zustand/react/shallow';
 
 const STATES = [
   'Tamil Nadu (TN)',
@@ -45,7 +46,7 @@ export default function ChallanPage() {
   const { theme } = useTheme();
   
   // Use shared store instead of local state so values don't reset upon tab change
-  const { challanState, setChallanState } = useAppStore();
+  const { challanState, setChallanState } = useAppStore(useShallow((s) => ({ challanState: s.challanState, setChallanState: s.setChallanState })));
   
   // Backwards compatibility for old cached local storage values
   const violationId = (challanState.violation === 'dui') ? '185' : 

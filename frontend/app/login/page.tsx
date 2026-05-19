@@ -11,13 +11,14 @@ import { PUBLIC_API_BASE_URL } from '@/lib/public-env';
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { useAppStore } from '@/lib/store';
 import { usePageEntry } from '@/hooks/usePageEntry';
+import { useShallow } from 'zustand/react/shallow';
 
 const API_URL = PUBLIC_API_BASE_URL;
 const DEMO_CREDS: Array<{ label: string; email: string; password: string; color: string }> = [];
 
 export default function LoginPage() {
   const router = useRouter();
-  const { setAuth, isAuthenticated, setUserProfile } = useAppStore();
+  const { setAuth, isAuthenticated, setUserProfile } = useAppStore(useShallow((s) => ({ setAuth: s.setAuth, isAuthenticated: s.isAuthenticated, setUserProfile: s.setUserProfile })));
   const pageRef = usePageEntry();
 
   const [email, setEmail] = useState('');
@@ -67,7 +68,7 @@ export default function LoginPage() {
             (data.user?.user_metadata?.name as string | undefined) ||
             data.user?.email ||
             'SafeVixAI User';
-          setAuth(data.session.access_token, displayName);
+          setAuth(displayName);
           setUserProfile({ name: displayName });
           setSuccess(`Welcome, ${displayName}`);
           setTimeout(() => router.replace('/'), 1200);
@@ -87,7 +88,7 @@ export default function LoginPage() {
       }
 
       const data = await res.json();
-      setAuth(data.access_token, data.operator_name);
+      setAuth(data.operator_name);
       setUserProfile({ name: data.operator_name });
       setSuccess(`Welcome, ${data.operator_name}`);
       setTimeout(() => router.replace('/'), 1200);

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner';
 import type { Session } from '@supabase/supabase-js'
 import { triggerSos } from '@/lib/api'
@@ -89,7 +89,7 @@ export function EnterpriseClientAppHooks() {
         (session.user.user_metadata?.name as string | undefined) ||
         session.user.email ||
         'SafeVixAI User'
-      store.setAuth(session.access_token, displayName)
+      store.setAuth(displayName)
       store.setUserProfile({ name: displayName })
     }
 
@@ -181,18 +181,80 @@ export function EnterpriseClientAppHooks() {
   return (
     <>
       <SystemBanners />
-      <div
-      className="fixed inset-x-4 top-4 z-[1000] mx-auto max-w-md rounded-xl border border-red-500/40 bg-red-950/95 p-4 text-white shadow-2xl"
+      <CrashDialog
+        crashCountdown={crashCountdown}
+        onCancel={() => setCrashCountdown(null)}
+        onSendNow={() => setCrashCountdown((current) => current && { ...current, remaining: 0 })}
+      />
+    </>
+  )
+}
+
+// F14: Focus trap for crash dialog — keeps keyboard focus inside the alertdialog
+// and restores it to the previously focused element when dismissed.
+function CrashDialog({
+  crashCountdown,
+  onCancel,
+  onSendNow,
+}: {
+  crashCountdown: { force: number; remaining: number }
+  onCancel: () => void
+  onSendNow: () => void
+}) {
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    previousFocusRef.current = document.activeElement as HTMLElement | null
+    dialogRef.current?.focus()
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return
+      const dialog = dialogRef.current
+      if (!dialog) return
+
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      previousFocusRef.current?.focus()
+    }
+  }, [])
+
+  return (
+    <div
+      ref={dialogRef}
+      tabIndex={-1}
+      className="fixed inset-x-4 top-4 z-[1000] mx-auto max-w-md rounded-xl border border-red-500/40 bg-red-950/95 p-4 text-white shadow-2xl outline-none"
       role="alertdialog"
       aria-live="assertive"
       aria-labelledby="crash-countdown-title"
+      aria-describedby="crash-countdown-desc"
     >
       <div className="flex flex-col gap-3">
         <div>
           <p id="crash-countdown-title" className="text-base font-black uppercase tracking-wide">
             Crash Detected
           </p>
-          <p className="text-sm text-red-100">
+          <p id="crash-countdown-desc" className="text-sm text-red-100">
             G-force spike: {(crashCountdown.force / STANDARD_GRAVITY_MS2).toFixed(1)}G
           </p>
         </div>
@@ -204,20 +266,19 @@ export function EnterpriseClientAppHooks() {
           <button
             type="button"
             className="h-11 flex-1 rounded-lg bg-white text-sm font-bold text-red-950"
-            onClick={() => setCrashCountdown(null)}
+            onClick={onCancel}
           >
             I am safe — cancel SOS
           </button>
           <button
             type="button"
             className="h-11 flex-1 rounded-lg bg-red-600 text-sm font-bold text-white"
-            onClick={() => setCrashCountdown((current) => current && { ...current, remaining: 0 })}
+            onClick={onSendNow}
           >
             Send SOS now
           </button>
         </div>
       </div>
     </div>
-    </>
   )
 }

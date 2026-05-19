@@ -7,6 +7,7 @@ import './globals.css';
 import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { GSAPProvider } from '@/components/providers/GSAPProvider';
+import { SentryInit } from '@/components/providers/SentryInit';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="/theme-init.js" strategy="beforeInteractive" />
       </head>
       <body>
+        <SentryInit />
         <AnalyticsProvider>
           <ThemeProvider>
             <GSAPProvider>

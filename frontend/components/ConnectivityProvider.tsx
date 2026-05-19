@@ -2,9 +2,10 @@
 
 import { useEffect, ReactNode } from 'react';
 import { useAppStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
 
 export function ConnectivityProvider({ children }: { children: ReactNode }) {
-  const { setConnectivity } = useAppStore();
+  const { setConnectivity } = useAppStore(useShallow((s) => ({ setConnectivity: s.setConnectivity })));
 
   useEffect(() => {
     const update = () => {

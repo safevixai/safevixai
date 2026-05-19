@@ -9,6 +9,7 @@ import { EmergencyMap } from '@/components/EmergencyMap';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { Loader2, Users, MapPin, Navigation } from 'lucide-react';
 import { usePageEntry } from '@/hooks/usePageEntry';
+import { useShallow } from 'zustand/react/shallow';
 
 interface FamilyMember {
   user_id: string;
@@ -18,7 +19,7 @@ interface FamilyMember {
 }
 
 export default function TrackingPage() {
-  const { gpsLocation, userProfile, authToken } = useAppStore();
+  const { gpsLocation, userProfile, authToken } = useAppStore(useShallow((s) => ({ gpsLocation: s.gpsLocation, userProfile: s.userProfile, authToken: s.authToken })));
   const pageRef = usePageEntry();
   const [groupId, setGroupId] = useState('');
   const [userId, setUserId] = useState(userProfile?.name || '');

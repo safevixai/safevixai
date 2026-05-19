@@ -1,9 +1,10 @@
 'use client';
 
 import { useAppStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
 
 export function ModelLoader() {
-  const { aiMode, modelLoadProgress } = useAppStore();
+  const { aiMode, modelLoadProgress } = useAppStore(useShallow((s) => ({ aiMode: s.aiMode, modelLoadProgress: s.modelLoadProgress })));
 
   if (aiMode !== 'loading') return null;
 

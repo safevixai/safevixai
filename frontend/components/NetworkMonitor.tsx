@@ -2,9 +2,10 @@
 
 import { useEffect } from 'react';
 import { useAppStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
 
 export function NetworkMonitor() {
-  const { setConnectivity } = useAppStore();
+  const { setConnectivity } = useAppStore(useShallow((s) => ({ setConnectivity: s.setConnectivity })));
 
   useEffect(() => {
     // Initial check

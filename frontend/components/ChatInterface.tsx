@@ -8,6 +8,7 @@ import { Send, Wifi, WifiOff, Loader2, Bot, UserCircle, Mic } from 'lucide-react
 import { getOfflineAI, askOfflineAI } from '@/lib/offline-ai';
 import { logClientError } from '@/lib/client-logger';
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
+import { useShallow } from 'zustand/react/shallow';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Message {
@@ -66,7 +67,7 @@ async function* streamChat(
 
 // ── Component ──────────────────────────────────────────────────────────────
 export function ChatInterface() {
-  const { aiMode, connectivity, setAiMode } = useAppStore();
+  const { aiMode, connectivity, setAiMode } = useAppStore(useShallow((s) => ({ aiMode: s.aiMode, connectivity: s.connectivity, setAiMode: s.setAiMode })));
   const { location } = useGeolocation();
 
   const [messages, setMessages] = useState<Message[]>([

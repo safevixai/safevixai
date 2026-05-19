@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import { useAppStore } from '@/lib/store';
 import { submitReport } from '@/lib/api';
 import { enqueueRoadReport } from '@/lib/offline-sos-queue';
+import { useShallow } from 'zustand/react/shallow';
 
 const MAX_UPLOAD_BYTES = Number(process.env.NEXT_PUBLIC_MAX_UPLOAD_BYTES || 5242880);
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
@@ -23,7 +24,7 @@ const ReportForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const { gpsLocation, connectivity } = useAppStore();
+  const { gpsLocation, connectivity } = useAppStore(useShallow((s) => ({ gpsLocation: s.gpsLocation, connectivity: s.connectivity })));
 
   const handleSubmit = async () => {
     if (!gpsLocation) {

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useAppStore } from '@/lib/store';
 import { calculateChallan, type ChallanResult } from '@/lib/api';
 import { logClientError } from '@/lib/client-logger';
+import { useShallow } from 'zustand/react/shallow';
 
 /**
  * ChallanCalculator — High-Fidelity Fine Specialist
@@ -19,7 +20,7 @@ const ChallanCalculator: React.FC = () => {
  const [error, setError] = useState<string | null>(null);
  const [loading, setLoading] = useState(false);
 
- const { connectivity } = useAppStore();
+ const { connectivity } = useAppStore(useShallow((s) => ({ connectivity: s.connectivity })));
 
  const VIOLATIONS = [
  { code: '194D', label: 'Helmet', icon: '' },

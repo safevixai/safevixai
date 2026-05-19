@@ -15,6 +15,7 @@ describe('crash detection', () => {
     jest.runOnlyPendingTimers();
     jest.useRealTimers();
     delete (globalThis as any).DeviceMotionEvent;
+    jest.clearAllMocks();
   });
 
   function dispatchMotion(accelerationIncludingGravity: { x: number; y: number; z: number }) {
@@ -50,5 +51,53 @@ describe('crash detection', () => {
 
     expect(onCrash).toHaveBeenCalledTimes(1);
     stopCrashDetection(onCrash);
+  });
+
+  it('does not fire for normal acceleration', async () => {
+    const onCrash = jest.fn();
+    await startCrashDetection(onCrash);
+
+    dispatchMotion({ x: 5, y: 5, z: 10 });
+    dispatchMotion({ x: 10, y: 10, z: 15 });
+
+    expect(onCrash).not.toHaveBeenCalled();
+    stopCrashDetection(onCrash);
+  });
+
+  it('fires for y-axis crash', async () => {
+    const onCrash = jest.fn();
+    await startCrashDetection(onCrash);
+
+    dispatchMotion({ x: 0, y: 200, z: 0 });
+
+    expect(onCrash).toHaveBeenCalledTimes(1);
+    stopCrashDetection(onCrash);
+  });
+
+  it('fires for z-axis crash', async () => {
+    const onCrash = jest.fn();
+    await startCrashDetection(onCrash);
+
+    dispatchMotion({ x: 0, y: 0, z: 200 });
+
+    expect(onCrash).toHaveBeenCalledTimes(1);
+    stopCrashDetection(onCrash);
+  });
+
+  it('stops detecting after stopCrashDetection', async () => {
+    const onCrash = jest.fn();
+    await startCrashDetection(onCrash);
+
+    stopCrashDetection(onCrash);
+
+    dispatchMotion({ x: 200, y: 0, z: 0 });
+
+    expect(onCrash).not.toHaveBeenCalled();
+  });
+
+  it('handles permission denied gracefully', async () => {
+    const onCrash = jest.fn();
+
+    await expect(startCrashDetection(onCrash)).resolves.not.toThrow();
   });
 });
