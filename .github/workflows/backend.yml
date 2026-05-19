@@ -22,7 +22,6 @@ jobs:
   test:
     name: Backend Pytests
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     services:
       postgres:

@@ -1,16 +1,17 @@
 """create challan reference tables
 
-Revision ID: 10002_challan_reference_tables
-Revises: 10001_secure_user_profiles_and_sos
+Revision ID: 10002_challan_tables
+Revises: 10001_profiles_sos
 Create Date: 2026-05-06 00:10:00.000000
 """
 
 from alembic import op
 import sqlalchemy as sa
+from sqlalchemy import text
 
 
-revision = '10002_challan_reference_tables'
-down_revision = '10001_secure_user_profiles_and_sos'
+revision = '10002_challan_tables'
+down_revision = '10001_profiles_sos'
 branch_labels = None
 depends_on = None
 
@@ -62,8 +63,8 @@ def upgrade() -> None:
             ('183', 'bus', 'Section 183', 'Speeding beyond the notified limit.', 4000, 8000, ARRAY['112/183']),
             ('183', 'default', 'Section 183', 'Speeding beyond the notified limit.', 2000, 4000, ARRAY['112/183']),
             ('185', 'default', 'Section 185', 'Driving under the influence of alcohol or drugs.', 10000, 15000, ARRAY['DUI','DRUNK']),
-            ('181', 'default', 'Sections 3/181', 'Driving without a valid driving licence.', 5000, 10000, ARRAY['3/181']),
-            ('194D', 'default', 'Sections 129/194D', 'Failure to wear a helmet or seat belt as required.', 1000, 2000, ARRAY['194D-HELMET','194D-SEATBELT']),
+            ('181', 'default', 'Section 181', 'Driving without a valid driving licence.', 5000, 10000, ARRAY['3/181']),
+            ('194D', 'default', 'Sections 3/181', 'Failure to wear a helmet or seat belt as required.', 1000, 2000, ARRAY['194D-HELMET','194D-SEATBELT']),
             ('194B', 'two_wheeler', 'Section 194B', 'Safety gear non-compliance on a two-wheeler or while carrying a child.', 1000, 2000, ARRAY[]::text[]),
             ('194B', 'light_motor_vehicle', 'Section 194B', 'Safety gear non-compliance on a two-wheeler or while carrying a child.', 1000, 2000, ARRAY[]::text[]),
             ('194B', 'default', 'Section 194B', 'Safety gear non-compliance on a two-wheeler or while carrying a child.', 1000, 2000, ARRAY[]::text[]),
@@ -76,6 +77,42 @@ def upgrade() -> None:
             aliases = EXCLUDED.aliases,
             updated_at = NOW();
     """)
+
+    # Check if 'authenticated' role exists (Supabase-specific)
+    # Skip RLS policies if role doesn't exist (e.g., in CI/test environments)
+    conn = op.get_bind()
+    result = conn.execute(
+        text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
+    )
+    if result.fetchone():
+        op.execute("ALTER TABLE traffic_violations ENABLE ROW LEVEL SECURITY;")
+        op.execute("ALTER TABLE state_fine_overrides ENABLE ROW LEVEL SECURITY;")
+        op.execute("""
+            CREATE POLICY "Public can read traffic violations"
+            ON traffic_violations FOR SELECT
+            TO anon, authenticated
+            USING (true);
+        """)
+        op.execute("""
+            CREATE POLICY "Public can read state fine overrides"
+            ON state_fine_overrides FOR SELECT
+            TO anon, authenticated
+            USING (true);
+        """)
+    else:
+        # Standard PostgreSQL: create policies without role restriction
+        op.execute("ALTER TABLE traffic_violations ENABLE ROW LEVEL SECURITY;")
+        op.execute("ALTER TABLE state_fine_overrides ENABLE ROW LEVEL SECURITY;")
+        op.execute("""
+            CREATE POLICY "Public can read traffic violations"
+            ON traffic_violations FOR SELECT
+            USING (true);
+        """)
+        op.execute("""
+            CREATE POLICY "Public can read state fine overrides"
+            ON state_fine_overrides FOR SELECT
+            USING (true);
+        """)
 
     op.execute("ALTER TABLE traffic_violations ENABLE ROW LEVEL SECURITY;")
     op.execute("ALTER TABLE state_fine_overrides ENABLE ROW LEVEL SECURITY;")

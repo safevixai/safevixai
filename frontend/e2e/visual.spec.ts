@@ -16,7 +16,7 @@ test.describe('Visual Regression', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/emergency');
 
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Protocol Terminal/i }).first()).toBeVisible();
 
     await expect(page).toHaveScreenshot('emergency-page.png', {
       maxDiffPixels: 100,
@@ -27,7 +27,7 @@ test.describe('Visual Regression', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/assistant');
 
-    await expect(page.locator('input[type="text"]')).toBeVisible();
+    await expect(page.locator('input[type="text"]').first()).toBeVisible();
 
     await expect(page).toHaveScreenshot('chat-page.png', {
       maxDiffPixels: 100,

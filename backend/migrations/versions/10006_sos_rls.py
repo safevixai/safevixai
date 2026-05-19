@@ -1,7 +1,7 @@
 """add sos incidents RLS policies
 
-Revision ID: 10006_sos_rls_policies
-Revises: 10005_data_retention_cleanup
+Revision ID: 10006_sos_rls
+Revises: 10005_data_retention
 Create Date: 2026-05-18 00:00:00.000000
 """
 
@@ -9,8 +9,8 @@ from alembic import op
 from sqlalchemy import text
 
 
-revision = '10006_sos_rls_policies'
-down_revision = '10005_data_retention_cleanup'
+revision = '10006_sos_rls'
+down_revision = '10005_data_retention'
 branch_labels = None
 depends_on = None
 

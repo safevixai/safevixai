@@ -6,7 +6,8 @@ test.describe('Responsive Design', () => {
     await page.goto('/');
 
     await expect(page.locator('main')).toBeVisible();
-    await expect(page.locator('h1')).toBeVisible();
+    // Homepage is a map dashboard - check for key UI elements
+    await expect(page.locator('[aria-label="Search input"]')).toBeVisible();
   });
 
   test('tablet layout at 768px', async ({ page }) => {
@@ -14,7 +15,7 @@ test.describe('Responsive Design', () => {
     await page.goto('/');
 
     await expect(page.locator('main')).toBeVisible();
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('[aria-label="Search input"]')).toBeVisible();
   });
 
   test('desktop layout at 1440px', async ({ page }) => {
@@ -22,7 +23,7 @@ test.describe('Responsive Design', () => {
     await page.goto('/');
 
     await expect(page.locator('main')).toBeVisible();
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('[aria-label="Search input"]')).toBeVisible();
   });
 
   test('sidebar collapses on mobile', async ({ page }) => {
@@ -59,22 +60,22 @@ test.describe('Responsive Design', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/emergency');
 
-    await expect(page.locator('h1')).toBeVisible();
-    await expect(page.locator('text=112')).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Protocol Terminal/i }).first()).toBeVisible();
+    await expect(page.getByText('112')).toBeVisible();
   });
 
   test('chat page responsive', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/assistant');
 
-    await expect(page.locator('input[type="text"]')).toBeVisible();
+    await expect(page.locator('input[type="text"]').first()).toBeVisible();
   });
 
   test('challan page responsive', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/challan');
 
-    await expect(page.locator('select')).toBeVisible();
+    await expect(page.locator('select').first()).toBeVisible();
   });
 
   test('no horizontal scroll on mobile', async ({ page }) => {

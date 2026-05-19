@@ -1,7 +1,7 @@
 """align Supabase RLS policies with backend ownership model
 
 Revision ID: 10003_rls_alignment
-Revises: 10002_challan_reference_tables
+Revises: 10002_challan_tables
 Create Date: 2026-05-07 00:00:00.000000
 """
 
@@ -10,7 +10,7 @@ from sqlalchemy import text
 
 
 revision = '10003_rls_alignment'
-down_revision = '10002_challan_reference_tables'
+down_revision = '10002_challan_tables'
 branch_labels = None
 depends_on = None
 
