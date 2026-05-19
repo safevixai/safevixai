@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Visual Regression', () => {
-  test.skip(true, 'Visual regression tests require baseline snapshots - run locally with --update-snapshots');
-
   test('homepage visual', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');

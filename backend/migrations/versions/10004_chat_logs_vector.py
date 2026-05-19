@@ -16,24 +16,28 @@ depends_on = None
 
 
 def upgrade() -> None:
-    # Try to install pgvector extension (available in Supabase, not in CI Postgres)
+    # Check if pgvector extension is available on this PostgreSQL instance
     conn = op.get_bind()
     has_vector = False
     try:
-        conn.execute(text('CREATE EXTENSION IF NOT EXISTS vector'))
-        has_vector = True
+        result = conn.execute(
+            text("SELECT 1 FROM pg_available_extensions WHERE name = 'vector'")
+        )
+        if result.fetchone():
+            conn.execute(text('CREATE EXTENSION IF NOT EXISTS vector'))
+            has_vector = True
     except Exception:
         # pgvector not available — tables will use BYTEA fallback for embeddings
         pass
+
+    # Choose embedding column type based on pgvector availability
+    embedding_col = 'vector(384)' if has_vector else 'BYTEA'
 
     # Check if 'authenticated' role exists (Supabase-specific)
     result = conn.execute(
         text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
     )
     is_supabase = result.fetchone() is not None
-
-    # Choose embedding column type based on pgvector availability
-    embedding_col = 'vector(384)' if has_vector else 'BYTEA'
 
     if is_supabase:
         op.execute(

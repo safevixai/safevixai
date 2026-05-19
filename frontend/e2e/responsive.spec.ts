@@ -61,7 +61,8 @@ test.describe('Responsive Design', () => {
     await page.goto('/emergency');
 
     await expect(page.getByRole('heading', { name: /Protocol Terminal/i }).first()).toBeVisible();
-    await expect(page.getByText('112', { exact: true }).first()).toBeVisible();
+    // Check for emergency quick dial card (112 is in the card grid)
+    await expect(page.getByRole('link', { name: /112.*Emergency/i })).toBeVisible();
   });
 
   test('chat page responsive', async ({ page }) => {
