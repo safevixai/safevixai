@@ -16,6 +16,7 @@ import logging
 import re
 import time
 
+from cache.llm_cache import LLMResponseCache, CacheEntry
 from config import Settings
 from providers.base import (
     InvalidProviderKeyError,
@@ -101,8 +102,9 @@ class ProviderRouter:
                      → Mistral → Together
     """
 
-    def __init__(self, settings: Settings) -> None:
+    def __init__(self, settings: Settings, *, cache: LLMResponseCache | None = None) -> None:
         self.settings = settings
+        self.cache = cache
 
         # All 11 providers + Sarvam variants
         self.providers: dict[str, TemplateProvider] = {
@@ -185,6 +187,26 @@ class ProviderRouter:
     ) -> ProviderResult:
         """Generate a response using the selected provider with automatic fallback."""
 
+        # C9: Check LLM response cache before making API call
+        if self.cache:
+            cached = await self.cache.get(
+                request.message,
+                request.intent,
+                request.tool_summaries,
+            )
+            if cached:
+                logger.info("LLM cache hit for intent=%s", request.intent)
+                return ProviderResult(
+                    text=cached.text,
+                    provider=cached.provider,
+                    model=cached.model,
+                    prompt_tokens=cached.prompt_tokens,
+                    completion_tokens=cached.completion_tokens,
+                    total_tokens=cached.total_tokens,
+                    provider_used='cache',
+                    detected_lang=detected_lang,
+                )
+
         # Auto-detect language from request content if not provided
         if detected_lang is None:
             detected_lang = detect_lang(request.message or '')
@@ -202,6 +224,23 @@ class ProviderRouter:
             # Add 🇮🇳 badge when Sarvam is used
             if primary.startswith('sarvam'):
                 result.india_badge = True  # type: ignore[attr-defined]
+            
+            # C9: Store successful response in cache
+            if self.cache and result.provider != 'template':
+                await self.cache.set(
+                    request.message,
+                    request.intent,
+                    request.tool_summaries,
+                    CacheEntry(
+                        text=result.text,
+                        provider=result.provider,
+                        model=result.model,
+                        prompt_tokens=result.prompt_tokens,
+                        completion_tokens=result.completion_tokens,
+                        total_tokens=result.total_tokens,
+                    ),
+                )
+            
             return result
         except Exception as primary_err:
             self._mark_provider_failure(primary, primary_err)
@@ -297,3 +336,12 @@ class ProviderRouter:
                 duration,
                 exc.__class__.__name__,
             )
+            # C12: Send alert when circuit breaker trips for > 5 minutes
+            if duration >= 300:
+                alerts = get_alert_service()
+                alerts.alert_circuit_breaker_tripped(
+                    provider=provider_name,
+                    duration_seconds=duration,
+                    error_type=exc.__class__.__name__,
+                    error_message=str(exc)[:500],
+                )

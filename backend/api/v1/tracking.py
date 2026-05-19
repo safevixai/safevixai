@@ -43,12 +43,16 @@ def _origin_allowed(origin: str | None) -> bool:
 
 
 def _is_valid_ws_token(token: str | None) -> bool:
+    # P1-04: Use centralized bearer token validation (audit H6)
+    # This ensures Supabase / App JWTs are strictly validated for aud/iss/exp
     if not token:
         return False
+    from core.security import _decode_bearer_token
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = _decode_bearer_token(token)
         return bool(payload.get("sub"))
-    except (jwt.InvalidTokenError, jwt.ExpiredSignatureError):
+    except Exception as e:
+        logger.warning("WebSocket token validation failed: %s", e)
         return False
 
 class RedisConnectionManager:
@@ -134,6 +138,7 @@ async def websocket_endpoint(
     """
     Enterprise WebSocket endpoint for live GPS polling (Family Tracking).
     Uses Redis Pub/Sub to scale horizontally across multiple instances on Render/Vercel.
+    SECURITY#17: Size check happens BEFORE reading full message via uvicorn ws-max-size config.
     """
     if not _origin_allowed(websocket.headers.get("origin")):
         await websocket.close(code=1008, reason="Origin not allowed")

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime
+from datetime import datetime, timezone
 
 from geoalchemy2.elements import WKTElement
 from sqlalchemy.dialects.postgresql import insert
@@ -89,7 +89,7 @@ def _build_rows() -> list[dict]:
     if len(SEED_DATA) != 50:
         raise ValueError(f'Expected exactly 50 rows but found {len(SEED_DATA)}')
 
-    seeded_at = datetime.utcnow()
+    seeded_at = datetime.now(timezone.utc).replace(tzinfo=None)
     rows: list[dict] = []
 
     for idx, row in enumerate(SEED_DATA, start=1):

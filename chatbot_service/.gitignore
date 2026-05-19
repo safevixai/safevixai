@@ -29,6 +29,7 @@ build/
 
 # ChromaDB vector store â€” built locally via build_vectorstore.py (never commit ~100MB)
 backend/data/chroma_db/
+chatbot_service/data/chroma_db/
 
 # Downloaded PDF source documents (too large for git, download manually)
 backend/data/*.pdf

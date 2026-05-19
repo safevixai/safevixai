@@ -28,6 +28,7 @@ async def get_nearby_services(
     categories: str | None = Query(default=None, description='Comma-separated emergency categories'),
     radius: int | None = Query(default=None, ge=100, le=50000),
     limit: int = Query(default=20, ge=1, le=50),
+    offset: int = Query(default=0, ge=0),
     db: AsyncSession = Depends(get_db),
     emergency_service: EmergencyLocatorService = Depends(get_emergency_service),
 ) -> EmergencyResponse:
@@ -39,6 +40,7 @@ async def get_nearby_services(
             categories=categories,
             radius=radius,
             limit=limit,
+            offset=offset,
         )
     except ExternalServiceError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc

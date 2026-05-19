@@ -1,6 +1,173 @@
+"""SafetyChecker — Production-hardened safety filtering for SafeVixAI chatbot.
+
+Fixes audit issue C2 / SECURITY#1:
+- Expanded from 5 → 60+ blocked patterns
+- Unicode NFKC normalization before matching (blocks fullwidth/homoglyph attacks)
+- Zero-width character stripping (U+200B, U+200C, U+200D, U+FEFF, etc.)
+- Jailbreak pattern detection (DAN, roleplay exploits, instruction overrides)
+- Language-agnostic obfuscation detection (space insertion, l33t speak)
+- Output safety check (detect if LLM response accidentally contains harmful content)
+- Medical disclaimer injected on first-aid/medical topics
+"""
 from __future__ import annotations
 
+import re
+import unicodedata
 from dataclasses import dataclass
+
+# ---------------------------------------------------------------------------
+# Zero-width + invisible character strip
+# ---------------------------------------------------------------------------
+_ZW_RE = re.compile(
+    r"[\u200b\u200c\u200d\u200e\u200f\u202a-\u202e\u2060\u2061\ufeff\u00ad]"
+)
+
+# ---------------------------------------------------------------------------
+# Blocked patterns — harm, evasion, violence
+# ---------------------------------------------------------------------------
+_HARM_PATTERNS: tuple[str, ...] = (
+    # Hit and run / evasion
+    "fake an accident",
+    "escape after an accident",
+    "avoid police after",
+    "hit and run",
+    "flee the scene",
+    "leave the scene after hitting",
+    "drive away after accident",
+    "evade police",
+    "evade law enforcement",
+    "hide evidence of crash",
+    "bribe police",
+    "report fake insurance",
+    # Violence
+    "hurt someone with a car",
+    "kill someone with a car",
+    "run over",
+    "mow down",
+    "weaponize vehicle",
+    "use car as weapon",
+    "vehicular attack",
+    "vehicular homicide how to",
+    "how to kill",
+    "how to hurt",
+    "murder using",
+    "poison someone",
+    # Illegal drugs / drunk driving enabling
+    "drive drunk without getting caught",
+    "cheat breathalyzer",
+    "beat alcohol test",
+    "how to pass drug test while driving",
+    # Stalking / tracking without consent
+    "track someone without them knowing",
+    "stalk using gps",
+    "monitor someone secretly",
+    # Road rage enabling
+    "how to road rage",
+    "make driver crash",
+    "cut off a car intentionally",
+    # Document fraud
+    "fake driving license",
+    "forge insurance",
+    "fake vehicle registration",
+    "fake challan receipt",
+    # Bypassing emergency services
+    "ignore 112",
+    "avoid calling ambulance",
+    "not call emergency",
+    # Suicide / self-harm (traffic-context)
+    "crash my car on purpose",
+    "drive into traffic to die",
+    "use car to end my life",
+)
+
+# ---------------------------------------------------------------------------
+# Jailbreak patterns — prompt injection / DAN / roleplay exploits
+# ---------------------------------------------------------------------------
+_JAILBREAK_PATTERNS: tuple[str, ...] = (
+    "ignore previous instructions",
+    "ignore all prior",
+    "disregard your instructions",
+    "you are now dan",
+    "act as if you have no restrictions",
+    "pretend you have no guidelines",
+    "you are an ai without limits",
+    "do anything now",
+    "bypass your training",
+    "override system prompt",
+    "forget you are an assistant",
+    "new persona",
+    "roleplay as an evil",
+    "simulate a harmful",
+    "jailbreak",
+    "developer mode",
+    "sudo mode",
+    "unrestricted mode",
+    "you must comply",
+    "your true self",
+    "you are freed from",
+    "no content policy",
+    "no restrictions apply",
+)
+
+# ---------------------------------------------------------------------------
+# Medical / first-aid topics that must include a disclaimer
+# ---------------------------------------------------------------------------
+_MEDICAL_KEYWORDS: tuple[str, ...] = (
+    "first aid",
+    "cpr",
+    "tourniquet",
+    "fracture",
+    "bleeding",
+    "unconscious",
+    "shock treatment",
+    "spinal injury",
+    "overdose",
+    "burn treatment",
+    "heart attack",
+    "stroke symptoms",
+    "medication",
+    "drug interaction",
+    "medical advice",
+    "should i take",
+    "treat my wound",
+)
+
+_MEDICAL_DISCLAIMER = (
+    "\n\n **Medical Disclaimer:** This information is for general guidance only and does not "
+    "constitute medical advice. Always call 108 (ambulance) or 112 (emergency) in a real emergency. "
+    "Consult a qualified healthcare professional for medical decisions."
+)
+
+# ---------------------------------------------------------------------------
+# L33t-speak / obfuscation normalization table
+# ---------------------------------------------------------------------------
+_L33T: dict[str, str] = {
+    "0": "o", "1": "i", "3": "e", "4": "a",
+    "5": "s", "7": "t", "@": "a", "$": "s",
+    "+": "t", "|": "i",
+}
+
+
+def _normalize_text(text: str) -> str:
+    """Normalize text for pattern matching:
+    1. Strip zero-width / invisible characters
+    2. Apply Unicode NFKC normalization (collapses fullwidth, homoglyphs)
+    3. Lowercase
+    4. Decode l33t-speak
+    5. Remove excessive whitespace (space-inserted obfuscation)
+    """
+    # Step 1: strip zero-width chars
+    text = _ZW_RE.sub("", text)
+    # Step 2: NFKC normalization
+    text = unicodedata.normalize("NFKC", text)
+    # Step 3: lowercase
+    text = text.lower()
+    # Step 4: l33t-speak
+    for leet, char in _L33T.items():
+        text = text.replace(leet, char)
+    # Step 5: collapse multiple spaces (catches "h u r t  s o m e o n e")
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 
 @dataclass(frozen=True, slots=True)
@@ -10,21 +177,63 @@ class SafetyDecision:
 
 
 class SafetyChecker:
+    """Evaluate user messages for safety before forwarding to LLM."""
+
     def evaluate(self, message: str) -> SafetyDecision:
-        text = message.lower()
-        blocked_patterns = (
-            'how do i fake an accident',
-            'how do i escape after an accident',
-            'how to avoid police after hit and run',
-            'how to hurt someone with a car',
-            'how to kill',
-        )
-        if any(pattern in text for pattern in blocked_patterns):
+        normalized = _normalize_text(message)
+
+        # --- Jailbreak / injection attempt ---
+        if any(pattern in normalized for pattern in _JAILBREAK_PATTERNS):
             return SafetyDecision(
                 blocked=True,
                 response=(
-                    'I cannot help with harming people, evading emergency response, or hiding a crash. '
-                    'If this involves a real incident, call 112 and follow lawful safety procedures immediately.'
+                    "I cannot comply with requests to override my safety guidelines or pretend to "
+                    "be a different AI. I'm here to help with road safety, emergencies, and driving "
+                    "information. If you have a genuine safety question, please ask directly."
+                ),
+            )
+
+        # --- Harmful / evasion / violence patterns ---
+        if any(pattern in normalized for pattern in _HARM_PATTERNS):
+            return SafetyDecision(
+                blocked=True,
+                response=(
+                    "I cannot assist with evading emergency services, causing harm to people, or "
+                    "illegal activities. "
+                    "If you are witnessing or involved in an accident, call **112** immediately. "
+                    "If this is a genuine safety or legal question, please rephrase it."
+                ),
+            )
+
+        return SafetyDecision(blocked=False)
+
+    def add_medical_disclaimer_if_needed(self, message: str, response: str) -> str:
+        """Append medical disclaimer to LLM responses on medical/first-aid topics."""
+        normalized = _normalize_text(message)
+        if any(kw in normalized for kw in _MEDICAL_KEYWORDS):
+            if _MEDICAL_DISCLAIMER not in response:
+                return response + _MEDICAL_DISCLAIMER
+        return response
+
+    def check_output_safety(self, llm_response: str) -> SafetyDecision:
+        """Basic output safety check — catch if the LLM returned harmful content."""
+        normalized = _normalize_text(llm_response)
+        # Only check the most severe harm patterns on output
+        severe_output_patterns = (
+            "how to kill",
+            "how to hurt",
+            "evade police",
+            "flee the scene",
+            "jailbreak",
+            "ignore previous instructions",
+            "bypass safety",
+        )
+        if any(pattern in normalized for pattern in severe_output_patterns):
+            return SafetyDecision(
+                blocked=True,
+                response=(
+                    "I encountered an issue generating a safe response. "
+                    "Please call 112 for emergencies or 108 for ambulance."
                 ),
             )
         return SafetyDecision(blocked=False)

@@ -65,6 +65,7 @@ class Settings:
     http_user_agent: str
     session_ttl_seconds: int
     admin_secret: str | None
+    sentry_dsn: str | None = None
 
 
 @lru_cache
@@ -109,6 +110,7 @@ def get_settings() -> Settings:
         http_user_agent=os.getenv('HTTP_USER_AGENT', 'SafeVixAIChatbot/1.0'),
         session_ttl_seconds=int(os.getenv('SESSION_TTL_SECONDS', '86400')),
         admin_secret=os.getenv('ADMIN_SECRET') or None,
+        sentry_dsn=os.getenv('SENTRY_DSN') or None,
     )
     if settings.environment == 'production' and '*' in settings.cors_origins:
         raise RuntimeError('CORS_ORIGINS must list explicit origins when ENVIRONMENT=production')

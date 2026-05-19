@@ -3,7 +3,7 @@ from __future__ import annotations
 import contextlib
 import logging
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import aiofiles
@@ -137,13 +137,14 @@ class RoadWatchService:
         lon: float,
         radius: int,
         limit: int = 50,
+        offset: int = 0,
         statuses: list[str] | None = None,
     ) -> RoadIssuesResponse:
         normalized_statuses = statuses or ACTIVE_ROAD_ISSUE_STATUSES
         cache_version = await self.cache.get_int(ISSUES_CACHE_VERSION_KEY, default=0)
         cache_key = (
             f'roads:issues:v{cache_version}:{lat:.4f}:{lon:.4f}:{radius}:'
-            f'{",".join(sorted(normalized_statuses))}:{limit}'
+            f'{",".join(sorted(normalized_statuses))}:{limit}:{offset}'
         )
         cached = await self.cache.get_json(cache_key)
         if cached:
@@ -156,12 +157,21 @@ class RoadWatchService:
         lat_expr = func.ST_Y(RoadIssue.location).label('lat')
         lon_expr = func.ST_X(RoadIssue.location).label('lon')
 
-        stmt = (
-            select(RoadIssue, lat_expr, lon_expr, distance_expr)
+        base_stmt = (
+            select()
             .where(func.ST_DWithin(issue_geography, point_geography, radius))
             .where(RoadIssue.status.in_(normalized_statuses))
+        )
+
+        # Get total count for pagination metadata
+        count_stmt = base_stmt.add_columns(func.count(RoadIssue.uuid))
+        total_count = (await db.execute(count_stmt)).scalar() or 0
+
+        stmt = (
+            base_stmt.add_columns(RoadIssue, lat_expr, lon_expr, distance_expr)
             .order_by(distance_expr.asc(), RoadIssue.created_at.desc())
             .limit(limit)
+            .offset(offset)
         )
 
         rows = (await db.execute(stmt)).all()
@@ -184,7 +194,16 @@ class RoadWatchService:
             )
             for issue, item_lat, item_lon, distance in rows
         ]
-        response = RoadIssuesResponse(issues=issues, count=len(issues), radius_used=radius)
+
+        next_offset = offset + limit if (offset + limit) < total_count else None
+
+        response = RoadIssuesResponse(
+            issues=issues,
+            count=len(issues),
+            radius_used=radius,
+            next_offset=next_offset,
+            total_count=total_count,
+        )
         await self.cache.set_json(cache_key, response.model_dump(mode='json'), self.settings.cache_ttl_seconds)
         return response
 
@@ -276,7 +295,7 @@ class RoadWatchService:
 
         issue, lat, lon = row
         issue.status = 'acknowledged'
-        issue.status_updated = datetime.utcnow()
+        issue.status_updated = datetime.now(timezone.utc).replace(tzinfo=None)
         await db.commit()
         await db.refresh(issue)
         await self.cache.increment(ISSUES_CACHE_VERSION_KEY)
@@ -361,6 +380,24 @@ class RoadWatchService:
                 return None
 
             payload = b''.join(chunks)
+
+            # P1-03: Strip EXIF metadata from uploaded images (audit H5)
+            # This prevents inadvertent leakage of user GPS coordinates or device data.
+            try:
+                import io
+                from PIL import Image
+
+                with Image.open(io.BytesIO(payload)) as img:
+                    # Strip EXIF by re-saving without the 'exif' kwarg
+                    if img.mode in ("RGBA", "P") and content_type == "image/jpeg":
+                        img = img.convert("RGB")
+                    
+                    output = io.BytesIO()
+                    fmt = img.format or "JPEG"
+                    img.save(output, format=fmt)
+                    payload = output.getvalue()
+            except Exception as e:
+                logger.warning("Failed to strip EXIF data; proceeding with original payload. Error: %s", e)
             uploaded_url = await self._upload_photo_to_supabase(
                 file_name=file_name,
                 content_type=content_type or 'image/jpeg',

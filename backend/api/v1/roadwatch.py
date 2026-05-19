@@ -32,6 +32,7 @@ async def get_nearby_issues(
     lon: float = Query(..., ge=-180, le=180),
     radius: int = Query(default=5000, ge=100, le=50000),
     limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
     statuses: str | None = Query(default='open,acknowledged,in_progress'),
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
@@ -49,6 +50,7 @@ async def get_nearby_issues(
         lon=lon,
         radius=radius,
         limit=limit,
+        offset=offset,
         statuses=parsed_statuses,
     )
 

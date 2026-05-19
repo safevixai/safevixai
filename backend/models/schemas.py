@@ -56,6 +56,8 @@ class EmergencyResponse(BaseModel):
     count: int
     radius_used: int
     source: str
+    next_offset: int | None = None
+    total_count: int | None = None
 
 
 class SosResponse(BaseModel):
@@ -138,6 +140,8 @@ class RoadIssuesResponse(BaseModel):
     issues: list[RoadIssueItem]
     count: int
     radius_used: int
+    next_offset: int | None = None
+    total_count: int | None = None
 
 
 class RoadReportResponse(BaseModel):
