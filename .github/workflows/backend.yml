@@ -14,10 +14,40 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: Backend Pytests
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: safevixai_test
+          POSTGRES_USER: svai
+          POSTGRES_PASSWORD: svai_test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U svai -d safevixai_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 3s
+          --health-retries 5
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,18 +66,20 @@ jobs:
           pip install -r requirements.txt
           if [ -f "requirements-dev.txt" ]; then pip install -r requirements-dev.txt; fi
 
+      - name: Run Alembic migrations
+        working-directory: ./backend
+        run: |
+          alembic upgrade head
+        env:
+          DATABASE_URL: postgresql+asyncpg://svai:svai_test_password@localhost:5432/safevixai_test
+
       - name: Run Pytest
         working-directory: ./backend
         run: |
-          if [ -d "tests" ] && [ "$(ls -A tests)" ]; then
-            pytest tests/ -v --tb=short
-          else
-            echo "No tests found — skipping."
-          fi
+          pytest tests/ -v --tb=short
         env:
-          # Provide stub env vars so config.py doesn't crash at import
-          DATABASE_URL: "postgresql://stub:stub@localhost:5432/stub"
-          REDIS_URL: ""
+          DATABASE_URL: postgresql+asyncpg://svai:svai_test_password@localhost:5432/safevixai_test
+          REDIS_URL: redis://localhost:6379/0
           SUPABASE_URL: "https://stub.supabase.co"
           SUPABASE_ANON_KEY: "stub"
           SUPABASE_SERVICE_ROLE_KEY: "stub"

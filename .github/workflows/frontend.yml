@@ -14,6 +14,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint-and-typecheck:
     name: Frontend Lint & TypeScript
@@ -40,3 +44,10 @@ jobs:
       - name: Run TypeScript validation
         working-directory: ./frontend
         run: npx tsc --noEmit
+
+      - name: Run production build
+        working-directory: ./frontend
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+          NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010

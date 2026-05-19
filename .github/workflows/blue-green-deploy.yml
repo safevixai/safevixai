@@ -1,0 +1,58 @@
+name: Blue-Green Deployment
+
+on:
+  workflow_run:
+    workflows: [ "Frontend CI", "Backend Core CI", "Chatbot Service CI", "Post-Deploy Smoke Tests" ]
+    types: [ completed ]
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  promote-to-production:
+    name: Promote to Production
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify all CI workflows passed
+        run: |
+          echo "✅ All CI workflows passed — promoting to production"
+          echo "Deployment timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+      - name: Trigger Render redeploy (Backend)
+        if: ${{ github.event.workflow_run.name == 'Backend Core CI' || github.event.workflow_run.name == 'Post-Deploy Smoke Tests' }}
+        run: |
+          curl -X POST "${RENDER_DEPLOY_HOOK_BACKEND}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": true}'
+        env:
+          RENDER_DEPLOY_HOOK_BACKEND: ${{ secrets.RENDER_DEPLOY_HOOK_BACKEND }}
+
+      - name: Trigger Render redeploy (Chatbot)
+        if: ${{ github.event.workflow_run.name == 'Chatbot Service CI' || github.event.workflow_run.name == 'Post-Deploy Smoke Tests' }}
+        run: |
+          curl -X POST "${RENDER_DEPLOY_HOOK_CHATBOT}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": true}'
+        env:
+          RENDER_DEPLOY_HOOK_CHATBOT: ${{ secrets.RENDER_DEPLOY_HOOK_CHATBOT }}
+
+      - name: Create GitHub Deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              environment: 'production',
+              auto_merge: false,
+              required_contexts: [],
+              description: 'Blue-green deployment promoted after CI + smoke tests passed',
+            });
