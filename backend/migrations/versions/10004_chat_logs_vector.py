@@ -16,18 +16,28 @@ depends_on = None
 
 
 def upgrade() -> None:
-    op.execute('CREATE EXTENSION IF NOT EXISTS vector')
+    # Try to install pgvector extension (available in Supabase, not in CI Postgres)
+    conn = op.get_bind()
+    has_vector = False
+    try:
+        conn.execute(text('CREATE EXTENSION IF NOT EXISTS vector'))
+        has_vector = True
+    except Exception:
+        # pgvector not available — tables will use BYTEA fallback for embeddings
+        pass
 
     # Check if 'authenticated' role exists (Supabase-specific)
-    conn = op.get_bind()
     result = conn.execute(
         text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
     )
     is_supabase = result.fetchone() is not None
 
+    # Choose embedding column type based on pgvector availability
+    embedding_col = 'vector(384)' if has_vector else 'BYTEA'
+
     if is_supabase:
         op.execute(
-            """
+            f"""
             CREATE TABLE IF NOT EXISTS public.first_aid_articles (
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
                 slug TEXT NOT NULL UNIQUE,
@@ -37,7 +47,7 @@ def upgrade() -> None:
                 summary TEXT,
                 body TEXT NOT NULL,
                 source_url TEXT,
-                embedding vector(384),
+                embedding {embedding_col},
                 is_published BOOLEAN NOT NULL DEFAULT TRUE,
                 created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
                 updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -94,7 +104,7 @@ def upgrade() -> None:
     else:
         # Standard PostgreSQL: create tables without Supabase-specific RLS
         op.execute(
-            """
+            f"""
             CREATE TABLE IF NOT EXISTS public.first_aid_articles (
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
                 slug TEXT NOT NULL UNIQUE,
@@ -104,7 +114,7 @@ def upgrade() -> None:
                 summary TEXT,
                 body TEXT NOT NULL,
                 source_url TEXT,
-                embedding vector(384),
+                embedding {embedding_col},
                 is_published BOOLEAN NOT NULL DEFAULT TRUE,
                 created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
                 updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -156,3 +166,4 @@ def downgrade() -> None:
     op.execute('DROP TABLE IF EXISTS public.chat_logs')
     op.execute('DROP POLICY IF EXISTS "Public can read first aid articles" ON public.first_aid_articles')
     op.execute('DROP TABLE IF EXISTS public.first_aid_articles')
+    op.execute('DROP EXTENSION IF EXISTS vector')
