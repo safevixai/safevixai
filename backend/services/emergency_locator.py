@@ -193,6 +193,7 @@ class EmergencyLocatorService:
         categories: str | Iterable[str] | None,
         radius: int | None = None,
         limit: int = 20,
+        offset: int = 0,
     ) -> EmergencyResponse:
         parsed_categories = self.parse_categories(categories)
         radius_steps = self.build_radius_steps(radius)
@@ -211,6 +212,7 @@ class EmergencyLocatorService:
             categories=parsed_categories,
             radius_steps=radius_steps,
             limit=limit,
+            offset=offset,
         )
         await self.cache.set_json(cache_key, response.model_dump(mode='json'), self.settings.cache_ttl_seconds)
         return response
@@ -305,12 +307,12 @@ class EmergencyLocatorService:
         categories: list[str],
         radius_steps: list[int],
         limit: int,
+        offset: int = 0,
     ) -> EmergencyResponse:
         best: list[EmergencyServiceItem] = []
         best_radius = radius_steps[-1]
         source = 'database'
         database_items_count = 0
-        total_items = 0
         total_items = 0
 
         for step in radius_steps:
@@ -321,6 +323,7 @@ class EmergencyLocatorService:
                 categories=categories,
                 radius_meters=step,
                 limit=limit,
+                offset=offset,
             )
             best_radius = step
             database_items_count = len(best)
@@ -338,7 +341,6 @@ class EmergencyLocatorService:
             if local_items:
                 best = self._merge_results(best, local_items, limit)
                 source = 'database+local' if database_items_count else 'local'
-                total_items += len(local_items)
                 total_items += len(local_items)
 
         if len(best) < self.settings.emergency_min_results and offset == 0:
@@ -362,7 +364,6 @@ class EmergencyLocatorService:
                     source = 'local+overpass'
                 elif source == 'database+local':
                     source = 'database+local+overpass'
-            total_items += len(fallback)
                 total_items += len(fallback)
             else:
                 source = 'database' if best else source
@@ -370,14 +371,11 @@ class EmergencyLocatorService:
             source = 'database'
 
         next_offset = offset + limit if (offset + limit) < total_items else None
-        next_offset = offset + limit if (offset + limit) < total_items else None
         return EmergencyResponse(
             services=best,
             count=len(best),
             radius_used=best_radius,
             source=source,
-            next_offset=next_offset,
-            total_count=total_items,
             next_offset=next_offset,
             total_count=total_items,
         )
@@ -391,7 +389,8 @@ class EmergencyLocatorService:
         categories: list[str],
         radius_meters: int,
         limit: int,
-    ) -> list[EmergencyServiceItem]:
+        offset: int = 0,
+    ) -> tuple[list[EmergencyServiceItem], int]:
         point = func.ST_SetSRID(func.ST_MakePoint(lon, lat), 4326)
         point_geography = cast(point, Geography)
         service_geography = cast(EmergencyService.location, Geography)
@@ -405,18 +404,10 @@ class EmergencyLocatorService:
             .where(func.ST_DWithin(service_geography, point_geography, radius_meters))
             .order_by(EmergencyService.has_trauma.desc(), EmergencyService.is_24hr.desc(), distance_expr.asc())
             .offset(offset)
-            .offset(offset)
             .limit(limit)
         )
 
         count_stmt = (
-            select(func.count(EmergencyService.id))
-            .where(EmergencyService.category.in_(categories))
-            .where(func.ST_DWithin(service_geography, point_geography, radius_meters))
-        )
-        total_count = (await db.execute(count_stmt)).scalar() or 0
-
-                count_stmt = (
             select(func.count(EmergencyService.id))
             .where(EmergencyService.category.in_(categories))
             .where(func.ST_DWithin(service_geography, point_geography, radius_meters))
