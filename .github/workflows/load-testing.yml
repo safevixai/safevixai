@@ -1,0 +1,49 @@
+name: Load Testing
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  backend-load:
+    name: Backend Load Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run k6 load test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: tests/load/backend_api_load.js
+        env:
+          BACKEND_URL: ${{ secrets.BACKEND_URL || 'https://safevixai.onrender.com' }}
+
+  frontend-load:
+    name: Frontend Load Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run k6 load test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: tests/load/frontend_load.js
+        env:
+          FRONTEND_URL: ${{ secrets.FRONTEND_URL || 'https://safevixai.vercel.app' }}
+
+  chatbot-load:
+    name: Chatbot Load Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run k6 load test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: tests/load/chatbot_api_load.js
+        env:
+          CHATBOT_URL: ${{ secrets.CHATBOT_URL || 'https://safevixai-chatbot.onrender.com' }}

@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Toaster } from 'sonner';
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import { SWRConfig } from 'swr';
 import './globals.css';
 import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -66,7 +67,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <SentryInit />
         <AnalyticsProvider>
-          <ThemeProvider>
+          <SWRConfig value={{
+            dedupingInterval: 5000,
+            focusThrottleInterval: 30000,
+            revalidateOnFocus: false,
+            revalidateOnReconnect: true,
+            errorRetryCount: 3,
+            errorRetryInterval: 2000,
+          }}>
+            <ThemeProvider>
             <GSAPProvider>
               <ConnectivityProvider>
                 <EnterpriseClientAppHooks />
@@ -85,7 +94,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               />
               </ConnectivityProvider>
             </GSAPProvider>
-          </ThemeProvider>
+            </ThemeProvider>
+          </SWRConfig>
         </AnalyticsProvider>
       </body>
     </html>

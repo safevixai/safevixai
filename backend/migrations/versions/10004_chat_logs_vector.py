@@ -15,6 +15,16 @@ branch_labels = None
 depends_on = None
 
 
+def _execute_statements(sql: str) -> None:
+    for stmt in sql.split(';'):
+        stmt_clean = stmt.strip()
+        if stmt_clean:
+            lines = [line for line in stmt_clean.splitlines() if not line.strip().startswith('--')]
+            stmt_clean = '\n'.join(lines).strip()
+            if stmt_clean:
+                op.execute(stmt_clean)
+
+
 def upgrade() -> None:
     # Check if pgvector extension is available on this PostgreSQL instance
     conn = op.get_bind()
@@ -40,7 +50,7 @@ def upgrade() -> None:
     is_supabase = result.fetchone() is not None
 
     if is_supabase:
-        op.execute(
+        _execute_statements(
             f"""
             CREATE TABLE IF NOT EXISTS public.first_aid_articles (
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -71,7 +81,7 @@ def upgrade() -> None:
             """
         )
 
-        op.execute(
+        _execute_statements(
             """
             CREATE TABLE IF NOT EXISTS public.chat_logs (
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -107,7 +117,7 @@ def upgrade() -> None:
         )
     else:
         # Standard PostgreSQL: create tables without Supabase-specific RLS
-        op.execute(
+        _execute_statements(
             f"""
             CREATE TABLE IF NOT EXISTS public.first_aid_articles (
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -137,7 +147,7 @@ def upgrade() -> None:
             """
         )
 
-        op.execute(
+        _execute_statements(
             """
             CREATE TABLE IF NOT EXISTS public.chat_logs (
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

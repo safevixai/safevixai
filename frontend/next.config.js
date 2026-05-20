@@ -1,3 +1,7 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const isDevelopment = process.env.NODE_ENV !== 'production';
 // Extract valid backend origins for CSP connect-src
 const backendOrigins = [process.env.NEXT_PUBLIC_API_URL, process.env.NEXT_PUBLIC_CHATBOT_URL]
@@ -156,4 +160,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);
