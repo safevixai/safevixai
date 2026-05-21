@@ -1,0 +1,2034 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Backend Coverage 90%+ Implementation Plan - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#backend-coverage-90-implementation-plan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Backend Coverage 90%+ Implementation Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priority-1-api-route-tests-high-impact-low-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority 1: API Route Tests (High Impact, Low Effort)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priority 1: API Route Tests (High Impact, Low Effort)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-mcp-server-api-apiv1mcp_serverpy-54-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 MCP Server API (api/v1/mcp_server.py) - 54% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-live-tracking-api-apiv1live_trackingpy-51-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Live Tracking API (api/v1/live_tracking.py) - 51% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-emergency-api-apiv1emergencypy-51-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Emergency API (api/v1/emergency.py) - 51% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-user-api-apiv1userpy-51-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 User API (api/v1/user.py) - 51% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-waze-feed-api-apiv1waze_feedpy-51-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Waze Feed API (api/v1/waze_feed.py) - 51% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priority-2-service-layer-tests-medium-impact-medium-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority 2: Service Layer Tests (Medium Impact, Medium Effort)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priority 2: Service Layer Tests (Medium Impact, Medium Effort)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-roadwatch-service-servicesroadwatch_servicepy-33-75" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Roadwatch Service (services/roadwatch_service.py) - 33% → 75%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-routing-service-servicesrouting_servicepy-40-75" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Routing Service (services/routing_service.py) - 40% → 75%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-geocoding-service-servicesgeocoding_servicepy-62-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Geocoding Service (services/geocoding_service.py) - 62% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-emergency-locator-servicesemergency_locatorpy-64-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Emergency Locator (services/emergency_locator.py) - 64% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-challan-service-serviceschallan_servicepy-73-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Challan Service (services/challan_service.py) - 73% → 90%
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priority-3-core-module-tests-medium-impact-low-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority 3: Core Module Tests (Medium Impact, Low Effort)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priority 3: Core Module Tests (Medium Impact, Low Effort)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-jwks-client-corejwkspy-32-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 JWKS Client (core/jwks.py) - 32% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-redis-client-coreredis_clientpy-52-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Redis Client (core/redis_client.py) - 52% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tenant-module-coretenantpy-76-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tenant Module (core/tenant.py) - 76% → 90%
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priority-4-utility-service-tests-low-impact-low-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority 4: Utility Service Tests (Low Impact, Low Effort)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priority 4: Utility Service Tests (Low Impact, Low Effort)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-safe-routing-servicessafe_routingpy-19-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Safe Routing (services/safe_routing.py) - 19% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-safe-spaces-servicessafe_spacespy-29-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Safe Spaces (services/safe_spaces.py) - 29% → 85%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-llm-service-servicesllm_servicepy-69-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 LLM Service (services/llm_service.py) - 69% → 90%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-local-emergency-catalog-serviceslocal_emergency_catalogpy-71-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Local Emergency Catalog (services/local_emergency_catalog.py) - 71% → 90%
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Timeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Timeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#week-1-api-route-tests-priority-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Week 1: API Route Tests (Priority 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-2-service-layer-tests-priority-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Week 2: Service Layer Tests (Priority 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-3-core-utility-tests-priority-3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Week 3: Core + Utility Tests (Priority 3-4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#week-4-integration-polish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Week 4: Integration + Polish
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#success-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risk-mitigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk Mitigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="backend-coverage-90-implementation-plan">Backend Coverage 90%+ Implementation Plan</h1>
+<h2 id="current-status">Current Status</h2>
+<ul>
+<li><strong>Coverage:</strong> 79% (4453/5647 lines)</li>
+<li><strong>Target:</strong> 90%+ (5082+ lines)</li>
+<li><strong>Gap:</strong> 629 lines to cover</li>
+<li><strong>Tests:</strong> 215 passing, 1 skipped</li>
+</ul>
+<hr />
+<h2 id="priority-1-api-route-tests-high-impact-low-effort">Priority 1: API Route Tests (High Impact, Low Effort)</h2>
+<p><strong>Target: +150 lines covered</strong></p>
+<h3 id="11-mcp-server-api-apiv1mcp_serverpy-54-85">1.1 MCP Server API (<code>api/v1/mcp_server.py</code>) - 54% → 85%</h3>
+<p><strong>Missing:</strong> 112 lines
+<strong>Tests to Add:</strong>
+- <code>test_mcp_server_api.py</code> - Test all MCP endpoints
+  - <code>GET /api/v1/mcp/tools</code> - List available tools
+  - <code>POST /api/v1/mcp/call</code> - Call specific tools
+  - Tool execution: <code>get_emergency_services</code>, <code>calculate_challan</code>, <code>geocode_address</code>
+  - Error handling: invalid tool names, missing parameters
+  - Authentication: JWT token validation</p>
+<h3 id="12-live-tracking-api-apiv1live_trackingpy-51-85">1.2 Live Tracking API (<code>api/v1/live_tracking.py</code>) - 51% → 85%</h3>
+<p><strong>Missing:</strong> 50 lines
+<strong>Tests to Add:</strong>
+- <code>test_live_tracking_api.py</code> - Test tracking endpoints
+  - <code>POST /api/v1/live-tracking/start</code> - Start tracking session
+  - <code>PUT /api/v1/live-tracking/update</code> - Update location
+  - <code>GET /api/v1/live-tracking/session/{id}</code> - Get session details
+  - <code>DELETE /api/v1/live-tracking/session/{id}</code> - End session
+  - Validation: invalid coordinates, expired sessions</p>
+<h3 id="13-emergency-api-apiv1emergencypy-51-85">1.3 Emergency API (<code>api/v1/emergency.py</code>) - 51% → 85%</h3>
+<p><strong>Missing:</strong> 29 lines
+<strong>Tests to Add:</strong>
+- <code>test_emergency_api.py</code> - Test emergency endpoints
+  - <code>GET /api/v1/emergency/nearby</code> - Find nearby services
+  - <code>POST /api/v1/emergency/sos</code> - Trigger SOS
+  - Validation: radius limits, coordinate bounds
+  - Error handling: no services found, invalid input</p>
+<h3 id="14-user-api-apiv1userpy-51-85">1.4 User API (<code>api/v1/user.py</code>) - 51% → 85%</h3>
+<p><strong>Missing:</strong> 19 lines
+<strong>Tests to Add:</strong>
+- <code>test_user_api.py</code> - Test user endpoints
+  - <code>GET /api/v1/user/profile</code> - Get user profile
+  - <code>PUT /api/v1/user/profile</code> - Update profile
+  - Validation: required fields, data types</p>
+<h3 id="15-waze-feed-api-apiv1waze_feedpy-51-85">1.5 Waze Feed API (<code>api/v1/waze_feed.py</code>) - 51% → 85%</h3>
+<p><strong>Missing:</strong> 29 lines
+<strong>Tests to Add:</strong>
+- <code>test_waze_feed_api.py</code> - Test Waze integration
+  - <code>GET /api/v1/waze/alerts</code> - Get traffic alerts
+  - <code>GET /api/v1/waze/jams</code> - Get traffic jams
+  - Error handling: API failures, empty responses</p>
+<hr />
+<h2 id="priority-2-service-layer-tests-medium-impact-medium-effort">Priority 2: Service Layer Tests (Medium Impact, Medium Effort)</h2>
+<p><strong>Target: +200 lines covered</strong></p>
+<h3 id="21-roadwatch-service-servicesroadwatch_servicepy-33-75">2.1 Roadwatch Service (<code>services/roadwatch_service.py</code>) - 33% → 75%</h3>
+<p><strong>Missing:</strong> 133 lines
+<strong>Tests to Add:</strong>
+- <code>test_roadwatch_service.py</code> - Already exists, needs expansion
+  - Report submission flow
+  - Report verification/rejection
+  - Statistics calculation
+  - Heatmap data generation
+  - Trend analysis</p>
+<h3 id="22-routing-service-servicesrouting_servicepy-40-75">2.2 Routing Service (<code>services/routing_service.py</code>) - 40% → 75%</h3>
+<p><strong>Missing:</strong> 112 lines
+<strong>Tests to Add:</strong>
+- <code>test_routing_service.py</code> - Already exists, needs expansion
+  - ORS integration testing
+  - TomTom integration testing
+  - OSRM fallback testing
+  - Route caching behavior
+  - Error handling for all providers</p>
+<h3 id="23-geocoding-service-servicesgeocoding_servicepy-62-85">2.3 Geocoding Service (<code>services/geocoding_service.py</code>) - 62% → 85%</h3>
+<p><strong>Missing:</strong> 53 lines
+<strong>Tests to Add:</strong>
+- <code>test_geocoding_service.py</code> - Expand existing tests
+  - Photon API integration
+  - BigDataCloud fallback
+  - Nominatim fallback
+  - Cache behavior
+  - Error handling</p>
+<h3 id="24-emergency-locator-servicesemergency_locatorpy-64-85">2.4 Emergency Locator (<code>services/emergency_locator.py</code>) - 64% → 85%</h3>
+<p><strong>Missing:</strong> 87 lines
+<strong>Tests to Add:</strong>
+- <code>test_emergency_locator.py</code> - Expand existing tests
+  - Haversine distance calculation
+  - Service filtering by type
+  - Radius expansion logic
+  - Cache behavior
+  - Edge cases: no services, invalid coordinates</p>
+<h3 id="25-challan-service-serviceschallan_servicepy-73-90">2.5 Challan Service (<code>services/challan_service.py</code>) - 73% → 90%</h3>
+<p><strong>Missing:</strong> 48 lines
+<strong>Tests to Add:</strong>
+- <code>test_challan_service.py</code> - Expand existing tests
+  - State-specific fine calculation
+  - Vehicle type multipliers
+  - Repeat offender logic
+  - DuckDB integration
+  - Edge cases: unknown violations, missing data</p>
+<hr />
+<h2 id="priority-3-core-module-tests-medium-impact-low-effort">Priority 3: Core Module Tests (Medium Impact, Low Effort)</h2>
+<p><strong>Target: +100 lines covered</strong></p>
+<h3 id="31-jwks-client-corejwkspy-32-85">3.1 JWKS Client (<code>core/jwks.py</code>) - 32% → 85%</h3>
+<p><strong>Missing:</strong> 75 lines
+<strong>Tests to Add:</strong>
+- <code>test_jwks.py</code> - Test JWKS functionality
+  - Key fetching and caching
+  - JWT verification with JWKS
+  - Key rotation handling
+  - Error handling: network failures, invalid keys
+  - Cache invalidation</p>
+<h3 id="32-redis-client-coreredis_clientpy-52-85">3.2 Redis Client (<code>core/redis_client.py</code>) - 52% → 85%</h3>
+<p><strong>Missing:</strong> 58 lines
+<strong>Tests to Add:</strong>
+- <code>test_redis_client.py</code> - Test Redis operations
+  - Connection pooling
+  - Get/set operations
+  - TTL handling
+  - JSON serialization
+  - Fallback to in-memory when Redis unavailable
+  - Error handling: connection failures</p>
+<h3 id="33-tenant-module-coretenantpy-76-90">3.3 Tenant Module (<code>core/tenant.py</code>) - 76% → 90%</h3>
+<p><strong>Missing:</strong> 11 lines
+<strong>Tests to Add:</strong>
+- <code>test_tenant.py</code> - Already exists, needs minor expansion
+  - Edge cases: missing org_id, empty tenant list
+  - Query filtering with complex joins</p>
+<hr />
+<h2 id="priority-4-utility-service-tests-low-impact-low-effort">Priority 4: Utility Service Tests (Low Impact, Low Effort)</h2>
+<p><strong>Target: +179 lines covered</strong></p>
+<h3 id="41-safe-routing-servicessafe_routingpy-19-85">4.1 Safe Routing (<code>services/safe_routing.py</code>) - 19% → 85%</h3>
+<p><strong>Missing:</strong> 25 lines
+<strong>Tests to Add:</strong>
+- <code>test_safe_routing.py</code> - Test safe routing logic
+  - Safety score calculation
+  - Route filtering by safety threshold
+  - Integration with routing service</p>
+<h3 id="42-safe-spaces-servicessafe_spacespy-29-85">4.2 Safe Spaces (<code>services/safe_spaces.py</code>) - 29% → 85%</h3>
+<p><strong>Missing:</strong> 20 lines
+<strong>Tests to Add:</strong>
+- <code>test_safe_spaces.py</code> - Test safe spaces logic
+  - Space discovery
+  - Rating calculation
+  - Filtering by type/rating</p>
+<h3 id="43-llm-service-servicesllm_servicepy-69-90">4.3 LLM Service (<code>services/llm_service.py</code>) - 69% → 90%</h3>
+<p><strong>Missing:</strong> 15 lines
+<strong>Tests to Add:</strong>
+- <code>test_llm_service.py</code> - Expand existing tests
+  - Provider fallback chain
+  - Timeout handling
+  - Error recovery</p>
+<h3 id="44-local-emergency-catalog-serviceslocal_emergency_catalogpy-71-90">4.4 Local Emergency Catalog (<code>services/local_emergency_catalog.py</code>) - 71% → 90%</h3>
+<p><strong>Missing:</strong> 41 lines
+<strong>Tests to Add:</strong>
+- <code>test_local_emergency_catalog.py</code> - Expand existing tests
+  - Catalog loading
+  - Search functionality
+  - Filtering by location/type</p>
+<hr />
+<h2 id="implementation-timeline">Implementation Timeline</h2>
+<h3 id="week-1-api-route-tests-priority-1">Week 1: API Route Tests (Priority 1)</h3>
+<ul>
+<li>Day 1-2: MCP Server API tests</li>
+<li>Day 3: Live Tracking API tests</li>
+<li>Day 4: Emergency API tests</li>
+<li>Day 5: User + Waze Feed API tests</li>
+</ul>
+<h3 id="week-2-service-layer-tests-priority-2">Week 2: Service Layer Tests (Priority 2)</h3>
+<ul>
+<li>Day 1-2: Roadwatch Service tests</li>
+<li>Day 3: Routing Service tests</li>
+<li>Day 4: Geocoding + Emergency Locator tests</li>
+<li>Day 5: Challan Service tests</li>
+</ul>
+<h3 id="week-3-core-utility-tests-priority-3-4">Week 3: Core + Utility Tests (Priority 3-4)</h3>
+<ul>
+<li>Day 1-2: JWKS + Redis Client tests</li>
+<li>Day 3: Tenant module tests</li>
+<li>Day 4: Safe Routing + Safe Spaces tests</li>
+<li>Day 5: LLM + Local Emergency Catalog tests</li>
+</ul>
+<h3 id="week-4-integration-polish">Week 4: Integration + Polish</h3>
+<ul>
+<li>Day 1-2: Integration tests for full flows</li>
+<li>Day 3: Property-based tests for edge cases</li>
+<li>Day 4: Coverage analysis and gap filling</li>
+<li>Day 5: Final review and CI validation</li>
+</ul>
+<hr />
+<h2 id="success-metrics">Success Metrics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Current</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overall Coverage</td>
+<td>79%</td>
+<td>90%+</td>
+</tr>
+<tr>
+<td>API Route Coverage</td>
+<td>50-60%</td>
+<td>85%+</td>
+</tr>
+<tr>
+<td>Service Layer Coverage</td>
+<td>40-70%</td>
+<td>85%+</td>
+</tr>
+<tr>
+<td>Core Module Coverage</td>
+<td>32-76%</td>
+<td>85%+</td>
+</tr>
+<tr>
+<td>Test Count</td>
+<td>215</td>
+<td>350+</td>
+</tr>
+<tr>
+<td>CI Pass Rate</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="risk-mitigation">Risk Mitigation</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External API dependencies</td>
+<td>High</td>
+<td>Mock all external calls, use VCR for recording</td>
+</tr>
+<tr>
+<td>Complex service interactions</td>
+<td>Medium</td>
+<td>Use dependency injection, isolate test units</td>
+</tr>
+<tr>
+<td>Time-consuming test execution</td>
+<td>Medium</td>
+<td>Parallelize tests, use fixtures efficiently</td>
+</tr>
+<tr>
+<td>Flaky tests</td>
+<td>High</td>
+<td>Add retry logic, stabilize async operations</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="notes">Notes</h2>
+<ul>
+<li>All new tests should follow existing patterns in <code>tests/</code></li>
+<li>Use <code>pytest-asyncio</code> for async tests</li>
+<li>Mock external services with <code>unittest.mock</code></li>
+<li>Add property-based tests with <code>hypothesis</code> for edge cases</li>
+<li>Maintain test isolation - no shared state between tests</li>
+<li>Update <code>requirements-dev.txt</code> if new test dependencies needed</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

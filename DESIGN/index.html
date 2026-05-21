@@ -1077,10 +1077,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-uiux-audit-2026-05-17-enterprise-gsap-migration-complete" class="md-nav__link">
+  <a href="#current-uiux-audit-2026-05-18-post-audit-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current UI/UX Audit - 2026-05-17 (Enterprise GSAP Migration Complete)
+        Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)
       
     </span>
   </a>
@@ -1860,10 +1860,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-uiux-audit-2026-05-17-enterprise-gsap-migration-complete" class="md-nav__link">
+  <a href="#current-uiux-audit-2026-05-18-post-audit-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current UI/UX Audit - 2026-05-17 (Enterprise GSAP Migration Complete)
+        Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)
       
     </span>
   </a>
@@ -2366,8 +2366,8 @@
 
 
 <h1 id="safevixai-complete-design-system">SafeVixAI — Complete Design System</h1>
-<h2 id="current-uiux-audit-2026-05-17-enterprise-gsap-migration-complete">Current UI/UX Audit - 2026-05-17 (Enterprise GSAP Migration Complete)</h2>
-<p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. The build passes perfectly, Framer Motion has been completely purged, and all routes utilize the unified <code>usePageEntry</code> GSAP stagger animation. Advanced performance hardening (will-change, memoization) ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.</p>
+<h2 id="current-uiux-audit-2026-05-18-post-audit-updates">Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)</h2>
+<p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. All route entries use the unified <code>usePageEntry</code> GSAP stagger animation with GPU-composited properties (transform, opacity) and strict <code>will-change</code> management. Framer Motion source imports are fully removed (orphaned dependency remains in package-lock.json — run <code>npm uninstall framer-motion</code> to clean). Advanced performance hardening ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.</p>
 <p>Current gaps to close:</p>
 <ul>
 <li>Remove remaining legacy Tailwind palette tokens from app and component surfaces unless they are intentional emergency colors.</li>
@@ -2572,7 +2572,7 @@ fine amounts, version numbers.</p>
 <p>Standard card padding: <strong>16px</strong>. Feature card padding: <strong>20px</strong>. Emergency card: <strong>24px</strong>.
 Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 <p>Layout dimensions:
-- Sidebar: 280px wide, full height, fixed
+- Sidebar: 192px wide (desktop), 280px (expanded with emergency dial), full height, fixed
 - Header: 52px tall
 - Bottom nav (mobile): 64px tall
 - Emergency dial bar (sidebar bottom): 80px</p>
@@ -2718,7 +2718,7 @@ Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 </span></code></pre></div></p>
 <h3 id="navigation">Navigation</h3>
 <p><strong>Sidebar (desktop)</strong>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">280px</span><span class="o">;</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100vh</span><span class="o">;</span><span class="w"> </span><span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">fixed</span><span class="o">;</span><span class="w"> </span><span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">192px</span><span class="w"> </span><span class="o">(</span><span class="nt">collapsed</span><span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">280px</span><span class="w"> </span><span class="o">(</span><span class="nt">expanded</span><span class="o">);</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100vh</span><span class="o">;</span><span class="w"> </span><span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">fixed</span><span class="o">;</span><span class="w"> </span><span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
 </span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nt">border-right</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">06</span><span class="o">);</span>
 </span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
 </span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nt">App</span><span class="w"> </span><span class="nt">name</span><span class="o">:</span><span class="w"> </span><span class="nt">15px</span><span class="o">/</span><span class="nt">700</span><span class="w"> </span><span class="p">#</span><span class="nn">F0F4F8</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="s2">&quot;SafeVixAI&quot;</span>
@@ -2995,7 +2995,7 @@ Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 <td>Sidebar icons-only 48px. No bottom nav.</td>
 </tr>
 <tr>
-<td>&gt; 1024px</td>
+<td>&gt; 1024px (desktop)</td>
 <td>Full sidebar 192px. No bottom nav. Emergency dial pinned.</td>
 </tr>
 </tbody>

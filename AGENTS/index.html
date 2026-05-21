@@ -679,10 +679,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-agent-brief-2026-05-17-enterprise-gsap-migration-complete" class="md-nav__link">
+  <a href="#current-agent-brief-2026-05-18-post-audit-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Agent Brief - 2026-05-17 (Enterprise GSAP Migration Complete)
+        Current Agent Brief - 2026-05-18 (Post-Audit Updates)
       
     </span>
   </a>
@@ -1806,10 +1806,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-agent-brief-2026-05-17-enterprise-gsap-migration-complete" class="md-nav__link">
+  <a href="#current-agent-brief-2026-05-18-post-audit-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Agent Brief - 2026-05-17 (Enterprise GSAP Migration Complete)
+        Current Agent Brief - 2026-05-18 (Post-Audit Updates)
       
     </span>
   </a>
@@ -2263,13 +2263,14 @@
 Every section answers: "Would an agent likely get this wrong without help?"</p>
 </blockquote>
 <hr />
-<h2 id="current-agent-brief-2026-05-17-enterprise-gsap-migration-complete">Current Agent Brief - 2026-05-17 (Enterprise GSAP Migration Complete)</h2>
+<h2 id="current-agent-brief-2026-05-18-post-audit-updates">Current Agent Brief - 2026-05-18 (Post-Audit Updates)</h2>
 <p>Treat this section as the operational truth before changing code.</p>
 <ul>
 <li>Frontend build currently passes with <code>npm run build</code> from <code>frontend/</code>.</li>
-<li><strong>GSAP Enterprise Migration Completed</strong>: Framer Motion is fully removed. All frontend animations use GSAP <code>useGSAP</code> hook for stagger and split text entries. Performance has been hardened for 60FPS on mobile.</li>
+<li><strong>GSAP Enterprise Migration Completed</strong>: Framer Motion source imports fully removed. All frontend animations use GSAP <code>useGSAP</code> hook for stagger and split text entries. Orphaned dependency remains in <code>package-lock.json</code> — run <code>npm uninstall framer-motion</code> to clean.</li>
 <li>Chatbot smoke tests currently pass with <code>python -m pytest tests/test_voice.py tests/test_e2e.py -q</code> from <code>chatbot_service/</code>.</li>
 <li>The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.</li>
+<li><strong>Audit completed 2026-05-18</strong>: Frontend 58/100, Backend 54/100, Chatbot 50/100. See <code>docs/audit/</code> for full reports.</li>
 <li>Assistant voice input is partially implemented, but not end-to-end complete. The chat input records with <code>MediaRecorder</code>, but it calls <code>/api/v1/speech/translate</code>; the chatbot service exposes <code>/speech/translate</code>.</li>
 <li>The frontend must use <code>NEXT_PUBLIC_CHATBOT_URL</code> through <code>frontend/lib/public-env.ts</code>. Do not invent <code>NEXT_PUBLIC_CHATBOT_BASE_URL</code>.</li>
 <li>Speech language mapping is incomplete. UI language codes like <code>hi</code> and <code>ta</code> must be mapped to backend speech model codes such as <code>hin</code> and <code>tam</code> before calling the speech endpoint.</li>
@@ -2685,7 +2686,7 @@ Backend connects to chatbot at <code>http://chatbot:8010</code> (Docker network 
 <li><strong>State:</strong> Zustand (<code>lib/store.ts</code>) — GPS, services, AI mode</li>
 <li><strong>Maps:</strong> MapLibre GL (<code>components/maps/</code>) — NOT Leaflet (legacy references exist in docs)</li>
 <li><strong>Icons:</strong> <code>lucide-react</code></li>
-<li><strong>Animations:</strong> <code>motion</code> (framer-motion v12)</li>
+<li><strong>Animations:</strong> <code>gsap</code> + <code>@gsap/react</code> (Framer Motion source removed, orphaned dep in package-lock.json)</li>
 <li><strong>Offline AI:</strong> <code>@mlc-ai/web-llm</code> (Phi-3 Mini) + <code>@huggingface/transformers</code> (YOLO)</li>
 <li><strong>Offline SQL:</strong> <code>@duckdb/duckdb-wasm</code> for challan calculations</li>
 <li><strong>shadcn/ui:</strong> Configured via <code>components.json</code> — components in <code>components/ui/</code></li>

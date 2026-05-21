@@ -735,10 +735,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-implementation-notes-2026-05-17-enterprise-gsap-migration-complete" class="md-nav__link">
+  <a href="#current-implementation-notes-2026-05-18-post-audit-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Implementation Notes - 2026-05-17 (Enterprise GSAP Migration Complete)
+        Current Implementation Notes - 2026-05-18 (Post-Audit Updates)
       
     </span>
   </a>
@@ -1573,10 +1573,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-implementation-notes-2026-05-17-enterprise-gsap-migration-complete" class="md-nav__link">
+  <a href="#current-implementation-notes-2026-05-18-post-audit-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Implementation Notes - 2026-05-17 (Enterprise GSAP Migration Complete)
+        Current Implementation Notes - 2026-05-18 (Post-Audit Updates)
       
     </span>
   </a>
@@ -1792,7 +1792,7 @@
 
 
 <h1 id="safevixai-frontend-skill">SafeVixAI Frontend Skill</h1>
-<h2 id="current-implementation-notes-2026-05-17-enterprise-gsap-migration-complete">Current Implementation Notes - 2026-05-17 (Enterprise GSAP Migration Complete)</h2>
+<h2 id="current-implementation-notes-2026-05-18-post-audit-updates">Current Implementation Notes - 2026-05-18 (Post-Audit Updates)</h2>
 <p><strong>GSAP Migration Status:</strong> The frontend is 100% GSAP-powered. Do NOT use Framer Motion. All route entries use <code>usePageEntry</code> from <code>hooks/usePageEntry.ts</code>. Animations rely purely on GPU-composited properties (transform, opacity) with strict <code>will-change</code> management for 60FPS mobile performance.</p>
 <p>Use these notes before touching the frontend:</p>
 <ul>
@@ -1953,7 +1953,7 @@
 <h2 id="navigation-architecture">Navigation Architecture</h2>
 <ul>
 <li><strong>Mobile:</strong> <code>TopSearch</code> (top) + <code>BottomNav</code> (bottom, 64px) + <code>SystemSidebar</code> (hamburger drawer)</li>
-<li><strong>Desktop (lg+):</strong> <code>SystemHeader</code> (top bar 52px with search/theme/connectivity) + full sidebar 192px</li>
+<li><strong>Desktop (lg+):</strong> <code>SystemHeader</code> (top bar 52px with search/theme/connectivity) + sidebar 192px (collapsed) / 280px (expanded with emergency dial)</li>
 <li><strong>SOS:</strong> <code>GlobalSOS</code> component floats on all interior pages; hidden on <code>/</code>, <code>/sos</code>, <code>/emergency</code></li>
 </ul>
 <h2 id="key-conventions">Key Conventions</h2>
@@ -2032,7 +2032,7 @@
 <tr>
 <td><code>@mlc-ai/web-llm</code></td>
 <td>-</td>
-<td>Offline AI (browser-based LLM)</td>
+<td>Offline AI (browser-based LLM) — partially implemented, 2.2GB model download</td>
 </tr>
 <tr>
 <td><code>@turf/turf</code></td>
