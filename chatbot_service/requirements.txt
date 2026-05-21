@@ -40,7 +40,7 @@ sentry-sdk[fastapi]==2.51.0
 
 # --- HTTP client ---
 httpx==0.28.1
-requests==2.33.1
+requests==2.34.2
 
 # --- Data processing ---
 pandas==3.0.2

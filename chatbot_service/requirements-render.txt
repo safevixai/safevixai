@@ -19,7 +19,7 @@ mistralai==2.4.0
 
 redis==7.4.0
 httpx==0.28.1
-requests==2.33.1
+requests==2.34.2
 
 pypdf==6.10.2
 pdfplumber==0.11.9
