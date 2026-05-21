@@ -150,6 +150,14 @@ def create_app() -> FastAPI:
         redoc_url=redoc_url,
         openapi_url=openapi_url,
     )
+    
+    # OBSERVABILITY#2: OpenTelemetry distributed tracing
+    try:
+        from core.tracing import setup_tracing
+        setup_tracing(app)
+    except ImportError:
+        pass  # opentelemetry not installed (dev-only dependency)
+    
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
@@ -192,6 +200,33 @@ def create_app() -> FastAPI:
                 "duration_ms": duration_ms,
             },
         )
+        return response
+
+    # OBSERVABILITY#4: Prometheus API metrics middleware
+    @app.middleware("http")
+    async def _prometheus_metrics_middleware(request: Request, call_next):
+        from core.metrics import api_request_total, api_request_time
+        
+        # Skip metrics endpoint itself to avoid recursion
+        if request.url.path == "/metrics":
+            return await call_next(request)
+        
+        start = time.monotonic()
+        response = await call_next(request)
+        duration = time.monotonic() - start
+        
+        # Record metrics
+        api_request_total.labels(
+            method=request.method,
+            endpoint=request.url.path,
+            status_code=response.status_code,
+        ).inc()
+        
+        api_request_time.labels(
+            method=request.method,
+            endpoint=request.url.path,
+        ).observe(duration)
+        
         return response
 
     @app.middleware("http")
@@ -345,6 +380,16 @@ def create_app() -> FastAPI:
             )
             return JSONResponse(status_code=503, content=resp.model_dump())
         return resp
+
+    # OBSERVABILITY#3: Prometheus metrics endpoint
+    @app.get('/metrics', tags=['Observability'])
+    async def metrics():
+        from fastapi.responses import Response
+        from core.metrics import metrics_response, metrics_content_type
+        return Response(
+            content=metrics_response(),
+            media_type=metrics_content_type(),
+        )
 
     app.include_router(api_router)
     

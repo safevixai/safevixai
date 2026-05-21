@@ -33,7 +33,7 @@ test.describe('SOS and family tracking flow', () => {
       'Access-Control-Allow-Headers': '*',
     };
 
-    // Mock all API endpoints
+    // Mock SOS endpoint (matches any URL containing this path)
     await context.route('**/api/v1/emergency/sos', async (route) => {
       await route.fulfill({
         status: 200,
@@ -51,6 +51,7 @@ test.describe('SOS and family tracking flow', () => {
       });
     });
 
+    // Mock live-tracking endpoints (matches any URL containing these paths)
     await context.route('**/api/v1/live-tracking/start', async (route) => {
       await route.fulfill({
         status: 200,
@@ -93,9 +94,6 @@ test.describe('SOS and family tracking flow', () => {
       });
     });
 
-    // Allow all other requests to pass through
-    await context.route('**', (route) => route.continue());
-
     await page.goto(`${BASE_URL}/sos`);
     await expect(page.getByText(/Hold to Activate/i)).toBeVisible();
     await expect(page.getByText(/Lat:\s*13\.0827,\s*Long:\s*80\.2707/i)).toBeVisible({
@@ -103,20 +101,30 @@ test.describe('SOS and family tracking flow', () => {
     });
     await expect(page.getByText(/E2E SafeVix User/i)).toBeVisible();
 
-    const sosButton = await page.getByRole('button', { name: /Activate emergency SOS/i }).elementHandle();
-    expect(sosButton).not.toBeNull();
-    await sosButton!.dispatchEvent('pointerdown');
-    await expect(page.getByText('DISPATCHED')).toBeVisible({ timeout: 10000 });
-    await sosButton!.dispatchEvent('pointerup');
-
-    // Wait for dispatch state to update - check for either success or fallback state
-    await expect(
-      page.getByText(/Emergency Declared|SOS Activated/i).first()
-    ).toBeVisible({ timeout: 15000 });
+    // Find the main SOS button - it's the large circular button with AlertTriangle icon
+    const sosButton = page.locator('button.w-56.h-56.rounded-full');
+    await expect(sosButton).toBeVisible();
     
-    // Check for tracking link or fallback message
+    // Simulate pointerdown (start hold)
+    await sosButton.dispatchEvent('pointerdown');
+    
+    // Wait for the 2-second hold animation to complete
+    await page.waitForTimeout(2500);
+    
+    // Simulate pointerup (release after hold) - same button element
+    await sosButton.dispatchEvent('pointerup');
+    
+    // Wait for button text to change to DISPATCHED
+    await expect(page.getByText('DISPATCHED')).toBeVisible({ timeout: 10000 });
+    
+    // Wait for dispatch state message - check for any of the possible states
     await expect(
-      page.getByText(/Family Live Tracking Active|share your location/i).first()
+      page.getByText(/Emergency Declared|Contacting Emergency|SOS Activated/i).first()
+    ).toBeVisible({ timeout: 20000 });
+    
+    // Check for tracking link or share section
+    await expect(
+      page.getByText(/Family Live Tracking Active|Share Location|WhatsApp/i).first()
     ).toBeVisible();
 
     const familyPage = await context.newPage();
