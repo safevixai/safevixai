@@ -68,7 +68,7 @@
     "eslint": "8.57.1",
     "eslint-config-next": "^15.5.18",
     "jest": "^30.3.0",
-    "jest-environment-jsdom": "^30.3.0",
+    "jest-environment-jsdom": "^30.4.1",
     "ts-jest": "^29.4.9",
     "vite": "^8.0.8",
     "vitest": "^4.1.4"
