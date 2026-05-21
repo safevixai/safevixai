@@ -1,5 +1,5 @@
 # ── Stage 1: Build dependencies ──────────────────────────────────────────────
-FROM python:3.11-slim AS builder
+FROM python:3.14-slim AS builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ COPY requirements-render.txt .
 RUN pip install --prefix=/install -r requirements-render.txt
 
 # ── Stage 2: Runtime image ────────────────────────────────────────────────────
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 WORKDIR /app
 
