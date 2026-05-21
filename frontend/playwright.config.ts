@@ -34,6 +34,9 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
+  // Skip visual regression tests in CI (platform-specific snapshots)
+  grep: isCI ? /./ : undefined,
+  grepInvert: isCI ? /Visual Regression/ : undefined,
   webServer: {
     command: webServerCommand,
     url: baseURL,

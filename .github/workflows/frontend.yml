@@ -69,7 +69,10 @@ jobs:
 
       - name: Run production build
         working-directory: ./frontend
-        run: npm run build
+        run: |
+          npm run build
+          # Copy public assets to standalone build for E2E tests
+          cp -r public .next/standalone/public
         env:
           NEXT_PUBLIC_API_URL: http://localhost:8000
           NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010
