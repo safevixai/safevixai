@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import pytest
 from hypothesis import given, settings, strategies as st
-from hypothesis.extra.pytz import timezones
 
 # ── Coordinate Strategies ─────────────────────────────────────────────────────
 valid_lat = st.floats(min_value=-90.0, max_value=90.0, allow_nan=False, allow_infinity=False)
