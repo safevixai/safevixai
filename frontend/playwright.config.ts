@@ -39,9 +39,8 @@ export default defineConfig({
     },
   ],
   // Skip visual regression tests in CI (platform-specific snapshots)
-  // Skip manifest test in CI (standalone build asset serving issue)
   grep: isCI ? /./ : undefined,
-  grepInvert: isCI ? /Visual Regression|manifest valid/ : undefined,
+  grepInvert: isCI ? /Visual Regression/ : undefined,
   webServer: {
     command: webServerCommand,
     url: baseURL,
