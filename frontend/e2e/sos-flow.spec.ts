@@ -25,17 +25,6 @@ test.describe('SOS and family tracking flow', () => {
         })
       );
       window.open = () => null;
-      // Mock requestAnimationFrame to run immediately in headless mode
-      // This ensures the 2-second hold animation completes instantly
-      let rafId = 0;
-      const originalRaf = window.requestAnimationFrame;
-      window.requestAnimationFrame = (callback: FrameRequestCallback) => {
-        rafId++;
-        // Run callback immediately with a timestamp far in the future
-        // This makes the 2-second animation complete instantly
-        setTimeout(() => callback(performance.now() + 3000), 0);
-        return rafId;
-      };
     });
 
     const corsHeaders = {
@@ -125,18 +114,28 @@ test.describe('SOS and family tracking flow', () => {
     const sosButton = page.locator('button.w-56.h-56.rounded-full');
     await expect(sosButton).toBeVisible();
     
-    // Simulate pointerdown (start hold)
-    // With mocked rAF, the 2-second animation completes instantly
-    await sosButton.dispatchEvent('pointerdown');
+    // In CI headless mode, the rAF-based hold animation doesn't work reliably.
+    // Use page.mouse to simulate a real hold interaction with proper timing.
+    const box = await sosButton.boundingBox();
+    if (!box) throw new Error('SOS button not found');
     
-    // Wait for rAF callback to execute (mocked to run immediately)
-    await page.waitForTimeout(100);
+    const centerX = box.x + box.width / 2;
+    const centerY = box.y + box.height / 2;
     
-    // Simulate pointerup (release after hold)
-    await sosButton.dispatchEvent('pointerup');
+    // Move mouse to button center and press down
+    await page.mouse.move(centerX, centerY);
+    await page.mouse.down();
+    
+    // Wait for the 2-second hold animation (increase for CI headless mode)
+    // In headless Chrome, rAF is throttled, so we need to wait longer
+    await page.waitForTimeout(4000);
+    
+    // Release the mouse button
+    await page.mouse.up();
     
     // Wait for button text to change to DISPATCHED
-    await expect(page.getByText('DISPATCHED')).toBeVisible({ timeout: 10000 });
+    // Increase timeout significantly for CI headless environment
+    await expect(page.getByText('DISPATCHED')).toBeVisible({ timeout: 20000 });
     
     // Wait for dispatch state message - check for any of the possible states
     await expect(
