@@ -1,6 +1,6 @@
 # ── Stage 1: deps ─────────────────────────────────────────────────────────────
 # Install production + dev dependencies (needed for next build).
-FROM node:20-alpine AS deps
+FROM node:26-alpine AS deps
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
@@ -9,7 +9,7 @@ RUN npm ci --legacy-peer-deps
 
 # ── Stage 2: builder ─────────────────────────────────────────────────────────
 # Compile the Next.js app in standalone output mode.
-FROM node:20-alpine AS builder
+FROM node:26-alpine AS builder
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
@@ -29,7 +29,7 @@ RUN npm run build
 
 # ── Stage 3: runner ───────────────────────────────────────────────────────────
 # Minimal production image — only the compiled output, no dev deps.
-FROM node:20-alpine AS runner
+FROM node:26-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
