@@ -25,6 +25,17 @@ test.describe('SOS and family tracking flow', () => {
         })
       );
       window.open = () => null;
+      // Mock requestAnimationFrame to run immediately in headless mode
+      // This ensures the 2-second hold animation completes instantly
+      let rafId = 0;
+      const originalRaf = window.requestAnimationFrame;
+      window.requestAnimationFrame = (callback: FrameRequestCallback) => {
+        rafId++;
+        // Run callback immediately with a timestamp far in the future
+        // This makes the 2-second animation complete instantly
+        setTimeout(() => callback(performance.now() + 3000), 0);
+        return rafId;
+      };
     });
 
     const corsHeaders = {
@@ -115,12 +126,13 @@ test.describe('SOS and family tracking flow', () => {
     await expect(sosButton).toBeVisible();
     
     // Simulate pointerdown (start hold)
+    // With mocked rAF, the 2-second animation completes instantly
     await sosButton.dispatchEvent('pointerdown');
     
-    // Wait for the 2-second hold animation to complete
-    await page.waitForTimeout(2500);
+    // Wait for rAF callback to execute (mocked to run immediately)
+    await page.waitForTimeout(100);
     
-    // Simulate pointerup (release after hold) - same button element
+    // Simulate pointerup (release after hold)
     await sosButton.dispatchEvent('pointerup');
     
     // Wait for button text to change to DISPATCHED
