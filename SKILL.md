@@ -5,7 +5,7 @@ description: Development guide for the SafeVixAI Next.js 15 frontend — a tacti
 
 # SafeVixAI Frontend Skill
 
-## Current Implementation Notes - 2026-05-17 (Enterprise GSAP Migration Complete)
+## Current Implementation Notes - 2026-05-18 (Post-Audit Updates)
 
 **GSAP Migration Status:** The frontend is 100% GSAP-powered. Do NOT use Framer Motion. All route entries use `usePageEntry` from `hooks/usePageEntry.ts`. Animations rely purely on GPU-composited properties (transform, opacity) with strict `will-change` management for 60FPS mobile performance.
 
@@ -171,7 +171,7 @@ frontend/
 
 ## Navigation Architecture
 - **Mobile:** `TopSearch` (top) + `BottomNav` (bottom, 64px) + `SystemSidebar` (hamburger drawer)
-- **Desktop (lg+):** `SystemHeader` (top bar 52px with search/theme/connectivity) + full sidebar 192px
+- **Desktop (lg+):** `SystemHeader` (top bar 52px with search/theme/connectivity) + sidebar 192px (collapsed) / 280px (expanded with emergency dial)
 - **SOS:** `GlobalSOS` component floats on all interior pages; hidden on `/`, `/sos`, `/emergency`
 
 ## Key Conventions
@@ -209,7 +209,7 @@ frontend/
 | `maplibre-gl` | 5.x | Vector map rendering |
 | `zustand` | 5.x | Global state management |
 | `lucide-react` | 0.4x | Icon library |
-| `@mlc-ai/web-llm` | - | Offline AI (browser-based LLM) |
+| `@mlc-ai/web-llm` | - | Offline AI (browser-based LLM) — partially implemented, 2.2GB model download |
 | `@turf/turf` | - | Geospatial utilities |
 | `qrcode.react` | - | QR code generation for Emergency Card |
 | `posthog-js` | - | Product analytics |

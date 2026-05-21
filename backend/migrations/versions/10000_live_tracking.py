@@ -5,6 +5,7 @@ Revises: 9999_enable_rls
 Create Date: 2026-04-27 00:00:00.000000
 """
 from alembic import op
+from sqlalchemy import text
 
 revision = '10000_live_tracking'
 down_revision = '9999_enable_rls'
@@ -31,6 +32,15 @@ def upgrade() -> None:
             updated_at TIMESTAMPTZ DEFAULT NOW()
         );
     """)
+
+    # Check if 'authenticated' role exists (Supabase-specific)
+    # Skip RLS policies if role doesn't exist (e.g., in CI/test environments)
+    conn = op.get_bind()
+    result = conn.execute(
+        text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
+    )
+    if not result.fetchone():
+        return  # Skip RLS setup in non-Supabase environments
 
     # Enable RLS
     op.execute("ALTER TABLE live_tracking ENABLE ROW LEVEL SECURITY;")
@@ -59,7 +69,12 @@ def upgrade() -> None:
     """)
 
     # Enable Realtime on this table (Supabase specific)
-    op.execute("ALTER PUBLICATION supabase_realtime ADD TABLE live_tracking;")
+    # Check if the supabase_realtime publication exists before altering it
+    pub_result = conn.execute(
+        text("SELECT 1 FROM pg_publication WHERE pubname = 'supabase_realtime'")
+    )
+    if pub_result.fetchone():
+        op.execute("ALTER PUBLICATION supabase_realtime ADD TABLE live_tracking;")
 
 
 def downgrade() -> None:

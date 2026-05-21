@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { useAppStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
 
 export function DrivingScoreBar() {
-  const { drivingScore } = useAppStore();
+  const { drivingScore } = useAppStore(useShallow((s) => ({ drivingScore: s.drivingScore })));
   
   // Example max score 100
   const normalized = Math.max(0, Math.min(100, drivingScore || 0));

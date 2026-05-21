@@ -5,10 +5,11 @@ import hmac
 import os
 
 from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from core.limiter import limiter
-from core.security import create_access_token, get_current_user
+from core.security import create_access_token, get_current_user, create_secure_cookie_response
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
@@ -17,8 +18,7 @@ class LoginRequest(BaseModel):
     password: str = Field(min_length=8, max_length=256)
 
 class LoginResponse(BaseModel):
-    access_token: str
-    token_type: str
+    message: str
     operator_name: str
 
 def _verify_pbkdf2_password(password: str, encoded_hash: str) -> bool:
@@ -54,15 +54,29 @@ async def login(request: Request, body: LoginRequest):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     token = create_access_token(
-        data={"sub": email, "name": operator["name"], "role": "operator"},
+        data={"sub": email, "name": operator["name"]},
+        role="operator",
     )
-    return LoginResponse(
-        access_token=token,
-        token_type="bearer",
-        operator_name=operator["name"]
+    
+    # Phase 0.2: Use secure cookie helper (HttpOnly, Secure, SameSite)
+    return create_secure_cookie_response(
+        content={"message": "Login successful", "operator_name": operator["name"]},
+        token=token,
     )
+
+@router.post("/logout")
+async def logout():
+    response = JSONResponse(content={"message": "Logged out successfully"})
+    response.delete_cookie(
+        key="access_token",
+        path="/",
+        httponly=True,
+        samesite="lax",
+        secure=os.environ.get("ENVIRONMENT", "development").lower() == "production"
+    )
+    return response
 
 @router.get("/verify")
 async def verify_token(current_user: dict = Depends(get_current_user)):
     """Validate the caller's bearer token."""
-    return {"status": "valid", "sub": current_user.get("sub")}
+    return {"status": "valid", "sub": current_user.get("sub"), "role": current_user.get("role")}

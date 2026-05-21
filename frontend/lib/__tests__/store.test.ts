@@ -5,7 +5,6 @@ describe('app store persistence', () => {
     localStorage.clear();
     useAppStore.setState({
       isAuthenticated: false,
-      authToken: null,
       operatorName: '',
       mapStatus: 'loading',
       mapProvider: null,
@@ -20,13 +19,13 @@ describe('app store persistence', () => {
     });
   });
 
-  it('keeps bearer tokens in memory only', () => {
-    useAppStore.getState().setAuth('secret-token', 'Operator');
+  it('keeps operator name in memory only', () => {
+    useAppStore.getState().setAuth('Operator');
 
     const persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
 
-    expect(useAppStore.getState().authToken).toBe('secret-token');
-    expect(persisted.state?.authToken).toBeUndefined();
+    expect(useAppStore.getState().operatorName).toBe('Operator');
+    expect(persisted.state?.operatorName).toBeUndefined();
     expect(persisted.state?.isAuthenticated).toBeUndefined();
   });
 

@@ -11,28 +11,62 @@ const CHATBOT_URL = PUBLIC_CHATBOT_BASE_URL;
 const client = axios.create({
   baseURL: BASE_URL,
   timeout: 8_000,
+  withCredentials: true,
 });
 
+function getCsrfToken() {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(new RegExp('(^| )csrf_token=([^;]+)'));
+  if (match) return match[2];
+  return null;
+}
+
 client.interceptors.request.use((config) => {
-  const token = useAppStore.getState().authToken;
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const csrf = getCsrfToken();
+  if (csrf) {
+    config.headers['X-CSRF-Token'] = csrf;
   }
   return config;
 });
+
+// S20/F9: Exponential-backoff retry interceptor (up to 3 retries, 1s/2s/4s delays).
+// Retries on network errors and 5xx server errors; never retries 4xx (client fault).
+function _withRetry(axiosInstance: ReturnType<typeof axios.create>, maxRetries = 3) {
+  axiosInstance.interceptors.response.use(
+    (res) => res,
+    async (error) => {
+      const config = error.config as (typeof error.config) & { _retryCount?: number };
+      if (!config) return Promise.reject(error);
+
+      config._retryCount = (config._retryCount ?? 0);
+      const isNetworkError = !error.response;
+      const isServerError = error.response?.status >= 500;
+      if (config._retryCount >= maxRetries || (!isNetworkError && !isServerError)) {
+        return Promise.reject(error);
+      }
+      config._retryCount += 1;
+      const delayMs = 1_000 * 2 ** (config._retryCount - 1); // 1s, 2s, 4s
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+      return axiosInstance(config);
+    }
+  );
+}
+_withRetry(client);
 
 const chatbotClient = axios.create({
   baseURL: CHATBOT_URL,
   timeout: 15_000, // LLM responses can take longer
+  withCredentials: true,
 });
 
 chatbotClient.interceptors.request.use((config) => {
-  const token = useAppStore.getState().authToken;
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const csrf = getCsrfToken();
+  if (csrf) {
+    config.headers['X-CSRF-Token'] = csrf;
   }
   return config;
 });
+_withRetry(chatbotClient);
 
 export type EmergencyServiceCategory =
   | 'hospital'

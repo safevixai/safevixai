@@ -1,0 +1,46 @@
+# ────────────────────────────────────────────────────────────────
+# Frontend — Next.js 15 PWA (multi-stage build)
+# DEVOPS#1 FIX: Created per audit finding
+# ────────────────────────────────────────────────────────────────
+
+# Stage 1: Builder
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+# Install dependencies first (cached layer)
+COPY package*.json ./
+RUN npm ci --legacy-peer-deps
+
+# Copy source and build
+COPY . .
+ENV NEXT_PUBLIC_API_URL=http://localhost:8000
+ENV NEXT_PUBLIC_CHATBOT_URL=http://localhost:8010
+ENV NODE_ENV=production
+RUN npm run build
+
+# Stage 2: Runner
+FROM node:20-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Copy only production artifacts from builder
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+# Non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs && \
+    chown -R nextjs:nodejs /app
+USER nextjs
+
+EXPOSE 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
+
+CMD ["node", "server.js"]

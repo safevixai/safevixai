@@ -1,0 +1,27 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running SafeVixAI pre-commit hooks..."
+
+# 1. Frontend Lint & Type Check
+echo "=> Checking Frontend..."
+cd frontend
+npm run lint || exit 1
+npm run type-check || exit 1
+cd ..
+
+# 2. Backend Lint & Tests
+echo "=> Checking Backend..."
+cd backend
+flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || exit 1
+pytest tests/ || exit 1
+cd ..
+
+# 3. Chatbot Service Lint & Tests
+echo "=> Checking Chatbot Service..."
+cd chatbot_service
+flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || exit 1
+pytest tests/ || exit 1
+cd ..
+
+echo "✅ All checks passed! Proceeding with commit."

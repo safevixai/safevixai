@@ -1,15 +1,16 @@
 """align Supabase RLS policies with backend ownership model
 
 Revision ID: 10003_rls_alignment
-Revises: 10002_challan_reference_tables
+Revises: 10002_challan_tables
 Create Date: 2026-05-07 00:00:00.000000
 """
 
 from alembic import op
+from sqlalchemy import text
 
 
 revision = '10003_rls_alignment'
-down_revision = '10002_challan_reference_tables'
+down_revision = '10002_challan_tables'
 branch_labels = None
 depends_on = None
 
@@ -21,6 +22,15 @@ def upgrade() -> None:
     credentials. These policies protect any direct anon/authenticated Supabase
     client access and align ownership checks with `user_id = auth.uid()::text`.
     """
+    # Check if 'authenticated' role exists (Supabase-specific)
+    # Skip RLS policies if role doesn't exist (e.g., in CI/test environments)
+    conn = op.get_bind()
+    result = conn.execute(
+        text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
+    )
+    if not result.fetchone():
+        return  # Skip RLS setup in non-Supabase environments
+
     op.execute(
         """
         DO $$

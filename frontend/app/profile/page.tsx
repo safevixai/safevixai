@@ -17,17 +17,10 @@ import { SettingRow } from '@/components/ui/SettingRow';
 import Toggle from '@/components/dashboard/Toggle';
 import QREmergencyCard from '@/components/profile/QREmergencyCard';
 import { usePageEntry } from '@/hooks/usePageEntry';
+import { useShallow } from 'zustand/react/shallow';
 
 export default function ProfilePage() {
-  const { 
-    crashDetectionEnabled, 
-    setCrashDetectionEnabled,
-    userProfile,
-    setUserProfile,
-    clearAuth,
-    operatorName,
-    isAuthenticated,
-  } = useAppStore();
+  const { crashDetectionEnabled, setCrashDetectionEnabled, userProfile, setUserProfile, clearAuth, operatorName, isAuthenticated } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, userProfile: s.userProfile, setUserProfile: s.setUserProfile, clearAuth: s.clearAuth, operatorName: s.operatorName, isAuthenticated: s.isAuthenticated })));
   const pageRef = usePageEntry();
 
   const [offlineMode, setOfflineMode] = useState(false);

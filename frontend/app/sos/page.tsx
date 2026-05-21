@@ -13,9 +13,10 @@ import { Loader2, AlertTriangle, Activity, Shield, Heart, Share2, MessageSquare,
 import { haptics } from '@/lib/haptics';
 import { sounds } from '@/lib/sounds';
 import { usePageEntry } from '@/hooks/usePageEntry';
+import { useShallow } from 'zustand/react/shallow';
 
 export default function EmergencyPage() {
- const { crashDetectionEnabled, userProfile, soundsEnabled } = useAppStore();
+ const { crashDetectionEnabled, userProfile, soundsEnabled } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, userProfile: s.userProfile, soundsEnabled: s.soundsEnabled })));
  const pageRef = usePageEntry();
  const [holding, setHolding] = useState(false);
  const [holdProgress, setHoldProgress] = useState(0);
@@ -116,62 +117,62 @@ export default function EmergencyPage() {
  setDispatchState('idle');
  };
 
- // Fire backend SOS call on activation + start family tracking
- useEffect(() => {
- if (!activated) return;
- if (!coords) {
- setDispatchState('failed');
- return;
- }
+  // Fire backend SOS call on activation + start family tracking
+  useEffect(() => {
+  if (!activated) return;
+  if (!coords) {
+  setDispatchState('failed');
+  return;
+  }
 
- let cancelled = false;
- setDispatchState('dispatching');
+  let cancelled = false;
+  setDispatchState('dispatching');
 
- const dispatchSos = async () => {
- try {
- if (isOnline) {
- await triggerSos({ lat: coords.lat, lon: coords.lng });
- } else {
- await enqueueSOS({ lat: coords.lat, lon: coords.lng });
- }
- if (!cancelled) setDispatchState('dispatched');
- } catch {
- await enqueueSOS({ lat: coords.lat, lon: coords.lng }).catch(() => undefined);
- if (!cancelled) setDispatchState('failed');
- }
- };
+  const dispatchSos = async () => {
+  try {
+  if (isOnline) {
+  await triggerSos({ lat: coords.lat, lon: coords.lng });
+  } else {
+  await enqueueSOS({ lat: coords.lat, lon: coords.lng });
+  }
+  if (!cancelled) setDispatchState('dispatched');
+  } catch {
+  await enqueueSOS({ lat: coords.lat, lon: coords.lng }).catch(() => undefined);
+  if (!cancelled) setDispatchState('failed');
+  }
+  };
 
- dispatchSos();
+  dispatchSos();
 
- // 2. Start live family tracking session
- if (userProfile?.name) {
- startFamilyTracking({
- userName: userProfile.name,
- bloodGroup: userProfile.bloodGroup || undefined,
- vehicleNumber: userProfile.vehicleNumber || undefined,
- latitude: coords.lat,
- longitude: coords.lng,
- }).then((session) => {
- setTrackingUrl(session.tracking_url);
- // 3. Begin continuous GPS broadcast
- stopBroadcastRef.current = beginLocationBroadcast(session.session_id);
- // 4. Notify emergency contacts via WhatsApp
- const contacts = userProfile.emergencyContact
- ? [userProfile.emergencyContact]
- : [];
- if (contacts.length > 0) {
- notifyContactsViaWhatsApp(contacts, userProfile.name, session.tracking_url);
- }
- }).catch(() => {
- // Tracking failed silently — SOS still works
- });
- }
+  // 2. Start live family tracking session
+  if (userProfile?.name) {
+  startFamilyTracking({
+  userName: userProfile.name,
+  bloodGroup: userProfile.bloodGroup || undefined,
+  vehicleNumber: userProfile.vehicleNumber || undefined,
+  latitude: coords.lat,
+  longitude: coords.lng,
+  }).then((session) => {
+  setTrackingUrl(session.tracking_url);
+  // 3. Begin continuous GPS broadcast
+  stopBroadcastRef.current = beginLocationBroadcast(session.session_id);
+  // 4. Notify emergency contacts via WhatsApp
+  const contacts = userProfile.emergencyContact
+  ? [userProfile.emergencyContact]
+  : [];
+  if (contacts.length > 0) {
+  notifyContactsViaWhatsApp(contacts, userProfile.name, session.tracking_url);
+  }
+  }).catch(() => {
+  // Tracking failed silently — SOS still works
+  });
+  }
 
- return () => {
- cancelled = true;
- stopBroadcastRef.current?.();
- };
- }, [activated, coords, isOnline, userProfile]);
+  return () => {
+  cancelled = true;
+  stopBroadcastRef.current?.();
+  };
+  }, [activated, coords, isOnline, userProfile]);
 
  useEffect(() => {
  const gpsLoc = coords ? { lat: coords.lat, lon: coords.lng, accuracy: 10, timestamp: Date.now() } : null;

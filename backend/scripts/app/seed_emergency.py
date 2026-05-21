@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from geoalchemy2.elements import WKTElement
@@ -56,7 +56,7 @@ def _write_geojson(path: Path, *, cities: list[str], features: list[dict]) -> No
     payload = {
         'type': 'FeatureCollection',
         'properties': {
-            'generated_at': datetime.utcnow().isoformat(timespec='seconds') + 'Z',
+            'generated_at': datetime.now(timezone.utc).replace(tzinfo=None).isoformat(timespec='seconds') + 'Z',
             'cities': [city.title() for city in cities],
             'source': 'overpass',
             'feature_count': len(features),

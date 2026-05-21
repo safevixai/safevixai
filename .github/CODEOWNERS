@@ -1,0 +1,25 @@
+# CODEOWNERS — SafeVixAI
+# DEVOPS#18 FIX: Added per audit finding
+
+# Root docs and config
+/docs/              @safevixai/core
+/AGENTS.md          @safevixai/core
+/SETUP.md           @safevixai/core
+
+# Backend service
+/backend/           @safevixai/backend
+
+# Chatbot service
+/chatbot_service/   @safevixai/ai
+
+# Frontend PWA
+/frontend/          @safevixai/frontend
+
+# CI/CD workflows
+/.github/workflows/ @safevixai/devops
+
+# Docker configuration
+/docker-compose.yml @safevixai/devops
+
+# Audit and documentation
+/docs/audit/        @safevixai/core

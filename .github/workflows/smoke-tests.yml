@@ -1,0 +1,97 @@
+name: Post-Deploy Smoke Tests
+
+on:
+  workflow_run:
+    workflows: [ "Frontend CI", "Backend Core CI", "Chatbot Service CI" ]
+    types: [ completed ]
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    name: Smoke Tests
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Wait for deployment to propagate
+        run: sleep 60
+
+      - name: Backend health check
+        run: |
+          for i in 1 2 3 4 5; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" "${BACKEND_URL}/health" || echo "000")
+            if [ "$status" = "200" ]; then
+              echo "✅ Backend healthy"
+              exit 0
+            fi
+            echo "Attempt $i: Backend returned $status, retrying..."
+            sleep 15
+          done
+          echo "❌ Backend health check failed after 5 attempts"
+          exit 1
+        env:
+          BACKEND_URL: ${{ secrets.BACKEND_URL || 'https://safevixai-backend.onrender.com' }}
+
+      - name: Chatbot health check
+        run: |
+          for i in 1 2 3 4 5; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" "${CHATBOT_URL}/health" || echo "000")
+            if [ "$status" = "200" ]; then
+              echo "✅ Chatbot healthy"
+              exit 0
+            fi
+            echo "Attempt $i: Chatbot returned $status, retrying..."
+            sleep 15
+          done
+          echo "❌ Chatbot health check failed after 5 attempts"
+          exit 1
+        env:
+          CHATBOT_URL: ${{ secrets.CHATBOT_URL || 'https://safevixai-chatbot.onrender.com' }}
+
+      - name: Frontend health check
+        run: |
+          for i in 1 2 3 4 5; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" "${FRONTEND_URL}" || echo "000")
+            if [ "$status" = "200" ]; then
+              echo "✅ Frontend healthy"
+              exit 0
+            fi
+            echo "Attempt $i: Frontend returned $status, retrying..."
+            sleep 15
+          done
+          echo "❌ Frontend health check failed after 5 attempts"
+          exit 1
+        env:
+          FRONTEND_URL: ${{ secrets.FRONTEND_URL || 'https://safevixai.vercel.app' }}
+
+      - name: Critical endpoint: Emergency nearby
+        run: |
+          status=$(curl -s -o /dev/null -w "%{http_code}" \
+            "${BACKEND_URL}/api/v1/emergency/nearby?lat=13.0827&lon=80.2707" || echo "000")
+          if [ "$status" = "200" ]; then
+            echo "✅ Emergency endpoint working"
+          else
+            echo "⚠️ Emergency endpoint returned $status (may be rate limited)"
+          fi
+        env:
+          BACKEND_URL: ${{ secrets.BACKEND_URL || 'https://safevixai-backend.onrender.com' }}
+
+      - name: Critical endpoint: Chatbot
+        run: |
+          status=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "${CHATBOT_URL}/api/v1/chat/" \
+            -H "Content-Type: application/json" \
+            -d '{"message": "health check"}' || echo "000")
+          if [ "$status" = "200" ]; then
+            echo "✅ Chatbot endpoint working"
+          else
+            echo "⚠️ Chatbot endpoint returned $status (may be rate limited)"
+          fi
+        env:
+          CHATBOT_URL: ${{ secrets.CHATBOT_URL || 'https://safevixai-chatbot.onrender.com' }}

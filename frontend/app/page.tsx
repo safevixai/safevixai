@@ -11,6 +11,7 @@ import {
   ChevronRight, ChevronLeft, AlertTriangle, ShieldCheck,
   MapPin, Navigation, Zap, Activity, Shield, Circle
 } from 'lucide-react';
+import { useShallow } from 'zustand/react/shallow';
 
 // Dynamically load the map without SSR so MapLibre boots only in the browser.
 const MapBackground = dynamic(
@@ -26,13 +27,7 @@ const MapBackground = dynamic(
 
 export default function V2Dashboard() {
   const [isPanelOpen, setIsPanelOpen] = React.useState(true);
-  const {
-    gpsLocation,
-    nearbyServices,
-    nearbyRoadIssues,
-    serviceSearchMeta,
-    connectivity,
-  } = useAppStore();
+  const { gpsLocation, nearbyServices, nearbyRoadIssues, serviceSearchMeta, connectivity } = useAppStore(useShallow((s) => ({ gpsLocation: s.gpsLocation, nearbyServices: s.nearbyServices, nearbyRoadIssues: s.nearbyRoadIssues, serviceSearchMeta: s.serviceSearchMeta, connectivity: s.connectivity })));
 
   const issueCount = nearbyRoadIssues.length;
   const serviceCount = nearbyServices.length;

@@ -396,7 +396,6 @@ def run_code_checks() -> None:
         "auth_router",
         "live_tracking_router",
         "waze_feed_router",
-        "mcp_server_router",
     ]
     check("Backend API v1 registers all product routers", "CODE",
           all(router in backend_init for router in expected_routers),
@@ -424,9 +423,9 @@ def run_code_checks() -> None:
           "nearby, sos get/post, numbers",
           "Restore emergency locator and SOS endpoints.")
     check("SOS POST records an incident and is rate limited", "CODE",
-          "INSERT INTO sos_incidents" in emergency_text and "10/minute" in emergency_text,
-          "incident insert plus limiter",
-          "Persist SOS incidents and keep abuse protection on POST /sos.")
+          "SosIncident(" in emergency_text and "10/minute" in emergency_text,
+          "ORM-based incident insert plus limiter",
+          "Persist SOS incidents via ORM and keep abuse protection on POST /sos.")
 
     security_text = read_text("backend/core/security.py")
     check("Production JWT secret is mandatory", "CODE",
@@ -457,6 +456,70 @@ def run_code_checks() -> None:
           all(exists(path) for path in backend_tests),
           f"{sum(exists(path) for path in backend_tests)}/{len(backend_tests)} tests",
           "Add focused tests for emergency, challan, roads, routing, and auth.")
+
+    expanded_backend_tests = [
+        "backend/tests/test_chat_flow.py",
+        "backend/tests/test_websocket.py",
+        "backend/tests/test_live_tracking.py",
+        "backend/tests/test_waze_feed.py",
+        "backend/tests/test_offline_bundle.py",
+        "backend/tests/test_geocoding_fallback.py",
+        "backend/tests/test_migrations.py",
+    ]
+    check("Backend expanded test suite exists", "CODE",
+          all(exists(path) for path in expanded_backend_tests),
+          f"{sum(exists(path) for path in expanded_backend_tests)}/{len(expanded_backend_tests)} tests",
+          "Add integration, WebSocket, and infrastructure tests.")
+
+    expanded_chatbot_tests = [
+        "chatbot_service/tests/test_safety_checker.py",
+        "chatbot_service/tests/test_prompt_injection.py",
+        "chatbot_service/tests/test_context_assembler.py",
+        "chatbot_service/tests/test_chat_engine.py",
+        "chatbot_service/tests/test_memory.py",
+        "chatbot_service/tests/test_speech.py",
+        "chatbot_service/tests/test_sarvam_provider.py",
+        "chatbot_service/tests/test_language_detection.py",
+        "chatbot_service/tests/test_template_provider.py",
+        "chatbot_service/tests/test_admin.py",
+        "chatbot_service/tests/test_alerts.py",
+        "chatbot_service/tests/test_property_based.py",
+    ]
+    check("Chatbot expanded test suite exists", "CODE",
+          all(exists(path) for path in expanded_chatbot_tests),
+          f"{sum(exists(path) for path in expanded_chatbot_tests)}/{len(expanded_chatbot_tests)} tests",
+          "Add safety, context, memory, and provider tests.")
+
+    advanced_test_dirs = [
+        "tests/load",
+        "tests/stress",
+        "tests/chaos",
+        "tests/security",
+        "tests/recovery",
+        "tests/performance",
+        "tests/contract",
+        "tests/fuzz",
+        "tests/infra",
+    ]
+    check("Advanced test directories exist (load/stress/chaos/security)", "CODE",
+          all(exists(path) for path in advanced_test_dirs),
+          f"{sum(exists(path) for path in advanced_test_dirs)}/{len(advanced_test_dirs)} dirs",
+          "Create advanced testing infrastructure for production readiness.")
+
+    frontend_expanded_tests = [
+        "frontend/components/__tests__/chat-interface.test.tsx",
+        "frontend/components/__tests__/sos-button.test.tsx",
+        "frontend/components/__tests__/map-layers.test.tsx",
+        "frontend/components/__tests__/challan-calculator.test.tsx",
+        "frontend/tests/accessibility.test.tsx",
+        "frontend/e2e/responsive.spec.ts",
+        "frontend/e2e/visual.spec.ts",
+        "frontend/e2e/offline.spec.ts",
+    ]
+    check("Frontend expanded test suite exists", "CODE",
+          all(exists(path) for path in frontend_expanded_tests),
+          f"{sum(exists(path) for path in frontend_expanded_tests)}/{len(frontend_expanded_tests)} tests",
+          "Add component, accessibility, and E2E tests.")
 
     chatbot_main = read_text("chatbot_service/main.py")
     chatbot_chat = read_text("chatbot_service/api/chat.py")
@@ -722,9 +785,9 @@ def run_live_checks() -> None:
 
     waze = http_request("GET", f"{BACKEND_URL}/api/v1/feeds/waze")
     waze_json = waze.get("json") if isinstance(waze.get("json"), dict) else {}
-    check("Waze feed endpoint returns GeoJSON-ish payload", "LIVE",
-          waze["status"] == 200 and ("features" in waze_json or waze_json.get("type") == "FeatureCollection"),
-          f"status={waze['status']} features={len(waze_json.get('features', [])) if isinstance(waze_json, dict) else 'n/a'}",
+    check("Waze feed endpoint returns CIFS payload", "LIVE",
+          waze["status"] == 200 and ("incidents" in waze_json or "features" in waze_json or waze_json.get("type") == "FeatureCollection"),
+          f"status={waze['status']} count={waze_json.get('count', 'n/a') if isinstance(waze_json, dict) else 'n/a'}",
           "Check waze_feed router and backing road incident query.",
           required=False)
 

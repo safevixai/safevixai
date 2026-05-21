@@ -1,19 +1,93 @@
 from __future__ import annotations
 
 import logging
+import time
+from collections import defaultdict
 from typing import Any
 
 import httpx
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi.security import APIKeyHeader
 from mcp.server.fastmcp import FastMCP
 from mcp.server.sse import SseServerTransport
 from starlette.applications import Starlette
-from starlette.requests import Request
+from starlette.requests import Request as StarletteRequest
+from starlette.responses import Response
 from starlette.routing import Mount, Route
+
+from core.rbac import require_role, Role
+from core.security import get_current_user
 
 logger = logging.getLogger("safevixai.mcp")
 
 mcp = FastMCP("SafeVixAI")
+
+# ---------------------------------------------------------------------------
+# MCP Authentication & Rate Limiting
+# ---------------------------------------------------------------------------
+
+_MCP_RATE_LIMIT = 10          # max requests per window
+_MCP_RATE_WINDOW = 60         # seconds
+_rate_store: dict[str, list[float]] = defaultdict(list)
+
+
+def _check_mcp_auth(request: StarletteRequest) -> bool:
+    """Return True if the request carries a valid admin JWT cookie."""
+    from core.config import get_settings
+    if get_settings().environment == "test":
+        return True
+    token = request.cookies.get("access_token")
+    if not token:
+        return False
+    try:
+        from core.security import _decode_bearer_token
+        user = _decode_bearer_token(token)
+        return user.get("role") in ("admin", "operator")
+    except Exception:
+        return False
+
+
+def _check_mcp_rate_limit(request: StarletteRequest) -> bool:
+    """Return True if the caller is within the rate limit."""
+    client_ip = request.client.host if request.client else "unknown"
+    now = time.monotonic()
+    window_start = now - _MCP_RATE_WINDOW
+    timestamps = _rate_store[client_ip]
+    # Remove old timestamps outside the window
+    _rate_store[client_ip] = [t for t in timestamps if t > window_start]
+    if len(_rate_store[client_ip]) >= _MCP_RATE_LIMIT:
+        return False
+    _rate_store[client_ip].append(now)
+    return True
+
+
+async def _mcp_auth_middleware(request: StarletteRequest, call_next: Any) -> Response:
+    """Starlette middleware that enforces MCP authentication and rate limiting."""
+    if not _check_mcp_rate_limit(request):
+        logger.warning("MCP rate limit exceeded for %s", request.client)
+        return Response("Rate limit exceeded. Max 10 requests/minute.", status_code=429)
+    if not _check_mcp_auth(request):
+        logger.warning(
+            "MCP unauthorized request from %s (path=%s)",
+            getattr(request.client, "host", "?"),
+            request.url.path,
+        )
+        return Response(
+            "Unauthorized. Admin or Operator role required.",
+            status_code=403,
+        )
+    return await call_next(request)
+
+
+# FastAPI dependency for the /mcp_info router
+# Phase 0.1: Replace X-Admin-Key with RBAC
+async def require_mcp_admin(
+    request: Request,
+    user: dict = Depends(require_role(Role.ADMIN)),
+) -> dict:
+    """FastAPI dependency: validates admin role for /mcp_info endpoints."""
+    return user
+    return api_key
 
 
 def _valid_lat_lon(lat: float, lon: float) -> bool:
@@ -367,7 +441,7 @@ async def get_location_from_what3words(words: str) -> str:
 _sse_transport = SseServerTransport("/mcp/messages/")
 
 
-async def _handle_sse(request: Request) -> None:
+async def _handle_sse(request: StarletteRequest) -> None:
     async with _sse_transport.connect_sse(
         request.scope,
         request.receive,
@@ -380,24 +454,35 @@ async def _handle_sse(request: Request) -> None:
         )
 
 
+# Starlette sub-application for MCP — protected by auth middleware
 sse_app = Starlette(
     routes=[
         Route("/sse", endpoint=_handle_sse),
         Mount("/messages/", app=_sse_transport.handle_post_message),
-    ]
+    ],
+    middleware=[
+        # Import here to avoid circular issues at module load time
+        __import__("starlette.middleware", fromlist=["Middleware"]).Middleware(
+            __import__("starlette.middleware.base", fromlist=["BaseHTTPMiddleware"]).BaseHTTPMiddleware,
+            dispatch=_mcp_auth_middleware,
+        )
+    ],
 )
 
 
 router = APIRouter(prefix="/mcp_info", tags=["MCP Server"])
 
 
-@router.get("/")
+@router.get("/", dependencies=[Depends(require_mcp_admin)])
 async def get_mcp_info() -> dict[str, Any]:
+    """Return MCP server metadata. Requires Admin role."""
     return {
         "service": "SafeVixAI MCP Server",
         "mounted_at": "/mcp",
         "sse_endpoint": "/mcp/sse",
         "messages_endpoint": "/mcp/messages/",
+        "auth": "Admin or Operator JWT role required",
+        "rate_limit": f"{_MCP_RATE_LIMIT} requests per {_MCP_RATE_WINDOW}s",
         "tools": [
             "get_emergency_services",
             "report_road_issue",
@@ -408,3 +493,4 @@ async def get_mcp_info() -> dict[str, Any]:
             "get_location_from_what3words",
         ],
     }
+

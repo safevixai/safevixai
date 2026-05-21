@@ -10,9 +10,9 @@ influenced_by: Linear (sidebar precision + dark depth) + VoltAgent (terminal ene
 
 # SafeVixAI — Complete Design System
 
-## Current UI/UX Audit - 2026-05-17 (Enterprise GSAP Migration Complete)
+## Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)
 
-SafeVixAI's frontend has achieved **100% Enterprise-grade GSAP migration**. The build passes perfectly, Framer Motion has been completely purged, and all routes utilize the unified `usePageEntry` GSAP stagger animation. Advanced performance hardening (will-change, memoization) ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.
+SafeVixAI's frontend has achieved **100% Enterprise-grade GSAP migration**. All route entries use the unified `usePageEntry` GSAP stagger animation with GPU-composited properties (transform, opacity) and strict `will-change` management. Framer Motion source imports are fully removed (orphaned dependency remains in package-lock.json — run `npm uninstall framer-motion` to clean). Advanced performance hardening ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.
 
 Current gaps to close:
 
@@ -159,7 +159,7 @@ Standard card padding: **16px**. Feature card padding: **20px**. Emergency card:
 Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.
 
 Layout dimensions:
-- Sidebar: 280px wide, full height, fixed
+- Sidebar: 192px wide (desktop), 280px (expanded with emergency dial), full height, fixed
 - Header: 52px tall
 - Bottom nav (mobile): 64px tall
 - Emergency dial bar (sidebar bottom): 80px
@@ -352,7 +352,7 @@ Emergency: bg #DC2626; animation: pulse 0.8s ease-in-out infinite;
 
 **Sidebar (desktop)**
 ```css
-bg: #0D1119; width: 280px; height: 100vh; position: fixed; left: 0;
+bg: #0D1119; width: 192px (collapsed) / 280px (expanded); height: 100vh; position: fixed; left: 0;
 border-right: 1px solid rgba(255,255,255,0.06);
 
 App name: 15px/700 #F0F4F8 — "SafeVixAI"
@@ -655,7 +655,7 @@ Footer: "Your emergency shortcuts remain available from the home screen"
 |---|---|
 | < 768px | No sidebar. Bottom nav 64px. SOS float bottom-right. Full-width cards. |
 | 768–1024px | Sidebar icons-only 48px. No bottom nav. |
-| > 1024px | Full sidebar 192px. No bottom nav. Emergency dial pinned. |
+| > 1024px (desktop) | Full sidebar 192px. No bottom nav. Emergency dial pinned. |
 
 Map: `height: calc(100vh - 52px)` desktop. `height: calc(100vh - 52px - 64px)` mobile.
 Chat: `height: calc(100dvh - 52px - 64px)` mobile to fix blank screen bug.

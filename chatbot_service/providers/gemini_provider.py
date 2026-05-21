@@ -4,6 +4,9 @@ Env vars: GEMINI_API_KEY, GEMINI_MODEL (optional, default: gemini-1.5-flash)
 
 NOTE: Gemini uses its own REST endpoint format, not the OpenAI-compatible one.
 We translate the OpenAI messages format to Gemini's contents format here.
+
+P0-09 FIX (audit H4): API key moved from URL query param to x-goog-api-key header
+to prevent key exposure in server access logs, proxy logs, and browser history.
 """
 from __future__ import annotations
 
@@ -61,8 +64,14 @@ class GeminiProvider(HttpProvider):
                 "parts": [{"text": "\n\n".join(system_text_parts)}]
             }
 
-        url = f"{GEMINI_BASE}/{model}:generateContent?key={api_key}"
-        resp = await self._get_client().post(url, json=body)
+        url = f"{GEMINI_BASE}/{model}:generateContent"
+        # P0-09: Use x-goog-api-key header instead of URL query param
+        # Prevents API key from appearing in server access logs, proxy logs, and browser history
+        headers = {
+            "x-goog-api-key": api_key,
+            "Content-Type": "application/json",
+        }
+        resp = await self._get_client().post(url, json=body, headers=headers)
         raise_for_provider_status(resp, provider=self.name, model=model)
 
         data = resp.json()

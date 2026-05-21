@@ -3,16 +3,11 @@
 import React from 'react';
 import { useAppStore } from '../lib/store';
 import { ChevronRight, ChevronLeft, AlertTriangle, ShieldCheck, MapPin, Navigation, Zap, Activity, Shield, Circle } from 'lucide-react';
+import { useShallow } from 'zustand/react/shallow';
 
 export function RightSidebar() {
   const [isPanelOpen, setIsPanelOpen] = React.useState(false);
-  const {
-    gpsLocation,
-    nearbyServices,
-    nearbyRoadIssues,
-    serviceSearchMeta,
-    connectivity,
-  } = useAppStore();
+  const { gpsLocation, nearbyServices, nearbyRoadIssues, serviceSearchMeta, connectivity } = useAppStore(useShallow((s) => ({ gpsLocation: s.gpsLocation, nearbyServices: s.nearbyServices, nearbyRoadIssues: s.nearbyRoadIssues, serviceSearchMeta: s.serviceSearchMeta, connectivity: s.connectivity })));
 
   const issueCount = nearbyRoadIssues.length;
   const serviceCount = nearbyServices.length;

@@ -28,17 +28,11 @@ import ProfileCard from '@/components/dashboard/ProfileCard';
 import Toggle from '@/components/dashboard/Toggle';
 import Toast from '@/components/dashboard/Toast';
 import { usePageEntry } from '@/hooks/usePageEntry';
+import { useShallow } from 'zustand/react/shallow';
 
 export default function SettingsPage() {
   const router = useRouter();
-  const {
-    crashDetectionEnabled,
-    setCrashDetectionEnabled,
-    isAuthenticated,
-    operatorName,
-    clearAuth,
-    userProfile,
-  } = useAppStore();
+  const { crashDetectionEnabled, setCrashDetectionEnabled, isAuthenticated, operatorName, clearAuth, userProfile } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, isAuthenticated: s.isAuthenticated, operatorName: s.operatorName, clearAuth: s.clearAuth, userProfile: s.userProfile })));
   const { theme, setTheme } = useTheme();
   const pageRef = usePageEntry();
 

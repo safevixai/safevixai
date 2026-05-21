@@ -1,16 +1,21 @@
 from __future__ import annotations
 
 import json
+from collections import OrderedDict
 from datetime import datetime, timezone
 from typing import Any
 
 from redis.asyncio import Redis
 
+# S21/C13: Cap in-memory fallback to avoid unbounded growth when Redis is down.
+_MAX_IN_MEMORY_SESSIONS = 500
+
 
 class ConversationMemoryStore:
     def __init__(self, redis_url: str | None, *, session_ttl_seconds: int = 86400) -> None:
         self._client = Redis.from_url(redis_url, encoding='utf-8', decode_responses=True) if redis_url else None
-        self._memory: dict[str, list[dict[str, Any]]] = {}
+        # Use OrderedDict so we can evict the oldest session (LRU-lite) when the cap is hit
+        self._memory: OrderedDict[str, list[dict[str, Any]]] = OrderedDict()
         self._redis_healthy = self._client is not None
         self._session_ttl_seconds = session_ttl_seconds
 
@@ -33,7 +38,12 @@ class ConversationMemoryStore:
             'metadata': metadata or {},
             'timestamp': datetime.now(timezone.utc).isoformat(),
         }
+        # LRU-lite: move touched session to end; evict oldest if cap exceeded
+        if session_id in self._memory:
+            self._memory.move_to_end(session_id)
         self._memory.setdefault(session_id, []).append(payload)
+        while len(self._memory) > _MAX_IN_MEMORY_SESSIONS:
+            self._memory.popitem(last=False)  # evict the oldest session
         if self._client is not None:
             try:
                 await self._client.rpush(self._key(session_id), json.dumps(payload))

@@ -1,15 +1,15 @@
 """add privacy retention cleanup function
 
-Revision ID: 10005_data_retention_cleanup
-Revises: 10004_first_aid_chat_logs_vector
+Revision ID: 10005_data_retention
+Revises: 10004_chat_logs_vector
 Create Date: 2026-05-16 00:05:00.000000
 """
 
 from alembic import op
 
 
-revision = '10005_data_retention_cleanup'
-down_revision = '10004_first_aid_chat_logs_vector'
+revision = '10005_data_retention'
+down_revision = '10004_chat_logs_vector'
 branch_labels = None
 depends_on = None
 

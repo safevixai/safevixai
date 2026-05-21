@@ -6,13 +6,14 @@ import { useAppStore } from '@/lib/store';
 import { generateSosWhatsAppLink, generateSosSmsLink } from '@/lib/sos-share';
 import { haptics } from '@/lib/haptics';
 import { sounds } from '@/lib/sounds';
+import { useShallow } from 'zustand/react/shallow';
 
 /**
  * SOSButton — Pulsative Tactical Emergency Trigger
  * Features: Double-tap verification, pulse animation, WhatsApp + SMS share.
  */
 export function SOSButton() {
- const { userProfile, gpsLocation, soundsEnabled } = useAppStore();
+ const { userProfile, gpsLocation, soundsEnabled } = useAppStore(useShallow((s) => ({ userProfile: s.userProfile, gpsLocation: s.gpsLocation, soundsEnabled: s.soundsEnabled })));
  const [isExpanding, setIsExpanding] = useState(false);
 
  const triggerWhatsApp = async () => {

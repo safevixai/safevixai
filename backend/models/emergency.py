@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from datetime import datetime
 
@@ -13,6 +13,7 @@ class EmergencyService(Base):
     __tablename__ = 'emergency_services'
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    org_id: Mapped[str | None] = mapped_column(String(36), nullable=True, index=True)  # Phase 0.6: Multi-tenant isolation
     osm_id: Mapped[int | None] = mapped_column(BigInteger, unique=True, nullable=True)
     osm_type: Mapped[str | None] = mapped_column(String(32), nullable=True)
     name: Mapped[str] = mapped_column(Text, nullable=False)
@@ -40,5 +41,5 @@ class EmergencyService(Base):
     source: Mapped[str] = mapped_column(String(32), default='overpass')
     raw_tags: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     verified: Mapped[bool] = mapped_column(Boolean, default=False)
-    last_updated: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    last_updated: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))

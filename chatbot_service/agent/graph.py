@@ -3,6 +3,7 @@ from __future__ import annotations
 from uuid import uuid4
 
 from agent.context_assembler import ContextAssembler
+from agent.governance import AIGovernance
 from agent.intent_detector import IntentDetector
 from agent.safety_checker import SafetyChecker
 from agent.state import ChatRequest, ChatResponse
@@ -22,6 +23,7 @@ class ChatEngine:
         safety_checker: SafetyChecker,
         context_assembler: ContextAssembler,
         provider_router: ProviderRouter,
+        redis_url: str | None = None,
     ) -> None:
         self.memory_store = memory_store
         self.vectorstore = vectorstore
@@ -29,6 +31,8 @@ class ChatEngine:
         self.safety_checker = safety_checker
         self.context_assembler = context_assembler
         self.provider_router = provider_router
+        # Phase 0.7: AI governance
+        self.governance = AIGovernance(redis_url)
 
     async def chat(self, payload: ChatRequest) -> ChatResponse:
         session_id = payload.session_id or str(uuid4())
@@ -87,18 +91,45 @@ class ChatEngine:
             )
         )
 
+        # Phase 0.7: AI governance evaluation
+        governance_result = await self.governance.evaluate(
+            response_text=provider_result.text,
+            retrieved_context=[
+                {"content": item.snippet, "source": item.source, "title": item.title}
+                for item in context.retrieved
+            ],
+            tool_results=[{"payload": tool.payload} for tool in context.tools],
+            prompt=payload.message,
+        )
+
+        # Add governance metadata to response
+        response_text = provider_result.text
+        if governance_result.flagged:
+            response_text = f"[⚠️ Low confidence] {response_text}"
+        
         sources = self._dedupe_sources(
             [source for tool in context.tools for source in tool.sources]
             + [item.source for item in context.retrieved]
+            + governance_result.citations
         )
+        
         await self.memory_store.append_message(
             session_id,
             'assistant',
-            provider_result.text,
-            metadata={'intent': intent, 'sources': sources},
+            response_text,
+            metadata={
+                'intent': intent,
+                'sources': sources,
+                'governance': {
+                    'hallucination_score': governance_result.hallucination_score,
+                    'factuality_score': governance_result.factuality_score,
+                    'flagged': governance_result.flagged,
+                    'prompt_version': governance_result.prompt_version,
+                }
+            },
         )
         return ChatResponse(
-            response=provider_result.text,
+            response=response_text,
             intent=intent,
             sources=sources,
             session_id=session_id,
@@ -124,3 +155,7 @@ class ChatEngine:
             seen.add(value)
             deduped.append(value)
         return deduped
+
+    async def close(self) -> None:
+        """Close governance resources."""
+        await self.governance.close()

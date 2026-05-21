@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import asyncio
 import logging
+import html
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +39,10 @@ async def chat(
         # X-Forwarded-For is set by Render's reverse proxy; prefer it over the direct socket IP
         forwarded = request.headers.get('x-forwarded-for', '')
         payload.client_ip = forwarded.split(',')[0].strip() or (request.client.host if request.client else None)
-    return await engine.chat(payload)
+    result = await engine.chat(payload)
+    # P1-08: Sanitize LLM output to prevent XSS
+    result.response = html.escape(result.response)
+    return result
 
 
 @router.post('/stream')
@@ -62,7 +66,7 @@ async def chat_stream(
             # Run the chat engine (it's not a streaming LLM yet — we simulate
             # character-by-character streaming from the full response for smooth UX)
             result: ChatResponse = await engine.chat(payload)
-            full_text: str = result.response
+            full_text: str = html.escape(result.response)
 
             # Stream word-by-word (looks live to the user, works with any provider)
             words = full_text.split(' ')
@@ -100,16 +104,18 @@ async def chat_stream(
 
 @router.get('/history/{session_id}')
 async def get_history(
+    request: Request,
     session_id: str = Path(min_length=1, max_length=128, pattern=r"^[A-Za-z0-9_.:-]+$"),
     x_admin_secret: str | None = Header(default=None),
     engine: ChatEngine = Depends(get_engine),
 ) -> dict:
     settings = get_settings()
-    if not settings.admin_secret or x_admin_secret != settings.admin_secret:
+    import hmac
+    if not settings.admin_secret or not hmac.compare_digest(x_admin_secret or '', settings.admin_secret):
         raise HTTPException(status_code=403, detail='Chat history access requires admin authorization')
     return {'session_id': session_id, 'messages': await engine.get_history(session_id)}
 
 
 @router.get('/health')
-async def health() -> dict:
+async def health(request: Request) -> dict:
     return {'status': 'ok', 'service': 'safevixai-chatbot'}

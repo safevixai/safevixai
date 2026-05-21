@@ -12,6 +12,14 @@ export function usePageEntry() {
     () => {
       if (!containerRef.current) return;
 
+      // P0-08: Accessibility — Respect user's motion preferences
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        gsap.set(containerRef.current.children, { opacity: 1, y: 0 });
+        return;
+      }
+
       // Stagger children in from bottom - fast, professional
       gsap.fromTo(
         containerRef.current.children,

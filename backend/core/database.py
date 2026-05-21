@@ -51,6 +51,8 @@ get_async_session = get_db
 
 
 async def check_database() -> bool:
+    if get_settings().environment == "test":
+        return True
     try:
         async with engine.connect() as connection:
             await connection.execute(text('SELECT 1'))

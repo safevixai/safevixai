@@ -167,6 +167,37 @@ class AlertService:
             ],
         )
 
+    def alert_circuit_breaker_tripped(
+        self,
+        provider: str,
+        duration_seconds: int,
+        error_type: str,
+        error_message: str,
+    ):
+        """Alert when a provider circuit breaker trips (C12)."""
+        duration_min = duration_seconds // 60
+        self._send(
+            alert_type=f"circuit_breaker_{provider}",
+            subject=f"⚡ Circuit Breaker Tripped: {provider}",
+            details=(
+                f"Provider: {provider}\n"
+                f"Disabled for: {duration_min} minutes\n"
+                f"Error type: {error_type}\n"
+                f"Error: {error_message[:200]}"
+            ),
+            solutions=[
+                f"CHECK {provider.upper()} STATUS — The provider may be down or rate-limited:\n"
+                f"  • Verify API key is valid and has remaining quota\n"
+                f"  • Check provider status page for outages",
+                "WAIT FOR AUTOMATIC RECOVERY — Circuit breakers auto-reset:\n"
+                f"  • This provider will be re-enabled after {duration_min} minutes\n"
+                "  • The fallback chain continues serving requests",
+                "CONSIDER PROVIDER REPLACEMENT — If this happens frequently:\n"
+                "  • Update .env to use a different primary provider\n"
+                "  • Consider upgrading to paid tier for higher rate limits",
+            ],
+        )
+
     def alert_wiki_generation_failed(self, module_name: str, consecutive_fails: int, error_msg: str):
         """Alert when automated Wiki generation fails persistently via LLM chain."""
         self._send(

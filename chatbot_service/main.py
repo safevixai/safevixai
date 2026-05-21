@@ -1,10 +1,17 @@
 from __future__ import annotations
 
+import json
+import logging
+import sys
+import time
+import uuid
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+import sentry_sdk
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
+from cache.llm_cache import LLMResponseCache
 from agent.context_assembler import ContextAssembler
 from agent.graph import ChatEngine
 from agent.intent_detector import IntentDetector
@@ -38,8 +45,53 @@ from tools import (
 )
 
 
+# P2-02: Structured JSON logging (audit H35) — mirrors backend/main.py
+class _JsonFormatter(logging.Formatter):
+    def format(self, record: logging.LogRecord) -> str:
+        payload: dict = {
+            "ts": self.formatTime(record, datefmt="%Y-%m-%dT%H:%M:%S"),
+            "level": record.levelname,
+            "logger": record.name,
+            "msg": record.getMessage(),
+        }
+        if record.exc_info:
+            payload["exc"] = self.formatException(record.exc_info)
+        for key in ("request_id", "method", "path", "status", "duration_ms"):
+            if hasattr(record, key):
+                payload[key] = getattr(record, key)
+        return json.dumps(payload, ensure_ascii=False)
+
+
+def _configure_logging(environment: str) -> None:
+    root = logging.getLogger()
+    root.setLevel(logging.INFO)
+    root.handlers.clear()
+    handler = logging.StreamHandler(sys.stdout)
+    if environment == "production":
+        handler.setFormatter(_JsonFormatter())
+    else:
+        handler.setFormatter(
+            logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+        )
+    root.addHandler(handler)
+    logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
+
+
+logger = logging.getLogger("safevixai.chatbot")
+
+
 def create_app() -> FastAPI:
     settings = get_settings()
+    _configure_logging(settings.environment)
+
+    # OBSERVABILITY#1: Sentry error tracking (free tier: 5K errors/month)
+    if settings.sentry_dsn:
+        sentry_sdk.init(
+            dsn=settings.sentry_dsn,
+            environment=settings.environment,
+            traces_sample_rate=0.1,
+            profiles_sample_rate=0.1,
+        )
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
@@ -78,22 +130,40 @@ def create_app() -> FastAPI:
             weather_tool=weather_tool,
             drug_info_tool=drug_info_tool,
         )
+        
+        # C9: Initialize LLM response cache
+        llm_cache = LLMResponseCache(settings.redis_url)
+        
         chat_engine = ChatEngine(
             memory_store=memory_store,
             vectorstore=vectorstore,
             intent_detector=IntentDetector(),
             safety_checker=SafetyChecker(),
             context_assembler=context_assembler,
-            provider_router=ProviderRouter(settings),
+            provider_router=ProviderRouter(settings, cache=llm_cache),
+            redis_url=settings.redis_url,  # Phase 0.7: AI governance audit trail
         )
 
         app.state.memory_store = memory_store
         app.state.chat_engine = chat_engine
         app.state.speech_service = speech_service
+        app.state.llm_cache = llm_cache
+
+        # S15/C7: Preload speech model at startup so the first real request
+        # doesn't incur a multi-second cold-start delay (audit finding).
+        # _ensure_model_loaded is synchronous (HuggingFace model load), so run in executor.
+        try:
+            import asyncio
+            loop = asyncio.get_event_loop()
+            await loop.run_in_executor(None, speech_service._ensure_model_loaded)
+            logger.info("IndicSeamless speech model preloaded successfully")
+        except Exception as _exc:  # model may be unavailable in CI / free tier
+            logger.warning("Speech model preload skipped: %s", _exc)
 
         try:
             yield
         finally:
+            await chat_engine.close()  # Phase 0.7: Close governance resources
             await weather_tool.aclose()
             await backend_client.aclose()
             await w3w_tool.aclose()
@@ -101,6 +171,7 @@ def create_app() -> FastAPI:
             await drug_info_tool.aclose()
             await submit_report_tool.aclose()
             await memory_store.close()
+            await llm_cache.close()
 
     docs_url = None if settings.environment == 'production' else '/docs'
     redoc_url = None if settings.environment == 'production' else '/redoc'
@@ -117,12 +188,53 @@ def create_app() -> FastAPI:
         CORSMiddleware,
         allow_origins=settings.cors_origins,
         allow_credentials=True,
-        allow_methods=['*'],
-        allow_headers=['*'],
+        # P0-04: Restrict methods and headers (audit issue H2)
+        allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        allow_headers=[
+            "Authorization",
+            "Content-Type",
+            "Accept",
+            "X-Admin-Key",
+            "X-Request-ID",
+            "X-Requested-With",
+        ],
     )
     
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+    # P2-02: Request-ID correlation middleware
+    @app.middleware("http")
+    async def _security_headers_middleware(request: Request, call_next):
+        response = await call_next(request)
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Content-Security-Policy"] = "default-src 'self'"
+        return response
+
+    @app.middleware("http")
+    async def _request_id_middleware(request: Request, call_next):
+        request_id = request.headers.get("X-Request-ID") or str(uuid.uuid4())
+        start = time.monotonic()
+        response = await call_next(request)
+        duration_ms = round((time.monotonic() - start) * 1000, 1)
+        response.headers["X-Request-ID"] = request_id
+        logger.info(
+            "%s %s → %d (%.1fms)",
+            request.method,
+            request.url.path,
+            response.status_code,
+            duration_ms,
+            extra={
+                "request_id": request_id,
+                "method": request.method,
+                "path": request.url.path,
+                "status": response.status_code,
+                "duration_ms": duration_ms,
+            },
+        )
+        return response
 
     @app.get('/health', tags=['System'])
     async def health() -> dict:

@@ -132,15 +132,28 @@ class OverpassService:
     async def _execute_query(self, query: str) -> dict:
         last_error: Exception | None = None
         for index, url in enumerate(self.settings.overpass_urls):
-            try:
-                response = await self._client.post(url, data={'data': query})
-                response.raise_for_status()
-                return response.json()
-            except httpx.HTTPError as exc:
-                last_error = exc
-                logger.warning("Overpass mirror %s failed: %s", url, exc)
-                if index < len(self.settings.overpass_urls) - 1:
-                    await asyncio.sleep(self.settings.upstream_retry_backoff_seconds)
+            # P1-06: Exponential backoff for Overpass API to handle 429s (audit H26)
+            for attempt in range(self.settings.upstream_retry_attempts + 1):
+                try:
+                    response = await self._client.post(url, data={'data': query})
+                    response.raise_for_status()
+                    return response.json()
+                except httpx.HTTPStatusError as exc:
+                    last_error = exc
+                    if exc.response.status_code not in (429, 500, 502, 503, 504):
+                        break  # Non-retryable error, try next mirror if any
+                    
+                    logger.warning("Overpass mirror %s failed (attempt %d): %s", url, attempt + 1, exc)
+                    if attempt < self.settings.upstream_retry_attempts:
+                        backoff = self.settings.upstream_retry_backoff_seconds * (2 ** attempt)
+                        await asyncio.sleep(backoff)
+                except httpx.RequestError as exc:
+                    last_error = exc
+                    logger.warning("Overpass mirror %s connection error: %s", url, exc)
+                    break  # Try next mirror
+            
+            if index < len(self.settings.overpass_urls) - 1:
+                await asyncio.sleep(self.settings.upstream_retry_backoff_seconds)
         # All mirrors exhausted — alert the team
         get_alert_service().alert_external_api_failed(
             service_name="Overpass API (Emergency Locator)",

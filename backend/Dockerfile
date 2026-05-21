@@ -1,4 +1,10 @@
-FROM python:3.11-slim
+# ────────────────────────────────────────────────────────────────
+# Backend — FastAPI + PostGIS (multi-stage build)
+# DEVOPS#9 FIX: Converted from single-stage to multi-stage per audit
+# ────────────────────────────────────────────────────────────────
+
+# Stage 1: Builder — install build deps and compile wheels
+FROM python:3.11-slim AS builder
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -14,7 +20,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements-render.txt ./requirements-render.txt
-RUN pip install --upgrade pip && pip install -r requirements-render.txt
+RUN pip install --upgrade pip && pip wheel --no-cache-dir --wheel-dir /wheels -r requirements-render.txt
+
+# Stage 2: Runner — copy only wheels and app code
+FROM python:3.11-slim AS runner
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+# Copy compiled wheels from builder
+COPY --from=builder /wheels /wheels
+COPY requirements-render.txt ./requirements-render.txt
+RUN pip install --no-cache-dir /wheels/* && rm -rf /wheels
 
 COPY . .
 

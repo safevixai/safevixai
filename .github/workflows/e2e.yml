@@ -1,4 +1,4 @@
-name: Frontend Unit Tests
+name: Frontend E2E & Integration Tests
 
 on:
   push:
@@ -14,9 +14,13 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  vitest:
-    name: Vitest Test Suite
+  unit-tests:
+    name: Jest Unit Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,18 +36,17 @@ jobs:
         working-directory: ./frontend
         run: npm ci --legacy-peer-deps
 
-      - name: Run Tests
+      - name: Run Jest Tests
         working-directory: ./frontend
-        run: |
-          if npm run test -- --passWithNoTests 2>/dev/null; then
-            echo "Tests passed."
-          else
-            npm run test -- --reporter=verbose || echo "No test suite configured yet."
-          fi
+        run: npm test -- --passWithNoTests
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+          NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010
 
   sos-e2e:
     name: SOS E2E Flow
     runs-on: ubuntu-latest
+    needs: unit-tests
     steps:
       - uses: actions/checkout@v4
 
@@ -58,27 +61,41 @@ jobs:
         working-directory: ./frontend
         run: npm ci --legacy-peer-deps
 
-      - name: Install Chromium
+      - name: Install Playwright browsers
         working-directory: ./frontend
         run: npx playwright install --with-deps chromium
 
-      - name: Build frontend
+      - name: Build frontend (standalone)
         working-directory: ./frontend
         env:
           NEXT_PUBLIC_API_URL: http://localhost:8000
           NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010
-        run: npm run build
+        run: |
+          npm run build
+          # Copy public assets to standalone build for E2E tests
+          cp -r public .next/standalone/public
 
-      - name: Run SOS flow
+      - name: Run E2E tests
         working-directory: ./frontend
         env:
-          E2E_BASE_URL: http://127.0.0.1:3000
-          E2E_PORT: "3000"
-        run: npm run test:e2e
+          CI: 'true'
+          E2E_BASE_URL: http://127.0.0.1:3100
+          E2E_PORT: "3100"
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+          NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010
+        run: npx playwright test e2e/sos-flow.spec.ts
+
+      - name: Upload E2E results
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: sos-e2e-results
+          path: frontend/test-results/
+          retention-days: 7
 
   deploy:
     name: Deploy to Vercel
-    needs: [vitest, sos-e2e]
+    needs: [unit-tests, sos-e2e]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
