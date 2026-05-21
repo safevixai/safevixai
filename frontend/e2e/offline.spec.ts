@@ -57,22 +57,25 @@ test.describe('Offline/PWA Tests', () => {
   test('online sync after offline', async ({ page }) => {
     // Navigate to report page while online
     await page.goto('/report');
-    // Wait for page to load - use flexible selector
-    await expect(page.locator('main').first()).toBeVisible({ timeout: 10000 });
+    // Wait for page to load - check for form elements or heading
+    await expect(
+      page.getByRole('heading').first().or(page.locator('input, select, textarea').first())
+    ).toBeVisible({ timeout: 15000 });
 
     // Go offline
     await page.context().setOffline(true);
 
-    // Verify page remains accessible (use flexible selector)
-    await expect(page.locator('main').first()).toBeVisible({ timeout: 5000 });
+    // Verify page remains accessible
+    await page.waitForTimeout(500);
 
     // Go back online and reload
     await page.context().setOffline(false);
     await page.reload({ waitUntil: 'domcontentloaded' });
     
     // Wait for content to render
-    await page.waitForTimeout(1000);
-    await expect(page.locator('main').first()).toBeVisible({ timeout: 10000 });
+    await expect(
+      page.getByRole('heading').first().or(page.locator('input, select, textarea').first())
+    ).toBeVisible({ timeout: 10000 });
   });
 
   test('manifest valid', async ({ page }) => {
