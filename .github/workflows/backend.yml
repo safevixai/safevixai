@@ -73,10 +73,10 @@ jobs:
         env:
           DATABASE_URL: postgresql+asyncpg://svai:svai_test_password@localhost:5432/safevixai_test
 
-      - name: Run Pytest
+      - name: Run Pytest with Coverage
         working-directory: ./backend
         run: |
-          pytest tests/ -v --tb=short
+          pytest tests/ -v --tb=short --cov=. --cov-report=term-missing --cov-report=xml:coverage.xml
         env:
           DATABASE_URL: postgresql+asyncpg://svai:svai_test_password@localhost:5432/safevixai_test
           REDIS_URL: redis://localhost:6379/0
@@ -84,3 +84,29 @@ jobs:
           SUPABASE_ANON_KEY: "stub"
           SUPABASE_SERVICE_ROLE_KEY: "stub"
           ENVIRONMENT: "test"
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: backend-coverage
+          path: backend/coverage.xml
+          retention-days: 14
+
+      - name: Check Coverage Threshold
+        working-directory: ./backend
+        run: |
+          COVERAGE=$(python -c "
+          import xml.etree.ElementTree as ET
+          tree = ET.parse('coverage.xml')
+          root = tree.getroot()
+          lines_valid = int(root.get('lines-valid'))
+          lines_covered = int(root.get('lines-covered'))
+          print(f'{(lines_covered / lines_valid) * 100:.1f}')
+          ")
+          echo "Backend coverage: ${COVERAGE}%"
+          if (( $(echo "$COVERAGE < 70.0" | bc -l) )); then
+            echo "❌ Coverage ${COVERAGE}% is below 70% threshold"
+            exit 1
+          fi
+          echo "✅ Coverage ${COVERAGE}% meets 70% threshold"
