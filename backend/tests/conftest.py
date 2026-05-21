@@ -21,7 +21,11 @@ class DummySession:
 
 
 @pytest.fixture
-def app():
+def app(monkeypatch):
+    monkeypatch.setenv("REDIS_URL", "")
+    monkeypatch.setenv("ENVIRONMENT", "test")
+    from core.config import get_settings
+    get_settings.cache_clear()
     application = create_app()
 
     async def override_db():

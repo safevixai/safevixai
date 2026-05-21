@@ -31,15 +31,19 @@ def _is_valid_tracking_payload(payload: object) -> bool:
         return False
     lat = payload.get("lat", payload.get("latitude"))
     lon = payload.get("lon", payload.get("longitude"))
+    if lat is None or lon is None:
+        return False
     return _is_valid_location(lat, minimum=-90, maximum=90) and _is_valid_location(lon, minimum=-180, maximum=180)
 
 
 def _origin_allowed(origin: str | None) -> bool:
     settings = get_settings()
     allowed = settings.cors_origins
+    if not origin:
+        return settings.environment != 'production' or '*' in allowed
     if '*' in allowed:
         return settings.environment != 'production'
-    return bool(origin and origin.rstrip('/') in {item.rstrip('/') for item in allowed})
+    return origin.rstrip('/') in {item.rstrip('/') for item in allowed}
 
 
 def _is_valid_ws_token(token: str | None) -> bool:

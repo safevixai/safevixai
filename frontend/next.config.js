@@ -1,6 +1,12 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+let withBundleAnalyzer = (cfg) => cfg;
+try {
+  withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+  });
+} catch (_) {
+  // @next/bundle-analyzer not installed; skipping
+}
+
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 // Extract valid backend origins for CSP connect-src

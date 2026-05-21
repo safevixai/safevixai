@@ -135,8 +135,8 @@ def test_emergency_locator_expands_radius_and_merges_overpass():
 
     async def fake_query_database(*, radius_meters: int, **kwargs):
         if radius_meters == 500:
-            return []
-        return [
+            return [], 0
+        items = [
             EmergencyServiceItem(
                 id='db-1',
                 name='Database Police Station',
@@ -148,6 +148,7 @@ def test_emergency_locator_expands_radius_and_merges_overpass():
                 source='database',
             )
         ]
+        return items, len(items)
 
     service._query_database = fake_query_database  # type: ignore[method-assign]
 
@@ -187,8 +188,8 @@ def test_emergency_locator_returns_database_results_when_overpass_fails():
 
     async def fake_query_database(*, radius_meters: int, **kwargs):
         if radius_meters < 5000:
-            return []
-        return [
+            return [], 0
+        items = [
             EmergencyServiceItem(
                 id='db-1',
                 name='Database Police Station',
@@ -200,6 +201,7 @@ def test_emergency_locator_returns_database_results_when_overpass_fails():
                 source='database',
             )
         ]
+        return items, len(items)
 
     service._query_database = fake_query_database  # type: ignore[method-assign]
 
@@ -261,7 +263,7 @@ def test_emergency_locator_uses_local_catalog_before_overpass():
     ]
 
     async def fake_query_database(*, radius_meters: int, **kwargs):
-        return []
+        return [], 0
 
     service._query_database = fake_query_database  # type: ignore[method-assign]
 

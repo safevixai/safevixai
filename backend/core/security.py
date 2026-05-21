@@ -170,8 +170,15 @@ async def get_current_user_optional(
     """Return the authenticated caller when a valid bearer token is present."""
     token = request.cookies.get("access_token")
     if token is None:
+        auth_header = request.headers.get("Authorization")
+        if auth_header and auth_header.startswith("Bearer "):
+            token = auth_header[7:]
+    if token is None:
         return None
-    return _decode_bearer_token(token)
+    try:
+        return _decode_bearer_token(token)
+    except Exception:
+        return None
 
 
 async def get_current_user(

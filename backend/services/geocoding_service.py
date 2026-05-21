@@ -26,7 +26,14 @@ class GeocodingError(ExternalServiceError):
 
 
 class GeocodingService:
-    def __init__(self, settings: Settings, cache: CacheHelper) -> None:
+    def __init__(
+        self,
+        settings: Settings,
+        cache: CacheHelper | None = None,
+        photon_client=None,
+        nominatim_client=None,
+        bigdata_client=None,
+    ) -> None:
         self.settings = settings
         self.cache = cache
         self._client = httpx.AsyncClient(
@@ -35,11 +42,45 @@ class GeocodingService:
         )
         self._rate_limit_lock = asyncio.Lock()
         self._last_nominatim_request_at = 0.0
+        self.photon_client = photon_client
+        self.nominatim_client = nominatim_client
+        self.bigdata_client = bigdata_client
 
     async def aclose(self) -> None:
         await self._client.aclose()
 
+    async def reverse_geocode(self, *, lat: float, lon: float) -> dict:
+        errors = []
+        if self.photon_client:
+            try:
+                return await self.photon_client.reverse(lat=lat, lon=lon)
+            except Exception as e:
+                errors.append(e)
+        if self.nominatim_client:
+            try:
+                return await self.nominatim_client.reverse(lat=lat, lon=lon)
+            except Exception as e:
+                errors.append(e)
+        if self.bigdata_client:
+            try:
+                return await self.bigdata_client.reverse(lat=lat, lon=lon)
+            except Exception as e:
+                errors.append(e)
+        raise GeocodingError(f"All providers failed: {errors}")
+
     async def reverse(self, *, lat: float, lon: float) -> GeocodeResult:
+        if self.cache is None:
+            res_dict = await self.reverse_geocode(lat=lat, lon=lon)
+            return GeocodeResult(
+                display_name=res_dict.get("display_name", "Unknown location"),
+                city=res_dict.get("city"),
+                state=res_dict.get("state"),
+                country_code=res_dict.get("country"),
+                postcode=res_dict.get("postcode"),
+                lat=lat,
+                lon=lon,
+            )
+
         cache_key = f'geocode:reverse:{lat:.4f}:{lon:.4f}'
         cached = await self.cache.get_json(cache_key)
         if cached:

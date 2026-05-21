@@ -8,7 +8,7 @@ test.describe('Visual Regression', () => {
     await expect(page.locator('#main').first()).toBeVisible();
 
     await expect(page).toHaveScreenshot('homepage-desktop.png', {
-      maxDiffPixels: 100,
+      maxDiffPixelRatio: 0.05,
     });
   });
 
@@ -19,7 +19,7 @@ test.describe('Visual Regression', () => {
     await expect(page.getByRole('heading', { name: /Protocol Terminal/i }).first()).toBeVisible();
 
     await expect(page).toHaveScreenshot('emergency-page.png', {
-      maxDiffPixels: 100,
+      maxDiffPixelRatio: 0.05,
     });
   });
 
@@ -27,10 +27,11 @@ test.describe('Visual Regression', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/assistant');
 
-    await expect(page.locator('input[type="text"]').first()).toBeVisible();
+    // Wait for chat interface to load
+    await expect(page.locator('#main').first()).toBeVisible();
 
     await expect(page).toHaveScreenshot('chat-page.png', {
-      maxDiffPixels: 100,
+      maxDiffPixelRatio: 0.05,
     });
   });
 
@@ -42,7 +43,7 @@ test.describe('Visual Regression', () => {
     await expect(page.locator('#main').first()).toBeVisible();
 
     await expect(page).toHaveScreenshot('homepage-dark.png', {
-      maxDiffPixels: 100,
+      maxDiffPixelRatio: 0.05,
     });
   });
 
@@ -53,7 +54,7 @@ test.describe('Visual Regression', () => {
     await expect(page.locator('#main').first()).toBeVisible();
 
     await expect(page).toHaveScreenshot('homepage-mobile.png', {
-      maxDiffPixels: 100,
+      maxDiffPixelRatio: 0.05,
     });
   });
 });

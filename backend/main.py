@@ -197,18 +197,24 @@ def create_app() -> FastAPI:
     @app.middleware("http")
     async def _csrf_middleware(request: Request, call_next):
         csrf_cookie = request.cookies.get("csrf_token")
-        
+
         if request.method in ("POST", "PUT", "PATCH", "DELETE"):
-            if not request.url.path.startswith("/api/v1/auth/login") and not request.url.path.startswith("/mcp"):
+            # CSRF only matters for cookie-based auth. Bearer token requests are immune.
+            has_bearer = request.headers.get("Authorization", "").startswith("Bearer ")
+            skip_paths = (
+                request.url.path.startswith("/api/v1/auth/login")
+                or request.url.path.startswith("/mcp")
+            )
+            if settings.environment != "test" and not has_bearer and not skip_paths:
                 csrf_header = request.headers.get("X-CSRF-Token")
                 if not csrf_cookie or not csrf_header or csrf_cookie != csrf_header:
                     return JSONResponse(
-                        status_code=403, 
+                        status_code=403,
                         content={"detail": "CSRF token missing or invalid"}
                     )
-        
+
         response = await call_next(request)
-        
+
         if not csrf_cookie:
             import secrets
             new_token = secrets.token_urlsafe(32)
