@@ -223,6 +223,14 @@ class RoadWatchService:
             raise ServiceValidationError('issue_type must contain at least 2 non-space characters')
         normalized_description = description.strip() if description and description.strip() else None
 
+        from services.report_classifier import ReportClassifier
+        classifier = ReportClassifier()
+        ai_classification = classifier.classify(normalized_description, normalized_issue_type)
+        if ai_classification:
+            normalized_issue_type = ai_classification.get("issue_type", normalized_issue_type)
+            if not description and ai_classification.get("issue_type"):
+                severity = ai_classification.get("severity", severity)
+
         preview = await self.get_authority(db=db, lat=lat, lon=lon)
         try:
             geocode = await self.geocoding_service.reverse(lat=lat, lon=lon)
@@ -248,6 +256,7 @@ class RoadWatchService:
             authority_phone=preview.helpline,
             complaint_ref=complaint_ref,
             status='open',
+            ai_detection=ai_classification,
         )
 
         db.add(issue)
@@ -274,6 +283,7 @@ class RoadWatchService:
             budget_spent=preview.budget_spent,
             photo_url=photo_url,
             status=issue.status,
+            ai_detection=issue.ai_detection,
         )
 
     async def verify_report(self, *, db: AsyncSession, report_id: str) -> dict:

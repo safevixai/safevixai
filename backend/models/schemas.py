@@ -173,6 +173,7 @@ class RoadReportResponse(BaseModel):
     budget_spent: int | None = None
     photo_url: str | None = None
     status: RoadIssueStatus
+    ai_detection: dict | None = None
 
 
 class RoutePoint(BaseModel):
