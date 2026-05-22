@@ -679,10 +679,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-agent-brief-2026-05-18-post-audit-updates" class="md-nav__link">
+  <a href="#current-agent-brief-2026-05-22-enterprise-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Agent Brief - 2026-05-18 (Post-Audit Updates)
+        Current Agent Brief - 2026-05-22 (Enterprise Hardening)
       
     </span>
   </a>
@@ -1806,10 +1806,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-agent-brief-2026-05-18-post-audit-updates" class="md-nav__link">
+  <a href="#current-agent-brief-2026-05-22-enterprise-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Agent Brief - 2026-05-18 (Post-Audit Updates)
+        Current Agent Brief - 2026-05-22 (Enterprise Hardening)
       
     </span>
   </a>
@@ -2263,12 +2263,15 @@
 Every section answers: "Would an agent likely get this wrong without help?"</p>
 </blockquote>
 <hr />
-<h2 id="current-agent-brief-2026-05-18-post-audit-updates">Current Agent Brief - 2026-05-18 (Post-Audit Updates)</h2>
+<h2 id="current-agent-brief-2026-05-22-enterprise-hardening">Current Agent Brief - 2026-05-22 (Enterprise Hardening)</h2>
 <p>Treat this section as the operational truth before changing code.</p>
 <ul>
 <li>Frontend build currently passes with <code>npm run build</code> from <code>frontend/</code>.</li>
 <li><strong>GSAP Enterprise Migration Completed</strong>: Framer Motion source imports fully removed. All frontend animations use GSAP <code>useGSAP</code> hook for stagger and split text entries. Orphaned dependency remains in <code>package-lock.json</code> — run <code>npm uninstall framer-motion</code> to clean.</li>
-<li>Chatbot smoke tests currently pass with <code>python -m pytest tests/test_voice.py tests/test_e2e.py -q</code> from <code>chatbot_service/</code>.</li>
+<li><strong>Chatbot service circular import fixed</strong>: <code>limiter</code> extracted from <code>main.py</code> → <code>limiter.py</code>. Both <code>main.py</code> and <code>api/admin.py</code> import from <code>limiter</code> to break the <code>main → api → admin → main</code> cycle.</li>
+<li><strong>Chatbot safety_checker fix</strong>: <code>_normalize_text</code> l33t step corrupts numbers (112 → ii2). <code>evaluate()</code> now checks BOTH l33t-normalized AND non-l33t-normalized text. Space-inserted obfuscation ("h u r t s o m e o n e") detected via joined-text variant with single-char token heuristic.</li>
+<li><strong>Chatbot tests</strong>: 244/244 passing (was 27 failing). Fixes: FakeContextAssembler kwargs, FakeIntentDetector.refine_intent, Sarvam105BProvider.name override, Settings instantiation, HIGH_STAKES_INTENTS alignment, prompt injection patterns, moved misplaced test_alerts.py.</li>
+<li>Chatbot smoke tests currently pass with <code>python -m pytest tests/ -q</code> from <code>chatbot_service/</code>.</li>
 <li>The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.</li>
 <li><strong>Audit completed 2026-05-18</strong>: Frontend 58/100, Backend 54/100, Chatbot 50/100. See <code>docs/audit/</code> for full reports.</li>
 <li>Voice input is fully wired: <code>MediaRecorder</code> → <code>POST /speech/translate</code> (correct endpoint, not <code>/api/v1/speech/translate</code>).</li>
@@ -2277,6 +2280,8 @@ Every section answers: "Would an agent likely get this wrong without help?"</p>
 <li>Backend speech is speech-to-text / speech translation only. No backend TTS endpoint.</li>
 <li>Assistant voice output uses browser <code>speechSynthesis</code> with <code>utterance.lang</code> from <code>getLanguageByCode(selectedLanguage).synthesisCode</code>.</li>
 <li><strong>Phase 3 complete</strong>: circuit breakers, enhanced health checks, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.</li>
+<li><strong>Security vulns</strong>: 6 moderate npm transitive deps (brace-expansion, postcss in next, ws in socket.io). No critical vulns. Fixing requires breaking version bumps — accepted risk. <code>.github/dependabot.yml</code> configured for weekly automated PRs.</li>
+<li><strong>Gitignore fix</strong>: Root <code>.gitignore</code> had <code>tests/</code> (matches all levels) which excluded chatbot_service/tests/ and backend/tests/ — changed to <code>/tests/</code> (root only). All test files now tracked.</li>
 <li>Keep all safety-critical flows intact: 112, 102, 100, 1033, floating SOS, crash countdown, offline SOS queue, profile QR emergency card, map clustering, and hazard heatmap.</li>
 </ul>
 <p>Speech endpoint truth:</p>
