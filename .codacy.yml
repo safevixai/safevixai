@@ -1,5 +1,5 @@
 ---
-exclude_paths:
+exclude-paths:
   - "backend/models/pothole.pt"
   - "**/*.pt"
   - "**/*.pdf"
@@ -13,26 +13,18 @@ exclude_paths:
   - "frontend/public/**"
   - "frontend/e2e/visual.spec.ts-snapshots/**"
   - "chatbot_service/data/chroma_db/**"
-engines:
-  eslint:
-    enabled: false
-    exclude_paths:
-      - "backend/**"
-      - "chatbot_service/**"
-      - "docs/**"
-      - "scripts/**"
-      - "frontend/public/**"
-  duplication:
-    exclude_paths:
-      - "frontend/node_modules/**"
-      - "node_modules/**"
-      - "backend/venv/**"
-      - ".venv/**"
-      - "backend/models/pothole.pt"
-      - "**/*.pt"
+  - "node_modules/**"
+  - "frontend/node_modules/**"
+  - "backend/venv/**"
+  - ".venv/**"
+tools:
+  pylintpython3:
+    enabled: true
+  metrics:
+    enabled: true
   pmd:
     enabled: false
   pmd-legacy:
     enabled: false
-  remark-lint:
-    enabled: true
+  eslint:
+    enabled: false
