@@ -19,11 +19,6 @@ engines:
       - "**/*.pt"
   eslint:
     enabled: true
-    exclude_paths:
-      - "frontend/.next/**"
-      - "frontend/build/**"
-      - "frontend/dist/**"
-      - "frontend/node_modules/**"
   pmd:
     enabled: false
   pmd-legacy:
