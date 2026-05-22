@@ -12,27 +12,27 @@
 
 ### 1. Advanced AI Features
 - [x] Implement streaming chat responses with SSE (backend proxy to chatbot)
-- [ ] Add conversation summarization for long contexts
-- [ ] Implement multi-turn intent refinement
-- [ ] Add AI-powered report classification
-- [ ] Implement smart fallback routing with confidence scores
+- [x] Conversation summarization for long contexts (memory/summarizer.py)
+- [x] Multi-turn intent refinement (agent/intent_detector.py refine_intent())
+- [x] Smart fallback routing with confidence scores (providers/router.py confidence scoring)
+- [ ] Add AI-powered report classification (future)
 
 ### 2. Performance Optimizations
-- [ ] Add database query optimization (N+1 fixes, indexing)
+- [ ] Add database query optimization (N+1 fixes, indexing) (future)
 - [x] Implement response caching for static endpoints (response_cache.py)
 - [x] Add connection pooling tuning (configurable pool size/overflow/timeout/recycle)
-- [ ] Optimize map data loading (GeoJSON compression)
-- [ ] Implement lazy loading for heavy dependencies
+- [ ] Optimize map data loading (GeoJSON compression) (future)
+- [ ] Implement lazy loading for heavy dependencies (future)
 
 ### 3. Production Readiness
-- [x] Add comprehensive health checks with dependencies (DB, cache, chatbot, circuit breakers)
-- [x] Implement graceful shutdown handling (lifespan finally block)
-- [x] Add structured logging with correlation IDs (structured_logging.py + middleware)
-- [x] Implement rate limiting with user tiers (slowapi limiter.py)
-- [x] Add request/response validation middleware (Pydantic schemas)
-- [x] Implement circuit breakers for external APIs (circuit_breaker.py)
-- [x] Add metrics collection (Prometheus compatible — metrics.py)
-- [x] Implement distributed tracing (OpenTelemetry — tracing.py)
+- [x] Comprehensive health checks with dependencies (DB, cache, chatbot, circuit breakers)
+- [x] Graceful shutdown handling (lifespan finally block)
+- [x] Structured logging with correlation IDs (structured_logging.py + middleware)
+- [x] Rate limiting with user tiers (slowapi limiter.py)
+- [x] Request/response validation middleware (Pydantic schemas)
+- [x] Circuit breakers for external APIs (circuit_breaker.py)
+- [x] Metrics collection (Prometheus compatible — metrics.py)
+- [x] Distributed tracing (OpenTelemetry — tracing.py)
 
 ---
 

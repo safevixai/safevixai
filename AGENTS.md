@@ -14,11 +14,12 @@ Treat this section as the operational truth before changing code.
 - Chatbot smoke tests currently pass with `python -m pytest tests/test_voice.py tests/test_e2e.py -q` from `chatbot_service/`.
 - The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.
 - **Audit completed 2026-05-18**: Frontend 58/100, Backend 54/100, Chatbot 50/100. See `docs/audit/` for full reports.
-- Assistant voice input is partially implemented, but not end-to-end complete. The chat input records with `MediaRecorder`, but it calls `/api/v1/speech/translate`; the chatbot service exposes `/speech/translate`.
-- The frontend must use `NEXT_PUBLIC_CHATBOT_URL` through `frontend/lib/public-env.ts`. Do not invent `NEXT_PUBLIC_CHATBOT_BASE_URL`.
-- Speech language mapping is incomplete. UI language codes like `hi` and `ta` must be mapped to backend speech model codes such as `hin` and `tam` before calling the speech endpoint.
-- Backend speech is speech-to-text / speech translation only. There is no backend text-to-speech endpoint yet.
-- Assistant voice output uses browser `speechSynthesis`; it must set the utterance language from the selected language, not hardcode `en-IN`.
+- Voice input is fully wired: `MediaRecorder` → `POST /speech/translate` (correct endpoint, not `/api/v1/speech/translate`).
+- Language mapping complete: `frontend/lib/languages.ts` maps UI codes (`hi`) → backend codes (`hin`) → synthesis codes (`hi-IN`).
+- Speech endpoint truth: `POST /speech/translate`, `GET /speech/status`.
+- Backend speech is speech-to-text / speech translation only. No backend TTS endpoint.
+- Assistant voice output uses browser `speechSynthesis` with `utterance.lang` from `getLanguageByCode(selectedLanguage).synthesisCode`.
+- **Phase 3 complete**: circuit breakers, enhanced health checks, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
 - Keep all safety-critical flows intact: 112, 102, 100, 1033, floating SOS, crash countdown, offline SOS queue, profile QR emergency card, map clustering, and hazard heatmap.
 
 Speech endpoint truth:
