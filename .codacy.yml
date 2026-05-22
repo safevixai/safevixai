@@ -39,11 +39,7 @@ engines:
           enabled: true
         - name: UnusedPrivateField
           enabled: true
+        - name: UnusedPrivateMethod
+          enabled: true
   pmd-legacy:
-    enabled: true
-    config:
-      rules:
-        - name: UnusedLocalVariable
-          enabled: true
-        - name: UnusedPrivateField
-          enabled: true
+    enabled: false
