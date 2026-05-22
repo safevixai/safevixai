@@ -2,7 +2,7 @@
 # Configured for Maximum Performance (Hackathon Demo Mode with Local ML capabilities)
 
 # --- Heavy ML / Speech ---
-torch==2.11.0
+torch==2.12.0
 torchaudio==2.11.0
 transformers==5.5.4
 datasets==4.8.4
