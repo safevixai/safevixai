@@ -30,14 +30,20 @@ def mock_db_session():
 
 
 @pytest.fixture
-def test_client(mock_emergency_service):
+def test_client(mock_emergency_service, mock_db_session):
     """Create test client with service overrides."""
     from fastapi import FastAPI
+    from core.database import get_db
     
     app = FastAPI()
     
     # Mock app state
     app.state.emergency_service = mock_emergency_service
+    
+    async def override_db():
+        yield mock_db_session
+        
+    app.dependency_overrides[get_db] = override_db
     
     app.include_router(emergency.router)
     
@@ -260,21 +266,15 @@ class TestCreateSOSIncident:
         
         mock_emergency_service.build_sos_payload = AsyncMock(return_value=mock_result)
         
-        with patch("api.v1.emergency.get_db") as mock_get_db:
-            async def mock_gen():
-                yield mock_db_session
-            
-            mock_get_db.side_effect = mock_gen
-            
-            response = test_client.post(
-                "/api/v1/emergency/sos",
-                params={"lat": 13.0827, "lon": 80.2707}
-            )
-            
-            assert response.status_code == 200
-            data = response.json()
-            assert data["count"] == 0
-            assert "ambulance" in data["numbers"]
+        response = test_client.post(
+            "/api/v1/emergency/sos",
+            params={"lat": 13.0827, "lon": 80.2707}
+        )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert data["count"] == 0
+        assert "ambulance" in data["numbers"]
 
     @pytest.mark.skip(reason="Test isolation issue - passes in isolation but fails in suite")
     def test_create_sos_incident_with_user(self, test_client, mock_emergency_service, mock_db_session):
@@ -305,19 +305,13 @@ class TestCreateSOSIncident:
             algorithm=ALGORITHM,
         )
         
-        with patch("api.v1.emergency.get_db") as mock_get_db:
-            async def mock_gen():
-                yield mock_db_session
-            
-            mock_get_db.side_effect = mock_gen
-            
-            response = test_client.post(
-                "/api/v1/emergency/sos",
-                params={"lat": 13.0827, "lon": 80.2707},
-                headers={"Authorization": f"Bearer {token}"},
-            )
-            
-            assert response.status_code == 200
+        response = test_client.post(
+            "/api/v1/emergency/sos",
+            params={"lat": 13.0827, "lon": 80.2707},
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        
+        assert response.status_code == 200
 
     def test_create_sos_incident_external_error(self, test_client, mock_emergency_service, mock_db_session):
         """Test SOS creation with external service failure."""
@@ -327,18 +321,12 @@ class TestCreateSOSIncident:
             side_effect=ExternalServiceError("Service down")
         )
         
-        with patch("api.v1.emergency.get_db") as mock_get_db:
-            async def mock_gen():
-                yield mock_db_session
-            
-            mock_get_db.side_effect = mock_gen
-            
-            response = test_client.post(
-                "/api/v1/emergency/sos",
-                params={"lat": 13.0827, "lon": 80.2707}
-            )
-            
-            assert response.status_code == 503
+        response = test_client.post(
+            "/api/v1/emergency/sos",
+            params={"lat": 13.0827, "lon": 80.2707}
+        )
+        
+        assert response.status_code == 503
 
 
 # ── Get Emergency Numbers Tests ─────────────────────────────────────────────
