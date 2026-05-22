@@ -2906,8 +2906,8 @@ Backend connects to chatbot at <code>http://chatbot:8010</code> (Docker network 
 <td>Only needed for Sarvam HF fallback, Shuka, BharatGen, Whisper — core flow uses Groq/Gemini/etc.</td>
 </tr>
 <tr>
-<td>Call <code>/api/v1/roads/report</code> or <code>/api/v1/chat</code> without Authorization header</td>
-<td>Both endpoints require <code>Authorization: Bearer &lt;token&gt;</code> (JWT, Phase 5)</td>
+<td>Call <code>/api/v1/roads/report</code> without Authorization header</td>
+<td>Uses <code>get_current_user_optional</code> — JWT optional, anonymous reports accepted</td>
 </tr>
 <tr>
 <td>Expect family tracking at a REST endpoint</td>
