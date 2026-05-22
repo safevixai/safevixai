@@ -13,6 +13,10 @@ updates:
     labels:
       - "dependencies"
       - "backend"
+    groups:
+      backend-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "pip"
     directory: "/chatbot_service"
@@ -27,6 +31,10 @@ updates:
     labels:
       - "dependencies"
       - "chatbot"
+    groups:
+      chatbot-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "npm"
     directory: "/frontend"
@@ -41,6 +49,10 @@ updates:
     labels:
       - "dependencies"
       - "frontend"
+    groups:
+      frontend-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -51,6 +63,10 @@ updates:
       timezone: "Asia/Kolkata"
     labels:
       - "ci-cd"
+    groups:
+      github-actions-dependencies:
+        patterns:
+          - "*"
 
   # DEVOPS#30 FIX: Docker image updates
   - package-ecosystem: "docker"
@@ -63,6 +79,10 @@ updates:
     labels:
       - "docker"
       - "backend"
+    groups:
+      backend-docker-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "docker"
     directory: "/chatbot_service"
@@ -74,6 +94,10 @@ updates:
     labels:
       - "docker"
       - "chatbot"
+    groups:
+      chatbot-docker-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "docker"
     directory: "/frontend"
@@ -85,3 +109,7 @@ updates:
     labels:
       - "docker"
       - "frontend"
+    groups:
+      frontend-docker-dependencies:
+        patterns:
+          - "*"

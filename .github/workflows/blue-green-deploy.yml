@@ -14,7 +14,7 @@ jobs:
   promote-to-production:
     name: Promote to Production
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' }}
 
     steps:
       - name: Checkout repository
@@ -28,18 +28,26 @@ jobs:
       - name: Trigger Render redeploy (Backend)
         if: ${{ github.event.workflow_run.name == 'Backend Core CI' || github.event.workflow_run.name == 'Post-Deploy Smoke Tests' }}
         run: |
-          curl -X POST "${RENDER_DEPLOY_HOOK_BACKEND}" \
-            -H "Content-Type: application/json" \
-            -d '{"clearCache": true}'
+          if [ -z "${RENDER_DEPLOY_HOOK_BACKEND}" ]; then
+            echo "⚠️ RENDER_DEPLOY_HOOK_BACKEND secret is not set. Skipping redeployment."
+          else
+            curl -X POST "${RENDER_DEPLOY_HOOK_BACKEND}" \
+              -H "Content-Type: application/json" \
+              -d '{"clearCache": true}'
+          fi
         env:
           RENDER_DEPLOY_HOOK_BACKEND: ${{ secrets.RENDER_DEPLOY_HOOK_BACKEND }}
 
       - name: Trigger Render redeploy (Chatbot)
         if: ${{ github.event.workflow_run.name == 'Chatbot Service CI' || github.event.workflow_run.name == 'Post-Deploy Smoke Tests' }}
         run: |
-          curl -X POST "${RENDER_DEPLOY_HOOK_CHATBOT}" \
-            -H "Content-Type: application/json" \
-            -d '{"clearCache": true}'
+          if [ -z "${RENDER_DEPLOY_HOOK_CHATBOT}" ]; then
+            echo "⚠️ RENDER_DEPLOY_HOOK_CHATBOT secret is not set. Skipping redeployment."
+          else
+            curl -X POST "${RENDER_DEPLOY_HOOK_CHATBOT}" \
+              -H "Content-Type: application/json" \
+              -d '{"clearCache": true}'
+          fi
         env:
           RENDER_DEPLOY_HOOK_CHATBOT: ${{ secrets.RENDER_DEPLOY_HOOK_CHATBOT }}
 
