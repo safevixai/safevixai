@@ -2367,7 +2367,7 @@
 
 <h1 id="safevixai-complete-design-system">SafeVixAI — Complete Design System</h1>
 <h2 id="current-uiux-audit-2026-05-18-post-audit-updates">Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)</h2>
-<p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. All route entries use the unified <code>usePageEntry</code> GSAP stagger animation with GPU-composited properties (transform, opacity) and strict <code>will-change</code> management. Framer Motion source imports are fully removed (orphaned dependency remains in package-lock.json — run <code>npm uninstall framer-motion</code> to clean). Advanced performance hardening ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.</p>
+<p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. All route entries use the unified <code>usePageEntry</code> GSAP stagger animation with GPU-composited properties (transform, opacity) and strict <code>will-change</code> management. Framer Motion source imports are fully removed (orphaned dependency cleaned from <code>package-lock.json</code>). Advanced performance hardening ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.</p>
 <p>Current gaps to close:</p>
 <ul>
 <li>Remove remaining legacy Tailwind palette tokens from app and component surfaces unless they are intentional emergency colors.</li>

@@ -2267,7 +2267,7 @@ Every section answers: "Would an agent likely get this wrong without help?"</p>
 <p>Treat this section as the operational truth before changing code.</p>
 <ul>
 <li>Frontend build currently passes with <code>npm run build</code> from <code>frontend/</code>.</li>
-<li><strong>GSAP Enterprise Migration Completed</strong>: Framer Motion source imports fully removed. All frontend animations use GSAP <code>useGSAP</code> hook for stagger and split text entries. Orphaned dependency remains in <code>package-lock.json</code> — run <code>npm uninstall framer-motion</code> to clean.</li>
+<li><strong>GSAP Enterprise Migration Completed</strong>: Framer Motion source imports fully removed. All frontend animations use GSAP <code>useGSAP</code> hook for stagger and split text entries. Orphaned dependency cleaned from <code>package-lock.json</code>.</li>
 <li><strong>Chatbot service circular import fixed</strong>: <code>limiter</code> extracted from <code>main.py</code> → <code>limiter.py</code>. Both <code>main.py</code> and <code>api/admin.py</code> import from <code>limiter</code> to break the <code>main → api → admin → main</code> cycle.</li>
 <li><strong>Chatbot safety_checker fix</strong>: <code>_normalize_text</code> l33t step corrupts numbers (112 → ii2). <code>evaluate()</code> now checks BOTH l33t-normalized AND non-l33t-normalized text. Space-inserted obfuscation ("h u r t s o m e o n e") detected via joined-text variant with single-char token heuristic.</li>
 <li><strong>Chatbot tests</strong>: 244/244 passing (was 27 failing). Fixes: FakeContextAssembler kwargs, FakeIntentDetector.refine_intent, Sarvam105BProvider.name override, Settings instantiation, HIGH_STAKES_INTENTS alignment, prompt injection patterns, moved misplaced test_alerts.py.</li>
