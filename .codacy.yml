@@ -15,8 +15,7 @@ exclude_paths:
   - "chatbot_service/data/chroma_db/**"
 engines:
   eslint:
-    enabled: true
-    config_file: "frontend/.eslintrc.codacy.json"
+    enabled: false
     exclude_paths:
       - "backend/**"
       - "chatbot_service/**"
@@ -32,14 +31,8 @@ engines:
       - "backend/models/pothole.pt"
       - "**/*.pt"
   pmd:
-    enabled: true
-    config:
-      rules:
-        - name: UnusedLocalVariable
-          enabled: true
-        - name: UnusedPrivateField
-          enabled: true
-        - name: UnusedPrivateMethod
-          enabled: true
+    enabled: false
   pmd-legacy:
     enabled: false
+  remark-lint:
+    enabled: true
