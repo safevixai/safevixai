@@ -5,13 +5,16 @@
 
 ---
 
-## Current Agent Brief - 2026-05-18 (Post-Audit Updates)
+## Current Agent Brief - 2026-05-22 (Enterprise Hardening)
 
 Treat this section as the operational truth before changing code.
 
 - Frontend build currently passes with `npm run build` from `frontend/`.
 - **GSAP Enterprise Migration Completed**: Framer Motion source imports fully removed. All frontend animations use GSAP `useGSAP` hook for stagger and split text entries. Orphaned dependency remains in `package-lock.json` — run `npm uninstall framer-motion` to clean.
-- Chatbot smoke tests currently pass with `python -m pytest tests/test_voice.py tests/test_e2e.py -q` from `chatbot_service/`.
+- **Chatbot service circular import fixed**: `limiter` extracted from `main.py` → `limiter.py`. Both `main.py` and `api/admin.py` import from `limiter` to break the `main → api → admin → main` cycle.
+- **Chatbot safety_checker fix**: `_normalize_text` l33t step corrupts numbers (112 → ii2). `evaluate()` now checks BOTH l33t-normalized AND non-l33t-normalized text. Space-inserted obfuscation ("h u r t s o m e o n e") detected via joined-text variant with single-char token heuristic.
+- **Chatbot tests**: 244/244 passing (was 27 failing). Fixes: FakeContextAssembler kwargs, FakeIntentDetector.refine_intent, Sarvam105BProvider.name override, Settings instantiation, HIGH_STAKES_INTENTS alignment, prompt injection patterns, moved misplaced test_alerts.py.
+- Chatbot smoke tests currently pass with `python -m pytest tests/ -q` from `chatbot_service/`.
 - The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.
 - **Audit completed 2026-05-18**: Frontend 58/100, Backend 54/100, Chatbot 50/100. See `docs/audit/` for full reports.
 - Voice input is fully wired: `MediaRecorder` → `POST /speech/translate` (correct endpoint, not `/api/v1/speech/translate`).
@@ -20,6 +23,8 @@ Treat this section as the operational truth before changing code.
 - Backend speech is speech-to-text / speech translation only. No backend TTS endpoint.
 - Assistant voice output uses browser `speechSynthesis` with `utterance.lang` from `getLanguageByCode(selectedLanguage).synthesisCode`.
 - **Phase 3 complete**: circuit breakers, enhanced health checks, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
+- **Security vulns**: 6 moderate npm transitive deps (brace-expansion, postcss in next, ws in socket.io). No critical vulns. Fixing requires breaking version bumps — accepted risk. `.github/dependabot.yml` configured for weekly automated PRs.
+- **Gitignore fix**: Root `.gitignore` had `tests/` (matches all levels) which excluded chatbot_service/tests/ and backend/tests/ — changed to `/tests/` (root only). All test files now tracked.
 - Keep all safety-critical flows intact: 112, 102, 100, 1033, floating SOS, crash countdown, offline SOS queue, profile QR emergency card, map clustering, and hazard heatmap.
 
 Speech endpoint truth:

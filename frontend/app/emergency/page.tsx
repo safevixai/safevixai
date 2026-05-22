@@ -301,7 +301,7 @@ export default function EmergencyProtocolsPage() {
             <span className="text-[10px] font-bold text-text-3 font-mono italic">SVA_V4.2_INTEL</span>
           </div>
           
-          <div className="flex gap-2.5 overflow-x-auto pb-6 scrollbar-hide -mx-1 px-1">
+          <div className="flex gap-2.5 overflow-x-auto pb-6 scrollbar-hide -mx-1 px-1" role="radiogroup" aria-label="Filter by emergency category">
             {CATEGORIES.map(cat => {
               const isActive = activeCategory === cat;
               const color = cat === 'All' ? '#0f172a' : categoryColor[cat];
@@ -309,6 +309,8 @@ export default function EmergencyProtocolsPage() {
                 <button 
                   key={cat} 
                   onClick={() => setActiveCategory(cat)} 
+                  role="radio"
+                  aria-checked={isActive}
                   className={`group relative flex-shrink-0 px-6 py-3 rounded-lg text-[10px] font-semibold uppercase tracking-widest transition-all active:scale-90 border-2 ${
                     isActive 
                       ? (cat === 'All' ? 'text-white dark:text-text-1 border-transparent bg-transparent shadow-lg' : 'text-text-1 dark:text-bg border-transparent bg-transparent shadow-lg')
@@ -388,14 +390,14 @@ function ProtocolCard({ protocol, isExpanded, onToggle, theme }: {
   const contentRef = useRef<HTMLDivElement>(null);
   const chevronRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (chevronRef.current) {
       gsap.to(chevronRef.current, { rotate: isExpanded ? 180 : 0, duration: 0.2, ease: 'power2.out' });
     }
-  }, [isExpanded]);
+  }, { dependencies: [isExpanded] });
 
   // Animate expand/collapse
-  useEffect(() => {
+  useGSAP(() => {
     if (!contentRef.current) return;
     if (isExpanded) {
       gsap.set(contentRef.current, { display: 'block' });
@@ -415,7 +417,7 @@ function ProtocolCard({ protocol, isExpanded, onToggle, theme }: {
         onComplete: () => { if (contentRef.current) gsap.set(contentRef.current, { display: 'none' }); }
       });
     }
-  }, [isExpanded]);
+  }, { dependencies: [isExpanded] });
 
   return (
     <div

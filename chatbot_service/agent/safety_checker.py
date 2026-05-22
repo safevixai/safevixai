@@ -148,24 +148,20 @@ _L33T: dict[str, str] = {
 }
 
 
-def _normalize_text(text: str) -> str:
+def _normalize_text(text: str, l33t: bool = True) -> str:
     """Normalize text for pattern matching:
     1. Strip zero-width / invisible characters
     2. Apply Unicode NFKC normalization (collapses fullwidth, homoglyphs)
     3. Lowercase
-    4. Decode l33t-speak
+    4. Decode l33t-speak (optional — l33t corrupts numbers like 112→ii2)
     5. Remove excessive whitespace (space-inserted obfuscation)
     """
-    # Step 1: strip zero-width chars
     text = _ZW_RE.sub("", text)
-    # Step 2: NFKC normalization
     text = unicodedata.normalize("NFKC", text)
-    # Step 3: lowercase
     text = text.lower()
-    # Step 4: l33t-speak
-    for leet, char in _L33T.items():
-        text = text.replace(leet, char)
-    # Step 5: collapse multiple spaces (catches "h u r t  s o m e o n e")
+    if l33t:
+        for leet, char in _L33T.items():
+            text = text.replace(leet, char)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
@@ -180,30 +176,50 @@ class SafetyChecker:
     """Evaluate user messages for safety before forwarding to LLM."""
 
     def evaluate(self, message: str) -> SafetyDecision:
-        normalized = _normalize_text(message)
+        # Check against both l33t-normalized (catches "h0w 70 hur7")
+        # and non-l33t-normalized (l33t corrupts numbers like 112 → ii2)
+        raw = _normalize_text(message, l33t=True)
+        raw_no_l33t = _normalize_text(message, l33t=False)
 
-        # --- Jailbreak / injection attempt ---
-        if any(pattern in normalized for pattern in _JAILBREAK_PATTERNS):
-            return SafetyDecision(
-                blocked=True,
-                response=(
-                    "I cannot comply with requests to override my safety guidelines or pretend to "
-                    "be a different AI. I'm here to help with road safety, emergencies, and driving "
-                    "information. If you have a genuine safety question, please ask directly."
-                ),
-            )
-
-        # --- Harmful / evasion / violence patterns ---
-        if any(pattern in normalized for pattern in _HARM_PATTERNS):
-            return SafetyDecision(
-                blocked=True,
-                response=(
-                    "I cannot assist with evading emergency services, causing harm to people, or "
-                    "illegal activities. "
-                    "If you are witnessing or involved in an accident, call **112** immediately. "
-                    "If this is a genuine safety or legal question, please rephrase it."
-                ),
-            )
+        for normalized in [raw, raw_no_l33t]:
+            # --- Jailbreak / injection attempt ---
+            if any(pattern in normalized for pattern in _JAILBREAK_PATTERNS):
+                return SafetyDecision(
+                    blocked=True,
+                    response=(
+                        "I cannot comply with requests to override my safety guidelines or pretend to "
+                        "be a different AI. I'm here to help with road safety, emergencies, and driving "
+                        "information. If you have a genuine safety question, please ask directly."
+                    ),
+                )
+            # --- Harmful / evasion / violence patterns ---
+            if any(pattern in normalized for pattern in _HARM_PATTERNS):
+                return SafetyDecision(
+                    blocked=True,
+                    response=(
+                        "I cannot assist with evading emergency services, causing harm to people, or "
+                        "illegal activities. "
+                        "If you are witnessing or involved in an accident, call **112** immediately. "
+                        "If this is a genuine safety or legal question, please rephrase it."
+                    ),
+                )
+            # --- Space-inserted obfuscation (e.g. "h u r t   s o m e o n e") ---
+            # Only trigger when letters appear as single chars separated by spaces
+            tokens = normalized.split()
+            if len(tokens) >= 4 and all(len(t) == 1 or t.isdigit() for t in tokens):
+                joined = normalized.replace(" ", "")
+                h_words = {w for p in _HARM_PATTERNS for w in p.split() if len(w) >= 4}
+                j_words = {w for p in _JAILBREAK_PATTERNS for w in p.split() if len(w) >= 4}
+                if any(w in joined for w in h_words | j_words):
+                    return SafetyDecision(
+                        blocked=True,
+                        response=(
+                            "I cannot assist with evading emergency services, causing harm to people, or "
+                            "illegal activities. "
+                            "If you are witnessing or involved in an accident, call **112** immediately. "
+                            "If this is a genuine safety or legal question, please rephrase it."
+                        ),
+                    )
 
         return SafetyDecision(blocked=False)
 

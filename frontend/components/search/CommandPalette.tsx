@@ -5,6 +5,7 @@
 import { Command } from 'cmdk';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 
 export function CommandPalette() {
@@ -25,8 +26,8 @@ export function CommandPalette() {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  // GSAP animate in/out
-  useEffect(() => {
+  // GSAP animate in/out — useGSAP for proper React 19 cleanup
+  useGSAP(() => {
     if (!overlayRef.current || !panelRef.current) return;
     if (open) {
       gsap.fromTo(
@@ -40,7 +41,7 @@ export function CommandPalette() {
         { opacity: 1, scale: 1, y: 0, duration: 0.2, ease: 'power2.out' }
       );
     }
-  }, [open]);
+  }, { dependencies: [open] });
 
   const navigate = (path: string) => {
     setOpen(false);

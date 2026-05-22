@@ -267,45 +267,49 @@ export default function LoginPage() {
               </button>
             </form>
 
-            {/* ── Divider ── */}
-            <div className="flex items-center gap-3 my-5">
-              <div className="flex-1 h-px bg-white/8" />
-              <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">or</span>
-              <div className="flex-1 h-px bg-white/8" />
-            </div>
+            {/* ── Demo Mode (feature-flagged) ── */}
+            {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && (
+              <>
+                <div className="flex items-center gap-3 my-5">
+                  <div className="flex-1 h-px bg-white/8" />
+                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">or</span>
+                  <div className="flex-1 h-px bg-white/8" />
+                </div>
 
-            {/* ── Demo Mode Button ── */}
-            <button
-              onClick={handleDemoMode}
-              disabled={loading}
-              className="w-full h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-brand/30 transition-all text-text-2 hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group"
-            >
-              <Zap size={14} className="text-brand-light group-hover:animate-pulse" />
-              Demo Mode (Hackathon)
-              <ChevronRight size={13} className="text-text-4 group-hover:text-brand-light group-hover:translate-x-0.5 transition-all" />
-            </button>
+                {/* ── Demo Mode Button ── */}
+                <button
+                  onClick={handleDemoMode}
+                  disabled={loading}
+                  className="w-full h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-brand/30 transition-all text-text-2 hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group"
+                >
+                  <Zap size={14} className="text-brand-light group-hover:animate-pulse" />
+                  Demo Mode (Hackathon)
+                  <ChevronRight size={13} className="text-text-4 group-hover:text-brand-light group-hover:translate-x-0.5 transition-all" />
+                </button>
 
-            {/* ── Quick-fill Demo Credentials ── */}
-            <div className="mt-5 flex flex-col gap-2">
-              <p className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em] text-center mb-1">
-                Demo Credentials
-              </p>
-              <div className="grid grid-cols-2 gap-2">
-                {DEMO_CREDS.map((c) => (
-                  <button
-                    key={c.email}
-                    onClick={() => fillCreds(c)}
-                    type="button"
-                    className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/8 border border-white/10 hover:border-brand/30 transition-all text-left"
-                  >
-                    <span className={`text-[10px] font-semibold uppercase tracking-wide ${c.color}`}>
-                      {c.label}
-                    </span>
-                    <span className="text-[9px] font-mono text-text-4 truncate w-full">{c.email}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
+                {/* ── Quick-fill Demo Credentials ── */}
+                <div className="mt-5 flex flex-col gap-2">
+                  <p className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em] text-center mb-1">
+                    Demo Credentials
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {DEMO_CREDS.map((c) => (
+                      <button
+                        key={c.email}
+                        onClick={() => fillCreds(c)}
+                        type="button"
+                        className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/8 border border-white/10 hover:border-brand/30 transition-all text-left"
+                      >
+                        <span className={`text-[10px] font-semibold uppercase tracking-wide ${c.color}`}>
+                          {c.label}
+                        </span>
+                        <span className="text-[9px] font-mono text-text-4 truncate w-full">{c.email}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Footer */}

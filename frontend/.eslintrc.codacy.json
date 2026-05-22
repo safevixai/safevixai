@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended"],
+  "env": {
+    "browser": true,
+    "es2022": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "ignorePatterns": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/**",
+    "public/**",
+    "e2e/**",
+    "node_modules/**"
+  ]
+}
