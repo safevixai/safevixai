@@ -51,30 +51,26 @@ const ChallanCalculator: React.FC = () => {
  { code: 'LD', label: 'Lakshadweep' }, { code: 'PY', label: 'Puducherry' },
  ];
 
- const handleCalculate = async () => {
- setLoading(true);
- setResult(null);
- setError(null);
+  const handleCalculate = async () => {
+    setLoading(true);
+    setResult(null);
+    setError(null);
 
- try {
- if (connectivity !== 'online') {
- setError('Challan lookup needs the backend because fine data is authoritative and state-specific.');
- return;
- }
- const data = await calculateChallan({
- violation_code: violationCode,
- vehicle_class: vehicleClass,
- state_code: stateCode,
- is_repeat: isRepeat
- });
- setResult({ ...data, source: 'online' });
- } catch (err) {
- logClientError('Calculation failed:', err);
- setError('Unable to calculate this challan right now. Please retry once the backend is reachable.');
- } finally {
- setLoading(false);
- }
- };
+    try {
+      const data = await calculateChallan({
+        violation_code: violationCode,
+        vehicle_class: vehicleClass,
+        state_code: stateCode,
+        is_repeat: isRepeat
+      });
+      setResult({ ...data, source: data.source || 'online' });
+    } catch (err) {
+      logClientError('Calculation failed:', err);
+      setError('Unable to calculate this challan right now. Please check your connectivity.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
  return (
  <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">

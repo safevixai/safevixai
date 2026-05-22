@@ -10,7 +10,7 @@
 Treat this section as the operational truth before changing code.
 
 - Frontend build currently passes with `npm run build` from `frontend/`.
-- **GSAP Enterprise Migration Completed**: Framer Motion source imports fully removed. All frontend animations use GSAP `useGSAP` hook for stagger and split text entries. Orphaned dependency remains in `package-lock.json` — run `npm uninstall framer-motion` to clean.
+- **GSAP Enterprise Migration Completed**: Framer Motion source imports fully removed. All frontend animations use GSAP `useGSAP` hook for stagger and split text entries. Orphaned dependency cleaned from `package-lock.json`.
 - **Chatbot service circular import fixed**: `limiter` extracted from `main.py` → `limiter.py`. Both `main.py` and `api/admin.py` import from `limiter` to break the `main → api → admin → main` cycle.
 - **Chatbot safety_checker fix**: `_normalize_text` l33t step corrupts numbers (112 → ii2). `evaluate()` now checks BOTH l33t-normalized AND non-l33t-normalized text. Space-inserted obfuscation ("h u r t s o m e o n e") detected via joined-text variant with single-char token heuristic.
 - **Chatbot tests**: 244/244 passing (was 27 failing). Fixes: FakeContextAssembler kwargs, FakeIntentDetector.refine_intent, Sarvam105BProvider.name override, Settings instantiation, HIGH_STAKES_INTENTS alignment, prompt injection patterns, moved misplaced test_alerts.py.

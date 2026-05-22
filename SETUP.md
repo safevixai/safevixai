@@ -190,7 +190,7 @@ npm install
 - **TypeScript 5** — type-safe JavaScript
 - **Tailwind CSS 3** — utility-first CSS
 - **MapLibre GL** — vector map rendering
-- **motion (framer-motion v12)** — animations
+- **GSAP** — animations (Framer Motion removed; GSAP used via `useGSAP` hook)
 - **zustand** — global state management
 - **lucide-react** — icon library
 - **@mlc-ai/web-llm** — offline AI (browser-based LLM)

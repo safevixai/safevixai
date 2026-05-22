@@ -12,7 +12,7 @@ influenced_by: Linear (sidebar precision + dark depth) + VoltAgent (terminal ene
 
 ## Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)
 
-SafeVixAI's frontend has achieved **100% Enterprise-grade GSAP migration**. All route entries use the unified `usePageEntry` GSAP stagger animation with GPU-composited properties (transform, opacity) and strict `will-change` management. Framer Motion source imports are fully removed (orphaned dependency remains in package-lock.json — run `npm uninstall framer-motion` to clean). Advanced performance hardening ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.
+SafeVixAI's frontend has achieved **100% Enterprise-grade GSAP migration**. All route entries use the unified `usePageEntry` GSAP stagger animation with GPU-composited properties (transform, opacity) and strict `will-change` management. Framer Motion source imports are fully removed (orphaned dependency cleaned from `package-lock.json`). Advanced performance hardening ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.
 
 Current gaps to close:
 

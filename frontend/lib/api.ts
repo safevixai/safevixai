@@ -2,6 +2,7 @@ import axios from 'axios';
 import { getAddressFromGPS } from './reverse-geocode';
 import { PUBLIC_API_BASE_URL, PUBLIC_CHATBOT_BASE_URL } from './public-env';
 import { useAppStore } from './store';
+import { calculateOfflineChallan } from './duckdb-challan';
 
 const BASE_URL = PUBLIC_API_BASE_URL;
 
@@ -853,9 +854,36 @@ export interface ChallanResult {
   section: string;
   description: string;
   state_override?: string;
+  source?: string;
 }
 
 export async function calculateChallan(query: ChallanQuery): Promise<ChallanResult> {
-  const { data } = await client.post('/api/v1/challan/calculate', query);
-  return data;
+  try {
+    const { data } = await client.post('/api/v1/challan/calculate', query);
+    return { ...data, source: data.source || 'online' };
+  } catch (error) {
+    console.warn('SafeVixAI: API challan calculation failed, falling back to local offline DB:', error);
+    try {
+      const offlineResult = await calculateOfflineChallan(
+        query.violation_code,
+        query.vehicle_class,
+        query.is_repeat,
+        query.state_code
+      );
+      return {
+        violation_code: query.violation_code,
+        vehicle_class: query.vehicle_class,
+        state_code: query.state_code,
+        base_fine: offlineResult.base_fine,
+        repeat_fine: offlineResult.repeat_fine,
+        amount_due: query.is_repeat && offlineResult.repeat_fine ? offlineResult.repeat_fine : offlineResult.base_fine,
+        section: offlineResult.section,
+        description: offlineResult.description,
+        source: 'offline',
+      };
+    } catch (fallbackError) {
+      console.error('SafeVixAI: Offline challan fallback also failed:', fallbackError);
+      throw error;
+    }
+  }
 }
