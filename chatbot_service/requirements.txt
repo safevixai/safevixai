@@ -2,7 +2,7 @@
 # Configured for Maximum Performance (Hackathon Demo Mode with Local ML capabilities)
 
 # --- Heavy ML / Speech ---
-torch==2.11.0
+torch==2.12.0
 torchaudio==2.11.0
 transformers==5.5.4
 datasets==4.8.4
@@ -13,7 +13,7 @@ uvicorn[standard]==0.44.0
 slowapi==0.1.9
 
 # --- Data validation ---
-pydantic==2.13.2
+pydantic==2.13.4
 pydantic-settings==2.13.1
 python-dotenv==1.2.2
 python-multipart==0.0.27
@@ -29,7 +29,7 @@ sentence-transformers==5.4.1
 # --- LLM Provider SDKs ---
 groq==1.2.0
 google-generativeai==0.8.6
-openai==2.32.0
+openai==2.38.0
 mistralai==2.4.0
 
 # --- Cache / Memory ---
@@ -44,10 +44,10 @@ requests==2.33.1
 
 # --- Data processing ---
 pandas==3.0.2
-numpy==2.4.4
+numpy==2.4.6
 
 # --- Document loading ---
-pypdf==6.10.2
+pypdf==6.12.1
 pdfplumber==0.11.9
 
 # --- Testing ---

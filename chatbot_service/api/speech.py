@@ -16,19 +16,20 @@ _MAX_AUDIO_BYTES = 10 * 1024 * 1024
 _ALLOWED_CONTENT_TYPES = {'audio/wav', 'audio/mpeg', 'audio/ogg', 'audio/webm', 'audio/flac', 'application/octet-stream'}
 
 
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+limiter = Limiter(key_func=get_remote_address)
+
+
 def get_speech_service(request: Request) -> IndicSeamlessService:
     return request.app.state.speech_service
 
 
 @router.get('/status')
+@limiter.limit("30/minute")
 async def speech_status(request: Request) -> dict:
     service = get_speech_service(request)
     return service.status()
-
-
-from slowapi import Limiter
-from slowapi.util import get_remote_address
-limiter = Limiter(key_func=get_remote_address)
 
 
 @router.post('/translate')

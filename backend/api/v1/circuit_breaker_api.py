@@ -1,21 +1,33 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 
 from core.circuit_breaker import CircuitBreakerOpenError, CircuitBreakerRegistry
+from core.limiter import limiter
+from core.rbac import require_role, Role
+from core.security import get_current_user
 
 
 router = APIRouter(prefix="/api/v1/circuit-breaker", tags=["Circuit Breaker"])
 
 
 @router.get("/")
-async def get_circuit_breakers() -> dict:
+@limiter.limit("30/minute")
+async def get_circuit_breakers(
+    request: Request,
+    _current_user: dict = Depends(get_current_user),
+) -> dict:
     stats = CircuitBreakerRegistry.all_stats()
     return {"breakers": stats, "count": len(stats)}
 
 
 @router.get("/{name}")
-async def get_circuit_breaker(name: str) -> dict:
+@limiter.limit("30/minute")
+async def get_circuit_breaker(
+    request: Request,
+    name: str,
+    _current_user: dict = Depends(require_role(Role.ADMIN)),
+) -> dict:
     stats = CircuitBreakerRegistry.all_stats()
     if name not in stats:
         raise HTTPException(status_code=404, detail=f"Circuit breaker '{name}' not found")
@@ -23,13 +35,22 @@ async def get_circuit_breaker(name: str) -> dict:
 
 
 @router.post("/reset")
-async def reset_circuit_breakers() -> dict:
+@limiter.limit("5/minute")
+async def reset_circuit_breakers(
+    request: Request,
+    _current_user: dict = Depends(require_role(Role.ADMIN)),
+) -> dict:
     CircuitBreakerRegistry.reset_all()
     return {"status": "ok", "message": "All circuit breakers reset"}
 
 
 @router.post("/trigger/{name}")
-async def trigger_breaker(name: str) -> dict:
+@limiter.limit("5/minute")
+async def trigger_breaker(
+    request: Request,
+    name: str,
+    _current_user: dict = Depends(require_role(Role.ADMIN)),
+) -> dict:
     cb = CircuitBreakerRegistry._breakers.get(name)
     if cb is None:
         raise HTTPException(status_code=404, detail=f"Circuit breaker '{name}' not found")
@@ -38,7 +59,12 @@ async def trigger_breaker(name: str) -> dict:
 
 
 @router.post("/close/{name}")
-async def close_breaker(name: str) -> dict:
+@limiter.limit("5/minute")
+async def close_breaker(
+    request: Request,
+    name: str,
+    _current_user: dict = Depends(require_role(Role.ADMIN)),
+) -> dict:
     cb = CircuitBreakerRegistry._breakers.get(name)
     if cb is None:
         raise HTTPException(status_code=404, detail=f"Circuit breaker '{name}' not found")

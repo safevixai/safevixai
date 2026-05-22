@@ -1,10 +1,10 @@
 // frontend/hooks/useSplitTextEntry.ts
-// GSAP SplitText character-by-character hero title animation
+// Character-by-character hero title animation using standard GSAP
 'use client';
 
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap, SplitText } from '@/lib/gsap';
+import { gsap } from '@/lib/gsap';
 
 export function useSplitTextEntry<T extends HTMLElement = HTMLElement>(delay = 0) {
   const ref = useRef<T>(null);
@@ -13,9 +13,19 @@ export function useSplitTextEntry<T extends HTMLElement = HTMLElement>(delay = 0
     () => {
       if (!ref.current) return;
 
-      const split = new SplitText(ref.current, { type: 'chars' });
+      const originalHTML = ref.current.innerHTML;
+      const text = ref.current.textContent || '';
+      
+      // Wrap each character in a span while preserving visual spaces
+      ref.current.innerHTML = text
+        .split('')
+        .map(char => `<span class="split-char-span inline-block" style="opacity: 0">${char === ' ' ? '&nbsp;' : char}</span>`)
+        .join('');
+
+      const chars = ref.current.querySelectorAll('.split-char-span');
+
       gsap.fromTo(
-        split.chars,
+        chars,
         { opacity: 0, y: 12 },
         {
           opacity: 1,
@@ -24,7 +34,12 @@ export function useSplitTextEntry<T extends HTMLElement = HTMLElement>(delay = 0
           stagger: 0.025,
           delay,
           ease: 'power2.out',
-          onComplete: () => split.revert(), // clean up DOM
+          onComplete: () => {
+            // Restore original HTML markup to prevent DOM cluttering
+            if (ref.current) {
+              ref.current.innerHTML = originalHTML;
+            }
+          },
         }
       );
     },

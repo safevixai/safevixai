@@ -272,7 +272,7 @@ export default function ChatPage() {
   }, [sessionId, location, autoRead, speakText, aiMode]);
 
  return (
-  <div className="aurora-glow w-full h-full min-h-dvh flex flex-col overflow-hidden bg-surface-1">
+  <div className="aurora-glow w-full h-[calc(100dvh-84px)] lg:h-screen flex flex-col overflow-hidden bg-surface-1">
   {/* Model Loading HUD overlay */}
   <ModelLoader />
 

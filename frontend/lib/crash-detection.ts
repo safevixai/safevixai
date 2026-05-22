@@ -45,6 +45,25 @@ function handleDeviceMotion(event: DeviceMotionEvent) {
 }
 
 /**
+ * Requests permission for iOS devices. Call this from a user gesture handler.
+ */
+export async function requestCrashPermission(): Promise<boolean> {
+  if (typeof window === 'undefined') return false;
+  if (typeof DeviceMotionEvent === 'undefined') return false;
+  
+  if (typeof (DeviceMotionEvent as unknown as { requestPermission?: () => Promise<PermissionState> }).requestPermission === 'function') {
+    try {
+      const permissionState = await (DeviceMotionEvent as unknown as { requestPermission: () => Promise<PermissionState> }).requestPermission();
+      return permissionState === 'granted';
+    } catch (e) {
+      console.error('Error requesting DeviceMotion permission:', e);
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
  * Initializes real DeviceMotion listeners if supported.
  * Note: iOS 13+ requires user permission to access DeviceMotionEvent.
  *
@@ -62,21 +81,8 @@ export async function startCrashDetection(onCrashDetected: CrashCallback) {
   // Only register the devicemotion handler once
   if (motionListenerRegistered) return;
 
-  // Request permission for iOS 13+ devices
-  if (typeof (DeviceMotionEvent as unknown as { requestPermission?: () => Promise<PermissionState> }).requestPermission === 'function') {
-    try {
-      const permissionState = await (DeviceMotionEvent as unknown as { requestPermission: () => Promise<PermissionState> }).requestPermission();
-      if (permissionState === 'granted') {
-        window.addEventListener('devicemotion', handleDeviceMotion, true);
-        motionListenerRegistered = true;
-      }
-    } catch {
-      return;
-    }
-  } else {
-    window.addEventListener('devicemotion', handleDeviceMotion, true);
-    motionListenerRegistered = true;
-  }
+  window.addEventListener('devicemotion', handleDeviceMotion, true);
+  motionListenerRegistered = true;
 }
 
 export function stopCrashDetection(onCrashDetected: CrashCallback) {

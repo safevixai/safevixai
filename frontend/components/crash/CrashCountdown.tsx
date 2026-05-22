@@ -89,26 +89,10 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
       role="alertdialog"
       aria-live="assertive"
       aria-modal="true"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 9999,
-        background: 'linear-gradient(135deg, #1A0A0A 0%, #2D0808 100%)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 24,
-      }}
+      className="fixed inset-0 z-[9999] bg-gradient-to-br from-[#1A0A0A] to-[#2D0808] flex flex-col items-center justify-center p-6"
     >
       {/* Severity badge */}
-      <span
-        className="sv-micro"
-        style={{
-          color: 'rgba(255, 255, 255, 0.6)',
-          marginBottom: 8,
-        }}
-      >
+      <span className="sv-micro text-white/60 mb-2">
         {severity.toUpperCase()} CRASH DETECTED
       </span>
 
@@ -116,31 +100,23 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
       <p
         ref={numRef}
         aria-label={`${seconds} seconds to auto SOS`}
-        className="crash-countdown-num"
-        style={{
-          fontSize: 96,
-          fontWeight: 800,
-          color: seconds <= 5 ? '#FF0000' : 'white',
-          lineHeight: 1,
-          margin: 0,
-          fontVariantNumeric: 'tabular-nums',
-          fontFamily: 'var(--font-mono)',
-          transition: 'color 0.3s ease',
-        }}
+        className={`crash-countdown-num text-8xl font-extrabold leading-none m-0 tabular-nums font-mono transition-colors duration-300 ${
+          seconds <= 5 ? 'text-red-600' : 'text-white'
+        }`}
       >
         {seconds}
       </p>
 
-      <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 14, margin: '12px 0' }}>
+      <p className="text-white/70 text-body my-3">
         Emergency services will be called in {seconds}s
       </p>
 
       {/* User info */}
-      <div style={{ display: 'flex', gap: 16, marginBottom: 32 }}>
-        <span style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: 12 }}>
+      <div className="flex gap-4 mb-8">
+        <span className="text-white/50 text-caption">
           {userProfile.bloodGroup || 'Blood group not set'}
         </span>
-        <span style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: 12 }}>
+        <span className="text-white/50 text-caption">
           {userProfile.vehicleNumber || 'Vehicle not set'}
         </span>
       </div>
@@ -150,24 +126,13 @@ export function CrashCountdown({ severity, onCancel, onDispatch }: CrashCountdow
         ref={cancelBtnRef}
         onClick={onCancel}
         autoFocus
-        style={{
-          padding: '16px 48px',
-          background: 'white',
-          color: '#991B1B',
-          fontWeight: 700,
-          fontSize: 16,
-          borderRadius: 8,
-          border: 'none',
-          cursor: 'pointer',
-          minWidth: 240,
-          minHeight: 56,
-        }}
+        className="px-12 py-4 bg-white text-red-800 font-bold text-h2 rounded-lg border-none cursor-pointer min-w-[240px] min-h-[56px] hover:scale-105 active:scale-95 transition-transform"
       >
         I AM SAFE — CANCEL SOS
       </button>
 
       {/* Progress ring - GSAP animated */}
-      <div style={{ position: 'absolute', top: 24, right: 24 }}>
+      <div className="absolute top-6 right-6">
         <ProgressRing seconds={seconds} total={20} size={64} />
       </div>
     </div>

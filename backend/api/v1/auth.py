@@ -77,7 +77,8 @@ async def login(request: Request, body: LoginRequest):
     )
 
 @router.post("/logout")
-async def logout():
+@limiter.limit("10/minute")
+async def logout(request: Request):
     response = JSONResponse(content={"message": "Logged out successfully"})
     response.delete_cookie(
         key="access_token",
@@ -89,7 +90,8 @@ async def logout():
     return response
 
 @router.get("/verify")
-async def verify_token(current_user: dict = Depends(get_current_user)):
+@limiter.limit("20/minute")
+async def verify_token(request: Request, current_user: dict = Depends(get_current_user)):
     """Validate the caller's bearer token."""
     return {"status": "valid", "sub": current_user.get("sub"), "role": current_user.get("role")}
 
@@ -133,6 +135,7 @@ async def refresh_access_token(request: Request, body: RefreshTokenRequest):
 
 
 @router.post("/revoke")
+@limiter.limit("10/minute")
 async def revoke_access_token(
     request: Request,
     current_user: dict = Depends(get_current_user),

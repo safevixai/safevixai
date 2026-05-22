@@ -12,7 +12,6 @@ export function GSAPProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf('*');
     };
   }, [pathname]);
 

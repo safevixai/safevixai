@@ -165,7 +165,9 @@ async def update_location(
 
 
 @router.get("/session/{session_id}", response_model=TrackingSessionResponse)
+@limiter.limit("30/minute")
 async def get_session(
+    request: Request,
     session_id: uuid.UUID,
     token: str | None = Query(default=None, min_length=20, max_length=4096),
     authorization: str | None = Header(default=None),
@@ -223,7 +225,9 @@ async def get_session(
 
 
 @router.delete("/session/{session_id}")
+@limiter.limit("10/minute")
 async def stop_tracking(
+    request: Request,
     session_id: uuid.UUID,
     current_user: dict = Depends(get_current_user),
 ):

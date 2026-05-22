@@ -58,51 +58,23 @@ export function CommandPalette() {
     >
       <div
         ref={panelRef}
-        className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[calc(100%-32px)] max-w-lg"
+        className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[calc(100%-32px)] max-w-lg bg-surface-4 border border-border-md rounded-xl shadow-modal"
         onClick={(e) => e.stopPropagation()}
-        style={{
-          background: 'var(--surface-4)',
-          border: '1px solid var(--border-md)',
-          borderRadius: 'var(--r-xl)',
-          boxShadow: 'var(--shadow-modal)',
-        }}
       >
         <Command>
           <Command.Input
             placeholder="Search hospitals, first aid, emergency..."
             autoFocus
-            style={{
-              width: '100%',
-              background: 'transparent',
-              padding: '12px 16px',
-              color: 'var(--text-1)',
-              borderBottom: '1px solid var(--border)',
-              outline: 'none',
-              fontSize: '14px',
-              fontFamily: 'var(--font-inter)',
-            }}
+            className="w-full bg-transparent px-4 py-3 text-text-1 border-b border-border outline-none text-body font-sans"
           />
-          <Command.List
-            style={{
-              maxHeight: 288,
-              overflowY: 'auto',
-              padding: 8,
-            }}
-          >
-            <Command.Empty
-              style={{
-                padding: '24px 16px',
-                textAlign: 'center',
-                color: 'var(--text-3)',
-                fontSize: '13px',
-              }}
-            >
+          <Command.List className="max-h-[288px] overflow-y-auto p-2">
+            <Command.Empty className="px-4 py-6 text-center text-text-3 text-body-sm">
               No results found
             </Command.Empty>
 
             <Command.Group
               heading="Emergency"
-              style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--text-3)', padding: '8px 8px 4px' }}
+              className="[&_[cmdk-group-heading]]:text-micro [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:tracking-[0.1em] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:text-text-3 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:pt-2 [&_[cmdk-group-heading]]:pb-1"
             >
               <CommandItem onSelect={() => navigate('/locator')}>
                 Find nearest hospital
@@ -114,7 +86,7 @@ export function CommandPalette() {
 
             <Command.Group
               heading="Features"
-              style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--text-3)', padding: '8px 8px 4px' }}
+              className="[&_[cmdk-group-heading]]:text-micro [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:tracking-[0.1em] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:text-text-3 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:pt-2 [&_[cmdk-group-heading]]:pb-1"
             >
               <CommandItem onSelect={() => navigate('/first-aid')}>
                 First Aid Guide
@@ -146,17 +118,7 @@ function CommandItem({
   return (
     <Command.Item
       onSelect={onSelect}
-      style={{
-        padding: '8px 12px',
-        borderRadius: 'var(--r-md)',
-        cursor: 'pointer',
-        fontSize: '14px',
-        color: 'var(--text-1)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-      }}
-      className="command-item"
+      className="command-item px-3 py-2 rounded-md cursor-pointer text-body text-text-1 flex items-center gap-2 transition-colors data-[selected]:bg-surface-3 aria-selected:bg-surface-3"
     >
       {children}
     </Command.Item>

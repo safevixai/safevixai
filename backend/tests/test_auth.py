@@ -44,7 +44,8 @@ def test_verify_accepts_operator_jwt(app):
 
 
 def test_verify_accepts_supabase_auth_jwt(app, monkeypatch):
-    secret = 'supabase-test-secret'
+    import secrets
+    secret = secrets.token_hex(32)
     monkeypatch.setattr(security_module, 'SUPABASE_JWT_SECRET', secret)
     monkeypatch.setattr(security_module, 'SUPABASE_JWT_AUDIENCE', 'authenticated')
     token = jwt.encode(
@@ -78,6 +79,9 @@ def test_profile_endpoint_requires_auth(app):
 
 @pytest.mark.asyncio
 async def test_profile_owner_mismatch_returns_not_found():
+    from starlette.requests import Request
+    from starlette.datastructures import Headers
+
     class EmptyResult:
         def scalar_one_or_none(self):
             return None
@@ -86,9 +90,17 @@ async def test_profile_owner_mismatch_returns_not_found():
         async def execute(self, _query):
             return EmptyResult()
 
+    mock_request = Request(scope={
+        "type": "http",
+        "method": "GET",
+        "headers": Headers().raw,
+        "path": "/api/v1/users/",
+    })
+
     with pytest.raises(HTTPException) as exc:
         await get_user_profile(
-            uuid.uuid4(),
+            request=mock_request,
+            user_id=uuid.uuid4(),
             db=FakeSession(),  # type: ignore[arg-type]
             current_user={'sub': 'caller-user-id'},
         )

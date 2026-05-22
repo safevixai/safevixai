@@ -50,7 +50,9 @@ async def create_user_profile(
 
 
 @router.get("/{user_id}", response_model=UserProfileResponse)
+@limiter.limit("30/minute")
 async def get_user_profile(
+    request: Request,
     user_id: uuid.UUID,
     db: AsyncSession = Depends(get_db),
     current_user: dict = Depends(get_current_user),

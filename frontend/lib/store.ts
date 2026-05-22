@@ -238,7 +238,27 @@ export const useAppStore = create<AppState>()(
 
       // Crash Detection
       crashDetectionEnabled: false,
-      setCrashDetectionEnabled: (v) => set({ crashDetectionEnabled: v }),
+      setCrashDetectionEnabled: async (v) => {
+        if (v) {
+          try {
+            const { requestCrashPermission } = await import('./crash-detection');
+            const granted = await requestCrashPermission();
+            if (!granted) {
+              const { toast } = await import('sonner');
+              toast.error('Motion permission denied. Cannot enable crash detection.', {
+                position: 'top-center',
+              });
+              set({ crashDetectionEnabled: false });
+              return;
+            }
+          } catch (e) {
+            console.error('Failed to request motion permission:', e);
+            set({ crashDetectionEnabled: false });
+            return;
+          }
+        }
+        set({ crashDetectionEnabled: v });
+      },
 
       // UI State
       isSystemSidebarOpen: false,

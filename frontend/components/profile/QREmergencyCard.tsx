@@ -126,11 +126,11 @@ export default function QREmergencyCard() {
             <div className="relative flex-shrink-0">
               {/* Outer glow ring */}
               <div className="absolute -inset-2 rounded-lg bg-gradient-to-br from-brand-dim/20 to-brand/10 blur-md" />
-              <div className="relative p-4 rounded-lg bg-white dark:bg-surface-2 border border-border-md dark:border-border-md shadow-inner">
+              <div className="relative p-4 rounded-lg bg-white border border-border-md shadow-inner">
                 <QRCodeSVG
                   value={qrUrl}
                   size={120}
-                  bgColor="transparent"
+                  bgColor="#ffffff"
                   fgColor="#000000"
                   level="H"
                   includeMargin={false}

@@ -110,7 +110,9 @@ async def submit_road_issue(
 
 
 @router.patch('/report/{report_id}/verify', response_model=dict)
+@limiter.limit("10/minute")
 async def verify_road_report(
+    request: Request,
     report_id: str,
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
