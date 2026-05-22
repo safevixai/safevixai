@@ -2,7 +2,27 @@
 exclude_paths:
   - "backend/models/pothole.pt"
   - "**/*.pt"
+  - "**/*.pdf"
+  - "**/*.PDF"
+  - "**/*.png"
+  - "**/*.onnx"
+  - "**/*.docx"
+  - "**/*.bin"
+  - "**/*.sqlite3"
+  - "**/*.gz"
+  - "frontend/public/**"
+  - "frontend/e2e/visual.spec.ts-snapshots/**"
+  - "chatbot_service/data/chroma_db/**"
 engines:
+  eslint:
+    enabled: true
+    config_file: "frontend/.eslintrc.codacy.json"
+    exclude_paths:
+      - "backend/**"
+      - "chatbot_service/**"
+      - "docs/**"
+      - "scripts/**"
+      - "frontend/public/**"
   duplication:
     exclude_paths:
       - "frontend/node_modules/**"
@@ -11,3 +31,19 @@ engines:
       - ".venv/**"
       - "backend/models/pothole.pt"
       - "**/*.pt"
+  pmd:
+    enabled: true
+    config:
+      rules:
+        - name: UnusedLocalVariable
+          enabled: true
+        - name: UnusedPrivateField
+          enabled: true
+  pmd-legacy:
+    enabled: true
+    config:
+      rules:
+        - name: UnusedLocalVariable
+          enabled: true
+        - name: UnusedPrivateField
+          enabled: true
