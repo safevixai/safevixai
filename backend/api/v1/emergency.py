@@ -122,7 +122,10 @@ async def create_sos_incident(
 
 
 @router.get('/numbers', response_model=EmergencyNumbersResponse)
-async def get_emergency_numbers() -> EmergencyNumbersResponse:
+@limiter.limit("30/minute")
+async def get_emergency_numbers(
+    request: Request,
+) -> EmergencyNumbersResponse:
     return EMERGENCY_NUMBERS
 
 

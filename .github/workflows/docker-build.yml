@@ -70,10 +70,22 @@ jobs:
         with:
           sarif_file: 'trivy-${{ matrix.image }}.sarif'
 
-      - name: Push to GHCR (main branch only)
+      - name: Push to GHCR (main branch only) with versioned tags
         if: github.ref == 'refs/heads/main'
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          docker tag ${{ matrix.image }} ghcr.io/${REPO_LOWER}/${{ matrix.image }}:latest
-          docker push ghcr.io/${REPO_LOWER}/${{ matrix.image }}:latest
+          SHA7="${{ github.sha }}" && SHA7="${SHA7:0:7}"
+          DATE_TAG="$(date +'%Y%m%d')-${SHA7}"
+          IMG="ghcr.io/${REPO_LOWER}/${{ matrix.image }}"
+          docker tag ${{ matrix.image }} "${IMG}:latest"
+          docker tag ${{ matrix.image }} "${IMG}:${SHA7}"
+          docker tag ${{ matrix.image }} "${IMG}:${DATE_TAG}"
+          docker push "${IMG}:latest"
+          docker push "${IMG}:${SHA7}"
+          docker push "${IMG}:${DATE_TAG}"
+          # Keep only last 10 tags per image
+          TAGS=$(docker images --filter=reference="${IMG}" --format "{{.Tag}}" | sort -r | tail -n +11)
+          for TAG in $TAGS; do
+            docker rmi "${IMG}:${TAG}" 2>/dev/null || true
+          done

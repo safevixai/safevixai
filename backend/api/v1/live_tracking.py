@@ -11,6 +11,7 @@ from pydantic import BaseModel, Field
 
 from core.config import get_settings
 from core.database import get_async_session
+from core.limiter import limiter
 from core.security import ALGORITHM, SECRET_KEY, create_access_token, get_current_user
 from sqlalchemy import text
 
@@ -61,6 +62,7 @@ class TrackingSessionResponse(BaseModel):
 # ── Endpoints ─────────────────────────────────────────────────────────────────
 
 @router.post("/start", response_model=StartTrackingResponse)
+@limiter.limit("10/minute")
 async def start_tracking(
     payload: StartTrackingRequest,
     request: Request,
@@ -121,8 +123,10 @@ async def start_tracking(
 
 
 @router.put("/update")
+@limiter.limit("30/minute")
 async def update_location(
     payload: UpdateLocationRequest,
+    request: Request,
     current_user: dict = Depends(get_current_user),
 ):
     """

@@ -24,6 +24,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.config import get_settings
 from core.database import get_db
+from core.limiter import limiter
 
 logger = logging.getLogger(__name__)
 
@@ -90,7 +91,11 @@ def _format_timestamp(iso_str: str | None) -> str:
 
 
 @router.get("/waze", response_class=JSONResponse)
-async def get_waze_cifs_feed(db: AsyncSession = Depends(get_db)) -> dict[str, Any]:
+@limiter.limit("10/minute")
+async def get_waze_cifs_feed(
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+) -> dict[str, Any]:
     """
     CIFS Feed — Waze polls this every 2 minutes.
 

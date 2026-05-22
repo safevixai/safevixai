@@ -353,6 +353,60 @@ class HttpProvider:
             self._client = httpx.AsyncClient(timeout=30.0)
         return self._client
 
+    async def stream(self, request: ProviderRequest):
+        """Stream tokens via SSE. Yields token strings from the API delta stream.
+
+        OpenAI-compatible format: data: {"choices":[{"delta":{"content":"..."}}]}
+        Terminates on data: [DONE].
+        Subclasses may override for provider-specific streaming formats.
+        """
+        request = _enforce_token_budget(request)
+        if check_prompt_injection(request.message):
+            logger.warning(f"Prompt injection blocked in HttpProvider.stream. Message: {request.message[:50]}...")
+            return
+
+        import os
+        api_key = self._get_api_key()
+        model = os.getenv(f"{self.api_key_env().replace('_API_KEY', '_MODEL')}", "").strip() or self.default_model()
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            **self.extra_headers(),
+        }
+
+        payload = {
+            "model": model,
+            "messages": build_messages(request),
+            "max_tokens": MAX_RESPONSE_TOKENS,
+            "temperature": 0.5,
+            "stream": True,
+        }
+
+        async with self._get_client().stream("POST", self.base_url(), headers=headers, json=payload) as resp:
+            raise_for_provider_status(resp, provider=self.name, model=model)
+            buffer = ""
+            async for chunk in resp.aiter_text():
+                buffer += chunk
+                while "\n" in buffer:
+                    line, buffer = buffer.split("\n", 1)
+                    line = line.strip()
+                    if not line or not line.startswith("data: "):
+                        continue
+                    data_str = line[6:].strip()
+                    if data_str == "[DONE]":
+                        return
+                    try:
+                        data = json.loads(data_str)
+                        choices = data.get("choices", [])
+                        if choices:
+                            delta = choices[0].get("delta", {})
+                            content = delta.get("content", "")
+                            if content:
+                                yield content
+                    except json.JSONDecodeError:
+                        pass
+
     async def generate(self, request: ProviderRequest) -> ProviderResult:
         request = _enforce_token_budget(request)
         if check_prompt_injection(request.message):

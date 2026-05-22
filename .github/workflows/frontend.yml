@@ -41,13 +41,12 @@ jobs:
       - name: Run ESLint
         working-directory: ./frontend
         run: |
-          # next lint is deprecated, use eslint directly
-          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0 || true
+          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=100
 
       - name: Run TypeScript validation
         working-directory: ./frontend
         run: |
-          npx tsc --noEmit || true
+          npx tsc --noEmit
 
   build-and-test:
     name: Frontend Build & Tests

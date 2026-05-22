@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import secrets
 from datetime import datetime, timedelta, timezone
+import uuid
 from typing import Any
 
 from fastapi import HTTPException, Security, Request, Response
@@ -47,6 +48,28 @@ REJECTED_STATIC_TOKENS = {
     "test-token",
 }
 
+# Token revocation set (in-memory fallback, persisted to Redis when available)
+_revoked_token_jtis: set[str] = set()
+REFESH_TOKEN_EXPIRE_DAYS = int(os.environ.get("REFESH_TOKEN_EXPIRE_DAYS", "30"))
+
+def _get_revocation_cache_key(jti: str) -> str:
+    return f"revoked_token:{jti}"
+
+async def revoke_token(jti: str, cache=None) -> None:
+    _revoked_token_jtis.add(jti)
+    if cache:
+        await cache.set_json(_get_revocation_cache_key(jti), True, ttl_seconds=86400 * 30)
+
+async def is_token_revoked(jti: str, cache=None) -> bool:
+    if jti in _revoked_token_jtis:
+        return True
+    if cache:
+        result = await cache.get_json(_get_revocation_cache_key(jti))
+        if result:
+            _revoked_token_jtis.add(jti)
+            return True
+    return False
+
 # Phase 0.2: Cookie security flags
 COOKIE_SECURE = _ENVIRONMENT == "production"
 COOKIE_SAMESITE = "lax"
@@ -67,6 +90,7 @@ def create_access_token(
     # P1-01: Add aud and iss claims
     # Phase 0.1: Add role claim to JWT
     to_encode.update({
+        "jti": str(uuid.uuid4()),
         "exp": expire, 
         "iat": now,
         "aud": APP_JWT_AUDIENCE,
@@ -75,6 +99,24 @@ def create_access_token(
     })
     if "org_id" in data:
         to_encode["org_id"] = data["org_id"]
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+
+def create_refresh_token(
+    data: dict,
+    expires_delta: timedelta | None = None,
+) -> str:
+    to_encode = data.copy()
+    now = datetime.now(timezone.utc)
+    expire = now + (expires_delta if expires_delta else timedelta(days=REFESH_TOKEN_EXPIRE_DAYS))
+    to_encode.update({
+        "jti": str(uuid.uuid4()),
+        "exp": expire,
+        "iat": now,
+        "purpose": "refresh",
+        "aud": APP_JWT_AUDIENCE,
+        "iss": APP_JWT_ISSUER,
+    })
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
@@ -197,4 +239,9 @@ async def get_current_user(
     user = await get_current_user_optional(request)
     if user is None:
         raise HTTPException(status_code=401, detail="Authentication required")
+    jti = user.get("jti")
+    if jti:
+        cache = getattr(request.app.state, 'cache', None)
+        if await is_token_revoked(jti, cache):
+            raise HTTPException(status_code=401, detail="Token has been revoked")
     return user

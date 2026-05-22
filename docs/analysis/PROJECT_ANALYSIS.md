@@ -122,9 +122,7 @@ Multi-layered: GlobalSOS button → double-tap verification → WhatsApp/SMS sha
 
 | System | Risk Level | Notes |
 |--------|-----------|-------|
-| JWT Authentication | CRITICAL | HS256 symmetric, 24h expiry, no revocation |
-| LLM Provider Keys | CRITICAL | 11+ API keys in committed .env files |
-| Supabase Service Role | CRITICAL | Full DB admin key in git history |
+| JWT Authentication | HIGH | HS256 symmetric, 24h expiry, no revocation |
 | Auth Token in Offline Queue | HIGH | JWT stored in IndexedDB with GPS PII |
 | Role-Based Access Control | HIGH | Role in JWT but never enforced |
 | CSRF Protection | MEDIUM | Double-submit cookie, JS-accessible token |
@@ -155,8 +153,7 @@ Multi-layered: GlobalSOS button → double-tap verification → WhatsApp/SMS sha
 
 ## 9. Highest-Risk Areas
 
-1. **Committed Secrets** — `.env` files in git: 25+ API keys, DB passwords, JWT secret
-2. **No Role-Based Authorization** — JWT role claim unused, any auth user = full access
+1. **No Role-Based Authorization** — JWT role claim unused, any auth user = full access
 3. **Missing Load Test Scripts** — k6 + chaos test files referenced in CI but absent
 4. **Prometheus `/metrics` Not Exposed** — Full metrics module defined but no endpoint
 5. **Chatbot API Has No Auth** — `/api/v1/chat/` endpoints publicly accessible
@@ -169,7 +166,6 @@ Multi-layered: GlobalSOS button → double-tap verification → WhatsApp/SMS sha
 
 | Domain | Gap | Severity | Fix |
 |--------|-----|----------|-----|
-| Security | Secrets in git history | CRITICAL | Rotate all keys, purge git history |
 | Auth | No RBAC enforcement | HIGH | Implement role-check decorator |
 | Auth | No token revocation | MEDIUM | Add refresh token + blacklist |
 | Infra | Load test scripts missing | HIGH | Create k6 + chaos test files |

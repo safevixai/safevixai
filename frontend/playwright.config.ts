@@ -22,7 +22,8 @@ const webServerCommand = useStandalone
   : `npm run dev -- --hostname ${host} --port ${port}`;
 
 export default defineConfig({
-  testDir: './e2e',
+  testDir: '.',
+  testMatch: ['e2e/**/*.spec.ts', 'tests/a11y/**/*.spec.ts'],
   timeout: 60_000,
   expect: {
     timeout: 30_000,

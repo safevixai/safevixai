@@ -14,6 +14,7 @@ from api.v1.tracking import router as tracking_router
 from api.v1.auth import router as auth_router
 from api.v1.live_tracking import router as live_tracking_router
 from api.v1.waze_feed import router as waze_feed_router
+from api.v1.circuit_breaker_api import router as circuit_breaker_router
 
 
 api_router = APIRouter()
@@ -29,3 +30,4 @@ api_router.include_router(tracking_router)
 api_router.include_router(auth_router)
 api_router.include_router(live_tracking_router)
 api_router.include_router(waze_feed_router)
+api_router.include_router(circuit_breaker_router)

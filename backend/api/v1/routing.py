@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 
+from core.limiter import limiter
 from models.schemas import RoutePreviewResponse, RouteProfile
 from services.exceptions import ExternalServiceError, ServiceValidationError
 from services.routing_service import RoutingService
@@ -16,7 +17,9 @@ def get_routing_service(request: Request) -> RoutingService:
 
 
 @router.get('/preview', response_model=RoutePreviewResponse)
+@limiter.limit("30/minute")
 async def preview_route(
+    request: Request,
     origin_lat: float = Query(..., ge=-90, le=90),
     origin_lon: float = Query(..., ge=-180, le=180),
     destination_lat: float = Query(..., ge=-90, le=90),

@@ -48,6 +48,8 @@ from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent.parent.parent))
 from alert_service import get_alert_service
 
+from core.metrics import chatbot_circuit_breaker_state, chatbot_circuit_breaker_trips_total, update_circuit_breaker_gauges
+
 
 logger = logging.getLogger("safevixai.chatbot.providers")
 
@@ -404,6 +406,73 @@ class ProviderRouter:
         scored.sort(key=lambda x: x[0], reverse=True)
         return scored
 
+    async def stream_generate(
+        self,
+        request: ProviderRequest,
+        *,
+        detected_lang: str | None = None,
+    ):
+        """Stream tokens from the selected provider.
+
+        Yields dicts: {'type': 'token', 'text': str}
+        On completion: {'type': 'done', 'provider': str, 'model': str}
+        On error: falls back to non-streaming generate + yields full text as one token.
+        """
+        if detected_lang is None:
+            detected_lang = detect_lang(request.message or '')
+
+        primary = self._select_provider_name(request, detected_lang=detected_lang)
+        provider = self.providers.get(primary) or self.providers.get('groq') or self.providers['template']
+
+        try:
+            if self._provider_unavailable(primary):
+                raise ProviderUnavailableError(f"{primary} is temporarily disabled by circuit breaker")
+
+            stream_method = getattr(provider, 'stream', None)
+            if stream_method is None:
+                result = await self._generate_with_timeout(provider, request)
+                yield {'type': 'token', 'text': result.text, 'provider': primary, 'model': getattr(result, 'model', '')}
+                yield {'type': 'done', 'provider': primary, 'model': getattr(result, 'model', '')}
+                return
+
+            first_token = True
+            async for token in self._stream_with_timeout(provider, request):
+                if first_token:
+                    first_token = False
+                if token:
+                    yield {'type': 'token', 'text': token, 'provider': primary}
+
+            yield {'type': 'done', 'provider': primary}
+
+        except Exception as exc:
+            self._mark_provider_failure(primary, exc)
+            logger.info("Streaming failed for %s, falling back to generate: %s", primary, exc)
+
+            try:
+                result = await self._try_fallback_chain(request, primary, detected_lang, primary_err=exc)
+                yield {'type': 'token', 'text': result.text, 'provider': result.provider, 'model': result.model}
+                yield {'type': 'done', 'provider': result.provider, 'model': result.model}
+            except Exception as fallback_exc:
+                logger.error("All fallbacks exhausted in stream_generate: %s", fallback_exc)
+                yield {'type': 'error', 'message': 'All providers failed. Please try again later.'}
+
+    async def _stream_with_timeout(
+        self,
+        provider,
+        request: ProviderRequest,
+    ):
+        """Wrapper around provider.stream() with timeout."""
+        try:
+            async for token in asyncio.wait_for(
+                provider.stream(request),
+                timeout=self.provider_timeout_seconds,
+            ):
+                yield token
+        except asyncio.TimeoutError:
+            raise TimeoutError(
+                f"{provider.name} streaming timed out after {self.provider_timeout_seconds:.1f}s"
+            )
+
     async def _generate_with_timeout(
         self,
         provider: TemplateProvider,
@@ -452,6 +521,10 @@ class ProviderRouter:
                 duration,
                 exc.__class__.__name__,
             )
+            chatbot_circuit_breaker_trips_total.labels(
+                provider=provider_name, error_type=exc.__class__.__name__
+            ).inc()
+            self._sync_circuit_metrics()
             # C12: Send alert when circuit breaker trips for > 5 minutes
             if duration >= 300:
                 alerts = get_alert_service()
@@ -461,3 +534,11 @@ class ProviderRouter:
                     error_type=exc.__class__.__name__,
                     error_message=str(exc)[:500],
                 )
+
+    def _sync_circuit_metrics(self) -> None:
+        now = time.time()
+        unavailable = {
+            name for name, until in self._unavailable_until.items()
+            if until > now
+        }
+        update_circuit_breaker_gauges(unavailable, list(self.providers.keys()))

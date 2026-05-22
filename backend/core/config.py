@@ -59,6 +59,7 @@ class Settings(BaseSettings):
     chatbot_ready: bool = False
     chatbot_service_url: str = 'http://localhost:8010/api/v1'
     chatbot_request_timeout_seconds: float = 20.0
+    chatbot_internal_api_key: str | None = None
 
     data_dir: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[1] / 'data')
     upload_dir: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[1] / 'data' / 'uploads')

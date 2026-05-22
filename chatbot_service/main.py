@@ -205,6 +205,31 @@ def create_app() -> FastAPI:
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+    # P2-02: Prometheus metrics middleware
+    @app.middleware("http")
+    async def _prometheus_metrics_middleware(request: Request, call_next):
+        from core.metrics import api_request_total, api_request_time
+
+        if request.url.path == "/metrics":
+            return await call_next(request)
+
+        start = time.monotonic()
+        response = await call_next(request)
+        duration = time.monotonic() - start
+
+        api_request_total.labels(
+            method=request.method,
+            endpoint=request.url.path,
+            status_code=response.status_code,
+        ).inc()
+
+        api_request_time.labels(
+            method=request.method,
+            endpoint=request.url.path,
+        ).observe(duration)
+
+        return response
+
     # P2-02: Request-ID correlation middleware
     @app.middleware("http")
     async def _security_headers_middleware(request: Request, call_next):
@@ -212,7 +237,23 @@ def create_app() -> FastAPI:
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"
-        response.headers["Content-Security-Policy"] = "default-src 'self'"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Permissions-Policy"] = (
+            "geolocation=(self), "
+            "microphone=(self), "
+            "camera=(), "
+            "accelerometer=(), "
+            "gyroscope=(), "
+            "magnetometer=(), "
+            "payment=()"
+        )
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; "
+            "script-src 'self' 'unsafe-inline'; "
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+            "font-src 'self' https://fonts.gstatic.com; "
+            "connect-src 'self' https: wss: ws:"
+        )
         return response
 
     @app.middleware("http")
@@ -278,6 +319,16 @@ def create_app() -> FastAPI:
         }
 
     app.include_router(api_router)
+
+    @app.get('/metrics', tags=['Observability'])
+    async def metrics():
+        from core.metrics import metrics_response, metrics_content_type
+        from fastapi.responses import Response
+        return Response(
+            content=metrics_response(),
+            media_type=metrics_content_type(),
+        )
+
     return app
 
 

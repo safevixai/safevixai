@@ -3,6 +3,7 @@ from __future__ import annotations
 from uuid import uuid4
 
 import logging
+import html
 
 from agent.context_assembler import ContextAssembler
 from agent.governance import AIGovernance
@@ -149,6 +150,112 @@ class ChatEngine:
             sources=sources,
             session_id=session_id,
         )
+
+    async def stream_chat(self, payload: ChatRequest):
+        """Stream chat with real LLM token streaming.
+
+        Yields event dicts for SSE serialization:
+          {'type': 'token', 'text': str}
+          {'type': 'done', 'intent': str, 'sources': list, 'session_id': str}
+          {'type': 'error', 'message': str}
+        """
+        session_id = payload.session_id or str(uuid4())
+        await self.memory_store.append_message(session_id, 'user', payload.message)
+        history = await self.memory_store.get_history(session_id, limit=12)
+
+        safety = self.safety_checker.evaluate(payload.message)
+        if safety.blocked:
+            blocked_text = safety.response or 'I cannot help with that request.'
+            await self.memory_store.append_message(session_id, 'assistant', blocked_text)
+            yield {'type': 'token', 'text': blocked_text}
+            yield {'type': 'done', 'intent': 'blocked', 'sources': ['policy:safety'], 'session_id': session_id}
+            return
+
+        summarized_history, _ = self.summarizer.get_summary_for_history(history)
+        intent = self.intent_detector.detect(payload.message)
+        refined_intent = self.intent_detector.refine_intent(intent, payload.message, history)
+        _log_intent_refinement(intent, refined_intent, payload.message)
+        context = await self.context_assembler.assemble(
+            session_id=session_id,
+            message=payload.message,
+            intent=refined_intent,
+            lat=payload.lat,
+            lon=payload.lon,
+            client_ip=payload.client_ip,
+            history=history,
+        )
+
+        if not context.retrieved and not context.tools and refined_intent != 'general':
+            response = (
+                'I do not know from the SafeVixAI knowledge base. '
+                'Please share more details or try a different road-safety question.'
+            )
+            await self.memory_store.append_message(
+                session_id, 'assistant', response,
+                metadata={'intent': refined_intent, 'sources': ['policy:weak-retrieval']},
+            )
+            yield {'type': 'token', 'text': response}
+            yield {'type': 'done', 'intent': refined_intent, 'sources': ['policy:weak-retrieval'], 'session_id': session_id}
+            return
+
+        base_sources = self._dedupe_sources(
+            [source for tool in context.tools for source in tool.sources]
+            + [item.source for item in context.retrieved]
+        )
+
+        full_text = ""
+        try:
+            async for event in self.provider_router.stream_generate(
+                ProviderRequest(
+                    message=payload.message,
+                    intent=refined_intent,
+                    history=summarized_history,
+                    tool_summaries=[item.summary for item in context.tools],
+                    document_snippets=[
+                        f'{item.title} ({item.source}): {item.snippet}'
+                        for item in context.retrieved
+                    ],
+                )
+            ):
+                if event['type'] == 'token':
+                    escaped = html.escape(event['text'])
+                    full_text += escaped
+                    yield {'type': 'token', 'text': escaped}
+                elif event['type'] == 'done':
+                    governance_result = await self.governance.evaluate(
+                        response_text=full_text,
+                        retrieved_context=[
+                            {"content": item.snippet, "source": item.source, "title": item.title}
+                            for item in context.retrieved
+                        ],
+                        tool_results=[{"payload": tool.payload} for tool in context.tools],
+                        prompt=payload.message,
+                    )
+                    response_text = full_text
+                    if governance_result.flagged:
+                        response_text = f"[⚠️ Low confidence] {full_text}"
+
+                    all_sources = self._dedupe_sources(base_sources + governance_result.citations)
+
+                    await self.memory_store.append_message(
+                        session_id, 'assistant', response_text,
+                        metadata={
+                            'intent': refined_intent,
+                            'sources': all_sources,
+                            'governance': {
+                                'hallucination_score': governance_result.hallucination_score,
+                                'factuality_score': governance_result.factuality_score,
+                                'flagged': governance_result.flagged,
+                                'prompt_version': governance_result.prompt_version,
+                            }
+                        },
+                    )
+                    yield {'type': 'done', 'intent': refined_intent, 'sources': all_sources, 'session_id': session_id}
+                elif event['type'] == 'error':
+                    yield event
+        except Exception as exc:
+            logger.error(f"Stream chat error [session={session_id}]: {exc}", exc_info=True)
+            yield {'type': 'error', 'message': 'An internal error occurred while processing your request.'}
 
     async def get_history(self, session_id: str) -> list[dict]:
         return await self.memory_store.get_history(session_id, limit=30)

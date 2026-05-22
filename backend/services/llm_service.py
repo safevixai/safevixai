@@ -15,13 +15,16 @@ logger = logging.getLogger("safevixai.llm_service")
 class LLMService:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
+        headers = {
+            'Accept': 'application/json',
+            'User-Agent': settings.http_user_agent,
+        }
+        if settings.chatbot_internal_api_key:
+            headers['X-Internal-Api-Key'] = settings.chatbot_internal_api_key
         self._client = httpx.AsyncClient(
             base_url=settings.chatbot_service_url,
             timeout=settings.chatbot_request_timeout_seconds,
-            headers={
-                'Accept': 'application/json',
-                'User-Agent': settings.http_user_agent,
-            },
+            headers=headers,
         )
 
     async def aclose(self) -> None:

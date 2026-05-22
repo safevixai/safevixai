@@ -132,6 +132,18 @@ class CircuitBreaker:
             self._transition_to(CircuitState.OPEN)
             self._reset()
 
+    def force_open(self) -> None:
+        self._state = CircuitState.OPEN
+        self._last_state_change = time.time()
+        self._failure_count = self._failure_threshold
+        logger.info("Circuit breaker '%s': forced -> open", self.name)
+
+    def force_close(self) -> None:
+        self._state = CircuitState.CLOSED
+        self._last_state_change = time.time()
+        self._reset()
+        logger.info("Circuit breaker '%s': forced -> closed", self.name)
+
     def get_stats(self) -> dict[str, Any]:
         return {
             "name": self.name,

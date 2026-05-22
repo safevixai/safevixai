@@ -84,13 +84,17 @@ async def chat_stream(
     stream_url = f"{chatbot_base}/api/v1/chat/stream"
 
     async def _generate():
+        settings_local = get_settings()
+        headers = {"Content-Type": "application/json"}
+        if settings_local.chatbot_internal_api_key:
+            headers["X-Internal-Api-Key"] = settings_local.chatbot_internal_api_key
         async with httpx.AsyncClient(timeout=60.0) as client:
             try:
                 async with client.stream(
                     "POST",
                     stream_url,
                     json=payload.model_dump(),
-                    headers={"Content-Type": "application/json"},
+                    headers=headers,
                 ) as response:
                     async for chunk in response.aiter_bytes():
                         yield chunk

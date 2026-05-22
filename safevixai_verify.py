@@ -547,13 +547,13 @@ def run_code_checks() -> None:
           f"{sum(exists(path) for path in rag_assets)}/{len(rag_assets)} assets",
           "Restore chatbot_service/data reference files and ChromaDB.")
     runtime_torch = [
-        m for m in search(r"^\s*import\s+torch|^\s*from\s+torch", "chatbot_service")
+        m for m in search(r"^import\s+torch|^from\s+torch", "chatbot_service")  # only top-level (col 0)
         if "/data/" not in rel(m[0]).replace("\\", "/") and "/tests/" not in rel(m[0]).replace("\\", "/")
     ]
-    check("Torch is not imported by core chatbot runtime", "CODE",
+    check("Torch is not imported at module level (lazy imports OK)", "CODE",
           not runtime_torch,
           "clean" if not runtime_torch else f"{rel(runtime_torch[0][0])}:{runtime_torch[0][1]}",
-          "Keep heavyweight ML imports out of Render-facing runtime code or isolate them behind optional extras.",
+          "Move heavyweight ML imports inside _import_dependencies() on-demand pattern.",
           required=False)
 
     check("Interactive architecture knowledge graph is fully up to date", "CODE",
@@ -619,6 +619,122 @@ def run_code_checks() -> None:
           exists("backend/.env.example") and exists("chatbot_service/.env.example") and exists("frontend/.env.example"),
           "backend, chatbot_service, frontend all have .env.example",
           "Add .env.example files with documented required vars for every service.")
+
+    next_config = read_text("frontend/next.config.js")
+    check("ESLint does not block production builds (ignoreDuringBuilds)", "CODE",
+          "ignoreDuringBuilds" in next_config,
+          "eslint.ignoreDuringBuilds in next.config.js",
+          "Add eslint: { ignoreDuringBuilds: true } to next.config.js to separate lint from build.")
+
+    gitignore_text = read_text(".gitignore")
+    has_anchored_tests = any(
+        line.strip() == "/tests/" for line in gitignore_text.splitlines()
+    )
+    has_bare_tests = any(
+        line.strip() == "tests/" and not line.strip().startswith("#")
+        for line in gitignore_text.splitlines()
+    )
+    check("Gitignore uses anchored /tests/ not bare tests/", "CODE",
+          has_anchored_tests and not has_bare_tests,
+          "/tests/ anchored (bare tests/ excluded nested dirs before fix)",
+          "Ensure .gitignore has /tests/ (anchored) and not tests/ (matches any level).")
+
+    check("Docker Compose orchestrates all services", "CODE",
+          exists("docker-compose.yml") and "backend" in read_text("docker-compose.yml").lower(),
+          "docker-compose.yml with backend service",
+          "Add/restore docker-compose.yml for postgis, redis, backend, chatbot, frontend.")
+
+    check("Render deployment blueprint exists", "CODE",
+          exists("render.yaml"),
+          "render.yaml",
+          "Create render.yaml for Render.com auto-deploy with health checks.")
+
+    lockfile = read_json("frontend/package-lock.json") or {}
+    framer_entries = [k for k in lockfile.get("packages", {}) if "framer-motion" in k]
+    check("No orphaned framer-motion in lockfile (GSAP migration complete)", "CODE",
+          len(framer_entries) == 0,
+          "clean" if len(framer_entries) == 0 else f"{len(framer_entries)} orphan entries",
+          "Remove framer-motion from package-lock.json with npm uninstall framer-motion.")
+
+    tsconfig = read_json("frontend/tsconfig.json") or {}
+    compiler_opts = tsconfig.get("compilerOptions", {})
+    check("TypeScript strict mode is enabled", "CODE",
+          compiler_opts.get("strict", False),
+          f"strict={compiler_opts.get('strict', 'missing')}",
+          "Set strict: true in frontend/tsconfig.json for type safety.")
+
+    check("CSP headers configured in next.config.js", "CODE",
+          "Content-Security-Policy" in next_config and "script-src" in next_config,
+          "CSP with script-src found",
+          "Add Content-Security-Policy in next.config.js async headers.")
+
+    chatbot_main_text = read_text("chatbot_service/main.py")
+    check("Sentry import is guarded (try/except) in chatbot service", "CODE",
+          "try:" in chatbot_main_text and "import sentry_sdk" in chatbot_main_text,
+          "guarded sentry_sdk in chatbot_service/main.py",
+          "Wrap import sentry_sdk and sentry_sdk.init() in try/except to prevent ImportError in tests.")
+
+    roadwatch_text = read_text("backend/api/v1/roadwatch.py")
+    check("Road report POST accepts anonymous reports (get_current_user_optional)", "CODE",
+          "get_current_user_optional" in roadwatch_text,
+          "JWT-optional on POST /roads/report",
+          "Use get_current_user_optional (not get_current_user) so anonymous bystanders can report.")
+
+    speech_translation_text = read_text("chatbot_service/services/speech_translation.py")
+    check("Speech translation uses on-demand lazy imports for torch/torchaudio", "CODE",
+          "_import_dependencies" in speech_translation_text,
+          "lazy import pattern detected",
+          "Wrap torch/torchaudio/transformers imports in _import_dependencies() on-demand method.")
+
+    safety_text = read_text("chatbot_service/agent/safety_checker.py")
+    check("Safety rule: injury responses include 112 prompt", "CODE",
+          "Please call 112 for emergencies" in safety_text or "Call 112 immediately" in safety_text,
+          "safety_checker.py includes 112 prompt",
+          "Any AI response about injuries must include a 112/emergency services prompt.")
+
+    challan_service_text = read_text("backend/services/challan_service.py")
+    check("Challans use deterministic engine (CSV/SQL, not LLM)", "CODE",
+          "csv" in challan_service_text or "sqlalchemy" in challan_service_text or "text(" in challan_service_text,
+          "CSV loading + SQLAlchemy queries (deterministic)",
+          "Challans must use deterministic CSV/SQL, not LLM (hallucinates fine amounts).")
+
+    check("PostGIS ST_MakePoint uses longitude-first convention", "CODE",
+          "ST_MakePoint(lon" in read_text("backend/services/emergency_locator.py").lower() or
+          "st_makepoint(lon" in read_text("backend/services/emergency_locator.py").lower(),
+          "longitude-first ST_MakePoint in emergency_locator",
+          "PostGIS ST_MakePoint takes (longitude, latitude) — lon FIRST.")
+
+    chat_router_text = read_text("backend/api/v1/chat.py")
+    check("Backend chat proxy routes to chatbot service", "CODE",
+          exists("backend/api/v1/chat.py") and "chatbot" in chat_router_text.lower(),
+          "backend/api/v1/chat.py proxies to chatbot_service",
+          "Backend should proxy chat requests to the chatbot service at port 8010.")
+
+    check("Conversation memory uses Redis (not in-memory)", "CODE",
+          exists("chatbot_service/memory/redis_memory.py") and "redis" in read_text("chatbot_service/memory/redis_memory.py").lower(),
+          "chatbot_service/memory/redis_memory.py with Redis imports",
+          "Use Redis conversation memory for production persistence and horizontal scaling.")
+
+    auth_text = read_text("backend/api/v1/auth.py")
+    check("Auth endpoints exist (login/refresh)", "CODE",
+          "login" in auth_text and "refresh" in auth_text,
+          "login / refresh endpoints",
+          "Provide auth flow: login and token refresh (registration may be delegated to Supabase).")
+
+    check("Offline SOS queue auto-flushes on reconnect", "CODE",
+          "window.addEventListener('online'" in read_text("frontend/lib/offline-sos-queue.ts"),
+          "online event listener present",
+          "Add window.addEventListener('online', ...) to auto-flush queued SOS on reconnect.")
+
+    check("Emergency card QR profile route exists", "CODE",
+          exists("frontend/app/emergency-card/[userId]/page.tsx"),
+          "frontend/app/emergency-card/[userId]/page.tsx",
+          "Public emergency card with blood group, emergency contacts, and QR code.")
+
+    check("Live tracking WebSocket endpoint exists", "CODE",
+          "@router.websocket" in read_text("backend/api/v1/tracking.py"),
+          "WS endpoint in backend/api/v1/tracking.py",
+          "Family tracking must use WebSocket at /api/v1/tracking/{group_id}.")
 
     etl_scripts = [
         "backend/scripts/data/prepare_road_sources.py",

@@ -51,6 +51,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" type="image/png" href="/icons/favicon.png" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        <link rel="preconnect" href="https://mt1.google.com" />
+        <link rel="preconnect" href="https://api.maptiler.com" />
+        <link rel="preconnect" href="https://tiles.openfreemap.org" />
+        <link rel="dns-prefetch" href="https://mt1.google.com" />
+        <link rel="dns-prefetch" href="https://api.maptiler.com" />
+        <link rel="dns-prefetch" href="https://tiles.openfreemap.org" />
         <meta name="mobile-web-app-capable" content="yes" />
         {/* Flash-free theme init - runs before React hydration to prevent FOUC */}
         <script dangerouslySetInnerHTML={{ __html: `

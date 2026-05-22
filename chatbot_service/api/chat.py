@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import json
-import asyncio
 import logging
 import html
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -27,12 +27,24 @@ def get_engine(request: Request) -> ChatEngine:
     return request.app.state.chat_engine
 
 
+def verify_internal_auth(
+    request: Request,
+    x_internal_api_key: str | None = Header(default=None),
+) -> None:
+    settings = get_settings()
+    if settings.internal_api_key:
+        import hmac
+        if not x_internal_api_key or not hmac.compare_digest(x_internal_api_key, settings.internal_api_key):
+            raise HTTPException(status_code=403, detail="Invalid internal API key")
+
+
 @router.post('/', response_model=ChatResponse)
 @limiter.limit("20/minute")
 async def chat(
     request: Request,
     payload: ChatRequest,
     engine: ChatEngine = Depends(get_engine),
+    _auth: None = Depends(verify_internal_auth),
 ) -> ChatResponse:
     """Standard blocking chat — returns full response at once."""
     if not payload.client_ip:
@@ -51,44 +63,37 @@ async def chat_stream(
     request: Request,
     payload: ChatRequest,
     engine: ChatEngine = Depends(get_engine),
+    _auth: None = Depends(verify_internal_auth),
 ) -> StreamingResponse:
-    """SSE streaming chat — sends tokens as they arrive.
-    
+    """SSE streaming chat — sends tokens as they arrive from the LLM.
+
     Client should consume text/event-stream and parse JSON events:
       data: {"type": "token", "text": "..."}\n\n
       data: {"type": "done", "intent": "...", "sources": [...], "session_id": "..."}\n\n
       data: {"type": "error", "message": "..."}\n\n
+
+    Uses true LLM token streaming (not simulated word-split).
     """
     async def event_generator():
+        request_id = request.headers.get("X-Request-ID") or str(uuid.uuid4())
         try:
             if not payload.client_ip and request.client:
                 payload.client_ip = request.client.host
-            # Run the chat engine (it's not a streaming LLM yet — we simulate
-            # character-by-character streaming from the full response for smooth UX)
-            result: ChatResponse = await engine.chat(payload)
-            full_text: str = html.escape(result.response)
 
-            # Stream word-by-word (looks live to the user, works with any provider)
-            words = full_text.split(' ')
-            for i, word in enumerate(words):
-                chunk = word if i == 0 else ' ' + word
-                data = json.dumps({'type': 'token', 'text': chunk})
-                yield f'data: {data}\n\n'
-                # Tiny delay for smooth UX — 12ms per word ≈ natural reading pace
-                await asyncio.sleep(0.012)
-
-            # Final event with metadata
-            done_data = json.dumps({
-                'type': 'done',
-                'intent': result.intent,
-                'sources': result.sources,
-                'session_id': result.session_id,
-            })
-            yield f'data: {done_data}\n\n'
+            async for event in engine.stream_chat(payload):
+                event['request_id'] = request_id
+                if event['type'] in ('token',):
+                    yield f'data: {json.dumps(event)}\n\n'
+                elif event['type'] == 'done':
+                    yield f'data: {json.dumps(event)}\n\n'
+                    return
+                elif event['type'] == 'error':
+                    yield f'data: {json.dumps(event)}\n\n'
+                    return
 
         except Exception as exc:
-            logger.error(f"Chat stream error: {exc}", exc_info=True)
-            err_data = json.dumps({'type': 'error', 'message': 'An internal error occurred while processing your request.'})
+            logger.error(f"Chat stream error [request_id={request_id}]: {exc}", exc_info=True)
+            err_data = json.dumps({'type': 'error', 'message': 'An internal error occurred while processing your request.', 'request_id': request_id})
             yield f'data: {err_data}\n\n'
 
     return StreamingResponse(
@@ -96,7 +101,7 @@ async def chat_stream(
         media_type='text/event-stream',
         headers={
             'Cache-Control': 'no-cache',
-            'X-Accel-Buffering': 'no',   # Disable Nginx buffering
+            'X-Accel-Buffering': 'no',
             'Connection': 'keep-alive',
         },
     )

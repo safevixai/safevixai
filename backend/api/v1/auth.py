@@ -9,7 +9,19 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from core.limiter import limiter
-from core.security import create_access_token, get_current_user, create_secure_cookie_response
+from core.security import (
+    APP_JWT_AUDIENCE,
+    APP_JWT_ISSUER,
+    ALGORITHM,
+    SECRET_KEY,
+    create_access_token,
+    create_secure_cookie_response,
+    create_refresh_token,
+    get_current_user,
+    is_token_revoked,
+    revoke_token,
+)
+import jwt
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
@@ -80,3 +92,54 @@ async def logout():
 async def verify_token(current_user: dict = Depends(get_current_user)):
     """Validate the caller's bearer token."""
     return {"status": "valid", "sub": current_user.get("sub"), "role": current_user.get("role")}
+
+
+class RefreshTokenRequest(BaseModel):
+    refresh_token: str = Field(min_length=20, max_length=4096)
+
+
+@router.post("/refresh")
+@limiter.limit("5/minute")
+async def refresh_access_token(request: Request, body: RefreshTokenRequest):
+    """Issue a new access token from a valid refresh token."""
+    try:
+        payload = jwt.decode(
+            body.refresh_token,
+            SECRET_KEY,
+            algorithms=[ALGORITHM],
+            audience=APP_JWT_AUDIENCE,
+            issuer=APP_JWT_ISSUER,
+        )
+        if payload.get("purpose") != "refresh":
+            raise HTTPException(status_code=401, detail="Invalid token purpose")
+        jti = payload.get("jti")
+        if jti:
+            cache = getattr(request.app.state, 'cache', None)
+            if await is_token_revoked(jti, cache):
+                raise HTTPException(status_code=401, detail="Refresh token has been revoked")
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Refresh token has expired")
+    except jwt.InvalidTokenError as exc:
+        raise HTTPException(status_code=401, detail="Invalid refresh token") from exc
+
+    new_token = create_access_token(
+        data={"sub": payload["sub"], "name": payload.get("name", "")},
+        role=payload.get("role", "user"),
+    )
+    return create_secure_cookie_response(
+        content={"access_token": new_token, "token_type": "bearer"},
+        token=new_token,
+    )
+
+
+@router.post("/revoke")
+async def revoke_access_token(
+    request: Request,
+    current_user: dict = Depends(get_current_user),
+):
+    """Revoke the current access token."""
+    jti = current_user.get("jti")
+    if jti:
+        cache = getattr(request.app.state, 'cache', None)
+        await revoke_token(jti, cache)
+    return {"message": "Token revoked successfully"}

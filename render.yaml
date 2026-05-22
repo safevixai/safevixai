@@ -17,9 +17,9 @@ services:
       - key: REDIS_URL
         sync: false
       - key: DB_POOL_SIZE
-        value: "1"
+        value: "5"
       - key: DB_MAX_OVERFLOW
-        value: "1"
+        value: "10"
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_ANON_KEY

@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, Reques
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
+from core.rbac import require_role, Role
 from core.security import get_current_user, get_current_user_optional
 from models.schemas import (
     AuthorityPreviewResponse,
@@ -109,7 +110,7 @@ async def verify_road_report(
     report_id: str,
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
-    current_user: dict = Depends(get_current_user),
+    current_user: dict = Depends(require_role(Role.OPERATOR)),
 ) -> dict:
     """
     Verify a road report (requires 2+ confirmations).

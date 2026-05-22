@@ -8,20 +8,25 @@
       "jsx": true
     }
   },
+  "plugins": ["react-hooks"],
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "rules": {
-    "@next/next/no-page-custom-font": "off",
-    "@next/next/no-async-client-component": "error"
+    "no-undef": "off",
+    "no-unused-vars": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "ignorePatterns": [
     "node_modules",
     ".next",
     "dist",
     "build",
-    "out"
+    "out",
+    "*.js"
   ]
 }

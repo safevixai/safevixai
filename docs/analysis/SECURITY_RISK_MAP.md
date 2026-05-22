@@ -6,20 +6,7 @@
 
 ## CRITICAL RISKS (Immediate Action Required)
 
-### C1: Live Secrets Committed to Git
-**Files:** `backend/.env`, `chatbot_service/.env`, `frontend/.env`
-**Impact:** 25+ API keys, database credentials, JWT secret, admin secret, SMTP password, and OAuth tokens in plaintext, publicly accessible in repository.
-**Exposed:**
-- JWT_SECRET_KEY (full access to forge auth tokens)
-- SUPABASE_SERVICE_ROLE_KEY (full database admin access)
-- 11 LLM provider API keys (unlimited API usage at project's expense)
-- DATABASE_URL (direct PostgreSQL access)
-- REDIS_URL (full Redis access with password)
-- ALERT_EMAIL_PASSWORD (Gmail SMTP: can send emails as safevixai@gmail.com)
-- GITHUB_TOKEN (likely auto-revoked by GitHub scanning)
-**Fix:** Rotate ALL secrets immediately. Purge from git history with BFG Repo-Cleaner.
-
-### C2: No Role-Based Authorization Enforcement
+### C1: No Role-Based Authorization Enforcement
 **Files:** `backend/api/v1/*.py` (all routes use `get_current_user` but never check `role`)
 **Impact:** Any authenticated user (including Supabase "authenticated" role) has full access to all user-facing endpoints. The JWT `role` claim is embedded but never checked.
 **Evidence:**
@@ -28,7 +15,7 @@
 - User profile, tracking, SOS — no role scoping beyond user_id ownership
 **Fix:** Implement `require_role(Role.OPERATOR)` decorator and apply to sensitive endpoints.
 
-### C3: Offline SOS Queue Stores JWT + Medical PII in IndexedDB
+### C2: Offline SOS Queue Stores JWT + Medical PII in IndexedDB
 **File:** `frontend/lib/offline-sos-queue.ts`
 **Impact:** Auth tokens, blood group, and emergency contacts stored unencrypted in persistent browser storage. Accessible to any JS on the same origin.
 **Data stored:** `{ lat, lon, authToken, userId, bloodGroup, emergencyContacts, timestamp }`
@@ -38,36 +25,26 @@
 
 ## HIGH RISKS (Week 1)
 
-### H1: Supabase Service Role Key Exposed
-**File:** `backend/.env`
-**Impact:** Full admin access to Supabase project — can read/write all tables, manage auth users, access storage buckets.
-**Fix:** Rotate immediately. Use anon key (already RLS-restricted) for client operations.
-
-### H2: All LLM Provider Keys Exposed
-**File:** `chatbot_service/.env`
-**Impact:** Unauthorized third parties can make LLM API calls at project's expense (Groq, Gemini, Cerebras, GitHub, NVIDIA, OpenRouter, Mistral, Together, Sarvam, HuggingFace).
-**Fix:** Rotate all keys. Revoke GITHUB_TOKEN (already likely auto-revoked by GitHub secret scanning).
-
-### H3: No Rate Limiting on Many Endpoints
+### H1: No Rate Limiting on Many Endpoints
 **Files:** Various backend route modules (geocoding, routing, user CRUD, live-tracking, authority)
 **Impact:** Unlimited abuse potential — scraping, enumeration, DOS on unrate-limited endpoints.
 **Endpoints without limits:** geocode search/reverse, routing preview/safe-route, user CRUD, live-tracking CRUD, feeds/waze, offline/bundle, authority, infrastructure.
 
-### H4: No Data Deletion/Export APIs
+### H2: No Data Deletion/Export APIs
 **Impact:** GDPR non-compliance. User data (profile, SOS history, chat logs) cannot be deleted or exported programmatically.
 **Fix:** Implement `DELETE /api/v1/users/{id}` and `GET /api/v1/users/{id}/export` endpoints.
 
-### H5: SOS Incidents Persist Indefinitely
+### H3: SOS Incidents Persist Indefinitely
 **File:** `backend/models/sos_incident.py`, no cleanup migration
 **Impact:** Exact GPS coordinates + user_id of every SOS trigger stored forever. No data retention policy.
 **Fix:** Add cleanup job (delete after 90 days) and migration.
 
-### H6: Blood Group Sent to Server
+### H4: Blood Group Sent to Server
 **File:** `backend/models/schemas.py:283` (`UserProfileCreate.blood_group`)
 **Impact:** Contradicts AGENTS.md privacy claim: "Blood group never leaves device — privacy by architecture." The `UserProfile` model and API both accept blood group, which is stored in the database.
 **Fix:** Align docs with reality, or remove blood_group from server API.
 
-### H7: Chatbot API Endpoints Unauthenticated
+### H5: Chatbot API Endpoints Unauthenticated
 **Files:** `chatbot_service/api/chat.py` (`/api/v1/chat/`, `/api/v1/chat/stream`)
 **Impact:** Public internet can access chatbot without any auth. Rate limiting (20/min) is the only protection.
 **Fix:** Add Bearer token validation via shared JWT verification.
@@ -133,16 +110,13 @@ Missing headers that could prevent referrer leakage and restrict browser API acc
 ### L1: Error Sanitization Incomplete
 Only redacts SELECT/INSERT/DELETE. Misses UPDATE, DROP, ALTER, UNION, etc.
 
-### L2: GitHub Classic Token with Broad Scope
-`GITHUB_TOKEN=ghp_...` — classic PAT, likely broad repo scope. Should use fine-grained tokens.
-
-### L3: sessionStorage Queue Fallback
+### L2: sessionStorage Queue Fallback
 Offline queue falls back to sessionStorage when IndexedDB unavailable. Cleared on tab close.
 
-### L4: POST /mcp Excluded from CSRF
+### L3: POST /mcp Excluded from CSRF
 MCP endpoints bypass CSRF checks. Acceptable for admin-only endpoints with separate auth.
 
-### L5: Health Endpoint Claims Always "production"
+### L4: Health Endpoint Claims Always "production"
 `environment` field hardcoded to "production" in health response. Acceptable for security obscurity.
 
 ---

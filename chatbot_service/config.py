@@ -45,6 +45,7 @@ class Settings:
     main_backend_base_url: str
     main_backend_timeout_seconds: float
     redis_url: str | None
+    internal_api_key: str | None
     chroma_persist_dir: Path
     rag_data_dir: Path
     embedding_model: str
@@ -84,6 +85,7 @@ def get_settings() -> Settings:
         main_backend_base_url=os.getenv('MAIN_BACKEND_BASE_URL', 'http://localhost:8000').rstrip('/'),
         main_backend_timeout_seconds=float(os.getenv('MAIN_BACKEND_TIMEOUT_SECONDS', '20')),
         redis_url=os.getenv('REDIS_URL') or None,
+        internal_api_key=os.getenv('CHATBOT_INTERNAL_API_KEY') or None,
         chroma_persist_dir=_as_path(
             os.getenv('CHROMA_PERSIST_DIR'),
             default=ROOT_DIR / 'data' / 'chroma_db',

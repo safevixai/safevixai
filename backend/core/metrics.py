@@ -150,9 +150,46 @@ cache_miss_total = Counter(
     registry=REGISTRY,
 )
 
+# ── Circuit Breaker Metrics ──────────────────────────────────────────────────
+circuit_breaker_state = Gauge(
+    "circuit_breaker_state",
+    "Circuit breaker state (0=CLOSED, 1=OPEN, 2=HALF_OPEN)",
+    ["name"],
+    registry=REGISTRY,
+)
+
+circuit_breaker_calls_total = Counter(
+    "circuit_breaker_calls_total",
+    "Total calls through circuit breaker",
+    ["name", "result"],
+    registry=REGISTRY,
+)
+
+circuit_breaker_failure_total = Counter(
+    "circuit_breaker_failure_total",
+    "Total failures tracked by circuit breaker",
+    ["name", "failure_type"],
+    registry=REGISTRY,
+)
+
+
+def update_circuit_breaker_metrics():
+    from core.circuit_breaker import CircuitBreakerRegistry
+    state_map = {"closed": 0, "open": 1, "half_open": 2}
+    stats = CircuitBreakerRegistry.all_stats()
+    seen = {name for name in stats}
+
+    for name, data in stats.items():
+        circuit_breaker_state.labels(name=name).set(state_map.get(data["state"], 0))
+        circuit_breaker_calls_total.labels(name=name, result="success").inc(0)
+        circuit_breaker_calls_total.labels(name=name, result="failure").inc(0)
+        circuit_breaker_failure_total.labels(name=name, failure_type="exception").inc(0)
+
+
 # ── Helper Functions ─────────────────────────────────────────────────────────
 def metrics_response():
     """Generate Prometheus metrics response."""
+    update_circuit_breaker_metrics()
     return generate_latest(REGISTRY)
 
 

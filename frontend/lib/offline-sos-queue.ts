@@ -7,11 +7,7 @@ interface SOSData {
   apiUrl?: string;
   lat: number;
   lon: number;
-  // S19: authToken stored at queue time so SW can include Authorization header on replay
-  authToken?: string;
   userId?: string;
-  bloodGroup?: string;
-  emergencyContacts?: string[];
   timestamp: string;
 }
 
@@ -124,10 +120,6 @@ export async function enqueueSOS(data: Omit<SOSData, 'timestamp'>): Promise<void
   const sosEntry: SOSData = {
     ...data,
     apiUrl: PUBLIC_API_BASE_URL,
-    // S19: capture token at queue time so SW can use it during offline replay
-    authToken: typeof window !== 'undefined'
-      ? (window.localStorage.getItem('access_token') ?? undefined)
-      : undefined,
     timestamp: new Date().toISOString(),
   };
 
@@ -223,11 +215,7 @@ export async function syncOfflineSOSQueue(): Promise<void> {
     try {
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), OFFLINE_SOS_SYNC_TIMEOUT_MS);
-      const syncHeaders: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (item.authToken) syncHeaders['Authorization'] = `Bearer ${item.authToken}`;
       const res = await fetch(`${API_URL}/api/v1/emergency/sos?lat=${item.lat}&lon=${item.lon}`, {
-        method: 'POST',
-        headers: syncHeaders,
         signal: controller.signal,
       });
       window.clearTimeout(timeout);

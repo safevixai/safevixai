@@ -314,3 +314,18 @@ class UserProfileResponse(UserProfileCreate):
     id: UUID
     created_at: datetime
     updated_at: datetime
+
+
+class UserDataExport(BaseModel):
+    profile: UserProfileResponse
+    sos_incidents: list[dict] = []
+    road_reports: list[dict] = []
+    total_exported_at: datetime = Field(default_factory=lambda: datetime.now())
+
+
+class UserDeleteResponse(BaseModel):
+    status: str
+    message: str
+    deleted_profile: bool
+    deleted_sos_incidents: int
+    deleted_road_reports: int

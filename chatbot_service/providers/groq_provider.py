@@ -50,6 +50,61 @@ class GroqProvider(HttpProvider):
     def default_model(self) -> str:
         return "llama-3.1-8b-instant"
 
+    async def stream(self, request: ProviderRequest):
+        estimated = _estimate_request_tokens(request)
+        if estimated > _GROQ_TPM_GUARD:
+            logger.info(
+                "Groq stream skipped: estimated ~%d tokens exceeds %d TPM guard.",
+                estimated, _GROQ_TPM_GUARD,
+            )
+            return
+
+        import os
+        api_key = self._get_api_key()
+        model = os.getenv("GROQ_MODEL", "").strip() or self.default_model()
+
+        from providers.base import build_messages, check_prompt_injection, raise_for_provider_status
+
+        if check_prompt_injection(request.message):
+            logger.warning("Groq stream: prompt injection blocked. Message: %.50s...", request.message)
+            return
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "model": model,
+            "messages": build_messages(request),
+            "max_tokens": _GROQ_MAX_RESPONSE_TOKENS,
+            "temperature": 0.5,
+            "stream": True,
+        }
+
+        async with self._get_client().stream("POST", self.base_url(), headers=headers, json=payload) as resp:
+            raise_for_provider_status(resp, provider=self.name, model=model)
+            buffer = ""
+            async for chunk in resp.aiter_text():
+                buffer += chunk
+                while "\n" in buffer:
+                    line, buffer = buffer.split("\n", 1)
+                    line = line.strip()
+                    if not line or not line.startswith("data: "):
+                        continue
+                    data_str = line[6:].strip()
+                    if data_str == "[DONE]":
+                        return
+                    try:
+                        data = json.loads(data_str)
+                        choices = data.get("choices", [])
+                        if choices:
+                            delta = choices[0].get("delta", {})
+                            content = delta.get("content", "")
+                            if content:
+                                yield content
+                    except json.JSONDecodeError:
+                        pass
+
     async def generate(self, request: ProviderRequest) -> ProviderResult:
         # P0-05: Skip Groq if estimated tokens would exceed TPM guard
         estimated = _estimate_request_tokens(request)

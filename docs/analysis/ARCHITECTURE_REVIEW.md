@@ -85,7 +85,6 @@
 
 | Item | Impact | Effort to Fix | Priority |
 |------|--------|---------------|----------|
-| `.env` files in git history | CRITICAL security exposure | High (git filter-branch) | IMMEDIATE |
 | No RBAC enforcement | HIGH auth bypass | Medium | HIGH |
 | No `/metrics` endpoint | HIGH observability gap | Low (5 lines) | HIGH |
 | Missing k6/chaos test files | HIGH CI failure | Medium | HIGH |
@@ -103,16 +102,15 @@
 
 | # | Risk | Probability | Impact | Score | Mitigation |
 |---|------|------------|--------|-------|-----------|
-| R1 | API keys stolen from git | HIGH | CRITICAL | 16 | Rotate all keys, purge git history |
-| R2 | Auth bypass via missing RBAC | HIGH | HIGH | 9 | Implement role-check decorator |
-| R3 | Render free tier exceeded | HIGH | MEDIUM | 6 | Monitor usage, upgrade if needed |
-| R4 | Upstash Redis rate limited | MEDIUM | HIGH | 6 | In-memory fallback active |
-| R5 | Groq API rate limited | HIGH | MEDIUM | 6 | 8 more providers in chain |
-| R6 | Supabase auto-paused | MEDIUM | CRITICAL | 8 | Manual resume, health check alert |
-| R7 | Chatbot DDoS via no auth | MEDIUM | HIGH | 6 | Rate limiting (20/min) |
-| R8 | LLM provider API deprecation | LOW | MEDIUM | 3 | Abstract provider interface |
-| R9 | Database migration failure | MEDIUM | HIGH | 6 | Alembic rollback exists |
-| R10 | SOS data leak via IndexedDB | MEDIUM | MEDIUM | 4 | Encrypt sensitive fields |
+| R1 | Auth bypass via missing RBAC | HIGH | HIGH | 9 | Implement role-check decorator |
+| R2 | Render free tier exceeded | HIGH | MEDIUM | 6 | Monitor usage, upgrade if needed |
+| R3 | Upstash Redis rate limited | MEDIUM | HIGH | 6 | In-memory fallback active |
+| R4 | Groq API rate limited | HIGH | MEDIUM | 6 | 8 more providers in chain |
+| R5 | Supabase auto-paused | MEDIUM | CRITICAL | 8 | Manual resume, health check alert |
+| R6 | Chatbot DDoS via no auth | MEDIUM | HIGH | 6 | Rate limiting (20/min) |
+| R7 | LLM provider API deprecation | LOW | MEDIUM | 3 | Abstract provider interface |
+| R8 | Database migration failure | MEDIUM | HIGH | 6 | Alembic rollback exists |
+| R9 | SOS data leak via IndexedDB | MEDIUM | MEDIUM | 4 | Encrypt sensitive fields |
 
 ---
 

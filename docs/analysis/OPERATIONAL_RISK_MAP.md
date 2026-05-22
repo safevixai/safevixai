@@ -148,32 +148,6 @@ Critical:
 | P3 | Minor issue (UI glitch) | Next business day | Dev |
 | P4 | Cosmetic / nice-to-have | Backlog | None |
 
-### P0 Incident: Secrets Leak
-```yaml
-Trigger: GitGuardian alert, GitHub secret scanning, or unauthorized API usage detected
-
-Response:
-  1. [5 min] Rotate ALL exposed credentials
-     - Supabase Service Role Key
-     - All LLM provider keys
-     - JWT_SECRET_KEY
-     - ADMIN_SECRET
-     - Gmail SMTP password
-     - GitHub tokens
-  2. [15 min] Revoke compromised keys in provider dashboards
-  3. [30 min] Trigger Render redeploy for both services
-  4. [1 hour] Verify /health OK on both services
-  5. [1 hour] Purge .env files from git history using BFG Repo-Cleaner
-  6. [2 hours] Force push cleaned history (notify all contributors to rebase)
-  7. [24 hours] Audit logs for unauthorized access
-
-Post-mortem:
-  - Root cause: .env files committed before gitignore rules updated
-  - Prevention: Add pre-commit hook blocking .env files
-  - Prevention: Enable secret scanning on repo
-  - Prevention: Use GitHub Environments for secrets
-```
-
 ### P1 Incident: Chatbot Unavailable
 ```yaml
 Trigger: Multiple users report "Chat not working" or /health shows chatbot inactive

@@ -46,6 +46,7 @@ class TestSarvamProviderRouting:
             main_backend_base_url="http://localhost:8000",
             main_backend_timeout_seconds=20.0,
             redis_url=None,
+            internal_api_key=None,
             chroma_persist_dir=Path("/tmp/chroma_test"),
             rag_data_dir=Path("/tmp/rag_test"),
             embedding_model="test",
