@@ -1,5 +1,11 @@
 ---
 exclude_paths:
+  - "**/.next/**"
+  - "**/build/**"
+  - "**/dist/**"
+  - "**/node_modules/**"
+  - "**/.venv/**"
+  - "**/venv/**"
   - "backend/models/pothole.pt"
   - "**/*.pt"
 engines:
@@ -11,3 +17,14 @@ engines:
       - ".venv/**"
       - "backend/models/pothole.pt"
       - "**/*.pt"
+  eslint:
+    enabled: true
+    exclude_paths:
+      - "frontend/.next/**"
+      - "frontend/build/**"
+      - "frontend/dist/**"
+      - "frontend/node_modules/**"
+  pmd:
+    enabled: false
+  pmd-legacy:
+    enabled: false
