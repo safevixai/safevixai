@@ -18,6 +18,7 @@ import Toggle from '@/components/dashboard/Toggle';
 import QREmergencyCard from '@/components/profile/QREmergencyCard';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
+import { track } from '@/lib/analytics';
 
 export default function ProfilePage() {
   const { crashDetectionEnabled, setCrashDetectionEnabled, userProfile, setUserProfile, clearAuth, operatorName, isAuthenticated } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, userProfile: s.userProfile, setUserProfile: s.setUserProfile, clearAuth: s.clearAuth, operatorName: s.operatorName, isAuthenticated: s.isAuthenticated })));
@@ -46,6 +47,7 @@ export default function ProfilePage() {
     setUserProfile(editDraft);
     setIsEditing(false);
     setSaveFlash(true);
+    track.profileCompleted();
     setTimeout(() => setSaveFlash(false), 2000);
   };
 

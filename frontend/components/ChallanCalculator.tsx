@@ -5,6 +5,7 @@ import { useAppStore } from '@/lib/store';
 import { calculateChallan, type ChallanResult } from '@/lib/api';
 import { logClientError } from '@/lib/client-logger';
 import { useShallow } from 'zustand/react/shallow';
+import { track } from '@/lib/analytics';
 
 /**
  * ChallanCalculator — High-Fidelity Fine Specialist
@@ -64,6 +65,12 @@ const ChallanCalculator: React.FC = () => {
         is_repeat: isRepeat
       });
       setResult({ ...data, source: data.source || 'online' });
+      track.challanCalculated(
+        stateCode,
+        data.section,
+        data.amount_due,
+        isRepeat
+      );
     } catch (err) {
       logClientError('Calculation failed:', err);
       setError('Unable to calculate this challan right now. Please check your connectivity.');

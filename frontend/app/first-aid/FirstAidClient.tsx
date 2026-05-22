@@ -12,6 +12,7 @@ import {
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { logClientError } from '@/lib/client-logger';
+import { track } from '@/lib/analytics';
 
 interface Message {
   id: string;
@@ -226,7 +227,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
           guideKeys={filteredGuideKeys}
           guides={guides}
           emergencyMode={emergencyMode}
-          onGuideSelect={(key) => { setActiveGuide(key); setCompletedSteps(new Set()); }}
+          onGuideSelect={(key) => { setActiveGuide(key); setCompletedSteps(new Set()); track.firstAidViewed(key); }}
         />
 
         {/* ── AI Vision Assessment: Live Simulation ── */}
@@ -490,7 +491,7 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <a href="tel:112" className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/25 active:scale-95 transition-transform">
+          <a href="tel:112" onClick={() => track.emergencyCallMade('112')} className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/25 active:scale-95 transition-transform">
             <Phone size={14} /> Call 112
           </a>
           <button onClick={onClose} className="p-2 text-text-3 hover:text-text-2 dark:hover:text-white">
@@ -571,7 +572,7 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
             <button onClick={onClose} className="w-full sm:w-auto px-10 py-4 bg-surface-3 dark:bg-white/10 text-white font-black uppercase tracking-widest text-xs rounded-lg active:scale-95 transition-all">
               Terminate Protocol
             </button>
-            <a href="tel:108" className="w-full sm:w-auto px-10 py-4 bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-lg shadow-xl shadow-red-500/20 animate-pulse flex items-center justify-center gap-2 active:scale-95 transition-all">
+            <a href="tel:108" onClick={() => track.emergencyCallMade('108')} className="w-full sm:w-auto px-10 py-4 bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-lg shadow-xl shadow-red-500/20 animate-pulse flex items-center justify-center gap-2 active:scale-95 transition-all">
               <Phone size={16} /> Emergency Hotline
             </a>
           </div>

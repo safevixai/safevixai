@@ -482,7 +482,7 @@ def run_code_checks() -> None:
         "chatbot_service/tests/test_language_detection.py",
         "chatbot_service/tests/test_template_provider.py",
         "chatbot_service/tests/test_admin.py",
-        "chatbot_service/tests/test_alerts.py",
+        "tests/test_alerts.py",  # root-level, NOT chatbot_service/tests/
         "chatbot_service/tests/test_property_based.py",
     ]
     check("Chatbot expanded test suite exists", "CODE",
@@ -584,6 +584,41 @@ def run_code_checks() -> None:
           all(exists(path) for path in llm_providers),
           f"{sum(exists(path) for path in llm_providers)}/{len(llm_providers)} key providers",
           "Include full suite of LLM provider integrations for high-availability agent fallback routing.")
+
+    check("Chatbot circular import fixed via extracted limiter module", "CODE",
+          exists("chatbot_service/limiter.py"),
+          "chatbot_service/limiter.py",
+          "Extract limiter from main.py to break main.RealTimeLimiter dependency cycle.")
+
+    check("Backend AI report classifier service exists", "CODE",
+          exists("backend/services/report_classifier.py"),
+          "backend/services/report_classifier.py",
+          "Restore 10-category rule-based road hazard classifier.")
+
+    check("GeoJSON compression middleware is installed", "CODE",
+          exists("backend/middleware/compression.py"),
+          "backend/middleware/compression.py",
+          "Add gzip middleware for large GeoJSON emergency bundles.")
+
+    check("Dependabot weekly security PR automation is configured", "CODE",
+          exists(".github/dependabot.yml"),
+          ".github/dependabot.yml",
+          "Configure .github/dependabot.yml for weekly npm/pip/GHActions audits.")
+
+    check("Phase 3 completion documented in plan", "CODE",
+          exists("docs/phase3-plan.md") and "All Phase 3 items complete" in read_text("docs/phase3-plan.md"),
+          "docs/phase3-plan.md marks all Phase 3 items complete",
+          "Update docs/phase3-plan.md to track completed enterprise hardening milestones.")
+
+    check("PyJWT is patched above CVE-2026-32597 threshold (>=2.12.0)", "CODE",
+          "PyJWT[crypto]==2.12.0" in read_text("backend/requirements.txt"),
+          "backend/requirements.txt has PyJWT[crypto]==2.12.0",
+          "Upgrade PyJWT to 2.12.0 to fix HIGH CVE-2026-32597.")
+
+    check("All services have .env.example template files", "CODE",
+          exists("backend/.env.example") and exists("chatbot_service/.env.example") and exists("frontend/.env.example"),
+          "backend, chatbot_service, frontend all have .env.example",
+          "Add .env.example files with documented required vars for every service.")
 
     etl_scripts = [
         "backend/scripts/data/prepare_road_sources.py",

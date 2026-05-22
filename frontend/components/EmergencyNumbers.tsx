@@ -3,6 +3,7 @@
 import { Fragment } from 'react';
 
 import { PRIMARY_EMERGENCY_BAR } from '@/lib/emergency-numbers';
+import { track } from '@/lib/analytics';
 
 export function EmergencyNumbers() {
   return (
@@ -17,6 +18,7 @@ export function EmergencyNumbers() {
           <a
             key={n.service}
             href={`tel:${n.service}`}
+            onClick={() => track.emergencyCallMade(n.service)}
             className="emergency-bar-btn"
             aria-label={`Call ${n.label}: ${n.service}`}
           >

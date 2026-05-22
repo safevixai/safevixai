@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
+import { track } from '@/lib/analytics';
 
 interface UserProfile {
   name?: string;
@@ -70,6 +71,7 @@ export default function QREmergencyCard() {
   };
 
   const handleShare = async () => {
+    track.qrCardAction('share');
     if (navigator.share) {
       try {
         await navigator.share({
@@ -216,7 +218,7 @@ export default function QREmergencyCard() {
           {/* Action Footer */}
           <div className="px-6 pb-5 flex items-center gap-3">
             <button
-              onClick={() => setShowPreview(true)}
+              onClick={() => { setShowPreview(true); track.qrCardAction('preview'); }}
               className="flex-1 flex items-center justify-center gap-2 h-10 rounded-xl bg-surface-2 dark:bg-white/5 hover:bg-surface-3 dark:hover:bg-white/10 border border-border-md dark:border-white/10 transition-all text-[11px] font-semibold text-text-2 dark:text-text-3 uppercase tracking-wider"
             >
               <Eye size={13} />

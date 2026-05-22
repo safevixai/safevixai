@@ -16,6 +16,7 @@ import { useAppStore } from '@/lib/store';
 import useSWR from 'swr';
 import { calculateChallan } from '@/lib/api';
 import { useShallow } from 'zustand/react/shallow';
+import { track } from '@/lib/analytics';
 
 const STATES = [
   'Tamil Nadu (TN)',
@@ -124,6 +125,18 @@ export default function ChallanPage() {
   );
   
   const finalFine = result ? (isRepeat && result.repeat_fine ? result.repeat_fine : result.base_fine) : 0;
+
+  // Track calculation event
+  useEffect(() => {
+    if (result) {
+      track.challanCalculated(
+        stateCode,
+        activeViolation.mva,
+        finalFine,
+        isRepeat
+      );
+    }
+  }, [result, stateCode, activeViolation.mva, finalFine, isRepeat]);
 
   // GSAP: Animate fine amount on change
   useGSAP(() => {

@@ -14,6 +14,7 @@ import { haptics } from '@/lib/haptics';
 import { sounds } from '@/lib/sounds';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
+import { track } from '@/lib/analytics';
 
 export default function EmergencyPage() {
  const { crashDetectionEnabled, userProfile, soundsEnabled } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, userProfile: s.userProfile, soundsEnabled: s.soundsEnabled })));
@@ -268,7 +269,7 @@ export default function EmergencyPage() {
  {trackingUrl}
  </p>
  <button
- onClick={() => navigator.clipboard?.writeText(trackingUrl)}
+ onClick={() => { navigator.clipboard?.writeText(trackingUrl); track.trackingShared('clipboard'); }}
  className="mt-2 text-[9px] font-bold text-brand dark:text-brand-light underline"
  >
  Copy Link
@@ -356,11 +357,11 @@ export default function EmergencyPage() {
  </div>
 
  <div className="grid grid-cols-2 gap-4">
- <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#05b046] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all shadow-md shadow-[#05b046]/20">
+ <a href={waLink} target="_blank" rel="noopener noreferrer" onClick={() => track.trackingShared('whatsapp')} className="flex items-center justify-center gap-2 bg-[#05b046] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all shadow-md shadow-[#05b046]/20">
  <Share2 className="w-4 h-4" />
  WhatsApp
  </a>
- <a href={smsLink} className="flex items-center justify-center gap-2 bg-surface-2 dark:bg-white/5 text-text-1 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-border-md dark:border-white/10 shadow-sm">
+ <a href={smsLink} onClick={() => track.trackingShared('sms')} className="flex items-center justify-center gap-2 bg-surface-2 dark:bg-white/5 text-text-1 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-border-md dark:border-white/10 shadow-sm">
  <MessageSquare className="w-4 h-4" />
  SMS Backup
  </a>

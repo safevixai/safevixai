@@ -6,6 +6,7 @@ import { useAppStore } from '@/lib/store';
 import { submitReport } from '@/lib/api';
 import { enqueueRoadReport } from '@/lib/offline-sos-queue';
 import { useShallow } from 'zustand/react/shallow';
+import { track } from '@/lib/analytics';
 
 const MAX_UPLOAD_BYTES = Number(process.env.NEXT_PUBLIC_MAX_UPLOAD_BYTES || 5242880);
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
@@ -66,14 +67,17 @@ const ReportForm: React.FC = () => {
     try {
       if (connectivity === 'online') {
         await submitReport(payload);
+        track.reportSubmitted(payload.issue_type, !!photo, false);
       } else {
         // Save to offline queue in localStorage — synced when connectivity returns
         await enqueue();
+        track.reportSubmitted(payload.issue_type, !!photo, true);
         toast.success('Report saved offline and will sync automatically.');
       }
       setSubmitted(true);
     } catch {
       await enqueue();
+      track.reportSubmitted(payload.issue_type, !!photo, true);
       toast.success('Network failed. Report saved offline and will retry.');
       setSubmitted(true);
     } finally {

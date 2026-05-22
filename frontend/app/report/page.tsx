@@ -41,6 +41,7 @@ import {
   isApproximateLocation,
 } from '@/lib/location-utils';
 import { useAppStore } from '@/lib/store';
+import { track } from '@/lib/analytics';
 
 const ISSUE_OPTIONS = [
   ['pothole', 'Pothole', 'Surface collapse or broken asphalt'],
@@ -236,6 +237,7 @@ export default function ReportPage() {
         photo: photoFile,
       });
       setSubmittedReport(response);
+      track.reportSubmitted(selectedType, !!photoFile, false);
     } catch (error) {
       setSubmittedReport(null);
       setSubmitError(extractApiError(error, 'Unable to submit the report right now. Please try again.'));
