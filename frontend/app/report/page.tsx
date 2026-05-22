@@ -260,7 +260,7 @@ export default function ReportPage() {
   if (!mounted) return null;
 
   return (
-    <div ref={pageRef} className="sv-page relative overflow-x-hidden">
+    <div ref={pageRef} className="sv-page aurora-glow relative overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] hidden h-[38rem] w-[38rem] rounded-full bg-cyan-500/10 blur-[150px] dark:block" />
         <div className="absolute left-[22%] top-[4%] hidden h-[20rem] w-[20rem] rounded-full bg-violet-500/8 blur-[120px] dark:block" />

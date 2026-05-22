@@ -357,15 +357,13 @@ export default function FloatingSidebarControls() {
              try { if (navigator?.vibrate) navigator.vibrate(50); } catch (e) {}
           }}
           aria-label="Emergency SOS – tap for immediate help"
-          className="relative w-16 h-16 bg-emergency rounded-full flex items-center justify-center shadow-[0_0_40px_var(--emergency)] group z-50 overflow-hidden"
+          className="sos-rings relative w-16 h-16 bg-gradient-to-br from-emergency to-red-800 rounded-full flex items-center justify-center group z-50 overflow-visible"
+          style={{
+            boxShadow: '0 0 40px rgba(220,38,38,0.4), 0 0 80px rgba(220,38,38,0.15), inset 0 -2px 8px rgba(0,0,0,0.3)',
+          }}
         >
-          {/* Multi-layered Tactical Ripples */}
-          <div
-            className="absolute inset-0 rounded-full border-2 border-white/30"
-          />
-          <div
-            className="absolute inset-0 rounded-full border-2 border-white/20"
-          />
+          {/* Inner glow ring */}
+          <div className="absolute inset-[2px] rounded-full border border-white/20" />
 
           <span className="text-white text-lg font-black tracking-[0.1em] relative z-10 drop-shadow-md">
             SOS

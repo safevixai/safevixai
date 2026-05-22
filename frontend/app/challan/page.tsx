@@ -159,7 +159,7 @@ export default function ChallanPage() {
   }, { dependencies: [activeViolation.danger] });
 
   return (
-    <div className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
+    <div className="sv-page aurora-glow relative flex flex-col overflow-x-hidden transition-colors duration-500">
       
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Challan Terminal" showBack={false} />
@@ -184,7 +184,7 @@ export default function ChallanPage() {
           {/* ── Big Result Card (The "Star" of the UI) ── */}
           <section 
             ref={resultCardRef}
-            className="relative p-8 rounded-[2.5rem] bg-white dark:bg-white/5 border border-border shadow-2xl shadow-surface-3/50 dark:shadow-none overflow-hidden group"
+            className="scan-line-overlay relative p-8 rounded-[2.5rem] bg-white dark:bg-white/5 border border-border shadow-2xl shadow-surface-3/50 dark:shadow-none overflow-hidden group"
           >
             {/* Background Glow */}
             <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-brand-light/10 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-700" />
@@ -292,12 +292,12 @@ export default function ChallanPage() {
                 02. Vehicle Identification
               </h3>
               
-              <div ref={vehicleGridRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div ref={vehicleGridRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4 stagger-entrance">
                  {VEHICLE_CLASSES.map(cls => (
                    <button 
                      key={cls.id}
                      onClick={() => setChallanState({ vehicle: cls.id })}
-                     className={`flex flex-col items-center justify-center gap-4 p-6 rounded-[2rem] border-2 transition-all duration-300 active:scale-95 ${
+                     className={`card-premium flex flex-col items-center justify-center gap-4 p-6 rounded-[2rem] border-2 transition-all duration-300 active:scale-95 ${
                        vehicleId === cls.id 
                         ? 'bg-brand-light border-brand-light/30 text-text-1 shadow-xl shadow-brand-light/20 ring-2 ring-brand-light/20' 
                         : 'bg-white dark:bg-white/5 border-border text-text-3 hover:border-text-3 dark:hover:border-white/10 hover:shadow-md'
@@ -360,7 +360,7 @@ export default function ChallanPage() {
            </section>
 
            {/* AI Insight Footer */}
-           <div className="p-6 rounded-[2rem] bg-gradient-to-br from-brand-light/10 to-transparent border border-brand-light/20 flex gap-4">
+           <div className="glass-panel p-6 rounded-[2rem] bg-gradient-to-br from-brand-light/10 to-transparent border border-brand-light/20 flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-brand-light/20 flex items-center justify-center flex-shrink-0">
                 <Zap size={20} className="text-brand-light" />
               </div>

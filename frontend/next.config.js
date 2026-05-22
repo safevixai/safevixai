@@ -83,6 +83,11 @@ const nextConfig = {
       { protocol: 'https', hostname: 'huggingface.co' },
     ],
   },
+  // D6: ESLint errors don't block production builds during active development.
+  // `npm run lint` remains the canonical way to surface warnings in CI.
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // No orphan redirects needed; /emergency and /settings routes now exist.
   async redirects() {
     return [];

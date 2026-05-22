@@ -217,7 +217,7 @@ export default function ChatPage() {
   }, [sessionId, location, autoRead, speakText]);
 
  return (
- <div className="absolute inset-0 flex flex-col w-full overflow-hidden bg-surface-1">
+ <div className="aurora-glow w-full h-full min-h-dvh flex flex-col overflow-hidden bg-surface-1">
  {/* â”€â”€ Background Decorative Lines (SafeVixAI Pro Aesthetic) â”€â”€ */}
  <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
  {/* Spots removed per user request */}
