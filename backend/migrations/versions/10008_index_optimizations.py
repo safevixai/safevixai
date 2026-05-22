@@ -9,7 +9,7 @@ Adds:
 - Composite GIST index on road_issues (location, status) for spatial+status filtering
 
 Revision ID: 10008_index_optimizations
-Revises: 10007_multi_tenant_org_id
+Revises: 10007
 Create Date: 2026-05-22
 """
 
@@ -21,7 +21,7 @@ from geoalchemy2 import Geometry
 
 
 revision = '10008_index_optimizations'
-down_revision = '10007_multi_tenant_org_id'
+down_revision = '10007'
 branch_labels = None
 depends_on = None
 
