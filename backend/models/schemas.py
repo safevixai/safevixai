@@ -13,6 +13,13 @@ RouteProfile = Literal['driving-car', 'cycling-regular', 'foot-walking']
 BloodGroup = Literal['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
 
 
+class DependencyHealth(BaseModel):
+    name: str
+    available: bool
+    latency_ms: float | None = None
+    error: str | None = None
+
+
 class HealthResponse(BaseModel):
     status: str
     database_available: bool
@@ -22,6 +29,9 @@ class HealthResponse(BaseModel):
     cache_backend: str
     environment: str
     version: str
+    dependencies: list[DependencyHealth] | None = None
+    circuit_breakers: dict[str, str] | None = None
+    uptime_seconds: float | None = None
 
 
 class EmergencyNumber(BaseModel):

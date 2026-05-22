@@ -1,5 +1,8 @@
 import asyncio
+import json
 from fastapi import APIRouter, Depends, Request, HTTPException
+from fastapi.responses import StreamingResponse
+import httpx
 
 from models.schemas import ChatRequest, ChatResponse
 from services.llm_service import LLMService
@@ -69,9 +72,39 @@ async def chat(
 
 
 @router.post('/stream')
+@limiter.limit("10/minute")
 async def chat_stream(
     request: Request,
     payload: ChatRequest,
+    llm_service: LLMService = Depends(get_llm_service),
     current_user: dict = Depends(get_current_user),
 ):
-    raise HTTPException(status_code=501, detail="Streaming not implemented")
+    settings = get_settings()
+    chatbot_base = settings.chatbot_service_url.replace('/api/v1', '')
+    stream_url = f"{chatbot_base}/api/v1/chat/stream"
+
+    async def _generate():
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            try:
+                async with client.stream(
+                    "POST",
+                    stream_url,
+                    json=payload.model_dump(),
+                    headers={"Content-Type": "application/json"},
+                ) as response:
+                    async for chunk in response.aiter_bytes():
+                        yield chunk
+            except Exception:
+                yield f"data: {json.dumps({'type': 'error', 'message': 'Chatbot service unavailable, using fallback'})}\n\n"
+                fallback = _get_fallback_response(payload.message, payload.session_id or "")
+                yield f"data: {json.dumps({'type': 'token', 'text': fallback.response})}\n\n"
+                yield f"data: {json.dumps({'type': 'done', 'intent': fallback.intent, 'sources': fallback.sources})}\n\n"
+
+    return StreamingResponse(
+        _generate(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )

@@ -9,6 +9,7 @@ import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 
+import httpx
 import sentry_sdk
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,7 +27,7 @@ from core.tenant import apply_tenant_filter
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from core.redis_client import create_cache
-from models.schemas import HealthResponse
+from models.schemas import DependencyHealth, HealthResponse
 from services.authority_router import AuthorityRouter
 from services.challan_service import ChallanService
 from services.emergency_locator import EmergencyLocatorService
@@ -81,6 +82,12 @@ def _configure_logging(environment: str) -> None:
 
 
 logger = logging.getLogger("safevixai.backend")
+
+_start_time = time.time()
+
+
+def _get_uptime() -> float:
+    return time.time() - _start_time
 
 
 def create_app() -> FastAPI:
@@ -355,25 +362,71 @@ def create_app() -> FastAPI:
 
     @app.get('/health', response_model=HealthResponse, tags=['System'])
     async def health() -> HealthResponse:
+        import time as _time_module
+        dependencies = []
+        db_start = _time_module.time()
         database_available = await check_database()
+        db_latency = (_time_module.time() - db_start) * 1000
+        dependencies.append(DependencyHealth(
+            name="database", available=database_available, latency_ms=round(db_latency, 1)
+        ))
+
         cache_available = False
         cache_backend = 'disabled'
+        cache_start = _time_module.time()
         cache = getattr(app.state, 'cache', None)
         if cache is not None:
             cache_available = await cache.ping()
             cache_backend = getattr(cache, 'backend_name', 'unknown')
+        cache_latency = (_time_module.time() - cache_start) * 1000
+        dependencies.append(DependencyHealth(
+            name="cache", available=cache_available, latency_ms=round(cache_latency, 1),
+            error=None if cache_available else "Cache ping failed"
+        ))
+
+        chatbot_available = settings.chatbot_ready
+        chatbot_latency = 0.0
+        if settings.environment != 'test' and settings.chatbot_service_url:
+            chatbot_start = _time_module.time()
+            try:
+                cb_health_url = f"{settings.chatbot_service_url.replace('/api/v1', '')}/health"
+                async with httpx.AsyncClient(timeout=5.0) as client:
+                    cb_resp = await client.get(cb_health_url)
+                    chatbot_available = cb_resp.status_code == 200
+            except Exception:
+                chatbot_available = False
+            chatbot_latency = (_time_module.time() - chatbot_start) * 1000
+        dependencies.append(DependencyHealth(
+            name="chatbot", available=chatbot_available, latency_ms=round(chatbot_latency, 1),
+            error=None if chatbot_available else "Chatbot service unreachable"
+        ))
+
+        circuit_breakers = {}
+        try:
+            from core.circuit_breaker import CircuitBreakerRegistry
+            cb_stats = CircuitBreakerRegistry.all_stats()
+            circuit_breakers = {name: stats["state"] for name, stats in cb_stats.items()}
+        except ImportError:
+            pass
+
+        overall_status = 'ok'
+        if not database_available:
+            overall_status = 'degraded'
+
         resp = HealthResponse(
-            status='ok' if database_available else 'degraded',
+            status=overall_status,
             database_available=database_available,
-            chatbot_ready=settings.chatbot_ready,
+            chatbot_ready=chatbot_available,
             chatbot_mode=settings.chatbot_mode,
             cache_available=cache_available,
             cache_backend=cache_backend,
             environment='production',  # SECURITY#21: Don't leak actual environment name
             version=settings.version,
+            dependencies=dependencies,
+            circuit_breakers=circuit_breakers if circuit_breakers else None,
+            uptime_seconds=round(_get_uptime(), 2),
         )
         if not database_available:
-            # Alert on database failure
             get_alert_service().alert_supabase_failed(
                 operation="Health check — database unreachable",
                 error_msg="PostgreSQL connection failed during /health endpoint",
