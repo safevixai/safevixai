@@ -1,7 +1,27 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": "eslint:recommended",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
   "rules": {
     "@next/next/no-page-custom-font": "off",
     "@next/next/no-async-client-component": "error"
-  }
+  },
+  "ignorePatterns": [
+    "node_modules",
+    ".next",
+    "dist",
+    "build",
+    "out"
+  ]
 }
