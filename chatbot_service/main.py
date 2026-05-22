@@ -7,7 +7,10 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 
-import sentry_sdk
+try:
+    import sentry_sdk
+except ImportError:
+    sentry_sdk = None
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -18,11 +21,10 @@ from agent.intent_detector import IntentDetector
 from agent.safety_checker import SafetyChecker
 from api import api_router
 from config import get_settings
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
+from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-limiter = Limiter(key_func=get_remote_address)
+from limiter import limiter
 
 from memory.redis_memory import ConversationMemoryStore
 from providers.router import ProviderRouter
@@ -85,7 +87,7 @@ def create_app() -> FastAPI:
     _configure_logging(settings.environment)
 
     # OBSERVABILITY#1: Sentry error tracking (free tier: 5K errors/month)
-    if settings.sentry_dsn:
+    if settings.sentry_dsn and sentry_sdk is not None:
         sentry_sdk.init(
             dsn=settings.sentry_dsn,
             environment=settings.environment,

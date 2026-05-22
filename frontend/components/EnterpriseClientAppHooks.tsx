@@ -41,12 +41,6 @@ function SystemBanners() {
 
   return (
     <>
-      {connectivity === 'offline' && (
-        <div className="fixed top-0 left-0 w-full z-[9999] bg-red-500 text-white text-xs font-bold px-4 py-1.5 flex items-center justify-center gap-2 shadow-md">
-          <WifiOff size={14} />
-          YOU ARE OFFLINE. SOS WILL BE SAVED LOCALLY.
-        </div>
-      )}
       {warming && connectivity !== 'offline' && (
         <div className="fixed top-0 left-0 w-full z-[9999] bg-brand text-white text-xs font-bold px-4 py-1.5 flex items-center justify-center gap-2 shadow-md">
           <Loader2 size={14} className="animate-spin" />

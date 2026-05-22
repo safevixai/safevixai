@@ -7,7 +7,7 @@ from agent.graph import ChatEngine
 from config import get_settings
 from memory.redis_memory import ConversationMemoryStore
 # S18: Import limiter for per-IP rate limiting on admin endpoints (5/min)
-from main import limiter
+from limiter import limiter
 
 
 router = APIRouter(tags=['Admin'])

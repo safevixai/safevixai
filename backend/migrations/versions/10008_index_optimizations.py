@@ -56,11 +56,13 @@ def upgrade() -> None:
         'ON road_issues USING gist (location, status)'
     )
 
-    # Index for emergency service category lookups (frequent query pattern)
-    op.create_index('ix_emergency_services_category', 'emergency_services', ['category'], postgresql_using='btree')
-
-    # Index for live tracking group_id lookups
-    op.create_index('ix_live_tracking_groups_group_id', 'live_tracking_groups', ['group_id'], postgresql_using='btree')
+    # Index for live tracking group_id lookups (only if table exists)
+    conn = op.get_bind()
+    has_live_tracking_groups = conn.execute(
+        sa.text("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'live_tracking_groups')")
+    ).scalar()
+    if has_live_tracking_groups:
+        op.create_index('ix_live_tracking_groups_group_id', 'live_tracking_groups', ['group_id'], postgresql_using='btree')
 
 
 def downgrade() -> None:
@@ -70,5 +72,10 @@ def downgrade() -> None:
     op.drop_index('ix_road_issues_status_issue_type', table_name='road_issues')
     op.drop_index('ix_road_issues_status_created_at', table_name='road_issues')
     op.execute('DROP INDEX IF EXISTS ix_road_issues_location_status_gist')
-    op.drop_index('ix_emergency_services_category', table_name='emergency_services')
-    op.drop_index('ix_live_tracking_groups_group_id', table_name='live_tracking_groups')
+    
+    conn = op.get_bind()
+    has_live_tracking_groups = conn.execute(
+        sa.text("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'live_tracking_groups')")
+    ).scalar()
+    if has_live_tracking_groups:
+        op.drop_index('ix_live_tracking_groups_group_id', table_name='live_tracking_groups')
