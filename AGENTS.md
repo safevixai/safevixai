@@ -434,7 +434,7 @@ Both use the same `violations_seed.csv` and `state_overrides.csv` source data.
 | Assume chatbot port is 8001 | Actual port is **8010** (check `config.py`) |
 | Write async test in chatbot_service without `@pytest.mark.asyncio` | Chatbot uses `asyncio_mode = strict` (backend uses `auto`) |
 | Assume `HF_TOKEN` is needed for core chatbot | Only needed for Sarvam HF fallback, Shuka, BharatGen, Whisper — core flow uses Groq/Gemini/etc. |
-| Call `/api/v1/roads/report` or `/api/v1/chat` without Authorization header | Both endpoints require `Authorization: Bearer <token>` (JWT, Phase 5) |
+| Call `/api/v1/roads/report` without Authorization header | Uses `get_current_user_optional` — JWT optional, anonymous reports accepted |
 | Expect family tracking at a REST endpoint | Family tracking is a **WebSocket** at `ws://<host>/api/v1/tracking/{group_id}` |
 | Add images to user profile in localStorage | Blood group, emergency contacts never leave device — stored in **IndexedDB** only |
 | Assume offline SOS fires immediately | SOS is queued in IndexedDB if offline, auto-flushed on `online` event via `offline-sos-queue.ts` |

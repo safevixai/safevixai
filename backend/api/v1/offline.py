@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Path, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
+from core.limiter import limiter
 from services.emergency_locator import EmergencyLocatorService
 from services.exceptions import ServiceValidationError
 
@@ -16,7 +17,9 @@ def get_emergency_service(request: Request) -> EmergencyLocatorService:
 
 
 @router.get('/bundle/{city}')
+@limiter.limit("10/minute")
 async def get_offline_bundle(
+    request: Request,
     city: str = Path(min_length=2, max_length=64, pattern=r'^[A-Za-z][A-Za-z\s-]*$'),
     db: AsyncSession = Depends(get_db),
     emergency_service: EmergencyLocatorService = Depends(get_emergency_service),

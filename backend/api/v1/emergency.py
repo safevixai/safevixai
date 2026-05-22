@@ -55,7 +55,9 @@ async def get_nearby_services(
 
 
 @router.get('/sos', response_model=SosResponse)
+@limiter.limit("20/minute")
 async def get_sos_payload(
+    request: Request,
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     db: AsyncSession = Depends(get_db),
@@ -125,7 +127,9 @@ async def get_emergency_numbers() -> EmergencyNumbersResponse:
 
 
 @router.get('/safe-spaces')
+@limiter.limit("20/minute")
 async def safe_spaces(
+    request: Request,
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     radius: int = Query(default=1000, ge=100, le=50000),

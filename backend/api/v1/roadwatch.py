@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, Reques
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
-from core.security import get_current_user
+from core.security import get_current_user, get_current_user_optional
 from models.schemas import (
     AuthorityPreviewResponse,
     RoadInfrastructureResponse,
@@ -87,6 +87,7 @@ async def submit_road_issue(
     photo: UploadFile | None = File(default=None),
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
+    current_user: dict | None = Depends(get_current_user_optional),
 ) -> RoadReportResponse:
     """Accept a rate-limited public RoadWatch report with strict form/file validation."""
     try:
