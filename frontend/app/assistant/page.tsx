@@ -6,9 +6,13 @@ import { gsap } from '@/lib/gsap';
 import {
  ArrowLeft, ShieldCheck, BookOpen, Copy,
  HelpCircle, Mic, Paperclip, Send, ThumbsUp, ThumbsDown, RotateCcw,
- Search, Menu, Volume2, VolumeX
+ Search, Menu, Volume2, VolumeX, Wifi, WifiOff
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
+import { ModelLoader } from '@/components/ModelLoader';
+import { getOfflineAI, askOfflineAI } from '@/lib/offline-ai';
+import { track } from '@/lib/analytics';
 import TopSearch from '@/components/dashboard/TopSearch';
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
@@ -100,6 +104,38 @@ export default function ChatPage() {
  const [toastMessage, setToastMessage] = useState<string | null>(null);
  const [showSuggestions, setShowSuggestions] = useState(false);
  const setSystemSidebarOpen = useAppStore((state) => state.setSystemSidebarOpen);
+ const { aiMode, modelLoadProgress, setAiMode, setModelLoadProgress } = useAppStore(
+   useShallow((s) => ({
+     aiMode: s.aiMode,
+     modelLoadProgress: s.modelLoadProgress,
+     setAiMode: s.setAiMode,
+     setModelLoadProgress: s.setModelLoadProgress,
+   }))
+ );
+
+  const toggleAiMode = useCallback(async (mode: 'online' | 'offline') => {
+    if (mode === 'online') {
+      setAiMode('online');
+    } else {
+      setAiMode('loading');
+      try {
+        await getOfflineAI((progress) => {
+          if (progress.status === 'downloading') {
+            setModelLoadProgress(progress.percent);
+          } else if (progress.status === 'ready' || progress.status === 'system_available') {
+            setModelLoadProgress(100);
+            setAiMode('offline');
+          }
+        });
+        setAiMode('offline');
+      } catch (err) {
+        logClientError('Failed to initialize offline AI:', err);
+        setAiMode('online');
+        setToastMessage('Offline AI failed to initialize. Using online mode.');
+      }
+    }
+  }, [setAiMode, setModelLoadProgress]);
+
  const { location } = useGeolocation();
  const [sessionId] = useState(() => `assistant-${Date.now()}`);
  const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -166,70 +202,120 @@ export default function ChatPage() {
  }, [input]);
 
  const handleSend = useCallback(async (text: string) => {
-  if (!text.trim()) return;
+   if (!text.trim()) return;
 
-  const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const userMsg: Message = { id: Date.now().toString(), role: 'user', text, timestamp: time };
-  setMessages(prev => [...prev, userMsg]);
-  setInput('');
-  setLoading(true);
+   const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+   const userMsg: Message = { id: Date.now().toString(), role: 'user', text, timestamp: time };
+   setMessages(prev => [...prev, userMsg]);
+   setInput('');
+   setLoading(true);
 
-  // Streaming assistant placeholder
-  const assistantId = `ai-${Date.now() + 1}`;
-  setMessages(prev => [...prev, { id: assistantId, role: 'ai', text: '', timestamp: time }]);
+   // Streaming assistant placeholder
+   const assistantId = `ai-${Date.now() + 1}`;
+   setMessages(prev => [...prev, { id: assistantId, role: 'ai', text: '', timestamp: time }]);
 
-  try {
-  let accumulated = '';
-  for await (const event of streamChat(text, sessionId, location?.lat, location?.lon)) {
-  if (event.type === 'token' && event.text) {
-  accumulated += event.text;
-  setMessages(prev =>
-  prev.map(m => m.id === assistantId ? { ...m, text: accumulated } : m)
-  );
-  } else if (event.type === 'done') {
-  const sources = event.sources ?? [];
-  setMessages(prev =>
-  prev.map(m =>
-  m.id === assistantId
-  ? { ...m, text: accumulated || 'No response received.', citations: sources }
-  : m
-  )
-  );
-  if (autoRead && accumulated) {
-     speakText(accumulated);
+   // Track chatbot query event
+   track.chatbotQueried('chat_message', aiMode === 'offline' ? 'local_gemma' : 'backend_sse');
+
+   try {
+     if (aiMode === 'offline') {
+       // Ensure offline AI is initialized
+       await getOfflineAI();
+       const offlineReply = await askOfflineAI(text);
+       setMessages(prev =>
+         prev.map(m =>
+           m.id === assistantId
+             ? { ...m, text: offlineReply, citations: ['Offline Knowledge Base'] }
+             : m
+         )
+       );
+       if (autoRead && offlineReply) {
+         speakText(offlineReply);
+       }
+     } else {
+       let accumulated = '';
+       for await (const event of streamChat(text, sessionId, location?.lat, location?.lon)) {
+         if (event.type === 'token' && event.text) {
+           accumulated += event.text;
+           setMessages(prev =>
+             prev.map(m => m.id === assistantId ? { ...m, text: accumulated } : m)
+           );
+         } else if (event.type === 'done') {
+           const sources = event.sources ?? [];
+           setMessages(prev =>
+             prev.map(m =>
+               m.id === assistantId
+                 ? { ...m, text: accumulated || 'No response received.', citations: sources }
+                 : m
+             )
+           );
+           if (autoRead && accumulated) {
+             speakText(accumulated);
+           }
+         } else if (event.type === 'error') {
+           throw new Error(event.message ?? 'Stream error');
+         }
+       }
+     }
+   } catch (err) {
+     logClientError('Chat error:', err);
+     setMessages(prev =>
+       prev.map(m =>
+         m.id === assistantId
+           ? { ...m, text: 'Neural link interrupted. Please verify connectivity and retry protocol.' }
+           : m
+       )
+     );
+   } finally {
+     setLoading(false);
    }
-  } else if (event.type === 'error') {
-  throw new Error(event.message ?? 'Stream error');
-  }
-  }
-  } catch (err) {
-  logClientError('Chat error:', err);
-  setMessages(prev =>
-  prev.map(m =>
-  m.id === assistantId
-  ? { ...m, text: 'Neural link interrupted. Please verify connectivity and retry protocol.' }
-  : m
-  )
-  );
-  } finally {
-  setLoading(false);
-  }
-  }, [sessionId, location, autoRead, speakText]);
+  }, [sessionId, location, autoRead, speakText, aiMode]);
 
  return (
- <div className="aurora-glow w-full h-full min-h-dvh flex flex-col overflow-hidden bg-surface-1">
- {/* â”€â”€ Background Decorative Lines (SafeVixAI Pro Aesthetic) â”€â”€ */}
- <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
- {/* Spots removed per user request */}
+  <div className="aurora-glow w-full h-full min-h-dvh flex flex-col overflow-hidden bg-surface-1">
+  {/* Model Loading HUD overlay */}
+  <ModelLoader />
 
- {/* Ambient Glows */}
- <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand/5 dark:bg-brand/10 blur-[120px] hidden dark:block" />
- <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] rounded-full bg-brand-light/5 dark:bg-brand-light/10 blur-[100px] hidden dark:block" />
- </div>
+  {/* ── Background Decorative Lines (SafeVixAI Pro Aesthetic) ── */}
+  <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+  {/* Spots removed per user request */}
 
-  {/* â”€â”€ Unified Tactical Navigation Header â”€â”€ */}
+  {/* Ambient Glows */}
+  <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand/5 dark:bg-brand/10 blur-[120px] hidden dark:block" />
+  <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] rounded-full bg-brand-light/5 dark:bg-brand-light/10 blur-[100px] hidden dark:block" />
+  </div>
+
+   {/* ── Unified Tactical Navigation Header ── */}
     <TerminalHeader title="Assistant HUD" subtitle="TACTICAL INTEL & LEGAL" rightElement={
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
+        {/* Mode Toggle */}
+        <div className="flex items-center bg-surface-2 dark:bg-white/5 rounded-full p-0.5 border border-border-md dark:border-white/10">
+          <button
+            onClick={() => toggleAiMode('online')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all ${
+              aiMode === 'online'
+                ? 'bg-brand text-brand-foreground shadow-sm shadow-brand/10'
+                : 'text-text-2 hover:text-text-1 dark:hover:text-text-3'
+            }`}
+            title="Switch to Online AI"
+          >
+            <Wifi size={12} />
+            Online
+          </button>
+          <button
+            onClick={() => toggleAiMode('offline')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all ${
+              aiMode === 'offline'
+                ? 'bg-brand text-brand-foreground shadow-sm shadow-brand/10'
+                : 'text-text-2 hover:text-text-1 dark:hover:text-text-3'
+            }`}
+            title="Switch to Offline AI (Phi-3 / Gemma)"
+          >
+            <WifiOff size={12} />
+            Offline
+          </button>
+        </div>
+
         {isSpeaking && (
           <button
             onClick={stopSpeaking}

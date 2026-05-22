@@ -6,8 +6,8 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap, SplitText } from '@/lib/gsap';
 
-export function useSplitTextEntry(delay = 0) {
-  const ref = useRef<HTMLElement>(null);
+export function useSplitTextEntry<T extends HTMLElement = HTMLElement>(delay = 0) {
+  const ref = useRef<T>(null);
 
   useGSAP(
     () => {

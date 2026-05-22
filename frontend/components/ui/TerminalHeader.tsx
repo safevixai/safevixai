@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useSplitTextEntry } from '@/hooks/useSplitTextEntry';
 
 interface TerminalHeaderProps {
   title: string;
@@ -13,6 +16,7 @@ export function TerminalHeader({
   status = 'online',
   rightElement,
 }: TerminalHeaderProps) {
+  const titleRef = useSplitTextEntry<HTMLHeadingElement>(0.1);
   const statusLabel = status === 'emergency' ? 'Emergency Active' : status === 'offline' ? 'Offline' : 'Sentinel Active';
 
   return (
@@ -20,7 +24,7 @@ export function TerminalHeader({
       <div className="flex items-center gap-3">
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
-            <h1 className="sv-terminal-overline text-text-1">
+            <h1 ref={titleRef} className="sv-terminal-overline text-text-1">
               {title}
             </h1>
             {status === 'online' && (

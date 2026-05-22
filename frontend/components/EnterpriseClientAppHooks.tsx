@@ -13,6 +13,7 @@ import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
 import { FEATURES } from '@/lib/features'
 import { beginLocationBroadcast, startFamilyTracking } from '@/lib/live-tracking'
 import { WifiOff, Loader2 } from 'lucide-react'
+import { track } from '@/lib/analytics'
 
 function SystemBanners() {
   const connectivity = useAppStore(state => state.connectivity)
@@ -98,6 +99,7 @@ export function EnterpriseClientAppHooks() {
   useEffect(() => {
     if (!FEATURES.crashDetection || !crashDetectionEnabled) return
     const handleCrashDetected = (force: number) => {
+      track.crashDetected('impact', force / STANDARD_GRAVITY_MS2)
       setCrashCountdown({ force, remaining: CRASH_COUNTDOWN_SECONDS })
     }
 
@@ -120,6 +122,7 @@ export function EnterpriseClientAppHooks() {
 
         setDispatching(true)
         try {
+          track.sosActivated('crash_detection')
           await triggerSos({ lat: gpsLocation.lat, lon: gpsLocation.lon })
           if (userProfile.name.trim()) {
             try {
@@ -148,6 +151,7 @@ export function EnterpriseClientAppHooks() {
             position: 'top-center',
           })
         } catch {
+          track.offlineSosQueued()
           await enqueueSOS({ lat: gpsLocation.lat, lon: gpsLocation.lon })
           toast.error('Network unavailable — SOS saved offline and will retry automatically.', {
             duration: 8000,
@@ -177,7 +181,10 @@ export function EnterpriseClientAppHooks() {
       <SystemBanners />
       <CrashDialog
         crashCountdown={crashCountdown}
-        onCancel={() => setCrashCountdown(null)}
+        onCancel={() => {
+          track.crashCancelled(crashCountdown.remaining)
+          setCrashCountdown(null)
+        }}
         onSendNow={() => setCrashCountdown((current) => current && { ...current, remaining: 0 })}
       />
     </>
