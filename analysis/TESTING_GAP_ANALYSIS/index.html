@@ -1,0 +1,2202 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Enterprise AI-Powered Road Safety Platform Documentation">
+      
+      
+        <meta name="author" content="SafeVixAI Team">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>SafeVixAI — Testing Gap Analysis - SafeVixAI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#safevixai-testing-gap-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SafeVixAI" class="md-header__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SafeVixAI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SafeVixAI — Testing Gap Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SETUP/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../AGENTS/" class="md-tabs__link">
+          
+  
+  
+  AI & Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../TechStack/" class="md-tabs__link">
+          
+  
+  
+  Engineering
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DESIGN/" class="md-tabs__link">
+          
+  
+  
+  Design & UX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Deployment/" class="md-tabs__link">
+          
+  
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SafeVixAI" class="md-nav__button md-logo" aria-label="SafeVixAI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SafeVixAI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SafeVixAI/SafeVixAI" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SafeVixAI/SafeVixAI
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Agents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AGENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AI_Instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chatbot Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Intents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Offline_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TechStack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tech Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design & UX
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design & UX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DESIGN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UIUX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI/UX Specs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataSources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DATASET_PLACEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Complete_Project_Resource_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-coverage-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Coverage Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-critical-gaps-blocking-ci-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Critical Gaps (Blocking CI / Production)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Critical Gaps (Blocking CI / Production)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gap-1-load-test-scripts-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-1: Load Test Scripts Missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-2-chaos-test-script-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-2: Chaos Test Script Missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-3-no-cross-service-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-3: No Cross-Service Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-high-priority-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. High-Priority Gaps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. High-Priority Gaps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gap-4-no-database-migration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-4: No Database Migration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-5-no-sos-end-to-end-flow-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-5: No SOS End-to-End Flow Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-6-no-security-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-6: No Security Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-7-no-prometheus-metrics-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-7: No Prometheus Metrics Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-medium-priority-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Medium-Priority Gaps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Medium-Priority Gaps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gap-8-no-pwa-specific-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-8: No PWA-Specific Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-9-no-websocket-stress-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-9: No WebSocket Stress Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-10-no-performancelighthouse-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-10: No Performance/Lighthouse Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-11-no-accessibility-violation-thresholds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-11: No Accessibility Violation Thresholds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-12-no-disaster-recovery-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-12: No Disaster Recovery Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-low-priority-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Low-Priority Gaps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Low-Priority Gaps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gap-13-no-fuzzingdast-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-13: No Fuzzing/DAST Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-14-no-mutation-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-14: No Mutation Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-15-no-visual-regression-thresholds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-15: No Visual Regression Thresholds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gap-16-no-speech-recognition-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GAP-16: No Speech Recognition Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-test-quality-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Test Quality Assessment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Test Quality Assessment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-test-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend Test Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-test-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chatbot Test Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-test-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Test Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-risk-based-testing-priorities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Risk-Based Testing Priorities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-recommended-test-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recommended Test Additions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Recommended Test Additions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#immediate-week-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immediate (Week 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short-term-week-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short-Term (Week 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-term-month-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Medium-Term (Month 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-test-infrastructure-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Test Infrastructure Improvements
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="safevixai-testing-gap-analysis">SafeVixAI — Testing Gap Analysis</h1>
+<blockquote>
+<p>Generated: 2026-05-22 | Coverage gaps, risk-based priorities, recommendations</p>
+</blockquote>
+<hr />
+<h2 id="1-coverage-summary">1. Coverage Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Test Files</th>
+<th>Tests Passing</th>
+<th>Coverage %</th>
+<th>Framework</th>
+<th>CI Integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend</td>
+<td>32+</td>
+<td>Unknown (recent)</td>
+<td>~85% core, unknown services</td>
+<td>pytest (asyncio_mode=auto)</td>
+<td>✅ backend.yml</td>
+</tr>
+<tr>
+<td>Chatbot</td>
+<td>20+</td>
+<td>244/244</td>
+<td>Unknown</td>
+<td>pytest (asyncio_mode=strict)</td>
+<td>✅ chatbot.yml</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>12+</td>
+<td>Unknown</td>
+<td>Unknown</td>
+<td>Jest + Playwright</td>
+<td>✅ frontend.yml</td>
+</tr>
+<tr>
+<td>End-to-End</td>
+<td>6+ e2e files</td>
+<td>Unknown</td>
+<td>N/A</td>
+<td>Playwright</td>
+<td>✅ e2e.yml</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-critical-gaps-blocking-ci-production">2. Critical Gaps (Blocking CI / Production)</h2>
+<h3 id="gap-1-load-test-scripts-missing">GAP-1: Load Test Scripts Missing</h3>
+<p><strong>Files:</strong> <code>tests/load/backend_api_load.js</code>, <code>tests/load/chatbot_api_load.js</code>, <code>tests/load/frontend_load.js</code>
+<strong>Workflow:</strong> <code>.github/workflows/load-testing.yml</code> references these files
+<strong>Impact:</strong> <code>load-testing.yml</code> will fail at runtime. Cannot validate performance under load.
+<strong>Fix:</strong> Create k6 scripts or remove workflow. Priority: HIGH.</p>
+<h3 id="gap-2-chaos-test-script-missing">GAP-2: Chaos Test Script Missing</h3>
+<p><strong>File:</strong> <code>tests/test_chaos.py</code>
+<strong>Workflow:</strong> <code>.github/workflows/chaos-tests.yml</code> references this file
+<strong>Impact:</strong> <code>chaos-tests.yml</code> will fail at runtime. Cannot validate circuit breaker and failure recovery.
+<strong>Fix:</strong> Create chaos test or remove workflow. Priority: HIGH.</p>
+<h3 id="gap-3-no-cross-service-integration-tests">GAP-3: No Cross-Service Integration Tests</h3>
+<p><strong>Testing gap:</strong> No test validates the full frontend → backend → chatbot pipeline
+<strong>Critical flows untested:</strong>
+- Chat message → Backend proxy → Chatbot → LLM call → Backend → Frontend SSE
+- Frontend SOS → Backend API → EmergencyLocator → PostGIS/Overpass
+- Chatbot tool call → Backend API (Challan/SOS/Road)
+<strong>Risk:</strong> Changes in one service can break another without detection.
+<strong>Fix:</strong> Add integration test that spins up all 3 services and tests the pipeline. Priority: HIGH.</p>
+<hr />
+<h2 id="3-high-priority-gaps">3. High-Priority Gaps</h2>
+<h3 id="gap-4-no-database-migration-tests">GAP-4: No Database Migration Tests</h3>
+<p><strong>Testing gap:</strong> Alembic migrations are never tested against a fresh or existing database.
+<strong>Risk:</strong> Migration errors discovered only during deployment.
+<strong>Fix:</strong> Add pytest fixtures that apply all migrations to a test database. Priority: HIGH.</p>
+<h3 id="gap-5-no-sos-end-to-end-flow-test">GAP-5: No SOS End-to-End Flow Test</h3>
+<p><strong>Testing gap:</strong> No test covers the complete SOS flow:
+- Frontend SOS button → Double-tap → API call → Backend SOS → Emergency services → SMS share
+- Offline SOS → IndexedDB queue → Online sync → API flush
+<strong>Partial coverage:</strong> Chatbot has <code>test_emergency_tool.py</code>, frontend has <code>SOSButton.test.tsx</code>
+<strong>Fix:</strong> Add E2E test for full SOS flow. Priority: HIGH.</p>
+<h3 id="gap-6-no-security-integration-tests">GAP-6: No Security Integration Tests</h3>
+<p><strong>Testing gap:</strong> No tests verify:
+- CSRF protection blocks forged requests
+- Rate limiting triggers correctly
+- JWT with wrong audience/issuer is rejected
+- Prompt injection bypass attempts are blocked (chatbot tests cover this partially)
+- Admin endpoints reject wrong keys
+- CORS blocks disallowed origins
+<strong>Partial coverage:</strong> Backend <code>test_security.py</code> and <code>test_csrf.py</code> exist
+<strong>Fix:</strong> Add comprehensive security integration tests. Priority: HIGH.</p>
+<h3 id="gap-7-no-prometheus-metrics-tests">GAP-7: No Prometheus Metrics Tests</h3>
+<p><strong>Testing gap:</strong> 18+ metrics are defined in <code>backend/core/metrics.py</code> but no tests verify:
+- Metrics are incremented on correct triggers
+- Metrics have correct labels
+- <code>/metrics</code> endpoint returns valid Prometheus format
+<strong>Fix:</strong> Add metrics endpoint + tests. Priority: HIGH.</p>
+<hr />
+<h2 id="4-medium-priority-gaps">4. Medium-Priority Gaps</h2>
+<h3 id="gap-8-no-pwa-specific-tests">GAP-8: No PWA-Specific Tests</h3>
+<p><strong>Gaps:</strong>
+- Manifest validation (icons, shortcuts, share_target)
+- Service Worker install/activate/fetch lifecycle
+- Cache strategies (cache-first vs network-first behavior)
+- Background Sync registration and execution
+- Push notification handling
+<strong>Partial coverage:</strong> Frontend <code>offline.spec.ts</code> tests SW registration
+<strong>Fix:</strong> Add PWA-specific E2E tests. Priority: MEDIUM.</p>
+<h3 id="gap-9-no-websocket-stress-tests">GAP-9: No WebSocket Stress Tests</h3>
+<p><strong>Gaps:</strong>
+- Multiple concurrent connections
+- Reconnection after disconnect
+- Message throughput under load
+- Redis Pub/Sub multi-instance broadcast
+- Origin validation
+- Message size limits
+<strong>Partial coverage:</strong> Backend <code>test_live_tracking.py</code> tests basic lifecycle
+<strong>Fix:</strong> Add WebSocket stress tests with concurrent clients. Priority: MEDIUM.</p>
+<h3 id="gap-10-no-performancelighthouse-tests">GAP-10: No Performance/Lighthouse Tests</h3>
+<p><strong>Gaps:</strong>
+- LCP, CLS, TTI measurements
+- Bundle size analysis
+- Memory usage tracking
+- Animation frame rate (GSAP)
+- Map rendering performance
+<strong>Fix:</strong> Add Lighthouse CI to frontend.yml. Priority: MEDIUM.</p>
+<h3 id="gap-11-no-accessibility-violation-thresholds">GAP-11: No Accessibility Violation Thresholds</h3>
+<p><strong>Gaps:</strong>
+- <code>tests/a11y/</code> directory exists but no automated threshold assertions
+- No CI integration for accessibility regression
+<strong>Fix:</strong> Add axe-core assertions with max-violation thresholds. Priority: MEDIUM.</p>
+<h3 id="gap-12-no-disaster-recovery-tests">GAP-12: No Disaster Recovery Tests</h3>
+<p><strong>Gaps:</strong>
+- Database restore from backup
+- Cache population after Redis flush
+- Session recovery after service restart
+- Circuit breaker recovery sequence
+<strong>Fix:</strong> Add DR validation tests. Priority: MEDIUM.</p>
+<hr />
+<h2 id="5-low-priority-gaps">5. Low-Priority Gaps</h2>
+<h3 id="gap-13-no-fuzzingdast-testing">GAP-13: No Fuzzing/DAST Testing</h3>
+<p><strong>Fix:</strong> Add OWASP ZAP or API fuzzing to security workflow. Priority: LOW.</p>
+<h3 id="gap-14-no-mutation-testing">GAP-14: No Mutation Testing</h3>
+<p><strong>Fix:</strong> Add mutation testing (e.g., mutmut for Python). Priority: LOW.</p>
+<h3 id="gap-15-no-visual-regression-thresholds">GAP-15: No Visual Regression Thresholds</h3>
+<p>Frontend visual tests exist but no automated diff thresholds. Priority: LOW.</p>
+<h3 id="gap-16-no-speech-recognition-tests">GAP-16: No Speech Recognition Tests</h3>
+<p>IndicSeamlessService has <code>test_speech_translation.py</code> but no ASR accuracy tests. Priority: LOW.</p>
+<hr />
+<h2 id="6-test-quality-assessment">6. Test Quality Assessment</h2>
+<h3 id="backend-test-quality">Backend Test Quality</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Rating</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unit tests</td>
+<td>⭐⭐⭐⭐</td>
+<td>Core infrastructure well-tested (circuit breaker, cache, idempotency, etc.)</td>
+</tr>
+<tr>
+<td>Service tests</td>
+<td>⭐⭐⭐</td>
+<td>Emergency, routing, challan, geocoding — good coverage</td>
+</tr>
+<tr>
+<td>API tests</td>
+<td>⭐⭐⭐</td>
+<td>Auth, offline, emergency, MCP, Waze, tracking — solid</td>
+</tr>
+<tr>
+<td>Integration tests</td>
+<td>⭐⭐</td>
+<td>Missing cross-service integration</td>
+</tr>
+<tr>
+<td>Security tests</td>
+<td>⭐⭐</td>
+<td>CSRF + security tests exist but limited</td>
+</tr>
+<tr>
+<td>Performance tests</td>
+<td>⭐</td>
+<td>Load test scripts missing</td>
+</tr>
+<tr>
+<td>Async pattern</td>
+<td>✅</td>
+<td>asyncio_mode=auto (correct)</td>
+</tr>
+<tr>
+<td>Fixtures</td>
+<td>✅</td>
+<td>Good patterns (DummySession, auth_headers, env overrides)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chatbot-test-quality">Chatbot Test Quality</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Rating</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unit tests</td>
+<td>⭐⭐⭐⭐</td>
+<td>All 9 intents, safety checker, provider routing well-tested</td>
+</tr>
+<tr>
+<td>Service tests</td>
+<td>⭐⭐⭐</td>
+<td>Context assembler, tools, memory — good coverage</td>
+</tr>
+<tr>
+<td>Integration tests</td>
+<td>⭐⭐⭐</td>
+<td>Chat engine integration with fakes</td>
+</tr>
+<tr>
+<td>Security tests</td>
+<td>⭐⭐⭐⭐</td>
+<td>Prompt injection, jailbreak, l33t, unicode — comprehensive</td>
+</tr>
+<tr>
+<td>Edge cases</td>
+<td>⭐⭐⭐</td>
+<td>Timeout handling, empty results, rate limiting, fallback chain</td>
+</tr>
+<tr>
+<td>Performance tests</td>
+<td>⭐</td>
+<td>No load tests</td>
+</tr>
+<tr>
+<td>Async pattern</td>
+<td>✅</td>
+<td>asyncio_mode=strict with @pytest.mark.asyncio (correct)</td>
+</tr>
+<tr>
+<td>Fixtures</td>
+<td>⭐⭐⭐⭐</td>
+<td>Excellent Fake* class patterns</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend-test-quality">Frontend Test Quality</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Rating</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Component tests</td>
+<td>⭐⭐⭐</td>
+<td>12 component tests covering key interfaces</td>
+</tr>
+<tr>
+<td>Hook tests</td>
+<td>⭐⭐</td>
+<td>useSOS excluded from Jest (Playwright covers)</td>
+</tr>
+<tr>
+<td>E2E tests</td>
+<td>⭐⭐⭐</td>
+<td>SOS, offline, visual regression, responsive</td>
+</tr>
+<tr>
+<td>PWA tests</td>
+<td>⭐⭐</td>
+<td>SW registration tested, but not manifest or install</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>⭐⭐</td>
+<td>Tests exist but no thresholds</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>⭐</td>
+<td>No Lighthouse/Web Vitals tests</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-risk-based-testing-priorities">7. Risk-Based Testing Priorities</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    TESTING PRIORITY MATRIX                      │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├──────────┬──────────────┬──────────────┬───────────────────────┤
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│ Risk     │ Not Tested   │ Partially    │ Well Tested           │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├──────────┼──────────────┼──────────────┼───────────────────────┤
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│ CRITICAL │ Cross-service│ SOS flow     │ Safety Checker        │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│          │ integration  │              │                       │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├──────────┼──────────────┼──────────────┼───────────────────────┤
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│ HIGH     │ Load/Perf    │ DB migrations│ Provider Router       │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│          │ Security E2E │ WebSocket    │ Emergency Locator      │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│          │ Metrics      │ Auth flows   │ Prompt Injection       │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├──────────┼──────────────┼──────────────┼───────────────────────┤
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│ MEDIUM   │ PWA/Manifest │ Offline AI   │ Circuit Breaker       │
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│          │ Accessibility│ Service Worker│ Cache/Idempotency    │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│          │ Speech       │ Visual       │ Intent Detection      │
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├──────────┼──────────────┼──────────────┼───────────────────────┤
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│ LOW      │ Mutation     │ Component    │ API Endpoints         │
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│          │ DAST/Fuzzing │ Storybook    │ ORM/Models            │
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>└──────────┴──────────────┴──────────────┴───────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="8-recommended-test-additions">8. Recommended Test Additions</h2>
+<h3 id="immediate-week-1">Immediate (Week 1)</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. Cross-Service Integration Test (backend → chatbot)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_chatbot_via_backend_proxy</span><span class="p">():</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="c1"># POST /api/v1/chat/ on backend → proxies to chatbot</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="c1"># Verify response contains expected fields</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">pass</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 2. Metrics Exposure Test (backend)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_metrics_endpoint</span><span class="p">():</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="c1"># GET /metrics → valid Prometheus format</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">pass</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># 3. SOS E2E Flow</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_sos_full_flow</span><span class="p">():</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="c1"># Frontend SOS button → Backend API → Family tracking → SMS</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">pass</span>
+</span></code></pre></div>
+<h3 id="short-term-week-2">Short-Term (Week 2)</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 4. DB Migration Test</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_all_migrations</span><span class="p">():</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="c1"># Apply all alembic migrations to fresh DB</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="c1"># Verify all tables created with correct schema</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">pass</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 5. RBAC Enforcement Test</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_role_enforcement</span><span class="p">():</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="c1"># JWT with wrong role → 403 on sensitive endpoint</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">pass</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># 6. WebSocket Concurrent Stress Test</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_websocket_multiple_clients</span><span class="p">():</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="c1"># 50 concurrent WebSocket connections</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="c1"># Verify all receive broadcasts</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">pass</span>
+</span></code></pre></div>
+<h3 id="medium-term-month-1">Medium-Term (Month 1)</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 7. PWA Manifest Test</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_manifest</span><span class="p">():</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="c1"># Verify manifest.json contains all required fields</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">pass</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># 8. Service Worker Cache Strategy Test</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_sw_cache_strategies</span><span class="p">():</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="c1"># Verify cache-first for offline data</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="c1"># Verify network-first for API calls</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">pass</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># 9. Lighthouse Performance Test</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">test</span><span class="p">(</span><span class="s1">&#39;Lighthouse scores above thresholds&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="o">//</span> <span class="n">LCP</span> <span class="o">&lt;=</span> <span class="mi">2500</span><span class="n">ms</span><span class="p">,</span> <span class="n">CLS</span> <span class="o">&lt;=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">TBT</span> <span class="o">&lt;=</span> <span class="mi">200</span><span class="n">ms</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">})</span>
+</span></code></pre></div>
+<hr />
+<h2 id="9-test-infrastructure-improvements">9. Test Infrastructure Improvements</h2>
+<table>
+<thead>
+<tr>
+<th>Improvement</th>
+<th>Current State</th>
+<th>Target</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coverage reporting</td>
+<td>XML artifacts in CI</td>
+<td>PR comments with diff coverage</td>
+<td>1 day</td>
+</tr>
+<tr>
+<td>Test parallelization</td>
+<td>Sequential pytest</td>
+<td>pytest-xdist</td>
+<td>2 hours</td>
+</tr>
+<tr>
+<td>Test data factories</td>
+<td>Manual fixtures</td>
+<td>Factory Boy / Faker</td>
+<td>2 days</td>
+</tr>
+<tr>
+<td>API contract testing</td>
+<td>Basic spec generation</td>
+<td>OpenAPI + Pact</td>
+<td>3 days</td>
+</tr>
+<tr>
+<td>Visual regression</td>
+<td>Playwright screenshots</td>
+<td>Percy / Chromatic</td>
+<td>2 days</td>
+</tr>
+<tr>
+<td>Mutation testing</td>
+<td>None</td>
+<td>mutmut for Python</td>
+<td>2 days</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
