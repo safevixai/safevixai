@@ -46,6 +46,9 @@ def upgrade() -> None:
         postgresql_using='btree',
     )
 
+    # Enable btree_gist extension to allow composite index on location (geometry) and status (varchar)
+    op.execute('CREATE EXTENSION IF NOT EXISTS btree_gist')
+
     # Spatial composite: GIST index on (location, status) for queries like
     # "find all open issues within this radius"
     op.execute(
