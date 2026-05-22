@@ -1,6 +1,7 @@
 name: Docker Build & Scan
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [ "main" ]
     paths:
@@ -15,6 +16,7 @@ on:
       - 'backend/Dockerfile'
       - 'chatbot_service/Dockerfile'
       - 'frontend/Dockerfile.frontend'
+      - '.github/workflows/docker-build.yml'
 
 permissions:
   contents: read
