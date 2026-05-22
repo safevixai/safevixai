@@ -120,5 +120,7 @@ class Sarvam105BProvider(SarvamProvider):
     """Sarvam-105B — legal queries in Indian languages.
     More accurate but slower than 2B. Activates for HIGH_STAKES_INTENTS.
     """
+    name = "sarvam_105b"
+
     def __init__(self) -> None:
         super().__init__(model_size="105b")

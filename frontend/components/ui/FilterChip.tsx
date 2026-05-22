@@ -10,6 +10,8 @@ export function FilterChip({ active = false, label, icon, className = '', ...pro
   return (
     <button
       type="button"
+      role="radio"
+      aria-checked={active}
       className={`
         sv-chip focus:outline-none focus:ring-2 focus:ring-brand-light/40 focus:ring-offset-1 focus:ring-offset-bg
         ${

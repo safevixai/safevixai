@@ -225,7 +225,7 @@ docs/verification_report.json
 # ============================================================
 # TEST OUTPUTS & CACHE
 # ============================================================
-tests/
+/tests/
 frontend/tests/a11y/
 
 # Hypothesis cache (property-based testing)
