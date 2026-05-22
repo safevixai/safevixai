@@ -2271,11 +2271,12 @@ Every section answers: "Would an agent likely get this wrong without help?"</p>
 <li>Chatbot smoke tests currently pass with <code>python -m pytest tests/test_voice.py tests/test_e2e.py -q</code> from <code>chatbot_service/</code>.</li>
 <li>The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.</li>
 <li><strong>Audit completed 2026-05-18</strong>: Frontend 58/100, Backend 54/100, Chatbot 50/100. See <code>docs/audit/</code> for full reports.</li>
-<li>Assistant voice input is partially implemented, but not end-to-end complete. The chat input records with <code>MediaRecorder</code>, but it calls <code>/api/v1/speech/translate</code>; the chatbot service exposes <code>/speech/translate</code>.</li>
-<li>The frontend must use <code>NEXT_PUBLIC_CHATBOT_URL</code> through <code>frontend/lib/public-env.ts</code>. Do not invent <code>NEXT_PUBLIC_CHATBOT_BASE_URL</code>.</li>
-<li>Speech language mapping is incomplete. UI language codes like <code>hi</code> and <code>ta</code> must be mapped to backend speech model codes such as <code>hin</code> and <code>tam</code> before calling the speech endpoint.</li>
-<li>Backend speech is speech-to-text / speech translation only. There is no backend text-to-speech endpoint yet.</li>
-<li>Assistant voice output uses browser <code>speechSynthesis</code>; it must set the utterance language from the selected language, not hardcode <code>en-IN</code>.</li>
+<li>Voice input is fully wired: <code>MediaRecorder</code> → <code>POST /speech/translate</code> (correct endpoint, not <code>/api/v1/speech/translate</code>).</li>
+<li>Language mapping complete: <code>frontend/lib/languages.ts</code> maps UI codes (<code>hi</code>) → backend codes (<code>hin</code>) → synthesis codes (<code>hi-IN</code>).</li>
+<li>Speech endpoint truth: <code>POST /speech/translate</code>, <code>GET /speech/status</code>.</li>
+<li>Backend speech is speech-to-text / speech translation only. No backend TTS endpoint.</li>
+<li>Assistant voice output uses browser <code>speechSynthesis</code> with <code>utterance.lang</code> from <code>getLanguageByCode(selectedLanguage).synthesisCode</code>.</li>
+<li><strong>Phase 3 complete</strong>: circuit breakers, enhanced health checks, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.</li>
 <li>Keep all safety-critical flows intact: 112, 102, 100, 1033, floating SOS, crash countdown, offline SOS queue, profile QR emergency card, map clustering, and hazard heatmap.</li>
 </ul>
 <p>Speech endpoint truth:</p>
