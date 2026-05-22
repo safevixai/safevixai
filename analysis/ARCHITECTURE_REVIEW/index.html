@@ -1651,12 +1651,6 @@
 </thead>
 <tbody>
 <tr>
-<td><code>.env</code> files in git history</td>
-<td>CRITICAL security exposure</td>
-<td>High (git filter-branch)</td>
-<td>IMMEDIATE</td>
-</tr>
-<tr>
 <td>No RBAC enforcement</td>
 <td>HIGH auth bypass</td>
 <td>Medium</td>
@@ -1734,14 +1728,6 @@
 <tbody>
 <tr>
 <td>R1</td>
-<td>API keys stolen from git</td>
-<td>HIGH</td>
-<td>CRITICAL</td>
-<td>16</td>
-<td>Rotate all keys, purge git history</td>
-</tr>
-<tr>
-<td>R2</td>
 <td>Auth bypass via missing RBAC</td>
 <td>HIGH</td>
 <td>HIGH</td>
@@ -1749,7 +1735,7 @@
 <td>Implement role-check decorator</td>
 </tr>
 <tr>
-<td>R3</td>
+<td>R2</td>
 <td>Render free tier exceeded</td>
 <td>HIGH</td>
 <td>MEDIUM</td>
@@ -1757,7 +1743,7 @@
 <td>Monitor usage, upgrade if needed</td>
 </tr>
 <tr>
-<td>R4</td>
+<td>R3</td>
 <td>Upstash Redis rate limited</td>
 <td>MEDIUM</td>
 <td>HIGH</td>
@@ -1765,7 +1751,7 @@
 <td>In-memory fallback active</td>
 </tr>
 <tr>
-<td>R5</td>
+<td>R4</td>
 <td>Groq API rate limited</td>
 <td>HIGH</td>
 <td>MEDIUM</td>
@@ -1773,7 +1759,7 @@
 <td>8 more providers in chain</td>
 </tr>
 <tr>
-<td>R6</td>
+<td>R5</td>
 <td>Supabase auto-paused</td>
 <td>MEDIUM</td>
 <td>CRITICAL</td>
@@ -1781,7 +1767,7 @@
 <td>Manual resume, health check alert</td>
 </tr>
 <tr>
-<td>R7</td>
+<td>R6</td>
 <td>Chatbot DDoS via no auth</td>
 <td>MEDIUM</td>
 <td>HIGH</td>
@@ -1789,7 +1775,7 @@
 <td>Rate limiting (20/min)</td>
 </tr>
 <tr>
-<td>R8</td>
+<td>R7</td>
 <td>LLM provider API deprecation</td>
 <td>LOW</td>
 <td>MEDIUM</td>
@@ -1797,7 +1783,7 @@
 <td>Abstract provider interface</td>
 </tr>
 <tr>
-<td>R9</td>
+<td>R8</td>
 <td>Database migration failure</td>
 <td>MEDIUM</td>
 <td>HIGH</td>
@@ -1805,7 +1791,7 @@
 <td>Alembic rollback exists</td>
 </tr>
 <tr>
-<td>R10</td>
+<td>R9</td>
 <td>SOS data leak via IndexedDB</td>
 <td>MEDIUM</td>
 <td>MEDIUM</td>

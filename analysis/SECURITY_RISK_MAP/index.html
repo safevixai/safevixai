@@ -1328,10 +1328,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#c1-live-secrets-committed-to-git" class="md-nav__link">
+  <a href="#c1-no-role-based-authorization-enforcement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        C1: Live Secrets Committed to Git
+        C1: No Role-Based Authorization Enforcement
       
     </span>
   </a>
@@ -1339,21 +1339,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#c2-no-role-based-authorization-enforcement" class="md-nav__link">
+  <a href="#c2-offline-sos-queue-stores-jwt-medical-pii-in-indexeddb" class="md-nav__link">
     <span class="md-ellipsis">
       
-        C2: No Role-Based Authorization Enforcement
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#c3-offline-sos-queue-stores-jwt-medical-pii-in-indexeddb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        C3: Offline SOS Queue Stores JWT + Medical PII in IndexedDB
+        C2: Offline SOS Queue Stores JWT + Medical PII in IndexedDB
       
     </span>
   </a>
@@ -1378,10 +1367,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#h1-supabase-service-role-key-exposed" class="md-nav__link">
+  <a href="#h1-no-rate-limiting-on-many-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        H1: Supabase Service Role Key Exposed
+        H1: No Rate Limiting on Many Endpoints
       
     </span>
   </a>
@@ -1389,10 +1378,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#h2-all-llm-provider-keys-exposed" class="md-nav__link">
+  <a href="#h2-no-data-deletionexport-apis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        H2: All LLM Provider Keys Exposed
+        H2: No Data Deletion/Export APIs
       
     </span>
   </a>
@@ -1400,10 +1389,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#h3-no-rate-limiting-on-many-endpoints" class="md-nav__link">
+  <a href="#h3-sos-incidents-persist-indefinitely" class="md-nav__link">
     <span class="md-ellipsis">
       
-        H3: No Rate Limiting on Many Endpoints
+        H3: SOS Incidents Persist Indefinitely
       
     </span>
   </a>
@@ -1411,10 +1400,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#h4-no-data-deletionexport-apis" class="md-nav__link">
+  <a href="#h4-blood-group-sent-to-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        H4: No Data Deletion/Export APIs
+        H4: Blood Group Sent to Server
       
     </span>
   </a>
@@ -1422,32 +1411,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#h5-sos-incidents-persist-indefinitely" class="md-nav__link">
+  <a href="#h5-chatbot-api-endpoints-unauthenticated" class="md-nav__link">
     <span class="md-ellipsis">
       
-        H5: SOS Incidents Persist Indefinitely
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#h6-blood-group-sent-to-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        H6: Blood Group Sent to Server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#h7-chatbot-api-endpoints-unauthenticated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        H7: Chatbot API Endpoints Unauthenticated
+        H5: Chatbot API Endpoints Unauthenticated
       
     </span>
   </a>
@@ -1610,10 +1577,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#l2-github-classic-token-with-broad-scope" class="md-nav__link">
+  <a href="#l2-sessionstorage-queue-fallback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        L2: GitHub Classic Token with Broad Scope
+        L2: sessionStorage Queue Fallback
       
     </span>
   </a>
@@ -1621,10 +1588,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#l3-sessionstorage-queue-fallback" class="md-nav__link">
+  <a href="#l3-post-mcp-excluded-from-csrf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        L3: sessionStorage Queue Fallback
+        L3: POST /mcp Excluded from CSRF
       
     </span>
   </a>
@@ -1632,21 +1599,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#l4-post-mcp-excluded-from-csrf" class="md-nav__link">
+  <a href="#l4-health-endpoint-claims-always-production" class="md-nav__link">
     <span class="md-ellipsis">
       
-        L4: POST /mcp Excluded from CSRF
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#l5-health-endpoint-claims-always-production" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        L5: Health Endpoint Claims Always "production"
+        L4: Health Endpoint Claims Always "production"
       
     </span>
   </a>
@@ -1706,19 +1662,7 @@
 </blockquote>
 <hr />
 <h2 id="critical-risks-immediate-action-required">CRITICAL RISKS (Immediate Action Required)</h2>
-<h3 id="c1-live-secrets-committed-to-git">C1: Live Secrets Committed to Git</h3>
-<p><strong>Files:</strong> <code>backend/.env</code>, <code>chatbot_service/.env</code>, <code>frontend/.env</code>
-<strong>Impact:</strong> 25+ API keys, database credentials, JWT secret, admin secret, SMTP password, and OAuth tokens in plaintext, publicly accessible in repository.
-<strong>Exposed:</strong>
-- JWT_SECRET_KEY (full access to forge auth tokens)
-- SUPABASE_SERVICE_ROLE_KEY (full database admin access)
-- 11 LLM provider API keys (unlimited API usage at project's expense)
-- DATABASE_URL (direct PostgreSQL access)
-- REDIS_URL (full Redis access with password)
-- ALERT_EMAIL_PASSWORD (Gmail SMTP: can send emails as safevixai@gmail.com)
-- GITHUB_TOKEN (likely auto-revoked by GitHub scanning)
-<strong>Fix:</strong> Rotate ALL secrets immediately. Purge from git history with BFG Repo-Cleaner.</p>
-<h3 id="c2-no-role-based-authorization-enforcement">C2: No Role-Based Authorization Enforcement</h3>
+<h3 id="c1-no-role-based-authorization-enforcement">C1: No Role-Based Authorization Enforcement</h3>
 <p><strong>Files:</strong> <code>backend/api/v1/*.py</code> (all routes use <code>get_current_user</code> but never check <code>role</code>)
 <strong>Impact:</strong> Any authenticated user (including Supabase "authenticated" role) has full access to all user-facing endpoints. The JWT <code>role</code> claim is embedded but never checked.
 <strong>Evidence:</strong>
@@ -1726,37 +1670,29 @@
 - <code>POST /api/v1/chat/</code> + <code>/stream</code> — chatbot proxies accept any auth token
 - User profile, tracking, SOS — no role scoping beyond user_id ownership
 <strong>Fix:</strong> Implement <code>require_role(Role.OPERATOR)</code> decorator and apply to sensitive endpoints.</p>
-<h3 id="c3-offline-sos-queue-stores-jwt-medical-pii-in-indexeddb">C3: Offline SOS Queue Stores JWT + Medical PII in IndexedDB</h3>
+<h3 id="c2-offline-sos-queue-stores-jwt-medical-pii-in-indexeddb">C2: Offline SOS Queue Stores JWT + Medical PII in IndexedDB</h3>
 <p><strong>File:</strong> <code>frontend/lib/offline-sos-queue.ts</code>
 <strong>Impact:</strong> Auth tokens, blood group, and emergency contacts stored unencrypted in persistent browser storage. Accessible to any JS on the same origin.
 <strong>Data stored:</strong> <code>{ lat, lon, authToken, userId, bloodGroup, emergencyContacts, timestamp }</code>
 <strong>Fix:</strong> Remove sensitive fields from queue. Auth token should use refresh token pattern. Blood group should NOT leave device per project privacy claim.</p>
 <hr />
 <h2 id="high-risks-week-1">HIGH RISKS (Week 1)</h2>
-<h3 id="h1-supabase-service-role-key-exposed">H1: Supabase Service Role Key Exposed</h3>
-<p><strong>File:</strong> <code>backend/.env</code>
-<strong>Impact:</strong> Full admin access to Supabase project — can read/write all tables, manage auth users, access storage buckets.
-<strong>Fix:</strong> Rotate immediately. Use anon key (already RLS-restricted) for client operations.</p>
-<h3 id="h2-all-llm-provider-keys-exposed">H2: All LLM Provider Keys Exposed</h3>
-<p><strong>File:</strong> <code>chatbot_service/.env</code>
-<strong>Impact:</strong> Unauthorized third parties can make LLM API calls at project's expense (Groq, Gemini, Cerebras, GitHub, NVIDIA, OpenRouter, Mistral, Together, Sarvam, HuggingFace).
-<strong>Fix:</strong> Rotate all keys. Revoke GITHUB_TOKEN (already likely auto-revoked by GitHub secret scanning).</p>
-<h3 id="h3-no-rate-limiting-on-many-endpoints">H3: No Rate Limiting on Many Endpoints</h3>
+<h3 id="h1-no-rate-limiting-on-many-endpoints">H1: No Rate Limiting on Many Endpoints</h3>
 <p><strong>Files:</strong> Various backend route modules (geocoding, routing, user CRUD, live-tracking, authority)
 <strong>Impact:</strong> Unlimited abuse potential — scraping, enumeration, DOS on unrate-limited endpoints.
 <strong>Endpoints without limits:</strong> geocode search/reverse, routing preview/safe-route, user CRUD, live-tracking CRUD, feeds/waze, offline/bundle, authority, infrastructure.</p>
-<h3 id="h4-no-data-deletionexport-apis">H4: No Data Deletion/Export APIs</h3>
+<h3 id="h2-no-data-deletionexport-apis">H2: No Data Deletion/Export APIs</h3>
 <p><strong>Impact:</strong> GDPR non-compliance. User data (profile, SOS history, chat logs) cannot be deleted or exported programmatically.
 <strong>Fix:</strong> Implement <code>DELETE /api/v1/users/{id}</code> and <code>GET /api/v1/users/{id}/export</code> endpoints.</p>
-<h3 id="h5-sos-incidents-persist-indefinitely">H5: SOS Incidents Persist Indefinitely</h3>
+<h3 id="h3-sos-incidents-persist-indefinitely">H3: SOS Incidents Persist Indefinitely</h3>
 <p><strong>File:</strong> <code>backend/models/sos_incident.py</code>, no cleanup migration
 <strong>Impact:</strong> Exact GPS coordinates + user_id of every SOS trigger stored forever. No data retention policy.
 <strong>Fix:</strong> Add cleanup job (delete after 90 days) and migration.</p>
-<h3 id="h6-blood-group-sent-to-server">H6: Blood Group Sent to Server</h3>
+<h3 id="h4-blood-group-sent-to-server">H4: Blood Group Sent to Server</h3>
 <p><strong>File:</strong> <code>backend/models/schemas.py:283</code> (<code>UserProfileCreate.blood_group</code>)
 <strong>Impact:</strong> Contradicts AGENTS.md privacy claim: "Blood group never leaves device — privacy by architecture." The <code>UserProfile</code> model and API both accept blood group, which is stored in the database.
 <strong>Fix:</strong> Align docs with reality, or remove blood_group from server API.</p>
-<h3 id="h7-chatbot-api-endpoints-unauthenticated">H7: Chatbot API Endpoints Unauthenticated</h3>
+<h3 id="h5-chatbot-api-endpoints-unauthenticated">H5: Chatbot API Endpoints Unauthenticated</h3>
 <p><strong>Files:</strong> <code>chatbot_service/api/chat.py</code> (<code>/api/v1/chat/</code>, <code>/api/v1/chat/stream</code>)
 <strong>Impact:</strong> Public internet can access chatbot without any auth. Rate limiting (20/min) is the only protection.
 <strong>Fix:</strong> Add Bearer token validation via shared JWT verification.</p>
@@ -1806,13 +1742,11 @@
 <h2 id="low-risks">LOW RISKS</h2>
 <h3 id="l1-error-sanitization-incomplete">L1: Error Sanitization Incomplete</h3>
 <p>Only redacts SELECT/INSERT/DELETE. Misses UPDATE, DROP, ALTER, UNION, etc.</p>
-<h3 id="l2-github-classic-token-with-broad-scope">L2: GitHub Classic Token with Broad Scope</h3>
-<p><code>GITHUB_TOKEN=ghp_...</code> — classic PAT, likely broad repo scope. Should use fine-grained tokens.</p>
-<h3 id="l3-sessionstorage-queue-fallback">L3: sessionStorage Queue Fallback</h3>
+<h3 id="l2-sessionstorage-queue-fallback">L2: sessionStorage Queue Fallback</h3>
 <p>Offline queue falls back to sessionStorage when IndexedDB unavailable. Cleared on tab close.</p>
-<h3 id="l4-post-mcp-excluded-from-csrf">L4: POST /mcp Excluded from CSRF</h3>
+<h3 id="l3-post-mcp-excluded-from-csrf">L3: POST /mcp Excluded from CSRF</h3>
 <p>MCP endpoints bypass CSRF checks. Acceptable for admin-only endpoints with separate auth.</p>
-<h3 id="l5-health-endpoint-claims-always-production">L5: Health Endpoint Claims Always "production"</h3>
+<h3 id="l4-health-endpoint-claims-always-production">L4: Health Endpoint Claims Always "production"</h3>
 <p><code>environment</code> field hardcoded to "production" in health response. Acceptable for security obscurity.</p>
 <hr />
 <h2 id="dependency-vulnerabilities-accepted-risk">DEPENDENCY VULNERABILITIES (Accepted Risk)</h2>

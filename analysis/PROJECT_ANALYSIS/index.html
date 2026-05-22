@@ -1699,18 +1699,8 @@
 <tbody>
 <tr>
 <td>JWT Authentication</td>
-<td>CRITICAL</td>
+<td>HIGH</td>
 <td>HS256 symmetric, 24h expiry, no revocation</td>
-</tr>
-<tr>
-<td>LLM Provider Keys</td>
-<td>CRITICAL</td>
-<td>11+ API keys in committed .env files</td>
-</tr>
-<tr>
-<td>Supabase Service Role</td>
-<td>CRITICAL</td>
-<td>Full DB admin key in git history</td>
 </tr>
 <tr>
 <td>Auth Token in Offline Queue</td>
@@ -1760,7 +1750,6 @@
 <hr />
 <h2 id="9-highest-risk-areas">9. Highest-Risk Areas</h2>
 <ol>
-<li><strong>Committed Secrets</strong> — <code>.env</code> files in git: 25+ API keys, DB passwords, JWT secret</li>
 <li><strong>No Role-Based Authorization</strong> — JWT role claim unused, any auth user = full access</li>
 <li><strong>Missing Load Test Scripts</strong> — k6 + chaos test files referenced in CI but absent</li>
 <li><strong>Prometheus <code>/metrics</code> Not Exposed</strong> — Full metrics module defined but no endpoint</li>
@@ -1780,12 +1769,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Security</td>
-<td>Secrets in git history</td>
-<td>CRITICAL</td>
-<td>Rotate all keys, purge git history</td>
-</tr>
 <tr>
 <td>Auth</td>
 <td>No RBAC enforcement</td>
