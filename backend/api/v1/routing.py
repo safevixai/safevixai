@@ -44,7 +44,9 @@ async def preview_route(
 
 
 @router.get('/safe-route')
+@limiter.limit("20/minute")
 async def get_safe_route_endpoint(
+    request: Request,
     origin_lat: float = Query(..., ge=-90, le=90),
     origin_lon: float = Query(..., ge=-180, le=180),
     destination_lat: float = Query(..., ge=-90, le=90),

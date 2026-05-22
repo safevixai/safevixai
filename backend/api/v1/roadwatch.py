@@ -57,7 +57,9 @@ async def get_nearby_issues(
 
 
 @router.get('/authority', response_model=AuthorityPreviewResponse)
+@limiter.limit("40/minute")
 async def get_authority_preview(
+    request: Request,
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     db: AsyncSession = Depends(get_db),
@@ -67,7 +69,9 @@ async def get_authority_preview(
 
 
 @router.get('/infrastructure', response_model=RoadInfrastructureResponse)
+@limiter.limit("40/minute")
 async def get_road_infrastructure(
+    request: Request,
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     db: AsyncSession = Depends(get_db),
