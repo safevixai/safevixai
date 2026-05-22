@@ -73,6 +73,8 @@ def create_access_token(
         "iss": APP_JWT_ISSUER,
         "role": role,
     })
+    if "org_id" in data:
+        to_encode["org_id"] = data["org_id"]
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
@@ -110,10 +112,12 @@ def _normalize_user_payload(payload: dict[str, Any], *, provider: str) -> dict[s
     user_id = payload.get("sub")
     if not user_id:
         raise _unauthorized()
+    org_id = payload.get("org_id") or (payload.get("app_metadata") or {}).get("org_id")
     return {
         **payload,
         "sub": str(user_id),
         "role": payload.get("role") or payload.get("app_metadata", {}).get("role") or "authenticated",
+        "org_id": str(org_id) if org_id else None,
         "auth_provider": provider,
     }
 

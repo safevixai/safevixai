@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 
+from core.limiter import limiter
 from models.schemas import GeocodeSearchResponse
 from services.geocoding_service import GeocodingError, GeocodingService
 
@@ -14,7 +15,9 @@ def get_geocoding_service(request: Request) -> GeocodingService:
 
 
 @router.get('/reverse')
+@limiter.limit("30/minute")
 async def reverse_geocode(
+    request: Request,
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     geocoding_service: GeocodingService = Depends(get_geocoding_service),
@@ -26,7 +29,9 @@ async def reverse_geocode(
 
 
 @router.get('/search', response_model=GeocodeSearchResponse)
+@limiter.limit("30/minute")
 async def search_geocode(
+    request: Request,
     q: str = Query(..., min_length=2),
     geocoding_service: GeocodingService = Depends(get_geocoding_service),
 ) -> GeocodeSearchResponse:

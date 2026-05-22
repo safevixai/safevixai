@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
+from core.limiter import limiter
 from models.schemas import ChallanQuery, ChallanResponse
 from services.challan_service import ChallanService
 from services.exceptions import ExternalServiceError, ServiceValidationError
@@ -17,7 +18,9 @@ def get_challan_service(request: Request) -> ChallanService:
 
 
 @router.post('/calculate', response_model=ChallanResponse)
+@limiter.limit("20/minute")
 async def calculate_challan(
+    request: Request,
     payload: ChallanQuery,
     db: AsyncSession = Depends(get_db),
     challan_service: ChallanService = Depends(get_challan_service),
