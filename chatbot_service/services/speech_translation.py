@@ -6,21 +6,6 @@ from typing import Any
 
 from config import Settings
 
-try:
-    import torch
-    import torchaudio
-    from transformers import (
-        SeamlessM4TFeatureExtractor,
-        SeamlessM4TTokenizer,
-        SeamlessM4Tv2ForSpeechToText,
-    )
-except Exception:  # pragma: no cover - optional runtime dependency
-    torch = None
-    torchaudio = None
-    SeamlessM4TFeatureExtractor = None
-    SeamlessM4TTokenizer = None
-    SeamlessM4Tv2ForSpeechToText = None
-
 
 @dataclass(slots=True)
 class SpeechTranslationResult:
@@ -46,6 +31,10 @@ class IndicSeamlessService:
             return str(model_dir)
         return self.settings.speech_model_id
 
+    def _dependencies_available(self) -> bool:
+        torch, torchaudio, FeatureExtractor, Tokenizer, Model = self._import_dependencies()
+        return all(dep is not None for dep in (torch, torchaudio, FeatureExtractor, Tokenizer, Model))
+
     def status(self) -> dict[str, Any]:
         model_dir = self.settings.speech_model_dir
         return {
@@ -66,7 +55,8 @@ class IndicSeamlessService:
     ) -> SpeechTranslationResult:
         if not audio_bytes:
             raise ValueError('Audio payload is empty')
-        if not self._dependencies_available():
+        torch, torchaudio, _, _, _ = self._import_dependencies()
+        if torch is None:
             raise RuntimeError(
                 'IndicSeamless dependencies are not installed. '
                 'Install torch, torchaudio, transformers, and datasets in the chatbot_service environment.'
@@ -107,28 +97,33 @@ class IndicSeamlessService:
         )
 
     @staticmethod
-    def _dependencies_available() -> bool:
-        return all(
-            dependency is not None
-            for dependency in (
-                torch,
-                torchaudio,
+    def _import_dependencies() -> tuple:
+        try:
+            import torch
+            import torchaudio
+            from transformers import (
                 SeamlessM4TFeatureExtractor,
                 SeamlessM4TTokenizer,
                 SeamlessM4Tv2ForSpeechToText,
             )
-        )
+            return (torch, torchaudio, SeamlessM4TFeatureExtractor, SeamlessM4TTokenizer, SeamlessM4Tv2ForSpeechToText)
+        except Exception:
+            return (None, None, None, None, None)
 
     def _ensure_model_loaded(self) -> None:
         if self._model is not None and self._processor is not None and self._tokenizer is not None:
             return
+        _, _, FeatureExtractor, Tokenizer, Model = self._import_dependencies()
+        if Model is None:
+            raise RuntimeError('IndicSeamless dependencies not available')
         model_source = self.model_source
-        self._model = SeamlessM4Tv2ForSpeechToText.from_pretrained(model_source).to(self._device)
-        self._processor = SeamlessM4TFeatureExtractor.from_pretrained(model_source)
-        self._tokenizer = SeamlessM4TTokenizer.from_pretrained(model_source)
+        self._model = Model.from_pretrained(model_source).to(self._device)
+        self._processor = FeatureExtractor.from_pretrained(model_source)
+        self._tokenizer = Tokenizer.from_pretrained(model_source)
 
     def _resolve_device(self) -> str:
         configured = (self.settings.speech_device or 'auto').lower()
+        torch, _, _, _, _ = self._import_dependencies()
         if configured == 'auto':
             return 'cuda' if torch is not None and torch.cuda.is_available() else 'cpu'
         if configured == 'cuda' and (torch is None or not torch.cuda.is_available()):

@@ -289,6 +289,14 @@ def create_app() -> FastAPI:
         response = await call_next(request)
         return response
 
+    # Phase 3.2: Query profiler middleware — logs slow queries
+    from middleware.query_profiler import setup_query_profiler
+    setup_query_profiler(app)
+
+    # Phase 3.2: GeoJSON compression middleware
+    from middleware.compression import setup_compression
+    setup_compression(app)
+
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,

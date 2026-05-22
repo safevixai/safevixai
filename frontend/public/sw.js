@@ -5,6 +5,7 @@ const CACHE_NAME = 'safevixai-v3';
 const OFFLINE_DATA_URLS = [
   '/offline-data/first-aid.json',
   '/offline-data/india-emergency.geojson',
+  '/offline-data/india-emergency.geojson.gz',
   '/offline-data/violations.csv',
   '/offline-data/state_overrides.csv',
   '/offline-data/accidents_summary.json',
