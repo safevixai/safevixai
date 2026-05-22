@@ -2,9 +2,14 @@ name: Post-Deploy Smoke Tests
 
 on:
   workflow_run:
-    workflows: [ "Frontend CI", "Backend Core CI", "Chatbot Service CI" ]
-    types: [ completed ]
-    branches: [ "main" ]
+    workflows:
+      - "Frontend CI"
+      - "Backend Core CI"
+      - "Chatbot Service CI"
+    types:
+      - completed
+    branches:
+      - "main"
 
 permissions:
   contents: read

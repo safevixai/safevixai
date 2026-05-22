@@ -235,3 +235,7 @@ backend/.hypothesis/
 # Coverage files
 *.coverage
 coverage.xml
+
+# Local runner logs/results
+check_runs.json
+run_error.json

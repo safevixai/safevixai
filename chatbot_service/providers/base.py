@@ -243,6 +243,7 @@ class ProviderResult:
     detected_lang: str | None = None
     india_badge: bool = False
     fallback_from: str | None = None
+    confidence_score: float = 0.5
     # C8: Token counting for usage tracking and cost monitoring
     prompt_tokens: int = 0
     completion_tokens: int = 0

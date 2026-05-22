@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-
+from typing import Any
 
 CHALLAN_CODE_PATTERN = re.compile(r'\b(?:179|181|183|185|194B|194D)\b', re.IGNORECASE)
 INTENT_CLASSES = (
@@ -15,6 +15,15 @@ INTENT_CLASSES = (
     'road_infrastructure',
     'general',
 )
+
+_FOLLOW_UP_INDICATORS = (
+    'what about', 'how about', 'and', 'also', 'what else', 'tell me more',
+    'elaborate', 'explain more', 'give me more', 'more details',
+    'what does that mean', 'can you explain', 'for example',
+    'like what', 'such as', 'specifically', 'regarding',
+)
+
+_AMBIGUOUS_SHORT_MESSAGE_THRESHOLD = 5
 
 
 def _has_any(text: str, terms: tuple[str, ...]) -> bool:
@@ -43,3 +52,41 @@ class IntentDetector:
         if _has_any(text, ('pothole', 'road issue', 'road hazard', 'debris', 'bad road', 'report road', 'damaged road')):
             return 'road_issue'
         return 'general'
+
+    def refine_intent(
+        self,
+        initial_intent: str,
+        message: str,
+        history: list[dict[str, Any]],
+    ) -> str:
+        if initial_intent != 'general':
+            return initial_intent
+
+        if not history:
+            return initial_intent
+
+        text = message.lower().strip()
+        is_short = len(text.split()) <= _AMBIGUOUS_SHORT_MESSAGE_THRESHOLD
+        is_follow_up = _has_any(text, _FOLLOW_UP_INDICATORS)
+
+        if not is_short and not is_follow_up:
+            return initial_intent
+
+        previous_intents = []
+        for msg in reversed(history):
+            meta = msg.get("metadata")
+            if isinstance(meta, dict):
+                intent = meta.get("intent")
+                if intent and intent != 'general' and intent != 'blocked':
+                    previous_intents.append(intent)
+
+        if not previous_intents:
+            return initial_intent
+
+        most_recent_intent = previous_intents[0]
+        logger = __import__('logging').getLogger("safevixai.chatbot.intent")
+        logger.info(
+            "Refined intent '%s' -> '%s' from history (msg='%s', short=%s, follow_up=%s)",
+            initial_intent, most_recent_intent, message[:50], is_short, is_follow_up,
+        )
+        return most_recent_intent

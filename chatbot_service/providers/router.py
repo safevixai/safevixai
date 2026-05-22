@@ -132,6 +132,10 @@ class ProviderRouter:
         self.provider_timeout_seconds = max(0.001, float(settings.http_timeout_seconds))
         self._unavailable_until: dict[str, float] = {}
 
+        # Confidence score tracking per provider per intent
+        self._provider_scores: dict[str, dict[str, list[float]]] = {}
+        self._confidence_threshold = 0.3
+
         # Fallback chain — tried in order when provider fails
         self._fallback_chain = [
             'groq',
@@ -218,13 +222,26 @@ class ProviderRouter:
             if self._provider_unavailable(primary):
                 raise ProviderUnavailableError(f"{primary} is temporarily disabled by circuit breaker")
             result = await self._generate_with_timeout(provider, request)
+
+            confidence = self._calculate_confidence(result, request.intent, primary)
+            result.confidence_score = confidence  # type: ignore[attr-defined]
+            if confidence < self._confidence_threshold:
+                logger.warning(
+                    "Low confidence %.2f for %s on intent=%s, trying fallback",
+                    confidence, primary, request.intent,
+                )
+                return await self._try_fallback_chain(
+                    request, primary, detected_lang,
+                    primary_err=None, skip_low_confidence=True,
+                )
+
             # Attach routing metadata
             result.provider_used = primary  # type: ignore[attr-defined]
             result.detected_lang = detected_lang  # type: ignore[attr-defined]
-            # Add 🇮🇳 badge when Sarvam is used
+            # Add badge when Sarvam is used
             if primary.startswith('sarvam'):
                 result.india_badge = True  # type: ignore[attr-defined]
-            
+
             # C9: Store successful response in cache
             if self.cache and result.provider != 'template':
                 await self.cache.set(
@@ -247,46 +264,145 @@ class ProviderRouter:
             if not try_fallbacks:
                 raise
 
-            # Try fallback chain
-            failed_providers = [primary]
-            for fallback_name in self._fallback_chain:
-                if fallback_name == primary:
-                    continue
-                if self._provider_unavailable(fallback_name):
-                    failed_providers.append(fallback_name)
-                    continue
-                try:
-                    fallback = self.providers[fallback_name]
-                    result = await self._generate_with_timeout(fallback, request)
-                    result.provider_used = fallback_name  # type: ignore[attr-defined]
-                    result.fallback_from = primary  # type: ignore[attr-defined]
-                    logger.info(
-                        "Fallback success: %s → %s",
-                        primary, fallback_name,
-                    )
-                    return result
-                except Exception as fallback_err:
-                    self._mark_provider_failure(fallback_name, fallback_err)
-                    failed_providers.append(fallback_name)
-                    logger.warning(
-                        "LLM fallback provider %s failed: %s",
-                        fallback_name,
-                        fallback_err,
-                    )
-                    continue
-
-            # ALL providers failed — send alert email
-            alerts = get_alert_service()
-            alerts.alert_all_providers_failed(
-                primary_provider=primary,
-                failed_providers=failed_providers,
-                error_msg=str(primary_err),
-                user_message=request.message or "",
+            return await self._try_fallback_chain(
+                request, primary, detected_lang, primary_err=primary_err,
             )
 
-            raise RuntimeError(
-                f"All providers exhausted. Primary error: {primary_err}"
-            ) from primary_err
+    async def _try_fallback_chain(
+        self,
+        request: ProviderRequest,
+        primary: str,
+        detected_lang: str | None,
+        *,
+        primary_err: Exception | None = None,
+        skip_low_confidence: bool = False,
+    ) -> ProviderResult:
+        """Try fallback providers when primary fails or has low confidence."""
+        error_msg = str(primary_err) if primary_err else "Low confidence score"
+
+        candidate_chain = list(dict.fromkeys(self._fallback_chain))
+        if primary in candidate_chain:
+            candidate_chain.remove(primary)
+
+        if skip_low_confidence:
+            scored = self._score_providers_for_intent(request.intent, candidate_chain)
+            candidate_chain = [name for _, name in scored]
+            logger.info(
+                "Confidence-scored fallback chain for intent=%s: %s",
+                request.intent, candidate_chain[:5],
+            )
+
+        failed_providers = [primary]
+        for fallback_name in candidate_chain:
+            if self._provider_unavailable(fallback_name):
+                failed_providers.append(fallback_name)
+                continue
+            try:
+                fallback = self.providers[fallback_name]
+                result = await self._generate_with_timeout(fallback, request)
+
+                confidence = self._calculate_confidence(result, request.intent, fallback_name)
+                result.confidence_score = confidence  # type: ignore[attr-defined]
+                result.provider_used = fallback_name  # type: ignore[attr-defined]
+                result.fallback_from = primary  # type: ignore[attr-defined]
+
+                if confidence < self._confidence_threshold:
+                    logger.warning(
+                        "Fallback %s returned low confidence %.2f for intent=%s, trying next",
+                        fallback_name, confidence, request.intent,
+                    )
+                    failed_providers.append(fallback_name)
+                    continue
+
+                logger.info(
+                    "Fallback success: %s → %s (confidence=%.2f)",
+                    primary, fallback_name, confidence,
+                )
+                return result
+            except Exception as fallback_err:
+                self._mark_provider_failure(fallback_name, fallback_err)
+                failed_providers.append(fallback_name)
+                logger.warning(
+                    "LLM fallback provider %s failed: %s",
+                    fallback_name, fallback_err,
+                )
+                continue
+
+        alerts = get_alert_service()
+        alerts.alert_all_providers_failed(
+            primary_provider=primary,
+            failed_providers=failed_providers,
+            error_msg=error_msg,
+            user_message=request.message or "",
+        )
+
+        raise RuntimeError(
+            f"All providers exhausted. Error: {error_msg}"
+        ) from primary_err
+
+    def _calculate_confidence(
+        self,
+        result: ProviderResult,
+        intent: str,
+        provider_name: str,
+    ) -> float:
+        """Calculate confidence score for a provider result (0.0 to 1.0)."""
+        if provider_name == 'template':
+            return 0.3
+
+        score = 0.5
+
+        text = result.text or ""
+        if not text:
+            return 0.0
+
+        if len(text) > 50:
+            score += 0.15
+        if len(text) > 200:
+            score += 0.1
+
+        if "[⚠️ Low confidence]" in text:
+            score -= 0.3
+        if "I do not know" in text or "I cannot" in text:
+            score -= 0.2
+
+        if result.total_tokens and result.total_tokens > 50:
+            score += 0.1
+
+        score = max(0.0, min(1.0, score))
+
+        self._provider_scores.setdefault(provider_name, {}).setdefault(intent, []).append(score)
+        scores = self._provider_scores[provider_name][intent]
+        if len(scores) > 20:
+            self._provider_scores[provider_name][intent] = scores[-20:]
+
+        return score
+
+    def _average_confidence(
+        self,
+        provider_name: str,
+        intent: str,
+    ) -> float:
+        """Get average confidence for a provider on a given intent."""
+        scores = self._provider_scores.get(provider_name, {}).get(intent, [])
+        if not scores:
+            return 0.5
+        return sum(scores) / len(scores)
+
+    def _score_providers_for_intent(
+        self,
+        intent: str,
+        candidates: list[str],
+    ) -> list[tuple[float, str]]:
+        """Score and sort provider candidates by historical performance for intent."""
+        scored = []
+        for name in candidates:
+            if name not in self.providers:
+                continue
+            avg_conf = self._average_confidence(name, intent)
+            scored.append((avg_conf, name))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return scored
 
     async def _generate_with_timeout(
         self,

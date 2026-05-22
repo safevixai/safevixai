@@ -2,9 +2,15 @@ name: Blue-Green Deployment
 
 on:
   workflow_run:
-    workflows: [ "Frontend CI", "Backend Core CI", "Chatbot Service CI", "Post-Deploy Smoke Tests" ]
-    types: [ completed ]
-    branches: [ "main" ]
+    workflows:
+      - "Frontend CI"
+      - "Backend Core CI"
+      - "Chatbot Service CI"
+      - "Post-Deploy Smoke Tests"
+    types:
+      - completed
+    branches:
+      - "main"
 
 permissions:
   contents: read

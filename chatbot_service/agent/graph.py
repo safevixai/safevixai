@@ -2,15 +2,25 @@ from __future__ import annotations
 
 from uuid import uuid4
 
+import logging
+
 from agent.context_assembler import ContextAssembler
 from agent.governance import AIGovernance
 from agent.intent_detector import IntentDetector
 from agent.safety_checker import SafetyChecker
 from agent.state import ChatRequest, ChatResponse
 from memory.redis_memory import ConversationMemoryStore
+from memory.summarizer import ConversationSummarizer
 from providers.base import ProviderRequest
 from providers.router import ProviderRouter
 from rag.vectorstore import LocalVectorStore
+
+logger = logging.getLogger("safevixai.chatbot.engine")
+
+
+def _log_intent_refinement(original: str, refined: str, message: str) -> None:
+    if original != refined:
+        logger.info("Intent refined: %s -> %s (msg='%s')", original, refined, message[:60])
 
 
 class ChatEngine:
@@ -24,6 +34,7 @@ class ChatEngine:
         context_assembler: ContextAssembler,
         provider_router: ProviderRouter,
         redis_url: str | None = None,
+        summarizer: ConversationSummarizer | None = None,
     ) -> None:
         self.memory_store = memory_store
         self.vectorstore = vectorstore
@@ -31,6 +42,7 @@ class ChatEngine:
         self.safety_checker = safety_checker
         self.context_assembler = context_assembler
         self.provider_router = provider_router
+        self.summarizer = summarizer or ConversationSummarizer()
         # Phase 0.7: AI governance
         self.governance = AIGovernance(redis_url)
 
@@ -49,18 +61,21 @@ class ChatEngine:
                 session_id=session_id,
             )
 
+        summarized_history, _ = self.summarizer.get_summary_for_history(history)
         intent = self.intent_detector.detect(payload.message)
+        refined_intent = self.intent_detector.refine_intent(intent, payload.message, history)
+        _log_intent_refinement(intent, refined_intent, payload.message)
         context = await self.context_assembler.assemble(
             session_id=session_id,
             message=payload.message,
-            intent=intent,
+            intent=refined_intent,
             lat=payload.lat,
             lon=payload.lon,
             client_ip=payload.client_ip,
             history=history,
         )
 
-        if not context.retrieved and not context.tools and intent != 'general':
+        if not context.retrieved and not context.tools and refined_intent != 'general':
             response = (
                 'I do not know from the SafeVixAI knowledge base. '
                 'Please share more details or try a different road-safety question.'
@@ -69,11 +84,11 @@ class ChatEngine:
                 session_id,
                 'assistant',
                 response,
-                metadata={'intent': intent, 'sources': ['policy:weak-retrieval']},
+                metadata={'intent': refined_intent, 'sources': ['policy:weak-retrieval']},
             )
             return ChatResponse(
                 response=response,
-                intent=intent,
+                intent=refined_intent,
                 sources=['policy:weak-retrieval'],
                 session_id=session_id,
             )
@@ -81,8 +96,8 @@ class ChatEngine:
         provider_result = await self.provider_router.generate(
             ProviderRequest(
                 message=payload.message,
-                intent=intent,
-                history=history,
+                intent=refined_intent,
+                history=summarized_history,
                 tool_summaries=[item.summary for item in context.tools],
                 document_snippets=[
                     f'{item.title} ({item.source}): {item.snippet}'
@@ -118,7 +133,7 @@ class ChatEngine:
             'assistant',
             response_text,
             metadata={
-                'intent': intent,
+                'intent': refined_intent,
                 'sources': sources,
                 'governance': {
                     'hallucination_score': governance_result.hallucination_score,
@@ -130,7 +145,7 @@ class ChatEngine:
         )
         return ChatResponse(
             response=response_text,
-            intent=intent,
+            intent=refined_intent,
             sources=sources,
             session_id=session_id,
         )
