@@ -216,6 +216,8 @@ export async function syncOfflineSOSQueue(): Promise<void> {
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), OFFLINE_SOS_SYNC_TIMEOUT_MS);
       const res = await fetch(`${API_URL}/api/v1/emergency/sos?lat=${item.lat}&lon=${item.lon}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
       });
       window.clearTimeout(timeout);

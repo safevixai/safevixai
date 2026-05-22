@@ -354,7 +354,7 @@ export default function FloatingSidebarControls() {
       <Link href="/sos" className="pointer-events-auto mt-2">
         <button
           onClick={() => {
-             try { if (navigator?.vibrate) navigator.vibrate(50); } catch (e) {}
+             try { if (navigator?.vibrate) navigator.vibrate(50); } catch { console.warn('Vibration not supported'); }
           }}
           aria-label="Emergency SOS – tap for immediate help"
           className="sos-rings relative w-16 h-16 bg-gradient-to-br from-emergency to-red-800 rounded-full flex items-center justify-center group z-50 overflow-visible"

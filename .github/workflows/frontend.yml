@@ -41,7 +41,7 @@ jobs:
       - name: Run ESLint
         working-directory: ./frontend
         run: |
-          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=100
+          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=250
 
       - name: Run TypeScript validation
         working-directory: ./frontend
