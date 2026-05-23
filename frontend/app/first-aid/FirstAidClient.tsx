@@ -8,11 +8,13 @@ import {
   Search, ArrowLeft, X, CheckCircle2, 
   Phone, Clock, AlertTriangle, ShieldAlert,
   ChevronRight, Camera, Globe, CameraOff,
+  Menu,
 } from 'lucide-react';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import { logClientError } from '@/lib/client-logger';
 import { track } from '@/lib/analytics';
+import { useAppStore } from '@/lib/store';
 
 interface Message {
   id: string;
@@ -126,6 +128,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
   const [isScanning, setIsScanning] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const modalScrollRef = useRef<HTMLDivElement>(null);
+  const setSystemSidebarOpen = useAppStore((state) => state.setSystemSidebarOpen);
   
   useEffect(() => {
     setMounted(true);
@@ -165,14 +168,37 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
   const filteredGuideKeys = guideKeys.filter(key => !emergencyMode || ['cpr', 'choking', 'bleeding'].includes(key));
 
   return (
-    <div className="sv-page aurora-glow relative flex flex-col h-[100dvh] overflow-hidden">
-      {/* ── Unified Tactical Navigation Header ── */}
-      <SystemHeader title="First Aid Dispatch HUD" showBack={false} />
+    <div className="sv-page aurora-glow relative flex flex-col h-[100dvh] overflow-hidden bg-surface-1">
+      {/* ── Page Header Bar (Sticky) ── */}
+      <header className="fixed top-0 left-0 w-full z-[100] bg-surface-1/80 backdrop-blur-2xl border-b border-border shadow-sm px-4 lg:px-8 h-[56px] flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setSystemSidebarOpen(true)}
+            className="p-1.5 rounded-full hover:bg-surface-3 text-text-2 lg:hidden transition-colors"
+            aria-label="Open navigation menu"
+          >
+            <Menu size={20} />
+          </button>
+          <h1 className="text-[20px] font-semibold text-[--emergency] uppercase tracking-tight font-space flex items-center gap-2">
+            <ShieldAlert size={20} />
+            First Aid HUD
+          </h1>
+        </div>
+
+        <button 
+          onClick={() => setEmergencyMode(!emergencyMode)}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-300 font-bold text-[10px] uppercase tracking-widest ${
+            emergencyMode 
+              ? 'bg-red-500 text-white border-red-400 shadow-[0_0_20px_rgba(239,68,68,0.4)] animate-pulse' 
+              : 'bg-surface-2 dark:bg-white/5 text-text-3 border-border dark:border-white/10 hover:bg-surface-3 dark:hover:bg-white/10'
+          }`}
+        >
+          <AlertTriangle size={12} className={emergencyMode ? 'animate-pulse' : ''} />
+          {emergencyMode ? 'Emergency Active' : 'Normal Mode'}
+        </button>
+      </header>
       
-      <div className="lg:hidden relative z-[100]">
-        <TopSearch isMapPage={false} forceShow={true} showBack={false} />
-      </div>
-      <main className="flex-1 overflow-y-auto px-4 sm:px-6 pt-32 lg:pt-28 pb-44">
+      <main className="flex-1 overflow-y-auto px-4 sm:px-6 pt-20 pb-44">
         <div className="max-w-7xl mx-auto">
           {/* ── Premium HUD Header ── */}
           <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -181,17 +207,8 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
                 <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-red-500 font-space">Emergency Response Protocol</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight dark:text-white font-space uppercase">First Aid <span className="text-red-500">HUD</span></h1>
+              <p className="text-text-3 font-medium text-sm leading-relaxed">Select a category below to initiate standard first-aid treatment procedures.</p>
             </div>
-
-            {/* Emergency Mode Toggle */}
-            <button 
-              onClick={() => setEmergencyMode(!emergencyMode)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 font-bold text-xs uppercase tracking-widest ${emergencyMode ? 'bg-red-500 text-white border-red-400 shadow-[0_0_20px_rgba(239,68,68,0.4)]' : 'bg-surface-2 dark:bg-white/5 text-text-3 border-border dark:border-white/10 hover:bg-surface-3 dark:hover:bg-white/10'}`}
-            >
-              <AlertTriangle size={14} className={emergencyMode ? 'animate-pulse' : ''} />
-              {emergencyMode ? 'Emergency Active' : 'Normal Mode'}
-            </button>
           </div>
           {/* ── Search HUD ── */}
           {!emergencyMode && (
@@ -315,7 +332,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
   );
 }
 
-// ── ProtocolGrid: GSAP stagger grid ──
+// ── ProtocolGrid: GSAP stagger grid with progressive disclosure ──
 function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
   guideKeys: string[];
   guides: Record<string, Guide>;
@@ -323,6 +340,8 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
   onGuideSelect: (key: string) => void;
 }) {
   const gridRef = useRef<HTMLDivElement>(null);
+  const extraCardsRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState(false);
 
   useGSAP(() => {
     if (!gridRef.current) return;
@@ -333,70 +352,109 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
     );
   }, { scope: gridRef, dependencies: [guideKeys.length, emergencyMode] });
 
-  return (
-    <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {guideKeys.map((key) => {
-        const guide = guides[key];
-        const isCritical = ['cpr', 'bleeding'].includes(key);
-        return (
-          <div
-            key={key}
-            onClick={() => onGuideSelect(key)}
-            className={`protocol-card card-premium group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 transition-all duration-300 border ${
-              isCritical 
-                ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
-                : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-border/80 dark:border-white/5 hover:border-brand/30'
-            } ${emergencyMode && key === 'cpr' ? 'md:col-span-2 lg:col-span-3 py-12' : ''}`}
-          >
-            <div className="absolute top-4 right-6 flex items-center gap-2">
-              {isCritical && (
-                <div className="bg-red-500/10 text-red-500 px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-red-500/20 flex items-center gap-1">
-                  <AlertTriangle size={10} />
-                  Priority P0
-                </div>
-              )}
-              <div className="bg-brand-light/10 text-brand-dim dark:text-brand-light px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-brand-light/20 flex items-center gap-1">
-                <div className="w-1 h-1 rounded-full bg-brand-light animate-pulse" />
-                Offline
-              </div>
+  useEffect(() => {
+    if (!extraCardsRef.current) return;
+    const el = extraCardsRef.current;
+    if (expanded) {
+      gsap.fromTo(el,
+        { height: 0, opacity: 0 },
+        { height: 'auto', opacity: 1, duration: 0.4, ease: 'power2.out' }
+      );
+    } else {
+      gsap.to(el,
+        { height: 0, opacity: 0, duration: 0.3, ease: 'power2.in' }
+      );
+    }
+  }, [expanded]);
+
+  const initialKeys = guideKeys.slice(0, 4);
+  const extraKeys = guideKeys.slice(4);
+
+  const renderCard = (key: string) => {
+    const guide = guides[key];
+    const isCritical = ['cpr', 'bleeding'].includes(key);
+    return (
+      <div
+        key={key}
+        onClick={() => onGuideSelect(key)}
+        className={`protocol-card card-premium group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 transition-all duration-300 border ${
+          isCritical 
+            ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
+            : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-border/80 dark:border-white/5 hover:border-brand/30'
+        } ${emergencyMode && key === 'cpr' ? 'md:col-span-2 lg:col-span-3 py-12' : ''}`}
+      >
+        <div className="absolute top-4 right-6 flex items-center gap-2">
+          {isCritical && (
+            <div className="bg-red-500/10 text-red-500 px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-red-500/20 flex items-center gap-1">
+              <AlertTriangle size={10} />
+              Priority P0
             </div>
-            <div className="flex flex-col h-full justify-between gap-8 relative z-10">
-              <div className="flex flex-col gap-5">
-                <div className={`p-4 rounded-lg w-fit transition-transform group-hover:scale-110 duration-500 ${
-                  isCritical ? 'bg-red-500/10 text-red-500' : 'bg-brand/10 text-brand dark:text-brand-light'
-                }`}>
-                  {key === 'cpr' && <HeartPulse size={emergencyMode ? 48 : 32} />}
-                  {key === 'choking' && <Activity size={32} />}
-                  {key === 'bleeding' && <Droplets size={32} />}
-                  {key === 'burns' && <Flame size={32} />}
-                  {key === 'fractures' && <Bone size={32} />}
-                </div>
-                <div>
-                  <h2 className={`font-black tracking-tight dark:text-white mb-2 font-space uppercase ${
-                    emergencyMode && key === 'cpr' ? 'text-4xl sm:text-5xl' : 'text-2xl'
-                  }`}>{guide.title}</h2>
-                  <p className={`text-text-3 font-medium leading-relaxed ${
-                    emergencyMode && key === 'cpr' ? 'text-lg max-w-xl' : 'text-sm'
-                  }`}>{guide.subtitle}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <button className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 ${
-                  isCritical 
-                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40' 
-                    : 'bg-surface-3 dark:bg-white/10 text-white hover:bg-surface-1 dark:hover:bg-white/20'
-                }`}>
-                  Start Guide <ChevronRight size={16} />
-                </button>
-              </div>
+          )}
+          <div className="bg-brand-light/10 text-brand-dim dark:text-brand-light px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-brand-light/20 flex items-center gap-1">
+            <div className="w-1 h-1 rounded-full bg-brand-light animate-pulse" />
+            Offline
+          </div>
+        </div>
+        <div className="flex flex-col h-full justify-between gap-8 relative z-10">
+          <div className="flex flex-col gap-5">
+            <div className={`p-4 rounded-lg w-fit transition-transform group-hover:scale-110 duration-500 ${
+              isCritical ? 'bg-red-500/10 text-red-500' : 'bg-brand/10 text-brand dark:text-brand-light'
+            }`}>
+              {key === 'cpr' && <HeartPulse size={emergencyMode ? 48 : 32} />}
+              {key === 'choking' && <Activity size={32} />}
+              {key === 'bleeding' && <Droplets size={32} />}
+              {key === 'burns' && <Flame size={32} />}
+              {key === 'fractures' && <Bone size={32} />}
             </div>
-            <div className="absolute -bottom-6 -right-6 opacity-[0.03] dark:opacity-[0.05] group-hover:opacity-10 transition-opacity duration-700 pointer-events-none">
-              {key === 'cpr' && <HeartPulse size={180} />}
-              {key === 'bleeding' && <Droplets size={180} />}
+            <div>
+              <h2 className={`font-black tracking-tight dark:text-white mb-2 font-space uppercase ${
+                emergencyMode && key === 'cpr' ? 'text-4xl sm:text-5xl' : 'text-2xl'
+              }`}>{guide.title}</h2>
+              <p className={`text-text-3 font-medium leading-relaxed ${
+                emergencyMode && key === 'cpr' ? 'text-lg max-w-xl' : 'text-sm'
+              }`}>{guide.subtitle}</p>
             </div>
           </div>
-        );
-      })}
+          <div className="flex items-center gap-4">
+            <button className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 ${
+              isCritical 
+                ? 'bg-red-500 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40' 
+                : 'bg-surface-3 dark:bg-white/10 text-white hover:bg-surface-1 dark:hover:bg-white/20'
+            }`}>
+              Start Guide <ChevronRight size={16} />
+            </button>
+          </div>
+        </div>
+        <div className="absolute -bottom-6 -right-6 opacity-[0.03] dark:opacity-[0.05] group-hover:opacity-10 transition-opacity duration-700 pointer-events-none">
+          {key === 'cpr' && <HeartPulse size={180} />}
+          {key === 'bleeding' && <Droplets size={180} />}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {initialKeys.map(renderCard)}
+      
+      {extraKeys.length > 0 && (
+        <div ref={extraCardsRef} className="col-span-full overflow-hidden h-0 opacity-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full pt-6">
+            {extraKeys.map(renderCard)}
+          </div>
+        </div>
+      )}
+
+      {extraKeys.length > 0 && (
+        <div className="col-span-full flex justify-center mt-6">
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="px-6 py-2.5 rounded-full border border-border bg-surface-2 text-text-2 hover:text-text-1 font-bold text-xs uppercase tracking-widest transition-all"
+          >
+            {expanded ? 'Show Less Protocols' : 'Show All Protocols'}
+          </button>
+        </div>
+      )}
 
       {!emergencyMode && (
         <div className="group cursor-pointer relative bg-gradient-to-br from-surface-3 to-surface-1 dark:from-surface-2 dark:to-bg rounded-xl p-8 border border-white/5 flex items-center justify-between col-span-1 md:col-span-2 lg:col-span-1 hover:border-brand/20 transition-all shadow-xl shadow-black/20">

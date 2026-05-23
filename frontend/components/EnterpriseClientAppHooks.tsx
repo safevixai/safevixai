@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner';
 import type { Session } from '@supabase/supabase-js'
 import { triggerSos } from '@/lib/api'
@@ -12,7 +12,7 @@ import { getSupabaseBrowserClient } from '@/lib/supabase-auth'
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
 import { FEATURES } from '@/lib/features'
 import { beginLocationBroadcast, startFamilyTracking } from '@/lib/live-tracking'
-import { WifiOff, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { track } from '@/lib/analytics'
 
 function SystemBanners() {
@@ -64,6 +64,20 @@ export function EnterpriseClientAppHooks() {
 
   useEffect(() => {
     registerOfflineSyncListeners()
+
+    // Register Service worker
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((reg) => {
+            console.log('SafeVixAI: ServiceWorker registered successfully:', reg.scope);
+          })
+          .catch((err) => {
+            console.error('SafeVixAI: ServiceWorker registration failed:', err);
+          });
+      });
+    }
+
     return () => {
       stopCrashTrackingRef.current?.()
       stopCrashTrackingRef.current = null

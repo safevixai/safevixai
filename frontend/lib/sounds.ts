@@ -1,6 +1,8 @@
 // frontend/lib/sounds.ts - Web Audio API (no library needed)
 // Subtle audio feedback for critical moments. Optional in Settings.
 
+import { useAppStore } from './store';
+
 let ctx: AudioContext | null = null;
 
 function getAudioContext(): AudioContext | null {
@@ -16,6 +18,10 @@ function getAudioContext(): AudioContext | null {
 }
 
 function playTone(freq: number, duration: number, gain = 0.1) {
+  if (typeof window === 'undefined') return;
+  // Guard with soundsEnabled setting from Zustand store
+  if (!useAppStore.getState().soundsEnabled) return;
+
   const audioCtx = getAudioContext();
   if (!audioCtx) return;
 

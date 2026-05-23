@@ -1,65 +1,40 @@
-// frontend/components/chat/TypingIndicator.tsx
-// 3-dot bouncing typing indicator with GSAP animation
 'use client';
 
-import { useRef } from 'react';
-import { useGSAP } from '@gsap/react';
+import { useEffect, useRef } from 'react';
 import { gsap } from '@/lib/gsap';
 
-export function TypingIndicator() {
-  const ref = useRef<HTMLDivElement>(null);
+export default function TypingIndicator() {
+  const dot1Ref = useRef<HTMLSpanElement>(null);
+  const dot2Ref = useRef<HTMLSpanElement>(null);
+  const dot3Ref = useRef<HTMLSpanElement>(null);
 
-  useGSAP(
-    () => {
-      const dots = ref.current?.querySelectorAll('.typing-dot');
-      if (!dots?.length) return;
+  useEffect(() => {
+    const dots = [dot1Ref.current, dot2Ref.current, dot3Ref.current].filter(Boolean);
+    if (dots.length === 0) return;
 
-      gsap.to(dots, {
-        y: -4,
-        duration: 0.3,
-        stagger: 0.1,
-        yoyo: true,
-        repeat: -1,
-        ease: 'sine.inOut',
-      });
-    },
-    { scope: ref }
-  );
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        dots,
+        { y: 0, opacity: 0.3 },
+        {
+          y: -6,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.15,
+          repeat: -1,
+          yoyo: true,
+          ease: 'power2.inOut',
+        }
+      );
+    });
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div
-      ref={ref}
-      className="flex gap-1 px-4 py-3 rounded-2xl w-fit"
-      style={{ background: 'var(--surface-2)' }}
-      aria-label="AI is typing"
-    >
-      <span
-        className="typing-dot"
-        style={{
-          width: 8,
-          height: 8,
-          borderRadius: '50%',
-          background: 'var(--text-3)',
-        }}
-      />
-      <span
-        className="typing-dot"
-        style={{
-          width: 8,
-          height: 8,
-          borderRadius: '50%',
-          background: 'var(--text-3)',
-        }}
-      />
-      <span
-        className="typing-dot"
-        style={{
-          width: 8,
-          height: 8,
-          borderRadius: '50%',
-          background: 'var(--text-3)',
-        }}
-      />
+    <div className="flex gap-2 items-center px-4 py-3.5 rounded-tr-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-sm mr-12 bg-[--surface-2] border border-[--border] shadow-md shadow-black/10 backdrop-blur-xl w-fit">
+      <span ref={dot1Ref} className="w-2 h-2 bg-brand rounded-full inline-block" />
+      <span ref={dot2Ref} className="w-2 h-2 bg-brand rounded-full inline-block" />
+      <span ref={dot3Ref} className="w-2 h-2 bg-brand rounded-full inline-block" />
     </div>
   );
 }

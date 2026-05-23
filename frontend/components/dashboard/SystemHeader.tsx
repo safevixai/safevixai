@@ -60,6 +60,7 @@ const SystemHeader = memo(function SystemHeader({
         {showBack && (
           <Link 
             href={backHref} 
+            aria-label="Go back"
             className="text-text-2 hover:bg-surface-2 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center border border-transparent hover:border-border"
           >
             <ArrowLeft size={20} />

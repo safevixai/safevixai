@@ -11,12 +11,12 @@ import { MapPin, Navigation, Siren } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-// Subcomponents & Utils
 import { LocatorFilters } from './components/LocatorFilters';
 import { LocatorMap } from './components/LocatorMap';
 import { DesktopResultsList, MobileResultsList } from './components/LocatorResults';
 import { EmptyState, RouteStatusCard } from './locator-components';
 import { Filter, LocatorService, fallbackNumber } from './locator-utils';
+import { SkeletonCard } from '@/components/ui/SkeletonCard';
 
 function MobileLocator({
   coords,
@@ -147,7 +147,13 @@ function MobileLocator({
               </p>
             </div>
           ) : null}
-          {filtered.length === 0 ? (
+          {locating ? (
+            <div className="space-y-4">
+              <SkeletonCard lines={2} hasIcon={true} hasButton={true} />
+              <SkeletonCard lines={2} hasIcon={true} hasButton={true} />
+              <SkeletonCard lines={2} hasIcon={true} hasButton={true} />
+            </div>
+          ) : filtered.length === 0 ? (
             <EmptyState
               locating={locating}
               activeFilter={activeFilter}
@@ -306,7 +312,13 @@ function DesktopLocator({
           </div>
 
           <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-            {filtered.length === 0 ? (
+            {locating ? (
+              <div className="px-6 lg:px-8 py-4 space-y-4 overflow-y-auto">
+                <SkeletonCard lines={2} hasIcon={true} hasButton={true} />
+                <SkeletonCard lines={2} hasIcon={true} hasButton={true} />
+                <SkeletonCard lines={2} hasIcon={true} hasButton={true} />
+              </div>
+            ) : filtered.length === 0 ? (
               <div className="px-6 lg:px-8 py-4">
                 <EmptyState
                   locating={locating}

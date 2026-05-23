@@ -8,7 +8,7 @@ import {
   Download, Trash2, Info, LogOut,
   Map, Vibrate, Navigation, Database,
   ShieldCheck, Wifi, WifiOff, User,
-  ChevronRight, ToggleLeft
+  ChevronRight, ToggleLeft, Volume2
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -32,26 +32,87 @@ import { useShallow } from 'zustand/react/shallow';
 
 export default function SettingsPage() {
   const router = useRouter();
-  const { crashDetectionEnabled, setCrashDetectionEnabled, isAuthenticated, operatorName, clearAuth, userProfile } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, isAuthenticated: s.isAuthenticated, operatorName: s.operatorName, clearAuth: s.clearAuth, userProfile: s.userProfile })));
+  const {
+    crashDetectionEnabled,
+    setCrashDetectionEnabled,
+    isAuthenticated,
+    operatorName,
+    clearAuth,
+    userProfile,
+    setUserProfile,
+    speedAlert,
+    setSpeedAlert,
+    hazardNotifs,
+    setHazardNotifs,
+    locationTracking,
+    setLocationTracking,
+    sosVibration,
+    setSosVibration,
+    autoOffline,
+    setAutoOffline,
+    analyticsOptIn,
+    setAnalyticsOptIn,
+    navApp,
+    setNavApp,
+    soundsEnabled,
+    setSoundsEnabled,
+  } = useAppStore(
+    useShallow((s) => ({
+      crashDetectionEnabled: s.crashDetectionEnabled,
+      setCrashDetectionEnabled: s.setCrashDetectionEnabled,
+      isAuthenticated: s.isAuthenticated,
+      operatorName: s.operatorName,
+      clearAuth: s.clearAuth,
+      userProfile: s.userProfile,
+      setUserProfile: s.setUserProfile,
+      speedAlert: s.speedAlert,
+      setSpeedAlert: s.setSpeedAlert,
+      hazardNotifs: s.hazardNotifs,
+      setHazardNotifs: s.setHazardNotifs,
+      locationTracking: s.locationTracking,
+      setLocationTracking: s.setLocationTracking,
+      sosVibration: s.sosVibration,
+      setSosVibration: s.setSosVibration,
+      autoOffline: s.autoOffline,
+      setAutoOffline: s.setAutoOffline,
+      analyticsOptIn: s.analyticsOptIn,
+      setAnalyticsOptIn: s.setAnalyticsOptIn,
+      navApp: s.navApp,
+      setNavApp: s.setNavApp,
+      soundsEnabled: s.soundsEnabled,
+      setSoundsEnabled: s.setSoundsEnabled,
+    }))
+  );
+
   const { theme, setTheme } = useTheme();
   const pageRef = usePageEntry();
 
   const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); document.title = 'System Settings | SafeVixAI'; }, []);
+  const [storageSize, setStorageSize] = useState('0.0 KB');
+  const [showPurgeConfirm, setShowPurgeConfirm] = useState(false);
 
-  // Feature toggles
-  const [speedAlert, setSpeedAlert] = useState(false);
-  const [hazardNotifs, setHazardNotifs] = useState(true);
-  const [locationTracking, setLocationTracking] = useState(true);
-  const [sosVibration, setSosVibration] = useState(true);
-  const [autoOffline, setAutoOffline] = useState(true);
-  const [analyticsOptIn, setAnalyticsOptIn] = useState(false);
-  const [navApp, setNavApp] = useState<NavApp>('google');
-
-  // Load persisted nav preference on mount
   useEffect(() => {
-    setNavApp(getPreferredNavApp());
+    setMounted(true);
+    document.title = 'System Settings | SafeVixAI';
+
+    // Calculate actual local storage size
+    if (typeof window !== 'undefined') {
+      let total = 0;
+      for (const x in localStorage) {
+        if (localStorage.hasOwnProperty(x)) {
+          total += ((localStorage[x].length + x.length) * 2);
+        }
+      }
+      setStorageSize((total / 1024).toFixed(1) + ' KB');
+    }
   }, []);
+
+  // Sync Zustand navApp to legacy storage
+  useEffect(() => {
+    if (navApp) {
+      setPreferredNavApp(navApp);
+    }
+  }, [navApp]);
 
   const [toastConfig, setToastConfig] = useState<{ show: boolean; message: string; type: 'success' | 'info' | 'error' }>({
     show: false, message: '', type: 'info',
@@ -60,15 +121,32 @@ export default function SettingsPage() {
     setToastConfig({ show: true, message, type });
 
   const handlePurge = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('svai-offline-bundle');
+    if (!showPurgeConfirm) {
+      setShowPurgeConfirm(true);
+      setTimeout(() => setShowPurgeConfirm(false), 4000);
+    } else {
+      localStorage.clear();
+      sessionStorage.clear();
+      showToast('Cache & Session Purged Successfully', 'success');
+      setShowPurgeConfirm(false);
+      setStorageSize('0.0 KB');
+      setTimeout(() => window.location.reload(), 1000);
     }
-    showToast('Cache Purged Successfully', 'success');
   };
 
   const handleExport = () => {
     const data = {
       profile: userProfile,
+      settings: {
+        speedAlert,
+        hazardNotifs,
+        locationTracking,
+        sosVibration,
+        autoOffline,
+        analyticsOptIn,
+        navApp,
+        soundsEnabled,
+      },
       exportedAt: new Date().toISOString(),
       version: '2.4.0-SVA',
     };
@@ -195,40 +273,60 @@ export default function SettingsPage() {
             <ToggleRow icon={<Vibrate size={20} />}
               label="SOS Vibration" sub="Haptic Feedback on Emergency Trigger"
               checked={sosVibration} onChange={setSosVibration} />
-          </SurfaceCard>
-        </Section>
+            <ToggleRow icon={<Volume2 size={20} />}
+              label="Auditory Feedback" sub="System Tone & Voice Reading Alerts"
+              checked={soundsEnabled} onChange={setSoundsEnabled} />
+            
+            {/* Navigation Selector dropdown */}
+            <SettingRow
+              icon={<Navigation size={20} className="text-brand-light" />}
+              title="Navigation App"
+              description="Preferred map provider for emergency routing"
+              rightElement={
+                <select
+                  value={navApp}
+                  onChange={(e) => {
+                    const val = e.target.value as 'google' | 'waze' | 'apple';
+                    setNavApp(val);
+                    setPreferredNavApp(val);
+                    showToast(`Navigation preference set to ${val === 'google' ? 'Google Maps' : val === 'waze' ? 'Waze' : 'Apple Maps'}`, 'success');
+                  }}
+                  className="bg-surface-2 dark:bg-white/5 border border-border dark:border-white/10 rounded-lg p-2 text-xs font-semibold text-text-1 outline-none cursor-pointer"
+                >
+                  <option value="google">Google Maps</option>
+                  <option value="waze">Waze</option>
+                  <option value="apple">Apple Maps</option>
+                </select>
+              }
+            />
 
-        {/* ── NAVIGATION APP ── */}
-        <Section title="Navigation">
-          <SurfaceCard padding="lg">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-card border border-border-green bg-brand-dim">
-                <Map size={20} className="text-brand-light" />
-              </div>
-              <div>
-                <p className="sv-h2 uppercase">Preferred Navigation App</p>
-                <p className="sv-micro mt-0.5 text-text-3">Used for &ldquo;Get Directions&rdquo; in Locator</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {NAV_APPS.map((app) => {
-                const isActive = mounted && navApp === app.key;
-                return (
-                  <button
-                    key={app.key}
-                    onClick={() => { setNavApp(app.key); setPreferredNavApp(app.key); showToast(`Navigation set to ${app.label}`, 'success'); }}
-                    className={`flex flex-col items-center gap-3 rounded-card border p-4 transition-all ${
-                      isActive
-                        ? 'border-border-green bg-brand-dim text-brand-light shadow-brand'
-                        : 'border-border bg-surface-2 text-text-3 hover:border-border-green hover:text-text-1'
-                    }`}
-                  >
-                    <span className="text-2xl">{app.emoji}</span>
-                    <span className="sv-micro leading-none">{app.label.replace('Google ', '')}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {/* Language Selector dropdown */}
+            <SettingRow
+              icon={<Info size={20} className="text-brand-light" />}
+              title="Preferred Language"
+              description="System Overlays & Voice Assistance"
+              rightElement={
+                <select
+                  value={userProfile.preferredLanguage || 'en'}
+                  onChange={(e) => {
+                    setUserProfile({ preferredLanguage: e.target.value });
+                    showToast(`Language set to ${e.target.value.toUpperCase()}`, 'success');
+                  }}
+                  className="bg-surface-2 dark:bg-white/5 border border-border dark:border-white/10 rounded-lg p-2 text-xs font-semibold text-text-1 outline-none cursor-pointer"
+                >
+                  <option value="en">English</option>
+                  <option value="hi">हिन्दी (Hindi)</option>
+                  <option value="ta">தமிழ் (Tamil)</option>
+                  <option value="te">తెలుగు (Telugu)</option>
+                  <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                  <option value="ml">മലയാളം (Malayalam)</option>
+                  <option value="mr">मराठी (Marathi)</option>
+                  <option value="gu">ગુજરાતી (Gujarati)</option>
+                  <option value="bn">বাংলা (Bengali)</option>
+                  <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                </select>
+              }
+            />
           </SurfaceCard>
         </Section>
 
@@ -260,15 +358,19 @@ export default function SettingsPage() {
                   <Database size={20} className="text-text-3" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">Offline Cache</p>
+                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">Offline Cache ({storageSize})</p>
                   <p className="text-[10px] font-bold text-text-3 uppercase tracking-widest mt-0.5">First Aid · Hazard DB · Route Index</p>
                 </div>
               </div>
               <button
                 onClick={handlePurge}
-                className="px-5 py-2.5 bg-red-500/10 text-red-600 dark:text-red-400 text-[10px] font-semibold uppercase tracking-widest rounded-xl border border-red-500/20 hover:bg-red-500/20 active:scale-95 transition-all"
+                className={`px-5 py-2.5 text-[10px] font-semibold uppercase tracking-widest rounded-xl border hover:bg-red-500/20 active:scale-95 transition-all ${
+                  showPurgeConfirm 
+                    ? 'bg-red-600 text-white border-red-600'
+                    : 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20'
+                }`}
               >
-                Purge
+                {showPurgeConfirm ? 'Confirm?' : 'Purge'}
               </button>
             </div>
 

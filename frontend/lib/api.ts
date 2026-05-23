@@ -30,6 +30,33 @@ client.interceptors.request.use((config) => {
   return config;
 });
 
+function _addWarmingInterceptors(axiosInstance: ReturnType<typeof axios.create>) {
+  axiosInstance.interceptors.request.use((config) => {
+    const timer = setTimeout(() => {
+      useAppStore.getState().setServerWarming(true);
+    }, 5000);
+    (config as any)._warmingTimer = timer;
+    return config;
+  });
+
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      const timer = (response.config as any)._warmingTimer;
+      if (timer) clearTimeout(timer);
+      useAppStore.getState().setServerWarming(false);
+      return response;
+    },
+    (error) => {
+      const timer = error.config?._warmingTimer;
+      if (timer) clearTimeout(timer);
+      useAppStore.getState().setServerWarming(false);
+      return Promise.reject(error);
+    }
+  );
+}
+
+_addWarmingInterceptors(client);
+
 // S20/F9: Exponential-backoff retry interceptor (up to 3 retries, 1s/2s/4s delays).
 // Retries on network errors and 5xx server errors; never retries 4xx (client fault).
 function _withRetry(axiosInstance: ReturnType<typeof axios.create>, maxRetries = 3) {
@@ -68,6 +95,7 @@ chatbotClient.interceptors.request.use((config) => {
   return config;
 });
 _withRetry(chatbotClient);
+_addWarmingInterceptors(chatbotClient);
 
 export type EmergencyServiceCategory =
   | 'hospital'

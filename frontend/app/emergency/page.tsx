@@ -139,8 +139,9 @@ export default function EmergencyProtocolsPage() {
 
     // Continuous red glow pulse - signals urgency
     gsap.to(sosCardRef.current, {
-      boxShadow: '0 0 32px rgba(220,38,38,0.6), 0 0 0 1px rgba(220,38,38,0.5)',
-      duration: 1.2, yoyo: true, repeat: -1, ease: 'sine.inOut'
+      boxShadow: '0 0 45px rgba(239,68,68,0.7), 0 0 0 2px rgba(239,68,68,0.4)',
+      scale: 1.01,
+      duration: 1.0, yoyo: true, repeat: -1, ease: 'sine.inOut'
     });
 
     // CALL 112 button attention pulse
@@ -272,12 +273,36 @@ export default function EmergencyProtocolsPage() {
                      <span className="text-red-700 font-black text-sm tracking-[0.1em] uppercase font-space relative z-10">CALL 112 NOW</span>
                      <ArrowRight size={18} className="text-red-700 relative z-10 transition-transform group-hover/btn:translate-x-1" />
                    </a>
-                   {userProfile?.emergencyContact && (
+                   {/* Emergency Contact Dialer Cards */}
+                   {userProfile?.emergencyContacts && userProfile.emergencyContacts.length > 0 ? (
+                     <div className="grid grid-cols-1 gap-2 mt-2 w-full">
+                       {userProfile.emergencyContacts.map((contact, idx) => (
+                         <a 
+                           key={idx}
+                           href={`tel:${contact.phone}`} 
+                           className="group/contact relative w-full p-4 bg-white/10 dark:bg-white/5 border border-white/20 rounded-xl flex items-center justify-between gap-3 shadow-sm hover:bg-white/20 transition-all active:scale-95"
+                         >
+                           <div className="flex items-center gap-3">
+                             <div className="p-2 rounded-lg bg-white/20 text-white">
+                               <Phone size={14} />
+                             </div>
+                             <div className="flex flex-col items-start">
+                               <span className="text-[9px] font-semibold text-red-200/70 uppercase tracking-widest leading-none mb-1">{contact.relation}</span>
+                               <span className="text-white font-black text-sm uppercase font-space leading-none">{contact.name}</span>
+                             </div>
+                           </div>
+                           <span className="text-[10px] font-bold text-white bg-white/10 px-2.5 py-1 rounded-full font-mono">
+                             {contact.phone}
+                           </span>
+                         </a>
+                       ))}
+                     </div>
+                   ) : userProfile?.emergencyContact ? (
                      <a href={`tel:${userProfile.emergencyContact}`} className="group/btn relative w-full h-14 px-8 bg-brand-light/10 border border-brand-light/30 rounded-lg flex items-center justify-center gap-3 shadow-sm hover:bg-brand-light/20 transition-all active:scale-95">
                        <Phone size={16} className="text-brand-light relative z-10" />
-                       <span className="text-brand-light font-black text-xs tracking-[0.1em] uppercase font-space relative z-10">QUICK DIAL: {userProfile.name ? `${userProfile.name}'S CONTACT` : 'EMERGENCY CONTACT'}</span>
+                       <span className="text-brand-light font-black text-xs tracking-[0.1em] uppercase font-space relative z-10">QUICK DIAL: EMERGENCY CONTACT</span>
                      </a>
-                   )}
+                   ) : null}
                    <div className="flex items-center justify-between px-2 text-[10px] font-semibold uppercase text-red-200/60 tracking-[0.1em]">
                       <span>Armed & Ready</span>
                       <span>Secure Connection</span>

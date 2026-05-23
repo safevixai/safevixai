@@ -11,10 +11,15 @@ describe('app store persistence', () => {
       mapError: null,
       mapSearchTarget: null,
       userProfile: {
+        id: '',
+        name: '',
+        phone: '',
         bloodGroup: '',
         vehicleNumber: '',
         emergencyContact: '',
-        name: '',
+        emergencyContacts: [],
+        medicalConditions: '',
+        preferredLanguage: 'en',
       },
     });
   });

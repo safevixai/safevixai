@@ -51,10 +51,17 @@ export interface RoadIssueSearchMeta {
 }
 
 export interface UserProfile {
-  bloodGroup: string;
-  vehicleNumber: string;
-  emergencyContact: string;
+  id: string;
   name: string;
+  phone: string;
+  bloodGroup: 'A+' | 'A-' | 'B+' | 'B-' | 'O+' | 'O-' | 'AB+' | 'AB-' | 'Unknown' | '';
+  vehicleNumber: string;
+  emergencyContact: string; // backwards compatibility
+  emergencyContacts: { name: string; phone: string; relation: string }[];
+  medicalConditions: string;
+  preferredLanguage: string;
+  photo?: string;
+  subtitle?: string;
 }
 
 export type AiMode = 'online' | 'offline' | 'loading';
@@ -97,6 +104,8 @@ interface AppState {
   modelLoadProgress: number; // 0-100
   setAiMode: (m: AiMode) => void;
   setModelLoadProgress: (p: number) => void;
+  serverWarming: boolean;
+  setServerWarming: (v: boolean) => void;
 
   // Connectivity
   connectivity: ConnectivityState;
@@ -153,6 +162,22 @@ interface AppState {
   };
   setChallanState: (state: Partial<AppState['challanState']>) => void;
 
+  // Settings
+  speedAlert: boolean;
+  setSpeedAlert: (v: boolean) => void;
+  hazardNotifs: boolean;
+  setHazardNotifs: (v: boolean) => void;
+  locationTracking: boolean;
+  setLocationTracking: (v: boolean) => void;
+  sosVibration: boolean;
+  setSosVibration: (v: boolean) => void;
+  autoOffline: boolean;
+  setAutoOffline: (v: boolean) => void;
+  analyticsOptIn: boolean;
+  setAnalyticsOptIn: (v: boolean) => void;
+  navApp: 'google' | 'waze' | 'apple';
+  setNavApp: (v: 'google' | 'waze' | 'apple') => void;
+
   // Auth
   isAuthenticated: boolean;
   operatorName: string;
@@ -198,6 +223,8 @@ export const useAppStore = create<AppState>()(
       modelLoadProgress: 0,
       setAiMode: (m) => set({ aiMode: m }),
       setModelLoadProgress: (p) => set({ modelLoadProgress: p }),
+      serverWarming: false,
+      setServerWarming: (v) => set({ serverWarming: v }),
 
       // Connectivity
       connectivity: 'online',
@@ -223,10 +250,17 @@ export const useAppStore = create<AppState>()(
 
       // User Profile
       userProfile: {
+        id: '',
+        name: '',
+        phone: '',
         bloodGroup: '',
         vehicleNumber: '',
         emergencyContact: '',
-        name: '',
+        emergencyContacts: [],
+        medicalConditions: '',
+        preferredLanguage: 'en',
+        photo: '',
+        subtitle: '',
       },
       setUserProfile: (p) => set((s) => ({
         userProfile: { ...s.userProfile, ...p },
@@ -281,6 +315,22 @@ export const useAppStore = create<AppState>()(
       },
       setChallanState: (state) => set((s) => ({ challanState: { ...s.challanState, ...state } })),
 
+      // Settings Default State & Actions
+      speedAlert: false,
+      setSpeedAlert: (v) => set({ speedAlert: v }),
+      hazardNotifs: true,
+      setHazardNotifs: (v) => set({ hazardNotifs: v }),
+      locationTracking: true,
+      setLocationTracking: (v) => set({ locationTracking: v }),
+      sosVibration: true,
+      setSosVibration: (v) => set({ sosVibration: v }),
+      autoOffline: true,
+      setAutoOffline: (v) => set({ autoOffline: v }),
+      analyticsOptIn: false,
+      setAnalyticsOptIn: (v) => set({ analyticsOptIn: v }),
+      navApp: 'google',
+      setNavApp: (v) => set({ navApp: v }),
+
       // Auth
       isAuthenticated: false,
       operatorName: '',
@@ -303,6 +353,13 @@ export const useAppStore = create<AppState>()(
         showSafeSpaces: state.showSafeSpaces,
         showEmergencyServices: state.showEmergencyServices,
         soundsEnabled: state.soundsEnabled,
+        speedAlert: state.speedAlert,
+        hazardNotifs: state.hazardNotifs,
+        locationTracking: state.locationTracking,
+        sosVibration: state.sosVibration,
+        autoOffline: state.autoOffline,
+        analyticsOptIn: state.analyticsOptIn,
+        navApp: state.navApp,
       }),
     }
   )
@@ -326,10 +383,11 @@ export const useServiceSearchMeta = () => useAppStore((s) => s.serviceSearchMeta
 export const useNearbyRoadIssues = () => useAppStore((s) => s.nearbyRoadIssues);
 export const useRoadIssueSearchMeta = () => useAppStore((s) => s.roadIssueSearchMeta);
 
-// AI / Connectivity
-export const useAiMode = () => useAppStore((s) => s.aiMode);
-export const useModelLoadProgress = () => useAppStore((s) => s.modelLoadProgress);
-export const useConnectivity = () => useAppStore((s) => s.connectivity);
+  // AI / Connectivity
+  export const useAiMode = () => useAppStore((s) => s.aiMode);
+  export const useModelLoadProgress = () => useAppStore((s) => s.modelLoadProgress);
+  export const useConnectivity = () => useAppStore((s) => s.connectivity);
+  export const useServerWarming = () => useAppStore((s) => s.serverWarming);
 
 // Map layers
 export const useShowHazardHeatmap = () => useAppStore((s) => s.showHazardHeatmap);
@@ -346,6 +404,15 @@ export const useMapSearchTarget = () => useAppStore((s) => s.mapSearchTarget);
 export const useUserProfile = () => useAppStore((s) => s.userProfile);
 export const useDrivingScore = () => useAppStore((s) => s.drivingScore);
 export const useCrashDetectionEnabled = () => useAppStore((s) => s.crashDetectionEnabled);
+
+// Settings
+export const useSpeedAlert = () => useAppStore((s) => s.speedAlert);
+export const useHazardNotifs = () => useAppStore((s) => s.hazardNotifs);
+export const useLocationTracking = () => useAppStore((s) => s.locationTracking);
+export const useSosVibration = () => useAppStore((s) => s.sosVibration);
+export const useAutoOffline = () => useAppStore((s) => s.autoOffline);
+export const useAnalyticsOptIn = () => useAppStore((s) => s.analyticsOptIn);
+export const useNavApp = () => useAppStore((s) => s.navApp);
 
 // UI
 export const useIsDesktopSidebarCollapsed = () => useAppStore((s) => s.isDesktopSidebarCollapsed);

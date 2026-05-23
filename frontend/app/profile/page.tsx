@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
-  User, Shield, CheckCircle, 
+  User, Shield, ShieldCheck, CheckCircle, 
   Car, LogOut,
   CloudOff, ShieldAlert, Award,
   Heart, Star, Edit3, Save, X, Bell
@@ -67,10 +67,16 @@ export default function ProfilePage() {
     }
   };
 
-  // Derive a display ID from the user name (or placeholder)
-  const displayId = userProfile.name
-    ? `SVA-${userProfile.name.slice(0, 4).toUpperCase().replace(/\s/g, '')}-X`
-    : 'NOT SET';
+  // Generate random id on mount if not exists
+  useEffect(() => {
+    if (!userProfile.id) {
+      const generatedId = `SVA-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+      setUserProfile({ id: generatedId });
+    }
+  }, [userProfile.id, setUserProfile]);
+
+  // Derive a display ID from the user profile
+  const displayId = userProfile.id || 'NOT SET';
 
   return (
     <div ref={pageRef} className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
@@ -132,35 +138,72 @@ export default function ProfilePage() {
 
           <div className="flex flex-col sm:flex-row items-center gap-8 relative z-10">
             <div className="relative group">
-              <div className="w-32 h-32 rounded-[2.5rem] border-4 border-white dark:border-white/10 ring-8 ring-brand-light/ overflow-hidden relative shadow-2xl transition-transform duration-500 group-hover:scale-105 bg-surface-2 dark:bg-white/10 flex items-center justify-center">
-                {userProfile.name ? (
-                  <span className="text-4xl font-black text-text-3 dark:text-white/40 uppercase">
-                    {userProfile.name.charAt(0)}
-                  </span>
-                ) : (
-                  <User size={40} className="text-text-4 dark:text-white/20" />
-                )}
-              </div>
-              <div className="absolute -bottom-2 -right-2 bg-brand-light w-10 h-10 rounded-lg flex items-center justify-center border-4 border-white dark:border-bg shadow-lg">
-                <CheckCircle size={20} className="text-white" />
-              </div>
+              {isEditing ? (
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-32 h-32 rounded-full border-4 border-white dark:border-white/10 overflow-hidden relative shadow-2xl bg-[var(--brand-dim)] flex items-center justify-center text-[var(--brand-light)] text-4xl font-black uppercase">
+                    {editDraft.photo ? (
+                      <Image src={editDraft.photo} alt={editDraft.name || ''} fill className="object-cover" />
+                    ) : (
+                      <span>{editDraft.name ? editDraft.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : '?'}</span>
+                    )}
+                  </div>
+                  <input
+                    type="text"
+                    value={editDraft.photo || ''}
+                    onChange={e => setEditDraft(d => ({ ...d, photo: e.target.value }))}
+                    placeholder="Avatar Image URL"
+                    className="text-[10px] w-28 bg-surface-2 dark:bg-white/5 border border-border p-1 rounded text-center outline-none text-text-2"
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className="w-32 h-32 rounded-full border-4 border-white dark:border-white/10 overflow-hidden relative shadow-2xl transition-transform duration-500 group-hover:scale-105 bg-[var(--brand-dim)] flex items-center justify-center text-[var(--brand-light)] text-4xl font-black uppercase">
+                    {userProfile.photo ? (
+                      <Image src={userProfile.photo} alt={userProfile.name} fill className="object-cover" />
+                    ) : userProfile.name ? (
+                      <span>{userProfile.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}</span>
+                    ) : (
+                      <User size={40} className="text-text-4 dark:text-white/20" />
+                    )}
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 bg-brand-light w-10 h-10 rounded-lg flex items-center justify-center border-4 border-white dark:border-bg shadow-lg">
+                    <CheckCircle size={20} className="text-white" />
+                  </div>
+                </>
+              )}
             </div>
             
-            <div className="text-center sm:text-left flex flex-col gap-2">
+            <div className="text-center sm:text-left flex flex-col gap-2 flex-1">
               {isEditing ? (
-                <input
-                  type="text"
-                  value={editDraft.name}
-                  onChange={e => setEditDraft(d => ({ ...d, name: e.target.value }))}
-                  placeholder="Your Full Name"
-                  className="text-3xl font-black tracking-tight text-text-1 dark:text-white uppercase font-space leading-none bg-transparent border-b-2 border-brand-light outline-none placeholder:text-text-4 dark:placeholder:text-white/20 w-full"
-                />
+                <div className="flex flex-col gap-2 w-full">
+                  <input
+                    type="text"
+                    value={editDraft.name}
+                    onChange={e => setEditDraft(d => ({ ...d, name: e.target.value }))}
+                    placeholder="Your Full Name"
+                    className="text-3xl font-black tracking-tight text-text-1 dark:text-white uppercase font-space leading-none bg-transparent border-b-2 border-brand-light outline-none placeholder:text-text-4 dark:placeholder:text-white/20 w-full"
+                  />
+                  <input
+                    type="text"
+                    value={editDraft.subtitle || ''}
+                    onChange={e => setEditDraft(d => ({ ...d, subtitle: e.target.value }))}
+                    placeholder="Operator Subtitle (e.g. TACTICAL RESPONDER)"
+                    className="text-xs font-semibold tracking-tight text-text-2 dark:text-text-3 uppercase font-space bg-transparent border-b border-brand-light/40 outline-none placeholder:text-text-4 dark:placeholder:text-white/20 w-full"
+                  />
+                </div>
               ) : (
-                <h2 className="text-4xl font-black tracking-tight text-text-1 dark:text-white uppercase font-space leading-none">
-                  {userProfile.name || <span className="text-text-4 dark:text-white/20">Set Your Name</span>}
-                </h2>
+                <div className="flex flex-col gap-1.5">
+                  <h2 className="text-4xl font-black tracking-tight text-text-1 dark:text-white uppercase font-space leading-none">
+                    {userProfile.name || <span className="text-text-4 dark:text-white/20">Set Your Name</span>}
+                  </h2>
+                  {userProfile.subtitle && (
+                    <p className="text-xs font-semibold text-text-2 dark:text-text-3 uppercase tracking-wider">
+                      {userProfile.subtitle}
+                    </p>
+                  )}
+                </div>
               )}
-              <div className="flex items-center justify-center sm:justify-start gap-2">
+              <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
                 <div className="px-2 py-1 bg-surface-2 dark:bg-white/5 rounded-lg border border-border dark:border-white/10">
                    <span className="text-[9px] font-semibold text-text-3 dark:text-brand-light uppercase tracking-widest leading-none">ID: {displayId}</span>
                 </div>
@@ -204,19 +247,70 @@ export default function ProfilePage() {
                </div>
                <div className="flex flex-col">
                   {isEditing ? (
-                    <input
-                      type="text"
+                    <select
                       value={editDraft.bloodGroup}
-                      onChange={e => setEditDraft(d => ({ ...d, bloodGroup: e.target.value }))}
-                      placeholder="O+, A-, B+..."
-                      className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-transparent border-b-2 border-red-500/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
-                    />
+                      onChange={e => setEditDraft(d => ({ ...d, bloodGroup: e.target.value as any }))}
+                      className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-surface-2 dark:bg-white/5 border border-border rounded p-1 outline-none"
+                    >
+                      <option value="">Select Blood Group</option>
+                      {['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', 'Unknown'].map((g) => (
+                        <option key={g} value={g}>{g}</option>
+                      ))}
+                    </select>
                   ) : (
                     <span className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter">
                       {userProfile.bloodGroup || <span className="text-text-4 dark:text-white/20">Not Set</span>}
                     </span>
                   )}
                   <span className="text-[10px] font-bold text-text-2 uppercase mt-1">EMERGENCY_BROADCAST_ON</span>
+               </div>
+            </SurfaceCard>
+
+            {/* Operator Mobile Links */}
+            <SurfaceCard padding="md" className="flex flex-col gap-4">
+               <div className="flex items-center justify-between">
+                  <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Phone Signature</p>
+                  <User size={16} className="text-brand dark:text-brand-light" />
+               </div>
+               <div className="flex flex-col">
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editDraft.phone || ''}
+                      onChange={e => setEditDraft(d => ({ ...d, phone: e.target.value }))}
+                      placeholder="+91 98765 43210"
+                      className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
+                    />
+                  ) : (
+                    <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter">
+                      {userProfile.phone || <span className="text-text-4 dark:text-white/20">Not Set</span>}
+                    </span>
+                  )}
+                  <span className="text-[10px] font-bold text-text-2 uppercase mt-1">OPERATOR_MOBILE_LINK</span>
+               </div>
+            </SurfaceCard>
+
+            {/* Biometric Anomalies */}
+            <SurfaceCard padding="md" className="flex flex-col gap-4">
+               <div className="flex items-center justify-between">
+                  <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Medical Record</p>
+                  <ShieldCheck size={16} className="text-brand dark:text-brand-light" />
+               </div>
+               <div className="flex flex-col">
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editDraft.medicalConditions || ''}
+                      onChange={e => setEditDraft(d => ({ ...d, medicalConditions: e.target.value }))}
+                      placeholder="e.g. Asthma, Penicillin allergy"
+                      className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
+                    />
+                  ) : (
+                    <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter truncate max-w-xs">
+                      {userProfile.medicalConditions || <span className="text-text-4 dark:text-white/20">None</span>}
+                    </span>
+                  )}
+                  <span className="text-[10px] font-bold text-text-2 uppercase mt-1">BIOMETRIC_ANOMALIES</span>
                </div>
             </SurfaceCard>
 

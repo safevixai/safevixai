@@ -154,6 +154,7 @@ const TopSearch = memo(function TopSearch({
           <button 
             type="button"
             onClick={() => setSystemSidebarOpen(true)}
+            aria-label="Open navigation menu"
             className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-text-1 lg:hidden mr-1"
           >
             <Menu className="w-6 h-6" />
@@ -163,6 +164,7 @@ const TopSearch = memo(function TopSearch({
             <button 
               type="button"
               onClick={() => setDesktopSidebarCollapsed(false)}
+              aria-label="Expand sidebar"
               className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-text-1 hidden lg:block mr-1"
             >
               <Menu className="w-6 h-6" />
@@ -184,7 +186,7 @@ const TopSearch = memo(function TopSearch({
             className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 px-2 text-text-1 placeholder:text-text-3 font-medium text-base h-full w-full"
           />
 
-          <button type="button" className="p-2 rounded-full bg-brand/10 text-brand hover:bg-brand/20 active:scale-95 transition-all ml-2">
+          <button type="button" aria-label="Voice search" className="p-2 rounded-full bg-brand/10 text-brand hover:bg-brand/20 active:scale-95 transition-all ml-2">
             <Mic className="w-5 h-5" />
           </button>
           
@@ -222,21 +224,21 @@ const TopSearch = memo(function TopSearch({
               <button 
                 onClick={() => setTheme('light')}
                 className={`p-2 rounded-full transition-all ${theme === 'light' ? 'bg-brand/15 text-brand' : 'text-text-3 hover:text-text-1'}`}
-                title="Light Mode"
+                aria-label="Switch to light theme"
               >
                 <Sun className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => setTheme('dark')}
                 className={`p-2 rounded-full transition-all ${theme === 'dark' ? 'bg-brand/15 text-brand' : 'text-text-3 hover:text-text-1'}`}
-                title="Dark Mode"
+                aria-label="Switch to dark theme"
               >
                 <Moon className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => setTheme('system')}
                 className={`p-2 rounded-full transition-all ${theme === 'system' ? 'bg-brand/15 text-brand' : 'text-text-3 hover:text-text-1'}`}
-                title="System Theme"
+                aria-label="Switch to system theme"
               >
                 <Monitor className="w-5 h-5" />
               </button>

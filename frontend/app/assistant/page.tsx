@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { gsap } from '@/lib/gsap';
+import TypingIndicator from '@/components/chat/TypingIndicator';
+import SuggestedInquiries from '@/components/chat/SuggestedInquiries';
 import {
  ArrowLeft, ShieldCheck, BookOpen, Copy,
  HelpCircle, Mic, Paperclip, Send, ThumbsUp, ThumbsDown, RotateCcw,
@@ -271,14 +273,13 @@ export default function ChatPage() {
    }
   }, [sessionId, location, autoRead, speakText, aiMode]);
 
- return (
-  <div className="aurora-glow w-full h-[calc(100dvh-84px)] lg:h-screen flex flex-col overflow-hidden bg-surface-1">
+  return (
+   <div className="aurora-glow w-full h-[--full-content-h] md:h-[--full-content-h-desktop] flex flex-col overflow-hidden bg-surface-1">
   {/* Model Loading HUD overlay */}
   <ModelLoader />
 
   {/* ── Background Decorative Lines (SafeVixAI Pro Aesthetic) ── */}
   <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-  {/* Spots removed per user request */}
 
   {/* Ambient Glows */}
   <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand/5 dark:bg-brand/10 blur-[120px] hidden dark:block" />
@@ -343,7 +344,7 @@ export default function ChatPage() {
  <TopSearch isMapPage={false} forceShow={true} showBack={false} />
  </div>
 
- {/* â”€â”€ Toast Notification â”€â”€ */}
+ {/* ── Toast Notification ── */}
  
  {toastMessage && (
  <div style={{ animation: "fadeInDown 0.2s ease-out" }}
@@ -354,7 +355,7 @@ export default function ChatPage() {
  )}
  
 
- {/* â”€â”€ Chat Canvas â”€â”€ */}
+ {/* ── Chat Canvas ── */}
  <main ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 overflow-x-hidden pt-28 lg:pt-24 pb-48 lg:pb-36 flex flex-col max-w-4xl mx-auto w-full relative z-10 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
  <div className="space-y-8 flex flex-col w-full pb-8">
  
@@ -364,7 +365,7 @@ export default function ChatPage() {
  <div key={msg.id} className="self-center mt-2" style={{ animation: "fadeInUp 0.3s ease-out" }}
  >
  <div className="bg-white dark:bg-white/5 px-4 py-2 rounded-full border border-border shadow-sm backdrop-blur-md">
- <span className="text-brand dark:text-brand-light text-[10px] uppercase tracking-[0.1em] font-black font-space">
+ <span className="text-brand dark:text-brand-light text-[10px] uppercase tracking-[0.15em] font-black font-space">
  {msg.text}
  </span>
  </div>
@@ -372,35 +373,43 @@ export default function ChatPage() {
  );
  }
 
- if (msg.role === 'user') {
- return (
- <div key={msg.id} style={{ animation: "slideInRight 0.3s ease-out" }} className="self-end max-w-[85%] sm:max-w-[75%]"
- >
- <div className="flex flex-col items-end gap-2">
- <div className="bg-brand/20 rounded-t-2xl rounded-bl-2xl px-5 py-3.5 shadow-lg shadow-brand/10 border border-brand/30">
- <p className="text-text-1 text-[15px] leading-relaxed font-medium">{msg.text}</p>
- </div>
- <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 mr-2 font-medium tracking-wide shadow-sm">{msg.timestamp} â€¢ SafeVixAI</time>
- </div>
- </div>
- );
- }
+  if (msg.role === 'user') {
+  return (
+  <div key={msg.id} style={{ animation: "slideInRight 0.3s ease-out" }} className="self-end max-w-[85%] sm:max-w-[75%] ml-12"
+  >
+  <div className="flex flex-col items-end gap-2">
+  <div className="bg-[--brand-dim] rounded-t-2xl rounded-bl-2xl rounded-br-sm px-5 py-3.5 shadow-lg shadow-brand/10 border border-brand/20">
+  <p className="text-text-1 text-[15px] leading-relaxed font-medium">{msg.text}</p>
+  </div>
+  <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 mr-2 font-medium tracking-wide shadow-sm">{msg.timestamp} • SafeVixAI</time>
+  </div>
+  </div>
+  );
+  }
 
- if (msg.role === 'ai') {
- return (
- <div key={msg.id} style={{ animation: "slideInLeft 0.3s ease-out" }} className="self-start max-w-[90%] sm:max-w-[85%]"
- >
- <div className="flex flex-col items-start gap-2 w-full">
- <SurfaceCard padding="lg" className="rounded-tl-sm shadow-md shadow-black/10 bg-surface-2 backdrop-blur-xl border-border">
- <div className="flex items-center gap-2 mb-3">
- <div className="p-1.5 rounded-lg bg-brand/10 text-brand">
- <ShieldCheck size={16} />
- </div>
- <span className="text-brand text-[11px] font-semibold uppercase tracking-[0.15em] font-mono">SafeVixAI</span>
- </div>
- <p className="text-text-1 text-[15px] leading-relaxed font-medium">
- <TypingText text={msg.text} />
- </p>
+  if (msg.role === 'ai') {
+  const isOfflineMessage = msg.citations?.includes('Offline Knowledge Base') || aiMode === 'offline';
+  const providerName = isOfflineMessage ? 'Local Phi-3 / Gemma' : 'Gemini Pro';
+
+  return (
+  <div key={msg.id} style={{ animation: "slideInLeft 0.3s ease-out" }} className="self-start max-w-[90%] sm:max-w-[85%] mr-12"
+  >
+  <div className="flex flex-col items-start gap-2 w-full">
+  <SurfaceCard padding="lg" className="rounded-tl-2xl rounded-tr-2xl rounded-br-2xl rounded-bl-sm shadow-md shadow-black/10 bg-[--surface-2] border border-[--border] backdrop-blur-xl">
+  <div className="flex items-center justify-between gap-2 mb-3 w-full">
+    <div className="flex items-center gap-2">
+      <div className="p-1.5 rounded-lg bg-brand/10 text-brand">
+        <ShieldCheck size={16} />
+      </div>
+      <span className="text-brand text-[11px] font-bold uppercase tracking-[0.15em] font-mono">SafeVixAI</span>
+    </div>
+    <span className="text-[10px] font-semibold text-text-3 bg-surface-3 border border-border px-2 py-0.5 rounded-full font-mono">
+      {providerName}
+    </span>
+  </div>
+  <p className="text-text-1 text-[15px] leading-relaxed font-medium">
+  <TypingText text={msg.text} />
+  </p>
 
  {msg.citations && msg.citations.length > 0 && (
  <div className="mt-5 flex flex-wrap gap-2">
@@ -415,7 +424,7 @@ export default function ChatPage() {
  </SurfaceCard>
 
  <div className="flex items-center gap-4 ml-2 mb-1">
- <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 font-medium tracking-wide">{msg.timestamp} â€¢ SafeVixAI</time>
+ <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 font-medium tracking-wide">{msg.timestamp} • SafeVixAI</time>
  <div className="flex gap-1.5 ml-1">
   <button 
   onClick={() => setToastMessage("Copied to clipboard!")}
@@ -478,34 +487,21 @@ export default function ChatPage() {
  })}
 
  {((messages.length <= 2) || showSuggestions) && !loading && (
- <div style={{ animation: "fadeInUp 0.3s ease-out" }}
- className="self-start w-full mt-2"
- >
- <p className="text-xs text-text-3 mb-3 font-semibold px-2 uppercase tracking-widest">Suggested Inquiries</p>
- <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
- {SUGGESTED_STARTERS.map((text, i) => (
- <button
- key={i}
- onClick={() => handleSend(text)}
- className="group bg-surface-2 hover:bg-surface-3 backdrop-blur-md transition-all duration-200 px-4 py-3 rounded-xl text-left border border-border hover:border-brand/30 hover:shadow-sm flex items-start gap-3"
- >
- <div className="mt-0.5 p-1 rounded bg-brand/10 text-brand group-hover:scale-110 transition-transform flex-shrink-0">
- <HelpCircle size={14} />
- </div>
- <span className="text-[13px] text-text-1 font-medium leading-snug">{text}</span>
- </button>
- ))}
- </div>
- {messages.length > 2 && (
- <button 
- onClick={() => setShowSuggestions(false)}
- className="mt-4 text-xs font-semibold text-text-3 hover:text-text-1 underline underline-offset-2 transition-colors mx-auto block"
- >
- Hide Suggestions
- </button>
- )}
- </div>
- )}
+  <div style={{ animation: "fadeInUp 0.3s ease-out" }}
+  className="self-start w-full mt-2"
+  >
+  <p className="text-xs text-text-3 mb-3 font-semibold px-2 uppercase tracking-widest">Suggested Inquiries</p>
+  <SuggestedInquiries onSelect={handleSend} />
+  {messages.length > 2 && (
+  <button 
+  onClick={() => setShowSuggestions(false)}
+  className="mt-4 text-xs font-semibold text-text-3 hover:text-text-1 underline underline-offset-2 transition-colors mx-auto block"
+  >
+  Hide Suggestions
+  </button>
+  )}
+  </div>
+  )}
 
  {messages.length > 2 && !showSuggestions && !loading && (
  <div style={{ animation: "fadeIn 0.3s ease-out" }} className="self-center">
@@ -518,24 +514,20 @@ export default function ChatPage() {
  </div>
  )}
 
- {/* Skeleton Loading State */}
- {loading && (
- <div style={{ animation: "slideInLeft 0.3s ease-out" }}
- className="self-start max-w-[90%] sm:max-w-[85%]"
- >
- <SurfaceCard padding="lg" className="rounded-tl-sm shadow-md shadow-black/10 bg-surface-2 backdrop-blur-xl border-border flex gap-1.5 items-center w-fit">
- <span className="w-2.5 h-2.5 bg-brand/70 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
- <span className="w-2.5 h-2.5 bg-brand/70 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
- <span className="w-2.5 h-2.5 bg-brand/70 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
- </SurfaceCard>
- </div>
- )}
+  {/* Typing Indicator */}
+  {loading && (
+  <div style={{ animation: "slideInLeft 0.3s ease-out" }}
+  className="self-start max-w-[90%] sm:max-w-[85%]"
+  >
+    <TypingIndicator />
+  </div>
+  )}
 
  
  </div>
  </main>
 
- {/* â”€â”€ Bottom Input Shell â”€â”€ */}
+ {/* ── Bottom Input Shell ── */}
  <div className="absolute bottom-0 w-full z-50 flex justify-between items-end bg-gradient-to-t from-surface-1 via-surface-1/90 to-transparent pt-16 pb-28 lg:pb-6 px-4 sm:px-6 pointer-events-none">
  <div className="max-w-4xl mx-auto w-full flex flex-col relative items-end pointer-events-none">
  <div className="w-full flex items-end gap-2 sm:gap-3 pointer-events-auto">

@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { Loader2, MapPin, Navigation, Phone, Search } from 'lucide-react';
+import { gsap } from '@/lib/gsap';
 import { ServiceIcon } from '../locator-components';
 import { LocatorService, fallbackNumber } from '../locator-utils';
 
@@ -20,12 +21,25 @@ export function MobileResultsList({
   onLocateService,
   onPreviewService,
 }: ResultsProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const cards = containerRef.current.querySelectorAll('.locator-result-card');
+    if (cards.length > 0) {
+      gsap.fromTo(cards,
+        { opacity: 0, y: 15, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.05, ease: 'power2.out', clearProps: 'all' }
+      );
+    }
+  }, [filtered]);
+
   return (
-    <>
+    <div ref={containerRef} className="space-y-4">
       {filtered.map((service) => (
         <div
           key={service.id}
-          className={`group relative rounded-lg p-5 backdrop-blur-xl shadow-sm transition-all ${
+          className={`locator-result-card group relative rounded-lg p-5 backdrop-blur-xl shadow-sm transition-all ${
             selectedServiceId === service.id
               ? 'border border-brand/30 bg-brand/90 dark:border-brand/40 dark:bg-surface-1/70'
               : 'border border-border-md bg-white/80 dark:border-white/5 dark:bg-surface-2/40 hover:bg-white dark:hover:bg-surface-3/60'
@@ -90,7 +104,7 @@ export function MobileResultsList({
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
@@ -102,6 +116,17 @@ export function DesktopResultsList({
   onPreviewService,
 }: ResultsProps) {
   const parentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!parentRef.current) return;
+    const cards = parentRef.current.querySelectorAll('.locator-result-card');
+    if (cards.length > 0) {
+      gsap.fromTo(cards,
+        { opacity: 0, y: 15, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.05, ease: 'power2.out', clearProps: 'all' }
+      );
+    }
+  }, [filtered]);
 
   const rowVirtualizer = useVirtualizer({
     count: filtered.length,
@@ -135,7 +160,7 @@ export function DesktopResultsList({
               }}
             >
               <div
-                className={`h-full group rounded-lg p-5 lg:p-6 transition-all ${
+                className={`locator-result-card h-full group rounded-lg p-5 lg:p-6 transition-all ${
                   selectedServiceId === service.id
                     ? 'border border-brand/30 bg-brand/[0.08] dark:border-brand/40 dark:bg-surface-1/70'
                     : 'border border-border-md bg-surface-2 hover:bg-surface-2 dark:border-white/5 dark:bg-surface-1/40 dark:hover:bg-surface-2/60'

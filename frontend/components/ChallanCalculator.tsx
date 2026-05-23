@@ -1,11 +1,41 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAppStore } from '@/lib/store';
 import { calculateChallan, type ChallanResult } from '@/lib/api';
 import { logClientError } from '@/lib/client-logger';
 import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
+import { haptics } from '@/lib/haptics';
+import { gsap } from '@/lib/gsap';
+
+const FineCountUp = ({ value }: { value: number }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const containerRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const obj = { val: 0 };
+    const ctx = gsap.context(() => {
+      gsap.to(obj, {
+        val: value,
+        duration: 0.8,
+        ease: 'power2.out',
+        onUpdate: () => {
+          setDisplayValue(Math.floor(obj.val));
+        },
+        onComplete: () => {
+          gsap.fromTo(containerRef.current,
+            { textShadow: '0 0 0px rgba(0,200,150,0)', color: 'var(--text-1)' },
+            { textShadow: '0 0 15px rgba(0,200,150,0.8)', color: 'var(--brand-light)', duration: 0.3, yoyo: true, repeat: 1 }
+          );
+        }
+      });
+    });
+    return () => ctx.revert();
+  }, [value]);
+
+  return <span ref={containerRef}>{displayValue}</span>;
+};
 
 /**
  * ChallanCalculator — High-Fidelity Fine Specialist
@@ -22,6 +52,26 @@ const ChallanCalculator: React.FC = () => {
  const [loading, setLoading] = useState(false);
 
  const { connectivity } = useAppStore(useShallow((s) => ({ connectivity: s.connectivity })));
+
+  const violationRef = useRef<HTMLDivElement>(null);
+  const configRef = useRef<HTMLDivElement>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.fromTo([violationRef.current, configRef.current],
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: 'power2.out' }
+    );
+  }, []);
+
+  useEffect(() => {
+    if (result && resultRef.current) {
+      gsap.fromTo(resultRef.current,
+        { opacity: 0, y: 20, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.5)' }
+      );
+    }
+  }, [result]);
 
  const VIOLATIONS = [
  { code: '194D', label: 'Helmet', icon: '' },
@@ -83,13 +133,16 @@ const ChallanCalculator: React.FC = () => {
  <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
  
  {/* Violation Selection Grid */}
- <div className="space-y-4">
+ <div ref={violationRef} className="space-y-4">
  <label className="text-[10px] font-semibold uppercase tracking-widest text-brand/40 px-2">Select Violation Type</label>
  <div className="grid grid-cols-3 gap-3">
  {VIOLATIONS.map((v) => (
  <button
  key={v.code}
- onClick={() => setViolationCode(v.code)}
+ onClick={() => {
+    setViolationCode(v.code);
+    haptics.light();
+  }}
  className={`flex flex-col items-center justify-center p-4 rounded-[1.5rem] border transition-all gap-2 ${
  violationCode === v.code 
  ? 'bg-brand text-bg border-transparent shadow-[0_4px_20px_rgba(26,92,56,0.4)]' 
@@ -104,13 +157,16 @@ const ChallanCalculator: React.FC = () => {
  </div>
 
  {/* Config Panel */}
- <div className="bg-surface-1/60 backdrop-blur-3xl p-6 rounded-[2rem] border border-brand/5 space-y-6">
+ <div ref={configRef} className="bg-surface-1/60 backdrop-blur-3xl p-6 rounded-[2rem] border border-brand/5 space-y-6">
  <div className="grid grid-cols-2 gap-4">
  <div className="space-y-2">
  <label className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">Vehicle Class</label>
  <select 
  value={vehicleClass} 
- onChange={(e) => setVehicleClass(e.target.value)}
+ onChange={(e) => {
+    setVehicleClass(e.target.value);
+    haptics.light();
+  }}
  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
  >
  <option value="2W">2-Wheeler</option>
@@ -122,7 +178,10 @@ const ChallanCalculator: React.FC = () => {
  <label className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">State/UT</label>
  <select 
  value={stateCode} 
- onChange={(e) => setStateCode(e.target.value)}
+ onChange={(e) => {
+    setStateCode(e.target.value);
+    haptics.light();
+  }}
  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
  >
  {STATES.map((state) => (
@@ -133,7 +192,10 @@ const ChallanCalculator: React.FC = () => {
  </div>
 
  <button 
- onClick={() => setIsRepeat(!isRepeat)}
+ onClick={() => {
+    setIsRepeat(!isRepeat);
+    haptics.light();
+  }}
  className={`w-full py-3 rounded-xl border transition-all flex items-center justify-center gap-3 ${
  isRepeat 
  ? 'bg-emergency/10 border-emergency/40 text-emergency' 
@@ -145,7 +207,10 @@ const ChallanCalculator: React.FC = () => {
  </button>
 
  <button 
- onClick={handleCalculate}
+ onClick={() => {
+    handleCalculate();
+    haptics.light();
+  }}
  disabled={loading}
  className="w-full py-5 bg-brand text-bg rounded-[1.5rem] text-[11px] font-semibold uppercase tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all"
  >
@@ -161,6 +226,7 @@ const ChallanCalculator: React.FC = () => {
  )}
   {result && (
  <div
+ ref={resultRef}
  className="bg-surface-1 border-2 border-brand/20 p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden"
  >
  <div className="absolute top-0 right-0 w-32 h-32 bg-emergency/5 blur-[60px] rounded-full" />
@@ -178,7 +244,7 @@ const ChallanCalculator: React.FC = () => {
 
  <div className="flex items-baseline gap-2">
  <span className="text-5xl font-black text-text-1 tracking-tighter">
- ₹{result.amount_due}
+ ₹<FineCountUp value={result.amount_due} />
  </span>
  {isRepeat && (
  <span className="text-[10px] font-semibold text-emergency uppercase tracking-widest">Multiplied Penalty</span>

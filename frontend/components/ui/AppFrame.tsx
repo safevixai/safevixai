@@ -9,6 +9,9 @@ import { RightSidebar } from '@/components/RightSidebar';
 import { NetworkMonitor } from '@/components/NetworkMonitor';
 import { GlobalSOS } from '@/components/GlobalSOS';
 import { CommandPalette } from '@/components/search/CommandPalette';
+import { OfflineBanner } from '@/components/ui/OfflineBanner';
+import { SystemStatusBar } from '@/components/ui/SystemStatusBar';
+import { ServerWarmingBanner } from '@/components/ui/ServerWarmingBanner';
 import { useAppStore } from '@/lib/store';
 import { Menu } from 'lucide-react';
 
@@ -34,6 +37,9 @@ export function AppFrame({ children }: AppFrameProps) {
     return (
       <div className="flex min-h-dvh w-full bg-bg text-text-1 transition-colors duration-300">
         <NetworkMonitor />
+        <SystemStatusBar />
+        <OfflineBanner />
+        <ServerWarmingBanner />
         {/* Intentionally omitting GlobalSOS, Sidebar, and BottomNav for these standalone pages */}
         <main className="flex-1 w-full relative flex flex-col">
           {children}
@@ -53,6 +59,9 @@ export function AppFrame({ children }: AppFrameProps) {
       <NetworkMonitor />
       <GlobalSOS />
       <CommandPalette />
+      <SystemStatusBar />
+      <OfflineBanner />
+      <ServerWarmingBanner />
 
       {/* ── Navigation Shell ── */}
       

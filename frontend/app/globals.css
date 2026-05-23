@@ -22,6 +22,10 @@
   --font-inter: 'Inter', 'Inter Variable', -apple-system, sans-serif;
   --font-space: 'Space Grotesk', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  --header-h: 52px;
+  --navbar-bottom-h: 64px;
+  --full-content-h: calc(100dvh - var(--header-h) - var(--navbar-bottom-h));
+  --full-content-h-desktop: calc(100dvh - var(--header-h));
 }
 
 :root {
@@ -359,7 +363,9 @@ body {
 .animate-stagger > *:nth-child(5) { animation-delay: 320ms; }
 
 [data-theme='light'] .skeleton,
-.light .skeleton {
+[data-theme='light'] .skeleton-shimmer,
+.light .skeleton,
+.light .skeleton-shimmer {
   background: linear-gradient(90deg, #E2E8F0 25%, #F7F9FC 50%, #E2E8F0 75%);
   background-size: 800px 100%;
   animation: shimmer-light 1.5s infinite linear;
@@ -370,7 +376,8 @@ body {
   100% { background-position: 400px 0; }
 }
 
-.skeleton {
+.skeleton,
+.skeleton-shimmer {
   background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 50%, var(--surface-2) 75%);
   background-size: 800px 100%;
   animation: shimmer-dark 1.5s infinite linear;
