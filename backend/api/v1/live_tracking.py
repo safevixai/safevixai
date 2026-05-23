@@ -67,7 +67,7 @@ async def start_tracking(
     payload: StartTrackingRequest,
     request: Request,
     current_user: dict = Depends(get_current_user),
-):
+) -> StartTrackingResponse:
     """
     Start a live tracking session. Returns a shareable public link.
     Called when SOS is triggered or crash is detected.
@@ -128,7 +128,7 @@ async def update_location(
     payload: UpdateLocationRequest,
     request: Request,
     current_user: dict = Depends(get_current_user),
-):
+) -> dict:
     """
     Update the GPS location for an active tracking session.
     Called every 5 seconds from the victim's device.
@@ -171,7 +171,7 @@ async def get_session(
     session_id: uuid.UUID,
     token: str | None = Query(default=None, min_length=20, max_length=4096),
     authorization: str | None = Header(default=None),
-):
+) -> TrackingSessionResponse:
     """
     Get the current location for a tracking session.
     PUBLIC endpoint — no authentication required.
@@ -230,7 +230,7 @@ async def stop_tracking(
     request: Request,
     session_id: uuid.UUID,
     current_user: dict = Depends(get_current_user),
-):
+) -> dict:
     """
     Stop (deactivate) a tracking session.
     Called when user confirms they are safe.

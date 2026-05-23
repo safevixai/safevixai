@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo, useRef, useEffect } from 'react';
+import React, { memo, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MapPin, BotMessageSquare, MapPinPlus, AlertTriangle, HeartPulse } from 'lucide-react';
@@ -17,9 +17,9 @@ interface NavItem {
 
 const items: NavItem[] = [
   { id: 0, icon: <MapPin size={22} strokeWidth={2.5} />, label: "Map", href: "/", accentColor: 'var(--brand-light)' },
-  { id: 1, icon: <BotMessageSquare size={22} strokeWidth={2.5} />, label: "AI Chat", href: "/assistant", accentColor: '#8B5CF6' },
-  { id: 2, icon: <MapPinPlus size={22} strokeWidth={2.5} />, label: "Locator", href: "/locator", accentColor: '#3B82F6' },
-  { id: 3, icon: <AlertTriangle size={22} strokeWidth={2.5} />, label: "Report", href: "/report", accentColor: '#F59E0B' },
+  { id: 1, icon: <BotMessageSquare size={22} strokeWidth={2.5} />, label: "AI Chat", href: "/assistant", accentColor: 'var(--brand)' },
+  { id: 2, icon: <MapPinPlus size={22} strokeWidth={2.5} />, label: "Locator", href: "/locator", accentColor: 'var(--text-2)' },
+  { id: 3, icon: <AlertTriangle size={22} strokeWidth={2.5} />, label: "Report", href: "/report", accentColor: 'var(--warning)' },
   { id: 4, icon: <HeartPulse size={22} strokeWidth={2.5} />, label: "First Aid", href: "/first-aid", accentColor: 'var(--emergency)' },
 ];
 
@@ -35,9 +35,10 @@ const BottomNav = memo(function BottomNav() {
   // Animate indicator slide with GSAP spring
   useGSAP(() => {
     if (!indicatorRef.current) return;
-    const targetX = active * (100 / items.length);
+    const itemWidth = 100 / items.length;
+    const targetX = active * itemWidth + itemWidth / 2;
     gsap.to(indicatorRef.current, {
-      left: `calc(${targetX}% + ${100 / items.length / 2}%)`,
+      x: `${targetX}vw`,
       duration: 0.4,
       ease: 'elastic.out(1, 0.75)',
     });
@@ -53,7 +54,7 @@ const BottomNav = memo(function BottomNav() {
   }, { scope: navRef });
 
   return (
-    <div className="fixed bottom-0 left-0 z-[100] pointer-events-none w-full lg:hidden [@media(max-height:500px)]:hidden">
+    <nav className="fixed bottom-0 left-0 z-[100] pointer-events-none w-full lg:hidden [@media(max-height:500px)]:hidden" aria-label="Main navigation">
       <div
         ref={navRef}
         className="relative flex items-center justify-around w-full pb-[env(safe-area-inset-bottom)] pt-2 overflow-hidden pointer-events-auto"
@@ -70,7 +71,7 @@ const BottomNav = memo(function BottomNav() {
           ref={indicatorRef}
           className="absolute -z-10 transition-colors duration-300"
           style={{
-            left: `calc(${active * (100 / items.length)}% + ${100 / items.length / 2}%)`,
+            left: 0,
             transform: 'translateX(-50%)',
             top: '-1px',
           }}
@@ -142,7 +143,7 @@ const BottomNav = memo(function BottomNav() {
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 });
 

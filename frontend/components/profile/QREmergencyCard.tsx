@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 const QRCodeSVG = dynamic(() => import('qrcode.react').then(m => m.QRCodeSVG), { ssr: false });
 import {
@@ -13,21 +13,28 @@ import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
 
 interface UserProfile {
+  id?: string;
   name?: string;
+  phone?: string;
   bloodGroup?: string;
   vehicleNumber?: string;
   emergencyContact?: string;
+  emergencyContacts?: { name: string; phone: string; relation: string }[];
+  medicalConditions?: string;
+  preferredLanguage?: string;
 }
 
 export default function QREmergencyCard() {
   const { userProfile } = useAppStore(useShallow((s) => ({ userProfile: s.userProfile })));
   const [showPreview, setShowPreview] = useState(false);
   const [copied, setCopied] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  // Generate unique ID from name — same algo as profile page
-  const displayId = userProfile.name
+  // Use the canonical profile ID, falling back to a deterministic display ID.
+  const displayId = userProfile.id || (userProfile.name
     ? `SVA-${userProfile.name.slice(0, 4).toUpperCase().replace(/\s/g, '')}-X`
-    : 'SVA-XXXX-X';
+    : 'SVA-XXXX-X');
 
   // The public URL that the QR code encodes
   const baseUrl =
@@ -36,10 +43,15 @@ export default function QREmergencyCard() {
       : 'https://safevixai.app';
 
   const emergencyPayload = {
+    id: displayId,
     name: userProfile.name || '',
+    phone: userProfile.phone || '',
     blood: userProfile.bloodGroup || '',
     vehicle: userProfile.vehicleNumber || '',
     contact: userProfile.emergencyContact || '',
+    contacts: userProfile.emergencyContacts || [],
+    medical: userProfile.medicalConditions || '',
+    language: userProfile.preferredLanguage || 'en',
   };
 
   const encodePayload = (payload: typeof emergencyPayload) => {
@@ -57,8 +69,46 @@ export default function QREmergencyCard() {
   const isProfileComplete = !!(
     userProfile.name &&
     userProfile.bloodGroup &&
-    userProfile.emergencyContact
+    (userProfile.emergencyContact || (userProfile.emergencyContacts?.length ?? 0) > 0)
   );
+
+  useEffect(() => {
+    if (!showPreview) return;
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
+    dialogRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowPreview(false);
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previousFocusRef.current?.focus();
+    };
+  }, [showPreview]);
 
   const handleCopyLink = async () => {
     try {
@@ -87,7 +137,7 @@ export default function QREmergencyCard() {
 
   return (
     <>
-      {/* ── QR Emergency Card Section ── */}
+      {/* QR Emergency Card Section */}
       <section
         className="flex flex-col gap-6"
       >
@@ -270,6 +320,11 @@ export default function QREmergencyCard() {
             onClick={() => setShowPreview(false)}
           >
             <div
+              ref={dialogRef}
+              tabIndex={-1}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="qr-preview-title"
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-sm bg-white dark:bg-surface-1 rounded-xl overflow-hidden shadow-2xl border border-border-md dark:border-white/10"
             >
@@ -282,7 +337,7 @@ export default function QREmergencyCard() {
                     <Shield size={16} className="text-brand-dim dark:text-brand" />
                     <span className="text-xs font-semibold text-brand-dim dark:text-brand uppercase tracking-widest font-space">SafeVixAI</span>
                   </div>
-                  <h2 className="text-2xl font-black text-text-1 dark:text-white uppercase tracking-tight">
+                  <h2 id="qr-preview-title" className="text-2xl font-black text-text-1 dark:text-white uppercase tracking-tight">
                     {userProfile.name || 'UNKNOWN OPERATOR'}
                   </h2>
                   <p className="text-[10px] font-bold text-text-2 uppercase tracking-widest mt-1">{displayId}</p>
@@ -311,21 +366,21 @@ export default function QREmergencyCard() {
                     <Heart size={16} className="text-emergency mb-1" />
                     <span className="text-[8px] font-bold text-text-2 uppercase tracking-wider">Blood</span>
                     <span className="text-sm font-semibold text-text-1 dark:text-white">
-                      {userProfile.bloodGroup || '—'}
+                      {userProfile.bloodGroup || '-'}
                     </span>
                   </div>
                   <div className="flex flex-col items-center p-3 rounded-xl bg-brand-light/10 dark:bg-brand/10 border border-brand-light/20 dark:border-brand/20">
                     <Car size={16} className="text-brand mb-1" />
                     <span className="text-[8px] font-bold text-text-2 uppercase tracking-wider">Vehicle</span>
                     <span className="text-[11px] font-semibold text-text-1 dark:text-white truncate w-full text-center">
-                      {userProfile.vehicleNumber || '—'}
+                      {userProfile.vehicleNumber || '-'}
                     </span>
                   </div>
                   <div className="flex flex-col items-center p-3 rounded-xl bg-warning/10 dark:bg-warning/10 border border-warning/20 dark:border-warning/20">
                     <Phone size={16} className="text-warning mb-1" />
                     <span className="text-[8px] font-bold text-text-2 uppercase tracking-wider">SOS</span>
                     <span className="text-[10px] font-semibold text-text-1 dark:text-white truncate w-full text-center">
-                      {userProfile.emergencyContact || '—'}
+                      {userProfile.emergencyContact || userProfile.emergencyContacts?.[0]?.phone || '-'}
                     </span>
                   </div>
                 </div>

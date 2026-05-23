@@ -53,6 +53,9 @@ export function CommandPalette() {
   return (
     <div
       ref={overlayRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search commands"
       className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"
       onClick={() => setOpen(false)}
     >

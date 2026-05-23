@@ -31,14 +31,14 @@ export const HEATMAP_LAYER_ID = 'svai-heatmap-layer';
 
 export function iconForType(type: string) {
   const normalized = type.toLowerCase();
-  if (normalized.includes('hospital')) return '🏥';
-  if (normalized.includes('ambulance')) return '🚑';
-  if (normalized.includes('pharmacy')) return '💊';
-  if (normalized.includes('police')) return '👮';
-  if (normalized.includes('fire')) return '🚒';
-  if (normalized.includes('tow')) return '🪝';
-  if (normalized.includes('mechanic')) return '🔧';
-  return '📍';
+  if (normalized.includes('hospital')) return 'H';
+  if (normalized.includes('ambulance')) return 'A';
+  if (normalized.includes('pharmacy')) return 'Rx';
+  if (normalized.includes('police')) return 'P';
+  if (normalized.includes('fire')) return 'F';
+  if (normalized.includes('tow')) return 'T';
+  if (normalized.includes('mechanic')) return 'M';
+  return 'L';
 }
 
 // ═══════════════════════════════════════════
@@ -118,6 +118,7 @@ export function buildMarkerElement({
   const shell = document.createElement('div');
   const glyph = document.createElement('span');
 
+  marker.className = 'map-marker-bounce';
   marker.style.transform = 'translate(-50%, -50%)';
   marker.style.display = 'flex';
   marker.style.alignItems = 'center';
@@ -141,7 +142,7 @@ export function buildMarkerElement({
     shell.style.boxShadow = `0 16px 34px rgba(2, 6, 23, 0.34), 0 0 0 8px color-mix(in srgb, ${color} 24%, transparent)`;
   }
 
-  glyph.textContent = kind === 'current' ? '🎯' : icon;
+  glyph.textContent = kind === 'current' ? 'GPS' : icon;
   glyph.style.fontSize = kind === 'current' ? '14px' : kind === 'issue' ? '18px' : '20px';
   glyph.style.fontWeight = '700';
   glyph.style.lineHeight = '1';
@@ -150,6 +151,11 @@ export function buildMarkerElement({
 
   shell.appendChild(glyph);
   marker.appendChild(shell);
+
+  marker.setAttribute('role', 'img');
+  const kindLabel = kind === 'current' ? 'Your current location' : kind === 'issue' ? `Issue: ${icon}` : `Location: ${icon}`;
+  marker.setAttribute('aria-label', kindLabel);
+
   return marker;
 }
 

@@ -27,14 +27,16 @@ class Role(str, Enum):
 
     ADMIN = "admin"
     OPERATOR = "operator"
+    FIELD_OFFICER = "field_officer"
     USER = "user"
     READONLY = "readonly"
 
 
 # Permission hierarchy: higher roles inherit lower role permissions
 ROLE_HIERARCHY = {
-    Role.ADMIN: [Role.ADMIN, Role.OPERATOR, Role.USER, Role.READONLY],
-    Role.OPERATOR: [Role.OPERATOR, Role.USER, Role.READONLY],
+    Role.ADMIN: [Role.ADMIN, Role.OPERATOR, Role.FIELD_OFFICER, Role.USER, Role.READONLY],
+    Role.OPERATOR: [Role.OPERATOR, Role.FIELD_OFFICER, Role.USER, Role.READONLY],
+    Role.FIELD_OFFICER: [Role.FIELD_OFFICER, Role.USER, Role.READONLY],
     Role.USER: [Role.USER, Role.READONLY],
     Role.READONLY: [Role.READONLY],
 }

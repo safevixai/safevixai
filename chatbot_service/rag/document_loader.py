@@ -2,14 +2,17 @@ from __future__ import annotations
 
 import csv
 import json
+import logging
 from dataclasses import dataclass
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 from rag.embeddings import normalize_text
 
 try:
     from pypdf import PdfReader
-except Exception:  # pragma: no cover - optional dependency at runtime
+except ImportError:  # pragma: no cover - optional dependency at runtime
     PdfReader = None
 
 
@@ -45,7 +48,8 @@ def load_documents(data_dir: Path) -> list[LoadedDocument]:
             continue
         try:
             text = loader(path)
-        except Exception:
+        except (OSError, FileNotFoundError, json.JSONDecodeError) as exc:
+            logger.warning("Failed to load document %s: %s", path, exc)
             continue
         text = normalize_text(text)[:MAX_TEXT_CHARS]
         if not text:

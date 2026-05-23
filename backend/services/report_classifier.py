@@ -51,6 +51,7 @@ class ReportClassifier:
         logger.info(
             "Classified report: type=%s (%.2f), severity=%d (%.2f)",
             classified_type, confidence, severity, severity_confidence,
+            extra={"service": "report_classifier"},
         )
         return result
 

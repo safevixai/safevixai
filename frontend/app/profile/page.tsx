@@ -19,6 +19,7 @@ import QREmergencyCard from '@/components/profile/QREmergencyCard';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
+import { toast } from 'sonner';
 
 export default function ProfilePage() {
   const { crashDetectionEnabled, setCrashDetectionEnabled, userProfile, setUserProfile, clearAuth, operatorName, isAuthenticated } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, userProfile: s.userProfile, setUserProfile: s.setUserProfile, clearAuth: s.clearAuth, operatorName: s.operatorName, isAuthenticated: s.isAuthenticated })));
@@ -61,8 +62,8 @@ export default function ProfilePage() {
       setShowPurgeConfirm(true);
       setTimeout(() => setShowPurgeConfirm(false), 3000);
     } else {
-      // Intended purge logic here
-      alert('Local session data purged.');
+      window.localStorage.removeItem('safevixai:assistant-session');
+      toast.success('Local session data purged.');
       setShowPurgeConfirm(false);
     }
   };

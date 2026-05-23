@@ -14,6 +14,7 @@ import { FEATURES } from '@/lib/features'
 import { beginLocationBroadcast, startFamilyTracking } from '@/lib/live-tracking'
 import { Loader2 } from 'lucide-react'
 import { track } from '@/lib/analytics'
+import { loadUserProfileFromIndexedDB, migrateUserProfileFromLocalStorage } from '@/lib/profile-storage'
 
 function SystemBanners() {
   const connectivity = useAppStore(state => state.connectivity)
@@ -67,7 +68,7 @@ export function EnterpriseClientAppHooks() {
 
     // Register Service worker
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+      const registerServiceWorker = () => {
         navigator.serviceWorker.register('/sw.js')
           .then((reg) => {
             console.log('SafeVixAI: ServiceWorker registered successfully:', reg.scope);
@@ -75,12 +76,32 @@ export function EnterpriseClientAppHooks() {
           .catch((err) => {
             console.error('SafeVixAI: ServiceWorker registration failed:', err);
           });
-      });
+      };
+      if (document.readyState === 'complete') {
+        registerServiceWorker();
+      } else {
+        window.addEventListener('load', registerServiceWorker, { once: true });
+      }
     }
 
     return () => {
       stopCrashTrackingRef.current?.()
       stopCrashTrackingRef.current = null
+    }
+  }, [])
+
+  useEffect(() => {
+    let cancelled = false
+    const hydrateProfile = async () => {
+      await migrateUserProfileFromLocalStorage()
+      const profile = await loadUserProfileFromIndexedDB()
+      if (!cancelled && profile) {
+        useAppStore.getState().setUserProfile(profile)
+      }
+    }
+    void hydrateProfile()
+    return () => {
+      cancelled = true
     }
   }, [])
 
@@ -127,7 +148,7 @@ export function EnterpriseClientAppHooks() {
       const dispatchSos = async () => {
         if (!gpsLocation) {
           toast.error('Crash detected, but location is unavailable. Open SOS and share your location manually.', {
-            duration: 8000,
+            duration: 0,
             position: 'top-center',
           })
           setCrashCountdown(null)
@@ -150,25 +171,25 @@ export function EnterpriseClientAppHooks() {
               stopCrashTrackingRef.current?.()
               stopCrashTrackingRef.current = beginLocationBroadcast(trackingSession.session_id)
               toast.success(`Family tracking started: ${trackingSession.tracking_url}`, {
-                duration: 12000,
+                duration: 0,
                 position: 'top-center',
               })
             } catch {
               toast.error('Auto-SOS sent, but family tracking could not be started. Open SOS to share manually.', {
-                duration: 8000,
+                duration: 0,
                 position: 'top-center',
               })
             }
           }
-          toast.success('SOS sent to emergency contacts — they can track you now.', {
-            duration: 8000,
+          toast.success('SOS sent to emergency contacts - they can track you now.', {
+            duration: 0,
             position: 'top-center',
           })
         } catch {
           track.offlineSosQueued()
           await enqueueSOS({ lat: gpsLocation.lat, lon: gpsLocation.lon })
-          toast.error('Network unavailable — SOS saved offline and will retry automatically.', {
-            duration: 8000,
+          toast.error('Network unavailable - SOS saved offline and will retry automatically.', {
+            duration: 0,
             position: 'top-center',
           })
         } finally {
@@ -263,6 +284,7 @@ function CrashDialog({
       aria-live="assertive"
       aria-labelledby="crash-countdown-title"
       aria-describedby="crash-countdown-desc"
+      aria-modal="true"
     >
       <div className="flex flex-col gap-3">
         <div>
@@ -283,7 +305,7 @@ function CrashDialog({
             className="h-11 flex-1 rounded-lg bg-white text-sm font-bold text-red-950"
             onClick={onCancel}
           >
-            I am safe — cancel SOS
+            I am safe - cancel SOS
           </button>
           <button
             type="button"

@@ -218,7 +218,7 @@ export function ChatInterface() {
       </div>
 
       {/* CHAT MESSAGES */}
-      <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4 scrollbar-hide">
+      <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4 scrollbar-hide" role="log" aria-live="polite" aria-label="Chat messages">
         {messages.map((msg) => {
           const isUser = msg.role === 'user';
           return (

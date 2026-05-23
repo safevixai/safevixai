@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import json
+import logging
 from collections import OrderedDict
 from datetime import datetime, timezone
 from typing import Any
 
 from redis.asyncio import Redis
+from redis.exceptions import RedisError
+
+logger = logging.getLogger(__name__)
 
 # S21/C13: Cap in-memory fallback to avoid unbounded growth when Redis is down.
 _MAX_IN_MEMORY_SESSIONS = 500
@@ -49,7 +53,8 @@ class ConversationMemoryStore:
                 await self._client.rpush(self._key(session_id), json.dumps(payload))
                 await self._client.expire(self._key(session_id), self._session_ttl_seconds)
                 self._redis_healthy = True
-            except Exception:
+            except (RedisError, OSError) as exc:
+                logger.warning("Redis append_message failed: %s", exc)
                 self._redis_healthy = False
         return payload
 
@@ -60,7 +65,8 @@ class ConversationMemoryStore:
                 self._redis_healthy = True
                 if items:
                     return [json.loads(item) for item in items]
-            except Exception:
+            except (RedisError, json.JSONDecodeError, OSError) as exc:
+                logger.warning("Redis get_history failed: %s", exc)
                 self._redis_healthy = False
         history = self._memory.get(session_id, [])
         return history[-limit:]
@@ -71,7 +77,8 @@ class ConversationMemoryStore:
             try:
                 await self._client.delete(self._key(session_id))
                 self._redis_healthy = True
-            except Exception:
+            except (RedisError, OSError) as exc:
+                logger.warning("Redis clear_session failed: %s", exc)
                 self._redis_healthy = False
 
     async def ping(self) -> bool:
@@ -81,7 +88,8 @@ class ConversationMemoryStore:
             await self._client.ping()
             self._redis_healthy = True
             return True
-        except Exception:
+        except (RedisError, OSError) as exc:
+            logger.warning("Redis ping failed: %s", exc)
             self._redis_healthy = False
             return False  # Redis is genuinely unreachable
 
@@ -91,7 +99,8 @@ class ConversationMemoryStore:
         try:
             await self._client.aclose()
             self._redis_healthy = False
-        except Exception:
+        except (RedisError, OSError) as exc:
+            logger.warning("Redis close failed: %s", exc)
             return
 
     @staticmethod

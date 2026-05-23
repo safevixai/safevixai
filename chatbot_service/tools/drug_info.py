@@ -8,7 +8,12 @@ Endpoint: https://api.fda.gov/drug/label.json
 
 from __future__ import annotations
 
+import json
+import logging
+
 import httpx
+
+logger = logging.getLogger(__name__)
 
 
 class DrugInfoTool:
@@ -58,7 +63,7 @@ class DrugInfoTool:
                 "active_ingredient": _extract_first(label, "active_ingredient"),
                 "source": "openfda",
             }
-        except Exception:
+        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
             return None
 
     async def aclose(self) -> None:

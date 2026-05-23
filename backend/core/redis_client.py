@@ -8,9 +8,13 @@ from redis.asyncio import Redis
 
 
 class CacheHelper:
+    # Max in-memory cache entries before eviction (prevents OOM when Redis is down)
+    _MEMORY_MAX_ENTRIES = 1000
+
     def __init__(self, client: Redis | None = None) -> None:
         self._client = client
         self._memory_store: dict[str, tuple[float | None, str]] = {}
+        self._memory_keys: list[str] = []
         self._redis_healthy = client is not None
 
     @property
@@ -34,8 +38,17 @@ class CacheHelper:
         return payload
 
     def _memory_set(self, key: str, payload: str, ttl_seconds: int | None = None) -> None:
+        # Evict oldest entries when store exceeds max capacity
+        if len(self._memory_store) >= self._MEMORY_MAX_ENTRIES and key not in self._memory_store:
+            evict_count = max(1, self._MEMORY_MAX_ENTRIES // 10)
+            for _ in range(evict_count):
+                if self._memory_keys:
+                    oldest = self._memory_keys.pop(0)
+                    self._memory_store.pop(oldest, None)
         expires_at = None if ttl_seconds is None else time.monotonic() + ttl_seconds
         self._memory_store[key] = (expires_at, payload)
+        if key not in self._memory_keys:
+            self._memory_keys.append(key)
 
     def _memory_delete(self, key: str) -> None:
         self._memory_store.pop(key, None)

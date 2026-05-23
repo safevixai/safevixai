@@ -29,6 +29,8 @@ import Toggle from '@/components/dashboard/Toggle';
 import Toast from '@/components/dashboard/Toast';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
+import posthog from 'posthog-js';
+import { ANALYTICS_CONSENT_KEY } from '@/lib/analytics-provider';
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -84,6 +86,19 @@ export default function SettingsPage() {
     }))
   );
 
+  const setAnalyticsConsent = (enabled: boolean) => {
+    setAnalyticsOptIn(enabled);
+    if (typeof window === 'undefined') return;
+    window.localStorage.setItem(ANALYTICS_CONSENT_KEY, enabled ? 'granted' : 'denied');
+    if (enabled) {
+      posthog.opt_in_capturing();
+      showToast('Analytics enabled', 'success');
+    } else {
+      posthog.opt_out_capturing();
+      showToast('Analytics disabled', 'success');
+    }
+  };
+
   const { theme, setTheme } = useTheme();
   const pageRef = usePageEntry();
 
@@ -99,7 +114,7 @@ export default function SettingsPage() {
     if (typeof window !== 'undefined') {
       let total = 0;
       for (const x in localStorage) {
-        if (localStorage.hasOwnProperty(x)) {
+        if (Object.prototype.hasOwnProperty.call(localStorage, x)) {
           total += ((localStorage[x].length + x.length) * 2);
         }
       }
@@ -341,7 +356,7 @@ export default function SettingsPage() {
               checked={autoOffline} onChange={setAutoOffline} />
             <ToggleRow icon={<Map size={20} />}
               label="Usage Analytics" sub="Anonymous Performance Telemetry"
-              checked={analyticsOptIn} onChange={setAnalyticsOptIn} />
+              checked={analyticsOptIn} onChange={setAnalyticsConsent} />
           </SurfaceCard>
 
           <p className="sv-micro px-2 leading-relaxed text-text-3">

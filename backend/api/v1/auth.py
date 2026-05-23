@@ -56,7 +56,7 @@ def _configured_operator() -> dict[str, str] | None:
 
 @router.post("/login", response_model=LoginResponse)
 @limiter.limit("5/minute")
-async def login(request: Request, body: LoginRequest):
+async def login(request: Request, body: LoginRequest) -> JSONResponse:
     operator = _configured_operator()
     if operator is None:
         raise HTTPException(status_code=503, detail="Operator login is not configured")
@@ -78,20 +78,21 @@ async def login(request: Request, body: LoginRequest):
 
 @router.post("/logout")
 @limiter.limit("10/minute")
-async def logout(request: Request):
+async def logout(request: Request) -> JSONResponse:
+    from core.security import COOKIE_HTTPONLY, COOKIE_SECURE, COOKIE_SAMESITE, COOKIE_PATH
     response = JSONResponse(content={"message": "Logged out successfully"})
     response.delete_cookie(
         key="access_token",
-        path="/",
-        httponly=True,
-        samesite="lax",
-        secure=os.environ.get("ENVIRONMENT", "development").lower() == "production"
+        path=COOKIE_PATH,
+        httponly=COOKIE_HTTPONLY,
+        samesite=COOKIE_SAMESITE,
+        secure=COOKIE_SECURE
     )
     return response
 
 @router.get("/verify")
 @limiter.limit("20/minute")
-async def verify_token(request: Request, current_user: dict = Depends(get_current_user)):
+async def verify_token(request: Request, current_user: dict = Depends(get_current_user)) -> dict:
     """Validate the caller's bearer token."""
     return {"status": "valid", "sub": current_user.get("sub"), "role": current_user.get("role")}
 
@@ -102,7 +103,7 @@ class RefreshTokenRequest(BaseModel):
 
 @router.post("/refresh")
 @limiter.limit("5/minute")
-async def refresh_access_token(request: Request, body: RefreshTokenRequest):
+async def refresh_access_token(request: Request, body: RefreshTokenRequest) -> JSONResponse:
     """Issue a new access token from a valid refresh token."""
     try:
         payload = jwt.decode(
@@ -129,7 +130,7 @@ async def refresh_access_token(request: Request, body: RefreshTokenRequest):
         role=payload.get("role", "user"),
     )
     return create_secure_cookie_response(
-        content={"access_token": new_token, "token_type": "bearer"},
+        content={"message": "Token refreshed successfully"},
         token=new_token,
     )
 
@@ -139,7 +140,7 @@ async def refresh_access_token(request: Request, body: RefreshTokenRequest):
 async def revoke_access_token(
     request: Request,
     current_user: dict = Depends(get_current_user),
-):
+) -> dict:
     """Revoke the current access token."""
     jti = current_user.get("jti")
     if jti:

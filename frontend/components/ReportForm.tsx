@@ -88,6 +88,7 @@ const ReportForm: React.FC = () => {
   if (submitted) {
     return (
       <div
+        role="alert"
         className="bg-surface-1/60 backdrop-blur-3xl border border-brand/20 p-8 rounded-[2rem] text-center"
       >
         <div className="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-brand/30">
@@ -116,7 +117,7 @@ const ReportForm: React.FC = () => {
         <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand/40">Form Protocol 01-{step.toString().padStart(2, '0')}</span>
         <div className="flex gap-1">
           {[1, 2].map((s) => (
-            <div key={s} className={`w-6 h-1 rounded-full ${s === step ? 'bg-brand' : 'bg-brand/10'}`} />
+            <div key={s} role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={2} aria-label={`Step ${s} of 2`} className={`w-6 h-1 rounded-full ${s === step ? 'bg-brand' : 'bg-brand/10'}`} />
           ))}
         </div>
       </div>
@@ -131,6 +132,8 @@ const ReportForm: React.FC = () => {
                 <button
                   key={type}
                   onClick={() => setIssue(type)}
+                  aria-pressed={issue === type}
+                  aria-label={`Issue type: ${type}`}
                   className={`p-4 rounded-lg text-left border transition-all ${
                     issue === type 
                       ? 'bg-brand text-brand-foreground border-transparent shadow-sm' 
@@ -149,6 +152,8 @@ const ReportForm: React.FC = () => {
                   <button
                     key={lvl}
                     onClick={() => setSeverity(lvl)}
+                    aria-label={`Severity level ${lvl}`}
+                    aria-pressed={severity >= lvl}
                     className={`flex-1 h-10 rounded-lg transition-all ${
                       severity >= lvl 
                         ? (severity >= 4 ? 'bg-emergency' : 'bg-brand') 
@@ -175,6 +180,7 @@ const ReportForm: React.FC = () => {
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
               placeholder="Operational details (e.g. Left lane impassable)..."
+              aria-label="Description of the road issue"
               className="w-full bg-surface-1/40 border border-brand/10 rounded-lg p-4 text-sm text-text-1 placeholder-brand/20 min-h-[120px] focus:outline-none focus:border-brand/40"
             />
 
@@ -184,6 +190,7 @@ const ReportForm: React.FC = () => {
                 type="file" 
                 accept="image/jpeg, image/png, image/webp"
                 onChange={(e) => setPhoto(e.target.files?.[0] || null)}
+                aria-label="Attach evidence photo"
                 className="text-xs text-brand file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand/10 file:text-brand hover:file:bg-brand/20"
               />
               {photo && <p className="text-[10px] text-brand mt-2">Attached: {photo.name}</p>}
@@ -192,9 +199,10 @@ const ReportForm: React.FC = () => {
             <div className="flex gap-3">
               <button 
                 onClick={() => setStep(1)}
+                aria-label="Go back to step 1"
                 className="w-20 h-14 border border-brand/10 rounded-lg flex items-center justify-center text-brand hover:bg-brand/5"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>

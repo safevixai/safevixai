@@ -39,6 +39,22 @@ class RoadIssue(Base):
     status_updated: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
+    # Enterprise extensions
+    category: Mapped[str] = mapped_column(String(32), default='roads', index=True)
+    sub_category: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    ward_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
+    ward_name: Mapped[str | None] = mapped_column(Text, nullable=True)
+    assigned_officer_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True)
+    sla_deadline: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    resolved_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    duplicate_of_uuid: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True)
+    citizen_phone: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    confirmation_count: Mapped[int] = mapped_column(Integer, default=0)
+    before_photo_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    after_photo_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    ai_confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    ai_model_version: Mapped[str | None] = mapped_column(String(32), nullable=True)
+
 
 class RoadInfrastructure(Base):
     __tablename__ = 'road_infrastructure'

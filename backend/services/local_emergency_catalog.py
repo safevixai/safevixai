@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import csv
+import logging
 from dataclasses import dataclass
 from pathlib import Path
+
+logger = logging.getLogger("safevixai.backend.local_emergency_catalog")
 
 
 @dataclass(frozen=True, slots=True)
@@ -38,16 +41,17 @@ def _load_hospital_directory(path: Path) -> list[LocalEmergencyEntry]:
     if not path.exists():
         return []
     entries: list[LocalEmergencyEntry] = []
-    with path.open('r', encoding='utf-8-sig', errors='ignore', newline='') as handle:
-        reader = csv.DictReader(handle)
-        for index, row in enumerate(reader, start=1):
-            lat_lon = _parse_coordinate_pair(row.get('Location_Coordinates'))
-            if lat_lon is None:
-                continue
-            lat, lon = lat_lon
-            name = (row.get('Hospital_Name') or '').strip()
-            if not name:
-                continue
+    try:
+        with path.open('r', encoding='utf-8-sig', errors='ignore', newline='') as handle:
+            reader = csv.DictReader(handle)
+            for index, row in enumerate(reader, start=1):
+                lat_lon = _parse_coordinate_pair(row.get('Location_Coordinates'))
+                if lat_lon is None:
+                    continue
+                lat, lon = lat_lon
+                name = (row.get('Hospital_Name') or '').strip()
+                if not name:
+                    continue
             entries.append(
                 LocalEmergencyEntry(
                     id=f'hospital_directory:{index}',
@@ -88,6 +92,8 @@ def _load_hospital_directory(path: Path) -> list[LocalEmergencyEntry]:
                     source='local:hospital_directory',
                 )
             )
+    except Exception:
+        logger.warning("Failed to load hospital directory from %s", path, extra={"service": "local_emergency_catalog"})
     return entries
 
 
@@ -95,36 +101,39 @@ def _load_nin_facilities(path: Path) -> list[LocalEmergencyEntry]:
     if not path.exists():
         return []
     entries: list[LocalEmergencyEntry] = []
-    with path.open('r', encoding='utf-8-sig', errors='ignore', newline='') as handle:
-        reader = csv.DictReader(handle)
-        for index, row in enumerate(reader, start=1):
-            lat = _parse_float(row.get('latitude'))
-            lon = _parse_float(row.get('longitude'))
-            if lat is None or lon is None:
-                continue
-            name = (row.get('Health Facility Name') or '').strip()
-            if not name:
-                continue
-            entries.append(
-                LocalEmergencyEntry(
-                    id=f'nin_facilities:{index}',
-                    name=name,
-                    category='hospital',
-                    lat=lat,
-                    lon=lon,
-                    phone=_pick_first(row, 'landline_number'),
-                    sub_category=_pick_first(row, 'Facility Type'),
-                    address=_join_address(
-                        row.get('Address'),
-                        row.get('locality'),
-                        row.get('District_Name'),
-                        row.get('State_Name'),
-                        row.get('pincode'),
-                    ),
-                    is_24hr=True,
-                    source='local:nin_health_facilities',
+    try:
+        with path.open('r', encoding='utf-8-sig', errors='ignore', newline='') as handle:
+            reader = csv.DictReader(handle)
+            for index, row in enumerate(reader, start=1):
+                lat = _parse_float(row.get('latitude'))
+                lon = _parse_float(row.get('longitude'))
+                if lat is None or lon is None:
+                    continue
+                name = (row.get('Health Facility Name') or '').strip()
+                if not name:
+                    continue
+                entries.append(
+                    LocalEmergencyEntry(
+                        id=f'nin_facilities:{index}',
+                        name=name,
+                        category='hospital',
+                        lat=lat,
+                        lon=lon,
+                        phone=_pick_first(row, 'landline_number'),
+                        sub_category=_pick_first(row, 'Facility Type'),
+                        address=_join_address(
+                            row.get('Address'),
+                            row.get('locality'),
+                            row.get('District_Name'),
+                            row.get('State_Name'),
+                            row.get('pincode'),
+                        ),
+                        is_24hr=True,
+                        source='local:nin_health_facilities',
+                    )
                 )
-            )
+    except Exception:
+        logger.warning("Failed to load NIN facilities from %s", path, extra={"service": "local_emergency_catalog"})
     return entries
 
 
@@ -133,39 +142,42 @@ def _load_generic_emergency_csv(path: Path) -> list[LocalEmergencyEntry]:
     if category is None:
         return []
     entries: list[LocalEmergencyEntry] = []
-    with path.open('r', encoding='utf-8-sig', errors='ignore', newline='') as handle:
-        reader = csv.DictReader(handle)
-        for index, row in enumerate(reader, start=1):
-            lat = _parse_float(row.get('lat') or row.get('latitude'))
-            lon = _parse_float(row.get('lon') or row.get('longitude'))
-            if lat is None or lon is None:
-                coords = _parse_coordinate_pair(row.get('coordinates') or row.get('location_coordinates'))
-                if coords is None:
+    try:
+        with path.open('r', encoding='utf-8-sig', errors='ignore', newline='') as handle:
+            reader = csv.DictReader(handle)
+            for index, row in enumerate(reader, start=1):
+                lat = _parse_float(row.get('lat') or row.get('latitude'))
+                lon = _parse_float(row.get('lon') or row.get('longitude'))
+                if lat is None or lon is None:
+                    coords = _parse_coordinate_pair(row.get('coordinates') or row.get('location_coordinates'))
+                    if coords is None:
+                        continue
+                    lat, lon = coords
+                name = _pick_first(row, 'name', 'title', 'station_name', 'hospital_name')
+                if not name:
                     continue
-                lat, lon = coords
-            name = _pick_first(row, 'name', 'title', 'station_name', 'hospital_name')
-            if not name:
-                continue
-            entries.append(
-                LocalEmergencyEntry(
-                    id=f'{path.stem}:{index}',
-                    name=name,
-                    category=category,
-                    lat=lat,
-                    lon=lon,
-                    phone=_pick_first(row, 'phone', 'telephone', 'mobile', 'mobile_number'),
-                    phone_emergency=_pick_first(row, 'emergency_phone', 'phone_emergency', 'helpline'),
-                    sub_category=_pick_first(row, 'sub_category', 'type'),
-                    address=_join_address(
-                        row.get('address'),
-                        row.get('district'),
-                        row.get('state'),
-                        row.get('pincode'),
-                    ),
+                entries.append(
+                    LocalEmergencyEntry(
+                        id=f'{path.stem}:{index}',
+                        name=name,
+                        category=category,
+                        lat=lat,
+                        lon=lon,
+                        phone=_pick_first(row, 'phone', 'telephone', 'mobile', 'mobile_number'),
+                        phone_emergency=_pick_first(row, 'emergency_phone', 'phone_emergency', 'helpline'),
+                        sub_category=_pick_first(row, 'sub_category', 'type'),
+                        address=_join_address(
+                            row.get('address'),
+                            row.get('district'),
+                            row.get('state'),
+                            row.get('pincode'),
+                        ),
                     is_24hr=_parse_bool(row.get('is_24hr'), default=True),
                     source=f'local:{path.stem}',
                 )
             )
+    except Exception:
+        logger.warning("Failed to load generic emergency CSV from %s", path, extra={"service": "local_emergency_catalog"})
     return entries
 
 

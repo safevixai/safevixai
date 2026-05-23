@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import json
+import logging
 import re
 
 from config import Settings
+
+logger = logging.getLogger(__name__)
 
 
 FALLBACK_GUIDES = {
@@ -64,7 +67,8 @@ class FirstAidTool:
             return FALLBACK_GUIDES
         try:
             payload = json.loads(self._data_path.read_text(encoding='utf-8'))
-        except Exception:
+        except (OSError, FileNotFoundError, json.JSONDecodeError) as exc:
+            logger.warning("Failed to load first aid guides: %s", exc)
             return FALLBACK_GUIDES
         if isinstance(payload, dict) and payload:
             return payload

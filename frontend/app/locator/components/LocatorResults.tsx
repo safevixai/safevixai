@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { Loader2, MapPin, Navigation, Phone, Search } from 'lucide-react';
 import { gsap } from '@/lib/gsap';
+import { useGSAP } from '@gsap/react';
 import { ServiceIcon } from '../locator-components';
 import { LocatorService, fallbackNumber } from '../locator-utils';
 
@@ -23,7 +24,7 @@ export function MobileResultsList({
 }: ResultsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!containerRef.current) return;
     const cards = containerRef.current.querySelectorAll('.locator-result-card');
     if (cards.length > 0) {
@@ -32,7 +33,7 @@ export function MobileResultsList({
         { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.05, ease: 'power2.out', clearProps: 'all' }
       );
     }
-  }, [filtered]);
+  }, { scope: containerRef, dependencies: [filtered] });
 
   return (
     <div ref={containerRef} className="space-y-4">
@@ -117,7 +118,7 @@ export function DesktopResultsList({
 }: ResultsProps) {
   const parentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!parentRef.current) return;
     const cards = parentRef.current.querySelectorAll('.locator-result-card');
     if (cards.length > 0) {
@@ -126,7 +127,7 @@ export function DesktopResultsList({
         { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.05, ease: 'power2.out', clearProps: 'all' }
       );
     }
-  }, [filtered]);
+  }, { scope: parentRef, dependencies: [filtered] });
 
   const rowVirtualizer = useVirtualizer({
     count: filtered.length,

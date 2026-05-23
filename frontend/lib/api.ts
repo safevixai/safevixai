@@ -9,7 +9,7 @@ const BASE_URL = PUBLIC_API_BASE_URL;
 // Chatbot service runs on a separate port/service
 const CHATBOT_URL = PUBLIC_CHATBOT_BASE_URL;
 
-const client = axios.create({
+export const client = axios.create({
   baseURL: BASE_URL,
   timeout: 8_000,
   withCredentials: true,
@@ -255,6 +255,7 @@ export interface ReportPayload {
   type?: string;
   issue_type?: string;
   photo?: File | Blob | null;
+  citizen_phone?: string;
 }
 
 export interface RoadReportResponse {
@@ -276,6 +277,14 @@ export interface RoadReportResponse {
   budgetSpent?: number | null;
   photoUrl?: string | null;
   status: RoadIssueStatus;
+  
+  // Enterprise extensions
+  category?: string | null;
+  subCategory?: string | null;
+  wardId?: string | null;
+  wardName?: string | null;
+  slaDeadline?: string | null;
+  duplicateOfUuid?: string | null;
 }
 
 export interface RoutePoint {
@@ -532,6 +541,13 @@ function normalizeRoadReport(data: {
   budget_spent?: number | null;
   photo_url?: string | null;
   status: RoadIssueStatus;
+  
+  category?: string | null;
+  sub_category?: string | null;
+  ward_id?: string | null;
+  ward_name?: string | null;
+  sla_deadline?: string | null;
+  duplicate_of_uuid?: string | null;
 }): RoadReportResponse {
   return {
     uuid: data.uuid,
@@ -552,6 +568,13 @@ function normalizeRoadReport(data: {
     budgetSpent: data.budget_spent ?? null,
     photoUrl: data.photo_url ?? null,
     status: data.status,
+    
+    category: data.category ?? null,
+    subCategory: data.sub_category ?? null,
+    wardId: data.ward_id ?? null,
+    wardName: data.ward_name ?? null,
+    slaDeadline: data.sla_deadline ?? null,
+    duplicateOfUuid: data.duplicate_of_uuid ?? null,
   };
 }
 
@@ -804,6 +827,10 @@ export async function submitReport(payload: ReportPayload): Promise<RoadReportRe
 
   if (payload.photo) {
     formData.append('photo', payload.photo);
+  }
+
+  if (payload.citizen_phone) {
+    formData.append('citizen_phone', payload.citizen_phone);
   }
 
   const { data } = await client.post('/api/v1/roads/report', formData, {

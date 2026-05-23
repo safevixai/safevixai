@@ -6,9 +6,14 @@ Open-Meteo is free with no API key. OWM is the fallback if Open-Meteo fails.
 
 from __future__ import annotations
 
+import json
+import logging
+
 import httpx
 
 from config import Settings
+
+logger = logging.getLogger(__name__)
 from tools.open_meteo import OpenMeteoClient
 
 
@@ -55,7 +60,7 @@ class WeatherTool:
                 'temperature': main.get('temp'),
                 'source': 'openweathermap',
             }
-        except Exception:
+        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
             return None
 
     async def aclose(self) -> None:

@@ -40,6 +40,8 @@ export function MapMarkers({
       );
 
       const markerEl = buildMarkerElement({ color: '#00c896', icon: 'my_location', kind: 'current' });
+      markerEl.setAttribute('aria-label', `Your location: ${currentLocation.title ?? 'Current position'}`);
+      markerEl.setAttribute('role', 'img');
       const markerInstance = new maplibregl.Marker({
         element: markerEl,
         anchor: 'center',
@@ -63,6 +65,8 @@ export function MapMarkers({
       );
 
       const markerEl = buildMarkerElement({ color: issue.accentColor, icon: issue.icon ?? 'warning', kind: 'issue' });
+      markerEl.setAttribute('aria-label', `Road issue: ${issue.label}. ${issue.description ?? ''}`);
+      markerEl.setAttribute('role', 'img');
       const markerInstance = new maplibregl.Marker({
         element: markerEl,
         anchor: 'center',
@@ -85,6 +89,8 @@ export function MapMarkers({
           kind: 'standard',
           selected: true,
         });
+        markerEl.setAttribute('aria-label', `Emergency facility: ${selected.name ?? selected.type}`);
+        markerEl.setAttribute('role', 'img');
 
         const markerInstance = new maplibregl.Marker({
           element: markerEl,

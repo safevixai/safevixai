@@ -11,6 +11,9 @@ from models.schemas import (
     RoadInfrastructureResponse,
     RoadIssuesResponse,
     RoadReportResponse,
+    RoadIssueItem,
+    ComplaintTimelineResponse,
+    ComplaintEventItem,
 )
 from services.roadwatch_service import RoadWatchService
 from services.exceptions import ServiceValidationError
@@ -35,6 +38,8 @@ async def get_nearby_issues(
     limit: int = Query(default=50, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
     statuses: str | None = Query(default='open,acknowledged,in_progress'),
+    category: str | None = Query(default=None),
+    sub_category: str | None = Query(default=None),
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
 ) -> RoadIssuesResponse:
@@ -53,6 +58,8 @@ async def get_nearby_issues(
         limit=limit,
         offset=offset,
         statuses=parsed_statuses,
+        category=category,
+        sub_category=sub_category,
     )
 
 
@@ -90,6 +97,7 @@ async def submit_road_issue(
     severity: int = Form(..., ge=1, le=5),
     description: str | None = Form(default=None),
     photo: UploadFile | None = File(default=None),
+    citizen_phone: str | None = Form(default=None),
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
     current_user: dict | None = Depends(get_current_user_optional),
@@ -104,9 +112,180 @@ async def submit_road_issue(
             severity=severity,
             description=description,
             photo=photo,
+            citizen_phone=citizen_phone,
         )
     except ServiceValidationError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@router.get('/issues/{issue_uuid}', response_model=RoadIssueItem)
+@limiter.limit("30/minute")
+async def get_issue_details(
+    request: Request,
+    issue_uuid: str,
+    db: AsyncSession = Depends(get_db),
+) -> RoadIssueItem:
+    """Get complete details for a single complaint."""
+    import uuid
+    from sqlalchemy import select, func
+    try:
+        report_uuid = uuid.UUID(issue_uuid)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail='Invalid UUID format') from exc
+
+    lat_expr = func.ST_Y(RoadIssue.location).label('lat')
+    lon_expr = func.ST_X(RoadIssue.location).label('lon')
+    
+    stmt = (
+        select(RoadIssue, lat_expr, lon_expr)
+        .where(RoadIssue.uuid == report_uuid)
+    )
+    row = (await db.execute(stmt)).first()
+    if not row:
+        raise HTTPException(status_code=404, detail='Complaint not found')
+
+    issue, lat, lon = row
+    return RoadIssueItem(
+        uuid=issue.uuid,
+        issue_type=issue.issue_type,
+        severity=issue.severity,
+        description=issue.description,
+        lat=float(lat),
+        lon=float(lon),
+        location_address=issue.location_address,
+        road_name=issue.road_name,
+        road_type=issue.road_type,
+        road_number=issue.road_number,
+        authority_name=issue.authority_name,
+        status=issue.status,
+        created_at=issue.created_at,
+        distance_meters=0.0,
+        category=issue.category,
+        sub_category=issue.sub_category,
+        ward_id=issue.ward_id,
+        ward_name=issue.ward_name,
+        assigned_officer_id=issue.assigned_officer_id,
+        sla_deadline=issue.sla_deadline,
+        resolved_at=issue.resolved_at,
+        duplicate_of_uuid=issue.duplicate_of_uuid,
+        confirmation_count=issue.confirmation_count,
+        before_photo_url=issue.before_photo_url,
+        after_photo_url=issue.after_photo_url
+    )
+
+
+@router.get('/issues/{issue_uuid}/timeline', response_model=ComplaintTimelineResponse)
+@limiter.limit("30/minute")
+async def get_complaint_timeline(
+    request: Request,
+    issue_uuid: str,
+    db: AsyncSession = Depends(get_db),
+) -> ComplaintTimelineResponse:
+    """Get the audit timeline log for a complaint."""
+    import uuid
+    from services.complaint_lifecycle import ComplaintLifecycle
+    try:
+        report_uuid = uuid.UUID(issue_uuid)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail='Invalid UUID format') from exc
+
+    events = await ComplaintLifecycle.get_timeline(db, report_uuid)
+    
+    from models.schemas import ComplaintEventItem
+    timeline_items = [
+        ComplaintEventItem(
+            id=e.id,
+            complaint_uuid=e.complaint_uuid,
+            event_type=e.event_type,
+            actor_id=e.actor_id,
+            actor_role=e.actor_role,
+            notes=e.notes,
+            metadata=e.metadata or {},
+            created_at=e.created_at
+        )
+        for e in events
+    ]
+    return ComplaintTimelineResponse(timeline=timeline_items, count=len(timeline_items))
+
+
+@router.post('/report/{issue_uuid}/confirm', response_model=dict)
+@limiter.limit("10/minute")
+async def confirm_road_issue(
+    request: Request,
+    issue_uuid: str,
+    db: AsyncSession = Depends(get_db),
+) -> dict:
+    """Citizens confirm/upvote a complaint to verify its legitimacy."""
+    import uuid
+    from services.duplicate_detector import DuplicateDetector
+    from services.complaint_lifecycle import ComplaintLifecycle
+    try:
+        report_uuid = uuid.UUID(issue_uuid)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail='Invalid UUID format') from exc
+
+    issue = await DuplicateDetector.increment_confirmation(db, report_uuid)
+    if not issue:
+        raise HTTPException(status_code=404, detail='Complaint not found')
+
+    # Log confirm event
+    await ComplaintLifecycle.log_event(
+        db,
+        complaint_uuid=report_uuid,
+        event_type="confirmed",
+        notes=f"Citizen upvoted this complaint. Total confirmations: {issue.confirmation_count}."
+    )
+
+    return {
+        "status": "success",
+        "confirmations": issue.confirmation_count,
+        "complaint_status": issue.status
+    }
+
+
+@router.post('/report/{issue_uuid}/resolve', response_model=dict)
+@limiter.limit("10/minute")
+async def resolve_road_issue(
+    request: Request,
+    issue_uuid: str,
+    after_photo: UploadFile | None = File(default=None),
+    notes: str | None = Form(default=None),
+    db: AsyncSession = Depends(get_db),
+    roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
+    current_user: dict = Depends(require_role(Role.FIELD_OFFICER)),
+) -> dict:
+    """Resolve a road issue with evidence (after photo). Required role: operator/officer."""
+    import uuid
+    from services.complaint_lifecycle import ComplaintLifecycle
+    try:
+        report_uuid = uuid.UUID(issue_uuid)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail='Invalid UUID format') from exc
+
+    after_photo_url = None
+    if after_photo:
+        after_photo_url = await roadwatch_service._save_photo(issue_uuid=report_uuid, photo=after_photo)
+
+    actor_id = uuid.UUID(current_user["sub"]) if "sub" in current_user else None
+    
+    try:
+        issue = await ComplaintLifecycle.resolve(
+            db=db,
+            complaint_uuid=report_uuid,
+            after_photo_url=after_photo_url,
+            notes=notes,
+            actor_id=actor_id,
+            actor_role=current_user.get("role", "operator")
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    return {
+        "status": "resolved",
+        "complaint_ref": issue.complaint_ref,
+        "resolved_at": issue.resolved_at.isoformat() if issue.resolved_at else None,
+        "after_photo_url": after_photo_url
+    }
 
 
 @router.patch('/report/{report_id}/verify', response_model=dict)
@@ -130,12 +309,9 @@ async def verify_road_report(
     RoadWatch report → Verification → OSM node + Waze pin
     """
     import logging
-
     from services.osm_contributor import get_osm_contributor
-
     logger = logging.getLogger(__name__)
 
-    # For now, create a mock report dict — in production this queries Supabase
     try:
         report_data = await roadwatch_service.verify_report(db=db, report_id=report_id)
     except ServiceValidationError as exc:
@@ -153,6 +329,19 @@ async def verify_road_report(
             osm_result = {"status": "error", "reason": str(exc)}
     else:
         osm_result = {"status": "skipped", "reason": "OSM not configured"}
+
+    # Update lifecycle event log for verification
+    import uuid
+    from services.complaint_lifecycle import ComplaintLifecycle
+    actor_id = uuid.UUID(current_user["sub"]) if "sub" in current_user else None
+    await ComplaintLifecycle.update_status(
+        db=db,
+        complaint_uuid=uuid.UUID(report_id),
+        status="acknowledged",
+        notes=f"Report verified by operator. OSM contribution: {osm_result.get('status')}",
+        actor_id=actor_id,
+        actor_role="operator"
+    )
 
     return {
         "report_id": report_id,

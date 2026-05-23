@@ -143,13 +143,13 @@ class OverpassService:
                     if exc.response.status_code not in (429, 500, 502, 503, 504):
                         break  # Non-retryable error, try next mirror if any
                     
-                    logger.warning("Overpass mirror %s failed (attempt %d): %s", url, attempt + 1, exc)
+                    logger.warning("Overpass mirror %s failed (attempt %d): %s", url, attempt + 1, exc, extra={"service": "overpass"})
                     if attempt < self.settings.upstream_retry_attempts:
                         backoff = self.settings.upstream_retry_backoff_seconds * (2 ** attempt)
                         await asyncio.sleep(backoff)
                 except httpx.RequestError as exc:
                     last_error = exc
-                    logger.warning("Overpass mirror %s connection error: %s", url, exc)
+                    logger.warning("Overpass mirror %s connection error: %s", url, exc, extra={"service": "overpass"})
                     break  # Try next mirror
             
             if index < len(self.settings.overpass_urls) - 1:

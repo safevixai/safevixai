@@ -10,6 +10,7 @@ from models.schemas import ChallanQuery, ChallanResponse
 from services.exceptions import ExternalServiceError, ServiceValidationError
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import SQLAlchemyError, DBAPIError
 
 
 VEHICLE_CLASS_ALIASES = {
@@ -211,7 +212,7 @@ class ChallanService:
                 {"violation_code": violation_code, "vehicle_class": vehicle_class},
             )
             row = result.mappings().first()
-        except Exception as exc:
+        except (SQLAlchemyError, DBAPIError, AttributeError, RuntimeError) as exc:
             raise ExternalServiceError('Challan database lookup is unavailable') from exc
 
         if row is None:

@@ -106,3 +106,33 @@ async def test_profile_owner_mismatch_returns_not_found():
         )
 
     assert exc.value.status_code == 404
+
+
+def test_verify_rejects_invalid_role_claim(app):
+    # 'super-admin' is not a valid Role enum member
+    token = create_access_token({'sub': 'attacker@example.com'}, role='super-admin')
+
+    with TestClient(app) as client:
+        response = client.get(
+            '/api/v1/auth/verify',
+            headers={'Authorization': f'Bearer {token}'},
+        )
+
+    assert response.status_code == 401
+    assert "Invalid role claim in token" in response.json()['detail']
+
+
+def test_require_role_decorator_insufficient_permissions(app):
+    # A user with role='user' tries to access a circuit breaker endpoint requiring Role.ADMIN (or Role.OPERATOR/ADMIN in other contexts)
+    # Let's hit '/api/v1/circuit-breaker/some-breaker' which requires Role.ADMIN
+    token = create_access_token({'sub': 'user@example.com'}, role='user')
+
+    with TestClient(app) as client:
+        response = client.get(
+            '/api/v1/circuit-breaker/some-breaker',
+            headers={'Authorization': f'Bearer {token}'},
+        )
+
+    assert response.status_code == 403
+    assert "Insufficient permissions" in response.json()['detail']
+

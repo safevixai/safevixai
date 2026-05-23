@@ -19,8 +19,10 @@ export default function GlobalError({
           message: error.message,
           digest: error.digest,
         }),
-      }).catch(() => {});
-    } catch {}
+      }).catch(() => undefined);
+    } catch {
+      // Error telemetry is best-effort; never throw from the global error boundary.
+    }
   }, [error]);
 
   return (

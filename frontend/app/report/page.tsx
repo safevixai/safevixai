@@ -43,14 +43,29 @@ import {
 import { useAppStore } from '@/lib/store';
 import { track } from '@/lib/analytics';
 
-const ISSUE_OPTIONS = [
-  ['pothole', 'Pothole', 'Surface collapse or broken asphalt'],
-  ['debris', 'Road Debris', 'Objects blocking or endangering traffic'],
-  ['waterlogging', 'Waterlogging', 'Flooding, drainage failure, hidden hazards'],
-  ['signage', 'Signage', 'Missing barriers, broken signs, faded markings'],
-  ['streetlight', 'Streetlight', 'Lighting failure reducing night visibility'],
-  ['accident', 'Collision Scene', 'Crash spillover or active obstruction'],
-] as const;
+const ISSUE_OPTIONS_BY_CATEGORY = {
+  roads: [
+    ['pothole', 'Pothole', 'Surface collapse or broken asphalt'],
+    ['crack', 'Road Crack', 'Structural fissures or surface wear'],
+    ['waterlogging', 'Waterlogging', 'Flooding, drainage failure, waterlogged lanes'],
+    ['debris', 'Road Debris', 'Objects blocking lanes or endangering traffic'],
+    ['footpath', 'Footpath', 'Broken pavements or pedestrian path blockages'],
+    ['markings', 'Road Markings', 'Faded lanes, zebra crossing wear, missing paint'],
+  ],
+  traffic: [
+    ['signal_outage', 'Signal Outage', 'Traffic light dark, flashing, or broken'],
+    ['missing_sign', 'Missing Sign', 'Stop, speed limits, or warning signs missing'],
+    ['zebra_crossing', 'Zebra Crossing', 'Dangerous or faded crosswalks needing repair'],
+    ['speed_bump', 'Speed Bump', 'Missing warning lines or broken speed calmers'],
+    ['encroachment', 'Obstruction', 'Vendors, illegal parking, or structural blocks'],
+  ],
+  streetlight: [
+    ['dark_street', 'Dark Street', 'Entire stretch or segment with dead streetlights'],
+    ['bulb_out', 'Bulb Out', 'Single lamp post bulb burned out or dim'],
+    ['pole_damage', 'Pole Damage', 'Critically tilted, rusted, or structurally unsafe pole'],
+    ['electrical_hazard', 'Electrical Hazard', 'Exposed wires, open junction boxes, spark risk'],
+  ],
+} as const;
 
 const SEVERITY_OPTIONS = [
   [1, 'Low', 'Monitor only'],
@@ -88,7 +103,9 @@ function normalizeExternalUrl(url: string | null | undefined) {
 export default function ReportPage() {
   const [mounted, setMounted] = useState(false);
   const pageRef = usePageEntry();
-  const [selectedType, setSelectedType] = useState<(typeof ISSUE_OPTIONS)[number][0] | null>(null);
+  const [activeCategory, setActiveCategory] = useState<'roads' | 'traffic' | 'streetlight'>('roads');
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [citizenPhone, setCitizenPhone] = useState('');
   const [severity, setSeverity] = useState<number>(3);
   const [notes, setNotes] = useState('');
   const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -235,6 +252,7 @@ export default function ReportPage() {
         severity,
         description: notes,
         photo: photoFile,
+        citizen_phone: citizenPhone,
       });
       setSubmittedReport(response);
       track.reportSubmitted(selectedType, !!photoFile, false);
@@ -251,7 +269,9 @@ export default function ReportPage() {
   }
 
   function resetForm() {
+    setActiveCategory('roads');
     setSelectedType(null);
+    setCitizenPhone('');
     setSeverity(3);
     setNotes('');
     setPhotoFile(null);
@@ -371,27 +391,78 @@ export default function ReportPage() {
 
               {!submittedReport ? (
                 <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+                  {/* Category Tabs */}
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Hazard type</div>
-                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                      {ISSUE_OPTIONS.map(([value, label, detail], index) => {
-                        const active = value === selectedType;
-                        const activeAccent = [
-                          'border-warning/20 bg-warning/10 text-amber-950 dark:border-amber-400/20 dark:bg-warning/10 dark:text-amber-50',
-                          'border-orange-200 bg-orange-50 text-orange-950 dark:border-orange-400/20 dark:bg-orange-500/10 dark:text-orange-50',
-                          'border-cyan-200 bg-cyan-50 text-cyan-950 dark:border-cyan-400/20 dark:bg-cyan-500/10 dark:text-cyan-50',
-                          'border-brand/20 bg-brand/[0.08] text-text-1 dark:border-brand/20 dark:bg-brand/10 dark:text-text-1',
-                          'border-violet-200 bg-violet-50 text-violet-950 dark:border-violet-400/20 dark:bg-violet-500/10 dark:text-violet-50',
-                          'border-rose-200 bg-rose-50 text-rose-950 dark:border-rose-400/20 dark:bg-rose-500/10 dark:text-rose-50',
-                        ][index];
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Incident Category</div>
+                    <div className="mt-3 grid grid-cols-3 gap-2">
+                      {(['roads', 'traffic', 'streetlight'] as const).map((cat) => {
+                        const active = activeCategory === cat;
                         return (
-                          <button key={value} type="button" onClick={() => setSelectedType(value)} className={cx('rounded-[1.5rem] border px-4 py-4 text-left transition', active ? activeAccent : 'border-border bg-surface-2 text-text-2 hover:border-border hover:bg-white dark:hover:border-white/10 dark:hover:bg-surface-3')}>
-                            <div className="text-sm font-semibold uppercase tracking-[0.16em]">{label}</div>
-                            <p className="mt-2 text-sm font-medium opacity-80">{detail}</p>
+                          <button
+                            key={cat}
+                            type="button"
+                            onClick={() => {
+                              setActiveCategory(cat);
+                              setSelectedType(null);
+                            }}
+                            className={cx(
+                              'rounded-xl border px-3 py-3 text-center transition font-semibold uppercase tracking-[0.1em] text-xs',
+                              active
+                                ? 'border-brand bg-brand/10 text-brand-light'
+                                : 'border-border bg-surface-2 text-text-2 hover:bg-surface-3'
+                            )}
+                          >
+                            {cat === 'roads' ? '🛣️ Roads' : cat === 'traffic' ? '🚦 Traffic' : '💡 Streetlights'}
                           </button>
                         );
                       })}
                     </div>
+                  </div>
+
+                  {/* Category specific sub-types */}
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Hazard Type</div>
+                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                      {ISSUE_OPTIONS_BY_CATEGORY[activeCategory].map(([value, label, detail], index) => {
+                        const active = value === selectedType;
+                        const activeAccent = [
+                          'border-brand/30 bg-brand/10 text-brand-light dark:border-brand-light/30',
+                          'border-orange-500/30 bg-orange-500/10 text-orange-400',
+                          'border-cyan-500/30 bg-cyan-500/10 text-cyan-400',
+                          'border-emerald-500/30 bg-emerald-500/10 text-emerald-400',
+                          'border-purple-500/30 bg-purple-500/10 text-purple-400',
+                          'border-rose-500/30 bg-rose-500/10 text-rose-400',
+                        ][index % 6];
+                        return (
+                          <button
+                            key={value}
+                            type="button"
+                            onClick={() => setSelectedType(value)}
+                            className={cx(
+                              'rounded-[1.5rem] border px-4 py-4 text-left transition',
+                              active
+                                ? activeAccent
+                                : 'border-border bg-surface-2 text-text-2 hover:bg-surface-3'
+                            )}
+                          >
+                            <div className="text-sm font-semibold uppercase tracking-[0.16em]">{label}</div>
+                            <p className="mt-2 text-xs font-medium opacity-80">{detail}</p>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Citizen Phone Input */}
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Your Phone Number</div>
+                    <input
+                      type="tel"
+                      value={citizenPhone}
+                      onChange={(e) => setCitizenPhone(e.target.value.replace(/[^0-9+]/g, '').slice(0, 15))}
+                      placeholder="e.g. +919876543210 (For real-time SMS updates)"
+                      className="mt-3 w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-3 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-surface-3"
+                    />
                   </div>
 
                   <div>
@@ -442,7 +513,7 @@ export default function ReportPage() {
                 </div>
               )}
             </SurfaceCard>
-                          {submittedReport ? (
+                  {submittedReport ? (
                 <div>
                   <SurfaceCard className="border-brand-light/20 bg-brand-light/10 dark:border-brand-light/20 dark:bg-brand-light/10">
                     <div className="flex items-start justify-between gap-4">
@@ -453,6 +524,14 @@ export default function ReportPage() {
                       </div>
                       <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-brand text-white shadow-lg shadow-brand/20"><CheckCircle2 size={22} /></div>
                     </div>
+
+                    {submittedReport.duplicateOfUuid && (
+                      <div className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm font-semibold text-amber-600 dark:border-amber-400/20 dark:bg-amber-500/12 dark:text-warning flex items-center gap-3">
+                        <AlertTriangle className="animate-pulse flex-shrink-0" size={18} />
+                        <span>Duplicate Detected: A similar issue has already been reported here. Your feedback has been merged into the main ticket to escalate resolution priority!</span>
+                      </div>
+                    )}
+
                     <div className="mt-5 grid gap-3 sm:grid-cols-2">
                       <div className="rounded-lg border border-brand-light/20 bg-white/80 px-4 py-3 dark:border-brand-light/20 dark:bg-brand/10">
                         <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">Authority desk</div>
@@ -464,8 +543,18 @@ export default function ReportPage() {
                         <div className="mt-2 text-lg font-black text-text-1 dark:text-brand-light">{[submittedReport.roadNumber, submittedReport.roadName].filter(Boolean).join(' - ') || submittedReport.roadType}</div>
                         <div className="mt-2 text-sm font-semibold text-text-2 dark:text-brand-light">{submittedReport.roadType}</div>
                       </div>
+                      {submittedReport.slaDeadline && (
+                        <div className="rounded-lg border border-brand-light/20 bg-white/80 px-4 py-3 dark:border-brand-light/20 dark:bg-brand/10 sm:col-span-2">
+                          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">SLA Resolution Target</div>
+                          <div className="mt-2 text-lg font-black text-text-1 dark:text-brand-light">
+                            {new Date(submittedReport.slaDeadline).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}
+                          </div>
+                          <div className="mt-2 text-xs font-semibold text-text-3 dark:text-brand-light">Guaranteed response timeline</div>
+                        </div>
+                      )}
                     </div>
-                    <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      <Link href={`/report/track?ref=${submittedReport.complaintRef ?? submittedReport.uuid}`} className="inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-cyan-600/20 transition hover:bg-cyan-500"><MapPin size={16} />Track Complaint Progress</Link>
                       {portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-brand/20 transition hover:bg-brand-light"><Navigation size={16} />Open complaint portal</a> : null}
                       <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-light/20 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-brand transition hover:border-brand-light dark:border-brand-light/20 dark:bg-brand/10 dark:text-brand-light dark:hover:bg-brand/20"><RefreshCcw size={16} />File another report</button>
                     </div>

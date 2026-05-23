@@ -616,6 +616,7 @@ export function PureMultimodalInput({
         multiple
         onChange={handleFileChange}
         disabled={isAttachmentDisabled}
+        aria-label="Upload attachment files"
       />
 
       <div className={cn(
@@ -695,6 +696,7 @@ export function PureMultimodalInput({
           <Textarea
             ref={textareaRef}
             placeholder="Ask AI anything..."
+            aria-label="Chat message input"
             value={input}
             onChange={handleInput}
             rows={1}

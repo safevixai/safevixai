@@ -6,9 +6,14 @@ Endpoint: https://api.open-meteo.com/v1/forecast
 
 from __future__ import annotations
 
+import json
+import logging
+
 import httpx
 
 from config import Settings
+
+logger = logging.getLogger(__name__)
 
 # Weather code → description mapping (WMO codes)
 _WMO_CODES: dict[int, str] = {
@@ -119,7 +124,7 @@ class OpenMeteoClient:
                 "risk_multiplier": risk,
                 "source": "open-meteo",
             }
-        except Exception:
+        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
             return None
 
     async def aclose(self) -> None:

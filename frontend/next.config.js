@@ -64,6 +64,7 @@ const contentSecurityPolicy = [
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
+  "report-uri /api/v1/csp-report",
 ].join('; ');
 
 /** @type {import('next').NextConfig} */

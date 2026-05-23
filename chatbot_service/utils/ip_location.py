@@ -8,7 +8,12 @@ IMPORTANT: Use HTTP (not HTTPS) — HTTPS requires paid plan.
 
 from __future__ import annotations
 
+import json
+import logging
+
 import httpx
+
+logger = logging.getLogger(__name__)
 
 
 async def detect_state_from_ip(
@@ -47,7 +52,8 @@ async def detect_state_from_ip(
             "isp": data.get("isp", ""),
             "timezone": data.get("timezone", "Asia/Kolkata"),
         }
-    except Exception:
+    except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError) as exc:
+        logger.warning("IP location detection failed: %s", exc)
         return _default_result(default_state)
 
 

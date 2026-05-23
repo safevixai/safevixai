@@ -23,6 +23,7 @@ import { useGeolocation } from '@/lib/geolocation';
 import { logClientError } from '@/lib/client-logger';
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
 import { getLanguageByCode } from '@/lib/languages';
+import { appendChatLog, loadChatHistory } from '@/lib/chat-history';
 
 const CHATBOT_URL = PUBLIC_CHATBOT_BASE_URL;
 
@@ -31,7 +32,7 @@ async function* streamChat(
  session_id: string,
  lat?: number,
  lon?: number,
-): AsyncGenerator<{ type: string; text?: string; intent?: string; sources?: string[]; session_id?: string; message?: string }> {
+): AsyncGenerator<{ type: string; text?: string; intent?: string; sources?: string[]; session_id?: string; message?: string; provider?: string; model?: string }> {
  const resp = await fetch(`${CHATBOT_URL}/api/v1/chat/stream`, {
  method: 'POST',
  headers: { 'Content-Type': 'application/json' },
@@ -61,6 +62,7 @@ interface Message {
  timestamp: string;
  citations?: string[];
  suggestedQueries?: string[];
+ provider?: string;
 }
 
 import TypingText from '@/components/dashboard/TypingText';
@@ -73,24 +75,6 @@ const INITIAL_MESSAGES: Message[] = [
  timestamp: '',
  }
 ];
-
-const MOCK_RESPONSES: Record<string, Message> = {
- dui: {
- id: 'mock-dui',
- role: 'ai',
- text: 'Under current regulations, first-time offenders face imprisonment up to 6 months and/or a fine up to â‚¹10,000 for Drunk Driving (BAC > 30mg/100ml). Subsequent offenses within 3 years increase the penalty significantly.',
- timestamp: '',
- citations: ['MV Act Â§185', 'Fine: â‚¹10,000', 'Custody: Max 6 Mo.'],
- suggestedQueries: ['What if the breathalyzer test was faulty?', 'Bail procedure details']
- },
- default: {
- id: 'mock-default',
- role: 'ai',
- text: 'Under the Motor Vehicles Act 1988, the general penalty for traffic violations not covered under specific sections is â‚¹500 for the first offense and â‚¹1,500 for repeat violations.',
- timestamp: '',
- citations: ['MV Act Â§177', 'Gen. Penalty: â‚¹500']
- }
-};
 
 const SUGGESTED_STARTERS = [
  " Help! I've been in an accident, what do I do?",
@@ -139,7 +123,14 @@ export default function ChatPage() {
   }, [setAiMode, setModelLoadProgress]);
 
  const { location } = useGeolocation();
- const [sessionId] = useState(() => `assistant-${Date.now()}`);
+ const [sessionId] = useState(() => {
+   if (typeof window === 'undefined') return `assistant-${Date.now()}`;
+   const existing = window.localStorage.getItem('safevixai:assistant-session');
+   if (existing) return existing;
+   const next = `assistant-${crypto.randomUUID()}`;
+   window.localStorage.setItem('safevixai:assistant-session', next);
+   return next;
+ });
  const [selectedLanguage, setSelectedLanguage] = useState('en');
  const scrollRef = useRef<HTMLDivElement>(null);
  const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -174,14 +165,36 @@ export default function ChatPage() {
  if (welcomeAdded.current) return;
  welcomeAdded.current = true;
  document.title = 'AI Assistant | SafeVixAI';
- const welcomeMsg: Message = {
- id: 'ai-1',
- role: 'ai',
- text: 'SafeVixAI assistant online. I can answer questions about the Motor Vehicles Act, traffic penalties, your rights during a police stop, and road safety laws across India. What do you need?',
- timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+
+ const hydrateChat = async () => {
+   const history = await loadChatHistory(sessionId);
+   if (history.length > 0) {
+     setMessages([
+       INITIAL_MESSAGES[0],
+       ...history.map((entry) => ({
+         id: entry.id,
+         role: entry.role,
+         text: entry.text,
+         timestamp: entry.timestamp,
+         citations: entry.citations,
+         provider: entry.provider,
+       })),
+     ]);
+     return;
+   }
+
+   const welcomeMsg: Message = {
+   id: 'ai-1',
+   role: 'ai',
+   text: 'SafeVixAI assistant online. I can answer questions about the Motor Vehicles Act, traffic penalties, your rights during a police stop, and road safety laws across India. What do you need?',
+   timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+   provider: 'SafeVixAI Router',
+   };
+   setMessages(prev => [...prev, welcomeMsg]);
  };
- setMessages(prev => [...prev, welcomeMsg]);
- }, []);
+
+ void hydrateChat();
+ }, [sessionId]);
 
  useEffect(() => {
  if (scrollRef.current) {
@@ -209,6 +222,14 @@ export default function ChatPage() {
    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
    const userMsg: Message = { id: Date.now().toString(), role: 'user', text, timestamp: time };
    setMessages(prev => [...prev, userMsg]);
+   void appendChatLog({
+     id: userMsg.id,
+     sessionId,
+     role: userMsg.role,
+     text: userMsg.text,
+     timestamp: userMsg.timestamp,
+     createdAt: new Date().toISOString(),
+   });
    setInput('');
    setLoading(true);
 
@@ -227,10 +248,20 @@ export default function ChatPage() {
        setMessages(prev =>
          prev.map(m =>
            m.id === assistantId
-             ? { ...m, text: offlineReply, citations: ['Offline Knowledge Base'] }
+             ? { ...m, text: offlineReply, citations: ['Offline Knowledge Base'], provider: 'Local Gemma' }
              : m
          )
        );
+       void appendChatLog({
+         id: assistantId,
+         sessionId,
+         role: 'ai',
+         text: offlineReply,
+         timestamp: time,
+         citations: ['Offline Knowledge Base'],
+         provider: 'Local Gemma',
+         createdAt: new Date().toISOString(),
+       });
        if (autoRead && offlineReply) {
          speakText(offlineReply);
        }
@@ -242,15 +273,26 @@ export default function ChatPage() {
            setMessages(prev =>
              prev.map(m => m.id === assistantId ? { ...m, text: accumulated } : m)
            );
-         } else if (event.type === 'done') {
-           const sources = event.sources ?? [];
-           setMessages(prev =>
-             prev.map(m =>
-               m.id === assistantId
-                 ? { ...m, text: accumulated || 'No response received.', citations: sources }
-                 : m
-             )
-           );
+       } else if (event.type === 'done') {
+         const sources = event.sources ?? [];
+         const provider = event.provider || event.model || 'SafeVixAI Router';
+         setMessages(prev =>
+           prev.map(m =>
+             m.id === assistantId
+               ? { ...m, text: accumulated || 'No response received.', citations: sources, provider }
+               : m
+           )
+         );
+         void appendChatLog({
+           id: assistantId,
+           sessionId,
+           role: 'ai',
+           text: accumulated || 'No response received.',
+           timestamp: time,
+           citations: sources,
+           provider,
+           createdAt: new Date().toISOString(),
+         });
            if (autoRead && accumulated) {
              speakText(accumulated);
            }
@@ -274,7 +316,7 @@ export default function ChatPage() {
   }, [sessionId, location, autoRead, speakText, aiMode]);
 
   return (
-   <div className="aurora-glow w-full h-[--full-content-h] md:h-[--full-content-h-desktop] flex flex-col overflow-hidden bg-surface-1">
+   <div className="aurora-glow w-full h-[var(--full-content-h)] md:h-[var(--full-content-h-desktop)] flex flex-col overflow-hidden bg-surface-1">
   {/* Model Loading HUD overlay */}
   <ModelLoader />
 
@@ -310,7 +352,7 @@ export default function ChatPage() {
                 ? 'bg-brand text-brand-foreground shadow-sm shadow-brand/10'
                 : 'text-text-2 hover:text-text-1 dark:hover:text-text-3'
             }`}
-            title="Switch to Offline AI (Phi-3 / Gemma)"
+            title="Switch to Offline AI (Gemma)"
           >
             <WifiOff size={12} />
             Offline
@@ -389,7 +431,7 @@ export default function ChatPage() {
 
   if (msg.role === 'ai') {
   const isOfflineMessage = msg.citations?.includes('Offline Knowledge Base') || aiMode === 'offline';
-  const providerName = isOfflineMessage ? 'Local Phi-3 / Gemma' : 'Gemini Pro';
+  const providerName = msg.provider || (isOfflineMessage ? 'Local Gemma' : 'SafeVixAI Router');
 
   return (
   <div key={msg.id} style={{ animation: "slideInLeft 0.3s ease-out" }} className="self-start max-w-[90%] sm:max-w-[85%] mr-12"
@@ -427,7 +469,14 @@ export default function ChatPage() {
  <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 font-medium tracking-wide">{msg.timestamp} • SafeVixAI</time>
  <div className="flex gap-1.5 ml-1">
   <button 
-  onClick={() => setToastMessage("Copied to clipboard!")}
+  onClick={async () => {
+    try {
+      await navigator.clipboard.writeText(msg.text);
+      setToastMessage("Copied to clipboard!");
+    } catch {
+      setToastMessage("Clipboard unavailable");
+    }
+  }}
   className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
   title="Copy"
   >
@@ -546,4 +595,3 @@ export default function ChatPage() {
  </div>
  );
 }
-

@@ -20,6 +20,16 @@ class DependencyHealth(BaseModel):
     error: str | None = None
 
 
+class ErrorDetail(BaseModel):
+    code: str
+    message: str
+    details: dict | None = None
+
+
+class ErrorResponse(BaseModel):
+    error: ErrorDetail
+
+
 class HealthResponse(BaseModel):
     status: str
     database_available: bool
@@ -31,6 +41,7 @@ class HealthResponse(BaseModel):
     version: str
     dependencies: list[DependencyHealth] | None = None
     circuit_breakers: dict[str, str] | None = None
+    pool_stats: dict[str, int] | None = None
     uptime_seconds: float | None = None
 
 
@@ -145,6 +156,19 @@ class RoadIssueItem(BaseModel):
     created_at: datetime
     distance_meters: float
 
+    # Enterprise fields
+    category: str | None = None
+    sub_category: str | None = None
+    ward_id: str | None = None
+    ward_name: str | None = None
+    assigned_officer_id: UUID | None = None
+    sla_deadline: datetime | None = None
+    resolved_at: datetime | None = None
+    duplicate_of_uuid: UUID | None = None
+    confirmation_count: int = 0
+    before_photo_url: str | None = None
+    after_photo_url: str | None = None
+
 
 class RoadIssuesResponse(BaseModel):
     issues: list[RoadIssueItem]
@@ -174,6 +198,14 @@ class RoadReportResponse(BaseModel):
     photo_url: str | None = None
     status: RoadIssueStatus
     ai_detection: dict | None = None
+    
+    # Enterprise fields
+    category: str | None = None
+    sub_category: str | None = None
+    ward_id: str | None = None
+    ward_name: str | None = None
+    sla_deadline: datetime | None = None
+    duplicate_of_uuid: UUID | None = None
 
 
 class RoutePoint(BaseModel):
@@ -329,3 +361,98 @@ class UserDeleteResponse(BaseModel):
     deleted_profile: bool
     deleted_sos_incidents: int
     deleted_road_reports: int
+
+
+# Enterprise Schemas
+ComplaintCategory = Literal['roads', 'traffic', 'streetlight']
+
+
+class ComplaintEventItem(BaseModel):
+    id: int
+    complaint_uuid: UUID
+    event_type: str
+    actor_id: UUID | None = None
+    actor_role: str | None = None
+    notes: str | None = None
+    metadata: dict | None = None
+    created_at: datetime
+
+
+class ComplaintTimelineResponse(BaseModel):
+    timeline: list[ComplaintEventItem]
+    count: int
+
+
+class WardResponse(BaseModel):
+    ward_id: str
+    ward_name: str
+    zone_name: str | None = None
+    city: str | None = None
+    state_code: str | None = None
+    population: int | None = None
+    area_sqkm: float | None = None
+
+
+class WardStatsResponse(BaseModel):
+    ward_id: str
+    open_issues: int
+    resolved_issues: int
+    rejected_issues: int
+    total_issues: int
+    resolution_rate: float
+
+
+class OfficerResponse(BaseModel):
+    id: UUID
+    name: str
+    phone: str | None = None
+    email: str | None = None
+    role: str
+    ward_id: str | None = None
+    department: str | None = None
+    is_active: bool
+    last_checkin: datetime | None = None
+    created_at: datetime
+
+
+class OfficerCheckinRequest(BaseModel):
+    lat: float
+    lon: float
+
+
+class OfficerCheckinResponse(BaseModel):
+    status: str
+    last_checkin: datetime
+
+
+class HeatmapFeatureGeometry(BaseModel):
+    type: Literal['Point'] = 'Point'
+    coordinates: list[float]  # [lon, lat]
+
+
+class HeatmapFeatureProperties(BaseModel):
+    uuid: UUID
+    category: str
+    severity: int
+    status: str
+
+
+class HeatmapFeature(BaseModel):
+    type: Literal['Feature'] = 'Feature'
+    geometry: HeatmapFeatureGeometry
+    properties: HeatmapFeatureProperties
+
+
+class AnalyticsHeatmapResponse(BaseModel):
+    type: Literal['FeatureCollection'] = 'FeatureCollection'
+    features: list[HeatmapFeature]
+
+
+class WardSummaryItem(BaseModel):
+    ward_id: str
+    ward_name: str
+    zone_name: str | None = None
+    open_issues: int
+    resolved_issues: int
+    resolution_rate: float
+    sla_breach_count: int

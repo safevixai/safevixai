@@ -1,4 +1,5 @@
 """Tests for OSM contributor service."""
+import httpx
 import pytest
 from unittest.mock import AsyncMock, patch, MagicMock
 import os
@@ -192,7 +193,7 @@ async def test_contribute_report_exception_handling(osm_contributor):
     }
     
     with patch.object(osm_contributor, '_open_changeset', new_callable=AsyncMock) as mock_open:
-        mock_open.side_effect = Exception("Network error")
+        mock_open.side_effect = httpx.RequestError("Network error")
         
         result = await osm_contributor.contribute_report(report)
         
@@ -235,8 +236,8 @@ async def test_open_changeset_failure(osm_contributor):
 async def test_open_changeset_exception(osm_contributor):
     """Test changeset creation with exception."""
     with patch.object(osm_contributor._client, 'put', new_callable=AsyncMock) as mock_put:
-        mock_put.side_effect = Exception("Connection error")
-        
+        mock_put.side_effect = httpx.RequestError("Connection error")
+
         result = await osm_contributor._open_changeset('pothole')
         
         assert result is None
@@ -309,8 +310,8 @@ async def test_close_changeset_failure(osm_contributor):
 async def test_close_changeset_exception(osm_contributor):
     """Test changeset closing with exception."""
     with patch.object(osm_contributor._client, 'put', new_callable=AsyncMock) as mock_put:
-        mock_put.side_effect = Exception("Connection error")
-        
+        mock_put.side_effect = httpx.RequestError("Connection error")
+
         result = await osm_contributor._close_changeset('12345')
         
         assert result is False

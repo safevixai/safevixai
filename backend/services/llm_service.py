@@ -5,6 +5,7 @@ import logging
 from uuid import uuid4
 
 import httpx
+from pydantic import ValidationError
 
 from core.config import Settings
 from models.schemas import ChatRequest, ChatResponse
@@ -46,6 +47,7 @@ class LLMService:
                 "Chatbot service timed out after %.1fs for session %s",
                 self.settings.chatbot_request_timeout_seconds,
                 session_id,
+                extra={"service": "llm"},
             )
             return self._fallback_response(request, session_id=session_id)
         except httpx.HTTPStatusError as exc:
@@ -53,13 +55,14 @@ class LLMService:
                 "Chatbot service returned HTTP %s for session %s",
                 exc.response.status_code,
                 session_id,
+                extra={"service": "llm"},
             )
             return self._fallback_response(request, session_id=session_id)
         except httpx.RequestError:
-            logger.exception("Chatbot service request failed for session %s", session_id)
+            logger.exception("Chatbot service request failed for session %s", session_id, extra={"service": "llm"})
             return self._fallback_response(request, session_id=session_id)
-        except Exception:
-            logger.exception("Chatbot response validation failed for session %s", session_id)
+        except (ValidationError, json.JSONDecodeError):
+            logger.exception("Chatbot response validation failed for session %s", session_id, extra={"service": "llm"})
             return self._fallback_response(request, session_id=session_id)
 
     def _fallback_response(self, request: ChatRequest, *, session_id: str) -> ChatResponse:

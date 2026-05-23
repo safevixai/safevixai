@@ -1,10 +1,25 @@
 """Safe routing — avoids isolated road stretches at night using ORS or OSRM fallback."""
 from __future__ import annotations
 
+import logging
 import os
 from datetime import datetime
 
 import httpx
+
+from services.exceptions import ExternalServiceError, ServiceValidationError
+
+
+logger = logging.getLogger("safevixai.backend.safe_routing")
+
+
+def _validate_coords(origin: tuple[float, float], dest: tuple[float, float]) -> None:
+    """Validate coordinate ranges before making external API calls."""
+    for label, (lat, lon) in [("origin", origin), ("dest", dest)]:
+        if not (-90 <= lat <= 90):
+            raise ServiceValidationError(f"{label} latitude {lat} out of range (-90..90)")
+        if not (-180 <= lon <= 180):
+            raise ServiceValidationError(f"{label} longitude {lon} out of range (-180..180)")
 
 
 def is_nighttime() -> bool:
@@ -14,8 +29,8 @@ def is_nighttime() -> bool:
 
 
 async def get_safe_route(
-    origin: tuple[float, float],    # (lat, lon)
-    dest: tuple[float, float],       # (lat, lon)
+    origin: tuple[float, float],
+    dest: tuple[float, float],
     prefer_safety: bool = False,
 ) -> dict:
     """
@@ -23,6 +38,7 @@ async def get_safe_route(
     - Uses ORS when OPENROUTESERVICE_API_KEY is present (avoids tracks/fords).
     - Falls back gracefully to free OSRM when no ORS key is configured.
     """
+    _validate_coords(origin, dest)
     ors_key = os.getenv('OPENROUTESERVICE_API_KEY', '').strip()
     safety_mode = prefer_safety or is_nighttime()
 
@@ -36,44 +52,71 @@ async def get_safe_route(
         if safety_mode:
             body['options'] = {'avoid_features': ['tracks', 'fords']}
 
-        async with httpx.AsyncClient(timeout=15.0) as client:
-            r = await client.post(
-                url,
-                json=body,
-                headers={'Authorization': ors_key, 'Content-Type': 'application/json'},
-            )
-            r.raise_for_status()
-            data = r.json()
+        try:
+            async with httpx.AsyncClient(timeout=15.0) as client:
+                r = await client.post(
+                    url,
+                    json=body,
+                    headers={'Authorization': ors_key, 'Content-Type': 'application/json'},
+                )
+                r.raise_for_status()
+                data = r.json()
+        except httpx.TimeoutException:
+            logger.warning("ORS safe routing timed out, falling back to OSRM", extra={"service": "safe_routing"})
+            return await _osrm_fallback(origin, dest, safety_mode)
+        except httpx.HTTPError as exc:
+            logger.error("ORS safe routing HTTP error: %s", exc, extra={"service": "safe_routing"})
+            return await _osrm_fallback(origin, dest, safety_mode)
 
-        route = data['routes'][0]
-        return {
-            'provider': 'ors_safe',
-            'safety_mode': safety_mode,
-            'note': (
-                'Route optimized for safety — avoids isolated tracks and roads'
-                if safety_mode else 'Standard ORS route'
-            ),
-            'distance_meters': route['summary']['distance'],
-            'duration_seconds': route['summary']['duration'],
-            'geometry': route['geometry'],
-        }
+        try:
+            route = data['routes'][0]
+            return {
+                'provider': 'ors_safe',
+                'safety_mode': safety_mode,
+                'note': (
+                    'Route optimized for safety — avoids isolated tracks and roads'
+                    if safety_mode else 'Standard ORS route'
+                ),
+                'distance_meters': route['summary']['distance'],
+                'duration_seconds': route['summary']['duration'],
+                'geometry': route['geometry'],
+            }
+        except (KeyError, IndexError, TypeError) as exc:
+            logger.error("ORS response parse failed: %s", exc, extra={"service": "safe_routing"})
+            raise ExternalServiceError("Invalid response from ORS routing service") from exc
 
-    # ── OSRM free fallback (no API key required) ──────────────────────────────
+    return await _osrm_fallback(origin, dest, safety_mode)
+
+
+async def _osrm_fallback(
+    origin: tuple[float, float],
+    dest: tuple[float, float],
+    safety_mode: bool,
+) -> dict:
+    """Free OSRM fallback when no ORS key is configured or ORS fails."""
     osrm_url = (
         f'https://router.project-osrm.org/route/v1/driving/'
         f'{origin[1]},{origin[0]};{dest[1]},{dest[0]}'
     )
-    async with httpx.AsyncClient(timeout=15.0) as client:
-        r = await client.get(
-            osrm_url,
-            params={'overview': 'full', 'geometries': 'geojson', 'steps': 'false'},
-        )
-        r.raise_for_status()
-        data = r.json()
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            r = await client.get(
+                osrm_url,
+                params={'overview': 'full', 'geometries': 'geojson', 'steps': 'false'},
+            )
+            r.raise_for_status()
+            data = r.json()
+    except httpx.TimeoutException:
+        logger.error("OSRM fallback timed out for coords %s, %s", origin, dest, extra={"service": "safe_routing"})
+        raise ExternalServiceError("Routing service timed out — try again later")
+    except httpx.HTTPError as exc:
+        logger.error("OSRM fallback HTTP error: %s", exc, extra={"service": "safe_routing"})
+        raise ExternalServiceError("Routing service unavailable — try again later")
 
     routes = data.get('routes') or []
     if not routes:
-        raise RuntimeError('OSRM returned no route for the given coordinates.')
+        logger.error("OSRM returned empty routes for coords %s → %s", origin, dest, extra={"service": "safe_routing"})
+        raise ExternalServiceError("No route found between the given locations")
 
     route = routes[0]
     return {

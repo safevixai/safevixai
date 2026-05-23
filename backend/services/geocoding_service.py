@@ -55,16 +55,19 @@ class GeocodingService:
             try:
                 return await self.photon_client.reverse(lat=lat, lon=lon)
             except Exception as e:
+                logger.warning("Photon reverse geocode failed: %s", e, extra={"service": "geocoding"})
                 errors.append(e)
         if self.nominatim_client:
             try:
                 return await self.nominatim_client.reverse(lat=lat, lon=lon)
             except Exception as e:
+                logger.warning("Nominatim reverse geocode failed: %s", e, extra={"service": "geocoding"})
                 errors.append(e)
         if self.bigdata_client:
             try:
                 return await self.bigdata_client.reverse(lat=lat, lon=lon)
             except Exception as e:
+                logger.warning("BigDataCloud reverse geocode failed: %s", e, extra={"service": "geocoding"})
                 errors.append(e)
         raise GeocodingError(f"All providers failed: {errors}")
 

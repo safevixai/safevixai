@@ -44,7 +44,9 @@ describe('app store persistence', () => {
 
     const persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
 
-    expect(persisted.state.userProfile).toEqual(
+    // userProfile is intentionally excluded from localStorage (stored in IndexedDB for privacy)
+    expect(persisted.state?.userProfile).toBeUndefined();
+    expect(useAppStore.getState().userProfile).toEqual(
       expect.objectContaining({
         name: 'Demo User',
         bloodGroup: 'O+',

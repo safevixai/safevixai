@@ -30,7 +30,7 @@ export function ModelLoader() {
         height: '64px',
         borderRadius: '50%',
         background: 'var(--surface-2)',
-        border: '3px solid var(--accent-purple)',
+        border: '3px solid var(--brand-light)',
         borderTopColor: 'transparent',
         animation: 'spin 1s linear infinite',
         marginBottom: '1.5rem',
@@ -40,7 +40,7 @@ export function ModelLoader() {
         Loading Offline AI Model
       </div>
       <div style={{ fontSize: '0.875rem', color: 'var(--text-2)', marginBottom: '1.5rem', maxWidth: '300px' }}>
-        Downloading Phi-3 Mini for on-device inference. This requires ~1.5GB of initial download but works completely offline forever.
+        Loading the local Gemma safety model for on-device inference. Low-memory devices automatically stay on the online safety router.
       </div>
 
       <div style={{ width: '100%', maxWidth: '300px', height: '6px', background: 'var(--surface-1)', borderRadius: '99px', overflow: 'hidden' }}>
@@ -48,7 +48,7 @@ export function ModelLoader() {
           style={{ 
             height: '100%', 
             width: `${modelLoadProgress}%`,
-            background: 'var(--accent-purple)',
+            background: 'var(--brand-light)',
             transition: 'width 0.3s ease'
           }} 
         />

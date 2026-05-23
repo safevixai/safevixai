@@ -46,12 +46,12 @@ async function getDuckDB() {
   
   const DUCKDB_BUNDLES = {
     mvp: {
-      mainModule: 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-mvp.wasm',
-      mainWorker: 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-browser-mvp.worker.js',
+      mainModule: '/duckdb/duckdb-mvp.wasm',
+      mainWorker: '/duckdb/duckdb-browser-mvp.worker.js',
     },
     eh: {
-      mainModule: 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-eh.wasm',
-      mainWorker: 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/dist/duckdb-browser-eh.worker.js',
+      mainModule: '/duckdb/duckdb-eh.wasm',
+      mainWorker: '/duckdb/duckdb-browser-eh.worker.js',
     }
   };
 

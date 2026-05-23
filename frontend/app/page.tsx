@@ -68,7 +68,7 @@ export default function V2Dashboard() {
   const sc = statusConfig[areaStatus];
 
   return (
-    <div className="relative isolate h-[calc(100dvh-52px)] min-h-[calc(100dvh-52px)] w-full overflow-hidden bg-surface-1 text-text-1 flex">
+    <div className="relative isolate h-[var(--full-content-h)] min-h-[var(--full-content-h)] md:h-[var(--full-content-h-desktop)] md:min-h-[var(--full-content-h-desktop)] w-full overflow-hidden bg-surface-1 text-text-1 flex">
       <div className="relative flex-1 h-full w-full overflow-hidden">
         <DashboardMapBootstrap />
         <MapBackground />

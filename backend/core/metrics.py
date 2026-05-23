@@ -150,6 +150,14 @@ cache_miss_total = Counter(
     registry=REGISTRY,
 )
 
+# ── WebSocket Connection Metrics ──────────────────────────────────────────────
+ws_connections_total = Gauge(
+    "ws_connections_total",
+    "Current number of active WebSocket connections",
+    ["group"],
+    registry=REGISTRY,
+)
+
 # ── Circuit Breaker Metrics ──────────────────────────────────────────────────
 circuit_breaker_state = Gauge(
     "circuit_breaker_state",

@@ -9,9 +9,13 @@ Used by: crash detection, SOS message builder, context assembler.
 
 from __future__ import annotations
 
+import json
+import logging
 import os
 
 import httpx
+
+logger = logging.getLogger(__name__)
 
 
 class GeocodingClient:
@@ -77,7 +81,7 @@ class GeocodingClient:
                 "display": display,
                 "source": "nominatim",
             }
-        except Exception:
+        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
             return None
 
     async def _opencage_reverse(self, *, lat: float, lon: float) -> dict | None:
@@ -117,7 +121,7 @@ class GeocodingClient:
                 "display": display,
                 "source": "opencage",
             }
-        except Exception:
+        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
             return None
 
     async def aclose(self) -> None:

@@ -15,6 +15,7 @@ import { useTheme } from '@/components/ThemeProvider';
 import { useAppStore } from '@/lib/store';
 import useSWR from 'swr';
 import { calculateChallan } from '@/lib/api';
+import { loadChallanMetadata } from '@/lib/challan-metadata';
 import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
 
@@ -29,11 +30,11 @@ const STATES = [
 
 // Mapped to backend violation_codes
 const VIOLATIONS = [
-  { id: '183', label: 'Speeding (>20km/h Limit)', mva: '§112/183', max: '4000' },
-  { id: '179', label: 'Disobedience / Red Light', mva: '§179', max: '4000' },
-  { id: '185', label: 'Section 185 — Drunk driving', mva: '§185', max: '15000 + Imprisonment', danger: 'Up to 6 months imprisonment' },
-  { id: '181', label: 'Driving Without License', mva: '§3/181', max: '10000 + 3 Months' },
-  { id: '194D', label: 'No Seatbelt/Helmet', mva: '§129/194D', max: '2000 + Disqualification' },
+  { id: '183', label: 'Speeding (>20km/h Limit)', mva: 'Section 112/183', max: '4000' },
+  { id: '179', label: 'Disobedience / Red Light', mva: 'Section 179', max: '4000' },
+  { id: '185', label: 'Section 185 - Drunk driving', mva: 'Section 185', max: '15000 + Imprisonment', danger: 'Up to 6 months imprisonment' },
+  { id: '181', label: 'Driving Without License', mva: 'Section 3/181', max: '10000 + 3 Months' },
+  { id: '194D', label: 'No Seatbelt/Helmet', mva: 'Section 129/194D', max: '2000 + Disqualification' },
 ];
 
 const VEHICLE_CLASSES = [
@@ -64,6 +65,11 @@ export default function ChallanPage() {
   const stateCode = stateCodeMatch ? stateCodeMatch[1] : 'TN';
 
   const [showDetailToast, setShowDetailToast] = useState(false);
+  const { data: metadata } = useSWR('challan-metadata', loadChallanMetadata, {
+    revalidateOnFocus: false,
+  });
+  const violationOptions = metadata?.violations?.length ? metadata.violations : VIOLATIONS;
+  const stateOptions = metadata?.states?.length ? metadata.states.map((state) => state.label) : STATES;
 
   // GSAP refs
   const fineRef = useRef<HTMLHeadingElement>(null);
@@ -111,7 +117,7 @@ export default function ChallanPage() {
     }
   }, { dependencies: [showDetailToast] });
 
-  const activeViolation = VIOLATIONS.find(v => v.id === violationId) || VIOLATIONS[0];
+  const activeViolation = violationOptions.find(v => v.id === violationId) || violationOptions[0];
   
   const { data: result, isLoading } = useSWR(
     ['challan', violationId, vehicleId, stateCode, isRepeat],
@@ -124,7 +130,7 @@ export default function ChallanPage() {
     { keepPreviousData: true }
   );
   
-  const finalFine = result ? (isRepeat && result.repeat_fine ? result.repeat_fine : result.base_fine) : 0;
+  const finalFine = result?.amount_due ?? 0;
 
   // Track calculation event
   useEffect(() => {
@@ -149,7 +155,7 @@ export default function ChallanPage() {
       ease: 'power2.out',
       onUpdate: () => {
         if (fineRef.current) {
-          fineRef.current.innerText = `₹${Math.round(obj.val).toLocaleString('en-IN')}`;
+          fineRef.current.innerText = `Rs. ${Math.round(obj.val).toLocaleString('en-IN')}`;
         }
       }
     });
@@ -209,7 +215,7 @@ export default function ChallanPage() {
                    ref={fineRef}
                    className={`text-5xl sm:text-7xl font-black text-brand dark:text-brand-light tracking-tighter ${isLoading ? 'opacity-50 blur-sm transition-all' : ''}`}
                  >
-                   ₹0
+                   Rs. 0
                  </h2>
                </div>
 
@@ -259,7 +265,7 @@ export default function ChallanPage() {
           <div className="grid grid-cols-2 gap-4">
              <div className="p-4 rounded-xl bg-surface-2 border border-border">
                 <p className="text-[9px] font-semibold text-text-3 uppercase tracking-widest mb-1">Max Penalty</p>
-                <p className="text-xs font-semibold text-text-1">₹{activeViolation.max}</p>
+                <p className="text-xs font-semibold text-text-1">Rs. {activeViolation.max}</p>
              </div>
              <div className="p-4 rounded-xl bg-surface-2 border border-border">
                 <p className="text-[9px] font-semibold text-text-3 uppercase tracking-widest mb-1">Act Sync</p>
@@ -288,7 +294,7 @@ export default function ChallanPage() {
                   onChange={(e) => setChallanState({ violation: e.target.value })}
                   className="w-full bg-transparent border-2 border-border rounded-xl p-6 text-lg font-black text-text-1 appearance-none focus:border-brand-light transition-all outline-none cursor-pointer"
                 >
-                  {VIOLATIONS.map(v => (
+                  {violationOptions.map(v => (
                     <option key={v.id} value={v.id} className="bg-white dark:bg-bg">{v.label}</option>
                   ))}
                 </select>
@@ -342,7 +348,7 @@ export default function ChallanPage() {
                     onChange={(e) => setChallanState({ jurisdiction: e.target.value })}
                     className="w-full bg-transparent border-2 border-border rounded-lg py-4 px-5 text-sm font-bold text-text-1 appearance-none focus:border-brand-light transition-all outline-none cursor-pointer"
                   >
-                    {STATES.map(s => (
+                    {stateOptions.map(s => (
                       <option key={s} value={s} className="bg-white dark:bg-bg">{s}</option>
                     ))}
                   </select>

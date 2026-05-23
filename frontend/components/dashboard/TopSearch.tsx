@@ -256,7 +256,7 @@ const TopSearch = memo(function TopSearch({
             <button
               type="button"
               onClick={requestLocation}
-              title={gpsError ?? 'Refresh current location'}
+              aria-label={gpsError ?? 'Refresh current location'}
               className="min-[1100px]:hidden flex items-center gap-2 px-3 py-1.5 bg-surface-1/90 dark:bg-surface-2/90 backdrop-blur-xl rounded-full shadow-lg ring-1 ring-border whitespace-nowrap active:scale-95 transition-transform hover:shadow-2xl"
             >
               <div className="bg-success/10 p-1 rounded-full flex items-center justify-center">

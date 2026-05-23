@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { saveUserProfileToIndexedDB } from './profile-storage';
 
 export interface GpsLocation {
   lat: number;
@@ -262,9 +263,11 @@ export const useAppStore = create<AppState>()(
         photo: '',
         subtitle: '',
       },
-      setUserProfile: (p) => set((s) => ({
-        userProfile: { ...s.userProfile, ...p },
-      })),
+      setUserProfile: (p) => set((s) => {
+        const userProfile = { ...s.userProfile, ...p };
+        void saveUserProfileToIndexedDB(userProfile);
+        return { userProfile };
+      }),
 
       // Driving Score
       drivingScore: null,
@@ -341,8 +344,14 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'svai-storage',
+      merge: (persistedState, currentState) => {
+        const state = persistedState as Partial<AppState> | undefined;
+        if (state && 'userProfile' in state) {
+          delete state.userProfile;
+        }
+        return { ...currentState, ...state };
+      },
       partialize: (state) => ({
-        userProfile: state.userProfile,
         aiMode: state.aiMode,
         serviceCategory: state.serviceCategory,
         isDesktopSidebarCollapsed: state.isDesktopSidebarCollapsed,

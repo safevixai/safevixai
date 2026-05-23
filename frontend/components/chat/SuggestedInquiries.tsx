@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { HelpCircle } from 'lucide-react';
 import { gsap } from '@/lib/gsap';
+import { useGSAP } from '@gsap/react';
 
 const SUGGESTED_STARTERS = [
   " Help! I've been in an accident, what do I do?",
@@ -18,28 +19,24 @@ interface SuggestedInquiriesProps {
 export default function SuggestedInquiries({ onSelect }: SuggestedInquiriesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!containerRef.current) return;
     const chips = containerRef.current.querySelectorAll('.suggested-chip');
-    
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        chips,
-        { opacity: 0, y: 15, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.08,
-          ease: 'power3.out',
-          clearProps: 'all',
-        }
-      );
-    }, containerRef);
-    
-    return () => ctx.revert();
-  }, []);
+
+    gsap.fromTo(
+      chips,
+      { opacity: 0, y: 15, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: 'power3.out',
+        clearProps: 'all',
+      }
+    );
+  }, { scope: containerRef });
 
   return (
     <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full mt-2">

@@ -1,0 +1,222 @@
+from __future__ import annotations
+
+import uuid
+from datetime import datetime, timezone
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from core.database import get_db
+from core.limiter import limiter
+from core.rbac import require_role, Role
+from models.road_issue import RoadIssue
+from models.officer import Officer
+from models.schemas import RoadIssuesResponse, RoadIssueItem, OfficerResponse
+from services.complaint_lifecycle import ComplaintLifecycle
+
+router = APIRouter(prefix='/api/v1/admin', tags=['Admin Operations'])
+
+
+@router.get('/complaints', response_model=RoadIssuesResponse)
+@limiter.limit("20/minute")
+async def get_all_complaints_admin(
+    request: Request,
+    limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    status: str | None = Query(default=None),
+    category: str | None = Query(default=None),
+    ward_id: str | None = Query(default=None),
+    db: AsyncSession = Depends(get_db),
+    current_user: dict = Depends(require_role(Role.OPERATOR))
+) -> RoadIssuesResponse:
+    """Administrator lists, searches, and filters all complaints with pagination."""
+    lat_expr = func.ST_Y(RoadIssue.location).label('lat')
+    lon_expr = func.ST_X(RoadIssue.location).label('lon')
+    
+    base_stmt = select(RoadIssue)
+    
+    if status:
+        base_stmt = base_stmt.where(RoadIssue.status == status)
+    if category:
+        base_stmt = base_stmt.where(RoadIssue.category == category)
+    if ward_id:
+        base_stmt = base_stmt.where(RoadIssue.ward_id == ward_id)
+        
+    # Get total count
+    count_stmt = select(func.count(RoadIssue.id))
+    if status:
+        count_stmt = count_stmt.where(RoadIssue.status == status)
+    if category:
+        count_stmt = count_stmt.where(RoadIssue.category == category)
+    if ward_id:
+        count_stmt = count_stmt.where(RoadIssue.ward_id == ward_id)
+        
+    total_count = (await db.execute(count_stmt)).scalar() or 0
+    
+    stmt = (
+        base_stmt.add_columns(lat_expr, lon_expr)
+        .order_by(RoadIssue.created_at.desc())
+        .limit(limit)
+        .offset(offset)
+    )
+    
+    rows = (await db.execute(stmt)).all()
+    issues = [
+        RoadIssueItem(
+            uuid=issue.uuid,
+            issue_type=issue.issue_type,
+            severity=issue.severity,
+            description=issue.description,
+            lat=float(lat),
+            lon=float(lon),
+            location_address=issue.location_address,
+            road_name=issue.road_name,
+            road_type=issue.road_type,
+            road_number=issue.road_number,
+            authority_name=issue.authority_name,
+            status=issue.status,
+            created_at=issue.created_at,
+            distance_meters=0.0,
+            category=issue.category,
+            sub_category=issue.sub_category,
+            ward_id=issue.ward_id,
+            ward_name=issue.ward_name,
+            assigned_officer_id=issue.assigned_officer_id,
+            sla_deadline=issue.sla_deadline,
+            resolved_at=issue.resolved_at,
+            duplicate_of_uuid=issue.duplicate_of_uuid,
+            confirmation_count=issue.confirmation_count,
+            before_photo_url=issue.before_photo_url,
+            after_photo_url=issue.after_photo_url
+        )
+        for issue, lat, lon in rows
+    ]
+    
+    next_offset = offset + limit if (offset + limit) < total_count else None
+    return RoadIssuesResponse(
+        issues=issues,
+        count=len(issues),
+        radius_used=0,
+        next_offset=next_offset,
+        total_count=total_count
+    )
+
+
+@router.post('/complaints/{issue_uuid}/assign', response_model=dict)
+@limiter.limit("15/minute")
+async def assign_complaint_to_officer(
+    request: Request,
+    issue_uuid: str,
+    officer_id: str,
+    db: AsyncSession = Depends(get_db),
+    current_user: dict = Depends(require_role(Role.OPERATOR))
+) -> dict:
+    """Manually assign a complaint to an officer (starts SLA tracking)."""
+    try:
+        complaint_uuid = uuid.UUID(issue_uuid)
+        off_uuid = uuid.UUID(officer_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail="Invalid UUID format") from exc
+
+    actor_id = uuid.UUID(current_user["sub"]) if "sub" in current_user else None
+    
+    try:
+        issue = await ComplaintLifecycle.assign_officer(
+            db=db,
+            complaint_uuid=complaint_uuid,
+            officer_id=off_uuid,
+            actor_id=actor_id,
+            actor_role="operator"
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    return {
+        "status": "assigned",
+        "complaint_ref": issue.complaint_ref,
+        "assigned_officer_id": str(issue.assigned_officer_id),
+        "sla_deadline": issue.sla_deadline.isoformat() if issue.sla_deadline else None
+    }
+
+
+@router.get('/officers', response_model=list[OfficerResponse])
+@limiter.limit("20/minute")
+async def list_officers_admin(
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+    current_user: dict = Depends(require_role(Role.OPERATOR))
+) -> list[OfficerResponse]:
+    """List all registered civic officers and active field teams."""
+    stmt = select(Officer).order_by(Officer.name.asc())
+    result = await db.execute(stmt)
+    officers = result.scalars().all()
+    
+    return [
+        OfficerResponse(
+            id=o.id,
+            name=o.name,
+            phone=o.phone,
+            email=o.email,
+            role=o.role,
+            ward_id=o.ward_id,
+            department=o.department,
+            is_active=o.is_active,
+            last_checkin=o.last_checkin,
+            created_at=o.created_at
+        )
+        for o in officers
+    ]
+
+
+@router.get('/dashboard', response_model=dict)
+@limiter.limit("20/minute")
+async def get_dashboard_summary_admin(
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+    current_user: dict = Depends(require_role(Role.OPERATOR))
+) -> dict:
+    """Retrieve high-level smart city dashboard overall KPI summaries."""
+    # 1. Total active open/acknowledged/in_progress
+    active_stmt = select(func.count(RoadIssue.id)).where(RoadIssue.status.in_(["open", "acknowledged", "in_progress"]))
+    active_count = (await db.execute(active_stmt)).scalar() or 0
+
+    # 2. Resolved
+    resolved_stmt = select(func.count(RoadIssue.id)).where(RoadIssue.status == "resolved")
+    resolved_count = (await db.execute(resolved_stmt)).scalar() or 0
+
+    # 3. Total
+    total_stmt = select(func.count(RoadIssue.id))
+    total_count = (await db.execute(total_stmt)).scalar() or 0
+
+    # 4. SLA breaches
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    breached_stmt = select(func.count(RoadIssue.id)).where(
+        RoadIssue.status.in_(["open", "acknowledged", "in_progress"]),
+        RoadIssue.sla_deadline.is_not(None),
+        RoadIssue.sla_deadline < now
+    )
+    breached_count = (await db.execute(breached_stmt)).scalar() or 0
+
+    # 5. Category breakdown
+    cat_stmt = select(RoadIssue.category, func.count(RoadIssue.id)).group_by(RoadIssue.category)
+    cat_rows = (await db.execute(cat_stmt)).all()
+    categories = {"roads": 0, "traffic": 0, "streetlight": 0}
+    for cat, count in cat_rows:
+        if cat in categories:
+            categories[cat] = count
+
+    # 6. Officers count
+    off_stmt = select(func.count(Officer.id))
+    officers_count = (await db.execute(off_stmt)).scalar() or 0
+
+    return {
+        "kpis": {
+            "active_complaints": active_count,
+            "resolved_complaints": resolved_count,
+            "total_complaints": total_count,
+            "sla_breaches": breached_count,
+            "active_field_officers": officers_count,
+            "overall_resolution_rate": round((resolved_count / total_count * 100.0) if total_count > 0 else 0.0, 1)
+        },
+        "category_breakdown": categories
+    }

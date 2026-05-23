@@ -15,6 +15,10 @@ from api.v1.auth import router as auth_router
 from api.v1.live_tracking import router as live_tracking_router
 from api.v1.waze_feed import router as waze_feed_router
 from api.v1.circuit_breaker_api import router as circuit_breaker_router
+from api.v1.wards import router as wards_router
+from api.v1.analytics import router as analytics_router
+from api.v1.officers import router as officers_router
+from api.v1.admin import router as admin_router
 
 
 api_router = APIRouter()
@@ -31,3 +35,7 @@ api_router.include_router(auth_router)
 api_router.include_router(live_tracking_router)
 api_router.include_router(waze_feed_router)
 api_router.include_router(circuit_breaker_router)
+api_router.include_router(wards_router)
+api_router.include_router(analytics_router)
+api_router.include_router(officers_router)
+api_router.include_router(admin_router)

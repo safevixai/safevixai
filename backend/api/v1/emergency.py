@@ -136,7 +136,7 @@ async def safe_spaces(
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     radius: int = Query(default=1000, ge=100, le=50000),
-):
+) -> dict:
     """Returns nearby safe public spaces for women safety use case."""
     from services.safe_spaces import get_safe_spaces
     return await get_safe_spaces(lat, lon, radius)

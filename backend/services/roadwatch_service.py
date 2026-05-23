@@ -8,6 +8,7 @@ from pathlib import Path
 
 import aiofiles
 import httpx
+from PIL import UnidentifiedImageError
 from fastapi import UploadFile
 from geoalchemy2 import Geography, WKTElement
 from sqlalchemy import cast, func, select
@@ -139,12 +140,14 @@ class RoadWatchService:
         limit: int = 50,
         offset: int = 0,
         statuses: list[str] | None = None,
+        category: str | None = None,
+        sub_category: str | None = None,
     ) -> RoadIssuesResponse:
         normalized_statuses = statuses or ACTIVE_ROAD_ISSUE_STATUSES
         cache_version = await self.cache.get_int(ISSUES_CACHE_VERSION_KEY, default=0)
         cache_key = (
             f'roads:issues:v{cache_version}:{lat:.4f}:{lon:.4f}:{radius}:'
-            f'{",".join(sorted(normalized_statuses))}:{limit}:{offset}'
+            f'{",".join(sorted(normalized_statuses))}:{limit}:{offset}:{category or ""}:{sub_category or ""}'
         )
         cached = await self.cache.get_json(cache_key)
         if cached:
@@ -162,6 +165,11 @@ class RoadWatchService:
             .where(func.ST_DWithin(issue_geography, point_geography, radius))
             .where(RoadIssue.status.in_(normalized_statuses))
         )
+        
+        if category:
+            base_stmt = base_stmt.where(RoadIssue.category == category)
+        if sub_category:
+            base_stmt = base_stmt.where(RoadIssue.sub_category == sub_category)
 
         # Get total count for pagination metadata
         count_stmt = base_stmt.add_columns(func.count(RoadIssue.uuid))
@@ -191,6 +199,19 @@ class RoadWatchService:
                 status=issue.status,
                 created_at=issue.created_at,
                 distance_meters=float(distance),
+                
+                # Enterprise fields
+                category=issue.category,
+                sub_category=issue.sub_category,
+                ward_id=issue.ward_id,
+                ward_name=issue.ward_name,
+                assigned_officer_id=issue.assigned_officer_id,
+                sla_deadline=issue.sla_deadline,
+                resolved_at=issue.resolved_at,
+                duplicate_of_uuid=issue.duplicate_of_uuid,
+                confirmation_count=issue.confirmation_count,
+                before_photo_url=issue.before_photo_url,
+                after_photo_url=issue.after_photo_url,
             )
             for issue, item_lat, item_lon, distance in rows
         ]
@@ -217,6 +238,7 @@ class RoadWatchService:
         severity: int,
         description: str | None,
         photo: UploadFile | None,
+        citizen_phone: str | None = None,
     ) -> RoadReportResponse:
         normalized_issue_type = issue_type.strip()
         if len(normalized_issue_type) < 2:
@@ -230,6 +252,57 @@ class RoadWatchService:
             normalized_issue_type = ai_classification.get("issue_type", normalized_issue_type)
             if not description and ai_classification.get("issue_type"):
                 severity = ai_classification.get("severity", severity)
+
+        # 1. Ward detection
+        from services.ward_service import WardService
+        ward = await WardService.find_ward_by_coordinates(db, lat, lon)
+        ward_id = ward.ward_id if ward else None
+        ward_name = ward.ward_name if ward else None
+
+        # 2. Duplicate detection
+        from services.duplicate_detector import DuplicateDetector
+        duplicates = await DuplicateDetector.find_duplicates(db, lat=lat, lon=lon, issue_type=normalized_issue_type)
+        duplicate_of_uuid = duplicates[0].uuid if duplicates else None
+
+        # 3. Categorization logic
+        category = "roads"
+        sub_category = normalized_issue_type.lower()
+        if "light" in normalized_issue_type.lower() or normalized_issue_type == "streetlight":
+            category = "streetlight"
+            sub_category = "dark_street"
+        elif any(kw in normalized_issue_type.lower() for kw in ["signal", "sign", "crossing", "bump", "traffic", "guardrail"]):
+            category = "traffic"
+            if "signal" in normalized_issue_type.lower():
+                sub_category = "signal_outage"
+            elif "sign" in normalized_issue_type.lower():
+                sub_category = "missing_sign"
+            elif "crossing" in normalized_issue_type.lower() or "zebra" in normalized_issue_type.lower():
+                sub_category = "zebra_crossing"
+            elif "bump" in normalized_issue_type.lower():
+                sub_category = "speed_bump"
+            else:
+                sub_category = "traffic_hazard"
+        else:
+            category = "roads"
+            if "pothole" in normalized_issue_type.lower():
+                sub_category = "pothole"
+            elif "flood" in normalized_issue_type.lower() or "water" in normalized_issue_type.lower():
+                sub_category = "waterlogging"
+            elif "debris" in normalized_issue_type.lower() or "hazard" in normalized_issue_type.lower():
+                sub_category = "debris"
+            elif "footpath" in normalized_issue_type.lower() or "sidewalk" in normalized_issue_type.lower():
+                sub_category = "footpath"
+            else:
+                sub_category = "pothole"
+
+        # 4. SLA deadline
+        from services.complaint_lifecycle import ComplaintLifecycle
+        sla_deadline = ComplaintLifecycle.calculate_sla_deadline(severity)
+
+        # 5. Auto-assignment
+        assigned_officer_id = None
+        if ward and ward.officer_id:
+            assigned_officer_id = ward.officer_id
 
         preview = await self.get_authority(db=db, lat=lat, lon=lon)
         try:
@@ -255,14 +328,53 @@ class RoadWatchService:
             authority_name=preview.authority_name,
             authority_phone=preview.helpline,
             complaint_ref=complaint_ref,
-            status='open',
+            status='open' if not duplicate_of_uuid else 'acknowledged',
             ai_detection=ai_classification,
+            
+            # Enterprise fields
+            category=category,
+            sub_category=sub_category,
+            ward_id=ward_id,
+            ward_name=ward_name,
+            duplicate_of_uuid=duplicate_of_uuid,
+            citizen_phone=citizen_phone,
+            before_photo_url=photo_url,
+            sla_deadline=sla_deadline,
+            assigned_officer_id=assigned_officer_id,
+            ai_confidence=ai_classification.get("issue_type_confidence") if ai_classification else None,
+            ai_model_version="v1.0.0-rule"
         )
 
         db.add(issue)
         await db.commit()
         await db.refresh(issue)
         await self.cache.increment(ISSUES_CACHE_VERSION_KEY)
+
+        # Log audit trail events
+        await ComplaintLifecycle.log_event(
+            db,
+            complaint_uuid=issue_uuid,
+            event_type="created",
+            notes=f"Citizen filed a new {category} report.",
+            metadata={"citizen_phone": citizen_phone}
+        )
+
+        if duplicate_of_uuid:
+            await ComplaintLifecycle.log_event(
+                db,
+                complaint_uuid=issue_uuid,
+                event_type="updated",
+                notes=f"Linked as duplicate of primary complaint {duplicate_of_uuid}.",
+                metadata={"duplicate_of": str(duplicate_of_uuid)}
+            )
+        elif assigned_officer_id:
+            await ComplaintLifecycle.log_event(
+                db,
+                complaint_uuid=issue_uuid,
+                event_type="assigned",
+                notes=f"Auto-assigned to ward officer.",
+                metadata={"officer_id": str(assigned_officer_id)}
+            )
 
         return RoadReportResponse(
             uuid=issue.uuid,
@@ -406,8 +518,8 @@ class RoadWatchService:
                     fmt = img.format or "JPEG"
                     img.save(output, format=fmt)
                     payload = output.getvalue()
-            except Exception as e:
-                logger.warning("Failed to strip EXIF data; proceeding with original payload. Error: %s", e)
+            except (OSError, ValueError, UnidentifiedImageError) as e:
+                logger.warning("Failed to strip EXIF data; proceeding with original payload. Error: %s", e, extra={"service": "roadwatch"})
             uploaded_url = await self._upload_photo_to_supabase(
                 file_name=file_name,
                 content_type=content_type or 'image/jpeg',
@@ -419,7 +531,7 @@ class RoadWatchService:
             target = self.settings.upload_dir / file_name
             async with aiofiles.open(target, 'wb') as handle:
                 await handle.write(payload)
-        except Exception:
+        except (OSError, httpx.HTTPError):
             if target is not None:
                 with contextlib.suppress(FileNotFoundError):
                     target.unlink()
@@ -460,7 +572,7 @@ class RoadWatchService:
                 )
                 response.raise_for_status()
         except httpx.HTTPError as exc:
-            logger.warning('Supabase Storage upload failed; falling back to local upload: %s', exc)
+            logger.warning('Supabase Storage upload failed; falling back to local upload: %s', exc, extra={"service": "roadwatch"})
             return None
 
         return f'{supabase_url}/storage/v1/object/public/{bucket}/{object_path}'

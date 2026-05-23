@@ -69,8 +69,8 @@ export function AppSidebar() {
             </div>
               <button
               onClick={() => setDesktopSidebarCollapsed(true)}
+              aria-label="Close sidebar"
               className="p-1.5 rounded-lg text-text-3 hover:text-text-1 hover:bg-surface-3 transition-colors"
-              title="Close sidebar"
             >
               <X size={20} />
             </button>
@@ -80,8 +80,8 @@ export function AppSidebar() {
           <div className="px-2 pb-3">
             <button
               onClick={() => setThinSidebarEnabled(!isThinSidebarEnabled)}
+              aria-label={isThinSidebarEnabled ? "Unpin sidebar" : "Pin sidebar"}
               className="flex items-center w-full transition-colors hover:bg-surface-3 py-3 px-4 rounded-xl justify-between group"
-              title={isThinSidebarEnabled ? "Unpin sidebar" : "Pin sidebar"}
             >
               <div className="flex items-center gap-4">
                 <PanelLeft className="w-[20px] h-[20px] text-text-3 group-hover:text-text-1 transition-colors" strokeWidth={1.5} />
@@ -98,8 +98,8 @@ export function AppSidebar() {
         <div className="flex justify-center p-4 border-b border-border bg-surface-2/50 backdrop-blur-xl shrink-0">
           <button
             onClick={() => setDesktopSidebarCollapsed(false)}
+            aria-label="Expand sidebar"
             className="p-2 rounded-xl text-text-3 hover:text-text-1 hover:bg-surface-3 transition-colors"
-            title="Expand sidebar"
           >
             <Menu size={24} strokeWidth={2} />
           </button>
@@ -177,7 +177,7 @@ export function AppSidebar() {
       {/* Primary Action Footer: SOS */}
       <div className={`p-4 bg-gradient-to-b from-transparent to-surface-2 border-t border-border shrink-0 flex flex-col items-center`}>
         <Link href="/sos" className="w-full">
-          <button title={isDesktopSidebarCollapsed ? "System SOS" : undefined} className={`w-full flex items-center justify-center gap-2 py-3 bg-emergency hover:bg-emergency-dark text-white rounded-xl font-black shadow-[0_4px_20px_rgba(220,38,38,0.4)] border border-red-400/50 hover:shadow-[0_4px_25px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] group overflow-hidden relative ${isDesktopSidebarCollapsed ? 'px-0' : ''}`}>
+          <button aria-label="System SOS" className={`w-full flex items-center justify-center gap-2 py-3 bg-emergency hover:bg-emergency-dark text-white rounded-xl font-black shadow-[0_4px_20px_rgba(220,38,38,0.4)] border border-red-400/50 hover:shadow-[0_4px_25px_rgba(220,38,38,0.6)] transition-all active:scale-[0.98] group overflow-hidden relative ${isDesktopSidebarCollapsed ? 'px-0' : ''}`}>
             <div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -rotate-45 translate-x-[-100%] group-hover:animate-shimmer"
             />

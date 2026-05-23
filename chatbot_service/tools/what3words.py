@@ -8,10 +8,13 @@ This is a jury-demo moment: SOS says "Location: ///filled.count.soap"
 
 from __future__ import annotations
 
+import json
+import logging
 import os
 
 import httpx
 
+logger = logging.getLogger(__name__)
 
 W3W_BASE_URL = "https://api.what3words.com/v3"
 
@@ -53,7 +56,7 @@ class What3WordsTool:
                 "map_url": f"https://w3w.co/{words}",
                 "formatted": f"///{words}",
             }
-        except Exception:
+        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
             return None
 
     async def words_to_gps(self, words: str) -> dict | None:
@@ -81,7 +84,7 @@ class What3WordsTool:
                 "lat": coords.get("lat"),
                 "lon": coords.get("lng"),
             }
-        except Exception:
+        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
             return None
 
     async def aclose(self) -> None:

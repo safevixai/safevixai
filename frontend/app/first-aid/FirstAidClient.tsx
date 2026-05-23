@@ -352,20 +352,14 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
     );
   }, { scope: gridRef, dependencies: [guideKeys.length, emergencyMode] });
 
-  useEffect(() => {
-    if (!extraCardsRef.current) return;
-    const el = extraCardsRef.current;
-    if (expanded) {
-      gsap.fromTo(el,
-        { height: 0, opacity: 0 },
-        { height: 'auto', opacity: 1, duration: 0.4, ease: 'power2.out' }
-      );
-    } else {
-      gsap.to(el,
-        { height: 0, opacity: 0, duration: 0.3, ease: 'power2.in' }
-      );
-    }
-  }, [expanded]);
+  useGSAP(() => {
+    if (!extraCardsRef.current || !expanded) return;
+    gsap.fromTo(
+      extraCardsRef.current.querySelectorAll('.protocol-card'),
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.28, stagger: 0.06, ease: 'power2.out' }
+    );
+  }, { scope: extraCardsRef, dependencies: [expanded] });
 
   const initialKeys = guideKeys.slice(0, 4);
   const extraKeys = guideKeys.slice(4);
@@ -374,10 +368,11 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
     const guide = guides[key];
     const isCritical = ['cpr', 'bleeding'].includes(key);
     return (
-      <div
+      <button
+        type="button"
         key={key}
         onClick={() => onGuideSelect(key)}
-        className={`protocol-card card-premium group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 transition-all duration-300 border ${
+        className={`protocol-card card-premium group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 text-left transition-all duration-300 border ${
           isCritical 
             ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
             : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-border/80 dark:border-white/5 hover:border-brand/30'
@@ -416,20 +411,20 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 ${
+            <span className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all ${
               isCritical 
                 ? 'bg-red-500 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40' 
                 : 'bg-surface-3 dark:bg-white/10 text-white hover:bg-surface-1 dark:hover:bg-white/20'
             }`}>
               Start Guide <ChevronRight size={16} />
-            </button>
+            </span>
           </div>
         </div>
         <div className="absolute -bottom-6 -right-6 opacity-[0.03] dark:opacity-[0.05] group-hover:opacity-10 transition-opacity duration-700 pointer-events-none">
           {key === 'cpr' && <HeartPulse size={180} />}
           {key === 'bleeding' && <Droplets size={180} />}
         </div>
-      </div>
+      </button>
     );
   };
 
@@ -438,7 +433,7 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
       {initialKeys.map(renderCard)}
       
       {extraKeys.length > 0 && (
-        <div ref={extraCardsRef} className="col-span-full overflow-hidden h-0 opacity-0">
+        <div ref={extraCardsRef} className={`col-span-full ${expanded ? 'block' : 'hidden'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full pt-6">
             {extraKeys.map(renderCard)}
           </div>
@@ -490,6 +485,44 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
   const stepsRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const metronomeRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!activeGuide) return;
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
+    overlayRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const dialog = overlayRef.current;
+      if (!dialog) return;
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previousFocusRef.current?.focus();
+    };
+  }, [activeGuide, onClose]);
 
   // GSAP entry animation
   useGSAP(() => {
@@ -533,11 +566,15 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
   return (
     <div
       ref={overlayRef}
+      tabIndex={-1}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="first-aid-modal-title"
       className="fixed inset-0 z-[100] bg-[#f8fafc]/90 dark:bg-bg/95 backdrop-blur-xl flex flex-col overflow-hidden"
     >
       <div className="p-4 sm:p-6 border-b border-border dark:border-white/10 flex items-center justify-between bg-white/50 dark:bg-bg/50 backdrop-blur-md">
         <div className="flex items-center gap-4">
-          <button onClick={onClose} className="p-2 rounded-full hover:bg-surface-3 dark:hover:bg-white/5 text-text-2 dark:text-text-3 transition-colors">
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-surface-3 dark:hover:bg-white/5 text-text-2 dark:text-text-3 transition-colors" aria-label="Close first aid guide">
             <ArrowLeft size={20} />
           </button>
           <div>
@@ -545,14 +582,14 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
               <span className="text-[9px] font-semibold uppercase tracking-[0.1em] text-red-500 font-space">Live Protocol</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-text-1 dark:text-white font-space uppercase">{guide.title}</h2>
+            <h2 id="first-aid-modal-title" className="text-xl sm:text-2xl font-black text-text-1 dark:text-white font-space uppercase">{guide.title}</h2>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <a href="tel:112" onClick={() => track.emergencyCallMade('112')} className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/25 active:scale-95 transition-transform">
             <Phone size={14} /> Call 112
           </a>
-          <button onClick={onClose} className="p-2 text-text-3 hover:text-text-2 dark:hover:text-white">
+          <button onClick={onClose} className="p-2 text-text-3 hover:text-text-2 dark:hover:text-white" aria-label="Close first aid guide">
             <X size={24} />
           </button>
         </div>
@@ -599,14 +636,16 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
               </span>
             </div>
             {guide.steps.map((step, idx) => (
-              <div
+              <button
+                type="button"
                 key={idx}
-                className={`step-item group cursor-pointer p-5 sm:p-6 rounded-lg border transition-all duration-300 flex gap-5 items-start ${
+                className={`step-item group w-full cursor-pointer p-5 sm:p-6 rounded-lg border text-left transition-all duration-300 flex gap-5 items-start ${
                   completedSteps.has(idx)
                     ? 'bg-brand-light/10 text-brand border-brand-light/20 dark:text-brand-light dark:border-brand-light/20 opacity-60 scale-[0.98]'
                     : 'bg-white dark:bg-surface-2/60 dark:hover:bg-surface-2 border-border dark:border-white/5 text-text-1'
                 }`}
                 onClick={() => toggleStep(idx)}
+                aria-pressed={completedSteps.has(idx)}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black flex-shrink-0 text-xs transition-colors ${
                   completedSteps.has(idx) ? 'bg-brand-light text-white' : 'bg-surface-2 dark:bg-white/10 text-text-3'
@@ -622,7 +661,7 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
                     </div>
                   )}
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 

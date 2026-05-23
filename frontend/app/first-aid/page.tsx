@@ -1,4 +1,5 @@
 import { FirstAidClient } from './FirstAidClient';
+import firstAidData from '@/public/offline-data/first-aid.json';
 
 // Phase 0.8: Server Component wrapper for First Aid page
 // Static guide data is passed from server, interactive parts remain client-side
@@ -13,88 +14,65 @@ interface Guide {
   steps: string[];
 }
 
-// Static guide data - this could be fetched from a CMS or API in production
-const GUIDES: Record<string, Guide> = {
-  cpr: {
-    id: 'cpr',
-    title: 'CPR',
-    subtitle: 'Step-by-step resuscitation for adults, children, and infants. Essential life support.',
-    accent: '#ffb4aa',
-    icon: 'ecg_heart',
-    iconType: 'filled',
-    steps: [
-      'Check scene safety — shout "Are you OK?" and tap shoulders',
-      'Call 112 now or ask a bystander to call immediately',
-      'Tilt head back, lift chin, check for breathing (10 sec)',
-      'Give 30 chest compressions: hard, fast, center of chest',
-      'Give 2 rescue breaths — seal mouth, watch for chest rise',
-      'Continue 30:2 cycles until paramedics arrive',
-    ]
-  },
-  choking: {
-    id: 'choking',
-    title: 'Choking',
-    subtitle: 'Heimlich maneuver and airway clearance techniques for all ages.',
-    accent: 'var(--brand-light)',
-    icon: 'airwave',
-    iconType: 'outlined',
-    steps: [
-      'Ask "Are you choking?" — if unable to speak/cough, act',
-      'Give 5 firm back blows between shoulder blades',
-      'Give 5 abdominal thrusts (Heimlich maneuver)',
-      'Repeat back blows + thrusts until object dislodges',
-      'If unconscious: lay down, begin CPR, check mouth before breaths',
-    ]
-  },
-  bleeding: {
-    id: 'bleeding',
-    title: 'Severe Bleeding',
-    subtitle: 'Tourniquet application and pressure points to control hemorrhaging.',
-    accent: '#ffb4aa',
-    icon: 'blood_pressure',
-    iconType: 'filled',
-    steps: [
-      'Apply firm direct pressure with clean cloth — do NOT remove',
-      'Elevate the wound above the heart level if possible',
-      'Apply tourniquet 5–7cm above wound for limb bleeding',
-      'Note exact time of tourniquet application (write on skin)',
-      'Keep victim warm and calm — monitor for shock',
-      'Call 108 and keep pressure until medics arrive',
-    ]
-  },
-  burns: {
-    id: 'burns',
-    title: 'Burns',
-    subtitle: 'Treating thermal, chemical, and electrical burns. Degrees of severity.',
-    accent: '#FFB45B',
-    icon: 'local_fire_department',
-    iconType: 'outlined',
-    steps: [
-      'Remove from heat source — ensure your own safety first',
-      'Cool burn under cool (NOT cold) running water for 20 minutes',
-      'Do NOT use ice, butter, toothpaste or any home remedies',
-      'Remove jewelry/clothing near burn — but NOT if stuck to skin',
-      'Cover loosely with non-fluffy sterile dressing (cling film ideal)',
-      'Call 108 for burns larger than palm, or face/genital area',
-    ]
-  },
-  fractures: {
-    id: 'fractures',
-    title: 'Fractures',
-    subtitle: 'Stabilizing broken bones and suspected spinal injuries safely.',
-    accent: 'var(--brand-light)',
-    icon: 'skeleton',
-    iconType: 'outlined',
-    steps: [
-      'Do not move the victim unless in immediate danger',
-      'Control any bleeding with direct pressure',
-      'Immobilize the injured area using a splint or sling',
-      'Apply cold packs wrapped in cloth to reduce swelling',
-      'Monitor for signs of shock (paleness, rapid breathing)',
-      'Wait for emergency medical personnel',
-    ]
-  }
+interface OfflineFirstAidGuide {
+  id: string;
+  title: string;
+  category: string;
+  steps: string[];
+  warning?: string;
+  call_ambulance_if?: string[];
+}
+
+const CPR_GUIDE: Guide = {
+  id: 'cpr',
+  title: 'CPR',
+  subtitle: 'Step-by-step resuscitation for adults when a person is unresponsive and not breathing normally.',
+  accent: 'var(--emergency)',
+  icon: 'ecg_heart',
+  iconType: 'filled',
+  steps: [
+    'Check scene safety, tap shoulders, and shout clearly.',
+    'Call 112 immediately or ask a bystander to call.',
+    'Open the airway and check breathing for no more than 10 seconds.',
+    'Give 30 hard, fast chest compressions in the center of the chest.',
+    'Give 2 rescue breaths if trained and safe to do so.',
+    'Continue 30:2 cycles until an AED or emergency team takes over.',
+  ],
 };
+
+const GUIDE_STYLES: Record<string, Pick<Guide, 'accent' | 'icon' | 'iconType'>> = {
+  general: { accent: 'var(--brand-light)', icon: 'shield', iconType: 'outlined' },
+  bleeding: { accent: 'var(--emergency)', icon: 'blood_pressure', iconType: 'filled' },
+  fracture: { accent: 'var(--brand-light)', icon: 'skeleton', iconType: 'outlined' },
+  burns: { accent: 'var(--warning)', icon: 'local_fire_department', iconType: 'outlined' },
+  choking: { accent: 'var(--brand-light)', icon: 'airwave', iconType: 'outlined' },
+  cardiac: { accent: 'var(--emergency)', icon: 'ecg_heart', iconType: 'filled' },
+};
+
+function keyForGuide(guide: OfflineFirstAidGuide) {
+  if (guide.category === 'fracture') return 'fractures';
+  return guide.category.replace(/_/g, '-');
+}
+
+function buildGuidesFromOfflineData(): Record<string, Guide> {
+  return (firstAidData as OfflineFirstAidGuide[]).reduce<Record<string, Guide>>((acc, guide) => {
+    const style = GUIDE_STYLES[guide.category] || GUIDE_STYLES.general;
+    const callouts = guide.call_ambulance_if?.length
+      ? [`Call 112 immediately if ${guide.call_ambulance_if.join(', ')}.`]
+      : [];
+    const warning = guide.warning ? [`Warning: ${guide.warning}`] : [];
+    acc[keyForGuide(guide)] = {
+      id: guide.id,
+      title: guide.title,
+      subtitle: guide.warning || 'Offline first-aid protocol cached for emergency use.',
+      accent: style.accent,
+      icon: style.icon,
+      iconType: style.iconType,
+      steps: [...guide.steps, ...warning, ...callouts],
+    };
+    return acc;
+  }, { cpr: CPR_GUIDE });
+}
 
 // Phase 0.8: Add metadata for SEO
 export const metadata = {
@@ -104,6 +82,5 @@ export const metadata = {
 };
 
 export default function FirstAidPage() {
-  // Pass static data from server to client component
-  return <FirstAidClient guides={GUIDES} />;
+  return <FirstAidClient guides={buildGuidesFromOfflineData()} />;
 }

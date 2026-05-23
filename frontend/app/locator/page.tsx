@@ -17,6 +17,7 @@ import { DesktopResultsList, MobileResultsList } from './components/LocatorResul
 import { EmptyState, RouteStatusCard } from './locator-components';
 import { Filter, LocatorService, fallbackNumber } from './locator-utils';
 import { SkeletonCard } from '@/components/ui/SkeletonCard';
+import { PRIMARY_EMERGENCY_BAR } from '@/lib/emergency-numbers';
 
 function MobileLocator({
   coords,
@@ -103,7 +104,7 @@ function MobileLocator({
       </div>
 
       <main className="relative z-10 pt-4 pb-40 w-full">
-        <section className="relative h-[440px] w-full px-4 border-b border-border-md dark:border-white/5 overflow-hidden">
+        <section className="relative h-[calc(var(--full-content-h)_-_128px)] min-h-[320px] max-h-[520px] w-full px-4 border-b border-border-md dark:border-white/5 overflow-hidden">
           <div className="relative h-full w-full rounded-lg overflow-hidden bg-surface-3 dark:bg-[#030e20] border border-border-md dark:border-white/10 shadow-2xl">
             <div className="absolute inset-0 z-0">
               <LocatorMap
@@ -234,7 +235,7 @@ function DesktopLocator({
     : null;
 
   return (
-    <div className="w-full h-dvh bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] relative overflow-hidden flex flex-col">
+    <div className="w-full h-[var(--full-content-h-desktop)] bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] relative overflow-hidden flex flex-col">
       <SystemHeader title="Emergency Resource Dispatch" showBack={false} />
 
       <main className="flex-1 flex w-full relative z-0 overflow-hidden lg:mt-0">
@@ -338,16 +339,11 @@ function DesktopLocator({
           </div>
 
           <div className="p-6 lg:p-8 bg-surface-2 dark:bg-surface-1/ border-t border-border-md dark:border-white/5 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3 shrink-0">
-            {[
-              { n: '112', l: 'SOS' },
-              { n: '108', l: 'MED' },
-              { n: '100', l: 'POL' },
-              { n: '101', l: 'FIRE' },
-            ].map((dial) => (
-              <button key={dial.n} className="flex flex-col items-center justify-center py-3 lg:py-4 bg-white dark:bg-white/5 rounded-xl border border-border-md dark:border-white/5 hover:border-brand/50 transition-all group">
-                <span className="text-base lg:text-lg font-black text-text-1 dark:text-white group-hover:text-brand dark:text-brand-light">{dial.n}</span>
-                <span className="text-[7px] lg:text-[8px] font-bold text-text-2 uppercase tracking-widest">{dial.l}</span>
-              </button>
+            {PRIMARY_EMERGENCY_BAR.map((dial) => (
+              <a key={dial.service} href={`tel:${dial.service}`} className="flex flex-col items-center justify-center py-3 lg:py-4 bg-white dark:bg-white/5 rounded-lg border border-border-md dark:border-white/5 hover:border-brand/50 transition-all group">
+                <span className="text-base lg:text-lg font-black text-text-1 dark:text-white group-hover:text-brand dark:text-brand-light">{dial.service}</span>
+                <span className="text-[7px] lg:text-[8px] font-bold text-text-2 uppercase tracking-widest">{dial.label}</span>
+              </a>
             ))}
           </div>
         </section>

@@ -1,33 +1,31 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { gsap } from '@/lib/gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function TypingIndicator() {
   const dot1Ref = useRef<HTMLSpanElement>(null);
   const dot2Ref = useRef<HTMLSpanElement>(null);
   const dot3Ref = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const dots = [dot1Ref.current, dot2Ref.current, dot3Ref.current].filter(Boolean);
     if (dots.length === 0) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        dots,
-        { y: 0, opacity: 0.3 },
-        {
-          y: -6,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          repeat: -1,
-          yoyo: true,
-          ease: 'power2.inOut',
-        }
-      );
-    });
-    return () => ctx.revert();
+    gsap.fromTo(
+      dots,
+      { y: 0, opacity: 0.3 },
+      {
+        y: -6,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.15,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power2.inOut',
+      }
+    );
   }, []);
 
   return (

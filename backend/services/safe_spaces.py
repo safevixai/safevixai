@@ -5,6 +5,8 @@ import logging
 
 import httpx
 
+from services.exceptions import ServiceValidationError
+
 logger = logging.getLogger(__name__)
 
 # Shared long-lived client — lazily created on first request to avoid event loop issues at import
@@ -25,6 +27,10 @@ async def get_safe_spaces(lat: float, lon: float, radius_m: int = 1000) -> dict:
     Uses Overpass API — free, no key, real-time OSM data.
     Falls back to an empty list with a warning if all endpoints are rate-limited.
     """
+    if not (-90 <= lat <= 90) or not (-180 <= lon <= 180):
+        raise ServiceValidationError(f"Invalid coordinates: lat={lat}, lon={lon}")
+    if radius_m is not None and (radius_m < 100 or radius_m > 100000):
+        raise ServiceValidationError(f"Invalid radius: {radius_m}")
     global _CLIENT
     if _CLIENT is None or _CLIENT.is_closed:
         _CLIENT = httpx.AsyncClient(timeout=20.0)
@@ -79,7 +85,7 @@ out body;
             }
 
         except (httpx.HTTPError, httpx.TimeoutException) as exc:
-            logger.warning('Overpass API request failed: %s', exc)
+            logger.warning('Overpass API request failed: %s', exc, extra={"service": "safe_spaces"})
             continue
 
     # All endpoints failed — return graceful empty response (never 500)

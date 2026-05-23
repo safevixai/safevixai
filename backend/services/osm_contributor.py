@@ -113,7 +113,7 @@ class OSMContributor:
 
         token = os.getenv("OSM_ACCESS_TOKEN", "")
         if not token:
-            logger.warning("OSM_ACCESS_TOKEN not set — contributions will be disabled")
+            logger.warning("OSM_ACCESS_TOKEN not set — contributions will be disabled", extra={"service": "osm_contributor"})
         return token
 
     @property
@@ -186,6 +186,7 @@ class OSMContributor:
                 changeset_id,
                 node_id,
                 issue_type,
+                extra={"service": "osm_contributor"},
             )
 
             return {
@@ -195,8 +196,8 @@ class OSMContributor:
                 "osm_url": f"https://www.openstreetmap.org/node/{node_id}",
             }
 
-        except Exception as exc:
-            logger.error("OSM contribution failed: %s", exc)
+        except httpx.HTTPError as exc:
+            logger.error("OSM contribution failed: %s", exc, extra={"service": "osm_contributor"})
             return {"status": "error", "reason": str(exc)}
 
     async def _open_changeset(self, issue_type: str) -> str | None:
@@ -219,10 +220,10 @@ class OSMContributor:
             )
             if resp.status_code == 200:
                 return resp.text.strip()
-            logger.warning("OSM changeset open failed: %d %s", resp.status_code, resp.text)
+            logger.warning("OSM changeset open failed: %d %s", resp.status_code, resp.text, extra={"service": "osm_contributor"})
             return None
-        except Exception as exc:
-            logger.error("OSM changeset open error: %s", exc)
+        except httpx.HTTPError as exc:
+            logger.error("OSM changeset open error: %s", exc, extra={"service": "osm_contributor"})
             return None
 
     async def _create_node(
@@ -252,10 +253,10 @@ class OSMContributor:
             )
             if resp.status_code == 200:
                 return resp.text.strip()
-            logger.warning("OSM node create failed: %d %s", resp.status_code, resp.text)
+            logger.warning("OSM node create failed: %d %s", resp.status_code, resp.text, extra={"service": "osm_contributor"})
             return None
-        except Exception as exc:
-            logger.error("OSM node create error: %s", exc)
+        except httpx.HTTPError as exc:
+            logger.error("OSM node create error: %s", exc, extra={"service": "osm_contributor"})
             return None
 
     async def _close_changeset(self, changeset_id: str) -> bool:
@@ -265,8 +266,8 @@ class OSMContributor:
                 f"{self.OSM_API_BASE}/changeset/{changeset_id}/close",
             )
             return resp.status_code == 200
-        except Exception as exc:
-            logger.error("OSM changeset close error: %s", exc)
+        except httpx.HTTPError as exc:
+            logger.error("OSM changeset close error: %s", exc, extra={"service": "osm_contributor"})
             return False
 
     async def close(self) -> None:

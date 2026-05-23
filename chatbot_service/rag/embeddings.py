@@ -119,8 +119,11 @@ class SentenceTransformerEmbeddingFunction:
         return False
 
 
-def build_embedding_function(model_name: str):
-    normalized = model_name.strip() or 'sentence-transformers/all-MiniLM-L6-v2'
+def build_embedding_function(model_name: str | None = None):
+    if not model_name or not isinstance(model_name, str):
+        normalized = 'sentence-transformers/all-MiniLM-L6-v2'
+    else:
+        normalized = model_name.strip() or 'sentence-transformers/all-MiniLM-L6-v2'
     if normalized in {'safevixai-local-hash', 'local-hash', 'hash'}:
         return LocalHashEmbeddingFunction()
     return SentenceTransformerEmbeddingFunction(normalized)

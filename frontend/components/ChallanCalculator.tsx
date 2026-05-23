@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
 import { useAppStore } from '@/lib/store';
 import { calculateChallan, type ChallanResult } from '@/lib/api';
 import { logClientError } from '@/lib/client-logger';
@@ -13,26 +14,23 @@ const FineCountUp = ({ value }: { value: number }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const containerRef = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const obj = { val: 0 };
-    const ctx = gsap.context(() => {
-      gsap.to(obj, {
-        val: value,
-        duration: 0.8,
-        ease: 'power2.out',
-        onUpdate: () => {
-          setDisplayValue(Math.floor(obj.val));
-        },
-        onComplete: () => {
-          gsap.fromTo(containerRef.current,
-            { textShadow: '0 0 0px rgba(0,200,150,0)', color: 'var(--text-1)' },
-            { textShadow: '0 0 15px rgba(0,200,150,0.8)', color: 'var(--brand-light)', duration: 0.3, yoyo: true, repeat: 1 }
-          );
-        }
-      });
+    gsap.to(obj, {
+      val: value,
+      duration: 0.8,
+      ease: 'power2.out',
+      onUpdate: () => {
+        setDisplayValue(Math.floor(obj.val));
+      },
+      onComplete: () => {
+        gsap.fromTo(containerRef.current,
+          { textShadow: '0 0 0px rgba(0,200,150,0)', color: 'var(--text-1)' },
+          { textShadow: '0 0 15px rgba(0,200,150,0.8)', color: 'var(--brand-light)', duration: 0.3, yoyo: true, repeat: 1 }
+        );
+      }
     });
-    return () => ctx.revert();
-  }, [value]);
+  }, { scope: containerRef, dependencies: [value] });
 
   return <span ref={containerRef}>{displayValue}</span>;
 };
@@ -57,21 +55,21 @@ const ChallanCalculator: React.FC = () => {
   const configRef = useRef<HTMLDivElement>(null);
   const resultRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     gsap.fromTo([violationRef.current, configRef.current],
       { opacity: 0, y: 15 },
       { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: 'power2.out' }
     );
-  }, []);
+  }, { dependencies: [] });
 
-  useEffect(() => {
+  useGSAP(() => {
     if (result && resultRef.current) {
       gsap.fromTo(resultRef.current,
         { opacity: 0, y: 20, scale: 0.95 },
         { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.5)' }
       );
     }
-  }, [result]);
+  }, { scope: resultRef, dependencies: [result] });
 
  const VIOLATIONS = [
  { code: '194D', label: 'Helmet', icon: '' },
@@ -132,58 +130,63 @@ const ChallanCalculator: React.FC = () => {
  return (
  <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
  
- {/* Violation Selection Grid */}
- <div ref={violationRef} className="space-y-4">
- <label className="text-[10px] font-semibold uppercase tracking-widest text-brand/40 px-2">Select Violation Type</label>
- <div className="grid grid-cols-3 gap-3">
- {VIOLATIONS.map((v) => (
- <button
- key={v.code}
- onClick={() => {
-    setViolationCode(v.code);
-    haptics.light();
+  {/* Violation Selection Grid */}
+  <div ref={violationRef} className="space-y-4" role="radiogroup" aria-label="Select Violation Type">
+  <div className="text-[10px] font-semibold uppercase tracking-widest text-brand/40 px-2">Select Violation Type</div>
+  <div className="grid grid-cols-3 gap-3">
+  {VIOLATIONS.map((v) => (
+  <button
+  key={v.code}
+  onClick={() => {
+     setViolationCode(v.code);
+     haptics.light();
   }}
- className={`flex flex-col items-center justify-center p-4 rounded-[1.5rem] border transition-all gap-2 ${
- violationCode === v.code 
- ? 'bg-brand text-bg border-transparent shadow-[0_4px_20px_rgba(26,92,56,0.4)]' 
- : 'bg-surface-1/40 text-brand border-brand/10 hover:bg-brand/5'
- }`}
- >
- <div className="text-xl">{v.icon}</div>
- <div className="text-[9px] font-semibold uppercase tracking-widest text-center">{v.label}</div>
- </button>
- ))}
- </div>
- </div>
+  role="radio"
+  aria-checked={violationCode === v.code}
+  aria-label={`Violation: ${v.label}`}
+  className={`flex flex-col items-center justify-center p-4 rounded-[1.5rem] border transition-all gap-2 ${
+  violationCode === v.code 
+  ? 'bg-brand text-bg border-transparent shadow-[0_4px_20px_rgba(26,92,56,0.4)]' 
+  : 'bg-surface-1/40 text-brand border-brand/10 hover:bg-brand/5'
+  }`}
+  >
+  <div className="text-xl" aria-hidden="true">{v.icon}</div>
+  <div className="text-[9px] font-semibold uppercase tracking-widest text-center">{v.label}</div>
+  </button>
+  ))}
+  </div>
+  </div>
 
  {/* Config Panel */}
  <div ref={configRef} className="bg-surface-1/60 backdrop-blur-3xl p-6 rounded-[2rem] border border-brand/5 space-y-6">
  <div className="grid grid-cols-2 gap-4">
- <div className="space-y-2">
- <label className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">Vehicle Class</label>
- <select 
- value={vehicleClass} 
- onChange={(e) => {
-    setVehicleClass(e.target.value);
-    haptics.light();
+  <div className="space-y-2">
+  <label id="vehicle-class-label" className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">Vehicle Class</label>
+  <select 
+  aria-labelledby="vehicle-class-label"
+  value={vehicleClass} 
+  onChange={(e) => {
+     setVehicleClass(e.target.value);
+     haptics.light();
   }}
- className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
- >
+  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
+  >
  <option value="2W">2-Wheeler</option>
  <option value="LMV">Car / SUV</option>
  <option value="HMV">Truck / HMV</option>
  </select>
  </div>
- <div className="space-y-2">
- <label className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">State/UT</label>
- <select 
- value={stateCode} 
- onChange={(e) => {
-    setStateCode(e.target.value);
-    haptics.light();
+  <div className="space-y-2">
+  <label id="state-ut-label" className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">State/UT</label>
+  <select 
+  aria-labelledby="state-ut-label"
+  value={stateCode} 
+  onChange={(e) => {
+     setStateCode(e.target.value);
+     haptics.light();
   }}
- className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
- >
+  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
+  >
  {STATES.map((state) => (
  <option key={state.code} value={state.code}>{state.label}</option>
  ))}
@@ -191,20 +194,21 @@ const ChallanCalculator: React.FC = () => {
  </div>
  </div>
 
- <button 
- onClick={() => {
-    setIsRepeat(!isRepeat);
-    haptics.light();
+  <button 
+  onClick={() => {
+     setIsRepeat(!isRepeat);
+     haptics.light();
   }}
- className={`w-full py-3 rounded-xl border transition-all flex items-center justify-center gap-3 ${
- isRepeat 
- ? 'bg-emergency/10 border-emergency/40 text-emergency' 
- : 'bg-white/5 border-white/10 text-brand/40'
- }`}
- >
- <div className={`w-3 h-3 rounded-full ${isRepeat ? 'bg-emergency animate-pulse' : 'bg-white/10'}`} />
- <span className="text-[10px] font-semibold uppercase tracking-widest">Repeat Offender Status</span>
- </button>
+  aria-pressed={isRepeat}
+  className={`w-full py-3 rounded-xl border transition-all flex items-center justify-center gap-3 ${
+  isRepeat 
+  ? 'bg-emergency/10 border-emergency/40 text-emergency' 
+  : 'bg-white/5 border-white/10 text-brand/40'
+  }`}
+  >
+  <div className={`w-3 h-3 rounded-full ${isRepeat ? 'bg-emergency animate-pulse' : 'bg-white/10'}`} aria-hidden="true" />
+  <span className="text-[10px] font-semibold uppercase tracking-widest">Repeat Offender Status</span>
+  </button>
 
  <button 
  onClick={() => {
@@ -218,12 +222,12 @@ const ChallanCalculator: React.FC = () => {
  </button>
  </div>
 
- {/* Result Display */}
- {error && (
- <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm font-semibold text-red-300">
- {error}
- </div>
- )}
+  {/* Result Display */}
+  {error && (
+  <div role="alert" className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm font-semibold text-red-300">
+  {error}
+  </div>
+  )}
   {result && (
  <div
  ref={resultRef}
@@ -244,7 +248,7 @@ const ChallanCalculator: React.FC = () => {
 
  <div className="flex items-baseline gap-2">
  <span className="text-5xl font-black text-text-1 tracking-tighter">
- ₹<FineCountUp value={result.amount_due} />
+ Rs. <FineCountUp value={result.amount_due} />
  </span>
  {isRepeat && (
  <span className="text-[10px] font-semibold text-emergency uppercase tracking-widest">Multiplied Penalty</span>

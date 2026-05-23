@@ -107,7 +107,7 @@ class IndicSeamlessService:
                 SeamlessM4Tv2ForSpeechToText,
             )
             return (torch, torchaudio, SeamlessM4TFeatureExtractor, SeamlessM4TTokenizer, SeamlessM4Tv2ForSpeechToText)
-        except Exception:
+        except ImportError:
             return (None, None, None, None, None)
 
     def _ensure_model_loaded(self) -> None:

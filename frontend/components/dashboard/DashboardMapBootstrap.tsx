@@ -10,7 +10,7 @@ import { useGeolocation } from '@/lib/geolocation';
 import { getAddressFromGPS } from '@/lib/reverse-geocode';
 import { NearbyRoadIssue, NearbyService, useAppStore } from '@/lib/store';
 
-const SEARCH_RADIUS_STEPS = [5_000, 12_000, 20_000, 35_000, 50_000];
+const SEARCH_RADIUS_STEPS = [500, 1_000, 5_000, 12_000, 20_000, 35_000, 50_000];
 
 function normalizeServiceCategory(category: string): NearbyService['category'] {
   switch (category) {
@@ -64,7 +64,7 @@ function toStoreIssues(
 }
 
 function buildRadiusAttempts(requestedRadius: number) {
-  const cappedRadius = Math.max(1000, Math.min(requestedRadius, 50_000));
+  const cappedRadius = Math.max(500, Math.min(requestedRadius, 50_000));
   const attempts = SEARCH_RADIUS_STEPS.filter((step) => step <= cappedRadius);
 
   if (!attempts.length || attempts[attempts.length - 1] !== cappedRadius) {

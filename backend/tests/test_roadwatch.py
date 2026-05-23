@@ -156,12 +156,33 @@ def test_authority_router_normalizes_road_types():
     assert AuthorityRouter._normalize_road_type('National Highway', 'NH32') == 'NH'
 
 
+class DummyDbResult:
+    def scalar(self):
+        return 0
+    def scalar_one_or_none(self):
+        return None
+    def scalars(self):
+        return self
+    def all(self):
+        return []
+    def first(self):
+        return None
+
+
 class DummyDbSession:
     def __init__(self) -> None:
         self.added = None
+        self.added_list = []
 
     def add(self, obj) -> None:
-        self.added = obj
+        self.added_list.append(obj)
+        if hasattr(obj, 'location_address') or getattr(obj, '__tablename__', None) == 'road_issues':
+            self.added = obj
+        elif not self.added:
+            self.added = obj
+
+    async def execute(self, stmt) -> DummyDbResult:
+        return DummyDbResult()
 
     async def commit(self) -> None:
         return None

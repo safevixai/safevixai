@@ -13,6 +13,7 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 from redis.asyncio import Redis
+from redis.exceptions import RedisError
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +60,8 @@ class LLMResponseCache:
                 data = json.loads(raw)
                 self._healthy = True
                 return CacheEntry(**data)
-        except Exception:
+        except (RedisError, json.JSONDecodeError, OSError) as exc:
+            logger.warning("LLM cache GET failed: %s", exc)
             self._healthy = False
         return None
 
@@ -76,7 +78,8 @@ class LLMResponseCache:
             key = self._make_key(message, intent, tool_summaries)
             await self._client.setex(key, self._ttl_seconds, json.dumps(asdict(entry)))
             self._healthy = True
-        except Exception:
+        except (RedisError, OSError) as exc:
+            logger.warning("LLM cache SET failed: %s", exc)
             self._healthy = False
 
     async def ping(self) -> bool:
@@ -86,7 +89,8 @@ class LLMResponseCache:
             await self._client.ping()
             self._healthy = True
             return True
-        except Exception:
+        except (RedisError, OSError) as exc:
+            logger.warning("LLM cache PING failed: %s", exc)
             self._healthy = False
             return False
 
@@ -94,5 +98,5 @@ class LLMResponseCache:
         if self._client:
             try:
                 await self._client.aclose()
-            except Exception:
-                pass
+            except (RedisError, OSError) as exc:
+                logger.warning("LLM cache CLOSE failed: %s", exc)

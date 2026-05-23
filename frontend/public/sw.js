@@ -11,13 +11,24 @@ const OFFLINE_DATA_URLS = [
   '/offline-data/accidents_summary.json',
 ];
 
+const DUCKDB_WASM = [
+  '/duckdb/duckdb-mvp.wasm',
+  '/duckdb/duckdb-eh.wasm',
+  '/duckdb/duckdb-browser-mvp.worker.js',
+  '/duckdb/duckdb-browser-eh.worker.js',
+  '/duckdb/duckdb-browser-coi.worker.js',
+  '/duckdb/duckdb-browser-coi.pthread.worker.js',
+];
+
 const STATIC_ASSETS = [
   '/',
+  '/offline',
   '/sos',
   '/first-aid',
   '/emergency',
   '/offline-data/first-aid.json',
   '/offline-data/india-emergency.geojson',
+  ...DUCKDB_WASM,
 ];
 
 self.addEventListener('install', (event) => {
@@ -69,7 +80,14 @@ self.addEventListener('fetch', (event) => {
         }
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(async () => {
+        const cached = await caches.match(event.request);
+        if (cached) return cached;
+        if (event.request.mode === 'navigate') {
+          return caches.match('/offline');
+        }
+        return cached;
+      })
   );
 });
 
@@ -209,7 +227,7 @@ self.addEventListener('push', (event) => {
 
   const options = {
     body: data.body,
-    icon: '/icons/icon-192x192.png',
+    icon: '/icons/icon-192.png',
     badge: '/icons/badge-72x72.png',
     tag: data.tag || 'safevixai-alert',
     renotify: true,

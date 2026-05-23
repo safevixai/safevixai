@@ -140,7 +140,7 @@ def _load_emergency_numbers() -> EmergencyNumbersResponse:
             raw = json.loads(candidate.read_text(encoding='utf-8'))
             if isinstance(raw, dict) and isinstance(raw.get('numbers'), dict):
                 payload = raw['numbers']
-        except Exception:
+        except (json.JSONDecodeError, OSError, KeyError):
             payload = DEFAULT_EMERGENCY_NUMBERS_DATA
     return EmergencyNumbersResponse(
         numbers={
@@ -638,5 +638,5 @@ class EmergencyLocatorService:
                 ))
             return sorted(items, key=lambda x: x.distance_meters)[:10]
 
-        except Exception:
+        except (httpx.HTTPError, json.JSONDecodeError, KeyError, TypeError):
             return []  # Always fail gracefully — Overpass is primary

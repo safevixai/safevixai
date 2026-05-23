@@ -52,7 +52,7 @@ async def get_safe_route_endpoint(
     destination_lat: float = Query(..., ge=-90, le=90),
     destination_lon: float = Query(..., ge=-180, le=180),
     prefer_safety: bool = Query(default=False),
-):
+) -> dict:
     """
     Returns a safe route prioritizing well-lit, non-isolated roads using ORS.
     """

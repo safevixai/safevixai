@@ -1,6 +1,6 @@
 'use client';
 
-import { useTheme } from 'next-themes';
+import { useTheme } from '@/components/ThemeProvider';
 import { useAppStore } from '@/lib/store';
 import { useMapInstance } from '@/hooks/useMapInstance';
 import { MapCore } from './MapCore';

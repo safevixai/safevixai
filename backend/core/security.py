@@ -155,13 +155,40 @@ def _normalize_user_payload(payload: dict[str, Any], *, provider: str) -> dict[s
     if not user_id:
         raise _unauthorized()
     org_id = payload.get("org_id") or (payload.get("app_metadata") or {}).get("org_id")
+    raw_role = payload.get("role") or payload.get("app_metadata", {}).get("role") or "user"
+    if raw_role == "authenticated":
+        raw_role = "user"
+        
+    from core.rbac import Role
+    try:
+        Role(raw_role)
+    except ValueError:
+        logger.warning(f"Invalid role claim '{raw_role}' in token payload, rejecting token")
+        raise HTTPException(status_code=401, detail="Invalid role claim in token")
+        
     return {
         **payload,
         "sub": str(user_id),
-        "role": payload.get("role") or payload.get("app_metadata", {}).get("role") or "authenticated",
+        "role": raw_role,
         "org_id": str(org_id) if org_id else None,
         "auth_provider": provider,
     }
+
+
+def require_role(required_role: str | Any):
+    """FastAPI dependency that enforces role-based access.
+    
+    Accepts a Role enum or role string (e.g. 'admin', 'operator').
+    """
+    from core.rbac import Role, require_role as rbac_require_role
+    if isinstance(required_role, str):
+        try:
+            role_enum = Role(required_role)
+        except ValueError:
+            raise ValueError(f"Invalid required role: {required_role}")
+    else:
+        role_enum = required_role
+    return rbac_require_role(role_enum)
 
 
 def _decode_app_token(token: str) -> dict[str, Any]:
@@ -223,6 +250,8 @@ async def get_current_user_optional(
         return None
     try:
         return _decode_bearer_token(token)
+    except HTTPException:
+        raise
     except Exception:
         return None
 

@@ -105,6 +105,10 @@ def create_app() -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
+        import asyncio
+        from core.database import AsyncSessionLocal
+        from services.sla_monitor import SLAMonitor
+
         cache = create_cache(settings.redis_url)
         jwks_manager = JWKSManager(jwks_url=settings.jwks_url if hasattr(settings, 'jwks_url') else None)
         await jwks_manager.start()
@@ -134,9 +138,20 @@ def create_app() -> FastAPI:
         app.state.llm_service = llm_service
         app.state.roadwatch_service = roadwatch_service
 
+        # Initialize and start SLAMonitor background task
+        sla_monitor = SLAMonitor(AsyncSessionLocal)
+        app.state.sla_monitor = sla_monitor
+        sla_interval = 60 if settings.environment == "development" else 900
+        app.state.sla_task = asyncio.create_task(sla_monitor.start_loop(interval_seconds=sla_interval))
+
         try:
             yield
         finally:
+            if hasattr(app.state, 'sla_monitor'):
+                app.state.sla_monitor.stop()
+            if hasattr(app.state, 'sla_task'):
+                app.state.sla_task.cancel()
+            
             await jwks_manager.stop()
             from services.safe_spaces import close_safe_spaces_client
             await close_safe_spaces_client()
@@ -144,6 +159,8 @@ def create_app() -> FastAPI:
             await routing_service.aclose()
             await geocoding_service.aclose()
             await overpass_service.aclose()
+            from services.osm_contributor import get_osm_contributor
+            await get_osm_contributor().close()
             await cache.close()
 
     docs_url = None if settings.environment == 'production' else '/docs'
@@ -296,11 +313,15 @@ def create_app() -> FastAPI:
 
     @app.middleware("http")
     async def _tenant_isolation_middleware(request: Request, call_next):
-        from core.security import get_current_user_optional
+        from fastapi.responses import JSONResponse
+        from fastapi import HTTPException
         from core.tenant import get_tenant_id
         
-        # Get tenant ID from authenticated user
-        tenant_id = await get_tenant_id(request)
+        try:
+            # Get tenant ID from authenticated user
+            tenant_id = await get_tenant_id(request)
+        except HTTPException as exc:
+            return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
         
         # Store tenant ID in request state for downstream use
         request.state.tenant_id = tenant_id
@@ -352,7 +373,7 @@ def create_app() -> FastAPI:
         )
         return JSONResponse(
             status_code=500,
-            content={"detail": "Internal server error. The team has been notified."},
+            content={"error": {"code": "INTERNAL_ERROR", "message": "Internal server error. The team has been notified."}},
         )
 
     @app.get('/', tags=['System'])
@@ -440,6 +461,16 @@ def create_app() -> FastAPI:
         if not database_available:
             overall_status = 'degraded'
 
+        from core.database import engine as db_engine
+        pool = db_engine.pool
+        pool_stats = {
+            "size": pool.size(),
+            "checked_in": pool.checkedin(),
+            "overflow": pool.overflow(),
+        }
+        from core.metrics import db_connection_pool_size
+        db_connection_pool_size.set(pool.size())
+
         resp = HealthResponse(
             status=overall_status,
             database_available=database_available,
@@ -451,6 +482,7 @@ def create_app() -> FastAPI:
             version=settings.version,
             dependencies=dependencies,
             circuit_breakers=circuit_breakers if circuit_breakers else None,
+            pool_stats=pool_stats,
             uptime_seconds=round(_get_uptime(), 2),
         )
         if not database_available:
@@ -470,6 +502,14 @@ def create_app() -> FastAPI:
             content=metrics_response(),
             media_type=metrics_content_type(),
         )
+
+    # SECURITY#19: CSP violation report collector
+    # Browsers POST CSP violation reports here when report-uri is specified.
+    @app.post('/api/v1/csp-report', tags=['Security'])
+    async def csp_report(request: Request):
+        body = await request.body()
+        logger.warning('CSP violation: %s', body[:2000].decode('utf-8', errors='replace'))
+        return JSONResponse(status_code=204)
 
     app.include_router(api_router)
     

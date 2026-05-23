@@ -19,6 +19,7 @@ const customJestConfig = {
     '<rootDir>/tests/api-contract.spec.ts',
     '<rootDir>/hooks/__tests__/useSOS.test.ts',
   ],
+  modulePathIgnorePatterns: ['<rootDir>/.next/'],
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

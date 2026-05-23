@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { X } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
+import { PUBLIC_API_BASE_URL, PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
 
 export function SystemStatusBar() {
   const [status, setStatus] = useState<'OPERATIONAL' | 'DEGRADED' | 'DOWN'>('OPERATIONAL');
@@ -23,24 +24,28 @@ export function SystemStatusBar() {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 8000);
         
-        const r = await fetch(`/api/v1/system/status`, { 
-          signal: controller.signal 
-        });
+        const [backend, chatbot] = await Promise.allSettled([
+          fetch(`${PUBLIC_API_BASE_URL}/health`, { signal: controller.signal, cache: 'no-store' }),
+          fetch(`${PUBLIC_CHATBOT_BASE_URL}/health`, { signal: controller.signal, cache: 'no-store' }),
+        ]);
         clearTimeout(timeoutId);
-        
-        if (r.ok) {
-          const data = await r.json();
-          const overall = data?.status?.overall || data?.overall || 'OPERATIONAL';
-          const msg = data?.status?.message || data?.message || 'System operating under backup protocols';
-          setStatus(overall);
-          setMessage(overall === 'DEGRADED' ? msg : 'Server waking up... (~30 seconds on first load)');
-        } else {
+
+        const backendOk = backend.status === 'fulfilled' && backend.value.ok;
+        const chatbotOk = chatbot.status === 'fulfilled' && chatbot.value.ok;
+
+        if (backendOk && chatbotOk) {
+          setStatus('OPERATIONAL');
+          setMessage('');
+        } else if (backendOk || chatbotOk) {
           setStatus('DEGRADED');
-          setMessage('AI Core running on secondary backup providers');
+          setMessage('One SafeVixAI service is waking up. Core safety features remain available.');
+        } else {
+          setStatus('DOWN');
+          setMessage('SafeVixAI services are waking up. Offline emergency tools remain available.');
         }
       } catch {
         setStatus('DOWN');
-        setMessage('Server waking up... (~30 seconds on first load)');
+        setMessage('SafeVixAI services are waking up. Offline emergency tools remain available.');
       }
     };
 
@@ -97,7 +102,7 @@ export function SystemStatusBar() {
       aria-live="polite"
     >
       <div className="flex-1 flex items-center justify-center gap-2">
-        <span>{status === 'DOWN' ? '⚠️' : 'ℹ️'}</span>
+        <span aria-hidden="true">{status === 'DOWN' ? '!' : 'i'}</span>
         <span>{message}</span>
       </div>
       <button

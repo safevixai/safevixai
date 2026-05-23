@@ -9,6 +9,7 @@ import { RightSidebar } from '@/components/RightSidebar';
 import { NetworkMonitor } from '@/components/NetworkMonitor';
 import { GlobalSOS } from '@/components/GlobalSOS';
 import { CommandPalette } from '@/components/search/CommandPalette';
+import { KeyboardShortcutsHelp } from '@/components/ui/KeyboardShortcutsHelp';
 import { OfflineBanner } from '@/components/ui/OfflineBanner';
 import { SystemStatusBar } from '@/components/ui/SystemStatusBar';
 import { ServerWarmingBanner } from '@/components/ui/ServerWarmingBanner';
@@ -59,6 +60,7 @@ export function AppFrame({ children }: AppFrameProps) {
       <NetworkMonitor />
       <GlobalSOS />
       <CommandPalette />
+      <KeyboardShortcutsHelp />
       <SystemStatusBar />
       <OfflineBanner />
       <ServerWarmingBanner />
@@ -71,10 +73,10 @@ export function AppFrame({ children }: AppFrameProps) {
         {isDesktopSidebarCollapsed && !isThinSidebarEnabled && (
           <button
             onClick={() => setDesktopSidebarCollapsed(false)}
+            aria-label="Expand Sidebar"
             className="fixed top-4 left-4 z-50 p-2.5 bg-surface-2/90 backdrop-blur-xl border border-border rounded-xl shadow-lg hover:bg-surface-3 transition-all text-text-1"
-            title="Expand Sidebar"
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="w-5 h-5" aria-hidden="true" />
           </button>
         )}
       </div>
