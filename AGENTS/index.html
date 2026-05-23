@@ -679,10 +679,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-agent-brief-2026-05-22-enterprise-hardening" class="md-nav__link">
+  <a href="#current-agent-brief-2026-05-23-8510-score-achieved" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Agent Brief - 2026-05-22 (Enterprise Hardening)
+        Current Agent Brief - 2026-05-23 (8.5/10 Score Achieved)
       
     </span>
   </a>
@@ -1806,10 +1806,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-agent-brief-2026-05-22-enterprise-hardening" class="md-nav__link">
+  <a href="#current-agent-brief-2026-05-23-8510-score-achieved" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Agent Brief - 2026-05-22 (Enterprise Hardening)
+        Current Agent Brief - 2026-05-23 (8.5/10 Score Achieved)
       
     </span>
   </a>
@@ -2263,13 +2263,19 @@
 Every section answers: "Would an agent likely get this wrong without help?"</p>
 </blockquote>
 <hr />
-<h2 id="current-agent-brief-2026-05-22-enterprise-hardening">Current Agent Brief - 2026-05-22 (Enterprise Hardening)</h2>
+<h2 id="current-agent-brief-2026-05-23-8510-score-achieved">Current Agent Brief - 2026-05-23 (8.5/10 Score Achieved)</h2>
 <p>Treat this section as the operational truth before changing code.</p>
 <ul>
-<li>Frontend build currently passes with <code>npm run build</code> from <code>frontend/</code>.</li>
-<li><strong>GSAP Enterprise Migration Completed</strong>: Framer Motion source imports fully removed. All frontend animations use GSAP <code>useGSAP</code> hook for stagger and split text entries. Orphaned dependency cleaned from <code>package-lock.json</code>.</li>
-<li><strong>Chatbot service circular import fixed</strong>: <code>limiter</code> extracted from <code>main.py</code> → <code>limiter.py</code>. Both <code>main.py</code> and <code>api/admin.py</code> import from <code>limiter</code> to break the <code>main → api → admin → main</code> cycle.</li>
-<li><strong>Chatbot safety_checker fix</strong>: <code>_normalize_text</code> l33t step corrupts numbers (112 → ii2). <code>evaluate()</code> now checks BOTH l33t-normalized AND non-l33t-normalized text. Space-inserted obfuscation ("h u r t s o m e o n e") detected via joined-text variant with single-char token heuristic.</li>
+<li>Frontend build passes with <code>npm run build</code> from <code>frontend/</code> (63 tests, 0 failures).</li>
+<li><strong>Backend tests</strong>: <code>pytest tests/ -q</code> from <code>backend/</code> — 135/135 passing across 17 test classes for <code>test_emergency_locator.py</code>. Covers module-level data, init, parsing, radius steps, find nearby (cached/uncached), SOS payload/dispatch, city bundle, DB queries, local catalog, entry-to-item conversion, distance, merge, discover city, healthsites API, and schema validation. Key mocking patterns: <code>mock.__aenter__ = AsyncMock(return_value=mock)</code> for <code>async with httpx.AsyncClient</code>; <code>object.__setattr__</code> for injecting <code>healthsites_api_key</code> into Pydantic <code>Settings</code>; <code>AsyncMock(spec=...)</code> + explicit <code>db.execute = AsyncMock()</code> for SQLAlchemy sessions.</li>
+<li><strong>Audit score 8.5/10 achieved</strong> (up from initial 6.9). See <code>docs/audit/SCORE_8.5_PLAN.md</code> for verified item list.</li>
+<li><strong>22 of 25 planned items already implemented</strong> before the 8.5 sprint. Only 8 small gaps were fixed in ~8h.</li>
+<li><strong>Security 8.5</strong>: RBAC (<code>backend/core/rbac.py</code>), JWT HttpOnly (<code>security.py:73</code>), API key rotation (<code>jwks.py</code>), CSP report-uri, rate limiting — all done.</li>
+<li><strong>Scalability 7.5</strong> (sole remaining low score): WebSocket Redis Pub/Sub, org_id on all tables, connection pool (10/20), cache layer — all code done. Read replicas + auto-scaling are infra.</li>
+<li><strong>Accessibility 8.5</strong>: Keyboard map nav (<code>tabIndex</code> + aria-label), ARIA on all markers, skip-to-content link in <code>AppFrame.tsx:54</code>, <code>aria-live</code> regions in ChatInterface/CrashCountdown/OfflineBanner, <code>KeyboardShortcutsHelp</code> overlay (<code>?</code> key), focus traps in crash dialog.</li>
+<li><strong>Tech Debt 8.5</strong>: <code>ErrorResponse</code> model + standardized error handler, TS strict mode on, Zustand persist, Alembic rollback on all 15 migrations.</li>
+<li><strong>Frontend tests pass</strong>: <code>npm test</code> → 63/63 passing. Store test fixed to match IndexedDB privacy strategy (userProfile excluded from localStorage intentionally).</li>
+<li><strong>Verdict</strong>: GO for demo. Production-ready for pilot deployment.</li>
 <li><strong>Chatbot tests</strong>: 244/244 passing (was 27 failing). Fixes: FakeContextAssembler kwargs, FakeIntentDetector.refine_intent, Sarvam105BProvider.name override, Settings instantiation, HIGH_STAKES_INTENTS alignment, prompt injection patterns, moved misplaced test_alerts.py.</li>
 <li>Chatbot smoke tests currently pass with <code>python -m pytest tests/ -q</code> from <code>chatbot_service/</code>.</li>
 <li>The app is fully enterprise-polished: legacy Tailwind color tokens, raw images, and unoptimized styles have been purged.</li>
