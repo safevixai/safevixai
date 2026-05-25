@@ -13,8 +13,15 @@ from models.emergency import EmergencyService
 
 settings = get_settings()
 
+connect_args = (
+    {'prepared_statement_cache_size': 0}
+    if settings.database_url.startswith('postgresql+asyncpg://')
+    else {}
+)
+
 engine: AsyncEngine = create_async_engine(
     settings.database_url,
+    connect_args=connect_args,
     pool_pre_ping=True,
     pool_size=settings.db_pool_size,
     max_overflow=settings.db_max_overflow,
