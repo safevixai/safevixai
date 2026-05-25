@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 from datetime import date, datetime
-from typing import Literal
+from typing import Generic, Literal, TypeVar
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 EmergencyCategory = Literal['hospital', 'police', 'ambulance', 'fire', 'towing', 'pharmacy', 'puncture', 'showroom']
-RoadIssueStatus = Literal['open', 'acknowledged', 'in_progress', 'resolved', 'rejected']
+RoadIssueStatus = Literal['open', 'acknowledged', 'in_progress', 'resolved', 'rejected', 'pending_processing', 'verified']
 RouteProfile = Literal['driving-car', 'cycling-regular', 'foot-walking']
 BloodGroup = Literal['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
 
@@ -142,6 +142,7 @@ class RoadInfrastructureResponse(BaseModel):
 
 class RoadIssueItem(BaseModel):
     uuid: UUID
+    complaint_ref: str | None = None
     issue_type: str
     severity: int
     description: str | None = None
@@ -456,3 +457,178 @@ class WardSummaryItem(BaseModel):
     resolved_issues: int
     resolution_rate: float
     sla_breach_count: int
+
+
+# ════════════════════════════════════════════════════════════
+# CIVIC INTELLIGENCE SCHEMAS
+# ════════════════════════════════════════════════════════════
+
+CivicEntityType = Literal[
+    'state', 'district', 'subdistrict', 'block', 'ulb', 'gp', 'village',
+]
+BoundaryLevel = Literal['state', 'district', 'subdistrict', 'ward']
+CivicFeatureType = Literal[
+    'streetlight', 'traffic_signal', 'bus_stop', 'speed_bump',
+    'cctv', 'zebra_crossing', 'toll_booth',
+]
+MunicipalityType = Literal[
+    'municipal_corporation', 'municipality', 'town_panchayat', 'cantonment_board',
+]
+
+
+class LGDEntityResponse(BaseModel):
+    lgd_code: int
+    entity_type: CivicEntityType
+    name_en: str
+    name_local: str | None = None
+    state_code: str
+    parent_lgd_code: int | None = None
+    census_code_2011: str | None = None
+    population_census_2011: int | None = None
+
+
+class LGDHierarchyResponse(BaseModel):
+    state_code: str
+    hierarchy: dict[str, list[dict]]
+
+
+class AdminBoundaryFeature(BaseModel):
+    id: int
+    code: str
+    name: str
+    state_code: str
+    area_sqkm: float | None = None
+
+
+class CivicFeatureItem(BaseModel):
+    id: int
+    osm_id: int
+    feature_type: str
+    city: str | None = None
+    lat: float
+    lon: float
+    distance_m: float | None = None
+    tags: dict | None = None
+
+
+class GovDatasetRecord(BaseModel):
+    id: int
+    dataset_slug: str
+    year: int | None = None
+    state_code: str | None = None
+    district_name: str | None = None
+    metric_name: str | None = None
+    metric_value: float | None = None
+    unit: str | None = None
+    data: dict | None = None
+
+
+class GrievanceItem(BaseModel):
+    id: int
+    source: str
+    grievance_ref: str
+    category: str
+    subcategory: str | None = None
+    description: str
+    state_code: str | None = None
+    district: str | None = None
+    status: str
+    filed_at: datetime | None = None
+    resolved_at: datetime | None = None
+
+
+class CivicStatsResponse(BaseModel):
+    state_code: str | None = None
+    lgd_entities: int = 0
+    admin_boundaries: int = 0
+    osm_features: dict[str, int] = {}
+    grievances: dict[str, int] = {}
+    municipalities: int = 0
+
+
+class ETLRunLogItem(BaseModel):
+    id: int
+    pipeline: str
+    started_at: datetime
+    finished_at: datetime | None = None
+    status: str
+    records_fetched: int = 0
+    records_inserted: int = 0
+    records_updated: int = 0
+    records_skipped: int = 0
+    error: str | None = None
+
+
+class MunicipalityContactChannels(BaseModel):
+    headquarters_address: str | None = None
+    helpline_phone: str | None = None
+    whatsapp_number: str | None = None
+    email: str | None = None
+    website_url: str | None = None
+    app_name: str | None = None
+    app_url: str | None = None
+    grievance_portal_url: str | None = None
+
+
+class MunicipalityLeadership(BaseModel):
+    mayor_name: str | None = None
+    mayor_photo_url: str | None = None
+    commissioner_name: str | None = None
+    commissioner_phone: str | None = None
+
+
+class MunicipalityLocalStats(BaseModel):
+    ward_count: int | None = None
+    population: int | None = None
+    area_sqkm: float | None = None
+
+
+class MunicipalityListItem(BaseModel):
+    slug: str
+    name: str
+    short_name: str
+    municipality_type: str
+    city: str
+    state_code: str
+    state_name: str
+    ward_count: int | None = None
+    population: int | None = None
+    helpline_phone: str | None = None
+
+
+class MunicipalityDetail(BaseModel):
+    slug: str
+    name: str
+    short_name: str
+    municipality_type: str
+    city: str
+    state_code: str
+    state_name: str
+    lgd_code: int | None = None
+    district_name: str | None = None
+    contact: MunicipalityContactChannels
+    leadership: MunicipalityLeadership
+    stats: MunicipalityLocalStats
+    geo: dict[str, float | None] = {}
+    description: str | None = None
+    services_offered: dict | None = None
+    last_verified: str | None = None
+
+
+T = TypeVar("T")
+
+
+class ApiResponse(BaseModel, Generic[T]):
+    success: bool = True
+    data: T | None = None
+    error: dict | None = None
+    timestamp: str = ""
+
+    model_config = {"arbitrary_types_allowed": True}
+
+
+class ApiErrorResponse(BaseModel):
+    success: bool = False
+    data: None = None
+    error: dict
+    timestamp: str = ""

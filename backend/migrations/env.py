@@ -11,9 +11,19 @@ from core.database import Base
 from models import RoadIssue  # noqa: F401
 
 
+import os
+
 config = context.config
 settings = get_settings()
-config.set_main_option('sqlalchemy.url', settings.database_url)
+# Use direct/session URL from environment to avoid pgBouncer transaction pooler errors during migrations
+db_url = os.environ.get("DATABASE_URL", settings.database_url)
+if "postgres://" in db_url:
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+if "postgresql://" in db_url:
+    db_url = db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+if "6543" in db_url:
+    db_url = db_url.replace("6543", "5432", 1)
+config.set_main_option('sqlalchemy.url', db_url)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
@@ -43,10 +53,16 @@ def do_run_migrations(connection) -> None:
 
 
 async def run_migrations_online() -> None:
+    connect_args = (
+        {'prepared_statement_cache_size': 0}
+        if settings.database_url.startswith('postgresql+asyncpg://')
+        else {}
+    )
     connectable = async_engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix='sqlalchemy.',
         poolclass=pool.NullPool,
+        connect_args=connect_args,
     )
 
     async with connectable.connect() as connection:
