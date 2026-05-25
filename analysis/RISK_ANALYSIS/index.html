@@ -23,7 +23,7 @@
     
     
       
-        <title>SafeVixAI — Architecture Review (Updated 2026-05-26) - SafeVixAI</title>
+        <title>SafeVixAI — Risk Analysis (2026-05-26) - SafeVixAI</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#safevixai-architecture-review-updated-2026-05-26" class="md-skip">
+        <a href="#safevixai-risk-analysis-2026-05-26" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SafeVixAI — Architecture Review (Updated 2026-05-26)
+              SafeVixAI — Risk Analysis (2026-05-26)
             
           </span>
         </div>
@@ -1316,22 +1316,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-strengths-verified" class="md-nav__link">
+  <a href="#1-critical-risks-catastrophic-impact" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Strengths (Verified)
+        1. Critical Risks (Catastrophic Impact)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Strengths (Verified)">
+    <nav class="md-nav" aria-label="1. Critical Risks (Catastrophic Impact)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#r1-live-credentials-in-git-repository" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture
+        R1: Live Credentials in Git Repository
       
     </span>
   </a>
@@ -1339,10 +1339,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#resilience" class="md-nav__link">
+  <a href="#r2-chatbot-api-has-no-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resilience
+        R2: Chatbot API Has No Authentication
       
     </span>
   </a>
@@ -1350,10 +1350,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
+  <a href="#r3-render-free-tier-service-unavailability" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Performance
+        R3: Render Free Tier Service Unavailability
       
     </span>
   </a>
@@ -1361,10 +1361,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#devops" class="md-nav__link">
+  <a href="#r4-sos-incidents-persist-indefinitely" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DevOps
+        R4: SOS Incidents Persist Indefinitely
       
     </span>
   </a>
@@ -1377,22 +1377,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-weaknesses-verified" class="md-nav__link">
+  <a href="#2-high-risks-major-impact" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Weaknesses (Verified)
+        2. High Risks (Major Impact)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Weaknesses (Verified)">
+    <nav class="md-nav" aria-label="2. High Risks (Major Impact)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#auth-security" class="md-nav__link">
+  <a href="#r5-no-rbac-enforcement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auth &amp; Security
+        R5: No RBAC Enforcement
       
     </span>
   </a>
@@ -1400,10 +1400,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#observability" class="md-nav__link">
+  <a href="#r6-no-host-header-validation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Observability
+        R6: No Host Header Validation
       
     </span>
   </a>
@@ -1411,10 +1411,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
+  <a href="#r7-upstash-redis-rate-limit-exceeded" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing
+        R7: Upstash Redis Rate Limit Exceeded
       
     </span>
   </a>
@@ -1422,10 +1422,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
+  <a href="#r8-all-llm-providers-fail-simultaneously" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Infrastructure
+        R8: All LLM Providers Fail Simultaneously
       
     </span>
   </a>
@@ -1433,10 +1433,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#data" class="md-nav__link">
+  <a href="#r9-supabase-auto-pause-after-7-days" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data
+        R9: Supabase Auto-Pause After 7 Days
       
     </span>
   </a>
@@ -1449,10 +1449,143 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-technical-debt" class="md-nav__link">
+  <a href="#3-medium-risks-moderate-impact" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Technical Debt
+        3. Medium Risks (Moderate Impact)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Medium Risks (Moderate Impact)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r10-safetychecker-output-validation-dead-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R10: SafetyChecker Output Validation Dead Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r11-medical-disclaimer-never-added-to-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R11: Medical Disclaimer Never Added to Responses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r12-swr-underutilized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R12: SWR Underutilized
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r13-torch-in-chatbot-service-800mb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R13: torch in Chatbot Service (800MB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r14-websocket-no-origin-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R14: WebSocket No Origin Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-low-risks-minor-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Low Risks (Minor Impact)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Low Risks (Minor Impact)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r15-fastapi-docs-enabled-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R15: FastAPI Docs Enabled in Production
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r16-duplicate-service-worker-indexeddb-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R16: Duplicate Service Worker IndexedDB Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r17-render-secret-sync-not-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R17: Render Secret Sync Not Verified
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-operational-risk-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Operational Risk Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-attack-surface-map-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Attack Surface Map (External)
       
     </span>
   </a>
@@ -1479,174 +1612,318 @@
   
 
 
-<h1 id="safevixai-architecture-review-updated-2026-05-26">SafeVixAI — Architecture Review (Updated 2026-05-26)</h1>
+<h1 id="safevixai-risk-analysis-2026-05-26">SafeVixAI — Risk Analysis (2026-05-26)</h1>
 <blockquote>
-<p>Verified against actual codebase. Corrections to prior audit noted.</p>
+<p>What breaks first under load, stress, or attack. Ordered by severity.</p>
 </blockquote>
 <hr />
-<h2 id="1-strengths-verified">1. Strengths (Verified)</h2>
-<h3 id="architecture">Architecture</h3>
+<h2 id="1-critical-risks-catastrophic-impact">1. Critical Risks (Catastrophic Impact)</h2>
+<h3 id="r1-live-credentials-in-git-repository">R1: Live Credentials in Git Repository</h3>
 <ul>
-<li><strong>3-service separation</strong> with clear boundaries: frontend (Next.js), backend (FastAPI :8000), chatbot (FastAPI :8010)</li>
-<li><strong>Factory pattern</strong> in both FastAPI apps: <code>create_app()</code> — testable, mockable</li>
-<li><strong>Proper lifespan management</strong>: <code>@asynccontextmanager</code> with complete startup/shutdown lifecycle</li>
-<li><strong>Service injection via <code>app.state</code></strong>: Consistent DI pattern; no dependency injection framework needed</li>
-<li><strong>Two isolated virtual environments</strong>: backend and chatbot have separate .venv, .env, requirements.txt</li>
+<li><strong>What</strong>: All 3 <code>.env</code> files contain production credentials committed and tracked in git</li>
+<li><strong>Impact</strong>: Anyone with repo access has: JWT signing key, DB password, 11 LLM API keys, Gmail app password, Supabase service_role key</li>
+<li><strong>Likelihood</strong>: CERTAIN — already exposed</li>
+<li><strong>Attack vector</strong>: Insider threat, compromised GitHub account, CI log leakage, branch exposure</li>
+<li><strong>Mitigation</strong>: Rotate ALL keys immediately, git filter-branch to remove .env from history, add .env to .gitignore (already present — need to untrack)</li>
 </ul>
-<h3 id="resilience">Resilience</h3>
+<h3 id="r2-chatbot-api-has-no-authentication">R2: Chatbot API Has No Authentication</h3>
 <ul>
-<li><strong>11-provider LLM fallback chain</strong>: Groq → Cerebras → Sarvam → GitHub → Gemini → NVIDIA → OpenRouter → Mistral → Together → Template (deterministic)</li>
-<li><strong>3-tier emergency data</strong>: PostGIS DB (~50k facilities) → Local CSV → Overpass API</li>
-<li><strong>3-tier offline challan</strong>: DuckDB-Wasm → CSV parser → Dict in-memory fallback</li>
-<li><strong>Circuit breakers</strong>: Per-provider graduated cooldowns (60s for timeout → 24h for quota exhaustion)</li>
-<li><strong>In-memory fallback for all Redis-dependent systems</strong>: Cache, rate limiting, conversation memory</li>
-<li><strong>Dual auth validation</strong>: App JWT + Supabase JWT + JWKS optional</li>
+<li><strong>What</strong>: <code>/api/v1/chat/</code> and <code>/api/v1/chat/stream</code> endpoints on chatbot service (port 8010) require no JWT or service token</li>
+<li><strong>Impact</strong>: Anyone who discovers the chatbot URL can send unlimited messages; rate limiting is per-IP (20/min) but IP-rotation breaks this</li>
+<li><strong>Likelihood</strong>: HIGH — chatbot URL is documented in public GitHub repo</li>
+<li><strong>Attack vector</strong>: DDoS via repeated chat requests, prompt injection probes, cost exhaustion (providers charge per token)</li>
+<li><strong>Mitigation</strong>: Add <code>X-Service-Token</code> header validation (backend→chatbot service communication), or forward backend JWT</li>
 </ul>
-<h3 id="performance">Performance</h3>
+<h3 id="r3-render-free-tier-service-unavailability">R3: Render Free Tier Service Unavailability</h3>
 <ul>
-<li><strong>Granular Zustand selectors</strong>: ~30 selector hooks prevent unnecessary re-renders</li>
-<li><strong>GPU-composited GSAP animations</strong>: Only transform/opacity animated</li>
-<li><strong>Dynamic imports</strong>: MapLibre, DuckDB-Wasm, WebLLM all SSR-disabled</li>
-<li><strong>DuckDB-Wasm client-side</strong>: Avoids server round-trip for challan queries</li>
-<li><strong>Response caching</strong>: Redis + in-memory with configurable TTLs</li>
+<li><strong>What</strong>: Two services require ~1464 hours/month; Render free tier gives 750 hours/month</li>
+<li><strong>Impact</strong>: Services auto-sleep after 15min idle; total runtime exceeds free quota → services stop responding</li>
+<li><strong>Likelihood</strong>: VERY HIGH — 2 services × 24h × 30.5d = 1464 hours needed</li>
+<li><strong>Mitigation</strong>: Upgrade to Render Starter ($7/mo × 2), or reduce runtime (not practical for emergency app)</li>
 </ul>
-<h3 id="devops">DevOps</h3>
+<h3 id="r4-sos-incidents-persist-indefinitely">R4: SOS Incidents Persist Indefinitely</h3>
 <ul>
-<li><strong>19 CI/CD workflows</strong>: lint → test → security → build → deploy → docs → load test → chaos</li>
-<li><strong>Blue-green deployment pattern</strong>: Render deploy hooks with pre/post verification</li>
-<li><strong>Docker Compose with 3 isolated networks</strong>: Data-net, backend-net, frontend-net — prevents lateral movement</li>
-<li><strong>Non-root containers</strong>: All Dockerfiles use <code>appuser</code></li>
-<li><strong>Dependabot</strong>: npm + pip + GitHub Actions, weekly schedules, 5 PR limit</li>
+<li><strong>What</strong>: No data retention policy enforced; SOS incident records accumulate with no cleanup</li>
+<li><strong>Impact</strong>: Privacy violation for SOS victims (location + phone + PII stored forever); DB growth unavoidable</li>
+<li><strong>Likelihood</strong>: CERTAIN — migration 10005_data_retention exists but no cron job enforces it</li>
+<li><strong>Mitigation</strong>: Enable the retention cron (delete SOS after 1 year, tracking after 30 days)</li>
 </ul>
 <hr />
-<h2 id="2-weaknesses-verified">2. Weaknesses (Verified)</h2>
-<h3 id="auth-security">Auth &amp; Security</h3>
+<h2 id="2-high-risks-major-impact">2. High Risks (Major Impact)</h2>
+<h3 id="r5-no-rbac-enforcement">R5: No RBAC Enforcement</h3>
 <ul>
-<li><strong>Live credentials in git</strong>: All 3 .env files committed with production secrets (CRITICAL)</li>
-<li><strong>Single-operator auth</strong>: Backend only supports 1 operator via env vars; no user registration</li>
-<li><strong>No token revocation</strong>: JWT valid for 24h; no blacklist/refresh mechanism</li>
-<li><strong>RBAC not enforced</strong>: JWT has <code>role</code> claim but most endpoints don't check it</li>
-<li><strong>No Host header validation</strong>: No ALLOWED_HOSTS — Host header injection possible</li>
-<li><strong>Chatbot endpoints unauthenticated</strong>: <code>/chat</code> and <code>/chat/stream</code> rate-limited but no JWT required</li>
-<li><strong>X-Admin-Key deprecated but still accepted</strong>: Legacy admin auth header still functional</li>
+<li><strong>What</strong>: JWT contains <code>role</code> claim but most endpoints don't check it; any authenticated user = full access</li>
+<li><strong>Impact</strong>: Authenticated user can read all profiles, all SOS incidents, all chat logs, all admin endpoints</li>
+<li><strong>Likelihood</strong>: HIGH — if auth is compromised, no second layer of protection</li>
+<li><strong>Mitigation</strong>: Add role-check decorator to all ADMIN/OPERATOR endpoints</li>
 </ul>
-<h3 id="observability">Observability</h3>
+<h3 id="r6-no-host-header-validation">R6: No Host Header Validation</h3>
 <ul>
-<li><strong>Prometheus <code>/metrics</code> wired but analytics endpoint</strong> returns data for public — not true Prometheus</li>
-<li><strong>No uptime monitoring</strong>: No UptimeRobot/Pingdom configured</li>
-<li><strong>Sentry optional</strong>: Only enabled if <code>SENTRY_DSN</code> is set; no default</li>
-<li><strong>Email alerts 5-min cooldown</strong>: Resets on restart (in-memory only)</li>
-<li><strong>No distributed tracing</strong>: OTLP not configured</li>
+<li><strong>What</strong>: Backend accepts requests with any Host header; no ALLOWED_HOSTS check</li>
+<li><strong>Impact</strong>: Host header injection for password reset poisoning, cache poisoning, SSRF via open redirect</li>
+<li><strong>Likelihood</strong>: MEDIUM — requires attacker to craft malicious request through a proxy</li>
+<li><strong>Mitigation</strong>: Add ALLOWED_HOSTS middleware checking against FRONTEND_URL</li>
 </ul>
-<h3 id="testing">Testing</h3>
+<h3 id="r7-upstash-redis-rate-limit-exceeded">R7: Upstash Redis Rate Limit Exceeded</h3>
 <ul>
-<li><strong>Frontend test coverage</strong>: Only 12 component tests; <code>useSOS.test.ts</code> excluded from Jest</li>
-<li><strong>Chatbot</strong>: 892/892 passing, 95% coverage</li>
-<li><strong>Backend</strong>: 1365/1365 passing, 59% coverage — service files need live DB</li>
-<li><strong>No cross-service integration tests</strong>: Frontend↔Backend↔Chatbot not tested together</li>
-<li><strong>Root <code>/tests/</code> directory gitignored</strong>: k6, chaos, and contract tests exist on disk but untracked</li>
+<li><strong>What</strong>: Free tier allows only 10,000 commands/day; cache, rate limiting, session memory all depend on Redis</li>
+<li><strong>Impact</strong>: All Redis systems fall back to in-memory; rate limiting resets, session memory lost on restart</li>
+<li><strong>Likelihood</strong>: MEDIUM-HIGH — each API request uses 2-5 Redis commands (cache check + rate limit)</li>
+<li><strong>Mitigation</strong>: Reduce cache TTLs, batch Redis commands, monitor command usage</li>
 </ul>
-<h3 id="infrastructure">Infrastructure</h3>
+<h3 id="r8-all-llm-providers-fail-simultaneously">R8: All LLM Providers Fail Simultaneously</h3>
 <ul>
-<li><strong>Render free tier oversubscribed</strong>: 2 services × 24h × 30.5d = 1464h vs 750h available</li>
-<li><strong>No Infrastructure as Code</strong>: Docker Compose + render.yaml only; no Terraform/Pulumi</li>
-<li><strong>Duplicated render.yaml</strong>: chatbot_service/render.yaml duplicates root render.yaml chatbot service</li>
-<li><strong>Package manager conflict</strong>: CI uses <code>npm ci</code>, AGENTS.md says pnpm; pnpm-lock.yaml gitignored</li>
-<li><strong>No automated DB rollback</strong>: Alembic downgrade exists but no CI step for it</li>
+<li><strong>What</strong>: All 9 providers return errors or time out; chain exhausts to TemplateProvider</li>
+<li><strong>Impact</strong>: Chatbot returns deterministic template responses (no semantic answers), user trust degraded</li>
+<li><strong>Likelihood</strong>: LOW — but if Groq + Cerebras + Gemini all down, chain shortens to fewer options</li>
+<li><strong>Mitigation</strong>: TemplateProvider provides safe fallback; email alert triggers after all fail</li>
 </ul>
-<h3 id="data">Data</h3>
+<h3 id="r9-supabase-auto-pause-after-7-days">R9: Supabase Auto-Pause After 7 Days</h3>
 <ul>
-<li><strong>SOS incidents persist indefinitely</strong>: No cleanup/retention policy</li>
-<li><strong>Location privacy</strong>: Tracking data stored with no expiry enforcement beyond 4h token</li>
-<li><strong>All <code>.env</code> files track live credentials</strong>: Including Gmail app password for email alerts</li>
-<li><strong>Sub-gitignore contradicts root</strong>: chatbot_service/.gitignore ignores chroma_db but root explicitly keeps it</li>
+<li><strong>What</strong>: Supabase free tier auto-pauses database after 7 days of inactivity</li>
+<li><strong>Impact</strong>: All DB queries fail; emergency locator -&gt; zero results (CSV fallback still works)</li>
+<li><strong>Likelihood</strong>: MEDIUM — depends on activity; health check pings may prevent this</li>
+<li><strong>Mitigation</strong>: Scheduled cron to keep DB active (already handled by health checks)</li>
 </ul>
 <hr />
-<h2 id="3-technical-debt">3. Technical Debt</h2>
+<h2 id="3-medium-risks-moderate-impact">3. Medium Risks (Moderate Impact)</h2>
+<h3 id="r10-safetychecker-output-validation-dead-code">R10: SafetyChecker Output Validation Dead Code</h3>
+<ul>
+<li><strong>What</strong>: <code>check_output_safety()</code> defined (lines 234-255) but never called in ChatEngine</li>
+<li><strong>Impact</strong>: LLM responses containing harmful content are not filtered server-side</li>
+<li><strong>Likelihood</strong>: MEDIUM — depends on LLM provider's own safety filters</li>
+<li><strong>Mitigation</strong>: Wire <code>check_output_safety()</code> into ChatEngine after ProviderRouter.generate()</li>
+</ul>
+<h3 id="r11-medical-disclaimer-never-added-to-responses">R11: Medical Disclaimer Never Added to Responses</h3>
+<ul>
+<li><strong>What</strong>: <code>add_medical_disclaimer_if_needed()</code> defined (lines 226-232) but never called</li>
+<li><strong>Impact</strong>: First-aid and medical advice from chatbot lacks "Call 112 immediately" disclaimer</li>
+<li><strong>Likelihood</strong>: HIGH — first aid tool frequently returns medical advice</li>
+<li><strong>Mitigation</strong>: Wire disclaimer into response post-processing</li>
+</ul>
+<h3 id="r12-swr-underutilized">R12: SWR Underutilized</h3>
+<ul>
+<li><strong>What</strong>: Only 1 of 23 pages uses SWR; most use manual Axios + useState/useEffect</li>
+<li><strong>Impact</strong>: No request deduplication, no cache-first responses, no automatic revalidation</li>
+<li><strong>Likelihood</strong>: HIGH — every page mount triggers fresh API calls</li>
+<li><strong>Mitigation</strong>: Convert all data-fetching pages to SWR hooks</li>
+</ul>
+<h3 id="r13-torch-in-chatbot-service-800mb">R13: torch in Chatbot Service (800MB)</h3>
+<ul>
+<li><strong>What</strong>: torch 2.12.0 + torchaudio 2.11.0 + transformers 5.5.4 required for IndicSeamless speech</li>
+<li><strong>Impact</strong>: Render 512MB RAM instance cannot load torch; speech translation fails to start</li>
+<li><strong>Likelihood</strong>: CERTAIN — graceful failure handled via fallback, but feature non-functional</li>
+<li><strong>Mitigation</strong>: Move speech to separate lightweight service or use Groq Whisper API instead</li>
+</ul>
+<h3 id="r14-websocket-no-origin-validation">R14: WebSocket No Origin Validation</h3>
+<ul>
+<li><strong>What</strong>: <code>backend/api/v1/tracking.py</code> validates origin against CORS list but doesn't enforce it strictly</li>
+<li><strong>Impact</strong>: WebSocket connections from non-allowed origins may pass</li>
+<li><strong>Likelihood</strong>: LOW-MEDIUM — depends on browser CORS behavior</li>
+<li><strong>Mitigation</strong>: Add strict origin check in WebSocket accept handler</li>
+</ul>
+<hr />
+<h2 id="4-low-risks-minor-impact">4. Low Risks (Minor Impact)</h2>
+<h3 id="r15-fastapi-docs-enabled-in-production">R15: FastAPI Docs Enabled in Production</h3>
+<ul>
+<li><strong>What</strong>: <code>/docs</code> and <code>/redoc</code> accessible if <code>ENVIRONMENT != 'production'</code></li>
+<li><strong>Impact</strong>: API schema exposure (information disclosure)</li>
+<li><strong>Likelihood</strong>: LOW — ENVIRONMENT var should be set to 'production' in Render</li>
+<li><strong>Mitigation</strong>: Verify Render env vars</li>
+</ul>
+<h3 id="r16-duplicate-service-worker-indexeddb-schema">R16: Duplicate Service Worker IndexedDB Schema</h3>
+<ul>
+<li><strong>What</strong>: <code>public/sw.js</code> duplicates IndexedDB schema from <code>lib/offline-sos-queue.ts</code></li>
+<li><strong>Impact</strong>: Schema drift between SW and client library</li>
+<li><strong>Likelihood</strong>: MEDIUM — schema version mismatch causes runtime errors</li>
+<li><strong>Mitigation</strong>: Extract shared schema module or use Workbox</li>
+</ul>
+<h3 id="r17-render-secret-sync-not-verified">R17: Render Secret Sync Not Verified</h3>
+<ul>
+<li><strong>What</strong>: render.yaml has <code>sync: false</code> for 15+ secrets — must be manually set in Render dashboard</li>
+<li><strong>Impact</strong>: Missing secrets → auth failures, third-party API failures</li>
+<li><strong>Likelihood</strong>: HIGH on first deploy; low once configured</li>
+<li><strong>Mitigation</strong>: Add secret validation endpoint, verify at startup</li>
+</ul>
+<hr />
+<h2 id="5-operational-risk-matrix">5. Operational Risk Matrix</h2>
 <table>
 <thead>
 <tr>
-<th>Item</th>
+<th>Risk</th>
+<th>Prob</th>
 <th>Impact</th>
-<th>Effort</th>
-<th>Priority</th>
+<th>Score</th>
+<th>Owner</th>
+<th>Mitigation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>.env files committed to git</td>
-<td>Credentials exposed to all repo users</td>
-<td>HIGH (rotate + git filter)</td>
-<td><strong>CRITICAL</strong></td>
+<td>R1: Credentials in git</td>
+<td>CERTAIN</td>
+<td>CRITICAL</td>
+<td>10</td>
+<td>Security</td>
+<td>Rotate keys, git filter</td>
 </tr>
 <tr>
-<td>SafetyChecker output check never called</td>
-<td>Output safety not enforced</td>
-<td>Low (4-line call)</td>
+<td>R2: Chatbot no auth</td>
 <td>HIGH</td>
-</tr>
-<tr>
-<td>SWR underutilized (1 of 23 pages)</td>
-<td>Missing caching/revalidation</td>
-<td>MEDIUM (add SWR hooks)</td>
 <td>HIGH</td>
+<td>8</td>
+<td>Backend</td>
+<td>Add service token</td>
 </tr>
 <tr>
-<td>EmergencyTool instantiated but unwired</td>
-<td>Dead tool</td>
-<td>Low (wire or remove)</td>
+<td>R3: Render quota</td>
+<td>VERY HIGH</td>
+<td>HIGH</td>
+<td>8</td>
+<td>DevOps</td>
+<td>Upgrade plan</td>
+</tr>
+<tr>
+<td>R4: No data retention</td>
+<td>CERTAIN</td>
 <td>MEDIUM</td>
+<td>6</td>
+<td>Backend</td>
+<td>Enable retention cron</td>
 </tr>
 <tr>
-<td>Dead route context methods in context_assembler</td>
-<td>3 methods never called</td>
-<td>Low (remove dead code)</td>
+<td>R5: No RBAC</td>
+<td>HIGH</td>
+<td>HIGH</td>
+<td>8</td>
+<td>Backend</td>
+<td>Role-check decorator</td>
+</tr>
+<tr>
+<td>R6: No Host validation</td>
 <td>MEDIUM</td>
+<td>HIGH</td>
+<td>7</td>
+<td>Backend</td>
+<td>ALLOWED_HOSTS middleware</td>
 </tr>
 <tr>
-<td>torch in chatbot requirements</td>
-<td>800MB dep for optional speech feature</td>
-<td>MEDIUM (make optional)</td>
+<td>R7: Redis rate limit</td>
 <td>MEDIUM</td>
+<td>HIGH</td>
+<td>6</td>
+<td>Backend</td>
+<td>Monitor, batch commands</td>
 </tr>
 <tr>
-<td>Horverwrite html lang</td>
-<td>HARDDED</td>
-<td>Low (use env var)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>No Host header validation</td>
-<td>Head injection risk</td>
-<td>Low (add middleware)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>X-Admin-Key header still allowed</td>
-<td>Dead legacy auth path</td>
-<td>Low (remove from CORS)</td>
+<td>R8: LLM all fail</td>
 <td>LOW</td>
+<td>MEDIUM</td>
+<td>4</td>
+<td>Chatbot</td>
+<td>Email alert + template</td>
 </tr>
 <tr>
-<td>Duplicated render.yaml</td>
-<td>Drift risk</td>
-<td>Low (remove one)</td>
-<td>LOW</td>
+<td>R9: Supabase auto-pause</td>
+<td>MEDIUM</td>
+<td>CRITICAL</td>
+<td>7</td>
+<td>DevOps</td>
+<td>Keep-alive cron</td>
 </tr>
 <tr>
-<td>next-themes installed but unused</td>
-<td>Dead dependency 0.4.6</td>
-<td>Low (remove)</td>
-<td>LOW</td>
+<td>R10: Safety output dead</td>
+<td>MEDIUM</td>
+<td>MEDIUM</td>
+<td>4</td>
+<td>Chatbot</td>
+<td>Wire check_output_safety</td>
 </tr>
 <tr>
-<td>Framer Motion orphaned in lockfile</td>
-<td>Dead dep</td>
-<td>Low (prune lockfile)</td>
+<td>R11: Medical disclaimer</td>
+<td>HIGH</td>
+<td>MEDIUM</td>
+<td>6</td>
+<td>Chatbot</td>
+<td>Wire disclaimer</td>
+</tr>
+<tr>
+<td>R12: SWR underused</td>
+<td>HIGH</td>
 <td>LOW</td>
+<td>3</td>
+<td>Frontend</td>
+<td>Convert pages</td>
+</tr>
+<tr>
+<td>R13: torch over RAM</td>
+<td>CERTAIN</td>
+<td>LOW</td>
+<td>2</td>
+<td>Chatbot</td>
+<td>Swap to Whisper API</td>
+</tr>
+<tr>
+<td>R14: WS origin check</td>
+<td>LOW</td>
+<td>MEDIUM</td>
+<td>3</td>
+<td>Backend</td>
+<td>Add strict check</td>
+</tr>
+<tr>
+<td>R15: Docs enabled</td>
+<td>LOW</td>
+<td>LOW</td>
+<td>1</td>
+<td>Backend</td>
+<td>Verify env</td>
+</tr>
+<tr>
+<td>R16: SW schema dup</td>
+<td>MEDIUM</td>
+<td>LOW</td>
+<td>2</td>
+<td>Frontend</td>
+<td>Extract shared</td>
+</tr>
+<tr>
+<td>R17: Render secrets</td>
+<td>HIGH</td>
+<td>MEDIUM</td>
+<td>5</td>
+<td>DevOps</td>
+<td>Add validation endpoint</td>
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="6-attack-surface-map-external">6. Attack Surface Map (External)</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Internet
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  ├── Vercel (frontend)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  │   ├── ALL routes: Public (no auth required for safety features)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  │   ├── POST /api/v1/emergency/sos: Rate limited (10/min)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  │   ├── POST /api/v1/challan/calculate: Public
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  │   ├── POST /api/v1/roads/report: Public (optional auth)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  │   └── POST /api/v1/chat/stream: Auth on backend side
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  ├── Render (backend :8000)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  │   ├── GET /docs: Schema disclosure (if not production)
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  │   ├── POST /api/v1/auth/login: 5/min rate limit
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  │   ├── ALL /api/v1/admin/*: OPERATOR role required
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  │   └── WebSocket /tracking: JWT query param
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  ├── Render (chatbot :8010)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  │   ├── POST /api/v1/chat/: NO AUTH — highest risk
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  │   ├── POST /api/v1/chat/stream: NO AUTH
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  │   ├── POST /speech/translate: NO AUTH (file upload)
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  │   └── GET /admin/*: X-Admin-Key header (deprecated)
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>  │
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>  └── Supabase (PostgreSQL)
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>      ├── Direct connection string in git (DB_URL with credentials)
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>      └── RLS policies exist but service_role key is also committed
+</span></code></pre></div>
+<p><strong>Attack Priority</strong>: Chatbot (no auth) &gt; Supabase (credentials in git) &gt; Backend (docs if exposed)</p>
 
 
 

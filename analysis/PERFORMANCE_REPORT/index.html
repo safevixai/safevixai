@@ -23,7 +23,7 @@
     
     
       
-        <title>SafeVixAI — Architecture Review (Updated 2026-05-26) - SafeVixAI</title>
+        <title>SafeVixAI — Performance Report - SafeVixAI</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#safevixai-architecture-review-updated-2026-05-26" class="md-skip">
+        <a href="#safevixai-performance-report" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SafeVixAI — Architecture Review (Updated 2026-05-26)
+              SafeVixAI — Performance Report
             
           </span>
         </div>
@@ -1316,22 +1316,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-strengths-verified" class="md-nav__link">
+  <a href="#1-frontend-performance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Strengths (Verified)
+        1. Frontend Performance
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Strengths (Verified)">
+    <nav class="md-nav" aria-label="1. Frontend Performance">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#current-state" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture
+        Current State
       
     </span>
   </a>
@@ -1339,10 +1339,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#resilience" class="md-nav__link">
+  <a href="#optimization-applied" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resilience
+        Optimization Applied
       
     </span>
   </a>
@@ -1350,21 +1350,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
+  <a href="#optimization-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Performance
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#devops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DevOps
+        Optimization Needed
       
     </span>
   </a>
@@ -1377,66 +1366,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-weaknesses-verified" class="md-nav__link">
+  <a href="#2-backend-performance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Weaknesses (Verified)
+        2. Backend Performance
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Weaknesses (Verified)">
+    <nav class="md-nav" aria-label="2. Backend Performance">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#auth-security" class="md-nav__link">
+  <a href="#bottlenecks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auth &amp; Security
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#observability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observability
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Infrastructure
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data
+        Bottlenecks
       
     </span>
   </a>
@@ -1449,10 +1394,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-technical-debt" class="md-nav__link">
+  <a href="#3-chatbot-performance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Technical Debt
+        3. Chatbot Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Chatbot Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-fallback-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM Fallback Timing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chromadb-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChromaDB RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-database-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Database Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-lighthouse-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Lighthouse Targets
       
     </span>
   </a>
@@ -1479,174 +1474,264 @@
   
 
 
-<h1 id="safevixai-architecture-review-updated-2026-05-26">SafeVixAI — Architecture Review (Updated 2026-05-26)</h1>
-<blockquote>
-<p>Verified against actual codebase. Corrections to prior audit noted.</p>
-</blockquote>
+<h1 id="safevixai-performance-report">SafeVixAI — Performance Report</h1>
+<p><strong>Date:</strong> 2026-05-26</p>
 <hr />
-<h2 id="1-strengths-verified">1. Strengths (Verified)</h2>
-<h3 id="architecture">Architecture</h3>
-<ul>
-<li><strong>3-service separation</strong> with clear boundaries: frontend (Next.js), backend (FastAPI :8000), chatbot (FastAPI :8010)</li>
-<li><strong>Factory pattern</strong> in both FastAPI apps: <code>create_app()</code> — testable, mockable</li>
-<li><strong>Proper lifespan management</strong>: <code>@asynccontextmanager</code> with complete startup/shutdown lifecycle</li>
-<li><strong>Service injection via <code>app.state</code></strong>: Consistent DI pattern; no dependency injection framework needed</li>
-<li><strong>Two isolated virtual environments</strong>: backend and chatbot have separate .venv, .env, requirements.txt</li>
-</ul>
-<h3 id="resilience">Resilience</h3>
-<ul>
-<li><strong>11-provider LLM fallback chain</strong>: Groq → Cerebras → Sarvam → GitHub → Gemini → NVIDIA → OpenRouter → Mistral → Together → Template (deterministic)</li>
-<li><strong>3-tier emergency data</strong>: PostGIS DB (~50k facilities) → Local CSV → Overpass API</li>
-<li><strong>3-tier offline challan</strong>: DuckDB-Wasm → CSV parser → Dict in-memory fallback</li>
-<li><strong>Circuit breakers</strong>: Per-provider graduated cooldowns (60s for timeout → 24h for quota exhaustion)</li>
-<li><strong>In-memory fallback for all Redis-dependent systems</strong>: Cache, rate limiting, conversation memory</li>
-<li><strong>Dual auth validation</strong>: App JWT + Supabase JWT + JWKS optional</li>
-</ul>
-<h3 id="performance">Performance</h3>
-<ul>
-<li><strong>Granular Zustand selectors</strong>: ~30 selector hooks prevent unnecessary re-renders</li>
-<li><strong>GPU-composited GSAP animations</strong>: Only transform/opacity animated</li>
-<li><strong>Dynamic imports</strong>: MapLibre, DuckDB-Wasm, WebLLM all SSR-disabled</li>
-<li><strong>DuckDB-Wasm client-side</strong>: Avoids server round-trip for challan queries</li>
-<li><strong>Response caching</strong>: Redis + in-memory with configurable TTLs</li>
-</ul>
-<h3 id="devops">DevOps</h3>
-<ul>
-<li><strong>19 CI/CD workflows</strong>: lint → test → security → build → deploy → docs → load test → chaos</li>
-<li><strong>Blue-green deployment pattern</strong>: Render deploy hooks with pre/post verification</li>
-<li><strong>Docker Compose with 3 isolated networks</strong>: Data-net, backend-net, frontend-net — prevents lateral movement</li>
-<li><strong>Non-root containers</strong>: All Dockerfiles use <code>appuser</code></li>
-<li><strong>Dependabot</strong>: npm + pip + GitHub Actions, weekly schedules, 5 PR limit</li>
-</ul>
-<hr />
-<h2 id="2-weaknesses-verified">2. Weaknesses (Verified)</h2>
-<h3 id="auth-security">Auth &amp; Security</h3>
-<ul>
-<li><strong>Live credentials in git</strong>: All 3 .env files committed with production secrets (CRITICAL)</li>
-<li><strong>Single-operator auth</strong>: Backend only supports 1 operator via env vars; no user registration</li>
-<li><strong>No token revocation</strong>: JWT valid for 24h; no blacklist/refresh mechanism</li>
-<li><strong>RBAC not enforced</strong>: JWT has <code>role</code> claim but most endpoints don't check it</li>
-<li><strong>No Host header validation</strong>: No ALLOWED_HOSTS — Host header injection possible</li>
-<li><strong>Chatbot endpoints unauthenticated</strong>: <code>/chat</code> and <code>/chat/stream</code> rate-limited but no JWT required</li>
-<li><strong>X-Admin-Key deprecated but still accepted</strong>: Legacy admin auth header still functional</li>
-</ul>
-<h3 id="observability">Observability</h3>
-<ul>
-<li><strong>Prometheus <code>/metrics</code> wired but analytics endpoint</strong> returns data for public — not true Prometheus</li>
-<li><strong>No uptime monitoring</strong>: No UptimeRobot/Pingdom configured</li>
-<li><strong>Sentry optional</strong>: Only enabled if <code>SENTRY_DSN</code> is set; no default</li>
-<li><strong>Email alerts 5-min cooldown</strong>: Resets on restart (in-memory only)</li>
-<li><strong>No distributed tracing</strong>: OTLP not configured</li>
-</ul>
-<h3 id="testing">Testing</h3>
-<ul>
-<li><strong>Frontend test coverage</strong>: Only 12 component tests; <code>useSOS.test.ts</code> excluded from Jest</li>
-<li><strong>Chatbot</strong>: 892/892 passing, 95% coverage</li>
-<li><strong>Backend</strong>: 1365/1365 passing, 59% coverage — service files need live DB</li>
-<li><strong>No cross-service integration tests</strong>: Frontend↔Backend↔Chatbot not tested together</li>
-<li><strong>Root <code>/tests/</code> directory gitignored</strong>: k6, chaos, and contract tests exist on disk but untracked</li>
-</ul>
-<h3 id="infrastructure">Infrastructure</h3>
-<ul>
-<li><strong>Render free tier oversubscribed</strong>: 2 services × 24h × 30.5d = 1464h vs 750h available</li>
-<li><strong>No Infrastructure as Code</strong>: Docker Compose + render.yaml only; no Terraform/Pulumi</li>
-<li><strong>Duplicated render.yaml</strong>: chatbot_service/render.yaml duplicates root render.yaml chatbot service</li>
-<li><strong>Package manager conflict</strong>: CI uses <code>npm ci</code>, AGENTS.md says pnpm; pnpm-lock.yaml gitignored</li>
-<li><strong>No automated DB rollback</strong>: Alembic downgrade exists but no CI step for it</li>
-</ul>
-<h3 id="data">Data</h3>
-<ul>
-<li><strong>SOS incidents persist indefinitely</strong>: No cleanup/retention policy</li>
-<li><strong>Location privacy</strong>: Tracking data stored with no expiry enforcement beyond 4h token</li>
-<li><strong>All <code>.env</code> files track live credentials</strong>: Including Gmail app password for email alerts</li>
-<li><strong>Sub-gitignore contradicts root</strong>: chatbot_service/.gitignore ignores chroma_db but root explicitly keeps it</li>
-</ul>
-<hr />
-<h2 id="3-technical-debt">3. Technical Debt</h2>
+<h2 id="1-frontend-performance">1. Frontend Performance</h2>
+<h3 id="current-state">Current State</h3>
 <table>
 <thead>
 <tr>
-<th>Item</th>
-<th>Impact</th>
-<th>Effort</th>
-<th>Priority</th>
+<th>Metric</th>
+<th>Target</th>
+<th>Status</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>.env files committed to git</td>
-<td>Credentials exposed to all repo users</td>
-<td>HIGH (rotate + git filter)</td>
-<td><strong>CRITICAL</strong></td>
+<td>First Load JS</td>
+<td>&lt; 300KB gzipped per route</td>
+<td>✅</td>
+<td>Dynamic imports for MapLibre, DuckDB, QR</td>
 </tr>
 <tr>
-<td>SafetyChecker output check never called</td>
-<td>Output safety not enforced</td>
-<td>Low (4-line call)</td>
-<td>HIGH</td>
+<td>LCP</td>
+<td>&lt; 2.5s</td>
+<td>⚠️</td>
+<td>MapLibre loads ~200KB, SSR-disabled</td>
 </tr>
 <tr>
-<td>SWR underutilized (1 of 23 pages)</td>
-<td>Missing caching/revalidation</td>
-<td>MEDIUM (add SWR hooks)</td>
-<td>HIGH</td>
+<td>CLS</td>
+<td>&lt; 0.1</td>
+<td>✅</td>
+<td>AppFrame layout, no layout shift</td>
 </tr>
 <tr>
-<td>EmergencyTool instantiated but unwired</td>
-<td>Dead tool</td>
-<td>Low (wire or remove)</td>
-<td>MEDIUM</td>
+<td>INP</td>
+<td>&lt; 200ms</td>
+<td>⚠️</td>
+<td>GSAP animations on input may affect INP</td>
 </tr>
 <tr>
-<td>Dead route context methods in context_assembler</td>
-<td>3 methods never called</td>
-<td>Low (remove dead code)</td>
-<td>MEDIUM</td>
+<td>Lighthouse Perf</td>
+<td>≥ 85</td>
+<td>⚠️</td>
+<td>Need audit (Render cold start affects scores)</td>
 </tr>
 <tr>
-<td>torch in chatbot requirements</td>
-<td>800MB dep for optional speech feature</td>
-<td>MEDIUM (make optional)</td>
-<td>MEDIUM</td>
+<td>Lighthouse A11y</td>
+<td>≥ 90</td>
+<td>⚠️</td>
+<td>Skip links OK, aria labels partial</td>
 </tr>
 <tr>
-<td>Horverwrite html lang</td>
-<td>HARDDED</td>
-<td>Low (use env var)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>No Host header validation</td>
-<td>Head injection risk</td>
-<td>Low (add middleware)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>X-Admin-Key header still allowed</td>
-<td>Dead legacy auth path</td>
-<td>Low (remove from CORS)</td>
-<td>LOW</td>
-</tr>
-<tr>
-<td>Duplicated render.yaml</td>
-<td>Drift risk</td>
-<td>Low (remove one)</td>
-<td>LOW</td>
-</tr>
-<tr>
-<td>next-themes installed but unused</td>
-<td>Dead dependency 0.4.6</td>
-<td>Low (remove)</td>
-<td>LOW</td>
-</tr>
-<tr>
-<td>Framer Motion orphaned in lockfile</td>
-<td>Dead dep</td>
-<td>Low (prune lockfile)</td>
-<td>LOW</td>
+<td>Bundle size (main)</td>
+<td>~280KB</td>
+<td>✅</td>
+<td>Next.js code splitting good</td>
 </tr>
 </tbody>
 </table>
+<h3 id="optimization-applied">Optimization Applied</h3>
+<ul>
+<li>✅ Dynamic imports for MapLibre, DuckDB-Wasm, QR code</li>
+<li>✅ GSAP only animates transform/opacity (GPU-composited)</li>
+<li>✅ <code>will-change</code> cleared in onComplete</li>
+<li>✅ <code>prefers-reduced-motion</code> → <code>timeScale(1000)</code></li>
+<li>✅ Zustand granular selectors (30+) prevent re-render</li>
+<li>✅ GSAP tweens killed on route change</li>
+<li>✅ No continuous animations (width/height/top/left)</li>
+</ul>
+<h3 id="optimization-needed">Optimization Needed</h3>
+<ul>
+<li>❌ Convert Axios to SWR for caching/revalidation (90% of pages)</li>
+<li>❌ React.memo on: ServiceCard, MessageBubble, MapMarker</li>
+<li>❌ useCallback on all callback props</li>
+<li>❌ useMemo on expensive computations (distance sort)</li>
+<li>❌ <code>dvh</code> instead of <code>vh</code> for mobile viewport</li>
+</ul>
+<hr />
+<h2 id="2-backend-performance">2. Backend Performance</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Current</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API response (cached)</td>
+<td>&lt; 200ms</td>
+<td>Redis + in-memory cache</td>
+</tr>
+<tr>
+<td>API response (cold)</td>
+<td>&lt; 2s</td>
+<td>DB query + spatial index</td>
+</tr>
+<tr>
+<td>Emergency locator</td>
+<td>&lt; 500ms</td>
+<td>GIST index + radius stepping</td>
+</tr>
+<tr>
+<td>Overpass API call</td>
+<td>1-3s</td>
+<td>Depends on server load</td>
+</tr>
+<tr>
+<td>PostGIS query</td>
+<td>&lt; 50ms</td>
+<td>GIST index on location</td>
+</tr>
+<tr>
+<td>Rate limit detection</td>
+<td>&lt; 1ms</td>
+<td>In-memory + optional Redis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bottlenecks">Bottlenecks</h3>
+<ol>
+<li><strong>Single worker</strong> on Render free — no request parallelism</li>
+<li><strong>No connection pooling</strong> — Render pool=1</li>
+<li><strong>Synced LLM calls</strong> — <code>asyncio.wait_for</code> blocks provider API</li>
+<li><strong>Render cold start</strong> — 5-15s for first request after idle</li>
+</ol>
+<hr />
+<h2 id="3-chatbot-performance">3. Chatbot Performance</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Provider</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Groq Llama-3.1-8B</td>
+<td>Fastest</td>
+<td>200-500ms</td>
+</tr>
+<tr>
+<td>Cerebras</td>
+<td>Fast</td>
+<td>300-800ms</td>
+</tr>
+<tr>
+<td>Gemini 1.5 Flash</td>
+<td>Moderate</td>
+<td>500ms-1.5s</td>
+</tr>
+<tr>
+<td>Sarvam (Indic)</td>
+<td>Slow</td>
+<td>1-5s</td>
+</tr>
+<tr>
+<td>Template (fallback)</td>
+<td>Instant</td>
+<td>&lt; 10ms</td>
+</tr>
+</tbody>
+</table>
+<h3 id="llm-fallback-timing">LLM Fallback Timing</h3>
+<p>When all providers fail (worst case): ~45-60s total before Template response
+- 30s timeout × 11 providers = 330s theoretical max
+- Circuit breakers + skip-on-error reduce to ~45-60s actual</p>
+<h3 id="chromadb-rag">ChromaDB RAG</h3>
+<ul>
+<li>Query time: &lt; 100ms (HNSW index, cosine similarity)</li>
+<li>Embedding: ~50ms (sentence-transformers MiniLM)</li>
+<li>Total retrieval: &lt; 200ms</li>
+</ul>
+<hr />
+<h2 id="4-database-performance">4. Database Performance</h2>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Index</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emergency near lat/lon</td>
+<td>GIST on location</td>
+<td>&lt; 50ms</td>
+</tr>
+<tr>
+<td>Road issues by status</td>
+<td>B-tree on status + city</td>
+<td>&lt; 20ms</td>
+</tr>
+<tr>
+<td>Chat logs by session</td>
+<td>B-tree on session_id</td>
+<td>&lt; 10ms</td>
+</tr>
+<tr>
+<td>State override lookup</td>
+<td>Composite on (section, state)</td>
+<td>&lt; 5ms</td>
+</tr>
+<tr>
+<td>Traffic violations by section</td>
+<td>B-tree on section_number</td>
+<td>&lt; 5ms</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-lighthouse-targets">5. Lighthouse Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Est. Performance</th>
+<th>Est. Accessibility</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>65-75</td>
+<td>75-85</td>
+<td>MapLibre heavy, skip SSR</td>
+</tr>
+<tr>
+<td>/emergency</td>
+<td>80-90</td>
+<td>85-95</td>
+<td>Static data, light JS</td>
+</tr>
+<tr>
+<td>/challan</td>
+<td>85-95</td>
+<td>85-95</td>
+<td>SWR caches, simple UI</td>
+</tr>
+<tr>
+<td>/assistant</td>
+<td>55-65</td>
+<td>75-85</td>
+<td>SSE streaming, large bundle</td>
+</tr>
+<tr>
+<td>/first-aid</td>
+<td>90-100</td>
+<td>85-95</td>
+<td>Static content</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Need real Lighthouse CI run to confirm.</strong></p>
 
 
 

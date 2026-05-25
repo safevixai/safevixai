@@ -23,7 +23,7 @@
     
     
       
-        <title>SafeVixAI — Architecture Review (Updated 2026-05-26) - SafeVixAI</title>
+        <title>SafeVixAI — Security Audit Report - SafeVixAI</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#safevixai-architecture-review-updated-2026-05-26" class="md-skip">
+        <a href="#safevixai-security-audit-report" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SafeVixAI — Architecture Review (Updated 2026-05-26)
+              SafeVixAI — Security Audit Report
             
           </span>
         </div>
@@ -1316,143 +1316,76 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-strengths-verified" class="md-nav__link">
+  <a href="#1-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Strengths (Verified)
+        1. Authentication
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="1. Strengths (Verified)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#resilience" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resilience
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#devops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DevOps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-weaknesses-verified" class="md-nav__link">
+  <a href="#2-authorization-rbac" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Weaknesses (Verified)
+        2. Authorization (RBAC)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Weaknesses (Verified)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#auth-security" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Auth &amp; Security
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#observability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Observability
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Infrastructure
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-technical-debt" class="md-nav__link">
+  <a href="#3-api-security" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Technical Debt
+        3. API Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Data Protection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-network-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Network Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-prompt-injection-defense-7-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Prompt Injection Defense (7 layers)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Summary
       
     </span>
   </a>
@@ -1479,174 +1412,335 @@
   
 
 
-<h1 id="safevixai-architecture-review-updated-2026-05-26">SafeVixAI — Architecture Review (Updated 2026-05-26)</h1>
-<blockquote>
-<p>Verified against actual codebase. Corrections to prior audit noted.</p>
-</blockquote>
+<h1 id="safevixai-security-audit-report">SafeVixAI — Security Audit Report</h1>
+<p><strong>Date:</strong> 2026-05-26 | <strong>Auditor:</strong> Deep codebase review</p>
 <hr />
-<h2 id="1-strengths-verified">1. Strengths (Verified)</h2>
-<h3 id="architecture">Architecture</h3>
-<ul>
-<li><strong>3-service separation</strong> with clear boundaries: frontend (Next.js), backend (FastAPI :8000), chatbot (FastAPI :8010)</li>
-<li><strong>Factory pattern</strong> in both FastAPI apps: <code>create_app()</code> — testable, mockable</li>
-<li><strong>Proper lifespan management</strong>: <code>@asynccontextmanager</code> with complete startup/shutdown lifecycle</li>
-<li><strong>Service injection via <code>app.state</code></strong>: Consistent DI pattern; no dependency injection framework needed</li>
-<li><strong>Two isolated virtual environments</strong>: backend and chatbot have separate .venv, .env, requirements.txt</li>
-</ul>
-<h3 id="resilience">Resilience</h3>
-<ul>
-<li><strong>11-provider LLM fallback chain</strong>: Groq → Cerebras → Sarvam → GitHub → Gemini → NVIDIA → OpenRouter → Mistral → Together → Template (deterministic)</li>
-<li><strong>3-tier emergency data</strong>: PostGIS DB (~50k facilities) → Local CSV → Overpass API</li>
-<li><strong>3-tier offline challan</strong>: DuckDB-Wasm → CSV parser → Dict in-memory fallback</li>
-<li><strong>Circuit breakers</strong>: Per-provider graduated cooldowns (60s for timeout → 24h for quota exhaustion)</li>
-<li><strong>In-memory fallback for all Redis-dependent systems</strong>: Cache, rate limiting, conversation memory</li>
-<li><strong>Dual auth validation</strong>: App JWT + Supabase JWT + JWKS optional</li>
-</ul>
-<h3 id="performance">Performance</h3>
-<ul>
-<li><strong>Granular Zustand selectors</strong>: ~30 selector hooks prevent unnecessary re-renders</li>
-<li><strong>GPU-composited GSAP animations</strong>: Only transform/opacity animated</li>
-<li><strong>Dynamic imports</strong>: MapLibre, DuckDB-Wasm, WebLLM all SSR-disabled</li>
-<li><strong>DuckDB-Wasm client-side</strong>: Avoids server round-trip for challan queries</li>
-<li><strong>Response caching</strong>: Redis + in-memory with configurable TTLs</li>
-</ul>
-<h3 id="devops">DevOps</h3>
-<ul>
-<li><strong>19 CI/CD workflows</strong>: lint → test → security → build → deploy → docs → load test → chaos</li>
-<li><strong>Blue-green deployment pattern</strong>: Render deploy hooks with pre/post verification</li>
-<li><strong>Docker Compose with 3 isolated networks</strong>: Data-net, backend-net, frontend-net — prevents lateral movement</li>
-<li><strong>Non-root containers</strong>: All Dockerfiles use <code>appuser</code></li>
-<li><strong>Dependabot</strong>: npm + pip + GitHub Actions, weekly schedules, 5 PR limit</li>
-</ul>
-<hr />
-<h2 id="2-weaknesses-verified">2. Weaknesses (Verified)</h2>
-<h3 id="auth-security">Auth &amp; Security</h3>
-<ul>
-<li><strong>Live credentials in git</strong>: All 3 .env files committed with production secrets (CRITICAL)</li>
-<li><strong>Single-operator auth</strong>: Backend only supports 1 operator via env vars; no user registration</li>
-<li><strong>No token revocation</strong>: JWT valid for 24h; no blacklist/refresh mechanism</li>
-<li><strong>RBAC not enforced</strong>: JWT has <code>role</code> claim but most endpoints don't check it</li>
-<li><strong>No Host header validation</strong>: No ALLOWED_HOSTS — Host header injection possible</li>
-<li><strong>Chatbot endpoints unauthenticated</strong>: <code>/chat</code> and <code>/chat/stream</code> rate-limited but no JWT required</li>
-<li><strong>X-Admin-Key deprecated but still accepted</strong>: Legacy admin auth header still functional</li>
-</ul>
-<h3 id="observability">Observability</h3>
-<ul>
-<li><strong>Prometheus <code>/metrics</code> wired but analytics endpoint</strong> returns data for public — not true Prometheus</li>
-<li><strong>No uptime monitoring</strong>: No UptimeRobot/Pingdom configured</li>
-<li><strong>Sentry optional</strong>: Only enabled if <code>SENTRY_DSN</code> is set; no default</li>
-<li><strong>Email alerts 5-min cooldown</strong>: Resets on restart (in-memory only)</li>
-<li><strong>No distributed tracing</strong>: OTLP not configured</li>
-</ul>
-<h3 id="testing">Testing</h3>
-<ul>
-<li><strong>Frontend test coverage</strong>: Only 12 component tests; <code>useSOS.test.ts</code> excluded from Jest</li>
-<li><strong>Chatbot</strong>: 892/892 passing, 95% coverage</li>
-<li><strong>Backend</strong>: 1365/1365 passing, 59% coverage — service files need live DB</li>
-<li><strong>No cross-service integration tests</strong>: Frontend↔Backend↔Chatbot not tested together</li>
-<li><strong>Root <code>/tests/</code> directory gitignored</strong>: k6, chaos, and contract tests exist on disk but untracked</li>
-</ul>
-<h3 id="infrastructure">Infrastructure</h3>
-<ul>
-<li><strong>Render free tier oversubscribed</strong>: 2 services × 24h × 30.5d = 1464h vs 750h available</li>
-<li><strong>No Infrastructure as Code</strong>: Docker Compose + render.yaml only; no Terraform/Pulumi</li>
-<li><strong>Duplicated render.yaml</strong>: chatbot_service/render.yaml duplicates root render.yaml chatbot service</li>
-<li><strong>Package manager conflict</strong>: CI uses <code>npm ci</code>, AGENTS.md says pnpm; pnpm-lock.yaml gitignored</li>
-<li><strong>No automated DB rollback</strong>: Alembic downgrade exists but no CI step for it</li>
-</ul>
-<h3 id="data">Data</h3>
-<ul>
-<li><strong>SOS incidents persist indefinitely</strong>: No cleanup/retention policy</li>
-<li><strong>Location privacy</strong>: Tracking data stored with no expiry enforcement beyond 4h token</li>
-<li><strong>All <code>.env</code> files track live credentials</strong>: Including Gmail app password for email alerts</li>
-<li><strong>Sub-gitignore contradicts root</strong>: chatbot_service/.gitignore ignores chroma_db but root explicitly keeps it</li>
-</ul>
-<hr />
-<h2 id="3-technical-debt">3. Technical Debt</h2>
+<h2 id="1-authentication">1. Authentication</h2>
 <table>
 <thead>
 <tr>
-<th>Item</th>
-<th>Impact</th>
-<th>Effort</th>
-<th>Priority</th>
+<th>Finding</th>
+<th>Severity</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>.env files committed to git</td>
-<td>Credentials exposed to all repo users</td>
-<td>HIGH (rotate + git filter)</td>
-<td><strong>CRITICAL</strong></td>
+<td>PBKDF2 password hashing — no plaintext</td>
+<td>✅ GOOD</td>
+<td>Verified</td>
 </tr>
 <tr>
-<td>SafetyChecker output check never called</td>
-<td>Output safety not enforced</td>
-<td>Low (4-line call)</td>
-<td>HIGH</td>
+<td><code>admin123</code> not hardcoded (FALSE from prior audit)</td>
+<td>✅ GOOD</td>
+<td>PBKDF2 + env vars</td>
 </tr>
 <tr>
-<td>SWR underutilized (1 of 23 pages)</td>
-<td>Missing caching/revalidation</td>
-<td>MEDIUM (add SWR hooks)</td>
-<td>HIGH</td>
+<td><code>mock-jwt-token-for-hackathon</code> explicitly rejected</td>
+<td>✅ GOOD</td>
+<td>REJECTED_STATIC_TOKENS set</td>
 </tr>
 <tr>
-<td>EmergencyTool instantiated but unwired</td>
-<td>Dead tool</td>
-<td>Low (wire or remove)</td>
-<td>MEDIUM</td>
+<td>JWT_SECRET_KEY required in production (ephemeral only in dev)</td>
+<td>✅ GOOD</td>
+<td>RuntimeError if missing</td>
 </tr>
 <tr>
-<td>Dead route context methods in context_assembler</td>
-<td>3 methods never called</td>
-<td>Low (remove dead code)</td>
-<td>MEDIUM</td>
+<td>Dual JWT validation (app JWT + Supabase JWT + JWKS optional)</td>
+<td>✅ GOOD</td>
+<td>Multi-path validation</td>
 </tr>
 <tr>
-<td>torch in chatbot requirements</td>
-<td>800MB dep for optional speech feature</td>
-<td>MEDIUM (make optional)</td>
-<td>MEDIUM</td>
+<td>Chatbot API auth now enforced in production</td>
+<td>✅ FIXED</td>
+<td><code>verify_internal_auth</code> fails without CHATBOT_INTERNAL_API_KEY</td>
 </tr>
 <tr>
-<td>Horverwrite html lang</td>
-<td>HARDDED</td>
-<td>Low (use env var)</td>
-<td>MEDIUM</td>
+<td>Single-operator only (no user registration)</td>
+<td>⚠️ ACCEPTED</td>
+<td>Hackathon constraint</td>
 </tr>
 <tr>
-<td>No Host header validation</td>
-<td>Head injection risk</td>
-<td>Low (add middleware)</td>
-<td>MEDIUM</td>
+<td>No token revocation / blacklist</td>
+<td>⚠️ RISK</td>
+<td>24h expiry mitigates</td>
 </tr>
 <tr>
-<td>X-Admin-Key header still allowed</td>
-<td>Dead legacy auth path</td>
-<td>Low (remove from CORS)</td>
-<td>LOW</td>
-</tr>
-<tr>
-<td>Duplicated render.yaml</td>
-<td>Drift risk</td>
-<td>Low (remove one)</td>
-<td>LOW</td>
-</tr>
-<tr>
-<td>next-themes installed but unused</td>
-<td>Dead dependency 0.4.6</td>
-<td>Low (remove)</td>
-<td>LOW</td>
-</tr>
-<tr>
-<td>Framer Motion orphaned in lockfile</td>
-<td>Dead dep</td>
-<td>Low (prune lockfile)</td>
-<td>LOW</td>
+<td>JWT stored in IndexedDB (offline SOS queue)</td>
+<td>⚠️ RISK</td>
+<td>Location PII co-located</td>
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="2-authorization-rbac">2. Authorization (RBAC)</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Severity</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JWT has <code>role</code> claim</td>
+<td>✅ GOOD</td>
+<td>Roles: ADMIN &gt; OPERATOR &gt; USER &gt; READONLY</td>
+</tr>
+<tr>
+<td>Circuit breaker endpoints check ADMIN role</td>
+<td>✅ GOOD</td>
+<td>Verified in tests</td>
+</tr>
+<tr>
+<td>Most endpoints don't check role claim</td>
+<td>❌ GAP</td>
+<td>No role-check decorator on user/officer endpoints</td>
+</tr>
+<tr>
+<td><code>X-Admin-Key</code> header still allowed in CORS</td>
+<td>⚠️ LEGACY</td>
+<td>Deprecated but functional</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-api-security">3. API Security</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Severity</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rate limiting on ALL endpoints (5-40 req/min)</td>
+<td>✅ GOOD</td>
+<td>slowapi with IP key</td>
+</tr>
+<tr>
+<td>CSRF double-submit cookie</td>
+<td>✅ GOOD</td>
+<td>Token in cookie + header</td>
+</tr>
+<tr>
+<td>All SOS endpoints rate-limited (10/min POST)</td>
+<td>✅ GOOD</td>
+<td>Prevents abuse</td>
+</tr>
+<tr>
+<td>Health endpoint doesn't leak env name</td>
+<td>✅ GOOD</td>
+<td>Hardcoded "production"</td>
+</tr>
+<tr>
+<td>FastAPI docs disabled in production</td>
+<td>✅ GOOD</td>
+<td>docs_url=None check</td>
+</tr>
+<tr>
+<td>No Host header validation</td>
+<td>❌ GAP</td>
+<td>ALLOWED_HOSTS not implemented</td>
+</tr>
+<tr>
+<td>Error messages may leak provider response bodies</td>
+<td>⚠️ RISK</td>
+<td>Need sanitization</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-data-protection">4. Data Protection</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Severity</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.env files with live credentials committed to git</td>
+<td>❌ CRITICAL</td>
+<td>All 3 files tracked</td>
+</tr>
+<tr>
+<td>Supabase service_role key in git</td>
+<td>❌ CRITICAL</td>
+<td>Full DB access</td>
+</tr>
+<tr>
+<td>Gmail app password in git (skeg twci qhnq pory)</td>
+<td>❌ CRITICAL</td>
+<td>Email alerts compromised</td>
+</tr>
+<tr>
+<td>11 LLM API keys in git</td>
+<td>❌ CRITICAL</td>
+<td>Cost + abuse risk</td>
+</tr>
+<tr>
+<td>SOS incidents persist forever (no data retention)</td>
+<td>⚠️ GAP</td>
+<td>Migration exists but not enabled</td>
+</tr>
+<tr>
+<td>Blood group + contacts in IndexedDB (privacy-by-design)</td>
+<td>✅ GOOD</td>
+<td>Never leaves device</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-network-security">5. Network Security</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Severity</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSP: <code>default-src 'self'</code> with specific connect-src</td>
+<td>✅ GOOD</td>
+<td>Maps, CDN, backend domains</td>
+</tr>
+<tr>
+<td>CSP: <code>'unsafe-inline'</code> in script-src</td>
+<td>⚠️ NEEDED</td>
+<td>Next.js requirement</td>
+</tr>
+<tr>
+<td>CSP: <code>'unsafe-eval'</code> in dev only</td>
+<td>✅ GOOD</td>
+<td>Removed in production</td>
+</tr>
+<tr>
+<td>HSTS: <code>max-age=31536000; includeSubDomains</code></td>
+<td>✅ GOOD</td>
+<td>1 year</td>
+</tr>
+<tr>
+<td>CORS: explicit origins in production (wildcard blocked)</td>
+<td>✅ GOOD</td>
+<td>Config validation</td>
+</tr>
+<tr>
+<td>X-Frame-Options: DENY</td>
+<td>✅ GOOD</td>
+<td>Anti-clickjacking</td>
+</tr>
+<tr>
+<td>Permissions-Policy: restricted camera/mic/geo</td>
+<td>✅ GOOD</td>
+<td>Least privilege</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-prompt-injection-defense-7-layers">6. Prompt Injection Defense (7 layers)</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Location</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Input normalization (Unicode NFKC, zero-width strip)</td>
+<td>SafetyChecker</td>
+<td>✅ GOOD</td>
+</tr>
+<tr>
+<td>2. Harm pattern detection (60+ patterns)</td>
+<td>SafetyChecker</td>
+<td>✅ GOOD</td>
+</tr>
+<tr>
+<td>3. Jailbreak detection (20+ patterns, l33t decode, space obfuscation)</td>
+<td>SafetyChecker</td>
+<td>✅ GOOD</td>
+</tr>
+<tr>
+<td>4. RAG trust boundary delimiters</td>
+<td>base.py</td>
+<td>✅ GOOD</td>
+</tr>
+<tr>
+<td>5. Token budget enforcement (12K chars)</td>
+<td>base.py</td>
+<td>✅ GOOD</td>
+</tr>
+<tr>
+<td>6. Output safety check</td>
+<td>SafetyChecker</td>
+<td>✅ FIXED (was dead code)</td>
+</tr>
+<tr>
+<td>7. Medical disclaimer</td>
+<td>SafetyChecker</td>
+<td>✅ FIXED (was dead code)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-summary">7. Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Score</th>
+<th>Critical Issues</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authentication</td>
+<td>85/100</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>55/100</td>
+<td>1 (no RBAC enforcement)</td>
+</tr>
+<tr>
+<td>API Security</td>
+<td>88/100</td>
+<td>1 (no Host validation)</td>
+</tr>
+<tr>
+<td>Data Protection</td>
+<td>45/100</td>
+<td>4 (all .env credentials)</td>
+</tr>
+<tr>
+<td>Network Security</td>
+<td>90/100</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Prompt Injection</td>
+<td>95/100</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Overall</strong></td>
+<td><strong>72/100</strong></td>
+<td><strong>6 remaining</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Immediate rotation required:</strong> JWT_SECRET_KEY, SUPABASE_URL/KEYS, all 11 LLM API keys, Gmail app password, REDIS_URL.</p>
 
 
 

@@ -23,7 +23,7 @@
     
     
       
-        <title>SafeVixAI — Architecture Review (Updated 2026-05-26) - SafeVixAI</title>
+        <title>SafeVixAI — Gap Analysis (2026-05-26) - SafeVixAI</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#safevixai-architecture-review-updated-2026-05-26" class="md-skip">
+        <a href="#safevixai-gap-analysis-2026-05-26" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SafeVixAI — Architecture Review (Updated 2026-05-26)
+              SafeVixAI — Gap Analysis (2026-05-26)
             
           </span>
         </div>
@@ -1316,22 +1316,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-strengths-verified" class="md-nav__link">
+  <a href="#1-feature-completeness-25-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Strengths (Verified)
+        1. Feature Completeness (25 Features)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Strengths (Verified)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-planned-vs-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Planned vs Actual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Planned vs Actual">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#21-backend-security" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture
+        2.1 Backend Security
       
     </span>
   </a>
@@ -1339,10 +1350,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#resilience" class="md-nav__link">
+  <a href="#22-frontend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resilience
+        2.2 Frontend
       
     </span>
   </a>
@@ -1350,21 +1361,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
+  <a href="#23-chatbot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Performance
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#devops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DevOps
+        2.3 Chatbot
       
     </span>
   </a>
@@ -1377,22 +1377,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-weaknesses-verified" class="md-nav__link">
+  <a href="#3-true-gaps-verified-from-code" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Weaknesses (Verified)
+        3. True Gaps (Verified from Code)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Weaknesses (Verified)">
+    <nav class="md-nav" aria-label="3. True Gaps (Verified from Code)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#auth-security" class="md-nav__link">
+  <a href="#critical-fix-immediately" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auth &amp; Security
+        CRITICAL (Fix Immediately)
       
     </span>
   </a>
@@ -1400,10 +1400,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#observability" class="md-nav__link">
+  <a href="#high-fix-this-week" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Observability
+        HIGH (Fix This Week)
       
     </span>
   </a>
@@ -1411,10 +1411,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
+  <a href="#medium" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing
+        MEDIUM
       
     </span>
   </a>
@@ -1422,21 +1422,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
+  <a href="#low" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Infrastructure
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data
+        LOW
       
     </span>
   </a>
@@ -1449,10 +1438,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-technical-debt" class="md-nav__link">
+  <a href="#4-testing-coverage-gaps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Technical Debt
+        4. Testing Coverage Gaps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-uiux-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. UI/UX Gaps
       
     </span>
   </a>
@@ -1479,171 +1479,457 @@
   
 
 
-<h1 id="safevixai-architecture-review-updated-2026-05-26">SafeVixAI — Architecture Review (Updated 2026-05-26)</h1>
+<h1 id="safevixai-gap-analysis-2026-05-26">SafeVixAI — Gap Analysis (2026-05-26)</h1>
 <blockquote>
-<p>Verified against actual codebase. Corrections to prior audit noted.</p>
+<p>What was planned vs what's actually implemented. Verified from code, not audits.</p>
 </blockquote>
 <hr />
-<h2 id="1-strengths-verified">1. Strengths (Verified)</h2>
-<h3 id="architecture">Architecture</h3>
-<ul>
-<li><strong>3-service separation</strong> with clear boundaries: frontend (Next.js), backend (FastAPI :8000), chatbot (FastAPI :8010)</li>
-<li><strong>Factory pattern</strong> in both FastAPI apps: <code>create_app()</code> — testable, mockable</li>
-<li><strong>Proper lifespan management</strong>: <code>@asynccontextmanager</code> with complete startup/shutdown lifecycle</li>
-<li><strong>Service injection via <code>app.state</code></strong>: Consistent DI pattern; no dependency injection framework needed</li>
-<li><strong>Two isolated virtual environments</strong>: backend and chatbot have separate .venv, .env, requirements.txt</li>
-</ul>
-<h3 id="resilience">Resilience</h3>
-<ul>
-<li><strong>11-provider LLM fallback chain</strong>: Groq → Cerebras → Sarvam → GitHub → Gemini → NVIDIA → OpenRouter → Mistral → Together → Template (deterministic)</li>
-<li><strong>3-tier emergency data</strong>: PostGIS DB (~50k facilities) → Local CSV → Overpass API</li>
-<li><strong>3-tier offline challan</strong>: DuckDB-Wasm → CSV parser → Dict in-memory fallback</li>
-<li><strong>Circuit breakers</strong>: Per-provider graduated cooldowns (60s for timeout → 24h for quota exhaustion)</li>
-<li><strong>In-memory fallback for all Redis-dependent systems</strong>: Cache, rate limiting, conversation memory</li>
-<li><strong>Dual auth validation</strong>: App JWT + Supabase JWT + JWKS optional</li>
-</ul>
-<h3 id="performance">Performance</h3>
-<ul>
-<li><strong>Granular Zustand selectors</strong>: ~30 selector hooks prevent unnecessary re-renders</li>
-<li><strong>GPU-composited GSAP animations</strong>: Only transform/opacity animated</li>
-<li><strong>Dynamic imports</strong>: MapLibre, DuckDB-Wasm, WebLLM all SSR-disabled</li>
-<li><strong>DuckDB-Wasm client-side</strong>: Avoids server round-trip for challan queries</li>
-<li><strong>Response caching</strong>: Redis + in-memory with configurable TTLs</li>
-</ul>
-<h3 id="devops">DevOps</h3>
-<ul>
-<li><strong>19 CI/CD workflows</strong>: lint → test → security → build → deploy → docs → load test → chaos</li>
-<li><strong>Blue-green deployment pattern</strong>: Render deploy hooks with pre/post verification</li>
-<li><strong>Docker Compose with 3 isolated networks</strong>: Data-net, backend-net, frontend-net — prevents lateral movement</li>
-<li><strong>Non-root containers</strong>: All Dockerfiles use <code>appuser</code></li>
-<li><strong>Dependabot</strong>: npm + pip + GitHub Actions, weekly schedules, 5 PR limit</li>
-</ul>
-<hr />
-<h2 id="2-weaknesses-verified">2. Weaknesses (Verified)</h2>
-<h3 id="auth-security">Auth &amp; Security</h3>
-<ul>
-<li><strong>Live credentials in git</strong>: All 3 .env files committed with production secrets (CRITICAL)</li>
-<li><strong>Single-operator auth</strong>: Backend only supports 1 operator via env vars; no user registration</li>
-<li><strong>No token revocation</strong>: JWT valid for 24h; no blacklist/refresh mechanism</li>
-<li><strong>RBAC not enforced</strong>: JWT has <code>role</code> claim but most endpoints don't check it</li>
-<li><strong>No Host header validation</strong>: No ALLOWED_HOSTS — Host header injection possible</li>
-<li><strong>Chatbot endpoints unauthenticated</strong>: <code>/chat</code> and <code>/chat/stream</code> rate-limited but no JWT required</li>
-<li><strong>X-Admin-Key deprecated but still accepted</strong>: Legacy admin auth header still functional</li>
-</ul>
-<h3 id="observability">Observability</h3>
-<ul>
-<li><strong>Prometheus <code>/metrics</code> wired but analytics endpoint</strong> returns data for public — not true Prometheus</li>
-<li><strong>No uptime monitoring</strong>: No UptimeRobot/Pingdom configured</li>
-<li><strong>Sentry optional</strong>: Only enabled if <code>SENTRY_DSN</code> is set; no default</li>
-<li><strong>Email alerts 5-min cooldown</strong>: Resets on restart (in-memory only)</li>
-<li><strong>No distributed tracing</strong>: OTLP not configured</li>
-</ul>
-<h3 id="testing">Testing</h3>
-<ul>
-<li><strong>Frontend test coverage</strong>: Only 12 component tests; <code>useSOS.test.ts</code> excluded from Jest</li>
-<li><strong>Chatbot</strong>: 892/892 passing, 95% coverage</li>
-<li><strong>Backend</strong>: 1365/1365 passing, 59% coverage — service files need live DB</li>
-<li><strong>No cross-service integration tests</strong>: Frontend↔Backend↔Chatbot not tested together</li>
-<li><strong>Root <code>/tests/</code> directory gitignored</strong>: k6, chaos, and contract tests exist on disk but untracked</li>
-</ul>
-<h3 id="infrastructure">Infrastructure</h3>
-<ul>
-<li><strong>Render free tier oversubscribed</strong>: 2 services × 24h × 30.5d = 1464h vs 750h available</li>
-<li><strong>No Infrastructure as Code</strong>: Docker Compose + render.yaml only; no Terraform/Pulumi</li>
-<li><strong>Duplicated render.yaml</strong>: chatbot_service/render.yaml duplicates root render.yaml chatbot service</li>
-<li><strong>Package manager conflict</strong>: CI uses <code>npm ci</code>, AGENTS.md says pnpm; pnpm-lock.yaml gitignored</li>
-<li><strong>No automated DB rollback</strong>: Alembic downgrade exists but no CI step for it</li>
-</ul>
-<h3 id="data">Data</h3>
-<ul>
-<li><strong>SOS incidents persist indefinitely</strong>: No cleanup/retention policy</li>
-<li><strong>Location privacy</strong>: Tracking data stored with no expiry enforcement beyond 4h token</li>
-<li><strong>All <code>.env</code> files track live credentials</strong>: Including Gmail app password for email alerts</li>
-<li><strong>Sub-gitignore contradicts root</strong>: chatbot_service/.gitignore ignores chroma_db but root explicitly keeps it</li>
-</ul>
-<hr />
-<h2 id="3-technical-debt">3. Technical Debt</h2>
+<h2 id="1-feature-completeness-25-features">1. Feature Completeness (25 Features)</h2>
 <table>
 <thead>
 <tr>
-<th>Item</th>
+<th>Status</th>
+<th>Count</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COMPLETE</td>
+<td>23</td>
+<td>Emergency Locator, Family Live Tracking, Challan Calculator, RoadWatch Reporter, AI Chatbot RAG, LLM Fallback Chain (11 providers), Offline SOS Queue, WebLLM Offline AI, What3Words, Voice/ASR, Indian Language Detection, PWA Share Target, QR Emergency Card, MCP Server, Waze CIFS Feed, Circuit Breakers, Streaming Chat, Conversation Summarization, Multi-Turn Intent Refinement, Safety Checker, GSAP Animations, Speech Language Mapping, Assistant Voice Output</td>
+</tr>
+<tr>
+<td>PARTIAL</td>
+<td>2</td>
+<td>Crash Detection (accelerometer works, CrashCountdown orphaned — EnterpriseClientAppHooks renders it but ClientAppHooks is the dead file), Authentication (JWT complete but single-operator only, Supabase stub)</td>
+</tr>
+<tr>
+<td>BROKEN</td>
+<td>0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MISSING</td>
+<td>0</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-planned-vs-actual">2. Planned vs Actual</h2>
+<h3 id="21-backend-security">2.1 Backend Security</h3>
+<table>
+<thead>
+<tr>
+<th>Claimed Issue</th>
+<th>Actual State</th>
+<th>GAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>admin123</code> hardcoded</td>
+<td><strong>NOT FOUND</strong> — PBKDF2 + env vars</td>
+<td>FALSE POSITIVE</td>
+</tr>
+<tr>
+<td><code>mock-jwt-token</code> accepted</td>
+<td><strong>REJECTED</strong> — REJECTED_STATIC_TOKENS set</td>
+<td>FALSE POSITIVE</td>
+</tr>
+<tr>
+<td>CORS wildcard</td>
+<td><strong>BLOCKED</strong> — config rejects '*' in production</td>
+<td>FALSE POSITIVE</td>
+</tr>
+<tr>
+<td>User profile ownership</td>
+<td>Endpoints require auth but some lack user_id verification</td>
+<td><strong>PARTIAL GAP: verify_profile_ownership</strong></td>
+</tr>
+<tr>
+<td>Live tracking unauthenticated</td>
+<td><strong>PROTECTED</strong> — auth + signed JWT for view</td>
+<td>NO GAP</td>
+</tr>
+<tr>
+<td>SOS is GET not POST</td>
+<td><strong>BOTH</strong> — GET for lookup, POST for incident</td>
+<td>NO GAP (design choice)</td>
+</tr>
+<tr>
+<td>Waze feed broken</td>
+<td><strong>FUNCTIONAL</strong> — proper imports, valid SQL</td>
+<td>NO GAP</td>
+</tr>
+<tr>
+<td>JWT secret regenerated every restart</td>
+<td><strong>ONLY IN DEV</strong> — production requires env var</td>
+<td>NO GAP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-frontend">2.2 Frontend</h3>
+<table>
+<thead>
+<tr>
+<th>Claimed Issue</th>
+<th>Actual State</th>
+<th>GAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crash detection TOAST only</td>
+<td><strong>PARTIAL</strong> — EnterpriseClientAppHooks renders CrashCountdown; ClientAppHooks is orphaned</td>
+<td><strong>VERIFIED: ClientAppHooks.tsx dead code</strong></td>
+</tr>
+<tr>
+<td>Marcus Thorne/O Negative hardcoded</td>
+<td><strong>NOT FOUND</strong> in any frontend file</td>
+<td>FALSE POSITIVE</td>
+</tr>
+<tr>
+<td>SLOCALHOST fallbacks</td>
+<td>Found in <code>lib/api.ts</code>, <code>lib/share.ts</code>, <code>lib/deep-link.ts</code></td>
+<td><strong>VERIFIED: 3 files with hardcoded URL fallbacks</strong></td>
+</tr>
+<tr>
+<td>/assistant page blank on mobile</td>
+<td><strong>NOT VERIFIED</strong> — height calc depends on CSS</td>
+<td>NEEDS RESPONSIVE TEST</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-chatbot">2.3 Chatbot</h3>
+<table>
+<thead>
+<tr>
+<th>Claimed Issue</th>
+<th>Actual State</th>
+<th>GAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG is lexical not ChromaDB</td>
+<td><strong>CHROMADB + sentence-transformers</strong>; lexical is fallback</td>
+<td>FALSE POSITIVE</td>
+</tr>
+<tr>
+<td>Report tool wrong field names</td>
+<td>Uses <code>data=</code> not <code>json=</code>, field names match backend</td>
+<td><strong>DESIGN CHOICE: form-encoded is intentional</strong></td>
+</tr>
+<tr>
+<td>torch in requirements</td>
+<td><strong>PRESENT</strong> (2.12.0) but only for speech, graceful fallback</td>
+<td><strong>VERIFIED: 800MB dep for optional feature</strong></td>
+</tr>
+<tr>
+<td>Provider env names inconsistent</td>
+<td><strong>CONSISTENT</strong> — all follow PROVIDER_API_KEY pattern</td>
+<td>NO GAP</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-true-gaps-verified-from-code">3. True Gaps (Verified from Code)</h2>
+<h3 id="critical-fix-immediately">CRITICAL (Fix Immediately)</h3>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Location</th>
 <th>Impact</th>
-<th>Effort</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>All 3 .env files committed with live credentials</strong></td>
+<td><code>backend/.env</code>, <code>chatbot_service/.env</code>, <code>frontend/.env</code></td>
+<td>Full credential exposure to all repo users</td>
+<td>Rotate all keys, git filter .env from history</td>
+</tr>
+<tr>
+<td><strong>SafetyChecker output check never called</strong></td>
+<td><code>chatbot_service/agent/safety_checker.py:234-255</code></td>
+<td>LLM responses not validated for harmful content</td>
+<td>Add <code>check_output_safety()</code> call in ChatEngine</td>
+</tr>
+<tr>
+<td><strong>Medical disclaimer never added</strong></td>
+<td><code>chatbot_service/agent/safety_checker.py:226-232</code></td>
+<td>Medical advice not disclaimed</td>
+<td>Add <code>add_medical_disclaimer_if_needed()</code> after first aid responses</td>
+</tr>
+</tbody>
+</table>
+<h3 id="high-fix-this-week">HIGH (Fix This Week)</h3>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Location</th>
+<th>Impact</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SWR used in 1 of 23 pages only</strong></td>
+<td><code>frontend/app/challan/page.tsx</code></td>
+<td>Missing caching, deduplication, revalidation</td>
+<td>Convert Axios calls to SWR hooks</td>
+</tr>
+<tr>
+<td><strong>Chatbot unauthenticated</strong></td>
+<td><code>chatbot_service/api/chat.py</code></td>
+<td>Anyone can send 20 msg/min</td>
+<td>Add <code>X-Service-Token</code> or forward backend JWT</td>
+</tr>
+<tr>
+<td><strong>Dead code: context_assembler 3 route methods</strong></td>
+<td><code>chatbot_service/agent/context_assembler.py:188-364</code></td>
+<td>Code bloat, confusion</td>
+<td>Remove dead methods</td>
+</tr>
+<tr>
+<td><strong>Dead tool: EmergencyTool unwired</strong></td>
+<td><code>chatbot_service/tools/emergency_tool.py</code></td>
+<td>Orphan feature</td>
+<td>Wire into ContextAssembler or remove</td>
+</tr>
+<tr>
+<td><strong>Media disclaimer never appended</strong></td>
+<td><code>chatbot_service/agent/safety_checker.py:226-232</code></td>
+<td>Medical advice without disclaimer</td>
+<td>Wire into ChatEngine output</td>
+</tr>
+<tr>
+<td><strong>Profile ownership not fully verified</strong></td>
+<td><code>backend/api/v1/user.py</code></td>
+<td>Potential PII access</td>
+<td>Add user_id ownership check to all profile endpoints</td>
+</tr>
+</tbody>
+</table>
+<h3 id="medium">MEDIUM</h3>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Location</th>
+<th>Impact</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>safevixai.com</code> hardcoded in 16 hreflang URLs</td>
+<td><code>frontend/app/layout.tsx:69-84</code></td>
+<td>Wrong canonical URLs in production</td>
+<td>Use <code>NEXT_PUBLIC_APP_URL</code></td>
+</tr>
+<tr>
+<td><code>next-themes</code> installed but unused</td>
+<td><code>frontend/package.json</code></td>
+<td>Dead dependency 0.4.6</td>
+<td>Remove from package.json</td>
+</tr>
+<tr>
+<td>Framer Motion orphaned in lockfile</td>
+<td><code>frontend/package-lock.json</code></td>
+<td>Dead dependency</td>
+<td>Prune with <code>npm dedupe</code></td>
+</tr>
+<tr>
+<td><code>@mlc-ai/web-llm</code> referenced in docs, missing from deps</td>
+<td><code>frontend/package.json</code></td>
+<td>Offline AI path unclear</td>
+<td>Add to deps or remove from docs</td>
+</tr>
+<tr>
+<td>Duplicated render.yaml</td>
+<td><code>chatbot_service/render.yaml</code> + root <code>render.yaml</code></td>
+<td>Configuration drift</td>
+<td>Remove duplicate</td>
+</tr>
+<tr>
+<td>ChromaDB sub-gitignore contradicts root</td>
+<td><code>chatbot_service/.gitignore</code></td>
+<td>Confusion for new devs</td>
+<td>Remove chroma_db line from sub-gitignore</td>
+</tr>
+<tr>
+<td>No Host header validation</td>
+<td><code>backend/main.py</code></td>
+<td>Host header injection</td>
+<td>Add ALLOWED_HOSTS middleware</td>
+</tr>
+<tr>
+<td>No data retention policies</td>
+<td><code>backend/migrations/10005_data_retention.py</code> exists but not enforced</td>
+<td>SOS incidents persist forever</td>
+<td>Enable retention cron job</td>
+</tr>
+</tbody>
+</table>
+<h3 id="low">LOW</h3>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Location</th>
+<th>Impact</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X-Admin-Key</code> header still allowed in CORS</td>
+<td><code>backend/main.py:400</code></td>
+<td>Dead legacy auth</td>
+<td>Remove from allow_headers</td>
+</tr>
+<tr>
+<td><code>private _client</code> attribute access on cache</td>
+<td><code>backend/api/v1/tracking.py:269</code></td>
+<td>Fragile</td>
+<td>Add public property</td>
+</tr>
+<tr>
+<td>Harcoded audience/issuer strings</td>
+<td><code>backend/core/security.py:39-40</code></td>
+<td>Config hardening</td>
+<td>Make env-configurable</td>
+</tr>
+<tr>
+<td>Template provider confidence hardcoded to 0.3</td>
+<td><code>chatbot_service/providers/router.py</code></td>
+<td>Always below 0.3 threshold</td>
+<td>Make configurable</td>
+</tr>
+<tr>
+<td><code>pydantic-settings</code> in chatbot deps but unused</td>
+<td><code>chatbot_service/requirements.txt</code></td>
+<td>Dead dependency</td>
+<td>Remove</td>
+</tr>
+<tr>
+<td><code>emergency</code> custom ease never registered</td>
+<td><code>frontend/lib/gsap.ts</code></td>
+<td>Custom ease name unused</td>
+<td>Register on demand</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-testing-coverage-gaps">4. Testing Coverage Gaps</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Current</th>
+<th>Target</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend unit tests</td>
+<td>540 passing</td>
+<td>500+</td>
+<td>MET</td>
+</tr>
+<tr>
+<td>Backend pytest</td>
+<td>1365 passing</td>
+<td>1300+</td>
+<td>MET</td>
+</tr>
+<tr>
+<td>Chatbot pytest</td>
+<td>892 passing</td>
+<td>800+</td>
+<td>MET</td>
+</tr>
+<tr>
+<td>Backend coverage</td>
+<td>59%</td>
+<td>70%</td>
+<td><strong>11% GAP</strong></td>
+</tr>
+<tr>
+<td>Frontend coverage</td>
+<td>~30% (12 component tests)</td>
+<td>70%</td>
+<td><strong>40% GAP</strong></td>
+</tr>
+<tr>
+<td>E2E tests</td>
+<td>Playwright configured, count unknown</td>
+<td>All critical flows</td>
+<td><strong>NEEDS AUDIT</strong></td>
+</tr>
+<tr>
+<td>Crash detection tests</td>
+<td>None found</td>
+<td>5+ P0 tests</td>
+<td><strong>HIGH GAP</strong></td>
+</tr>
+<tr>
+<td>SOS dispatch tests</td>
+<td>None found</td>
+<td>5+ P0 tests</td>
+<td><strong>HIGH GAP</strong></td>
+</tr>
+<tr>
+<td>Auth security tests</td>
+<td>Present in backend</td>
+<td>All auth scenarios</td>
+<td>PARTIAL</td>
+</tr>
+<tr>
+<td>LLM fallback tests</td>
+<td>Present in chatbot</td>
+<td>All scenarios</td>
+<td>PARTIAL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-uiux-gaps">5. UI/UX Gaps</h2>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Details</th>
 <th>Priority</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>.env files committed to git</td>
-<td>Credentials exposed to all repo users</td>
-<td>HIGH (rotate + git filter)</td>
-<td><strong>CRITICAL</strong></td>
+<td>CrashCountdown orphaned in ClientAppHooks.tsx</td>
+<td>Never imported; EnterpriseClientAppHooks renders it correctly</td>
+<td>HIGH (documentation only)</td>
 </tr>
 <tr>
-<td>SafetyChecker output check never called</td>
-<td>Output safety not enforced</td>
-<td>Low (4-line call)</td>
-<td>HIGH</td>
-</tr>
-<tr>
-<td>SWR underutilized (1 of 23 pages)</td>
-<td>Missing caching/revalidation</td>
-<td>MEDIUM (add SWR hooks)</td>
-<td>HIGH</td>
-</tr>
-<tr>
-<td>EmergencyTool instantiated but unwired</td>
-<td>Dead tool</td>
-<td>Low (wire or remove)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>Dead route context methods in context_assembler</td>
-<td>3 methods never called</td>
-<td>Low (remove dead code)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>torch in chatbot requirements</td>
-<td>800MB dep for optional speech feature</td>
-<td>MEDIUM (make optional)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>Horverwrite html lang</td>
-<td>HARDDED</td>
-<td>Low (use env var)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>No Host header validation</td>
-<td>Head injection risk</td>
-<td>Low (add middleware)</td>
-<td>MEDIUM</td>
-</tr>
-<tr>
-<td>X-Admin-Key header still allowed</td>
-<td>Dead legacy auth path</td>
-<td>Low (remove from CORS)</td>
+<td>Theme toggle not visible in UI</td>
+<td>Dark/light switch exists in theme provider but no UI for it</td>
 <td>LOW</td>
 </tr>
 <tr>
-<td>Duplicated render.yaml</td>
-<td>Drift risk</td>
-<td>Low (remove one)</td>
-<td>LOW</td>
+<td>No offline map tiles</td>
+<td>MapLibre requires network; critical for locator page offline</td>
+<td>MEDIUM</td>
 </tr>
 <tr>
-<td>next-themes installed but unused</td>
-<td>Dead dependency 0.4.6</td>
-<td>Low (remove)</td>
-<td>LOW</td>
-</tr>
-<tr>
-<td>Framer Motion orphaned in lockfile</td>
-<td>Dead dep</td>
-<td>Low (prune lockfile)</td>
-<td>LOW</td>
+<td><code>@mlc-ai/web-llm</code> missing from frontend deps</td>
+<td>Offline AI model cannot load</td>
+<td>MEDIUM</td>
 </tr>
 </tbody>
 </table>
