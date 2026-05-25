@@ -10,6 +10,16 @@ jest.mock('sonner', () => ({
   toast: { error: jest.fn(), success: jest.fn() },
 }));
 
+// Mock useRef so the component gets a valid video element for camera setup
+const mockVideoElement = document.createElement('video');
+jest.mock('react', () => {
+  const actual = jest.requireActual('react');
+  return {
+    ...actual,
+    useRef: jest.fn(() => ({ current: mockVideoElement })),
+  };
+});
+
 const mockTrack = { stop: jest.fn() };
 const mockStream = { getTracks: () => [mockTrack] };
 let getUserMediaMock: jest.Mock;
@@ -32,7 +42,7 @@ function renderPotholeDetector() {
 }
 
 describe('PotholeDetector', () => {
-  it('starts camera on mount', async () => {
+  it('starts camera on mount', () => {
     renderPotholeDetector();
     expect(getUserMediaMock).toHaveBeenCalledWith(
       expect.objectContaining({ video: { facingMode: 'environment' } })
@@ -51,9 +61,7 @@ describe('PotholeDetector', () => {
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /initiate ai scan/i })).toBeEnabled();
     });
-
     fireEvent.click(screen.getByRole('button', { name: /initiate ai scan/i }));
-
     expect(screen.getByRole('button', { name: /processing sensor grid/i })).toBeDisabled();
   });
 

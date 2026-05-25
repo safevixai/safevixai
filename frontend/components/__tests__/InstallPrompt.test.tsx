@@ -9,11 +9,13 @@ jest.mock('lucide-react', () => ({
 
 import InstallPrompt from '../InstallPrompt';
 
-function triggerBeforeInstallPrompt() {
+async function triggerBeforeInstallPrompt() {
   const event = new Event('beforeinstallprompt') as any;
   event.prompt = jest.fn().mockResolvedValue(undefined);
   event.userChoice = Promise.resolve({ outcome: 'accepted' as const });
-  act(() => { window.dispatchEvent(event); });
+  await act(async () => {
+    window.dispatchEvent(event);
+  });
 }
 
 describe('InstallPrompt', () => {
@@ -22,7 +24,8 @@ describe('InstallPrompt', () => {
   });
 
   it('renders install prompt UI after beforeinstallprompt event', async () => {
-    triggerBeforeInstallPrompt();
+    render(<InstallPrompt />);
+    await triggerBeforeInstallPrompt();
     await waitFor(() => {
       expect(screen.getByText('Install SafeVixAI')).toBeInTheDocument();
     });
@@ -30,7 +33,8 @@ describe('InstallPrompt', () => {
   });
 
   it('shows PWA install messaging about offline access', async () => {
-    triggerBeforeInstallPrompt();
+    render(<InstallPrompt />);
+    await triggerBeforeInstallPrompt();
     await waitFor(() => {
       expect(screen.getByText(/Get offline access/i)).toBeInTheDocument();
     });
@@ -38,7 +42,8 @@ describe('InstallPrompt', () => {
   });
 
   it('has dismiss button with correct aria-label', async () => {
-    triggerBeforeInstallPrompt();
+    render(<InstallPrompt />);
+    await triggerBeforeInstallPrompt();
     await waitFor(() => {
       const dismissBtn = screen.getByLabelText('Dismiss install prompt');
       expect(dismissBtn).toBeInTheDocument();
@@ -46,18 +51,22 @@ describe('InstallPrompt', () => {
   });
 
   it('renders Download icon in the prompt', async () => {
-    triggerBeforeInstallPrompt();
+    render(<InstallPrompt />);
+    await triggerBeforeInstallPrompt();
     await waitFor(() => {
       expect(screen.getByTestId('download-icon')).toBeInTheDocument();
     });
   });
 
   it('dismisses prompt when dismiss button is clicked', async () => {
-    triggerBeforeInstallPrompt();
+    render(<InstallPrompt />);
+    await triggerBeforeInstallPrompt();
     await waitFor(() => {
       expect(screen.getByText('Install SafeVixAI')).toBeInTheDocument();
     });
-    fireEvent.click(screen.getByLabelText('Dismiss install prompt'));
+    await act(async () => {
+      fireEvent.click(screen.getByLabelText('Dismiss install prompt'));
+    });
     await waitFor(() => {
       expect(screen.queryByText('Install SafeVixAI')).not.toBeInTheDocument();
     });

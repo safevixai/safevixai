@@ -71,10 +71,11 @@ describe('GlobalSOS', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders SOS button on non-hidden route /assistant', () => {
+  it('renders SOS buttons on non-hidden route /assistant', () => {
     mockUsePathname.mockReturnValue('/assistant');
     render(<GlobalSOS />);
-    expect(screen.getByLabelText('Emergency SOS')).toBeInTheDocument();
+    const buttons = screen.getAllByLabelText('Emergency SOS');
+    expect(buttons.length).toBe(2);
   });
 
   it('has aria-label "Emergency SOS" on buttons', () => {
