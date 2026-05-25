@@ -1,12 +1,12 @@
-import useSWR, { SWRConfiguration, BareFetcher } from 'swr';
+import useSWR, { SWRConfiguration } from 'swr';
 import { client } from './api';
 
 type FetcherArgs = [url: string] | [url: string, params: Record<string, unknown>];
 
-export const fetcher: BareFetcher<unknown, FetcherArgs> = (url: string, params?: Record<string, unknown>) =>
+export const fetcher = (url: string, params?: Record<string, unknown>) =>
   client.get(url, { params }).then((r) => r.data);
 
-export const fetcherNoCache: BareFetcher<unknown, FetcherArgs> = (url: string, params?: Record<string, unknown>) =>
+export const fetcherNoCache = (url: string, params?: Record<string, unknown>) =>
   client.get(url, { params, headers: { 'Cache-Control': 'no-cache' } }).then((r) => r.data);
 
 const BASE_CONFIG: SWRConfiguration = {

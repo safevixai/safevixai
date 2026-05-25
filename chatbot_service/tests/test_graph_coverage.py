@@ -66,6 +66,13 @@ class FakeSafetyChecker:
         from agent.safety_checker import SafetyDecision
         return SafetyDecision(blocked=self._blocked, response=self._response)
 
+    def check_output_safety(self, llm_response: str):
+        from agent.safety_checker import SafetyDecision
+        return SafetyDecision(blocked=self._blocked, response=self._response)
+
+    def add_medical_disclaimer_if_needed(self, message: str, response: str) -> str:
+        return response
+
 
 class FakeSummarizer:
     def get_summary_for_history(self, history):

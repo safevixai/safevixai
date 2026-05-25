@@ -16,7 +16,7 @@ export function TerminalHeader({
   status = 'online',
   rightElement,
 }: TerminalHeaderProps) {
-  const titleRef = useSplitTextEntry<HTMLHeadingElement>(0.1);
+  const titleRef = useSplitTextEntry();
   const statusLabel = status === 'emergency' ? 'Emergency Active' : status === 'offline' ? 'Offline' : 'Sentinel Active';
 
   return (

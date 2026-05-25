@@ -31,12 +31,3 @@ export function GSAPProvider({ children }: { children: React.ReactNode }) {
 
   return <>{children}</>;
 }
-    const handler = (e: MediaQueryListEvent) => {
-      gsap.globalTimeline.timeScale(e.matches ? 1000 : 1);
-    };
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-
-  return <>{children}</>;
-}

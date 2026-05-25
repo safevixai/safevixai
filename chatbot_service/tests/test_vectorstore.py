@@ -627,9 +627,13 @@ class TestLocalVectorStoreLoadIndexFile:
         mock_index.read_text.assert_called_once_with(encoding='utf-8')
 
     def test_filters_excluded_categories(self):
+        persist_dir = MagicMock(spec=Path)
+        index_path = MagicMock(spec=Path)
+        persist_dir.__truediv__.return_value = index_path
+
         store = LocalVectorStore(
-            persist_dir=Path('/fake/persist'),
-            data_dir=Path('/fake/data'),
+            persist_dir=persist_dir,
+            data_dir=MagicMock(spec=Path),
             embedding_model='hash',
             use_chroma=False,
         )
@@ -638,9 +642,8 @@ class TestLocalVectorStoreLoadIndexFile:
             {'chunk_id': 'qa:1', 'source': 'qa.txt', 'title': 'QA', 'category': 'qa_pairs', 'content': 'y'},
         ])
 
-        mock_index = MagicMock(spec=Path)
-        mock_index.read_text.return_value = raw_json
-        store.index_path = mock_index
+        store.index_path = index_path
+        index_path.read_text.return_value = raw_json
 
         result = store._load_index_file()
         assert len(result) == 1

@@ -119,7 +119,7 @@ export default function EmergencyProtocolsPage() {
   const callBtnRef = useRef<HTMLAnchorElement>(null);
   const protocolGridRef = useRef<HTMLDivElement>(null);
   const floatingBtnRef = useRef<HTMLButtonElement>(null);
-  const titleRef = useSplitTextEntry(0.1);
+  const titleRef = useSplitTextEntry();
 
   useEffect(() => {
     setMounted(true);
