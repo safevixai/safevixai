@@ -8,6 +8,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from geoalchemy2 import WKTElement
 
+from core.config import get_settings
 from core.database import get_db
 from core.limiter import limiter
 from core.rbac import require_role, Role
@@ -34,6 +35,7 @@ async def get_or_create_officer(db: AsyncSession, current_user: dict) -> Officer
         email = current_user.get("email") or f"officer_{user_id.hex[:6]}@safevix.ai"
         name = current_user.get("name") or current_user.get("username") or f"Officer {user_id.hex[:6].upper()}"
         
+        settings = get_settings()
         officer = Officer(
             id=user_id,
             name=name,
@@ -41,7 +43,7 @@ async def get_or_create_officer(db: AsyncSession, current_user: dict) -> Officer
             role="field_officer",
             department="PWD (Roads & Bridges)",
             is_active=True,
-            ward_id="ward_09_teynampet"  # Default to Teynampet
+            ward_id=settings.default_officer_ward,
         )
         db.add(officer)
         await db.commit()

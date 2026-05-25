@@ -18,9 +18,7 @@ from config import get_settings
 router = APIRouter(prefix='/api/v1/chat', tags=['Chat'])
 
 
-from slowapi import Limiter
-from slowapi.util import get_remote_address
-limiter = Limiter(key_func=get_remote_address)
+from limiter import limiter
 
 
 def get_engine(request: Request) -> ChatEngine:
@@ -83,6 +81,7 @@ async def chat_stream(
             async for event in engine.stream_chat(payload):
                 event['request_id'] = request_id
                 if event['type'] in ('token',):
+                    event['text'] = html.escape(event.get('text', ''))
                     yield f'data: {json.dumps(event)}\n\n'
                 elif event['type'] == 'done':
                     yield f'data: {json.dumps(event)}\n\n'

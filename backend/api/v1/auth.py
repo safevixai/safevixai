@@ -23,6 +23,9 @@ from core.security import (
 )
 import jwt
 
+from sqlalchemy.ext.asyncio import AsyncSession
+from core.database import get_db
+
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
 class LoginRequest(BaseModel):
@@ -34,7 +37,7 @@ class LoginResponse(BaseModel):
     operator_name: str
 
 def _verify_pbkdf2_password(password: str, encoded_hash: str) -> bool:
-    """Verify pbkdf2_sha256$iterations$salt$hex_digest from environment."""
+    """Verify pbkdf2_sha256$iterations$salt$hex_digest from environment or database."""
     try:
         algorithm, iterations_raw, salt, expected = encoded_hash.split("$", 3)
         if algorithm != "pbkdf2_sha256":
@@ -56,25 +59,48 @@ def _configured_operator() -> dict[str, str] | None:
 
 @router.post("/login", response_model=LoginResponse)
 @limiter.limit("5/minute")
-async def login(request: Request, body: LoginRequest) -> JSONResponse:
-    operator = _configured_operator()
-    if operator is None:
-        raise HTTPException(status_code=503, detail="Operator login is not configured")
+async def login(
+    request: Request,
+    body: LoginRequest,
+    db: AsyncSession = Depends(get_db),
+) -> JSONResponse:
+    from sqlalchemy import select
+    from models.user import OperatorUser
 
     email = body.email.strip().lower()
-    if email != operator["email"] or not _verify_pbkdf2_password(body.password, operator["password_hash"]):
-        raise HTTPException(status_code=401, detail="Invalid credentials")
-
-    token = create_access_token(
-        data={"sub": email, "name": operator["name"]},
-        role="operator",
-    )
     
-    # Phase 0.2: Use secure cookie helper (HttpOnly, Secure, SameSite)
-    return create_secure_cookie_response(
-        content={"message": "Login successful", "operator_name": operator["name"]},
-        token=token,
-    )
+    # 1. Try database-backed operator authentication
+    stmt = select(OperatorUser).where(OperatorUser.email == email, OperatorUser.is_active == True)
+    result = await db.execute(stmt)
+    db_operator = result.scalar_one_or_none()
+    
+    if db_operator is not None:
+        if _verify_pbkdf2_password(body.password, db_operator.hashed_password):
+            token = create_access_token(
+                data={"sub": email, "name": db_operator.name},
+                role=db_operator.role,
+            )
+            return create_secure_cookie_response(
+                content={"message": "Login successful", "operator_name": db_operator.name},
+                token=token,
+            )
+        else:
+            raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    # 2. Fall back to environment-based single-operator authentication
+    operator = _configured_operator()
+    if operator is not None and email == operator["email"]:
+        if _verify_pbkdf2_password(body.password, operator["password_hash"]):
+            token = create_access_token(
+                data={"sub": email, "name": operator["name"]},
+                role="operator",
+            )
+            return create_secure_cookie_response(
+                content={"message": "Login successful", "operator_name": operator["name"]},
+                token=token,
+            )
+            
+    raise HTTPException(status_code=401, detail="Invalid credentials")
 
 @router.post("/logout")
 @limiter.limit("10/minute")

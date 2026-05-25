@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from models.road_issue import RoadIssue
 from models.officer import Officer
 from models.complaint_event import ComplaintEvent
+from services.complaint_state_machine import ComplaintStateMachine
 
 logger = logging.getLogger(__name__)
 
@@ -52,7 +53,7 @@ class ComplaintLifecycle:
             actor_id=actor_id,
             actor_role=actor_role,
             notes=notes,
-            metadata=metadata
+            event_metadata=metadata or {}
         )
         db.add(event)
         await db.commit()
@@ -68,41 +69,51 @@ class ComplaintLifecycle:
         actor_role: str | None = 'admin'
     ) -> RoadIssue:
         """Assign an issue to a field officer, calculate SLA, update status, log event."""
-        # 1. Fetch issue
-        stmt = select(RoadIssue).where(RoadIssue.uuid == complaint_uuid)
-        issue = (await db.execute(stmt)).scalar_one_or_none()
-        if not issue:
-            raise ValueError(f"Complaint with UUID {complaint_uuid} not found")
-
-        # 2. Fetch officer
+        # 1. Fetch officer
         officer_stmt = select(Officer).where(Officer.id == officer_id)
         officer = (await db.execute(officer_stmt)).scalar_one_or_none()
         if not officer:
             raise ValueError(f"Officer with ID {officer_id} not found")
 
-        # 3. Update issue columns
-        issue.assigned_officer_id = officer_id
-        if issue.status == 'open':
-            issue.status = 'acknowledged'
-            issue.status_updated = datetime.now(timezone.utc).replace(tzinfo=None)
-        
-        issue.sla_deadline = cls.calculate_sla_deadline(issue.severity)
-        
-        await db.commit()
-        await db.refresh(issue)
+        # 2. Fetch issue to know current status
+        stmt = select(RoadIssue).where(RoadIssue.uuid == complaint_uuid)
+        issue = (await db.execute(stmt)).scalar_one_or_none()
+        if not issue:
+            raise ValueError(f"Complaint with UUID {complaint_uuid} not found")
 
-        # 4. Log event
-        await cls.log_event(
+        # Set officer and SLA details
+        issue.assigned_officer_id = officer_id
+        issue.sla_deadline = cls.calculate_sla_deadline(issue.severity)
+        if officer.department:
+            issue.department = officer.department
+        await db.commit()
+
+        # Determine target state transition
+        target_status = 'assigned'
+        if issue.status == 'open':
+            # transition first to acknowledged or assigned
+            target_status = 'assigned'
+        elif issue.status == 'reopened':
+            target_status = 'assigned'
+        elif issue.status == 'acknowledged':
+            target_status = 'assigned'
+
+        # 3. Transition via State Machine
+        result = await ComplaintStateMachine.transition(
             db,
             complaint_uuid=complaint_uuid,
-            event_type="assigned",
+            target_status=target_status,
             actor_id=actor_id,
             actor_role=actor_role,
             notes=f"Assigned to officer {officer.name} ({officer.department})",
-            metadata={"officer_name": officer.name, "sla_deadline": issue.sla_deadline.isoformat() if issue.sla_deadline else None}
+            metadata={
+                "officer_name": officer.name,
+                "officer_department": officer.department,
+                "sla_deadline": issue.sla_deadline.isoformat() if issue.sla_deadline else None
+            }
         )
 
-        return issue
+        return result.issue
 
     @classmethod
     async def update_status(
@@ -114,34 +125,16 @@ class ComplaintLifecycle:
         actor_id: uuid.UUID | None = None,
         actor_role: str | None = None
     ) -> RoadIssue:
-        """Update complaint status and record audit trail event."""
-        stmt = select(RoadIssue).where(RoadIssue.uuid == complaint_uuid)
-        issue = (await db.execute(stmt)).scalar_one_or_none()
-        if not issue:
-            raise ValueError(f"Complaint with UUID {complaint_uuid} not found")
-
-        old_status = issue.status
-        issue.status = status
-        issue.status_updated = datetime.now(timezone.utc).replace(tzinfo=None)
-        
-        if status == 'resolved':
-            issue.resolved_at = datetime.now(timezone.utc).replace(tzinfo=None)
-
-        await db.commit()
-        await db.refresh(issue)
-
-        # Log event
-        await cls.log_event(
+        """Update complaint status and record audit trail event via state machine."""
+        result = await ComplaintStateMachine.transition(
             db,
             complaint_uuid=complaint_uuid,
-            event_type="updated",
+            target_status=status,
             actor_id=actor_id,
             actor_role=actor_role,
-            notes=notes or f"Status changed from {old_status} to {status}",
-            metadata={"old_status": old_status, "new_status": status}
+            notes=notes,
         )
-
-        return issue
+        return result.issue
 
     @classmethod
     async def resolve(
@@ -153,62 +146,130 @@ class ComplaintLifecycle:
         actor_id: uuid.UUID | None = None,
         actor_role: str | None = 'field_officer'
     ) -> RoadIssue:
-        """Mark issue as resolved, record resolution photo, save event."""
+        """Mark issue as resolved, record resolution photo, save event via state machine."""
+        # Update resolved fields first
         stmt = select(RoadIssue).where(RoadIssue.uuid == complaint_uuid)
         issue = (await db.execute(stmt)).scalar_one_or_none()
         if not issue:
             raise ValueError(f"Complaint with UUID {complaint_uuid} not found")
 
-        issue.status = 'resolved'
-        issue.status_updated = datetime.now(timezone.utc).replace(tzinfo=None)
-        issue.resolved_at = datetime.now(timezone.utc).replace(tzinfo=None)
         if after_photo_url:
             issue.after_photo_url = after_photo_url
-
         await db.commit()
-        await db.refresh(issue)
 
-        # Log event
-        await cls.log_event(
+        result = await ComplaintStateMachine.transition(
             db,
             complaint_uuid=complaint_uuid,
-            event_type="resolved",
+            target_status='resolved',
             actor_id=actor_id,
             actor_role=actor_role,
             notes=notes or "Issue resolved by field team.",
             metadata={"after_photo_url": after_photo_url}
         )
+        return result.issue
 
-        return issue
+    @classmethod
+    async def citizen_confirm(
+        cls,
+        db: AsyncSession,
+        complaint_uuid: uuid.UUID,
+        rating: int | None = None,
+        notes: str | None = None,
+        actor_id: uuid.UUID | None = None
+    ) -> RoadIssue:
+        """Citizen confirms resolution, closes the complaint."""
+        stmt = select(RoadIssue).where(RoadIssue.uuid == complaint_uuid)
+        issue = (await db.execute(stmt)).scalar_one_or_none()
+        if not issue:
+            raise ValueError(f"Complaint with UUID {complaint_uuid} not found")
+
+        if rating is not None:
+            issue.citizen_rating = rating
+        await db.commit()
+
+        # Transition to citizen_confirmed (which automatically leads to closed state transition next, or acts as closed)
+        result = await ComplaintStateMachine.transition(
+            db,
+            complaint_uuid=complaint_uuid,
+            target_status='citizen_confirmed',
+            actor_id=actor_id,
+            actor_role='citizen',
+            notes=notes or f"Citizen confirmed resolution. Rating: {rating or 'Not rated'}",
+            metadata={"citizen_rating": rating}
+        )
+
+        # Transition to closed terminal state
+        closed_result = await ComplaintStateMachine.transition(
+            db,
+            complaint_uuid=complaint_uuid,
+            target_status='closed',
+            actor_id=actor_id,
+            actor_role='system',
+            notes="System closed complaint automatically after citizen confirmation.",
+        )
+        return closed_result.issue
+
+    @classmethod
+    async def citizen_reject(
+        cls,
+        db: AsyncSession,
+        complaint_uuid: uuid.UUID,
+        reason: str,
+        actor_id: uuid.UUID | None = None
+    ) -> RoadIssue:
+        """Citizen rejects resolution, reopens and escalates the complaint."""
+        stmt = select(RoadIssue).where(RoadIssue.uuid == complaint_uuid)
+        issue = (await db.execute(stmt)).scalar_one_or_none()
+        if not issue:
+            raise ValueError(f"Complaint with UUID {complaint_uuid} not found")
+
+        # Set rejection reason
+        issue.rejection_reason = reason
+        await db.commit()
+
+        # 1. Transition to citizen_rejected
+        rejected_result = await ComplaintStateMachine.transition(
+            db,
+            complaint_uuid=complaint_uuid,
+            target_status='citizen_rejected',
+            actor_id=actor_id,
+            actor_role='citizen',
+            notes=f"Citizen rejected resolution. Reason: {reason}",
+            metadata={"rejection_reason": reason}
+        )
+
+        # 2. Transition to reopened (which auto-bumps severity and resets SLA)
+        reopened_result = await ComplaintStateMachine.transition(
+            db,
+            complaint_uuid=complaint_uuid,
+            target_status='reopened',
+            actor_id=actor_id,
+            actor_role='system',
+            notes="Auto-reopened and escalated due to citizen rejection.",
+        )
+
+        return reopened_result.issue
 
     @classmethod
     async def escalate(
         cls,
         db: AsyncSession,
         complaint_uuid: uuid.UUID,
-        reason: str
+        reason: str,
+        escalation_tier: int | None = None,
+        actor_id: uuid.UUID | None = None,
+        actor_role: str | None = 'system'
     ) -> RoadIssue:
-        """Escalate an issue (e.g. because of SLA breach) and log audit event."""
-        stmt = select(RoadIssue).where(RoadIssue.uuid == complaint_uuid)
-        issue = (await db.execute(stmt)).scalar_one_or_none()
-        if not issue:
-            raise ValueError(f"Complaint with UUID {complaint_uuid} not found")
-
-        # Increase severity if not already at maximum
-        if issue.severity < 5:
-            issue.severity += 1
-
-        await db.commit()
-        await db.refresh(issue)
-
-        await cls.log_event(
+        """Escalate an issue and log event via state machine."""
+        result = await ComplaintStateMachine.escalate(
             db,
             complaint_uuid=complaint_uuid,
-            event_type="escalated",
-            notes=reason,
-            metadata={"new_severity": issue.severity}
+            reason=reason,
+            escalation_tier=escalation_tier,
+            actor_id=actor_id,
+            actor_role=actor_role,
         )
-        return issue
+        return result.issue
 
     @staticmethod
     async def get_timeline(db: AsyncSession, complaint_uuid: uuid.UUID) -> list[ComplaintEvent]:

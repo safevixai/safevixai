@@ -19,6 +19,12 @@ from api.v1.wards import router as wards_router
 from api.v1.analytics import router as analytics_router
 from api.v1.officers import router as officers_router
 from api.v1.admin import router as admin_router
+from api.v1.civic_intel import router as civic_intel_router
+from api.v1.authority import router as authority_router
+from api.v1.field_workflow import router as field_workflow_router
+from api.v1.citizen import router as citizen_router
+from api.v1.public import router as public_router
+from api.v1.command_center import router as command_center_router
 
 
 api_router = APIRouter()
@@ -39,3 +45,10 @@ api_router.include_router(wards_router)
 api_router.include_router(analytics_router)
 api_router.include_router(officers_router)
 api_router.include_router(admin_router)
+api_router.include_router(civic_intel_router)
+api_router.include_router(authority_router)
+api_router.include_router(field_workflow_router)
+api_router.include_router(citizen_router)
+api_router.include_router(public_router)
+api_router.include_router(command_center_router)
+

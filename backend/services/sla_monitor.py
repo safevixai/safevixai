@@ -53,6 +53,22 @@ class SLAMonitor:
                         reason=f"SLA breach: Resolved deadline ({issue.sla_deadline}) has passed."
                     )
                     escalated_count += 1
+
+                    # Send email/webhook notification
+                    try:
+                        from services.sla_notification import SLANotificationService
+                        notifier = SLANotificationService()
+                        await notifier.notify_sla_breach(
+                            complaint_ref=issue.complaint_ref,
+                            issue_type=issue.issue_type or 'unknown',
+                            severity=issue.severity or 3,
+                            city=getattr(issue, 'city', None),
+                            ward_id=getattr(issue, 'ward_id', None),
+                            sla_deadline=issue.sla_deadline,
+                        )
+                    except Exception as notify_err:
+                        logger.debug("SLA notification skipped: %s", notify_err)
+
                 except Exception as e:
                     logger.error(f"Failed to escalate {issue.uuid}: {e}", exc_info=True)
         

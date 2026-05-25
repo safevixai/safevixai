@@ -104,6 +104,7 @@ async def submit_road_issue(
 ) -> RoadReportResponse:
     """Accept a rate-limited public RoadWatch report with strict form/file validation."""
     try:
+        queue = getattr(request.app.state, "queue", None)
         return await roadwatch_service.submit_report(
             db=db,
             lat=lat,
@@ -113,6 +114,7 @@ async def submit_road_issue(
             description=description,
             photo=photo,
             citizen_phone=citizen_phone,
+            queue=queue,
         )
     except ServiceValidationError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
@@ -318,7 +320,33 @@ async def verify_road_report(
         status_code = 404 if 'not found' in str(exc).lower() else 422
         raise HTTPException(status_code=status_code, detail=str(exc)) from exc
 
-    # Trigger OSM contribution asynchronously
+    import uuid
+    from services.complaint_lifecycle import ComplaintLifecycle
+    actor_id = uuid.UUID(current_user["sub"]) if "sub" in current_user else None
+    
+    queue = getattr(request.app.state, "queue", None)
+    if queue is not None:
+        # Asynchronously sync to OSM via the background task queue!
+        await queue.enqueue("sync_osm_report", report_data)
+        
+        await ComplaintLifecycle.update_status(
+            db=db,
+            complaint_uuid=uuid.UUID(report_id),
+            status="acknowledged",
+            notes="Report verified by operator. Dispatched background OSM sync task.",
+            actor_id=actor_id,
+            actor_role="operator"
+        )
+        
+        return {
+            "report_id": report_id,
+            "status": report_data["status"],
+            "verified_by": current_user.get("sub"),
+            "osm_contribution": {"status": "enqueued_in_background"},
+            "waze_feed": "included_in_next_poll",
+        }
+
+    # Fallback synchronous contribution
     osm = get_osm_contributor()
     if osm.is_configured:
         try:
@@ -330,10 +358,6 @@ async def verify_road_report(
     else:
         osm_result = {"status": "skipped", "reason": "OSM not configured"}
 
-    # Update lifecycle event log for verification
-    import uuid
-    from services.complaint_lifecycle import ComplaintLifecycle
-    actor_id = uuid.UUID(current_user["sub"]) if "sub" in current_user else None
     await ComplaintLifecycle.update_status(
         db=db,
         complaint_uuid=uuid.UUID(report_id),

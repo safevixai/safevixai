@@ -8,6 +8,7 @@ from config import get_settings
 from memory.redis_memory import ConversationMemoryStore
 # S18: Import limiter for per-IP rate limiting on admin endpoints (5/min)
 from limiter import limiter
+from core.queue import task, TaskQueue
 
 
 router = APIRouter(tags=['Admin'])
@@ -59,8 +60,32 @@ async def rebuild_index(
     _: None = Depends(_require_admin),
     engine: ChatEngine = Depends(get_engine),
 ) -> dict:
+    queue = getattr(request.app.state, "queue", None)
+    if queue is not None:
+        job_id = await queue.enqueue("rebuild_rag_index")
+        return {
+            'status': 'queued',
+            'job_id': job_id,
+            'message': 'RAG index rebuild triggered in background. Poll /admin/jobs/{job_id} for progress.'
+        }
     stats = engine.rebuild_index()
     return {'status': 'rebuilt', 'index': stats}
+
+
+@router.get('/admin/jobs/{job_id}')
+@limiter.limit('10/minute')
+async def get_job_status(
+    job_id: str,
+    request: Request,
+    _: None = Depends(_require_admin),
+) -> dict:
+    queue = getattr(request.app.state, "queue", None)
+    if queue is None:
+        raise HTTPException(status_code=503, detail="Task queue not active.")
+    job = await queue.get_job(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found.")
+    return job.to_dict()
 
 
 @router.get('/admin/providers/health')
@@ -212,3 +237,18 @@ async def provider_health_dashboard(
 </body>
 </html>"""
     return HTMLResponse(content=html)
+
+
+@task("rebuild_rag_index")
+def rebuild_rag_index_task(q: TaskQueue, job_id: str):
+    import logging
+    from core.queue import get_global_chat_engine
+    engine = get_global_chat_engine()
+    if not engine:
+        raise ValueError("ChatEngine is not initialized globally.")
+    logger = logging.getLogger("safevixai.chatbot.tasks")
+    logger.info("Starting background RAG index rebuild...")
+    stats = engine.rebuild_index()
+    logger.info("Background RAG index rebuild completed successfully.")
+    return stats
+

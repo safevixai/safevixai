@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, Query, Request
-from sqlalchemy import func, select
+from sqlalchemy import case, func, select, literal_column
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
@@ -68,55 +68,57 @@ async def get_ward_summary(
     """Get complaint metrics, resolution rates, and SLA breaches grouped by ward."""
     await WardService.ensure_seeded(db)
     
-    wards_stmt = select(Ward).order_by(Ward.ward_name.asc())
-    wards = (await db.execute(wards_stmt)).scalars().all()
-    
     now = datetime.now(timezone.utc).replace(tzinfo=None)
+    active_statuses = ["open", "acknowledged", "in_progress"]
+    
+    stmt = (
+        select(
+            Ward.ward_id,
+            Ward.ward_name,
+            Ward.zone_name,
+            func.count(case(
+                (RoadIssue.status.in_(active_statuses), 1),
+                else_=literal_column("NULL"),
+            )).label("open_count"),
+            func.count(case(
+                (RoadIssue.status == "resolved", 1),
+                else_=literal_column("NULL"),
+            )).label("resolved_count"),
+            func.count(case(
+                (RoadIssue.status == "rejected", 1),
+                else_=literal_column("NULL"),
+            )).label("rejected_count"),
+            func.count(case(
+                (
+                    RoadIssue.status.in_(active_statuses) &
+                    RoadIssue.sla_deadline.is_not(None) &
+                    (RoadIssue.sla_deadline < now),
+                    1,
+                ),
+                else_=literal_column("NULL"),
+            )).label("breached_count"),
+        )
+        .outerjoin(RoadIssue, RoadIssue.ward_id == Ward.ward_id)
+        .group_by(Ward.ward_id, Ward.ward_name, Ward.zone_name)
+        .order_by(Ward.ward_name.asc())
+    )
+    
+    rows = (await db.execute(stmt)).all()
     
     summary = []
-    for w in wards:
-        # Open
-        open_stmt = select(func.count(RoadIssue.id)).where(
-            RoadIssue.ward_id == w.ward_id,
-            RoadIssue.status.in_(["open", "acknowledged", "in_progress"])
-        )
-        open_count = (await db.execute(open_stmt)).scalar() or 0
-        
-        # Resolved
-        resolved_stmt = select(func.count(RoadIssue.id)).where(
-            RoadIssue.ward_id == w.ward_id,
-            RoadIssue.status == "resolved"
-        )
-        resolved_count = (await db.execute(resolved_stmt)).scalar() or 0
-        
-        # Rejected
-        rejected_stmt = select(func.count(RoadIssue.id)).where(
-            RoadIssue.ward_id == w.ward_id,
-            RoadIssue.status == "rejected"
-        )
-        rejected_count = (await db.execute(rejected_stmt)).scalar() or 0
-        
-        # SLA Breached
-        breached_stmt = select(func.count(RoadIssue.id)).where(
-            RoadIssue.ward_id == w.ward_id,
-            RoadIssue.status.in_(["open", "acknowledged", "in_progress"]),
-            RoadIssue.sla_deadline.is_not(None),
-            RoadIssue.sla_deadline < now
-        )
-        breached_count = (await db.execute(breached_stmt)).scalar() or 0
-        
-        total = open_count + resolved_count + rejected_count
-        resolution_rate = (resolved_count / total * 100.0) if total > 0 else 0.0
+    for row in rows:
+        total = (row.open_count or 0) + (row.resolved_count or 0) + (row.rejected_count or 0)
+        resolution_rate = (row.resolved_count / total * 100.0) if total > 0 else 0.0
         
         summary.append(
             WardSummaryItem(
-                ward_id=w.ward_id,
-                ward_name=w.ward_name,
-                zone_name=w.zone_name,
-                open_issues=open_count,
-                resolved_issues=resolved_count,
+                ward_id=row.ward_id,
+                ward_name=row.ward_name,
+                zone_name=row.zone_name,
+                open_issues=row.open_count or 0,
+                resolved_issues=row.resolved_count or 0,
                 resolution_rate=round(resolution_rate, 2),
-                sla_breach_count=breached_count
+                sla_breach_count=row.breached_count or 0,
             )
         )
         

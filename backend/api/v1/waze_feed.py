@@ -14,10 +14,11 @@ Feed URL for Waze Partner Hub submission:
 from __future__ import annotations
 
 import logging
+import os
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import JSONResponse
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -171,7 +172,7 @@ async def get_waze_cifs_feed(
             "street": r.get("road_name") or "",
             "city": r.get("location_address") or "",
             "country": "IN",
-            "reference": f"{(settings.frontend_url or 'https://safevixai.vercel.app').rstrip('/')}/report/{r['id']}",
+            "reference": f"{(settings.frontend_url or os.getenv('FRONTEND_URL', '')).rstrip('/')}/report/{r['id']}",
         }
 
         incidents.append(incident)

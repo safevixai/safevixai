@@ -87,7 +87,6 @@ async def require_mcp_admin(
 ) -> dict:
     """FastAPI dependency: validates admin role for /mcp_info endpoints."""
     return user
-    return api_key
 
 
 def _valid_lat_lon(lat: float, lon: float) -> bool:

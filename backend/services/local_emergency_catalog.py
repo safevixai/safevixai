@@ -52,7 +52,7 @@ def _load_hospital_directory(path: Path) -> list[LocalEmergencyEntry]:
                 name = (row.get('Hospital_Name') or '').strip()
                 if not name:
                     continue
-            entries.append(
+                entries.append(
                 LocalEmergencyEntry(
                     id=f'hospital_directory:{index}',
                     name=name,

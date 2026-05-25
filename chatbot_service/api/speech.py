@@ -16,9 +16,7 @@ _MAX_AUDIO_BYTES = 10 * 1024 * 1024
 _ALLOWED_CONTENT_TYPES = {'audio/wav', 'audio/mpeg', 'audio/ogg', 'audio/webm', 'audio/flac', 'application/octet-stream'}
 
 
-from slowapi import Limiter
-from slowapi.util import get_remote_address
-limiter = Limiter(key_func=get_remote_address)
+from limiter import limiter
 
 
 def get_speech_service(request: Request) -> IndicSeamlessService:

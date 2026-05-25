@@ -365,10 +365,8 @@ class EmergencyLocatorService:
                 elif source == 'database+local':
                     source = 'database+local+overpass'
                 total_items += len(fallback)
-            else:
-                source = 'database' if best else source
-        elif best and source == 'database':
-            source = 'database'
+            elif best and source == 'database':
+                source = 'database'
 
         next_offset = offset + limit if (offset + limit) < total_items else None
         return EmergencyResponse(
