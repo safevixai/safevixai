@@ -2,7 +2,6 @@ import os
 import logging
 from PIL import Image
 import io
-from ultralytics import YOLO
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +13,7 @@ class PotholeValidator:
 
     @classmethod
     def get_model(cls):
+        from ultralytics import YOLO
         if cls._model is None:
             # Check relative and absolute paths
             paths_to_check = [

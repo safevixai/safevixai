@@ -4,9 +4,13 @@ import { toggleTrafficLayer } from '@/lib/traffic-layer';
 import { useAppStore } from '@/lib/store';
 import { MapLibreCanvas } from '../maps/MapLibreCanvas';
 
-jest.mock('next-themes', () => ({
-  useTheme: () => ({ resolvedTheme: 'light' }),
-}));
+jest.mock(
+  'next-themes',
+  () => ({
+    useTheme: () => ({ resolvedTheme: 'light' }),
+  }),
+  { virtual: true },
+);
 
 jest.mock('@/lib/traffic-layer', () => ({
   addTrafficLayer: jest.fn(),
