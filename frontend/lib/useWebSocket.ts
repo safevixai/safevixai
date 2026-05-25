@@ -48,6 +48,11 @@ export function useWebSocket({
   const mountedRef = useRef(true);
   const intentionalCloseRef = useRef(false);
 
+  // Refs to break circular deps between scheduleReconnect / connectToUrl / startHeartbeat
+  const scheduleReconnectRef = useRef<() => void>(() => {});
+  const connectToUrlRef = useRef<(url: string) => void>(() => {});
+  const startHeartbeatRef = useRef<() => void>(() => {});
+
   const updateStatus = useCallback((newStatus: WSStatus) => {
     setStatus(newStatus);
     onStatusChange?.(newStatus);
@@ -95,7 +100,7 @@ export function useWebSocket({
       updateStatus('reconnecting');
       reconnectTimeoutRef.current = setTimeout(() => {
         if (mountedRef.current && urlRef.current) {
-          connectToUrl(urlRef.current);
+          connectToUrlRef.current(urlRef.current);
         }
       }, jitteredDelay);
       return attempt;
@@ -109,11 +114,11 @@ export function useWebSocket({
         pongTimeoutRef.current = setTimeout(() => {
           intentionalCloseRef.current = false;
           cleanup();
-          scheduleReconnect();
+          scheduleReconnectRef.current();
         }, 10000);
       }
     }, heartbeatIntervalMs);
-  }, [heartbeatIntervalMs, cleanup, scheduleReconnect]);
+  }, [heartbeatIntervalMs, cleanup]);
 
   const connectToUrl = useCallback((url: string) => {
     if (!mountedRef.current) return;
@@ -129,7 +134,7 @@ export function useWebSocket({
         if (!mountedRef.current) { ws.close(); return; }
         updateStatus('connected');
         setReconnectAttempt(0);
-        startHeartbeat();
+        startHeartbeatRef.current();
       };
 
       ws.onmessage = (event) => {
@@ -150,7 +155,7 @@ export function useWebSocket({
         updateStatus(intentionalCloseRef.current ? 'disconnected' : 'disconnected');
         clearTimers();
         if (!intentionalCloseRef.current) {
-          scheduleReconnect();
+          scheduleReconnectRef.current();
         }
       };
 
@@ -160,17 +165,22 @@ export function useWebSocket({
     } catch {
       updateStatus('disconnected');
       if (!intentionalCloseRef.current) {
-        scheduleReconnect();
+        scheduleReconnectRef.current();
       }
     }
-  }, [cleanup, updateStatus, startHeartbeat, scheduleReconnect, onMessage]);
+  }, [cleanup, updateStatus, onMessage, clearTimers]);
+
+  // Assign refs after definitions to break circular deps
+  scheduleReconnectRef.current = scheduleReconnect;
+  connectToUrlRef.current = connectToUrl;
+  startHeartbeatRef.current = startHeartbeat;
 
   const connect = useCallback((url: string) => {
     urlRef.current = url;
     setReconnectAttempt(0);
     intentionalCloseRef.current = false;
-    connectToUrl(url);
-  }, [connectToUrl]);
+    connectToUrlRef.current(url);
+  }, []);
 
   const disconnect = useCallback(() => {
     intentionalCloseRef.current = true;

@@ -68,9 +68,16 @@ class SubmitReportTool:
             payload['description'] = payload['description'][:_MAX_B64_PHOTO_LEN]
 
         try:
+            headers = {}
+            from config import get_settings
+            settings = get_settings()
+            if settings.internal_api_key:
+                headers['X-Internal-Api-Key'] = settings.internal_api_key
+
             resp = await self._get_client().post(
                 f'{self._base_url}/api/v1/roads/report',
                 data=payload,
+                headers=headers,
             )
             resp.raise_for_status()
             data = resp.json()

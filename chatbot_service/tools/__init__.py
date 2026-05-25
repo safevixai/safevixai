@@ -90,7 +90,6 @@ class BackendToolClient:
 
 from tools.challan_tool import ChallanTool
 from tools.drug_info import DrugInfoTool
-from tools.emergency_tool import EmergencyTool
 from tools.first_aid_tool import FirstAidTool
 from tools.geocoding import GeocodingClient
 from tools.legal_search_tool import LegalSearchTool
@@ -106,7 +105,6 @@ __all__ = [
     'BackendToolClient',
     'ChallanTool',
     'DrugInfoTool',
-    'EmergencyTool',
     'FirstAidTool',
     'GeocodingClient',
     'LegalSearchTool',

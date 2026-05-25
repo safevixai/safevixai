@@ -1,278 +1,197 @@
-# SafeVixAI — Complete System Map
+# SafeVixAI — Complete System Map (Updated 2026-05-26)
 
-> Generated: 2026-05-22 | Coverage: All 3 services, infra, data flows
+> Verified connectivity and data flows from actual code. 23 routes, 35+ endpoints, 11 LLM providers, 13 agent tools.
 
 ---
 
 ## 1. Service Topology
 
 ```
-┌──────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│   FRONTEND   │     │    BACKEND       │     │  CHATBOT SERVICE │
-│  :3000       │     │   :8000          │     │   :8010          │
-│  Next.js 15  │────▶│   FastAPI        │────▶│   FastAPI        │
-│  React 19    │     │   SQLAlchemy     │     │   Providers x11  │
-│  PWA + SW    │     │   PostGIS/Redis  │     │   ChromaDB/Redis │
-│  MapLibre GL │     │   14 Services    │     │   13 Tools       │
-│  Zustand     │     │   35+ Endpoints   │     │   9 LLM Provider │
-└──────┬───────┘     └───────┬──────────┘     └────────┬─────────┘
-       │                     │                          │
-       │          ┌──────────▼──────────┐              │
-       │          │   DATA LAYER        │              │
-       │          │                     │              │
-       │          │  PostgreSQL 16      │              │
-       │          │  + PostGIS          │              │
-       │          │  (Supabase)         │              │
-       │          │                     │              │
-       │          │  Redis 7            │◄─────────────┘
-       │          │  (Upstash)          │
-       │          │  Cache + RateLimit  │
-       │          │  + Session Store    │
-       │          └─────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  FRONTEND :3000 (Vercel)                                                    │
+│  Next.js 15 + React 19 + TypeScript 6.0                                    │
+│  PWA + SW (safevixai-v3) | MapLibre GL 5.22 | Zustand 4.5 | GSAP 3.15     │
+│  @huggingface/transformers (YOLO) | @duckdb/duckdb-wasm (SQLite offline)    │
+│  SWR (underutilized — challan only) | Axios (main HTTP)                    │
+│  i18next (14 locales) | sonner (toast) | posthog-js (analytics)             │
+└─────┬─────────────────────────────────────────────────────┬─────────────────┘
+      │ REST + SSE Streaming (JWT Bearer)                    │ REST (public)
+      │                                                      │
+┌─────▼──────────────────────────┐   ┌──────────────────────▼─────────────────┐
+│  BACKEND :8000 (Render)        │   │  CHATBOT SERVICE :8010 (Render)       │
+│  FastAPI + Uvicorn (1 worker)  │   │  FastAPI + Uvicorn (1 worker)         │
+│  SQLAlchemy async + GeoAlchemy │   │  LangGraph | ChromaDB | 11 Providers  │
+│  PostGIS 16 + Redis 7          │   │  Redis (session) | sentence-transformers│
+│  14 Services, 35+ Endpoints,   │   │  13 Agent Tools | SafetyChecker       │
+│  18 Alembic Migrations         │   │  IndicSeamless (speech, torch-based)   │
+│  PBKDF2 + JWT Auth             │   │  11 Prometheus metrics                 │
+└─────┬──────────────────────────┘   └──────────────────────┬─────────────────┘
+      │                                                     │
+      │            ┌──────────────────────────┐              │
+      │            │     DATA LAYER           │              │
+      │            │                          │              │
+      │            │  PostgreSQL 16 + PostGIS │              │
+      │            │  7 tables + GIST indexes │              │
+      │            │  (Supabase free tier)    │              │
+      │            │                          │              │
+      │            │  Redis 7 (Upstash)       │◄─────────────┘
+      │            │  Cache + RateLimit       │  (session memory)
+      │            │  + Conversation Memory   │
+      │            │                          │
+      │            │  ChromaDB (chatbot)      │
+      │            │  persisted, committed    │
+      │            └──────────────────────────┘
 ```
 
 ---
 
-## 2. Data Flow Diagrams
+## 2. Route Map (23 Frontend Routes + 35+ Backend Endpoints)
 
-### Emergency SOS Flow
+### Frontend Routes
+| Route | Component | Auth | Key APIs Called |
+|-------|-----------|------|-----------------|
+| `/` | Dashboard map | None | GPS, emergency/nearby, roads/issues |
+| `/assistant` | ChatInterface | None | POST /api/v1/chat/stream |
+| `/bystander` | Bystander Mode | None | GPS, report/roads |
+| `/challan` | ChallanCalculator | None | POST /api/v1/challan/calculate (SWR) |
+| `/emergency` | Emergency page | None | GET /emergency/sos, /emergency/nearby |
+| `/emergency-card/[userId]` | EmergencyCardClient | Public (signed) | Profile data via hash param |
+| `/first-aid` | FirstAidClient | None | Static JSON |
+| `/locator` | Locator search | None | emergency/nearby, Nominatim |
+| `/login` | Operator login | Form | POST /api/v1/auth/login |
+| `/profile` | User profile | Optional | Supabase + IndexedDB |
+| `/report` | ReportForm | None | POST /api/v1/roads/report |
+| `/settings` | Settings | Optional | Local storage |
+| `/sos` | SOS page | None | POST /emergency/sos, tracking/start |
+| `/track/{session_id}` | Family tracking viewer | Signed token | WebSocket + GET /live-tracking/session |
+| `/tracking` | Tracking management | Auth | POST/PUT tracking endpoints |
+| `/share-receive` | Share Target handler | None | URL parser (Google Maps deep link) |
+| `/offline` | Offline fallback | None | Static |
+
+### Backend API Endpoints (35+)
+| Group | File | Endpoints | Auth |
+|-------|------|-----------|------|
+| emergency | emergency.py | GET/POST /sos, GET /nearby, /numbers, /safe-spaces | Public |
+| challan | challan.py | POST /calculate | Public |
+| roads | roadwatch.py | GET /issues, /authority, /infrastructure, POST /report | Public (optional auth for report) |
+| routing | routing.py | GET /preview, /safe-route | Public |
+| geocode | geocode.py | GET /reverse, /search | Public |
+| auth | auth.py | POST /login, /logout, GET /verify, POST /refresh, /revoke | Mixed |
+| users | user.py | POST, GET/{id}, PUT/{id}, DELETE/{id}, /export | Auth required |
+| live-tracking | live_tracking.py | POST /start, PUT /update, GET /session/{id}, DELETE | Auth + signed token |
+| chat | chat.py | POST /, POST /stream | Auth (backend only) |
+| admin | admin.py | GET /complaints, POST /assign, GET /officers, /dashboard | OPERATOR role |
+| circuit-breaker | circuit_breaker_api.py | GET /, /reset, /trigger, /close | Auth/Admin |
+| waze | waze_feed.py | GET /feeds/waze | Public |
+| analytics | analytics.py | GET /heatmap, /ward-summary, /sla-breach, /category | Public |
+| tracking (WS) | tracking.py | WebSocket /{group_id} | JWT in query |
+
+---
+
+## 3. Data Flow: Emergency SOS (Critical Path)
+
 ```
-User → GlobalSOS button → /sos page → SOSButton (double-tap)
-  → [Online] POST /api/v1/emergency/sos
-     → SosIncident DB record
+User SOS Press
+  → SOSButton (frontend, double-tap verification)
+  → navigator.onLine check
+  → [Online]: POST /api/v1/emergency/sos (JSON body: lat, lon, user_agent)
+     → Backend checks rate limit (10/min)
+     → Creates SosIncident DB record
      → EmergencyLocatorService.find_nearby()
-        → Cache check → PostGIS query → Local CSV → Overpass
-     → Build SOS payload (services + numbers)
-     → Start family tracking (POST /api/v1/live-tracking/start)
-     → WhatsApp/SMS share
-  → [Offline] IndexedDB queue → auto-flush on online event
+        → PostGIS query (ST_DWithin, ::geography, GIST index scan)
+        → [If < 3 results]: increase radius (500m→1km→5km→10km→25km→50km)
+        → [No DB results]: LocalEmergencyCatalog CSV fallback
+        → [No CSV]: OverpassService (OpenStreetMap query)
+     → Response: { services[], sos_id, message }
+  → [Offline]: IndexedDB enqueueSOS()
+     → Stores in safevix-offline-db v2, store: sos-queue
+     → Registers Background Sync event 'sos-queue-flush'
+     → On 'online' event → syncOfflineSOSQueue() → per-item atomic POST
+  → Start family tracking: POST /api/v1/live-tracking/start
+     → Creates tracking session with 4h read-only JWT
+     → Returns shareable URL: /track/{session_id}#token={view_token}
+  → Share via WhatsApp/SMS with GPS link
+  → PostHog event: sosActivated
+
+Crash Detection (parallel path):
+  → Accelerometer listener (devicemotion event)
+  → Total acceleration > 15G threshold
+  → CrashCountdown shows 20s countdown (GSAP number flip)
+  → [Cancel pressed]: Dismiss countdown, log cancellation
+  → [Timer expires]: Auto-dispatch SOS (same flow as above)
 ```
 
-### Chatbot Message Flow
+---
+
+## 4. Data Flow: Chatbot Message
+
 ```
 User → ChatInterface → POST /api/v1/chat/stream (SSE)
-  → Backend LLMService proxy → chatbot_service /chat
-     → SafetyChecker.evaluate()
-        → [BLOCKED] → return blocked response
-     → IntentDetector.detect()
+  → Backend LLMService proxy (timeout 30s, fallback to local)
+  → chatbot_service /chat endpoint (rate limit 20/min)
+     → ConversationMemoryStore.get_history(session_id, limit=20)
+     → SafetyChecker.evaluate() → [Blocked] → return blocked response
+     → Summarizer.get_summary_for_history() (8+ messages triggers)
+     → IntentDetector.detect() → 9 intent classes
+     → IntentDetector.refine_intent() (follow-up detection)
      → ContextAssembler.assemble()
-        → Call relevant tools (SOS, Challan, etc.)
-        → Retrieve RAG chunks (ChromaDB)
+        → Intent routing (parallel tool calls per intent table)
+        → ChromaDB query: sentence-transformers embedding → cosine search
+        → [Score < 0.28 threshold]: return empty, LLM handles
      → ProviderRouter.generate()
-        → Language detection → select provider
-        → LLM API call with timeout
-        → [Fails] → fallback chain (9 providers)
-        → [All fail] → TemplateProvider (deterministic)
+        → Language detection (Unicode script ranges)
+        → Indian language → Sarvam (30B or 105B for legal)
+        → English → default provider (groq)
+        → Circuit breaker check → [Tripped] → skip to next
+        → LLM API call with asyncio.wait_for(timeout=30)
+        → [429 RateLimit]: read Retry-After, mark provider, try next
+        → [402 QuotaExhausted]: mark until midnight UTC, email alert
+        → [403 InvalidKey]: email alert, mark provider dead
+        → [503/504 Timeout]: circuit breaker, try next
+        → [All fail]: TemplateProvider (deterministic, always works)
+     → AIGovernance.evaluate() (hallucination check)
      → ConversationMemoryStore.append()
-     → AIGovernance.evaluate()
-     → SSE stream back
-```
-
-### Challan Calculation Flow
-```
-User → ChallanCalculator → [Online] POST /api/v1/challan/calculate
-  → ChallanService.calculate_with_db()
-     → Query traffic_violations table
-     → Query state_fine_overrides table
-     → Return fine amount + section
-  → [Offline] DuckDB-Wasm
-     → Load violations.csv into WASM
-     → Execute SQL query client-side
-     → Return result
+     → SSE streaming response
 ```
 
 ---
 
-## 3. Database Schema
+## 5. External API Dependency Matrix
 
-### Tables (7 total)
-
-```
-emergency_services
-├── id (PK, UUID)
-├── osm_id, osm_type, name, name_local
-├── category (hospital, police, fire_station, ambulance, pharmacy)
-├── sub_category, address, phone, phone_emergency
-├── location (POINT, SRID 4326, GIST index)
-├── city, district, state, state_code
-├── is_24hr, has_trauma, has_icu, bed_count
-├── source (overpass, healthsites, manual, seed)
-├── verified, org_id
-└── GIST spatial index on location
-
-road_issues
-├── id (PK, UUID)
-├── issue_type, severity (1-5)
-├── description, location (POINT)
-├── location_address, road_name, road_type
-├── photo_url, ai_detection (JSONB)
-├── reporter_id, status
-├── authority_name, authority_phone
-├── complaint_ref, org_id
-├── composite indexes: (status, issue_type), (status, created_at)
-└── GIST spatial index on location
-
-road_infrastructure
-├── id (PK)
-├── road_id, road_name, road_type, road_number
-├── length_km, geometry (LINESTRING)
-├── state_code, contractor_name, exec_engineer
-├── budget_sanctioned, budget_spent
-├── construction_date, last_relayed_date
-├── org_id
-└── GIST spatial index on geometry
-
-sos_incidents
-├── id (UUID PK, gen_random_uuid())
-├── user_id, lat, lon, user_agent, created_at
-└── org_id
-
-user_profiles
-├── id (UUID PK)
-├── user_id, name, blood_group
-├── emergency_contacts (JSON)
-├── allergies, vehicle_details, medical_notes
-├── org_id, created_at, updated_at
-
-live_tracking
-├── session_id (UUID PK)
-├── user_id, user_name, blood_group, vehicle_number
-├── lat, lon, battery_percent
-├── is_active, expires_at (4hr TTL)
-├── view_token, org_id
-
-traffic_violations + state_fine_overrides
-├── violation_code, vehicle_class, section, description
-├── base_fine, repeat_fine, aliases
-└── No ORM model (raw SQL via text())
-```
+| API | Used By | Rate Limit | Fallback | Has Circuit Breaker |
+|-----|---------|-----------|----------|---------------------|
+| Groq LLM | Chatbot | 30 RPM, 6000 TPM | Cerebras | YES (trips at 429) |
+| Cerebras | Chatbot | 10 RPM | Gemini | YES |
+| Gemini | Chatbot | 15 RPM, 1M tkns/day | GitHub Models | YES |
+| GitHub Models | Chatbot | Bandwidth limits | NVIDIA NIM | YES |
+| NVIDIA NIM | Chatbot | 1000 req/day | OpenRouter | YES |
+| OpenRouter | Chatbot | Variable | Mistral | YES |
+| Mistral | Chatbot | 500 RPM | Together | YES |
+| Together | Chatbot | Variable | Template | NO (last non-template) |
+| Sarvam AI | Chatbot | Credits-based | HF Inference | YES |
+| Overpass | Backend | Fair use | 3 mirrors + Healthsites | NO (retry-based) |
+| OpenRouteService | Backend | 2000/day | OSRM public | NO |
+| Nominatim | Backend+Chatbot | 1 req/sec | Photon/OpenCage | NO (lock-based) |
+| OpenWeather | Chatbot | 60/min, 1M/mo | Open-Meteo (free) | NO |
+| What3Words | Chatbot | 50K/mo | None (core feature) | NO (3 retries) |
+| Open FDA | Chatbot | Unlim | None | NO |
+| MapTiler | Frontend | Freemium | OpenFreeMap | NO |
+| TomTom | Frontend | 50K tiles/day | Google Maps raster | NO |
+| PostHog | Frontend | Unlimited | None | NO |
 
 ---
 
-## 4. Auth System
+## 6. Caching Strategy
 
-```
-Login → POST /api/v1/auth/login
-  → PBKDF2 verify against AUTH_OPERATOR_PASSWORD_HASH env var
-  → Create JWT (HS256, 24h expiry)
-  → Set HttpOnly cookie (access_token)
-  → Return token in body + cookie
-
-Verification → get_current_user(request)
-  → Check cookie first → check Authorization: Bearer header
-  → Decode: App JWT → Supabase JWT → JWKS → Fallback
-  → Return user payload {sub, role, org_id}
-
-Roles: ADMIN > OPERATOR > USER > READONLY (hierarchical, NOT enforced)
-
-Supabase JWT: aud=authenticated, verified via SUPABASE_JWT_SECRET
-```
-
----
-
-## 5. Service Dependencies
-
-```
-EmergencyLocatorService
-  └─ OverpassService ─┬─ Overpass API (3 mirrors)
-  │                   └─ Healthsites.io API
-  ├─ CacheHelper ─┬─ Redis
-  │               └─ In-memory dict
-  ├─ LocalEmergencyCatalog ── CSV files (50k+ facilities)
-  └─ PostGIS (emergency_services table)
-
-ChallanService
-  ├─ PostGIS (traffic_violations, state_fine_overrides)
-  └─ CSV files (violations.csv, state_overrides.csv)
-
-RoadWatchService
-  ├─ AuthorityRouter ─┬─ PostGIS (road_infrastructure)
-  │                   └─ OverpassService
-  ├─ GeocodingService ─┬─ Photon API
-  │                    └─ Nominatim API
-  ├─ ReportClassifier (rule-based NLP)
-  ├─ OSMContributor ── OpenStreetMap API v0.6
-  ├─ CacheHelper
-  ├─ PostGIS (road_issues table)
-  └─ Supabase Storage (photo upload)
-
-RoutingService
-  ├─ OpenRouteService API
-  ├─ OSRM API
-  └─ CacheHelper
-
-LLMService (proxy)
-  └─ Chatbot Service (:8010) ── HTTP POST
-
-ChatbotService
-  └─ Backend (:8000) ── POST /api/v1/challan/calculate
-  │                   ── GET /api/v1/emergency/sos
-  │                   ── GET /api/v1/emergency/nearby
-  │                   ── GET /api/v1/roads/issues
-  │                   ── GET /api/v1/roads/infrastructure
-  │                   ── POST /api/v1/roads/report
-  ├─ Redis (session memory + LLM cache)
-  ├─ ChromaDB (RAG vectorstore)
-  ├─ LLM Providers x9 (Groq, Gemini, Cerebras, etc.)
-  ├─ Open-Meteo + OpenWeather API
-  ├─ What3Words API
-  ├─ Open FDA API
-  └─ Nominatim + OpenCage API
-```
-
----
-
-## 6. External API Dependencies
-
-| API | Service | Rate Limit | Fallback | Key Required |
-|-----|---------|-----------|----------|-------------|
-| Overpass | Backend | Variable | 3 mirrors + Healthsites.io | No |
-| OpenRouteService | Backend | 2000/day | OSRM (free) | Yes |
-| Nominatim | Backend/Chatbot | 1 req/s | Photon / OpenCage | No |
-| Photon | Backend | Unlim | Nominatim | No |
-| Open-Meteo | Chatbot | Unlim | OpenWeather | No |
-| OpenWeather | Chatbot | 60/min, 1M/mo | None | Yes |
-| What3Words | Chatbot | 50K/mo | None | Yes |
-| Open FDA | Chatbot | Unlim | None | No |
-| OpenCage | Chatbot | 2500/day | Nominatim | Yes |
-| Groq LLM | Chatbot | 30 RPM | Cerebras | Yes |
-| Cerebras LLM | Chatbot | 10 RPM | Gemini | Yes |
-| Gemini LLM | Chatbot | 15 RPM, 1M tkns/day | GitHub | Yes |
-| GitHub Models | Chatbot | Variable | NVIDIA | Yes |
-| NVIDIA NIM | Chatbot | 1000 req/day | OpenRouter | Yes |
-| OpenRouter | Chatbot | Variable | Mistral | Yes |
-| Mistral LLM | Chatbot | 500 RPM | Together | Yes |
-| Together | Chatbot | Variable | Template | Yes |
-| Sarvam AI | Chatbot | Variable | HF Inference | Yes |
-
----
-
-## 7. Cache Map
-
-| Cache Key | TTL | Storage | Invalidated By |
-|-----------|-----|---------|---------------|
-| `emergency:nearby:{lat}:{lon}:{cats}:{rad}` | 3600s | Redis+Mem | TTL expiry |
-| `geocode:reverse:{lat}:{lon}` | 86400s | Redis+Mem | TTL expiry |
-| `geocode:search:{query}` | 86400s | Redis+Mem | TTL expiry |
-| `route:preview:{origin}:{dest}` | 900s | Redis+Mem | TTL expiry |
-| `roads:authority:{lat}:{lon}` | 3600s | Redis+Mem | TTL expiry |
-| `roads:infra:{lat}:{lon}` | 3600s | Redis+Mem | TTL expiry |
-| `roads:issues:v{ver}:{lat}:{lon}:{rad}` | 3600s | Redis+Mem | Version increment on new report |
-| `chat:session:{session_id}` | 86400s | Redis | TTL expiry |
-| LLM response cache | 3600s | Redis | TTL expiry |
-| `idempotency:{key}` | 86400s | Redis+Mem | TTL expiry |
-
----
-
-## 8. Cron Schedule
-
-| Schedule | Workflow | Action |
-|----------|----------|--------|
-| Weekly Mon 02:00 UTC | load-testing.yml | k6 load tests against production |
-| Weekly Mon 03:00 UTC | chaos-tests.yml | Chaos engineering tests |
-| Weekly Mon 06:00 UTC | security.yml | Gitleaks + dependency audit |
-| Weekly Thu 08:21 UTC | codacy.yml | Codacy SAST scan |
-| Weekly Mon | Dependabot | Dependency update PRs |
-| On push to main | sync-wiki.yml | Auto-generate wiki docs |
-| On push to main | update-master-doc.yml | Generate DOCX master doc |
-| On push to main | deploy-docs.yml | Deploy MkDocs to GitHub Pages |
+| Cache Key | TTL | Backend | Invalidation |
+|-----------|-----|---------|-------------|
+| emergency:nearby | 3600s | Redis+Mem | TTL |
+| geocode:reverse | 86400s | Redis+Mem | TTL |
+| geocode:search | 86400s | Redis+Mem | TTL |
+| route:preview | 900s | Redis+Mem | TTL |
+| roads:issues:v{ver} | 3600s | Redis+Mem | Version increment on new report |
+| roads:infra | 3600s | Redis+Mem | TTL |
+| roads:authority | 3600s | Redis+Mem | TTL |
+| chat:session:{id} | 86400s | Redis | TTL (24h) |
+| LLM response | 3600s | Redis | SHA-256 hash key |
+| idempotency | 86400s | Redis+Mem | TTL |

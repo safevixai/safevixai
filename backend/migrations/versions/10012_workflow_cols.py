@@ -1,6 +1,6 @@
 """Add enterprise workflow tracking columns to road_issues table.
 
-Revision ID: 10012_enterprise_workflow_columns
+Revision ID: 10012_workflow_cols
 Revises: 10011_civic_intel_tables
 Create Date: 2026-05-25 15:50:00.000000
 """
@@ -12,7 +12,7 @@ from alembic import op
 from sqlalchemy.dialects import postgresql
 
 
-revision = '10012_enterprise_workflow_columns'
+revision = '10012_workflow_cols'
 down_revision = '10011_civic_intel_tables'
 branch_labels = None
 depends_on = None

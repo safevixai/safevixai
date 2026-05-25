@@ -7,7 +7,6 @@ import pytest
 
 from config import Settings
 from tools import BackendToolClient
-from tools.emergency_tool import EmergencyTool
 from tools.geocoding import GeocodingClient
 from tools.legal_search_tool import LegalSearchTool
 from tools.road_infra_tool import RoadInfrastructureTool
@@ -394,41 +393,6 @@ class TestSosTool:
 
 
 # ===================================================================
-# EmergencyTool
-# ===================================================================
-
-class TestEmergencyTool:
-
-    def test_constructor_stores_backend_client(self):
-        backend = MagicMock(spec=BackendToolClient)
-        tool = EmergencyTool(backend_client=backend)
-        assert tool.backend_client is backend
-
-    @pytest.mark.asyncio
-    async def test_find_nearby_returns_dict_on_success(self):
-        backend = AsyncMock(spec=BackendToolClient)
-        backend.get.return_value = {"results": [{"name": "GH"}]}
-        tool = EmergencyTool(backend_client=backend)
-
-        result = await tool.find_nearby(lat=13.0, lon=80.0, limit=5)
-
-        assert result == {"results": [{"name": "GH"}]}
-        backend.get.assert_awaited_once_with(
-            '/api/v1/emergency/nearby',
-            params={'lat': 13.0, 'lon': 80.0, 'limit': 5},
-        )
-
-    @pytest.mark.asyncio
-    async def test_find_nearby_backend_fails_returns_none(self):
-        backend = AsyncMock(spec=BackendToolClient)
-        backend.get.return_value = None
-        tool = EmergencyTool(backend_client=backend)
-
-        result = await tool.find_nearby(lat=13.0, lon=80.0)
-
-        assert result is None
-
-
 # ===================================================================
 # RoadInfrastructureTool
 # ===================================================================

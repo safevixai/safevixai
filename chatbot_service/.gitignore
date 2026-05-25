@@ -27,9 +27,10 @@ dist/
 build/
 .eggs/
 
-# ChromaDB vector store â€” built locally via build_vectorstore.py (never commit ~100MB)
+# ChromaDB vector store — backend is built locally (ignored)
+# chatbot_service/data/chroma_db/ is intentionally TRACKED (committed for Render cold-starts)
+# Rebuild takes ~10 min — see AGENTS.md for rationale
 backend/data/chroma_db/
-chatbot_service/data/chroma_db/
 
 # Downloaded PDF source documents (too large for git, download manually)
 backend/data/*.pdf

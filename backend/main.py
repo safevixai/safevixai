@@ -172,6 +172,13 @@ def create_app() -> FastAPI:
         app.state.etl_scheduler = etl_scheduler
         await etl_scheduler.start()
 
+        # Initialize and start DataRetentionScheduler for privacy compliance
+        from services.data_retention import DataRetentionScheduler
+        data_retention = DataRetentionScheduler(AsyncSessionLocal)
+        app.state.data_retention = data_retention
+        retention_interval = 3600 if settings.environment == "development" else 86400  # 1 hour dev, 24 hours prod
+        await data_retention.start(interval_seconds=retention_interval)
+
         # Initialize and start background task queue and worker daemon
         from core.queue import TaskQueue, BackgroundWorker
         if cache._client is not None:
@@ -195,6 +202,8 @@ def create_app() -> FastAPI:
                 app.state.sla_monitor.stop()
             if hasattr(app.state, 'sla_task'):
                 app.state.sla_task.cancel()
+            if hasattr(app.state, 'data_retention'):
+                app.state.data_retention.stop()
             if hasattr(app.state, 'etl_scheduler'):
                 await app.state.etl_scheduler.stop()
             
@@ -259,9 +268,11 @@ def create_app() -> FastAPI:
             "magnetometer=(), "
             "payment=()"
         )
+        is_prod = get_settings().environment == "production"
+        script_src = "'self' 'unsafe-inline'" + ("" if is_prod else " 'unsafe-eval'")
         response.headers["Content-Security-Policy"] = (
-            "default-src 'self'; "
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval'; "
+            f"default-src 'self'; "
+            f"script-src {script_src}; "
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
             "font-src 'self' https://fonts.gstatic.com; "
             "img-src 'self' https: data: blob:; "
@@ -377,6 +388,10 @@ def create_app() -> FastAPI:
         
         response = await call_next(request)
         return response
+
+    # Phase 3.3: Allowed hosts middleware — blocks Host header injection
+    from middleware.allowed_hosts import setup_allowed_hosts
+    setup_allowed_hosts(app, settings)
 
     # Phase 3.2: Query profiler middleware — logs slow queries
     from middleware.query_profiler import setup_query_profiler

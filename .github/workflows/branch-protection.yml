@@ -4,6 +4,10 @@ on:
     types: [opened, synchronize, reopened]
     branches: [main, develop]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   check-protection:
     runs-on: ubuntu-latest

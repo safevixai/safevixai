@@ -16,6 +16,11 @@
   .focus-visible-ring { @apply ring-2 ring-brand/40 ring-offset-2 ring-offset-white dark:ring-offset-slate-900; }
   .scrollbar-hide { scrollbar-width: none; }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .dvh-screen { height: 100dvh; }
+  .dvh-full { height: 100dvh; }
+  .dvh-map { height: var(--map-h); }
+  .dvh-chat { height: var(--chat-h); }
+  .min-dvh-card { min-height: var(--card-min-h); }
 }
 
 :root {
@@ -28,6 +33,10 @@
   --full-content-h: calc(100dvh - var(--header-h) - var(--navbar-bottom-h));
   --full-content-h-desktop: calc(100vh - var(--header-h));
   --full-content-h-desktop: calc(100dvh - var(--header-h));
+  --map-h: calc(100dvh - var(--header-h) - var(--navbar-bottom-h));
+  --map-h-desktop: calc(100dvh - var(--header-h));
+  --chat-h: calc(100dvh - var(--header-h) - var(--navbar-bottom-h) - 80px);
+  --card-min-h: min(40dvh, 320px);
 }
 
 :root {

@@ -9,6 +9,10 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   contract-test:
     runs-on: ubuntu-latest
@@ -29,39 +33,13 @@ jobs:
           # Backend OpenAPI spec
           cd backend
           pip install -r requirements.txt 2>/dev/null || true
-          python -c "
-import json
-from pathlib import Path
-from main import create_app
-app = create_app()
-from fastapi.openapi.utils import get_openapi
-openapi = get_openapi(
-    title=app.title,
-    version=app.version,
-    routes=app.routes,
-)
-Path('openapi.json').write_text(json.dumps(openapi, indent=2))
-print('Backend OpenAPI spec generated')
-" 2>/dev/null || echo "Backend OpenAPI generation skipped (deps may be missing)"
+          python -c "import json; from pathlib import Path; from main import create_app; app = create_app(); from fastapi.openapi.utils import get_openapi; openapi = get_openapi(title=app.title, version=app.version, routes=app.routes); Path('openapi.json').write_text(json.dumps(openapi, indent=2)); print('Backend OpenAPI spec generated')" 2>/dev/null || echo "Backend OpenAPI generation skipped (deps may be missing)"
           cd ..
 
           # Chatbot OpenAPI spec
           cd chatbot_service
           pip install -r requirements.txt 2>/dev/null || true
-          python -c "
-import json
-from pathlib import Path
-from main import create_app
-app = create_app()
-from fastapi.openapi.utils import get_openapi
-openapi = get_openapi(
-    title=app.title,
-    version=app.version,
-    routes=app.routes,
-)
-Path('openapi.json').write_text(json.dumps(openapi, indent=2))
-print('Chatbot OpenAPI spec generated')
-" 2>/dev/null || echo "Chatbot OpenAPI generation skipped (deps may be missing)"
+          python -c "import json; from pathlib import Path; from main import create_app; app = create_app(); from fastapi.openapi.utils import get_openapi; openapi = get_openapi(title=app.title, version=app.version, routes=app.routes); Path('openapi.json').write_text(json.dumps(openapi, indent=2)); print('Chatbot OpenAPI spec generated')" 2>/dev/null || echo "Chatbot OpenAPI generation skipped (deps may be missing)"
           cd ..
 
       - name: Run contract tests

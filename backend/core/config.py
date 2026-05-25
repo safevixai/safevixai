@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     db_pool_recycle_seconds: int = 1800
     echo_queries: bool = False
 
+    allowed_hosts_env: str | None = Field(default=None, validation_alias='ALLOWED_HOSTS')
     default_radius: int = 5000
     max_radius: int = 50000
     emergency_min_results: int = 3

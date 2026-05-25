@@ -220,3 +220,37 @@ async def get_dashboard_summary_admin(
         },
         "category_breakdown": categories
     }
+
+
+@router.post('/cleanup-expired-data', response_model=dict)
+@limiter.limit("1/minute")
+async def trigger_data_retention_cleanup(
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+    current_user: dict = Depends(require_role(Role.OPERATOR))
+) -> dict:
+    """
+    Trigger database cleanup of expired data.
+    Removes old chat logs (>90 days), SOS incidents (>90 days), and live tracking sessions (>30 days).
+    """
+    try:
+        # Call the cleanup function defined in migrations
+        await db.execute("SELECT safevixai_cleanup_expired_data()")
+        await db.commit()
+        
+        return {
+            "status": "success",
+            "message": "Data retention cleanup executed successfully",
+            "function": "safevixai_cleanup_expired_data()",
+            "cleanup_policies": {
+                "live_tracking": "30 days inactive",
+                "chat_logs": "90 days old",
+                "sos_incidents": "90 days old"
+            }
+        }
+    except Exception as exc:
+        await db.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Data cleanup failed: {str(exc)}"
+        ) from exc

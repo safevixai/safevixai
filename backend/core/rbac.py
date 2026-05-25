@@ -12,19 +12,14 @@ Roles:
 from __future__ import annotations
 
 from enum import Enum
-from typing import Annotated
 
-from fastapi import Depends, HTTPException, Security
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi import Depends, HTTPException
 
 from core.security import get_current_user
-
-security = HTTPBearer(auto_error=False)
 
 
 class Role(str, Enum):
     """User roles with hierarchical permissions."""
-
     ADMIN = "admin"
     OPERATOR = "operator"
     FIELD_OFFICER = "field_officer"
@@ -32,7 +27,6 @@ class Role(str, Enum):
     READONLY = "readonly"
 
 
-# Permission hierarchy: higher roles inherit lower role permissions
 ROLE_HIERARCHY = {
     Role.ADMIN: [Role.ADMIN, Role.OPERATOR, Role.FIELD_OFFICER, Role.USER, Role.READONLY],
     Role.OPERATOR: [Role.OPERATOR, Role.FIELD_OFFICER, Role.USER, Role.READONLY],
@@ -43,39 +37,21 @@ ROLE_HIERARCHY = {
 
 
 def _has_permission(user_role: str, required_role: Role) -> bool:
-    """Check if user_role has the required_role permission."""
     try:
         role_enum = Role(user_role)
     except ValueError:
         return False
-    
     allowed_roles = ROLE_HIERARCHY.get(role_enum, [])
     return required_role in allowed_roles
 
 
 def require_role(required_role: Role):
-    """FastAPI dependency that enforces role-based access.
-    
-    Usage:
-        @router.get("/admin/users")
-        async def list_users(user: dict = Depends(require_role(Role.ADMIN))):
-            ...
-    """
     async def dependency(user: dict = Depends(get_current_user)) -> dict:
         user_role = user.get("role", Role.READONLY.value)
-        
         if not _has_permission(user_role, required_role):
             raise HTTPException(
                 status_code=403,
                 detail=f"Insufficient permissions. Required role: {required_role.value}",
             )
-        
         return user
     return dependency
-
-
-# Type aliases for common role requirements
-AdminUser = Annotated[dict, Depends(require_role(Role.ADMIN))]
-OperatorUser = Annotated[dict, Depends(require_role(Role.OPERATOR))]
-AuthenticatedUser = Annotated[dict, Depends(require_role(Role.USER))]
-ReadOnlyUser = Annotated[dict, Depends(require_role(Role.READONLY))]

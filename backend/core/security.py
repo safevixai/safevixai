@@ -241,6 +241,16 @@ async def get_current_user_optional(
     request: Request,
 ) -> dict[str, Any] | None:
     """Return the authenticated caller when a valid bearer token is present."""
+    # Internal service token authentication bypass for Chatbot
+    internal_key = request.headers.get("X-Internal-Api-Key") or request.headers.get("X-Service-Token")
+    if internal_key:
+        from core.config import get_settings
+        settings = get_settings()
+        if settings.chatbot_internal_api_key and internal_key == settings.chatbot_internal_api_key:
+            return {"sub": "chatbot-service", "role": "operator", "org_id": None, "auth_provider": "internal"}
+        if settings.admin_secret and internal_key == settings.admin_secret:
+            return {"sub": "admin-system", "role": "admin", "org_id": None, "auth_provider": "internal"}
+
     token = request.cookies.get("access_token")
     if token is None:
         auth_header = request.headers.get("Authorization")

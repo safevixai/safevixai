@@ -1,7 +1,7 @@
 """enable rls on new enterprise tables
 
 Revision ID: ca14ab8693a2
-Revises: 10012_enterprise_workflow_columns
+Revises: 10012_workflow_cols
 Create Date: 2026-05-25 18:43:10.256618
 
 """
@@ -14,7 +14,7 @@ from sqlalchemy import text
 
 # revision identifiers, used by Alembic.
 revision = 'ca14ab8693a2'
-down_revision = '10012_enterprise_workflow_columns'
+down_revision = '10012_workflow_cols'
 branch_labels = None
 depends_on = None
 

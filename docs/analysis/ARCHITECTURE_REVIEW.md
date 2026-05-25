@@ -1,138 +1,95 @@
-# SafeVixAI — Architecture Review
+# SafeVixAI — Architecture Review (Updated 2026-05-26)
 
-> Generated: 2026-05-22 | Enterprise-grade system audit
+> Verified against actual codebase. Corrections to prior audit noted.
 
 ---
 
-## 1. Strengths
+## 1. Strengths (Verified)
 
 ### Architecture
-- **Clean separation**: 3 services (frontend/backend/chatbot) with well-defined boundaries
-- **Factory pattern**: `create_app()` in both FastAPI services — testable, mockable
-- **Lifespan management**: Proper async startup/shutdown with `@asynccontextmanager`
-- **Service injection via `app.state`**: Consistent DI pattern for all services
+- **3-service separation** with clear boundaries: frontend (Next.js), backend (FastAPI :8000), chatbot (FastAPI :8010)
+- **Factory pattern** in both FastAPI apps: `create_app()` — testable, mockable
+- **Proper lifespan management**: `@asynccontextmanager` with complete startup/shutdown lifecycle
+- **Service injection via `app.state`**: Consistent DI pattern; no dependency injection framework needed
+- **Two isolated virtual environments**: backend and chatbot have separate .venv, .env, requirements.txt
 
 ### Resilience
-- **9-provider LLM fallback**: Chain ensures chatbot never fully fails
-- **3-tier data sources**: Database → CSV → Overpass for emergency services
-- **3-tier offline**: DuckDB-Wasm → CSV parser → Dictionary for challans
-- **Circuit breakers**: Per-provider, graduated durations (60s-24h), auto-recovery
-- **In-memory fallback**: Redis → in-memory for cache, rate limiting, sessions
-
-### Security
-- **HttpOnly auth cookie**: XSS-protected token storage
-- **CSRF protection**: Double-submit cookie pattern
-- **Rate limiting on critical endpoints**: Login (5/min), SOS (10/min), Report (8/min)
-- **Tenant isolation**: `org_id` on all tables, middleware extraction
-- **EXIF stripping**: Photo uploads have GPS metadata removed
-- **Defense-in-depth**: 7-layer prompt injection protection
+- **11-provider LLM fallback chain**: Groq → Cerebras → Sarvam → GitHub → Gemini → NVIDIA → OpenRouter → Mistral → Together → Template (deterministic)
+- **3-tier emergency data**: PostGIS DB (~50k facilities) → Local CSV → Overpass API
+- **3-tier offline challan**: DuckDB-Wasm → CSV parser → Dict in-memory fallback
+- **Circuit breakers**: Per-provider graduated cooldowns (60s for timeout → 24h for quota exhaustion)
+- **In-memory fallback for all Redis-dependent systems**: Cache, rate limiting, conversation memory
+- **Dual auth validation**: App JWT + Supabase JWT + JWKS optional
 
 ### Performance
-- **Granular Zustand selectors**: Prevent unnecessary re-renders
-- **GPU-composited animations**: GSAP only animates transform/opacity
-- **Dynamic imports**: MapLibre, DuckDB-Wasm, WebLLM loaded lazily
-- **DuckDB-Wasm for offline**: Client-side SQL avoids server round-trips
+- **Granular Zustand selectors**: ~30 selector hooks prevent unnecessary re-renders
+- **GPU-composited GSAP animations**: Only transform/opacity animated
+- **Dynamic imports**: MapLibre, DuckDB-Wasm, WebLLM all SSR-disabled
+- **DuckDB-Wasm client-side**: Avoids server round-trip for challan queries
+- **Response caching**: Redis + in-memory with configurable TTLs
 
 ### DevOps
-- **16 CI/CD workflows**: Coverage from lint → test → security → deploy → docs
-- **Health check dependency chain**: Frontend waits for backend+chatbot
-- **3 isolated Docker networks**: Prevents lateral movement
-- **Non-root containers**: All Dockerfiles use appuser
-- **Structured logging**: JSON format in production for log aggregation
+- **19 CI/CD workflows**: lint → test → security → build → deploy → docs → load test → chaos
+- **Blue-green deployment pattern**: Render deploy hooks with pre/post verification
+- **Docker Compose with 3 isolated networks**: Data-net, backend-net, frontend-net — prevents lateral movement
+- **Non-root containers**: All Dockerfiles use `appuser`
+- **Dependabot**: npm + pip + GitHub Actions, weekly schedules, 5 PR limit
 
 ---
 
-## 2. Weaknesses
+## 2. Weaknesses (Verified)
 
-### Architecture
-- **Single JWT secret key**: Symmetric HS256, no key rotation, 24h expiry no refresh
-- **No role-based enforcement**: JWT has `role` claim but no endpoint checks it
-- **No data deletion/export**: GDPR non-compliance, SOS incidents persist forever
-- **Chatbot API unauthenticated**: `/api/v1/chat/*` requires no auth on chatbot side
-- **Backend login limited**: Single hardcoded operator, no user registration flow
+### Auth & Security
+- **Live credentials in git**: All 3 .env files committed with production secrets (CRITICAL)
+- **Single-operator auth**: Backend only supports 1 operator via env vars; no user registration
+- **No token revocation**: JWT valid for 24h; no blacklist/refresh mechanism
+- **RBAC not enforced**: JWT has `role` claim but most endpoints don't check it
+- **No Host header validation**: No ALLOWED_HOSTS — Host header injection possible
+- **Chatbot endpoints unauthenticated**: `/chat` and `/chat/stream` rate-limited but no JWT required
+- **X-Admin-Key deprecated but still accepted**: Legacy admin auth header still functional
 
-### Monitoring
-- **No `/metrics` endpoint**: Full Prometheus module defined but not wired
-- **No monitoring dashboards**: Grafana, Datadog, etc. not set up
-- **No distributed tracing UI**: OTLP configured but no Jaeger/Tempo URL
-- **No uptime monitoring**: No Pingdom/UptimeRobot configured
-- **No SLA/SLO definitions**: No availability/latency targets documented
+### Observability
+- **Prometheus `/metrics` wired but analytics endpoint** returns data for public — not true Prometheus
+- **No uptime monitoring**: No UptimeRobot/Pingdom configured
+- **Sentry optional**: Only enabled if `SENTRY_DSN` is set; no default
+- **Email alerts 5-min cooldown**: Resets on restart (in-memory only)
+- **No distributed tracing**: OTLP not configured
 
 ### Testing
-- **No cross-service integration tests**: Frontend ↔ Backend ↔ Chatbot not tested
-- **Load test scripts missing**: k6 files referenced in CI but absent
-- **Chaos test script missing**: `test_chaos.py` referenced but absent
-- **Frontend test exclusions**: `useSOS.test.ts` excluded from Jest (Playwright covers)
-- **ESLint/TypeScript errors ignored**: `|| true` in frontend CI — silent degradation
+- **Frontend test coverage**: Only 12 component tests; `useSOS.test.ts` excluded from Jest
+- **Chatbot**: 892/892 passing, 95% coverage
+- **Backend**: 1365/1365 passing, 59% coverage — service files need live DB
+- **No cross-service integration tests**: Frontend↔Backend↔Chatbot not tested together
+- **Root `/tests/` directory gitignored**: k6, chaos, and contract tests exist on disk but untracked
 
-### Infra
-- **Render free tier oversubscribed**: 2 services × 24h × 30.5d = 1464h needed vs 750h available
-- **No IaC**: No Terraform/Pulumi — Docker Compose + render.yaml only
-- **No automated DB rollback**: Alembic downgrade exists but unused
-- **Docker images tagged `:latest` only**: No versioned tags for rollback
-- **No backup verification**: Supabase retention relied upon without testing
+### Infrastructure
+- **Render free tier oversubscribed**: 2 services × 24h × 30.5d = 1464h vs 750h available
+- **No Infrastructure as Code**: Docker Compose + render.yaml only; no Terraform/Pulumi
+- **Duplicated render.yaml**: chatbot_service/render.yaml duplicates root render.yaml chatbot service
+- **Package manager conflict**: CI uses `npm ci`, AGENTS.md says pnpm; pnpm-lock.yaml gitignored
+- **No automated DB rollback**: Alembic downgrade exists but no CI step for it
 
 ### Data
-- **Redis session memory bottleneck**: If Redis dies, all conversations lost
-- **SOS incidents permanent**: No retention/cleanup policy
-- **Location privacy**: SOS + tracking data stored indefinitely
-- **CSP too restrictive**: `default-src 'self'` breaks maps, CDN, admin dashboard
-- **Error messages may leak**: Provider response bodies included in errors
+- **SOS incidents persist indefinitely**: No cleanup/retention policy
+- **Location privacy**: Tracking data stored with no expiry enforcement beyond 4h token
+- **All `.env` files track live credentials**: Including Gmail app password for email alerts
+- **Sub-gitignore contradicts root**: chatbot_service/.gitignore ignores chroma_db but root explicitly keeps it
 
 ---
 
 ## 3. Technical Debt
 
-| Item | Impact | Effort to Fix | Priority |
-|------|--------|---------------|----------|
-| No RBAC enforcement | HIGH auth bypass | Medium | HIGH |
-| No `/metrics` endpoint | HIGH observability gap | Low (5 lines) | HIGH |
-| Missing k6/chaos test files | HIGH CI failure | Medium | HIGH |
-| Chatbot API unauthenticated | HIGH data exposure | Medium | HIGH |
-| CSP too restrictive | MEDIUM broken features | Low (config change) | MEDIUM |
-| No data deletion | MEDIUM regulatory risk | Medium | MEDIUM |
-| No Grafana dashboard | MEDIUM blind ops | Medium | MEDIUM |
-| Error message leak risk | MEDIUM security | Low | MEDIUM |
-| Single operator login | MEDIUM scaling limit | High | LOW |
-| AI model in chatbot deps | LOW build time | Low | LOW |
-
----
-
-## 4. Risk Register
-
-| # | Risk | Probability | Impact | Score | Mitigation |
-|---|------|------------|--------|-------|-----------|
-| R1 | Auth bypass via missing RBAC | HIGH | HIGH | 9 | Implement role-check decorator |
-| R2 | Render free tier exceeded | HIGH | MEDIUM | 6 | Monitor usage, upgrade if needed |
-| R3 | Upstash Redis rate limited | MEDIUM | HIGH | 6 | In-memory fallback active |
-| R4 | Groq API rate limited | HIGH | MEDIUM | 6 | 8 more providers in chain |
-| R5 | Supabase auto-paused | MEDIUM | CRITICAL | 8 | Manual resume, health check alert |
-| R6 | Chatbot DDoS via no auth | MEDIUM | HIGH | 6 | Rate limiting (20/min) |
-| R7 | LLM provider API deprecation | LOW | MEDIUM | 3 | Abstract provider interface |
-| R8 | Database migration failure | MEDIUM | HIGH | 6 | Alembic rollback exists |
-| R9 | SOS data leak via IndexedDB | MEDIUM | MEDIUM | 4 | Encrypt sensitive fields |
-
----
-
-## 5. Scalability Assessment
-
-### Current Capacity
-- **PostgreSQL**: Up to 500MB (Supabase free tier) — sufficient for 50k+ facilities
-- **Redis**: 256MB, 10K commands/day — **low** for production traffic
-- **Workers**: 1 per service (Render free) — no request parallelism
-- **CDN**: Vercel global edge — excellent for static assets
-- **Rate limits**: 5-30 req/min per endpoint — prevents overload
-
-### Bottlenecks
-1. **Single-threaded FastAPI** on Render — I/O bound, but CPU-bound tasks block
-2. **No connection pooling** in production — Render free sets pool=1
-3. **Synced LLM calls** — `asyncio.wait_for` blocks on external API
-4. **No message queue** — Chatbot calls backend synchronously
-5. **ChromaDB persistence** — File-system based, no replication
-
-### Scaling Recommendations
-1. **Move to Render Starter ($7/mo × 2)** for persistent services
-2. **Add connection pooling** `pool_size=10, overflow=20` (already configured in code, Render overrides to 1)
-3. **Make LLM calls truly async** with streaming responses from providers
-4. **Add Redis Streams/SQS** for async job processing (report submission, OSM contribution)
-5. **Pre-warm ChromaDB** on startup (already done)
+| Item | Impact | Effort | Priority |
+|------|--------|--------|----------|
+| .env files committed to git | Credentials exposed to all repo users | HIGH (rotate + git filter) | **CRITICAL** |
+| SafetyChecker output check never called | Output safety not enforced | Low (4-line call) | HIGH |
+| SWR underutilized (1 of 23 pages) | Missing caching/revalidation | MEDIUM (add SWR hooks) | HIGH |
+| EmergencyTool instantiated but unwired | Dead tool | Low (wire or remove) | MEDIUM |
+| Dead route context methods in context_assembler | 3 methods never called | Low (remove dead code) | MEDIUM |
+| torch in chatbot requirements | 800MB dep for optional speech feature | MEDIUM (make optional) | MEDIUM |
+| Horverwrite html lang | HARDDED | Low (use env var) | MEDIUM |
+| No Host header validation | Head injection risk | Low (add middleware) | MEDIUM |
+| X-Admin-Key header still allowed | Dead legacy auth path | Low (remove from CORS) | LOW |
+| Duplicated render.yaml | Drift risk | Low (remove one) | LOW |
+| next-themes installed but unused | Dead dependency 0.4.6 | Low (remove) | LOW |
+| Framer Motion orphaned in lockfile | Dead dep | Low (prune lockfile) | LOW |

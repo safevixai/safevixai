@@ -107,6 +107,25 @@ class ChatEngine:
             )
         )
 
+        # Phase 0.3: Output safety check — catch harmful LLM responses
+        output_safety = self.safety_checker.check_output_safety(provider_result.text)
+        if output_safety.blocked:
+            await self.memory_store.append_message(
+                session_id, 'assistant', output_safety.response or '',
+                metadata={'intent': 'blocked_output', 'sources': ['policy:safety-output']},
+            )
+            return ChatResponse(
+                response=output_safety.response or 'I encountered an issue generating a safe response.',
+                intent='blocked_output',
+                sources=['policy:safety-output'],
+                session_id=session_id,
+            )
+
+        # Phase 0.3: Medical disclaimer — append for first-aid/medical topics
+        provider_result.text = self.safety_checker.add_medical_disclaimer_if_needed(
+            payload.message, provider_result.text
+        )
+
         # Phase 0.7: AI governance evaluation
         governance_result = await self.governance.evaluate(
             response_text=provider_result.text,
@@ -222,6 +241,21 @@ class ChatEngine:
                     full_text += escaped
                     yield {'type': 'token', 'text': escaped}
                 elif event['type'] == 'done':
+                    # Phase 0.3: Output safety check — catch harmful LLM responses
+                    output_safety = self.safety_checker.check_output_safety(full_text)
+                    if output_safety.blocked:
+                        safe_text = output_safety.response or 'I encountered an issue generating a safe response.'
+                        yield {'type': 'token', 'text': safe_text}
+                        yield {'type': 'done', 'intent': 'blocked_output', 'sources': ['policy:safety-output'], 'session_id': session_id}
+                        await self.memory_store.append_message(
+                            session_id, 'assistant', safe_text,
+                            metadata={'intent': 'blocked_output', 'sources': ['policy:safety-output']},
+                        )
+                        return
+
+                    # Phase 0.3: Medical disclaimer — append for first-aid/medical topics
+                    full_text = self.safety_checker.add_medical_disclaimer_if_needed(payload.message, full_text)
+
                     governance_result = await self.governance.evaluate(
                         response_text=full_text,
                         retrieved_context=[

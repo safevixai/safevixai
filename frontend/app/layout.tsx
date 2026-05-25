@@ -19,6 +19,8 @@ import { AppFrame } from '@/components/ui/AppFrame';
 import { AnalyticsProvider } from '@/lib/analytics-provider';
 import { EnterpriseClientAppHooks } from '@/components/EnterpriseClientAppHooks';
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_VERCEL_URL || 'https://safevixai.com';
+
 export const metadata: Metadata = {
   title: 'SafeVixAI - AI-Powered Road Safety',
   description:
@@ -66,22 +68,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="mobile-web-app-capable" content="yes" />
 
         {/* SEO Localization - Alternate Hreflang and Canonical URLs */}
-        <link rel="canonical" href={`https://safevixai.com/${locale}`} />
-        <link rel="alternate" href="https://safevixai.com/en" hrefLang="en" />
-        <link rel="alternate" href="https://safevixai.com/hi" hrefLang="hi" />
-        <link rel="alternate" href="https://safevixai.com/ta" hrefLang="ta" />
-        <link rel="alternate" href="https://safevixai.com/te" hrefLang="te" />
-        <link rel="alternate" href="https://safevixai.com/kn" hrefLang="kn" />
-        <link rel="alternate" href="https://safevixai.com/ml" hrefLang="ml" />
-        <link rel="alternate" href="https://safevixai.com/mr" hrefLang="mr" />
-        <link rel="alternate" href="https://safevixai.com/gu" hrefLang="gu" />
-        <link rel="alternate" href="https://safevixai.com/bn" hrefLang="bn" />
-        <link rel="alternate" href="https://safevixai.com/pa" hrefLang="pa" />
-        <link rel="alternate" href="https://safevixai.com/ur" hrefLang="ur" />
-        <link rel="alternate" href="https://safevixai.com/ar" hrefLang="ar" />
-        <link rel="alternate" href="https://safevixai.com/es" hrefLang="es" />
-        <link rel="alternate" href="https://safevixai.com/fr" hrefLang="fr" />
-        <link rel="alternate" href="https://safevixai.com" hrefLang="x-default" />
+        <link rel="canonical" href={`${BASE_URL}/${locale}`} />
+        <link rel="alternate" href={`${BASE_URL}/en`} hrefLang="en" />
+        <link rel="alternate" href={`${BASE_URL}/hi`} hrefLang="hi" />
+        <link rel="alternate" href={`${BASE_URL}/ta`} hrefLang="ta" />
+        <link rel="alternate" href={`${BASE_URL}/te`} hrefLang="te" />
+        <link rel="alternate" href={`${BASE_URL}/kn`} hrefLang="kn" />
+        <link rel="alternate" href={`${BASE_URL}/ml`} hrefLang="ml" />
+        <link rel="alternate" href={`${BASE_URL}/mr`} hrefLang="mr" />
+        <link rel="alternate" href={`${BASE_URL}/gu`} hrefLang="gu" />
+        <link rel="alternate" href={`${BASE_URL}/bn`} hrefLang="bn" />
+        <link rel="alternate" href={`${BASE_URL}/pa`} hrefLang="pa" />
+        <link rel="alternate" href={`${BASE_URL}/ur`} hrefLang="ur" />
+        <link rel="alternate" href={`${BASE_URL}/ar`} hrefLang="ar" />
+        <link rel="alternate" href={`${BASE_URL}/es`} hrefLang="es" />
+        <link rel="alternate" href={`${BASE_URL}/fr`} hrefLang="fr" />
+        <link rel="alternate" href={BASE_URL} hrefLang="x-default" />
 
         {/* Flash-free theme init - runs before React hydration to prevent FOUC */}
         <script dangerouslySetInnerHTML={{ __html: `

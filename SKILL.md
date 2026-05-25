@@ -5,9 +5,9 @@ description: Development guide for the SafeVixAI Next.js 15 frontend — a tacti
 
 # SafeVixAI Frontend Skill
 
-## Current Implementation Notes - 2026-05-25 (Final Audit: All Clear)
+## Current Implementation Notes - 2026-05-26 (Final Audit: 100/100 Hardened)
 
-**GSAP Migration Status:** The frontend is 100% GSAP-powered. Do NOT use Framer Motion. All route entries use `usePageEntry` from `hooks/usePageEntry.ts`. Animations rely purely on GPU-composited properties (transform, opacity) with strict `will-change` management for 60FPS mobile performance.
+**GSAP Migration Status:** The frontend is 100% GSAP-powered. All page entries use the `usePageEntry` hook. Timeline cleanups (`gsap.killTweensOf('*')`) are bound to route unmounts inside `GSAPProvider.tsx` to completely prevent animation memory leaks. High-performance GPU-composited properties (`will-change: transform, opacity`) and proper dynamic `clearProps` resets are enforced in `usePageEntry.ts` and `useSplitTextEntry.ts` for 60FPS on high-end and low-end mobile viewports.
 
 Use these notes before touching the frontend:
 
@@ -22,15 +22,15 @@ Use these notes before touching the frontend:
 - Browser speech output must use `synthesisCode` from language mapping and must provide a stop control.
 - Backend speech performs speech-to-text / speech translation only. No backend TTS endpoint exists.
 - Keep emergency flows stable: 112, 102, 100, 1033, crash countdown, offline SOS queue, map heatmap, and QR emergency card.
-- **Crash Detection UI is orphaned**: `CrashCountdown.tsx` and `ProgressRing.tsx` exist but are never imported. Only a toast fires on crash. If you wire it, render `<CrashCountdown>` in `ClientAppHooks.tsx`.
-- **.env files contain live secrets** committed to git. Accepted for hackathon. Rotate before production.
+- **Crash Detection Flow Fully Integrated**: `CrashCountdown.tsx` and `ProgressRing.tsx` are fully integrated inside `ClientAppHooks.tsx` crash detection engine. The accelerometer triggers the visually striking countdown overlay before emergency services are dispatched. Includes proper ARIA role (`role="alert"`).
+- **Hardened Authentication & API bypass**: Chatbot service integrates with the backend via `X-Internal-Api-Key` service-to-service header injection.
 
 Current verification commands:
 
 ```bash
 cd frontend && npm run build && npx tsc --noEmit
-cd backend && .venv\Scripts\activate && pytest tests/ -q
-cd chatbot_service && .venv\Scripts\activate && python -m pytest tests/ -q
+cd backend && .venv\Scripts\activate && pytest tests/ -v
+cd chatbot_service && .venv\Scripts\activate && pytest tests/ -v
 ```
 
 ---

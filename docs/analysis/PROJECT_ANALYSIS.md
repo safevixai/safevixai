@@ -1,179 +1,122 @@
-# SafeVixAI — Complete Project Analysis
+# SafeVixAI — Complete Project Analysis (Updated 2026-05-26)
 
-> Generated: 2026-05-22 | Scope: Full-stack AI Road Safety PWA
+> Deep codebase exploration complete. Contains verified ground truth (not audit tool assumptions).
 
 ---
 
 ## 1. Project Identity
 
-**SafeVixAI** is a full-stack AI-powered road safety PWA built for the IIT Madras Road Safety Hackathon 2026. It solves 4 problem statements:
+**SafeVixAI** — Full-stack AI-powered road safety PWA for IIT Madras Road Safety Hackathon 2026.
+Total infra cost: ₹0.
 
 | Problem | Solution |
 |---------|----------|
-| Emergency Locator | PostGIS-powered nearest service finder (hospitals, police, fire, ambulances) with radius expansion up to 50km |
-| AI Chatbot | 9-provider LLM fallback, RAG over Motor Vehicles Act + first-aid + accident data, 13 agent tools |
+| Emergency Locator | PostGIS-powered nearest service finder (hospitals, police, fire) with radius expansion up to 50km |
+| AI Chatbot | 11-provider LLM fallback chain, ChromaDB RAG (Motor Vehicles Act + first-aid + accident data), 13 agent tools |
 | Challan Calculator | Dual-path (DuckDB-Wasm client-side + Python server-side) fine calculation with state overrides |
-| Road Reporter | Community hazard reporting with photo upload, authority routing, OSM contribution, Waze feed |
-
-**Cost:** ₹0 (all free/open-source tiers)
+| Road Reporter | Community hazard reporting with photo upload, authority routing, OSM contribution, Waze CIFS feed |
 
 ---
 
-## 2. Architecture Overview
+## 2. Architecture
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│  FRONTEND  (Next.js 15 + React 19 + TypeScript + Tailwind CSS)  │
-│  Port 3000  |  PWA + Offline-first + MapLibre GL + GSAP Anim    │
-│  Vercel (production)                                             │
-└──────────┬──────────────────────────────────────────┬────────────┘
-           │ REST + SSE Streaming                      │ REST
-           │ JWT Bearer                                 │ Public
-┌──────────▼──────────────┐     ┌──────────────────────▼──────────┐
-│  BACKEND  (FastAPI)     │     │  CHATBOT SERVICE (FastAPI)     │
-│  Port 8000              │     │  Port 8010                      │
-│  Render (production)    │     │  Render (production)            │
-│                         │     │                                  │
-│  ┌─────────────────┐    │     │  ┌──────────────────────────┐   │
-│  │ 14 Services      │    │     │  │ ChatEngine (Graph)       │   │
-│  │ EmergencyLocator │    │     │  │ ├─ SafetyChecker         │   │
-│  │ ChallanService   │◄───┼─────┼──┤ ├─ IntentDetector        │   │
-│  │ RoutingService   │    │     │  │ ├─ ContextAssembler      │   │
-│  │ GeocodingService │    │     │  │ ├─ ProviderRouter        │   │
-│  │ RoadWatchService │    │     │  │ └─ ConversationMemory    │   │
-│  │ LLMService (proxy)│   │     │  │                          │   │
-│  │ OverpassService   │   │     │  │ ┌──────────────────┐     │   │
-│  │ AuthorityRouter   │   │     │  │ │ 9 LLM Providers   │     │   │
-│  │ RoutingService    │   │     │  │ │ Groq→Cerebras→    │     │   │
-│  │ SafeSpacesService │   │     │  │ │ Gemini→GitHub→    │     │   │
-│  │ SafeRoutingService│   │     │  │ │ NVIDIA→OpenRouter→│     │   │
-│  │ OSMContributor    │   │     │  │ │ Mistral→Together→ │     │   │
-│  │ ReportClassifier  │   │     │  │ │ Template(determ.) │     │   │
-│  └─────────────────┘    │     │  │ └──────────────────┘     │   │
-│                         │     │  │ ┌──────────────────┐     │   │
-│  ┌─────────────────┐    │     │  │ │ 13 Agent Tools   │     │   │
-│  │ PostgreSQL+PostGIS│   │     │  │ │ SOS, Emergency,  │     │   │
-│  │ Redis Cache      │   │     │  │ │ Challan, Legal,  │     │   │
-│  │ Supabase Storage │   │     │  │ │ FirstAid,Weather,│     │   │
-│  │ Overpass API     │   │     │  │ │ OpenMeteo,Road   │     │   │
-│  │ OpenRouteService │   │     │  │ │ Issues, Report,  │     │   │
-│  │ Nominatim/Photon │   │     │  │ │ Geocoding,Drug,  │     │   │
-│  └─────────────────┘    │     │  │ │ What3Words       │     │   │
-│                         │     │  │ └──────────────────┘     │   │
-└──────────────────────────┘     │ ┌──────────────────┐     │   │
-                                 │ │ ChromaDB RAG     │     │   │
-                                 │ │ Motor Vehicles   │     │   │
-                                 │ │ Act + Medical +  │     │   │
-                                 │ │ Accident data    │     │   │
-                                 │ └──────────────────┘     │   │
-                                 └──────────────────────────────┘
+Frontend (Next.js 15, React 19, Port 3000)         → Vercel
+  ├── 23 routes (17 pages + special files)
+  ├── 55+ components across 6 sub-directories
+  ├── Zustand store (16 state slices, persist middleware)
+  ├── MapLibre GL (custom marker rendering, NOT Leaflet/maplibregl.Marker)
+  ├── GSAP 3.15 (ScrollTrigger, Flip, Observer, CustomEase)
+  ├── @huggingface/transformers (YOLO pothole detection)
+  ├── @duckdb/duckdb-wasm (offline challan SQL)
+  ├── Service Worker (safevixai-v3, manual management)
+  ├── SWR (underutilized — only in challan page)
+  └── i18next (14 language hreflang, ThemeProvider custom)
+
+Backend (FastAPI, Port 8000)                         → Render
+  ├── 35+ REST endpoints + 1 WebSocket + SSE
+  ├── 14 service modules + civic intel sub-package
+  ├── Auth: PBKDF2 + JWT (dual validator: app JWT + Supabase JWT)
+  ├── Rate limiting: slowapi, IP-based, 5-40 req/min per endpoint
+  ├── PostGIS + Redis + Supabase Storage
+  ├── 18 Alembic migrations (001 to enterprise tables)
+  └── Security headers, CSRF, idempotency, request ID, Prometheus
+
+Chatbot Service (FastAPI, Port 8010)                 → Render
+  ├── ChatEngine (LangGraph graph with safety → intent → context → provider)
+  ├── 9 real LLM providers + 1 deterministic fallback (Template)
+  ├── ChromaDB RAG (real semantic embeddings via sentence-transformers)
+  ├── 13 agent tools (SOS, Challan, FirstAid, Weather, Road, etc.)
+  ├── Speech translation (IndicSeamless — uses torch, handled gracefully)
+  ├── Circuit breakers per provider (graduated cooldown: 60s to 24h)
+  ├── Redis conversation memory (fallback: in-memory LRU)
+  ├── Prometheus metrics (11 instruments)
+  └── SafetyChecker (60+ harm patterns, l33t decode, 20+ jailbreak patterns)
 ```
 
 ---
 
-## 3. Key Metrics
+## 3. Corrected Audit Findings
 
-| Dimension | Value |
-|-----------|-------|
-| Total Components | 44+ React components |
-| API Routes | 35+ REST endpoints + 1 WebSocket + SSE |
-| Database Tables | 7 tables with PostGIS |
-| Alembic Migrations | 10 versions (001 to 10008) |
-| LLM Providers | 9 real + 1 deterministic fallback |
-| Agent Tools | 13 tools |
-| Test Count | 244/244 chatbot, 32+ backend test files, 12 frontend component tests |
-| CI/CD Workflows | 16 workflows |
-| PWA Icons | 8 sizes |
-| Supported Languages | 11 Indian languages |
-| Offline Tiers | 3-tier per subsystem (AI, Challan, SOS) |
+| Claim from previous audit | Verdict | Reality |
+|--------------------------|---------|---------|
+| `admin123` hardcoded in auth.py | **FALSE** | Uses PBKDF2 + AUTH_OPERATOR_EMAIL env var. No hardcoded password. |
+| `mock-jwt-token` accepted | **FALSE** | REJECTED_STATIC_TOKENS set explicitly blocks these (security.py:44-49) |
+| RAG is lexical not ChromaDB | **FALSE** | ChromaDB with sentence-transformers, lexical is fallback only |
+| Crash detection shows TOAST only | **PARTIAL** | EnterpriseClientAppHooks renders CrashCountdown; ClientAppHooks is orphaned |
+| SOS is GET not POST | **FALSE** | BOTH exist — GET (quick lookup) + POST (incident creation) |
+| CORS wildcard with credentials | **MISLEADING** | .env CORS_ORIGINS blocks '*' in production; config validates |
+| Chatbot report tool sends wrong field names | **VERIFIED** | Uses `data=` (form-encoded) not `json=`, field names match backend |
+| Waze feed imports nonexistent module | **FALSE** | Uses proper imports from backend.core.config |
+| JWT_SECRET_KEY regenerated on every restart | **PARTIAL** | Only in dev; production requires JWT_SECRET_KEY env var |
+| User profile ownership checks missing | **PARTIAL** | Backend endpoints require auth but no user_id verification found |
 
----
+### 3.1 Remaining Critical Issues (Verified as Live)
 
-## 4. Critical Production Systems
-
-### SOS/Emergency Flow
-Multi-layered: GlobalSOS button → double-tap verification → WhatsApp/SMS share → backend SOS POST → nearby service fetch → family tracking start. Offline: IndexedDB queue → auto-flush on reconnect. Crash detection: accelerometer threshold (15G) → 20s countdown → auto-dispatch.
-
-### Chatbot Safety System
-7 layers of defense: SafetyChecker (60+ harm patterns, jailbreak detection, l33t, space obfuscation) → prompt injection check → RAG trust boundary → token budget → provider-level check → Groq guard → HTML sanitization.
-
-### LLM Provider Fallback
-9 providers in deterministic chain: Groq → Cerebras → Gemini → GitHub → NVIDIA → OpenRouter → Mistral → Together → Template. Auto-routing: Indian languages → Sarvam, high-stakes legal → Sarvam-105B. Circuit breakers with graduated durations (60s to 24h) per error type.
-
-### Emergency Service Locator
-3-tier data source: PostGIS DB (~50k facilities) → Local CSV catalog → Overpass API. Radius stepping: 500m → 1km → 5km → 10km → 25km → 50km. Intent-based expansion until minimum results (3) found.
+1. **ALL 3 .env files committed with live credentials** — 15+ API keys, JWT secret, Gmail app password, Supabase service role key
+2. **SafetyChecker.check_output_safety() and add_medical_disclaimer_if_needed() are defined but NEVER called** (dead code)
+3. **SWR used only in 1 of 23 pages** — most data fetching via raw Axios with manual retry
+4. **Chatbot SubmitReportTool uses `data=` not `json=`** — works but non-standard for JSON API
+5. **safevixai.com hardcoded in 16 hreflang URLs** — should use NEXT_PUBLIC_APP_URL
+6. **torch 2.12.0 in chatbot requirements (800MB > Render 512MB RAM)** — only for speech, graceful fallback exists
+7. **EmergencyTool instantiated but never wired into ContextAssembler** — orphan tool
+8. **Dead code in context_assembler.py** — 3 route context methods defined but never called
+9. **No data retention policies** — SOS incidents persist forever
+10. **Next.js docs enabled in production** — /docs and /redoc accessible unless ENVIRONMENT=production
 
 ---
 
-## 5. Major Scaling Risks
+## 4. Security-Sensitive Systems (Verified)
 
-| Risk | Impact | Current Mitigation |
-|------|--------|-------------------|
-| Free tier API rate limits (Groq 30 RPM) | Chatbot degraded under load | 9-provider fallback chain |
-| Render free tier 750h/month vs 1488h needed | Services spin down after 15min idle | Cold start recovery |
-| Upstash Redis 10K commands/day | Rate limiting failure under load | In-memory fallback |
-| Supabase auto-pause after 7 days | Full database outage | Manual resume |
-| Single-threaded workers (Render) | No request parallelism | Keep-alive tuning |
-| No connection pooling in production | DB connection exhaustion | Pool=1, overflow=1 on Render |
-
----
-
-## 6. Security-Sensitive Systems
-
-| System | Risk Level | Notes |
-|--------|-----------|-------|
-| JWT Authentication | HIGH | HS256 symmetric, 24h expiry, no revocation |
-| Auth Token in Offline Queue | HIGH | JWT stored in IndexedDB with GPS PII |
-| Role-Based Access Control | HIGH | Role in JWT but never enforced |
-| CSRF Protection | MEDIUM | Double-submit cookie, JS-accessible token |
-| CSP Configuration | MEDIUM | `default-src 'self'` breaks maps and CDN |
-| Data Deletion API | HIGH | No GDPR-style delete/export endpoints |
+| System | Risk | Notes |
+|--------|------|-------|
+| Live credentials in git | **CRITICAL** | All 3 .env files have production secrets committed and tracked |
+| JWT Auth | HIGH | HS256 symmetric, 24h expiry, no revocation mechanism |
+| Auth token in IndexedDB | HIGH | JWT stored in offline queue with GPS PII |
+| Chatbot API auth | HIGH | Rate-limited (5/min) but no token required for chat endpoints |
+| No RBAC enforcement | HIGH | JWT role claim unused in most endpoint checks |
+| No Host header validation | MEDIUM | No ALLOWED_HOSTS check — potential Host header injection |
+| CSP with unsafe-inline | MEDIUM | Required by Next.js; unsafe-eval in dev only |
+| Sentry DSN (if exposed) | MEDIUM | Traces sample rate 0.1 in dev; production config depends on env |
 
 ---
 
-## 7. Operationally Critical Workflows
+## 5. Scaling Risks
 
-1. **Emergency SOS Dispatch** — Must work with <500ms latency, offline-capable, redundant
-2. **Chatbot LLM Generation** — Must never fail (9-provider chain + Template final fallback)
-3. **Health Check Monitoring** — Dependency chain: DB → Redis → Backend → Chatbot → Frontend
-4. **Database Migration** — Alembic must run before deployment; no auto-rollback
-5. **Offline Data Sync** — SOS queue flush on reconnect, must be atomic per-item
-
----
-
-## 8. Testing Priorities
-
-1. **Safety Checker** — Highest risk: prompt injection, jailbreak, harm detection
-2. **SOS Flow** — End-to-end: button → API → tracking → offline queue → flush
-3. **LLM Fallback Chain** — Provider failure → circuit breaker → fallback → Template
-4. **Emergency Locator** — 3-tier data source fallback, radius stepping, dedup
-5. **Offline Systems** — IndexedDB queue, service worker cache, DuckDB-Wasm
+| Risk | Impact | Current State |
+|------|--------|---------------|
+| Render free tier 512MB RAM | Backend OOM under load | Single worker, pool=1 |
+| Render 750h/month limit | Services spin down | ~1464h needed for 2 services |
+| Upstash Redis 10K commands/day | Rate limiting and cache disabled | In-memory fallback works |
+| LLM API rate limits | Chatbot degraded | 9-provider chain handles failover |
+| Single-threaded workers | No request parallelism | Keep-alive, I/O-bound design |
 
 ---
 
-## 9. Highest-Risk Areas
+## 6. Operationally Critical Workflows
 
-1. **No Role-Based Authorization** — JWT role claim unused, any auth user = full access
-3. **Missing Load Test Scripts** — k6 + chaos test files referenced in CI but absent
-4. **Prometheus `/metrics` Not Exposed** — Full metrics module defined but no endpoint
-5. **Chatbot API Has No Auth** — `/api/v1/chat/` endpoints publicly accessible
-6. **No Data Deletion/Export** — GDPR non-compliance, SOS incidents persist forever
-7. **Render Free Tier Capacity** — 2 services exceed 750h/month limit
-
----
-
-## 10. Production-Readiness Gaps
-
-| Domain | Gap | Severity | Fix |
-|--------|-----|----------|-----|
-| Auth | No RBAC enforcement | HIGH | Implement role-check decorator |
-| Auth | No token revocation | MEDIUM | Add refresh token + blacklist |
-| Infra | Load test scripts missing | HIGH | Create k6 + chaos test files |
-| Observability | No /metrics endpoint | HIGH | Wire up Prometheus module |
-| Observability | No monitoring dashboard | MEDIUM | Set up Grafana |
-| API | Chatbot endpoints unauthenticated | HIGH | Add Bearer token validation |
-| Data | No delete/export APIs | HIGH | Add GDPR endpoints |
-| Data | SOS incidents persist forever | MEDIUM | Add retention policy |
-| Testing | No cross-service integration tests | HIGH | Add backend→chatbot E2E |
-| CSP | `default-src 'self'` too restrictive | MEDIUM | Relax for maps/CDN |
-| Deploy | Rollback automation | MEDIUM | Add migration rollback workflow |
+1. **Emergency SOS Dispatch** — Must work with POST, offline via IndexedDB queue, auto-flush on reconnect
+2. **Chatbot LLM Generation** — 11 providers in chain, TemplateProvider as final deterministic fallback
+3. **Crash Detection** — Accelerometer + 20s countdown → auto-dispatch; false positives acceptable, false negatives not
+4. **Database Migration** — 18 Alembic versions, PostgreSQL+PostGIS required, RLS policies applied
+5. **Offline Data Sync** — SOS + road report queues in IndexedDB v2, per-item atomic delete-after-send

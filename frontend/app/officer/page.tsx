@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -80,18 +80,16 @@ export default function OfficerFieldClient() {
   const [resPhoto, setResPhoto] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
 
-  async function loadOfficerData() {
+  const loadOfficerData = useCallback(async () => {
     setLoading(true);
     setErrorMsg(null);
     try {
-      // 1. Fetch Profile
       const profileRes = await client.get('/api/v1/officers/me');
       setOfficer(profileRes.data);
       if (profileRes.data.last_checkin) {
         setLastCheckinTime(new Date(profileRes.data.last_checkin).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }));
       }
 
-      // 2. Fetch Assigned Workload
       const workloadRes = await client.get('/api/v1/officers/me/workload');
       setWorkload(workloadRes.data);
     } catch (err: any) {
@@ -105,7 +103,7 @@ export default function OfficerFieldClient() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [router]);
 
   useEffect(() => {
     document.title = 'SafeVixAI | Field Operator';
@@ -114,7 +112,7 @@ export default function OfficerFieldClient() {
     } else {
       loadOfficerData();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, loadOfficerData, router]);
 
   // Handle GPS Checkin
   const handleCheckin = () => {

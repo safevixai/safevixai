@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { useAppStore } from '@/lib/store';
 
 import { publicApiWebSocketUrl } from '@/lib/public-env';
@@ -56,12 +56,16 @@ export default function TrackingPage() {
     }
   }, []);
 
-  const handleStatusChange = useCallback((newStatus: WSStatus) => {
-    if (newStatus === 'connected') {
+  const wsRef = useWebSocket({ onMessage: handleMessage });
+  const wsStatus = wsRef.status;
+  const { send: wsSend } = wsRef;
+
+  useEffect(() => {
+    if (wsStatus === 'connected') {
       trackingIntervalRef.current = setInterval(() => {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((pos) => {
-            wsRef.send(JSON.stringify({
+            wsSend(JSON.stringify({
               user_id: userId,
               lat: pos.coords.latitude,
               lon: pos.coords.longitude,
@@ -75,10 +79,7 @@ export default function TrackingPage() {
         trackingIntervalRef.current = null;
       }
     }
-  }, [userId]);
-
-  const wsRef = useWebSocket({ onMessage: handleMessage, onStatusChange: handleStatusChange });
-  const wsStatus = wsRef.status;
+  }, [wsStatus, wsSend, userId]);
 
   const connectToTracking = (e: React.FormEvent) => {
     e.preventDefault();

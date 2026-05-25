@@ -67,8 +67,7 @@ export default function BystanderModePage() {
  // Speak confirmation
  speak('Location captured. Follow the steps on screen. An ambulance call button is at the bottom.');
 
- // Auto-report accident to backend (feed into road reporter)
- reportAccidentToBackend(coords);
+  reportAccidentToBackend(coords);
  },
  (err) => {
  setGpsError(`GPS error: ${err.message}`);
@@ -79,25 +78,24 @@ export default function BystanderModePage() {
  );
  }, []);
 
- async function reportAccidentToBackend(coords: GpsPos) {
- try {
- await submitReport({
- issue_type: 'accident',
- severity: 4,
- lat: coords.lat,
- lon: coords.lon,
- description: '[Bystander Mode] Road accident witnessed and auto-reported via SafeVixAI',
- });
- setAccidentReported(true);
+  async function reportAccidentToBackend(coords: GpsPos) {
+  try {
+  await submitReport({
+  issue_type: 'accident',
+  severity: 4,
+  lat: coords.lat,
+  lon: coords.lon,
+  description: '[Bystander Mode] Road accident witnessed and auto-reported via SafeVixAI',
+  });
+  setAccidentReported(true);
 
- // Also fetch nearest hospital for the bystander to share with ambulance dispatch
- const data = await fetchNearbyServices({
- lat: coords.lat,
- lon: coords.lon,
- categories: 'hospital',
- limit: 1,
- });
- const first = data.services[0];
+  const data = await fetchNearbyServices({
+  lat: coords.lat,
+  lon: coords.lon,
+  categories: 'hospital',
+  limit: 1,
+  });
+  const first = data.services[0];
  if (first) {
  setNearestHospital({
  name: first.name,

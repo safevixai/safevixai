@@ -30,6 +30,11 @@ def verify_internal_auth(
     x_internal_api_key: str | None = Header(default=None),
 ) -> None:
     settings = get_settings()
+    if settings.environment == 'production' and not settings.internal_api_key:
+        raise HTTPException(
+            status_code=500,
+            detail="CHATBOT_INTERNAL_API_KEY not configured. Chat endpoints require auth in production."
+        )
     if settings.internal_api_key:
         import hmac
         if not x_internal_api_key or not hmac.compare_digest(x_internal_api_key, settings.internal_api_key):

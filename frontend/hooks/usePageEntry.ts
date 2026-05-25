@@ -23,13 +23,14 @@ export function usePageEntry() {
       // Stagger children in from bottom - fast, professional
       gsap.fromTo(
         containerRef.current.children,
-        { opacity: 0, y: 16 },
+        { opacity: 0, y: 16, willChange: 'transform, opacity' },
         {
           opacity: 1,
           y: 0,
           duration: 0.35,
           stagger: 0.06,
           ease: 'power2.out',
+          clearProps: 'willChange',
         }
       );
     },
