@@ -4,19 +4,17 @@ import React, { useState, useEffect } from 'react';
 import {
   Shield,
   Terminal, Zap, Moon, Sun, Laptop,
-  CheckCircle, PaintBucket, Bell, Lock,
-  Download, Trash2, Info, LogOut,
+  CheckCircle, Bell,
+  Download, Info, LogOut,
   Map, Vibrate, Navigation, Database,
-  ShieldCheck, Wifi, WifiOff, User,
-  ChevronRight, ToggleLeft, Volume2
+  ShieldCheck, User,
+  ChevronRight, Volume2
 } from 'lucide-react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import {
-  getPreferredNavApp,
   setPreferredNavApp,
-  NAV_APPS,
-  type NavApp,
 } from '@/lib/navigation-launch';
 import { useAppStore } from '@/lib/store';
 import { useTheme } from '@/components/ThemeProvider';
@@ -33,6 +31,7 @@ import posthog from 'posthog-js';
 import { ANALYTICS_CONSENT_KEY } from '@/lib/analytics-provider';
 
 export default function SettingsPage() {
+  const { t } = useTranslation();
   const router = useRouter();
   const {
     crashDetectionEnabled,
@@ -41,7 +40,6 @@ export default function SettingsPage() {
     operatorName,
     clearAuth,
     userProfile,
-    setUserProfile,
     speedAlert,
     setSpeedAlert,
     hazardNotifs,
@@ -66,7 +64,6 @@ export default function SettingsPage() {
       operatorName: s.operatorName,
       clearAuth: s.clearAuth,
       userProfile: s.userProfile,
-      setUserProfile: s.setUserProfile,
       speedAlert: s.speedAlert,
       setSpeedAlert: s.setSpeedAlert,
       hazardNotifs: s.hazardNotifs,
@@ -92,10 +89,10 @@ export default function SettingsPage() {
     window.localStorage.setItem(ANALYTICS_CONSENT_KEY, enabled ? 'granted' : 'denied');
     if (enabled) {
       posthog.opt_in_capturing();
-      showToast('Analytics enabled', 'success');
+      showToast(t('settings.analytics_enabled'), 'success');
     } else {
       posthog.opt_out_capturing();
-      showToast('Analytics disabled', 'success');
+      showToast(t('settings.analytics_disabled'), 'success');
     }
   };
 
@@ -108,7 +105,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     setMounted(true);
-    document.title = 'System Settings | SafeVixAI';
+    document.title = `${t('settings.title')} | SafeVixAI`;
 
     // Calculate actual local storage size
     if (typeof window !== 'undefined') {
@@ -120,7 +117,7 @@ export default function SettingsPage() {
       }
       setStorageSize((total / 1024).toFixed(1) + ' KB');
     }
-  }, []);
+  }, [t]);
 
   // Sync Zustand navApp to legacy storage
   useEffect(() => {
@@ -142,7 +139,7 @@ export default function SettingsPage() {
     } else {
       localStorage.clear();
       sessionStorage.clear();
-      showToast('Cache & Session Purged Successfully', 'success');
+      showToast(t('settings.purge_success'), 'success');
       setShowPurgeConfirm(false);
       setStorageSize('0.0 KB');
       setTimeout(() => window.location.reload(), 1000);
@@ -172,12 +169,12 @@ export default function SettingsPage() {
     a.download = 'safevixai_profile_export.json';
     a.click();
     URL.revokeObjectURL(url);
-    showToast('Profile data exported', 'success');
+    showToast(t('settings.export_success'), 'success');
   };
 
   const handleSignOut = () => {
     clearAuth();
-    showToast('Signed out successfully', 'info');
+    showToast(t('settings.signed_out'), 'info');
     setTimeout(() => router.push('/login'), 800);
   };
 
@@ -195,7 +192,7 @@ export default function SettingsPage() {
   }: {
     icon: React.ReactNode;
     label: string; sub: string; checked: boolean;
-    onChange: (v: boolean) => void; danger?: boolean;
+    onChange: (_v: boolean) => void; danger?: boolean;
   }) => (
     <SettingRow
       icon={<div className={danger ? "text-text-red" : "text-brand-light"}>{icon}</div>}
@@ -208,7 +205,7 @@ export default function SettingsPage() {
   return (
     <div ref={pageRef} className="sv-page relative flex flex-col transition-colors duration-500">
 
-      <TerminalHeader title="System Configuration" subtitle="DEVICE PREFERENCES" />
+      <TerminalHeader title={t('settings.title')} subtitle={t('settings.subtitle')} />
 
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
@@ -220,7 +217,7 @@ export default function SettingsPage() {
           <div className="sv-chip sv-chip-active w-fit">
             <span className="sv-status-dot" />
             <span className="sv-micro leading-none">
-              {isAuthenticated ? 'Authenticated Operator' : 'Identity Matrix Active'}
+              {isAuthenticated ? t('settings.signed_in') : t('settings.profile_active')}
             </span>
           </div>
 
@@ -232,7 +229,7 @@ export default function SettingsPage() {
                 <User size={20} className="text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="sv-micro text-text-3">Active Operator</p>
+                <p className="sv-micro text-text-3">{t('settings.active_user')}</p>
                 <p className="sv-h2 truncate uppercase">{operatorName}</p>
               </div>
               <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-brand/10 border border-brand/20">
@@ -246,26 +243,26 @@ export default function SettingsPage() {
         </section>
 
         {/* ── VISUAL INTERFACE ── */}
-        <Section title="Visual Interface">
+        <Section title={t('settings.visual_interface')}>
           <SurfaceCard padding="lg">
-            <p className="sv-micro mb-4 text-text-3">Appearance Mode</p>
+            <p className="sv-micro mb-4 text-text-3">{t('settings.appearance_mode')}</p>
             <div className="grid grid-cols-3 gap-3">
               {[
-                { id: 'light', icon: <Sun size={20} />, label: 'Light' },
-                { id: 'dark', icon: <Moon size={20} />, label: 'Dark' },
-                { id: 'system', icon: <Laptop size={20} />, label: 'System' },
-              ].map((t) => {
-                const isActive = mounted && theme === t.id;
+                { id: 'light', icon: <Sun size={20} />, label: t('settings.light') },
+                { id: 'dark', icon: <Moon size={20} />, label: t('settings.dark') },
+                { id: 'system', icon: <Laptop size={20} />, label: t('settings.system') },
+              ].map((tOpt) => {
+                const isActive = mounted && theme === tOpt.id;
                 return (
                   <button
-                    key={t.id}
-                    onClick={() => setTheme(t.id as 'light' | 'dark' | 'system')}
+                    key={tOpt.id}
+                    onClick={() => setTheme(tOpt.id as 'light' | 'dark' | 'system')}
                     className={`flex flex-col items-center gap-3 rounded-card border p-4 transition-all ${isActive
                       ? 'border-border-green bg-brand-dim text-brand-light shadow-brand'
                       : 'border-border bg-surface-2 text-text-3 hover:border-border-green hover:text-text-1'}`}
                   >
-                    {t.icon}
-                    <span className="sv-micro leading-none">{t.label}</span>
+                    {tOpt.icon}
+                    <span className="sv-micro leading-none">{tOpt.label}</span>
                   </button>
                 );
               })}
@@ -274,29 +271,29 @@ export default function SettingsPage() {
         </Section>
 
         {/* ── VIGILANCE PROTOCOLS ── */}
-        <Section title="Vigilance Protocols">
+        <Section title={t('settings.safety_settings')}>
           <SurfaceCard padding="md">
             <ToggleRow icon={<Shield size={20} />}
-              label="Crash Detection" sub="Auto-SOS Engagement on Impact"
+              label={t('settings.crash_detection')} sub={t('settings.crash_detection_sub')}
               checked={crashDetectionEnabled} onChange={setCrashDetectionEnabled} danger />
             <ToggleRow icon={<Zap size={20} />}
-              label="Speed Warnings" sub="Real-time G-Force Analytics"
+              label={t('settings.speed_warnings')} sub={t('settings.speed_warnings_sub')}
               checked={speedAlert} onChange={setSpeedAlert} />
             <ToggleRow icon={<Bell size={20} />}
-              label="Hazard Alerts" sub="Push Notifications for Nearby Hazards"
+              label={t('settings.hazard_alerts')} sub={t('settings.hazard_alerts_sub')}
               checked={hazardNotifs} onChange={setHazardNotifs} />
             <ToggleRow icon={<Vibrate size={20} />}
-              label="SOS Vibration" sub="Haptic Feedback on Emergency Trigger"
+              label={t('settings.sos_vibration')} sub={t('settings.sos_vibration_sub')}
               checked={sosVibration} onChange={setSosVibration} />
             <ToggleRow icon={<Volume2 size={20} />}
-              label="Auditory Feedback" sub="System Tone & Voice Reading Alerts"
+              label={t('settings.auditory_feedback')} sub={t('settings.auditory_feedback_sub')}
               checked={soundsEnabled} onChange={setSoundsEnabled} />
             
             {/* Navigation Selector dropdown */}
             <SettingRow
               icon={<Navigation size={20} className="text-brand-light" />}
-              title="Navigation App"
-              description="Preferred map provider for emergency routing"
+              title={t('settings.navigation_app')}
+              description={t('settings.navigation_app_sub')}
               rightElement={
                 <select
                   value={navApp}
@@ -304,9 +301,9 @@ export default function SettingsPage() {
                     const val = e.target.value as 'google' | 'waze' | 'apple';
                     setNavApp(val);
                     setPreferredNavApp(val);
-                    showToast(`Navigation preference set to ${val === 'google' ? 'Google Maps' : val === 'waze' ? 'Waze' : 'Apple Maps'}`, 'success');
+                    showToast(t('settings.nav_set', { app: val === 'google' ? 'Google Maps' : val === 'waze' ? 'Waze' : 'Apple Maps' }), 'success');
                   }}
-                  className="bg-surface-2 dark:bg-white/5 border border-border dark:border-white/10 rounded-lg p-2 text-xs font-semibold text-text-1 outline-none cursor-pointer"
+                  className="bg-surface-2 dark:bg-white/5 border border-border dark:border-white/10 rounded-lg p-2 text-xs font-semibold text-text-1 outline-none cursor-pointer text-text-1 bg-surface-1"
                 >
                   <option value="google">Google Maps</option>
                   <option value="waze">Waze</option>
@@ -318,54 +315,38 @@ export default function SettingsPage() {
             {/* Language Selector dropdown */}
             <SettingRow
               icon={<Info size={20} className="text-brand-light" />}
-              title="Preferred Language"
-              description="System Overlays & Voice Assistance"
+              title={t('settings.preferred_language')}
+              description={t('settings.preferred_language_sub')}
               rightElement={
-                <select
-                  value={userProfile.preferredLanguage || 'en'}
-                  onChange={(e) => {
-                    setUserProfile({ preferredLanguage: e.target.value });
-                    showToast(`Language set to ${e.target.value.toUpperCase()}`, 'success');
-                  }}
-                  className="bg-surface-2 dark:bg-white/5 border border-border dark:border-white/10 rounded-lg p-2 text-xs font-semibold text-text-1 outline-none cursor-pointer"
-                >
-                  <option value="en">English</option>
-                  <option value="hi">हिन्दी (Hindi)</option>
-                  <option value="ta">தமிழ் (Tamil)</option>
-                  <option value="te">తెలుగు (Telugu)</option>
-                  <option value="kn">ಕನ್ನಡ (Kannada)</option>
-                  <option value="ml">മലയാളം (Malayalam)</option>
-                  <option value="mr">मराठी (Marathi)</option>
-                  <option value="gu">ગુજરાતી (Gujarati)</option>
-                  <option value="bn">বাংলা (Bengali)</option>
-                  <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-                </select>
+                <div className="w-48">
+                  <LanguageSelector onChangeLanguage={(val) => showToast(t('chat.copied').replace('Copied to clipboard!', `Language set to ${val.toUpperCase()}`), 'success')} />
+                </div>
               }
             />
           </SurfaceCard>
         </Section>
 
         {/* ── LOCATION & PRIVACY ── */}
-        <Section title="Location & Privacy">
+        <Section title={t('settings.location_privacy')}>
           <SurfaceCard padding="md">
             <ToggleRow icon={<Navigation size={20} />}
-              label="Live Location" sub="GPS Tracking for Emergency Services"
+              label={t('settings.live_location')} sub={t('settings.live_location_sub')}
               checked={locationTracking} onChange={setLocationTracking} />
             <ToggleRow icon={<Database size={20} />}
-              label="Auto-Offline Bundle" sub="Cache Critical Data When Connectivity Drops"
+              label={t('settings.auto_offline_bundle')} sub={t('settings.auto_offline_bundle_sub')}
               checked={autoOffline} onChange={setAutoOffline} />
             <ToggleRow icon={<Map size={20} />}
-              label="Usage Analytics" sub="Anonymous Performance Telemetry"
+              label={t('settings.usage_analytics')} sub={t('settings.usage_analytics_sub')}
               checked={analyticsOptIn} onChange={setAnalyticsConsent} />
           </SurfaceCard>
 
           <p className="sv-micro px-2 leading-relaxed text-text-3">
-            SafeVixAI does not sell your data. All location data stays on-device or is transmitted only during active SOS dispatch.
+            {t('settings.privacy_note')}
           </p>
         </Section>
 
         {/* ── STORAGE MATRIX ── */}
-        <Section title="Storage Matrix">
+        <Section title={t('settings.data_storage')}>
           <SurfaceCard padding="lg">
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-3">
@@ -373,8 +354,8 @@ export default function SettingsPage() {
                   <Database size={20} className="text-text-3" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">Offline Cache ({storageSize})</p>
-                  <p className="text-[10px] font-bold text-text-3 uppercase tracking-widest mt-0.5">First Aid · Hazard DB · Route Index</p>
+                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">{t('settings.offline_cache', { size: storageSize })}</p>
+                  <p className="text-[10px] font-bold text-text-3 uppercase tracking-widest mt-0.5">{t('settings.offline_cache_sub')}</p>
                 </div>
               </div>
               <button
@@ -385,7 +366,7 @@ export default function SettingsPage() {
                     : 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20'
                 }`}
               >
-                {showPurgeConfirm ? 'Confirm?' : 'Purge'}
+                {showPurgeConfirm ? t('settings.confirm_purge') : t('settings.purge')}
               </button>
             </div>
 
@@ -396,15 +377,15 @@ export default function SettingsPage() {
                   <Download size={18} className="text-brand dark:text-brand-light" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">Export Profile</p>
-                  <p className="text-[10px] font-bold text-text-3 uppercase tracking-widest mt-0.5">JSON · GDPR Compliant</p>
+                  <p className="text-sm font-semibold text-text-1 uppercase tracking-tight">{t('settings.export_profile')}</p>
+                  <p className="text-[10px] font-bold text-text-3 uppercase tracking-widest mt-0.5">{t('settings.export_profile_sub')}</p>
                 </div>
               </div>
               <button
                 onClick={handleExport}
                 className="px-5 py-2.5 bg-brand/10 text-brand dark:text-brand-light text-[10px] font-semibold uppercase tracking-widest rounded-xl border border-brand/20 hover:bg-brand/20 active:scale-95 transition-all"
               >
-                Export
+                {t('settings.export')}
               </button>
             </div>
 
@@ -412,7 +393,7 @@ export default function SettingsPage() {
             <div className="border-t border-border pt-5 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Terminal size={14} className="text-brand-light" />
-                <span className="text-[10px] font-semibold text-text-3 uppercase tracking-tighter">SafeVixAI v2.4.0-SVA</span>
+                <span className="text-[10px] font-semibold text-text-3 uppercase tracking-tighter">{t('settings.build_info_sub')}</span>
               </div>
               <CheckCircle size={14} className="text-brand-light" />
             </div>
@@ -420,25 +401,25 @@ export default function SettingsPage() {
         </Section>
 
         {/* ── SYSTEM LINKS ── */}
-        <Section title="System">
+        <Section title={t('nav.settings')}>
           <SurfaceCard padding="md">
             <SettingRow
               icon={<User size={18} className="text-brand dark:text-brand-light" />}
-              title="Edit Profile"
-              description="Identity & Emergency Data"
+              title={t('settings.edit_profile')}
+              description={t('settings.edit_profile_sub')}
               onClick={() => router.push('/profile')}
               rightElement={<ChevronRight size={16} className="text-text-3" />}
             />
             <SettingRow
               icon={<Shield size={18} className="text-red-500" />}
-              title="Emergency Protocols"
-              description="First Response Procedures"
+              title={t('settings.emergency_protocols')}
+              description={t('settings.emergency_protocols_sub')}
               onClick={() => router.push('/emergency')}
               rightElement={<ChevronRight size={16} className="text-text-3" />}
             />
             <SettingRow
               icon={<Info size={18} className="text-brand-light" />}
-              title="Build Info"
+              title={t('settings.build_info_sub')}
               description="IIT Madras Hackathon 2026"
               rightElement={<span className="text-[10px] font-mono font-bold text-text-3">v2.4.0</span>}
             />
@@ -453,7 +434,7 @@ export default function SettingsPage() {
               className="w-full h-14 rounded-lg border-2 border-red-500/20 bg-red-500/5 hover:bg-red-500/10 text-[11px] font-semibold uppercase tracking-[0.1em] text-red-600 dark:text-red-400 flex items-center justify-center gap-2 transition-all active:scale-95"
             >
               <LogOut size={15} />
-              Sign Out Operator — {operatorName}
+              {t('profile.sign_out')} — {operatorName}
             </button>
           </section>
         )}

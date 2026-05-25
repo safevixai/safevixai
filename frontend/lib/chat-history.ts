@@ -39,6 +39,7 @@ export async function loadChatHistory(sessionId: string): Promise<ChatLog[]> {
       .order('created_at', { ascending: true });
 
     if (!error && data) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return data.map((row: any) => ({
         id: row.message_id || row.metadata?.id || row.created_at,
         sessionId,

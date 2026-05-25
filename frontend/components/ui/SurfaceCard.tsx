@@ -7,7 +7,7 @@ interface SurfaceCardProps extends React.HTMLAttributes<HTMLDivElement> {
   interactive?: boolean;
 }
 
-export function SurfaceCard({
+export const SurfaceCard = React.memo(function SurfaceCard({
   children,
   className = '',
   padding = 'md',
@@ -43,4 +43,4 @@ export function SurfaceCard({
       {children}
     </div>
   );
-}
+});

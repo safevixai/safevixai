@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { useAppStore } from '@/lib/store';
 import { useGeolocation } from '@/lib/geolocation';
 import { ConnectivityBadge } from './ConnectivityBadge';
-import { Send, Wifi, WifiOff, Loader2, Bot, UserCircle, Mic } from 'lucide-react';
+import { Send, Wifi, WifiOff, Loader2, Bot, UserCircle } from 'lucide-react';
 import { getOfflineAI, askOfflineAI } from '@/lib/offline-ai';
 import { logClientError } from '@/lib/client-logger';
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
@@ -67,7 +67,7 @@ async function* streamChat(
 
 // ── Component ──────────────────────────────────────────────────────────────
 export function ChatInterface() {
-  const { aiMode, connectivity, setAiMode } = useAppStore(useShallow((s) => ({ aiMode: s.aiMode, connectivity: s.connectivity, setAiMode: s.setAiMode })));
+  const { aiMode, setAiMode } = useAppStore(useShallow((s) => ({ aiMode: s.aiMode, setAiMode: s.setAiMode })));
   const { location } = useGeolocation();
 
   const [messages, setMessages] = useState<Message[]>([

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 const mockFetch = jest.fn();
@@ -71,7 +71,7 @@ describe('ChatInterface', () => {
   });
 
   it('renders language selector', () => {
-    const { container } = render(
+    render(
       <select data-testid="language-selector">
         <option value="en">English</option>
         <option value="hi">हिन्दी</option>
@@ -84,7 +84,7 @@ describe('ChatInterface', () => {
   });
 
   it('renders message input field', () => {
-    const { container } = render(
+    render(
       <input data-testid="message-input" type="text" placeholder="Type your message..." />
     );
 
@@ -94,12 +94,86 @@ describe('ChatInterface', () => {
   });
 
   it('renders send button', () => {
-    const { container } = render(
+    render(
       <button data-testid="send-button">Send</button>
     );
 
     const button = screen.getByTestId('send-button');
     expect(button).toBeTruthy();
     expect(button).toHaveTextContent('Send');
+  });
+});
+
+// ── Proper ChatInterface component tests ──────────────────────────
+
+const mockSetAiMode = jest.fn();
+
+jest.mock('../../lib/geolocation', () => ({
+  useGeolocation: jest.fn(() => ({
+    location: { lat: 13.0827, lon: 80.2707, accuracy: 10, timestamp: Date.now() },
+    error: null,
+    loading: false,
+    refresh: jest.fn(),
+  })),
+}));
+
+jest.mock('../../lib/offline-ai', () => ({
+  getOfflineAI: jest.fn(),
+  askOfflineAI: jest.fn().mockResolvedValue('Offline safety response'),
+}));
+
+jest.mock('../../lib/client-logger', () => ({
+  logClientError: jest.fn(),
+}));
+
+let mockChatStore: Record<string, unknown>;
+
+jest.mock('../../lib/store', () => {
+  const mockFn: jest.Mock & { getState?: () => unknown } = jest.fn((selector: unknown) => {
+    if (typeof selector === 'function') return selector(mockChatStore);
+    return mockChatStore;
+  });
+  mockFn.getState = jest.fn(() => mockChatStore);
+  return { useAppStore: mockFn };
+});
+
+beforeAll(() => {
+  Element.prototype.scrollIntoView = jest.fn();
+});
+
+describe('ChatInterface actual component', () => {
+  beforeEach(() => {
+    mockChatStore = {
+      aiMode: 'online',
+      connectivity: 'online',
+      setAiMode: mockSetAiMode,
+      authToken: null,
+    };
+    mockSetAiMode.mockClear();
+  });
+
+  it('renders greeting message', () => {
+    const { ChatInterface } = require('../ChatInterface');
+    const { getByText } = render(React.createElement(ChatInterface));
+    expect(getByText(/Hello! I am your SafeVixAI assistant/i)).toBeInTheDocument();
+  });
+
+  it('renders input field', () => {
+    const { ChatInterface } = require('../ChatInterface');
+    const { getByPlaceholderText } = render(React.createElement(ChatInterface));
+    expect(getByPlaceholderText(/ask about traffic rules/i)).toBeInTheDocument();
+  });
+
+  it('renders online/offline toggle buttons', () => {
+    const { ChatInterface } = require('../ChatInterface');
+    const { getByText } = render(React.createElement(ChatInterface));
+    expect(getByText('Online')).toBeInTheDocument();
+    expect(getByText('Offline')).toBeInTheDocument();
+  });
+
+  it('renders send button with ChatInterface', () => {
+    const { ChatInterface } = require('../ChatInterface');
+    const { getByLabelText } = render(React.createElement(ChatInterface));
+    expect(getByLabelText('Send message')).toBeInTheDocument();
   });
 });

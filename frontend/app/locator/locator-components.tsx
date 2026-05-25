@@ -8,7 +8,6 @@ import {
   Flame,
   Loader2,
   Navigation,
-  Phone,
   Shield,
   Siren,
   Truck,
@@ -92,7 +91,7 @@ export function RouteStatusCard({
   selectedServiceName: string | null;
   navigationHref: string | null;
   selectedRouteId: string | null;
-  onSelectRoute: (routeId: string) => void;
+  onSelectRoute: (_routeId: string) => void;
   rerouting: boolean;
 }) {
   if (!activeRoute && !routeError && !loadingLabel) return null;

@@ -6,7 +6,7 @@ import type { Session } from '@supabase/supabase-js'
 import { triggerSos } from '@/lib/api'
 import { startCrashDetection, stopCrashDetection } from '@/lib/crash-detection'
 import { enqueueSOS, registerOfflineSyncListeners } from '@/lib/offline-sos-queue'
-import { CRASH_COUNTDOWN_SECONDS, STANDARD_GRAVITY_MS2 } from '@/lib/safety-constants'
+import { STANDARD_GRAVITY_MS2 } from '@/lib/safety-constants'
 import { useAppStore } from '@/lib/store'
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth'
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
@@ -15,6 +15,9 @@ import { beginLocationBroadcast, startFamilyTracking } from '@/lib/live-tracking
 import { Loader2 } from 'lucide-react'
 import { track } from '@/lib/analytics'
 import { loadUserProfileFromIndexedDB, migrateUserProfileFromLocalStorage } from '@/lib/profile-storage'
+import i18n from '@/lib/i18n'
+import { CrashCountdown } from '@/components/crash/CrashCountdown'
+import InstallPrompt from '@/components/InstallPrompt'
 
 function SystemBanners() {
   const connectivity = useAppStore(state => state.connectivity)
@@ -59,9 +62,32 @@ export function EnterpriseClientAppHooks() {
     gpsLocation: state.gpsLocation,
     userProfile: state.userProfile,
   }))
-  const [crashCountdown, setCrashCountdown] = useState<{ force: number; remaining: number } | null>(null)
+  const [crashState, setCrashState] = useState<{ force: number; severity: string } | null>(null)
   const [dispatching, setDispatching] = useState(false)
   const stopCrashTrackingRef = useRef<(() => void) | null>(null)
+
+  // Synchronize i18n language with the detected route locale and user preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const pathParts = window.location.pathname.split('/');
+    const pathLocale = pathParts[1];
+    const preferred = userProfile.preferredLanguage || 'en';
+    
+    const SUPPORTED_LOCALES = [
+      'en', 'hi', 'ta', 'te', 'kn', 'ml', 'mr', 'gu', 'bn', 'pa', 'ur',
+      'ar', 'es', 'fr'
+    ];
+    const targetLocale = SUPPORTED_LOCALES.includes(pathLocale) ? pathLocale : preferred;
+    
+    if (i18n.language !== targetLocale) {
+      i18n.changeLanguage(targetLocale).then(() => {
+        // Sync document text direction and language dynamically on the client
+        const isRtl = targetLocale === 'ar' || targetLocale === 'ur';
+        document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+        document.documentElement.lang = targetLocale;
+      });
+    }
+  }, [userProfile.preferredLanguage]);
 
   useEffect(() => {
     registerOfflineSyncListeners()
@@ -71,7 +97,7 @@ export function EnterpriseClientAppHooks() {
       const registerServiceWorker = () => {
         navigator.serviceWorker.register('/sw.js')
           .then((reg) => {
-            console.log('SafeVixAI: ServiceWorker registered successfully:', reg.scope);
+            if (process.env.NODE_ENV !== 'production') console.log('SafeVixAI: ServiceWorker registered successfully:', reg.scope);
           })
           .catch((err) => {
             console.error('SafeVixAI: ServiceWorker registration failed:', err);
@@ -133,189 +159,114 @@ export function EnterpriseClientAppHooks() {
 
   useEffect(() => {
     if (!FEATURES.crashDetection || !crashDetectionEnabled) return
+
+    // iOS 13+ requires user gesture to request motion permission on every session load.
+    const isIOS = typeof window !== 'undefined' && 
+      typeof DeviceMotionEvent !== 'undefined' && 
+      typeof (DeviceMotionEvent as any).requestPermission === 'function';
+
+    if (isIOS) {
+      toast.info(
+        "iOS Motion Sensors: Action required to enable automatic crash detection.",
+        {
+          position: "top-center",
+          duration: 12000,
+          action: {
+            label: "Authorize",
+            onClick: async () => {
+              const { requestCrashPermission } = await import('@/lib/crash-detection');
+              const granted = await requestCrashPermission();
+              if (granted) {
+                toast.success("Motion sensors authorized successfully!");
+              } else {
+                toast.error("Permission denied. Crash detection disabled.");
+                useAppStore.getState().setCrashDetectionEnabled(false);
+              }
+            }
+          }
+        }
+      );
+    }
+
     const handleCrashDetected = (force: number) => {
-      track.crashDetected('impact', force / STANDARD_GRAVITY_MS2)
-      setCrashCountdown({ force, remaining: CRASH_COUNTDOWN_SECONDS })
+      const gForce = force / STANDARD_GRAVITY_MS2
+      const severity = gForce >= 15 ? 'severe' : gForce >= 10 ? 'moderate' : 'minor'
+      track.crashDetected('impact', gForce)
+      setCrashState({ force, severity })
     }
 
     void startCrashDetection(handleCrashDetected)
     return () => stopCrashDetection(handleCrashDetected)
   }, [crashDetectionEnabled])
 
-  useEffect(() => {
-    if (!crashCountdown || dispatching) return
-    if (crashCountdown.remaining <= 0) {
-      const dispatchSos = async () => {
-        if (!gpsLocation) {
-          toast.error('Crash detected, but location is unavailable. Open SOS and share your location manually.', {
-            duration: 0,
-            position: 'top-center',
-          })
-          setCrashCountdown(null)
-          return
-        }
+  const handleDispatchSos = async () => {
+    if (dispatching) return
+    if (!gpsLocation) {
+      toast.error('Crash detected, but location is unavailable. Open SOS and share your location manually.', {
+        duration: 0,
+        position: 'top-center',
+      })
+      setCrashState(null)
+      return
+    }
 
-        setDispatching(true)
+    setDispatching(true)
+    try {
+      track.sosActivated('crash_detection')
+      await triggerSos({ lat: gpsLocation.lat, lon: gpsLocation.lon })
+      if (userProfile.name.trim()) {
         try {
-          track.sosActivated('crash_detection')
-          await triggerSos({ lat: gpsLocation.lat, lon: gpsLocation.lon })
-          if (userProfile.name.trim()) {
-            try {
-              const trackingSession = await startFamilyTracking({
-                userName: userProfile.name,
-                bloodGroup: userProfile.bloodGroup || undefined,
-                vehicleNumber: userProfile.vehicleNumber || undefined,
-                latitude: gpsLocation.lat,
-                longitude: gpsLocation.lon,
-              })
-              stopCrashTrackingRef.current?.()
-              stopCrashTrackingRef.current = beginLocationBroadcast(trackingSession.session_id)
-              toast.success(`Family tracking started: ${trackingSession.tracking_url}`, {
-                duration: 0,
-                position: 'top-center',
-              })
-            } catch {
-              toast.error('Auto-SOS sent, but family tracking could not be started. Open SOS to share manually.', {
-                duration: 0,
-                position: 'top-center',
-              })
-            }
-          }
-          toast.success('SOS sent to emergency contacts - they can track you now.', {
+          const trackingSession = await startFamilyTracking({
+            userName: userProfile.name,
+            bloodGroup: userProfile.bloodGroup || undefined,
+            vehicleNumber: userProfile.vehicleNumber || undefined,
+            latitude: gpsLocation.lat,
+            longitude: gpsLocation.lon,
+          })
+          stopCrashTrackingRef.current?.()
+          stopCrashTrackingRef.current = beginLocationBroadcast(trackingSession.session_id)
+          toast.success(`Family tracking started: ${trackingSession.tracking_url}`, {
             duration: 0,
             position: 'top-center',
           })
         } catch {
-          track.offlineSosQueued()
-          await enqueueSOS({ lat: gpsLocation.lat, lon: gpsLocation.lon })
-          toast.error('Network unavailable - SOS saved offline and will retry automatically.', {
+          toast.error('Auto-SOS sent, but family tracking could not be started. Open SOS to share manually.', {
             duration: 0,
             position: 'top-center',
           })
-        } finally {
-          setDispatching(false)
-          setCrashCountdown(null)
         }
       }
-      void dispatchSos()
-      return
+      toast.success('SOS sent to emergency contacts - they can track you now.', {
+        duration: 0,
+        position: 'top-center',
+      })
+    } catch {
+      track.offlineSosQueued()
+      await enqueueSOS({ lat: gpsLocation.lat, lon: gpsLocation.lon })
+      toast.error('Network unavailable - SOS saved offline and will retry automatically.', {
+        duration: 0,
+        position: 'top-center',
+      })
+    } finally {
+      setDispatching(false)
+      setCrashState(null)
     }
-
-    const timeout = window.setTimeout(() => {
-      setCrashCountdown((current) =>
-        current ? { ...current, remaining: current.remaining - 1 } : current
-      )
-    }, 1000)
-    return () => window.clearTimeout(timeout)
-  }, [crashCountdown, dispatching, gpsLocation, userProfile])
-
-  if (!crashCountdown) return <SystemBanners />
+  }
 
   return (
     <>
       <SystemBanners />
-      <CrashDialog
-        crashCountdown={crashCountdown}
-        onCancel={() => {
-          track.crashCancelled(crashCountdown.remaining)
-          setCrashCountdown(null)
-        }}
-        onSendNow={() => setCrashCountdown((current) => current && { ...current, remaining: 0 })}
-      />
+      {crashState && (
+        <CrashCountdown
+          severity={crashState.severity}
+          onCancel={() => {
+            track.crashCancelled(0)
+            setCrashState(null)
+          }}
+          onDispatch={handleDispatchSos}
+        />
+      )}
+      <InstallPrompt />
     </>
-  )
-}
-
-// F14: Focus trap for crash dialog — keeps keyboard focus inside the alertdialog
-// and restores it to the previously focused element when dismissed.
-function CrashDialog({
-  crashCountdown,
-  onCancel,
-  onSendNow,
-}: {
-  crashCountdown: { force: number; remaining: number }
-  onCancel: () => void
-  onSendNow: () => void
-}) {
-  const dialogRef = useRef<HTMLDivElement>(null)
-  const previousFocusRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    previousFocusRef.current = document.activeElement as HTMLElement | null
-    dialogRef.current?.focus()
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return
-      const dialog = dialogRef.current
-      if (!dialog) return
-
-      const focusable = dialog.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      )
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
-
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault()
-          last.focus()
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault()
-          first.focus()
-        }
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      previousFocusRef.current?.focus()
-    }
-  }, [])
-
-  return (
-    <div
-      ref={dialogRef}
-      tabIndex={-1}
-      className="fixed inset-x-4 top-4 z-[1000] mx-auto max-w-md rounded-xl border border-red-500/40 bg-red-950/95 p-4 text-white shadow-2xl outline-none"
-      role="alertdialog"
-      aria-live="assertive"
-      aria-labelledby="crash-countdown-title"
-      aria-describedby="crash-countdown-desc"
-      aria-modal="true"
-    >
-      <div className="flex flex-col gap-3">
-        <div>
-          <p id="crash-countdown-title" className="text-base font-black uppercase tracking-wide">
-            Crash Detected
-          </p>
-          <p id="crash-countdown-desc" className="text-sm text-red-100">
-            G-force spike: {(crashCountdown.force / STANDARD_GRAVITY_MS2).toFixed(1)}G
-          </p>
-        </div>
-        <div className="rounded-lg bg-white/10 p-3 text-center">
-          <span className="text-4xl font-black tabular-nums">{crashCountdown.remaining}</span>
-          <span className="ml-1 text-sm uppercase tracking-widest text-red-100">sec</span>
-        </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            className="h-11 flex-1 rounded-lg bg-white text-sm font-bold text-red-950"
-            onClick={onCancel}
-          >
-            I am safe - cancel SOS
-          </button>
-          <button
-            type="button"
-            className="h-11 flex-1 rounded-lg bg-red-600 text-sm font-bold text-white"
-            onClick={onSendNow}
-          >
-            Send SOS now
-          </button>
-        </div>
-      </div>
-    </div>
   )
 }

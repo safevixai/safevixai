@@ -1,23 +1,22 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
-import Link from 'next/link';
 import { 
-  Shield, Car, Truck, Bike, Bus, AlertTriangle, 
-  ChevronRight, Scale, History, MapPin, 
-  ArrowRight, Activity, Zap, FileText, Info
+  Car, Truck, Bike, Bus, AlertTriangle, 
+  Scale, MapPin, 
+  ArrowRight, Activity, Zap
 } from 'lucide-react';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
-import { useTheme } from '@/components/ThemeProvider';
 import { useAppStore } from '@/lib/store';
 import useSWR from 'swr';
 import { calculateChallan } from '@/lib/api';
 import { loadChallanMetadata } from '@/lib/challan-metadata';
 import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
+import { useSwipe } from '@/hooks/useSwipe';
 
 const STATES = [
   'Tamil Nadu (TN)',
@@ -45,8 +44,6 @@ const VEHICLE_CLASSES = [
 ];
 
 export default function ChallanPage() {
-  const { theme } = useTheme();
-  
   // Use shared store instead of local state so values don't reset upon tab change
   const { challanState, setChallanState } = useAppStore(useShallow((s) => ({ challanState: s.challanState, setChallanState: s.setChallanState })));
   
@@ -70,6 +67,31 @@ export default function ChallanPage() {
   });
   const violationOptions = metadata?.violations?.length ? metadata.violations : VIOLATIONS;
   const stateOptions = metadata?.states?.length ? metadata.states.map((state) => state.label) : STATES;
+
+  // Swipe section navigation
+  const [swipeSection, setSwipeSection] = useState(0);
+  const violationRef = useRef<HTMLElement>(null);
+  const vehicleSectionRef = useRef<HTMLElement>(null);
+  const paramsRef = useRef<HTMLElement>(null);
+  const insightRef = useRef<HTMLDivElement>(null);
+  const swipeSections = useMemo(() => [violationRef, vehicleSectionRef, paramsRef, insightRef], []);
+
+  const { onTouchStart: swipeStart, onTouchEnd: swipeEnd } = useSwipe({
+    onSwipeLeft: () => {
+      if (swipeSection < swipeSections.length - 1) {
+        const next = swipeSection + 1;
+        setSwipeSection(next);
+        swipeSections[next].current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+    onSwipeRight: () => {
+      if (swipeSection > 0) {
+        const prev = swipeSection - 1;
+        setSwipeSection(prev);
+        swipeSections[prev].current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+  });
 
   // GSAP refs
   const fineRef = useRef<HTMLHeadingElement>(null);
@@ -275,9 +297,16 @@ export default function ChallanPage() {
         </aside>
 
         {/* ── Right Column: Input Portfolio ("Big & Simple") ── */}
-        <div className="flex flex-col gap-10 order-1 lg:order-2">
+        <div className="flex flex-col gap-10 order-1 lg:order-2 sv-swipe-area" onTouchStart={swipeStart} onTouchEnd={swipeEnd}>
+           {/* Swipe indicator */}
+           <div className="flex justify-center gap-1.5 pb-2 lg:hidden">
+             {swipeSections.map((_, i) => (
+               <div key={i} className={`h-0.5 rounded-full transition-all duration-300 ${i === swipeSection ? 'w-6 bg-brand-light' : 'w-2 bg-border'}`} />
+             ))}
+             <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest ml-2 self-center">Swipe ↔</span>
+           </div>
            {/* Section 1: Violation */}
-           <section className="flex flex-col gap-6">
+           <section ref={violationRef} className="flex flex-col gap-6">
               <div className="flex items-center justify-between">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space flex items-center gap-2">
                   <Activity size={14} className="text-brand-light" />
@@ -289,7 +318,8 @@ export default function ChallanPage() {
               </div>
 
               <div className="relative group">
-                <select 
+                <select
+                  aria-label="Select violation type"
                   value={violationId}
                   onChange={(e) => setChallanState({ violation: e.target.value })}
                   className="w-full bg-transparent border-2 border-border rounded-xl p-6 text-lg font-black text-text-1 appearance-none focus:border-brand-light transition-all outline-none cursor-pointer"
@@ -305,7 +335,7 @@ export default function ChallanPage() {
            </section>
 
            {/* Section 2: Vehicle Selection (The "Big" UI) */}
-           <section className="flex flex-col gap-6">
+            <section ref={vehicleSectionRef} className="flex flex-col gap-6">
               <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space flex items-center gap-2">
                 <Car size={14} className="text-brand-light" />
                 02. Vehicle Identification
@@ -339,11 +369,12 @@ export default function ChallanPage() {
            </section>
 
            {/* Section 3: Parameters & Jurisdiction */}
-           <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section ref={paramsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex flex-col gap-4">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-text-3 font-space">03. Jurisdiction</h3>
                 <div className="relative">
-                  <select 
+                  <select
+                    aria-label="Select jurisdiction state"
                     value={jurisdiction}
                     onChange={(e) => setChallanState({ jurisdiction: e.target.value })}
                     className="w-full bg-transparent border-2 border-border rounded-lg py-4 px-5 text-sm font-bold text-text-1 appearance-none focus:border-brand-light transition-all outline-none cursor-pointer"
@@ -379,7 +410,7 @@ export default function ChallanPage() {
            </section>
 
            {/* AI Insight Footer */}
-           <div className="glass-panel p-6 rounded-[2rem] bg-gradient-to-br from-brand-light/10 to-transparent border border-brand-light/20 flex gap-4">
+            <div ref={insightRef} className="glass-panel p-6 rounded-[2rem] bg-gradient-to-br from-brand-light/10 to-transparent border border-brand-light/20 flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-brand-light/20 flex items-center justify-center flex-shrink-0">
                 <Zap size={20} className="text-brand-light" />
               </div>

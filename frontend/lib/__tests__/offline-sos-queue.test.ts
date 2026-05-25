@@ -1,4 +1,4 @@
-import { enqueueSOS, syncOfflineSOSQueue, initDB } from '../offline-sos-queue';
+import { enqueueSOS, syncOfflineSOSQueue } from '../offline-sos-queue';
 import { PUBLIC_API_BASE_URL } from '../public-env';
 
 const mockAdd = jest.fn();
@@ -11,7 +11,7 @@ jest.mock('idb', () => ({
   openDB: jest.fn().mockImplementation(() => {
     return Promise.resolve({
       add: mockAdd,
-      transaction: jest.fn().mockImplementation((storeName, mode) => {
+      transaction: jest.fn().mockImplementation(() => {
         return {
           store: {
             getAllKeys: mockGetAllKeys,

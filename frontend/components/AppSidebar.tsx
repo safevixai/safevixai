@@ -14,11 +14,10 @@ import {
   User,
   Settings,
   Phone,
-  PanelLeftClose,
-  PanelLeftOpen,
   Menu,
   X,
-  PanelLeft
+  PanelLeft,
+  Building2
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 
@@ -30,6 +29,7 @@ const navItems = [
   { icon: <AlertTriangle size={20} />, label: 'Report Road Issue', href: '/report', color: 'text-warning' },
   { icon: <Scale size={20} />, label: 'Challan Calculator', href: '/challan', color: 'text-text-3' },
   { icon: <ShieldAlert size={20} />, label: 'Emergency', href: '/emergency', color: 'text-emergency' },
+  { icon: <Building2 size={20} />, label: 'Municipality Guide', href: '/guide', color: 'text-brand-light' },
   { icon: <User size={20} />, label: 'Profile', href: '/profile', color: 'text-brand-light' },
   { icon: <Settings size={20} />, label: 'Settings', href: '/settings', color: 'text-text-3' },
 ];

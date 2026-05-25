@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
-  Shield,
   MapPin,
   Clock,
   Compass,
@@ -13,13 +12,10 @@ import {
   CheckCircle2,
   AlertTriangle,
   User,
-  Activity,
   LogOut,
-  Map,
   FileText,
   ChevronRight,
   Loader2,
-  Calendar,
   ThumbsUp,
 } from 'lucide-react';
 import { client } from '@/lib/api';
@@ -253,7 +249,7 @@ export default function OfficerFieldClient() {
   };
 
   return (
-    <div className="sv-page aurora-glow relative min-h-screen bg-slate-950 text-slate-100 pb-24">
+    <div className="sv-page aurora-glow relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-24">
       {/* ── Background aurora glow effects ── */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-10%] h-[32rem] w-[32rem] rounded-full bg-emerald-500/5 blur-[120px]" />
@@ -335,7 +331,7 @@ export default function OfficerFieldClient() {
 
                     <button
                       onClick={handleLogout}
-                      className="flex items-center justify-center gap-2 rounded-xl bg-slate-900 border border-border px-4 py-3 text-xs font-bold uppercase tracking-widest text-text-2 hover:text-white transition-all hover:bg-slate-800"
+                      className="flex items-center justify-center gap-2 rounded-xl bg-surface-2 dark:bg-slate-900 border border-border px-4 py-3 text-xs font-bold uppercase tracking-widest text-text-2 hover:text-white transition-all hover:bg-surface-3 dark:hover:bg-slate-800"
                     >
                       <LogOut size={13} />
                       <span className="hidden sm:inline">Stand Down</span>
@@ -391,7 +387,7 @@ export default function OfficerFieldClient() {
 
                     <div className="flex items-start gap-4 flex-1">
                       {/* Ticket Type Graphic */}
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900 border border-white/5 text-brand">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-2 dark:bg-slate-900 border border-white/5 text-brand">
                         <FileText size={18} />
                       </div>
 
@@ -404,7 +400,7 @@ export default function OfficerFieldClient() {
                             Lvl {issue.severity}
                           </span>
                           {issue.confirmation_count > 0 && (
-                            <span className="rounded bg-slate-900 border border-border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-text-3 flex items-center gap-1">
+                            <span className="rounded bg-surface-2 dark:bg-slate-900 border border-border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-text-3 flex items-center gap-1">
                               <ThumbsUp size={10} /> {issue.confirmation_count} upvotes
                             </span>
                           )}
@@ -458,8 +454,8 @@ export default function OfficerFieldClient() {
 
         {/* ── SECTION 3: DETAIL / RESOLUTION DRAWER OVERLAY ── */}
         {selectedIssue && (
-          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/80 p-0 sm:p-4 backdrop-blur-sm">
-            <div className="w-full max-w-lg rounded-t-3xl sm:rounded-3xl border border-white/10 bg-slate-950 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 dark:bg-slate-950/80 p-0 sm:p-4 backdrop-blur-sm">
+            <div className="w-full max-w-lg rounded-t-3xl sm:rounded-3xl border border-white/10 bg-surface-1 dark:bg-slate-950 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
               {/* Drawer Accent Line */}
               <div className="h-1.5 w-full bg-gradient-to-r from-brand via-brand-light to-brand" />
 
@@ -520,7 +516,7 @@ export default function OfficerFieldClient() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-white/5 bg-slate-900 p-4">
+                <div className="rounded-xl border border-white/5 bg-surface-2 dark:bg-slate-900 p-4">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block mb-1">Citizen Report Details</span>
                   <p className="text-xs leading-relaxed text-text-2">
                     {selectedIssue.description || 'No additional dispatcher comments.'}
@@ -531,7 +527,7 @@ export default function OfficerFieldClient() {
                 {selectedIssue.before_photo_url && (
                   <div>
                     <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block mb-2">Attached Citizen Evidence</span>
-                    <div className="relative w-full h-44 rounded-xl overflow-hidden bg-slate-900 border border-border/20">
+                    <div className="relative w-full h-44 rounded-xl overflow-hidden bg-surface-2 dark:bg-slate-900 border border-border/20">
                       <Image
                         src={selectedIssue.before_photo_url}
                         alt="Before evidence"
@@ -568,20 +564,20 @@ export default function OfficerFieldClient() {
                   {/* Camera Upload */}
                   <div className="flex flex-col items-center justify-center">
                     {photoPreview ? (
-                      <div className="relative w-full h-48 rounded-xl overflow-hidden bg-slate-900 border border-emerald-500/30 p-2">
+                      <div className="relative w-full h-48 rounded-xl overflow-hidden bg-surface-2 dark:bg-slate-900 border border-emerald-500/30 p-2">
                         <div className="relative w-full h-full rounded-lg overflow-hidden">
                           <Image src={photoPreview} alt="Preview" fill className="object-cover" />
                         </div>
                         <button
                           type="button"
                           onClick={() => { setResPhoto(null); setPhotoPreview(null); }}
-                          className="absolute right-4 top-4 bg-slate-950/80 border border-white/10 hover:bg-slate-950 text-white rounded-lg p-1.5 text-xs transition"
+                          className="absolute right-4 top-4 bg-black/40 dark:bg-slate-950/80 border border-white/10 hover:bg-black/50 dark:hover:bg-slate-950 text-white rounded-lg p-1.5 text-xs transition"
                         >
                           ✕ Retake
                         </button>
                       </div>
                     ) : (
-                      <label className="w-full h-32 flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border hover:border-brand/40 bg-slate-900 cursor-pointer transition">
+                      <label className="w-full h-32 flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border hover:border-brand/40 bg-surface-2 dark:bg-slate-900 cursor-pointer transition">
                         <Camera size={28} className="text-text-3" />
                         <span className="text-[10px] font-bold uppercase tracking-wider text-text-3">Capture Repair Evidence</span>
                         <input
@@ -606,7 +602,7 @@ export default function OfficerFieldClient() {
                       onChange={e => setResNotes(e.target.value)}
                       placeholder="e.g. Completed pothole sealing using rapid asphalt patch..."
                       rows={3}
-                      className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-3 text-xs focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all resize-none"
+                      className="w-full p-4 rounded-xl bg-white/5 dark:bg-white/5 border border-white/10 dark:border-white/10 text-text-1 dark:text-white placeholder:text-text-3 text-xs focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all resize-none"
                       required
                     />
                   </div>

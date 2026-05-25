@@ -6,7 +6,7 @@ export function LocatorFilters({
   className = '',
 }: {
   activeFilter: Filter;
-  setActiveFilter: (filter: Filter) => void;
+  setActiveFilter: (  _filter: Filter) => void;
   className?: string;
 }) {
   return (

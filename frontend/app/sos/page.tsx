@@ -17,7 +17,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
 
 export default function EmergencyPage() {
- const { crashDetectionEnabled, userProfile, soundsEnabled } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, userProfile: s.userProfile, soundsEnabled: s.soundsEnabled })));
+ const { userProfile, soundsEnabled } = useAppStore(useShallow((s) => ({ userProfile: s.userProfile, soundsEnabled: s.soundsEnabled })));
  const pageRef = usePageEntry();
  const [holding, setHolding] = useState(false);
  const [holdProgress, setHoldProgress] = useState(0);

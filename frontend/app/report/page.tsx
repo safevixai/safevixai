@@ -1,9 +1,10 @@
 
 'use client';
 
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 import {
   AlertTriangle,
   Camera,
@@ -18,12 +19,15 @@ import {
   ShieldAlert,
   Upload,
 } from 'lucide-react';
+import { validateImageFile } from '@/lib/validate-upload';
 import { usePageEntry } from '@/hooks/usePageEntry';
 
 import TopSearch from '@/components/dashboard/TopSearch';
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
 import HazardViewfinder from '@/components/report/HazardViewfinder';
+import { ReportProgressBar } from '@/components/report/ReportProgressBar';
+import LocationPicker from '@/components/report/LocationPicker';
 import {
   type AuthorityPreviewResponse,
   type RoadInfrastructureResponse,
@@ -40,6 +44,7 @@ import {
   formatLocationSubtitle,
   isApproximateLocation,
 } from '@/lib/location-utils';
+import { useSwipe } from '@/hooks/useSwipe';
 import { useAppStore } from '@/lib/store';
 import { track } from '@/lib/analytics';
 
@@ -75,6 +80,14 @@ const SEVERITY_OPTIONS = [
   [5, 'Extreme', 'High-risk emergency condition'],
 ] as const;
 
+const severityKeyMap: Record<number, string> = {
+  1: 'low',
+  2: 'guarded',
+  3: 'serious',
+  4: 'critical',
+  5: 'extreme'
+};
+
 function cx(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(' ');
 }
@@ -101,6 +114,7 @@ function normalizeExternalUrl(url: string | null | undefined) {
 
 
 export default function ReportPage() {
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
   const pageRef = usePageEntry();
   const [activeCategory, setActiveCategory] = useState<'roads' | 'traffic' | 'streetlight'>('roads');
@@ -118,13 +132,36 @@ export default function ReportPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submittedReport, setSubmittedReport] = useState<RoadReportResponse | null>(null);
+  const [formStep, setFormStep] = useState(0);
+  const [citizenName, setCitizenName] = useState('');
+  const [citizenEmail, setCitizenEmail] = useState('');
+  const [mapLat, setMapLat] = useState(0);
+  const [mapLon, setMapLon] = useState(0);
+  const [mapAddress, setMapAddress] = useState('');
+  const formSteps = useRef<HTMLDivElement[]>([]);
+  const { onTouchStart: swipeStart, onTouchEnd: swipeEnd } = useSwipe({
+    onSwipeLeft: () => {
+      if (formStep < 4) {
+        const next = formStep + 1;
+        setFormStep(next);
+        formSteps.current[next]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+    onSwipeRight: () => {
+      if (formStep > 0) {
+        const prev = formStep - 1;
+        setFormStep(prev);
+        formSteps.current[prev]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+  });
 
   const setGpsLocation = useAppStore((state) => state.setGpsLocation);
   const { location: gpsLocation, error: gpsError, loading: locating, refresh } = useGeolocation();
 
   const coordinateSignature = useMemo(() => (gpsLocation ? `${gpsLocation.lat.toFixed(4)}:${gpsLocation.lon.toFixed(4)}` : null), [gpsLocation]);
 
-  useEffect(() => { setMounted(true); document.title = 'Report Issue | SafeVixAI'; }, []);
+  useEffect(() => { setMounted(true); document.title = `${t('report.report_hazard')} | SafeVixAI`; }, [t]);
 
   useEffect(() => {
     if (!photoFile) {
@@ -214,9 +251,11 @@ export default function ReportPage() {
     };
   }, [coordinateSignature, gpsLocation, setGpsLocation]);
 
-  const severityMeta = SEVERITY_OPTIONS.find((option) => option[0] === severity) ?? SEVERITY_OPTIONS[2];
+  const severityKey = severityKeyMap[severity] || 'serious';
+  const severityLabelTranslated = t(`report.severities.${severityKey}`);
+  const severityDescTranslated = t(`report.severities.${severityKey}_desc`);
   const locationLabel = formatLocationLabel(gpsLocation, gpsError);
-  const locationSubtitle = gpsLocation ? locationDisplay ?? formatLocationSubtitle(gpsLocation) : 'Enable location to match the exact road-owning authority.';
+  const locationSubtitle = gpsLocation ? locationDisplay ?? formatLocationSubtitle(gpsLocation) : t('report.enable_location_authority');
   const accuracyLabel = formatAccuracyLabel(gpsLocation);
   const accuracyMeters = gpsLocation?.accuracy ?? 15;
   const accuracyColor = accuracyMeters < 10 
@@ -225,7 +264,7 @@ export default function ReportPage() {
       ? 'text-warning dark:text-amber-400' 
       : 'text-red-500 dark:text-red-400';
   const approximateLocation = isApproximateLocation(gpsLocation);
-  const photoHint = photoFile ? `${photoFile.name} - ${(photoFile.size / (1024 * 1024)).toFixed(2)} MB` : 'JPG, PNG, or WEBP. Optional, but it speeds up verification.';
+  const photoHint = photoFile ? `${photoFile.name} - ${(photoFile.size / (1024 * 1024)).toFixed(2)} MB` : t('report.optional_photo_hint');
 
   const portalUrl = normalizeExternalUrl(submittedReport?.complaintPortal ?? authorityPreview?.complaintPortal ?? null);
   const helpline = submittedReport?.authorityPhone ?? authorityPreview?.helpline ?? null;
@@ -237,7 +276,7 @@ export default function ReportPage() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!gpsLocation || !selectedType) {
-      setSubmitError('Please select a hazard type and enable location before submitting.');
+      setSubmitError(t('report.form_validation_error'));
       return;
     }
 
@@ -246,8 +285,8 @@ export default function ReportPage() {
 
     try {
       const response = await submitReport({
-        lat: gpsLocation.lat,
-        lon: gpsLocation.lon,
+        lat: mapLat || gpsLocation.lat,
+        lon: mapLon || gpsLocation.lon,
         issue_type: selectedType,
         severity,
         description: notes,
@@ -265,18 +304,29 @@ export default function ReportPage() {
   }
 
   function handlePhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setPhotoFile(event.target.files?.[0] ?? null);
+    const file = event.target.files?.[0] ?? null;
+    if (file) {
+      const error = validateImageFile(file);
+      if (error) {
+        setSubmitError(error);
+        return;
+      }
+    }
+    setPhotoFile(file);
   }
 
   function resetForm() {
     setActiveCategory('roads');
     setSelectedType(null);
     setCitizenPhone('');
+    setCitizenName('');
+    setCitizenEmail('');
     setSeverity(3);
     setNotes('');
     setPhotoFile(null);
     setSubmitError(null);
     setSubmittedReport(null);
+    setFormStep(0);
   }
 
   if (!mounted) return null;
@@ -290,7 +340,7 @@ export default function ReportPage() {
       </div>
 
       {/* ── Unified Tactical Navigation Header ── */}
-      <TerminalHeader title="Hazard Dispatch Terminal" subtitle="REPORT LIVE ROAD INCIDENT" />
+      <TerminalHeader title={t('report.report_hazard')} subtitle={t('report.report_live_road')} />
       
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
@@ -303,29 +353,37 @@ export default function ReportPage() {
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex w-fit items-center gap-2 rounded-full border border-brand/20 bg-brand/10 px-3 py-1 dark:border-brand/15 dark:bg-brand/12">
               <span className="w-1.5 h-1.5 rounded-full bg-brand/80 animate-pulse"></span>
-              <span className="text-[10px] font-semibold text-brand dark:text-brand-light uppercase tracking-widest">Dispatch Sentinel</span>
+              <span className="text-[10px] font-semibold text-brand dark:text-brand-light uppercase tracking-widest">{t('report.report_active')}</span>
             </div>
             {approximateLocation && gpsLocation && (
               <div className="flex w-fit items-center gap-2 rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 dark:border-orange-400/15 dark:bg-orange-500/12">
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
-                <span className="text-[10px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-widest">Approximate GPS</span>
+                <span className="text-[10px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-widest">{t('report.approximate_gps')}</span>
               </div>
             )}
           </div>
           <div className="flex flex-col">
             <h1 className="text-2xl font-black tracking-tight text-text-1 uppercase font-space leading-tight dark:bg-gradient-to-r dark:from-white dark:via-text-1 dark:to-cyan-200 dark:bg-clip-text dark:text-transparent sm:text-3xl">
-              Real-Time Road Hazard Reporting
+              {t('report.title')}
             </h1>
             <p className="max-w-2xl text-xs sm:text-sm font-medium text-text-3 mt-1 uppercase tracking-wider opacity-70">
-              Uplinking live road intel to matching authorities. Precision reporting for safer transit networks.
+              {t('report.subtitle')}
             </p>
           </div>
         </section>
+
+        {/* ── Progress Bar ── */}
+        {!submittedReport && (
+          <div className="mb-2">
+            <ReportProgressBar currentStep={formStep} />
+          </div>
+        )}
+
         <div className="grid gap-6">
           <section className="space-y-6">
             <SurfaceCard padding="none" className="overflow-hidden">
               <div className="min-h-[360px] sm:min-h-[420px]">
-                <HazardViewfinder imageSrc={photoBlobUrl} isDetecting={contextLoading || submitting} confidence={submittedReport ? 99.4 : contextLoading ? 96.2 : 97.8} statusLabel={submittedReport ? 'Dispatch confirmed' : contextLoading ? 'Syncing live road intel' : photoFile ? 'Photo attached and ready' : 'Live hazard viewport'} signalLabel={accuracyLabel ?? (locating ? 'Acquiring GPS' : 'Awaiting GPS')} locationLabel={gpsLocation ? `${gpsLocation.lat.toFixed(5)}, ${gpsLocation.lon.toFixed(5)}` : 'Awaiting live coordinates'} viewportId={submittedReport ? submittedReport.uuid : 'RW-LIVE-REPORT-01'} />
+                <HazardViewfinder imageSrc={photoBlobUrl} isDetecting={contextLoading || submitting} confidence={submittedReport ? 99.4 : contextLoading ? 96.2 : 97.8} statusLabel={submittedReport ? t('report.report_uplinked') : contextLoading ? t('report.waiting_authority_lookup') : photoFile ? t('report.optional_photo_uplink') : t('report.live_authority_match')} signalLabel={accuracyLabel ?? (locating ? t('report.pending_device_fix') : t('report.pending_device_fix'))} locationLabel={gpsLocation ? `${gpsLocation.lat.toFixed(5)}, ${gpsLocation.lon.toFixed(5)}` : t('report.pending_device_fix')} viewportId={submittedReport ? submittedReport.uuid : 'RW-LIVE-REPORT-01'} />
               </div>
             </SurfaceCard>
 
@@ -333,32 +391,32 @@ export default function ReportPage() {
               <SurfaceCard>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Location Lock</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.location_lock')}</div>
                     <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{locationLabel}</h2>
                   </div>
-                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2 transition hover:border-brand/20 hover:bg-brand/8 hover:text-brand active:scale-95" aria-label="Refresh location">
+                  <button type="button" onClick={refresh} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2 transition hover:border-brand/20 hover:bg-brand/8 hover:text-brand active:scale-95" aria-label={t('report.refresh_location')}>
                     {locating ? <Loader2 size={18} className="animate-spin" /> : <RefreshCcw size={18} />}
                   </button>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-text-2">{gpsError ?? locationSubtitle}</p>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-lg border border-border bg-surface-2 px-4 py-3">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Accuracy</div>
-                    <div className={cx("mt-2 text-sm font-semibold", gpsLocation ? accuracyColor : "text-text-1")}>{accuracyLabel ?? 'Pending device fix'}</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.accuracy')}</div>
+                    <div className={cx("mt-2 text-sm font-semibold", gpsLocation ? accuracyColor : "text-text-1")}>{accuracyLabel ?? t('report.pending_device_fix')}</div>
                   </div>
                   <div className="rounded-lg border border-border bg-surface-2 px-4 py-3">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Coordinates</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.coordinates')}</div>
                     <div className="mt-2 text-sm font-semibold text-text-1">{gpsLocation ? `${gpsLocation.lat.toFixed(5)}, ${gpsLocation.lon.toFixed(5)}` : '--'}</div>
                   </div>
                 </div>
-                {approximateLocation && gpsLocation ? <div className="mt-4 rounded-lg border border-warning/20 bg-warning/10 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-[linear-gradient(180deg,rgba(245,158,11,0.14),rgba(120,53,15,0.16))] dark:text-warning">Your browser is giving an approximate location. You can still report, but a sharper GPS fix will improve road ownership matching.</div> : null}
+                {approximateLocation && gpsLocation ? <div className="mt-4 rounded-lg border border-warning/20 bg-warning/10 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-[linear-gradient(180deg,rgba(245,158,11,0.14),rgba(120,53,15,0.16))] dark:text-warning">{t('report.approximate_location_warning')}</div> : null}
               </SurfaceCard>
 
               <SurfaceCard>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Evidence Capture</div>
-                    <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">Optional photo uplink</h2>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.evidence_capture')}</div>
+                    <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{t('report.optional_photo_uplink')}</h2>
                   </div>
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2"><Camera size={18} /></div>
                 </div>
@@ -370,8 +428,8 @@ export default function ReportPage() {
                   )}
                   <div className="relative z-10 flex flex-col items-center">
                     <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-brand/15 text-brand dark:bg-brand/16 dark:text-white shadow-sm"><Upload size={22} /></div>
-                    <div className={`mt-4 text-sm font-semibold uppercase tracking-[0.18em] ${photoBlobUrl ? 'text-white' : 'text-text-1'}`}>{photoFile ? 'Replace photo' : 'Attach road image'}</div>
-                    <p className={`mt-2 max-w-xs text-sm ${photoBlobUrl ? 'text-text-1' : 'text-text-3'}`}>{photoHint}</p>
+                    <div className={`mt-4 text-sm font-semibold uppercase tracking-[0.18em] ${photoBlobUrl ? 'text-white' : 'text-text-1'}`}>{photoFile ? t('report.replace_photo') : t('report.attach_road_image')}</div>
+                    <p className={`mt-2 max-w-xs text-sm ${photoBlobUrl ? 'text-white' : 'text-text-3'}`}>{photoHint}</p>
                   </div>
                 </label>
                 <input id="hazard-photo" type="file" accept="image/jpeg,image/png,image/webp" className="hidden" onChange={handlePhotoChange} />
@@ -383,17 +441,26 @@ export default function ReportPage() {
             <SurfaceCard>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Report Dispatch Form</div>
-                  <h2 className="mt-2 text-2xl font-black tracking-tight text-text-1">Flag the hazard with live authority routing</h2>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.report_form')}</div>
+                  <h2 className="mt-2 text-2xl font-black tracking-tight text-text-1">{t('report.flag_hazard_title')}</h2>
                 </div>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2"><Send size={18} /></div>
               </div>
 
               {!submittedReport ? (
-                <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+                <form className="mt-6 space-y-6 sv-swipe-area" onSubmit={handleSubmit} onTouchStart={swipeStart} onTouchEnd={swipeEnd}>
+                  {/* Step indicator */}
+                  <div className="flex justify-center gap-1.5 pb-2 lg:hidden -mt-4">
+                    {[0, 1, 2, 3, 4].map((s) => (
+                      <button key={s} type="button" onClick={() => { setFormStep(s); formSteps.current[s]?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }} className={`h-1.5 rounded-full transition-all duration-300 ${formStep === s ? 'w-6 bg-brand-light' : 'w-2 bg-border'}`} aria-label={`Step ${s + 1}`} />
+                    ))}
+                    <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest ml-2 self-center">Swipe ↔</span>
+                  </div>
+                  {/* Step 0: Category & Type */}
+                  <div ref={(el) => { if (el) formSteps.current[0] = el; }}>
                   {/* Category Tabs */}
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Incident Category</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.incident_category')}</div>
                     <div className="mt-3 grid grid-cols-3 gap-2">
                       {(['roads', 'traffic', 'streetlight'] as const).map((cat) => {
                         const active = activeCategory === cat;
@@ -412,7 +479,7 @@ export default function ReportPage() {
                                 : 'border-border bg-surface-2 text-text-2 hover:bg-surface-3'
                             )}
                           >
-                            {cat === 'roads' ? '🛣️ Roads' : cat === 'traffic' ? '🚦 Traffic' : '💡 Streetlights'}
+                            {cat === 'roads' ? '🛣️ ' + t('report.roads_label') : cat === 'traffic' ? '🚦 ' + t('report.traffic_label') : '💡 ' + t('report.streetlights_label')}
                           </button>
                         );
                       })}
@@ -421,9 +488,9 @@ export default function ReportPage() {
 
                   {/* Category specific sub-types */}
                   <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Hazard Type</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.hazard_type')}</div>
                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                      {ISSUE_OPTIONS_BY_CATEGORY[activeCategory].map(([value, label, detail], index) => {
+                      {ISSUE_OPTIONS_BY_CATEGORY[activeCategory].map(([value], index) => {
                         const active = value === selectedType;
                         const activeAccent = [
                           'border-brand/30 bg-brand/10 text-brand-light dark:border-brand-light/30',
@@ -445,38 +512,53 @@ export default function ReportPage() {
                                 : 'border-border bg-surface-2 text-text-2 hover:bg-surface-3'
                             )}
                           >
-                            <div className="text-sm font-semibold uppercase tracking-[0.16em]">{label}</div>
-                            <p className="mt-2 text-xs font-medium opacity-80">{detail}</p>
+                            <div className="text-sm font-semibold uppercase tracking-[0.16em]">{t(`report.issue_types.${value}`)}</div>
+                            <p className="mt-2 text-xs font-medium opacity-80">{t(`report.issue_types.${value}_desc`)}</p>
                           </button>
                         );
                       })}
                     </div>
                   </div>
-
-                  {/* Citizen Phone Input */}
-                  <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Your Phone Number</div>
-                    <input
-                      type="tel"
-                      value={citizenPhone}
-                      onChange={(e) => setCitizenPhone(e.target.value.replace(/[^0-9+]/g, '').slice(0, 15))}
-                      placeholder="e.g. +919876543210 (For real-time SMS updates)"
-                      className="mt-3 w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-3 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-surface-3"
-                    />
                   </div>
+
+                  {/* Step 1: Location (Map Picker) */}
+                  <div ref={(el) => { if (el) formSteps.current[1] = el; }}>
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Pinpoint Location</div>
+                    <p className="mt-1 text-xs text-text-3">Drag the pin to mark the exact hazard location</p>
+                    <div className="mt-3">
+                      <LocationPicker
+                        lat={gpsLocation?.lat ?? 13.0827}
+                        lon={gpsLocation?.lon ?? 80.2707}
+                        onLocationChange={(lat, lon, addr) => {
+                          setMapLat(lat);
+                          setMapLon(lon);
+                          setMapAddress(addr);
+                        }}
+                      />
+                    </div>
+                    {mapAddress && (
+                      <div className="mt-2 text-xs text-text-2"><MapPin size={12} className="inline mr-1" />{mapAddress}</div>
+                    )}
+                  </div>
+                  </div>
+
+                  {/* Step 2: Details (Severity, Notes) */}
+                  <div ref={(el) => { if (el) formSteps.current[2] = el; }}>
 
                   <div>
                     <div className="flex items-center justify-between gap-3">
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Severity</div>
-                      <div className="text-sm font-semibold text-text-2">{severityMeta[1]} - {severityMeta[2]}</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.severity')}</div>
+                      <div className="text-sm font-semibold text-text-2">{severityLabelTranslated} - {severityDescTranslated}</div>
                     </div>
                     <div className="mt-3 grid grid-cols-5 gap-2">
-                      {SEVERITY_OPTIONS.map(([value, label]) => {
+                      {SEVERITY_OPTIONS.map(([value]) => {
                         const active = value === severity;
+                        const severityKeyOpt = severityKeyMap[value] || 'serious';
                         return (
                           <button key={value} type="button" onClick={() => setSeverity(value)} className={cx('rounded-lg border px-3 py-4 text-center transition', active ? value >= 4 ? 'border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/20' : 'border-brand bg-brand/80 text-white shadow-lg shadow-brand/20' : 'border-border bg-surface-2 text-text-2 hover:border-border dark:text-text-1')}>
                             <div className="text-lg font-black leading-none">{value}</div>
-                            <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em]">{label}</div>
+                            <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em]">{t(`report.severities.${severityKeyOpt}`)}</div>
                           </button>
                         );
                       })}
@@ -485,10 +567,70 @@ export default function ReportPage() {
 
                   <div>
                     <div className="flex items-center justify-between gap-3">
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Notes for the authority desk</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.notes_label')}</div>
                       <div className="text-xs font-semibold text-text-3">{notes.trim().length}/480</div>
                     </div>
-                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder="Describe lane blockage, vehicle risk, traffic density, or how the hazard presents on the road." className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-4 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-white dark:focus:border-brand/40 dark:focus:bg-surface-3" />
+                    <textarea value={notes} onChange={(event) => setNotes(event.target.value.slice(0, 480))} placeholder={t('report.notes_placeholder')} aria-label={t('report.notes_label')} className="mt-3 min-h-[140px] w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-4 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-white dark:focus:border-brand/40 dark:focus:bg-surface-3" />
+                  </div>
+                  </div>
+
+                  {/* Step 3: Contact Info */}
+                  <div ref={(el) => { if (el) formSteps.current[3] = el; }}>
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3 mb-3">Contact Information</div>
+                    <p className="text-xs text-text-3 mb-4">Optional — allows authorities to reach you for updates</p>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Full Name</label>
+                        <input
+                          type="text"
+                          value={citizenName}
+                          onChange={(e) => setCitizenName(e.target.value)}
+                          placeholder="Your full name (optional)"
+                          aria-label="Full Name"
+                          className="mt-2 w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-3 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-surface-3"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Email</label>
+                        <input
+                          type="email"
+                          value={citizenEmail}
+                          onChange={(e) => setCitizenEmail(e.target.value)}
+                          placeholder="your@email.com (optional)"
+                          aria-label="Email"
+                          className="mt-2 w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-3 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-surface-3"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.your_phone')}</label>
+                        <input
+                          type="tel"
+                          value={citizenPhone}
+                          onChange={(e) => setCitizenPhone(e.target.value.replace(/[^0-9+]/g, '').slice(0, 15))}
+                          placeholder={t('report.phone_placeholder')}
+                          aria-label={t('report.your_phone')}
+                          className="mt-2 w-full rounded-[1.5rem] border border-border bg-surface-2 px-4 py-3 text-sm font-medium text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-surface-3"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+
+                  {/* Step 4: Review & Submit */}
+                  <div ref={(el) => { if (el) formSteps.current[4] = el; }}>
+
+                  {/* Review Summary */}
+                  <div className="rounded-xl border border-border bg-surface-2/50 p-4 space-y-2 mb-4">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-text-3 mb-3">Review Summary</div>
+                    <div className="text-xs"><span className="text-text-3 font-semibold">Category:</span> <span className="text-text-1 font-bold capitalize">{activeCategory}</span></div>
+                    <div className="text-xs"><span className="text-text-3 font-semibold">Issue:</span> <span className="text-text-1 font-bold">{selectedType ?? '—'}</span></div>
+                    <div className="text-xs"><span className="text-text-3 font-semibold">Severity:</span> <span className="text-text-1 font-bold">Level {severity}</span></div>
+                    {mapAddress && <div className="text-xs"><span className="text-text-3 font-semibold">Location:</span> <span className="text-text-1">{mapAddress}</span></div>}
+                    {citizenName && <div className="text-xs"><span className="text-text-3 font-semibold">Name:</span> <span className="text-text-1">{citizenName}</span></div>}
+                    {citizenPhone && <div className="text-xs"><span className="text-text-3 font-semibold">Phone:</span> <span className="text-text-1">{citizenPhone}</span></div>}
+                    {notes && <div className="text-xs"><span className="text-text-3 font-semibold">Notes:</span> <span className="text-text-1">{notes.slice(0, 100)}{notes.length > 100 ? '...' : ''}</span></div>}
+                    {photoFile && <div className="text-xs"><span className="text-text-3 font-semibold">Photo:</span> <span className="text-text-1">{photoFile.name}</span></div>}
                   </div>
 
                   {submitError ? <div className="rounded-[1.5rem] border border-emergency/20 bg-emergency/10 px-4 py-3 text-sm font-semibold text-red-900 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-100">{submitError}</div> : null}
@@ -496,11 +638,12 @@ export default function ReportPage() {
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <button type="submit" disabled={submitting || !gpsLocation || !selectedType} className="inline-flex flex-1 items-center justify-center gap-3 rounded-[1.6rem] bg-gradient-to-r from-orange-500 via-rose-500 to-red-500 px-5 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_24px_80px_rgba(239,68,68,0.24)] transition hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0">
                       {submitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
-                      {submitting ? 'Submitting...' : 'Submit live report'}
+                      {submitting ? t('report.submitting') : t('report.submit_button')}
                     </button>
                     <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-3 rounded-[1.6rem] border border-border bg-surface-2 px-5 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-text-2 transition hover:border-border hover:bg-white dark:hover:border-white/20 dark:hover:bg-white/10">
-                      <RefreshCcw size={18} />Reset
+                      <RefreshCcw size={18} />{t('report.reset')}
                     </button>
+                  </div>
                   </div>
                 </form>
               ) : (
@@ -508,8 +651,8 @@ export default function ReportPage() {
                   <div className="w-24 h-24 rounded-full bg-brand-light/20 flex items-center justify-center animate-pulse mb-6">
                     <CheckCircle2 size={48} className="text-brand-light" />
                   </div>
-                  <h3 className="text-3xl font-black text-text-1 font-space tracking-tight">Report Uplinked</h3>
-                  <p className="mt-3 text-text-3 max-w-sm">Your hazard report has been successfully dispatched to the regional authority dashboard.</p>
+                  <h3 className="text-3xl font-black text-text-1 font-space tracking-tight">{t('report.report_uplinked')}</h3>
+                  <p className="mt-3 text-text-3 max-w-sm">{t('report.report_uplinked_desc')}</p>
                 </div>
               )}
             </SurfaceCard>
@@ -518,9 +661,9 @@ export default function ReportPage() {
                   <SurfaceCard className="border-brand-light/20 bg-brand-light/10 dark:border-brand-light/20 dark:bg-brand-light/10">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <span className="inline-flex items-center gap-2 rounded-full border border-brand-light/20 bg-brand-light/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:border-brand-light/20 dark:bg-brand-light/10 dark:text-brand-light"><span className="h-1.5 w-1.5 rounded-full bg-current" />Report uplinked</span>
-                        <h3 className="mt-3 text-2xl font-black tracking-tight text-text-1 dark:text-brand-light">Complaint reference {submittedReport.complaintRef ?? submittedReport.uuid}</h3>
-                        <p className="mt-2 text-sm font-semibold text-text-2 dark:text-brand-light">The report is now tagged to {submittedReport.authorityName} for the {submittedReport.roadType} network.</p>
+                        <span className="inline-flex items-center gap-2 rounded-full border border-brand-light/20 bg-brand-light/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:border-brand-light/20 dark:bg-brand-light/10 dark:text-brand-light"><span className="h-1.5 w-1.5 rounded-full bg-current" />{t('report.report_uplinked')}</span>
+                        <h3 className="mt-3 text-2xl font-black tracking-tight text-text-1 dark:text-brand-light">{t('report.complaint_reference', { ref: submittedReport.complaintRef ?? submittedReport.uuid })}</h3>
+                        <p className="mt-2 text-sm font-semibold text-text-2 dark:text-brand-light">{t('report.complaint_tagged', { authority: submittedReport.authorityName, road: [submittedReport.roadNumber, submittedReport.roadName].filter(Boolean).join(' - ') || submittedReport.roadType })}</p>
                       </div>
                       <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-brand text-white shadow-lg shadow-brand/20"><CheckCircle2 size={22} /></div>
                     </div>
@@ -528,35 +671,35 @@ export default function ReportPage() {
                     {submittedReport.duplicateOfUuid && (
                       <div className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm font-semibold text-amber-600 dark:border-amber-400/20 dark:bg-amber-500/12 dark:text-warning flex items-center gap-3">
                         <AlertTriangle className="animate-pulse flex-shrink-0" size={18} />
-                        <span>Duplicate Detected: A similar issue has already been reported here. Your feedback has been merged into the main ticket to escalate resolution priority!</span>
+                        <span>{t('report.duplicate_detected')}</span>
                       </div>
                     )}
 
                     <div className="mt-5 grid gap-3 sm:grid-cols-2">
                       <div className="rounded-lg border border-brand-light/20 bg-white/80 px-4 py-3 dark:border-brand-light/20 dark:bg-brand/10">
-                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">Authority desk</div>
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">{t('report.authority_desk')}</div>
                         <div className="mt-2 text-lg font-black text-text-1 dark:text-brand-light">{submittedReport.authorityName}</div>
                         <a href={`tel:${submittedReport.authorityPhone}`} className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand underline decoration-brand-light underline-offset-4 dark:text-brand-light"><Phone size={14} />{submittedReport.authorityPhone}</a>
                       </div>
                       <div className="rounded-lg border border-brand-light/20 bg-white/80 px-4 py-3 dark:border-brand-light/20 dark:bg-brand/10">
-                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">Tagged road asset</div>
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">{t('report.tagged_road_asset')}</div>
                         <div className="mt-2 text-lg font-black text-text-1 dark:text-brand-light">{[submittedReport.roadNumber, submittedReport.roadName].filter(Boolean).join(' - ') || submittedReport.roadType}</div>
                         <div className="mt-2 text-sm font-semibold text-text-2 dark:text-brand-light">{submittedReport.roadType}</div>
                       </div>
                       {submittedReport.slaDeadline && (
                         <div className="rounded-lg border border-brand-light/20 bg-white/80 px-4 py-3 dark:border-brand-light/20 dark:bg-brand/10 sm:col-span-2">
-                          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">SLA Resolution Target</div>
+                          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand dark:text-brand-light">{t('report.sla_resolution_target')}</div>
                           <div className="mt-2 text-lg font-black text-text-1 dark:text-brand-light">
                             {new Date(submittedReport.slaDeadline).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}
                           </div>
-                          <div className="mt-2 text-xs font-semibold text-text-3 dark:text-brand-light">Guaranteed response timeline</div>
+                          <div className="mt-2 text-xs font-semibold text-text-3 dark:text-brand-light">{t('report.guaranteed_response')}</div>
                         </div>
                       )}
                     </div>
                     <div className="mt-5 flex flex-wrap gap-3">
-                      <Link href={`/report/track?ref=${submittedReport.complaintRef ?? submittedReport.uuid}`} className="inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-cyan-600/20 transition hover:bg-cyan-500"><MapPin size={16} />Track Complaint Progress</Link>
-                      {portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-brand/20 transition hover:bg-brand-light"><Navigation size={16} />Open complaint portal</a> : null}
-                      <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-light/20 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-brand transition hover:border-brand-light dark:border-brand-light/20 dark:bg-brand/10 dark:text-brand-light dark:hover:bg-brand/20"><RefreshCcw size={16} />File another report</button>
+                      <Link href={`/report/track?ref=${submittedReport.complaintRef ?? submittedReport.uuid}`} className="inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-cyan-600/20 transition hover:bg-cyan-500"><MapPin size={16} />{t('report.track_progress')}</Link>
+                      {portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-lg shadow-brand/20 transition hover:bg-brand-light"><Navigation size={16} />{t('report.open_complaint_portal')}</a> : null}
+                      <button type="button" onClick={resetForm} className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-light/20 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-brand transition hover:border-brand-light dark:border-brand-light/20 dark:bg-brand/10 dark:text-brand-light dark:hover:bg-brand/20"><RefreshCcw size={16} />{t('report.file_another_report')}</button>
                     </div>
                   </SurfaceCard>
                 </div>
@@ -565,35 +708,35 @@ export default function ReportPage() {
             <SurfaceCard>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Live Authority Match</div>
-                  <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{reportAuthority ?? 'Waiting for road ownership lookup'}</h2>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.live_authority_match')}</div>
+                  <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{reportAuthority ?? t('report.waiting_authority_lookup')}</h2>
                 </div>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2">{contextLoading ? <Loader2 size={18} className="animate-spin" /> : <ShieldAlert size={18} />}</div>
               </div>
               {contextError ? <div className="mt-4 rounded-lg border border-warning/20 bg-warning/10 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-400/20 dark:bg-[linear-gradient(180deg,rgba(245,158,11,0.14),rgba(120,53,15,0.16))] dark:text-warning">{contextError}</div> : null}
               <div className="mt-4 divide-y divide-border">
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Road</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{[reportRoadNumber, reportRoadName].filter(Boolean).join(' - ') || reportType || 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Authority</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{reportAuthority ?? 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Helpline</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{helpline ? <a href={`tel:${helpline}`} className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">{helpline}</a> : 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Portal</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">Open official complaint portal</a> : 'Portal not listed'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Escalation</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{authorityPreview?.escalationPath ?? 'Not available'}</div></div>
-                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Executive engineer</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{authorityPreview?.execEngineer ?? infrastructure?.execEngineer ?? 'Not available'}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.road')}</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{[reportRoadNumber, reportRoadName].filter(Boolean).join(' - ') || reportType || t('report.not_published')}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.authority')}</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{reportAuthority ?? t('report.not_published')}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.helpline', { phone: '' }).replace(': ', '').trim()}</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{helpline ? <a href={`tel:${helpline}`} className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">{helpline}</a> : t('report.not_published')}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.portal')}</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{portalUrl ? <a href={portalUrl} target="_blank" rel="noreferrer" className="text-brand dark:text-brand-light underline decoration-brand-light underline-offset-4 hover:text-brand dark:text-brand-light">{t('report.open_complaint_portal')}</a> : t('report.portal_not_listed')}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.escalation')}</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{authorityPreview?.escalationPath ?? t('report.not_published')}</div></div>
+                <div className="flex items-start justify-between gap-4 py-2"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.exec_engineer')}</div><div className="max-w-[65%] text-right text-sm font-semibold text-text-1">{authorityPreview?.execEngineer ?? infrastructure?.execEngineer ?? t('report.not_published')}</div></div>
               </div>
             </SurfaceCard>
 
             <SurfaceCard>
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Road Asset Intelligence</div>
-                  <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{reportRoadNumber ?? reportRoadName ?? 'Infrastructure metadata pending'}</h2>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.road_asset_intelligence')}</div>
+                  <h2 className="mt-2 text-xl font-black tracking-tight text-text-1">{reportRoadNumber ?? reportRoadName ?? t('report.metadata_pending')}</h2>
                 </div>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-surface-2 text-text-2"><MapPin size={18} /></div>
               </div>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Road type</div><div className="mt-2 text-sm font-semibold text-text-1">{reportType ?? 'Waiting for live match'}</div></div>
-                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Contractor</div><div className="mt-2 text-sm font-semibold text-text-1">{infrastructure?.contractorName ?? submittedReport?.contractorName ?? 'Not published'}</div></div>
-                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Budget sanctioned</div><div className="mt-2 text-sm font-semibold text-text-1">{formatMoney(submittedReport?.budgetSanctioned ?? infrastructure?.budgetSanctioned ?? null)}</div></div>
-                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Next maintenance</div><div className="mt-2 text-sm font-semibold text-text-1">{submittedReport?.nextMaintenance ?? infrastructure?.nextMaintenance ?? authorityPreview?.nextMaintenance ?? 'Not scheduled'}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.road_type')}</div><div className="mt-2 text-sm font-semibold text-text-1">{reportType ?? t('report.waiting_authority_lookup')}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.contractor')}</div><div className="mt-2 text-sm font-semibold text-text-1">{infrastructure?.contractorName ?? submittedReport?.contractorName ?? t('report.not_published')}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.budget_sanctioned')}</div><div className="mt-2 text-sm font-semibold text-text-1">{formatMoney(submittedReport?.budgetSanctioned ?? infrastructure?.budgetSanctioned ?? null)}</div></div>
+                <div className="rounded-lg border border-border bg-surface-2 px-4 py-3"><div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.next_maintenance')}</div><div className="mt-2 text-sm font-semibold text-text-1">{submittedReport?.nextMaintenance ?? infrastructure?.nextMaintenance ?? authorityPreview?.nextMaintenance ?? t('report.not_scheduled')}</div></div>
               </div>
             </SurfaceCard>
 
@@ -602,8 +745,8 @@ export default function ReportPage() {
               <div className="flex items-start gap-3">
                 <div className="mt-0.5 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-brand text-white dark:bg-brand-light dark:text-text-1"><ShieldAlert size={18} /></div>
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-3">SafeVixAI Platform</div>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-text-2">Reports are dispatched to the correct road-owning authority using live GPS coordinates, real-time infrastructure data, and India&apos;s road ownership database. Your report helps make roads safer.</p>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-3">{t('report.platform_title')}</div>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-text-2">{t('report.platform_desc')}</p>
                 </div>
               </div>
             </SurfaceCard>
@@ -612,14 +755,14 @@ export default function ReportPage() {
       </main>
 
       <div className="fixed right-4 top-[92px] z-30 flex flex-col gap-3 lg:right-8">
-        <button type="button" onClick={refresh} className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-border bg-surface-1/75 text-text-2 shadow-[0_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-brand" aria-label="Refresh live location">
+        <button type="button" onClick={refresh} className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-border bg-surface-1/75 text-text-2 shadow-[0_20px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-brand" aria-label={t('report.refresh_location')}>
           {locating ? <Loader2 size={20} className="animate-spin" /> : <Navigation size={20} />}
         </button>
       </div>
 
       <div className="fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] right-4 z-30 lg:hidden">
         <Link href="/locator" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-1/85 px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-text-1 shadow-xl backdrop-blur-xl">
-          <Mic size={16} />Nearby help
+          <Mic size={16} />{t('report.nearby_help')}
         </Link>
       </div>
 

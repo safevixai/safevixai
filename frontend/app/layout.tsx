@@ -2,6 +2,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Toaster } from 'sonner';
+import { headers } from 'next/headers';
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { SWRConfig } from 'swr';
 import './globals.css';
@@ -9,6 +10,7 @@ import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { GSAPProvider } from '@/components/providers/GSAPProvider';
 import { SentryInit } from '@/components/providers/SentryInit';
+import { ViewTransitions } from 'next-view-transitions';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
@@ -45,9 +47,13 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headerList = await headers();
+  const locale = headerList.get('x-locale') || 'en';
+  const isRtl = locale === 'ar' || locale === 'ur';
+
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable} font-sans`}>
+    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable} font-sans`}>
       <head>
         <link rel="icon" type="image/png" href="/icons/favicon.png" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
@@ -58,6 +64,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://api.maptiler.com" />
         <link rel="dns-prefetch" href="https://tiles.openfreemap.org" />
         <meta name="mobile-web-app-capable" content="yes" />
+
+        {/* SEO Localization - Alternate Hreflang and Canonical URLs */}
+        <link rel="canonical" href={`https://safevixai.com/${locale}`} />
+        <link rel="alternate" href="https://safevixai.com/en" hrefLang="en" />
+        <link rel="alternate" href="https://safevixai.com/hi" hrefLang="hi" />
+        <link rel="alternate" href="https://safevixai.com/ta" hrefLang="ta" />
+        <link rel="alternate" href="https://safevixai.com/te" hrefLang="te" />
+        <link rel="alternate" href="https://safevixai.com/kn" hrefLang="kn" />
+        <link rel="alternate" href="https://safevixai.com/ml" hrefLang="ml" />
+        <link rel="alternate" href="https://safevixai.com/mr" hrefLang="mr" />
+        <link rel="alternate" href="https://safevixai.com/gu" hrefLang="gu" />
+        <link rel="alternate" href="https://safevixai.com/bn" hrefLang="bn" />
+        <link rel="alternate" href="https://safevixai.com/pa" hrefLang="pa" />
+        <link rel="alternate" href="https://safevixai.com/ur" hrefLang="ur" />
+        <link rel="alternate" href="https://safevixai.com/ar" hrefLang="ar" />
+        <link rel="alternate" href="https://safevixai.com/es" hrefLang="es" />
+        <link rel="alternate" href="https://safevixai.com/fr" hrefLang="fr" />
+        <link rel="alternate" href="https://safevixai.com" hrefLang="x-default" />
+
         {/* Flash-free theme init - runs before React hydration to prevent FOUC */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
@@ -88,7 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <GSAPProvider>
               <ConnectivityProvider>
                 <EnterpriseClientAppHooks />
-                <AppFrame>{children}</AppFrame>
+                <AppFrame><ViewTransitions>{children}</ViewTransitions></AppFrame>
               <Toaster
                 position="top-right"
                 toastOptions={{

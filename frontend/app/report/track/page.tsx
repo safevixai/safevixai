@@ -1,18 +1,14 @@
 'use client';
 
-import { useEffect, useState, useTransition } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
   MapPin,
-  Calendar,
   AlertTriangle,
   Clock,
-  CheckCircle2,
   ArrowLeft,
-  ChevronRight,
-  ShieldAlert,
   ThumbsUp,
   Image as ImageIcon,
   Activity,
@@ -22,7 +18,7 @@ import {
 
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
-import { client } from '@/lib/api';
+import { client, type RoadIssue } from '@/lib/api';
 
 interface ComplaintEvent {
   id: number;
@@ -59,7 +55,7 @@ interface ComplaintDetails {
 
 export default function TrackPage() {
   const searchParams = useSearchParams();
-  const router = useRouter();
+
   const initialRef = searchParams.get('ref') || '';
 
   const [refInput, setRefInput] = useState(initialRef);
@@ -85,13 +81,13 @@ export default function TrackPage() {
       if (identifier.startsWith('RS-')) {
         // Query paginated issues and filter by complaint_ref
         const { data } = await client.get(`/api/v1/roads/issues?radius=50000&limit=1&lat=13.08&lon=80.27`);
-        const found = data.issues?.find((i: any) => i.uuid.toUpperCase().includes(identifier.replace('RS-', '').toUpperCase()));
+        const found = data.issues?.find((i: RoadIssue) => i.uuid.toUpperCase().includes(identifier.replace('RS-', '').toUpperCase()));
         if (found) {
           issueUuid = found.uuid;
         } else {
           // Fallback search in all admin complaints
           const adminRes = await client.get('/api/v1/admin/complaints', { params: { limit: 100 } });
-          const adminFound = adminRes.data.issues?.find((i: any) => i.uuid.toUpperCase().includes(identifier.replace('RS-', '').toUpperCase()));
+          const adminFound = adminRes.data.issues?.find((i: RoadIssue) => i.uuid.toUpperCase().includes(identifier.replace('RS-', '').toUpperCase()));
           if (adminFound) {
             issueUuid = adminFound.uuid;
           } else {
@@ -113,10 +109,11 @@ export default function TrackPage() {
       url.searchParams.set('ref', ref);
       window.history.replaceState({}, '', url.toString());
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       setComplaint(null);
       setTimeline([]);
-      setError(err.response?.data?.detail || err.message || "Failed to load complaint. Please verify your reference ID.");
+      const axiosErr = err as { response?: { data?: { detail?: string } }; message?: string };
+      setError(axiosErr.response?.data?.detail || axiosErr.message || "Failed to load complaint. Please verify your reference ID.");
     } finally {
       setLoading(false);
     }
@@ -138,7 +135,7 @@ export default function TrackPage() {
       // Re-fetch timeline
       const timelineRes = await client.get(`/api/v1/roads/issues/${complaint.uuid}/timeline`);
       setTimeline(timelineRes.data.timeline || []);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
     } finally {
       setConfirming(false);
@@ -179,7 +176,7 @@ export default function TrackPage() {
   };
 
   return (
-    <div className="sv-page aurora-glow relative min-h-screen bg-slate-950 text-slate-100 pb-20">
+    <div className="sv-page aurora-glow relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-20">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] h-[38rem] w-[38rem] rounded-full bg-cyan-500/5 blur-[150px]" />
         <div className="absolute left-[-8%] bottom-[-16%] h-[28rem] w-[28rem] rounded-full bg-brand/5 blur-[140px]" />
@@ -208,6 +205,7 @@ export default function TrackPage() {
               value={refInput}
               onChange={(e) => setRefInput(e.target.value)}
               placeholder="e.g. RS-D38E1FC5B1 or UUID"
+              aria-label="Reference ID or UUID"
               className="flex-1 rounded-[1.5rem] border border-border bg-surface-2 px-5 py-4 text-sm font-semibold uppercase tracking-wider text-text-1 outline-none transition placeholder:text-text-3 focus:border-brand/40 focus:bg-surface-3"
             />
             <button
@@ -278,7 +276,7 @@ export default function TrackPage() {
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {/* Before Photo */}
                 <div className="rounded-[1.5rem] border border-border bg-surface-2 p-3 overflow-hidden flex flex-col justify-between min-h-[260px]">
-                  <div className="relative w-full h-[200px] rounded-lg overflow-hidden bg-slate-900 flex items-center justify-center">
+                  <div className="relative w-full h-[200px] rounded-lg overflow-hidden bg-surface-2 dark:bg-slate-900 flex items-center justify-center">
                     {complaint.before_photo_url ? (
                       <Image
                         src={complaint.before_photo_url}
@@ -299,7 +297,7 @@ export default function TrackPage() {
 
                 {/* After Photo */}
                 <div className="rounded-[1.5rem] border border-border bg-surface-2 p-3 overflow-hidden flex flex-col justify-between min-h-[260px]">
-                  <div className="relative w-full h-[200px] rounded-lg overflow-hidden bg-slate-900 flex items-center justify-center">
+                  <div className="relative w-full h-[200px] rounded-lg overflow-hidden bg-surface-2 dark:bg-slate-900 flex items-center justify-center">
                     {complaint.after_photo_url ? (
                       <Image
                         src={complaint.after_photo_url}
@@ -369,7 +367,7 @@ export default function TrackPage() {
                 {timeline.map((event) => (
                   <div key={event.id} className="relative">
                     {/* Step bubble icon */}
-                    <div className="absolute left-[-32px] top-[2px] h-4 w-4 rounded-full border-2 border-brand bg-slate-950 flex items-center justify-center">
+                    <div className="absolute left-[-32px] top-[2px] h-4 w-4 rounded-full border-2 border-brand bg-surface-1 dark:bg-slate-950 flex items-center justify-center">
                       <div className="h-1.5 w-1.5 rounded-full bg-brand-light animate-ping" />
                     </div>
 
@@ -379,7 +377,7 @@ export default function TrackPage() {
                           {event.event_type.toUpperCase()}
                         </span>
                         {event.actor_role && (
-                          <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-text-3 flex items-center gap-1">
+                          <span className="rounded bg-surface-3 dark:bg-slate-800 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-text-3 flex items-center gap-1">
                             <User size={10} /> {event.actor_role}
                           </span>
                         )}

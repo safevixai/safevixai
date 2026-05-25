@@ -4,25 +4,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 const QRCodeSVG = dynamic(() => import('qrcode.react').then(m => m.QRCodeSVG), { ssr: false });
 import {
-  Heart, Shield, Phone, Car, QrCode,
-  Download, Share2, AlertTriangle, CheckCircle2,
+  Heart, Shield, Phone, Car,
+  Share2, AlertTriangle, CheckCircle2,
   Zap, Eye
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
-
-interface UserProfile {
-  id?: string;
-  name?: string;
-  phone?: string;
-  bloodGroup?: string;
-  vehicleNumber?: string;
-  emergencyContact?: string;
-  emergencyContacts?: { name: string; phone: string; relation: string }[];
-  medicalConditions?: string;
-  preferredLanguage?: string;
-}
 
 export default function QREmergencyCard() {
   const { userProfile } = useAppStore(useShallow((s) => ({ userProfile: s.userProfile })));

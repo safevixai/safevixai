@@ -1,39 +1,18 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGSAP } from '@gsap/react';
-import { useAppStore } from '@/lib/store';
+
+
 import { calculateChallan, type ChallanResult } from '@/lib/api';
 import { logClientError } from '@/lib/client-logger';
-import { useShallow } from 'zustand/react/shallow';
+
+
 import { track } from '@/lib/analytics';
 import { haptics } from '@/lib/haptics';
 import { gsap } from '@/lib/gsap';
-
-const FineCountUp = ({ value }: { value: number }) => {
-  const [displayValue, setDisplayValue] = useState(0);
-  const containerRef = useRef<HTMLSpanElement>(null);
-
-  useGSAP(() => {
-    const obj = { val: 0 };
-    gsap.to(obj, {
-      val: value,
-      duration: 0.8,
-      ease: 'power2.out',
-      onUpdate: () => {
-        setDisplayValue(Math.floor(obj.val));
-      },
-      onComplete: () => {
-        gsap.fromTo(containerRef.current,
-          { textShadow: '0 0 0px rgba(0,200,150,0)', color: 'var(--text-1)' },
-          { textShadow: '0 0 15px rgba(0,200,150,0.8)', color: 'var(--brand-light)', duration: 0.3, yoyo: true, repeat: 1 }
-        );
-      }
-    });
-  }, { scope: containerRef, dependencies: [value] });
-
-  return <span ref={containerRef}>{displayValue}</span>;
-};
+import { formatCurrency } from '@/lib/intl-formatters';
 
 /**
  * ChallanCalculator — High-Fidelity Fine Specialist
@@ -41,6 +20,7 @@ const FineCountUp = ({ value }: { value: number }) => {
  * Features: Visual violation selector, state-specific fine lookup, and premium result cards.
  */
 const ChallanCalculator: React.FC = () => {
+ const { t } = useTranslation();
  const [violationCode, setViolationCode] = useState('194D');
  const [vehicleClass, setVehicleClass] = useState('2W');
  const [stateCode, setStateCode] = useState('TN');
@@ -48,8 +28,6 @@ const ChallanCalculator: React.FC = () => {
  const [result, setResult] = useState<(ChallanResult & { source: string }) | null>(null);
  const [error, setError] = useState<string | null>(null);
  const [loading, setLoading] = useState(false);
-
- const { connectivity } = useAppStore(useShallow((s) => ({ connectivity: s.connectivity })));
 
   const violationRef = useRef<HTMLDivElement>(null);
   const configRef = useRef<HTMLDivElement>(null);
@@ -71,14 +49,13 @@ const ChallanCalculator: React.FC = () => {
     }
   }, { scope: resultRef, dependencies: [result] });
 
- const VIOLATIONS = [
- { code: '194D', label: 'Helmet', icon: '' },
- { code: '194B', label: 'Seatbelt', icon: '' },
- { code: '183', label: 'Speeding', icon: '' },
- { code: '185', label: 'Drunk Driving', icon: '' },
- { code: '181', label: 'License', icon: '' },
- { code: '179', label: 'Disobedience', icon: '' },
- ];
+  const VIOLATIONS = [
+    { code: '194D', label: t('challan.violation_194D', 'No Seatbelt/Helmet'), icon: '🪖' },
+    { code: '183', label: t('challan.violation_183', 'Speeding'), icon: '⚡' },
+    { code: '185', label: t('challan.violation_185', 'Drunk Driving'), icon: '🍷' },
+    { code: '181', label: t('challan.violation_181', 'License'), icon: '🪪' },
+    { code: '179', label: t('challan.violation_179', 'Disobedience'), icon: '🛑' },
+  ];
  const STATES = [
  { code: 'AP', label: 'Andhra Pradesh' }, { code: 'AR', label: 'Arunachal Pradesh' },
  { code: 'AS', label: 'Assam' }, { code: 'BR', label: 'Bihar' },
@@ -121,7 +98,7 @@ const ChallanCalculator: React.FC = () => {
       );
     } catch (err) {
       logClientError('Calculation failed:', err);
-      setError('Unable to calculate this challan right now. Please check your connectivity.');
+      setError(t('challan.calculation_failed', 'Unable to calculate this challan right now. Please check your connectivity.'));
     } finally {
       setLoading(false);
     }
@@ -132,8 +109,8 @@ const ChallanCalculator: React.FC = () => {
  
   {/* Violation Selection Grid */}
   <div ref={violationRef} className="space-y-4" role="radiogroup" aria-label="Select Violation Type">
-  <div className="text-[10px] font-semibold uppercase tracking-widest text-brand/40 px-2">Select Violation Type</div>
-  <div className="grid grid-cols-3 gap-3">
+  <div className="text-[10px] font-semibold uppercase tracking-widest text-brand/40 px-2">{t('challan.violation_protocol', '01. Violation Protocol')}</div>
+  <div className="grid grid-cols-2 gap-3">
   {VIOLATIONS.map((v) => (
   <button
   key={v.code}
@@ -161,7 +138,7 @@ const ChallanCalculator: React.FC = () => {
  <div ref={configRef} className="bg-surface-1/60 backdrop-blur-3xl p-6 rounded-[2rem] border border-brand/5 space-y-6">
  <div className="grid grid-cols-2 gap-4">
   <div className="space-y-2">
-  <label id="vehicle-class-label" className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">Vehicle Class</label>
+  <label id="vehicle-class-label" className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">{t('challan.vehicle_identification', '02. Vehicle Identification')}</label>
   <select 
   aria-labelledby="vehicle-class-label"
   value={vehicleClass} 
@@ -169,15 +146,15 @@ const ChallanCalculator: React.FC = () => {
      setVehicleClass(e.target.value);
      haptics.light();
   }}
-  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
+  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none font-medium"
   >
- <option value="2W">2-Wheeler</option>
- <option value="LMV">Car / SUV</option>
- <option value="HMV">Truck / HMV</option>
+ <option value="2W">{t('challan.two_wheeler', '2-Wheeler')}</option>
+ <option value="LMV">{t('challan.car_lmv', 'Car/LMV')}</option>
+ <option value="HMV">{t('challan.truck', 'Truck')}</option>
  </select>
  </div>
   <div className="space-y-2">
-  <label id="state-ut-label" className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">State/UT</label>
+  <label id="state-ut-label" className="text-[9px] font-semibold uppercase tracking-widest text-brand/40">{t('challan.jurisdiction', '03. Jurisdiction')}</label>
   <select 
   aria-labelledby="state-ut-label"
   value={stateCode} 
@@ -185,7 +162,7 @@ const ChallanCalculator: React.FC = () => {
      setStateCode(e.target.value);
      haptics.light();
   }}
-  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none"
+  className="w-full bg-bg/40 border border-brand/10 rounded-xl p-3 text-xs text-text-1 outline-none font-medium"
   >
  {STATES.map((state) => (
  <option key={state.code} value={state.code}>{state.label}</option>
@@ -207,7 +184,7 @@ const ChallanCalculator: React.FC = () => {
   }`}
   >
   <div className={`w-3 h-3 rounded-full ${isRepeat ? 'bg-emergency animate-pulse' : 'bg-white/10'}`} aria-hidden="true" />
-  <span className="text-[10px] font-semibold uppercase tracking-widest">Repeat Offender Status</span>
+  <span className="text-[10px] font-semibold uppercase tracking-widest">{t('challan.repeat_offender', 'Repeat Offender?')}</span>
   </button>
 
  <button 
@@ -218,7 +195,7 @@ const ChallanCalculator: React.FC = () => {
  disabled={loading}
  className="w-full py-5 bg-brand text-bg rounded-[1.5rem] text-[11px] font-semibold uppercase tracking-widest shadow-2xl hover:scale-[1.02] active:scale-95 transition-all"
  >
- {loading ? 'Processing Penalty Grid...' : 'Calculate Penalty'}
+ {loading ? t('challan.loading', 'Processing...') : t('challan.title', 'Calculate Penalty')}
  </button>
  </div>
 
@@ -247,20 +224,20 @@ const ChallanCalculator: React.FC = () => {
  </div>
 
  <div className="flex items-baseline gap-2">
- <span className="text-5xl font-black text-text-1 tracking-tighter">
- Rs. <FineCountUp value={result.amount_due} />
+ <span className="text-4xl font-black text-text-1 tracking-tighter">
+   {formatCurrency(result.amount_due)}
  </span>
  {isRepeat && (
- <span className="text-[10px] font-semibold text-emergency uppercase tracking-widest">Multiplied Penalty</span>
+ <span className="text-[10px] font-semibold text-emergency uppercase tracking-widest ml-2">{t('challan.repeat_offence', 'Repeat Offence')}</span>
  )}
  </div>
 
  <div className="mt-8 pt-6 border-t border-white/5 flex gap-4">
  <button className="flex-1 py-3 bg-brand/10 hover:bg-brand/20 rounded-xl text-brand text-[9px] font-semibold uppercase tracking-widest border border-brand/20">
- Legal Advice
+ {t('challan.ai_guidance', 'AI Guidance')}
  </button>
  <button className="flex-1 py-3 bg-brand text-bg rounded-xl text-[9px] font-semibold uppercase tracking-widest">
- Pay Now
+ {t('profile.save', 'Save')}
  </button>
  </div>
  </div>

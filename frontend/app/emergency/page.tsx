@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
 import {
-  Shield, ArrowLeft, ChevronDown, ChevronUp,
-  Heart, Flame, Car, AlertTriangle, Phone, Zap,
-  Wifi, WifiOff, BookOpen, Wind, Activity, Lock, Cpu, Navigation, Signal, ArrowRight, ShieldAlert
+  Shield, ChevronDown,
+  Heart, Flame, Car, Phone, Zap,
+  BookOpen, Activity, Cpu, ArrowRight,
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import TopSearch from '@/components/dashboard/TopSearch';
@@ -14,7 +13,7 @@ import { useAppStore } from '@/lib/store';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { useSplitTextEntry } from '@/hooks/useSplitTextEntry';
-import { haptics } from '@/lib/haptics';
+
 
 const CATEGORIES = ['All', 'Medical', 'Fire', 'Accident', 'Criminal'] as const;
 type Category = typeof CATEGORIES[number];
@@ -369,7 +368,7 @@ export default function EmergencyProtocolsPage() {
           </div>
 
           <div ref={protocolGridRef} className="grid gap-4 stagger-entrance">
-              {filtered.map((protocol, i) => {
+              {filtered.map((protocol) => {
                 const isExpanded = expandedId === protocol.id;
                 return (
                   <ProtocolCard
@@ -377,7 +376,6 @@ export default function EmergencyProtocolsPage() {
                     protocol={protocol}
                     isExpanded={isExpanded}
                     onToggle={() => setExpandedId(isExpanded ? null : protocol.id)}
-                    theme={theme}
                   />
                 );
               })}
@@ -406,11 +404,10 @@ export default function EmergencyProtocolsPage() {
 }
 
 // ── Protocol Card Component with GSAP ──
-function ProtocolCard({ protocol, isExpanded, onToggle, theme }: {
+function ProtocolCard({ protocol, isExpanded, onToggle }: {
   protocol: Protocol;
   isExpanded: boolean;
   onToggle: () => void;
-  theme: string;
 }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const chevronRef = useRef<HTMLDivElement>(null);

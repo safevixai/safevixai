@@ -13,7 +13,7 @@ const SUGGESTED_STARTERS = [
 ];
 
 interface SuggestedInquiriesProps {
-  onSelect: (text: string) => void;
+  onSelect: (_text: string) => void;
 }
 
 export default function SuggestedInquiries({ onSelect }: SuggestedInquiriesProps) {

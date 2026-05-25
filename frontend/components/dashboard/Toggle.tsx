@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 interface ToggleProps {
   checked: boolean;
-  onChange: (checked: boolean) => void;
+  onChange: (_checked: boolean) => void;
   ariaLabel?: string;
 }
 

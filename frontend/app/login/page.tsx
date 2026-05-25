@@ -4,19 +4,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Shield, Eye, EyeOff, LogIn, AlertTriangle,
-  CheckCircle2, Zap, Lock, Mail, ChevronRight,
-  Wifi, WifiOff
+  CheckCircle2, Zap, Lock, Mail, ChevronRight, Wifi,
 } from 'lucide-react';
 import { PUBLIC_API_BASE_URL } from '@/lib/public-env';
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { useAppStore } from '@/lib/store';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
+import { useTranslation } from 'react-i18next';
 
 const API_URL = PUBLIC_API_BASE_URL;
 const DEMO_CREDS: Array<{ label: string; email: string; password: string; color: string }> = [];
 
 export default function LoginPage() {
+  const { t } = useTranslation('auth');
   const router = useRouter();
   const { setAuth, isAuthenticated, setUserProfile } = useAppStore(useShallow((s) => ({ setAuth: s.setAuth, isAuthenticated: s.isAuthenticated, setUserProfile: s.setUserProfile })));
   const pageRef = usePageEntry();
@@ -49,7 +50,7 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim() || !password.trim()) {
-      setError('All fields required.');
+      setError(t('all_fields_required'));
       return;
     }
     setError('');
@@ -155,7 +156,7 @@ export default function LoginPage() {
                   SafeVixAI
                 </h1>
                 <p className="text-[10px] font-bold text-brand-light uppercase tracking-[0.1em] mt-0.5">
-                  Operator Authentication
+                  {t('operator_authentication', { defaultValue: 'Operator Authentication' })}
                 </p>
               </div>
 
@@ -163,11 +164,11 @@ export default function LoginPage() {
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/20 border border-brand/30">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
-                  <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">Sentinel Online</span>
+                  <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">{t('sentinel_online')}</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                   <Lock size={9} className="text-text-2" />
-                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">JWT Secured</span>
+                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">{t('jwt_secured')}</span>
                 </div>
               </div>
             </div>
@@ -178,7 +179,7 @@ export default function LoginPage() {
               {/* Email */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
-                  Operator Email
+                  {t('operator_email')}
                 </label>
                 <div className="relative">
                   <Mail size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
@@ -197,7 +198,7 @@ export default function LoginPage() {
               {/* Password */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
-                  Access Key
+                  {t('access_key')}
                 </label>
                 <div className="relative">
                   <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
@@ -256,12 +257,12 @@ export default function LoginPage() {
                     <div
                       className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
                     />
-                    <span>Authenticating...</span>
+                    <span>{t('authenticating')}</span>
                   </>
                 ) : (
                   <>
                     <LogIn size={16} />
-                    <span>Enter Command Center</span>
+                    <span>{t('enter_command_center')}</span>
                   </>
                 )}
               </button>

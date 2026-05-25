@@ -1,6 +1,7 @@
+import type { AsyncDuckDB } from '@duckdb/duckdb-wasm';
 import { OFFLINE_CHALLAN_LOOKUP_DELAY_MS } from './safety-constants';
 
-let dbInstance: any = null;
+let dbInstance: AsyncDuckDB | null = null;
 
 // Clean CSV parser for Javascript fallback
 function parseCSV(text: string): Record<string, string>[] {

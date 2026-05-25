@@ -1,29 +1,34 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { gsap } from '@/lib/gsap';
-import TypingIndicator from '@/components/chat/TypingIndicator';
-import SuggestedInquiries from '@/components/chat/SuggestedInquiries';
+import { useGSAP } from '@gsap/react';
 import {
- ArrowLeft, ShieldCheck, BookOpen, Copy,
- HelpCircle, Mic, Paperclip, Send, ThumbsUp, ThumbsDown, RotateCcw,
- Search, Menu, Volume2, VolumeX, Wifi, WifiOff
+  ShieldCheck, BookOpen, Copy,
+  HelpCircle, ThumbsUp, ThumbsDown, RotateCcw,
+  Volume2, VolumeX, Wifi, WifiOff
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
-import { ModelLoader } from '@/components/ModelLoader';
 import { getOfflineAI, askOfflineAI } from '@/lib/offline-ai';
 import { track } from '@/lib/analytics';
 import TopSearch from '@/components/dashboard/TopSearch';
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
-import PureMultimodalInput, { Attachment } from '@/components/chat/multimodal-ai-chat-input';
 import { useGeolocation } from '@/lib/geolocation';
 import { logClientError } from '@/lib/client-logger';
+import { formatTime } from '@/lib/intl-formatters';
 import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
 import { getLanguageByCode } from '@/lib/languages';
 import { appendChatLog, loadChatHistory } from '@/lib/chat-history';
+import { useTranslation } from 'react-i18next';
+
+const TypingIndicator = dynamic(() => import('@/components/chat/TypingIndicator'), { ssr: false })
+const SuggestedInquiries = dynamic(() => import('@/components/chat/SuggestedInquiries'), { ssr: false })
+const PureMultimodalInput = dynamic(() => import('@/components/chat/multimodal-ai-chat-input'), { ssr: false })
+const ModelLoader = dynamic(() => import('@/components/ModelLoader').then(mod => ({ default: mod.ModelLoader })), { ssr: false })
+
 
 const CHATBOT_URL = PUBLIC_CHATBOT_BASE_URL;
 
@@ -67,37 +72,20 @@ interface Message {
 
 import TypingText from '@/components/dashboard/TypingText';
 
-const INITIAL_MESSAGES: Message[] = [
- {
- id: 'sys-1',
- role: 'system',
- text: 'Session encrypted with SafeVixAI Protocol v2.4',
- timestamp: '',
- }
-];
-
-const SUGGESTED_STARTERS = [
- " Help! I've been in an accident, what do I do?",
- " Send an ambulance to my current location",
- "Explain the hit-and-run legal procedure",
- "What are my rights during a police inspection?"
-];
-
 export default function ChatPage() {
- const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
- const [input, setInput] = useState('');
- const [loading, setLoading] = useState(false);
- const [toastMessage, setToastMessage] = useState<string | null>(null);
- const [showSuggestions, setShowSuggestions] = useState(false);
- const setSystemSidebarOpen = useAppStore((state) => state.setSystemSidebarOpen);
- const { aiMode, modelLoadProgress, setAiMode, setModelLoadProgress } = useAppStore(
-   useShallow((s) => ({
-     aiMode: s.aiMode,
-     modelLoadProgress: s.modelLoadProgress,
-     setAiMode: s.setAiMode,
-     setModelLoadProgress: s.setModelLoadProgress,
-   }))
- );
+  const { t } = useTranslation();
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const { aiMode, setAiMode, setModelLoadProgress } = useAppStore(
+    useShallow((s) => ({
+      aiMode: s.aiMode,
+      setAiMode: s.setAiMode,
+      setModelLoadProgress: s.setModelLoadProgress,
+    }))
+  );
 
   const toggleAiMode = useCallback(async (mode: 'online' | 'offline') => {
     if (mode === 'online') {
@@ -117,23 +105,27 @@ export default function ChatPage() {
       } catch (err) {
         logClientError('Failed to initialize offline AI:', err);
         setAiMode('online');
-        setToastMessage('Offline AI failed to initialize. Using online mode.');
+        setToastMessage(t('chat.offline_ai_failed', 'Offline AI failed to initialize. Using online mode.'));
       }
     }
-  }, [setAiMode, setModelLoadProgress]);
+  }, [setAiMode, setModelLoadProgress, t]);
 
  const { location } = useGeolocation();
- const [sessionId] = useState(() => {
-   if (typeof window === 'undefined') return `assistant-${Date.now()}`;
-   const existing = window.localStorage.getItem('safevixai:assistant-session');
-   if (existing) return existing;
-   const next = `assistant-${crypto.randomUUID()}`;
-   window.localStorage.setItem('safevixai:assistant-session', next);
-   return next;
- });
+  const [sessionId] = useState(() => {
+    if (typeof window === 'undefined') return `assistant-${Date.now()}`;
+    const existing = window.localStorage.getItem('safevixai:assistant-session');
+    if (existing) return existing;
+    const uuid = typeof crypto !== 'undefined' && crypto.randomUUID
+      ? crypto.randomUUID()
+      : Math.random().toString(36).substring(2, 15) + '-' + Date.now();
+    const next = `assistant-${uuid}`;
+    window.localStorage.setItem('safevixai:assistant-session', next);
+    return next;
+  });
  const [selectedLanguage, setSelectedLanguage] = useState('en');
- const scrollRef = useRef<HTMLDivElement>(null);
- const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
  const welcomeAdded = useRef(false);
  const [autoRead, setAutoRead] = useState(false);
 
@@ -160,41 +152,47 @@ export default function ChatPage() {
    setIsSpeaking(false);
  }, []);
 
- useEffect(() => {
- // Guard against React StrictMode double-mount
- if (welcomeAdded.current) return;
- welcomeAdded.current = true;
- document.title = 'AI Assistant | SafeVixAI';
-
- const hydrateChat = async () => {
-   const history = await loadChatHistory(sessionId);
-   if (history.length > 0) {
-     setMessages([
-       INITIAL_MESSAGES[0],
-       ...history.map((entry) => ({
-         id: entry.id,
-         role: entry.role,
-         text: entry.text,
-         timestamp: entry.timestamp,
-         citations: entry.citations,
-         provider: entry.provider,
-       })),
-     ]);
-     return;
-   }
-
-   const welcomeMsg: Message = {
-   id: 'ai-1',
-   role: 'ai',
-   text: 'SafeVixAI assistant online. I can answer questions about the Motor Vehicles Act, traffic penalties, your rights during a police stop, and road safety laws across India. What do you need?',
-   timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-   provider: 'SafeVixAI Router',
-   };
-   setMessages(prev => [...prev, welcomeMsg]);
- };
-
- void hydrateChat();
- }, [sessionId]);
+  useEffect(() => {
+  // Guard against React StrictMode double-mount
+  if (welcomeAdded.current) return;
+  welcomeAdded.current = true;
+  document.title = `${t('nav.assistant', 'AI Assistant')} | SafeVixAI`;
+ 
+  const hydrateChat = async () => {
+    const initialSysMessage: Message = {
+      id: 'sys-1',
+      role: 'system',
+      text: t('chat.session_encrypted', 'Session encrypted with SafeVixAI Protocol v2.4'),
+      timestamp: '',
+    };
+    const history = await loadChatHistory(sessionId);
+    if (history.length > 0) {
+      setMessages([
+        initialSysMessage,
+        ...history.map((entry) => ({
+          id: entry.id,
+          role: entry.role,
+          text: entry.text,
+          timestamp: entry.timestamp,
+          citations: entry.citations,
+          provider: entry.provider,
+        })),
+      ]);
+      return;
+    }
+ 
+    const welcomeMsg: Message = {
+      id: 'ai-1',
+      role: 'ai',
+      text: t('chat.welcome_msg', 'SafeVixAI assistant online. I can answer questions about the Motor Vehicles Act, traffic penalties, your rights during a police stop, and road safety laws across India. What do you need?'),
+      timestamp: formatTime(new Date()),
+      provider: 'SafeVixAI Router',
+    };
+    setMessages([initialSysMessage, welcomeMsg]);
+  };
+ 
+  void hydrateChat();
+  }, [sessionId, t]);
 
  useEffect(() => {
  if (scrollRef.current) {
@@ -219,7 +217,7 @@ export default function ChatPage() {
  const handleSend = useCallback(async (text: string) => {
    if (!text.trim()) return;
 
-   const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+   const time = formatTime(new Date());
    const userMsg: Message = { id: Date.now().toString(), role: 'user', text, timestamp: time };
    setMessages(prev => [...prev, userMsg]);
    void appendChatLog({
@@ -303,20 +301,24 @@ export default function ChatPage() {
      }
    } catch (err) {
      logClientError('Chat error:', err);
-     setMessages(prev =>
-       prev.map(m =>
-         m.id === assistantId
-           ? { ...m, text: 'Neural link interrupted. Please verify connectivity and retry protocol.' }
-           : m
-       )
-     );
+      setMessages(prev =>
+        prev.map(m =>
+          m.id === assistantId
+            ? { ...m, text: t('chat.connection_interrupted', 'Neural link interrupted. Please verify connectivity and retry protocol.') }
+            : m
+        )
+      );
    } finally {
      setLoading(false);
    }
-  }, [sessionId, location, autoRead, speakText, aiMode]);
+  }, [sessionId, location, autoRead, speakText, aiMode, t]);
+
+  useGSAP(() => {
+    gsap.from(pageRef.current, { opacity: 0, y: 16, duration: 0.35, ease: 'power2.out' });
+  }, { scope: pageRef });
 
   return (
-   <div className="aurora-glow w-full h-[var(--full-content-h)] md:h-[var(--full-content-h-desktop)] flex flex-col overflow-hidden bg-surface-1">
+   <div ref={pageRef} className="aurora-glow w-full h-[var(--full-content-h)] md:h-[var(--full-content-h-desktop)] flex flex-col overflow-hidden bg-surface-1">
   {/* Model Loading HUD overlay */}
   <ModelLoader />
 
@@ -326,10 +328,8 @@ export default function ChatPage() {
   {/* Ambient Glows */}
   <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand/5 dark:bg-brand/10 blur-[120px] hidden dark:block" />
   <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] rounded-full bg-brand-light/5 dark:bg-brand-light/10 blur-[100px] hidden dark:block" />
-  </div>
-
-   {/* ── Unified Tactical Navigation Header ── */}
-    <TerminalHeader title="Assistant HUD" subtitle="TACTICAL INTEL & LEGAL" rightElement={
+     {/* ── Unified Tactical Navigation Header ── */}
+    <TerminalHeader title={t('chat.title', 'Assistant HUD')} subtitle={t('chat.subtitle', 'TACTICAL INTEL & LEGAL')} rightElement={
       <div className="flex items-center gap-3">
         {/* Mode Toggle */}
         <div className="flex items-center bg-surface-2 dark:bg-white/5 rounded-full p-0.5 border border-border-md dark:border-white/10">
@@ -340,10 +340,10 @@ export default function ChatPage() {
                 ? 'bg-brand text-brand-foreground shadow-sm shadow-brand/10'
                 : 'text-text-2 hover:text-text-1 dark:hover:text-text-3'
             }`}
-            title="Switch to Online AI"
+            title={t('chat.switch_online', 'Switch to Online AI')}
           >
             <Wifi size={12} />
-            Online
+            {t('chat.online', 'Online')}
           </button>
           <button
             onClick={() => toggleAiMode('offline')}
@@ -352,18 +352,19 @@ export default function ChatPage() {
                 ? 'bg-brand text-brand-foreground shadow-sm shadow-brand/10'
                 : 'text-text-2 hover:text-text-1 dark:hover:text-text-3'
             }`}
-            title="Switch to Offline AI (Gemma)"
+            title={t('chat.switch_offline', 'Switch to Offline AI (Gemma)')}
           >
             <WifiOff size={12} />
-            Offline
+            {t('chat.offline', 'Offline')}
           </button>
         </div>
-
+ 
         {isSpeaking && (
           <button
             onClick={stopSpeaking}
             className="p-2 rounded-full transition-all bg-red-500/10 text-red-500 border border-red-500/30 animate-pulse"
-            title="Stop Reading"
+            title={t('chat.stop_reading', 'Stop Reading')}
+            aria-label={t('chat.stop_reading', 'Stop Reading')}
           >
             <VolumeX size={16} />
           </button>
@@ -372,15 +373,16 @@ export default function ChatPage() {
           onClick={() => {
             setAutoRead(!autoRead);
             if (autoRead) stopSpeaking();
-            setToastMessage(autoRead ? "Audio disabled" : "Audio enabled");
+            setToastMessage(autoRead ? t('chat.audio_disabled', 'Audio disabled') : t('chat.audio_enabled', 'Audio enabled'));
           }}
           className={`p-2 rounded-full transition-colors border ${autoRead ? 'bg-brand/20 text-brand border-brand/30 shadow-[0_0_15px_rgba(0,200,150,0.2)]' : 'bg-surface-2 text-text-3 border-border hover:text-text-1'}`}
-          title={autoRead ? "Disable Auto-read" : "Enable Auto-read"}
+          title={autoRead ? t('chat.auto_read_disable', 'Disable Auto-read') : t('chat.auto_read_enable', 'Enable Auto-read')}
+          aria-label={autoRead ? t('chat.auto_read_disable', 'Disable Auto-read') : t('chat.auto_read_enable', 'Enable Auto-read')}
         >
           {autoRead ? <Volume2 size={16} /> : <VolumeX size={16} />}
         </button>
       </div>
-    } />
+    } /> </div>
 
  <div className="lg:hidden relative z-40">
  <TopSearch isMapPage={false} forceShow={true} showBack={false} />
@@ -468,48 +470,56 @@ export default function ChatPage() {
  <div className="flex items-center gap-4 ml-2 mb-1">
  <time dateTime={msg.timestamp} suppressHydrationWarning className="text-[10px] text-text-3 font-medium tracking-wide">{msg.timestamp} • SafeVixAI</time>
  <div className="flex gap-1.5 ml-1">
+<button 
+    onClick={async () => {
+      try {
+        await navigator.clipboard.writeText(msg.text);
+        setToastMessage(t('chat.copied', 'Copied to clipboard!'));
+      } catch {
+        setToastMessage(t('chat.clipboard_unavailable', 'Clipboard unavailable'));
+      }
+    }}
+    className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
+    title={t('chat.copy', 'Copy')}
+    aria-label={t('chat.copy', 'Copy')}
+    >
+    <Copy size={13} strokeWidth={2} />
+    </button>
+<button 
+    onClick={() => {
+      speakText(msg.text);
+      setToastMessage(t('chat.reading_aloud', 'Reading aloud...'));
+    }}
+    className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
+    title={t('chat.read_aloud', 'Read Aloud')}
+    aria-label={t('chat.read_aloud', 'Read Aloud')}
+    >
+    <Volume2 size={13} strokeWidth={2} />
+    </button>
   <button 
-  onClick={async () => {
-    try {
-      await navigator.clipboard.writeText(msg.text);
-      setToastMessage("Copied to clipboard!");
-    } catch {
-      setToastMessage("Clipboard unavailable");
-    }
-  }}
+  onClick={() => setToastMessage(t('chat.feedback_recorded', 'Feedback recorded'))}
   className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
-  title="Copy"
+  title={t('chat.thumbs_up', 'Thumbs Up')}
+  aria-label={t('chat.thumbs_up', 'Thumbs Up')}
   >
-  <Copy size={13} strokeWidth={2} />
+  <ThumbsUp size={13} strokeWidth={2} />
   </button>
   <button 
-  onClick={() => {
-    speakText(msg.text);
-    setToastMessage("Reading aloud...");
-  }}
+  onClick={() => setToastMessage(t('chat.feedback_recorded', 'Feedback recorded'))}
   className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
-  title="Read Aloud"
+  title={t('chat.thumbs_down', 'Thumbs Down')}
+  aria-label={t('chat.thumbs_down', 'Thumbs Down')}
   >
-  <Volume2 size={13} strokeWidth={2} />
+  <ThumbsDown size={13} strokeWidth={2} />
   </button>
- <button 
- onClick={() => setToastMessage("Feedback recorded")}
- className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
- >
- <ThumbsUp size={13} strokeWidth={2} />
- </button>
- <button 
- onClick={() => setToastMessage("Feedback recorded")}
- className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2"
- >
- <ThumbsDown size={13} strokeWidth={2} />
- </button>
- <button 
- onClick={() => setToastMessage("Retrying...")}
- className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2 ml-1"
- >
- <RotateCcw size={13} strokeWidth={2} />
- </button>
+  <button 
+  onClick={() => setToastMessage(t('chat.retrying', 'Retrying...'))}
+  className="text-text-3 hover:text-text-2 transition-colors p-1 rounded hover:bg-surface-2 ml-1"
+  title={t('chat.retry', 'Retry')}
+  aria-label={t('chat.retry', 'Retry')}
+  >
+  <RotateCcw size={13} strokeWidth={2} />
+  </button>
  </div>
  </div>
 
@@ -536,31 +546,31 @@ export default function ChatPage() {
  })}
 
  {((messages.length <= 2) || showSuggestions) && !loading && (
-  <div style={{ animation: "fadeInUp 0.3s ease-out" }}
-  className="self-start w-full mt-2"
-  >
-  <p className="text-xs text-text-3 mb-3 font-semibold px-2 uppercase tracking-widest">Suggested Inquiries</p>
-  <SuggestedInquiries onSelect={handleSend} />
-  {messages.length > 2 && (
-  <button 
-  onClick={() => setShowSuggestions(false)}
-  className="mt-4 text-xs font-semibold text-text-3 hover:text-text-1 underline underline-offset-2 transition-colors mx-auto block"
-  >
-  Hide Suggestions
-  </button>
-  )}
-  </div>
+   <div style={{ animation: "fadeInUp 0.3s ease-out" }}
+   className="self-start w-full mt-2"
+   >
+   <p className="text-xs text-text-3 mb-3 font-semibold px-2 uppercase tracking-widest">{t('chat.suggested_inquiries', 'Suggested Inquiries')}</p>
+   <SuggestedInquiries onSelect={handleSend} />
+   {messages.length > 2 && (
+   <button 
+   onClick={() => setShowSuggestions(false)}
+   className="mt-4 text-xs font-semibold text-text-3 hover:text-text-1 underline underline-offset-2 transition-colors mx-auto block"
+   >
+   {t('chat.hide_suggested', 'Hide Suggestions')}
+   </button>
+   )}
+   </div>
   )}
 
  {messages.length > 2 && !showSuggestions && !loading && (
- <div style={{ animation: "fadeIn 0.3s ease-out" }} className="self-center">
- <button 
- onClick={() => setShowSuggestions(true)}
- className="px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-border text-xs font-semibold text-text-2 hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm"
- >
- Show Suggested Inquiries
- </button>
- </div>
+  <div style={{ animation: "fadeIn 0.3s ease-out" }} className="self-center">
+  <button 
+  onClick={() => setShowSuggestions(true)}
+  className="px-4 py-2 rounded-full bg-white/50 dark:bg-white/5 border border-border text-xs font-semibold text-text-2 hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm"
+  >
+  {t('chat.show_suggested', 'Show Suggested Inquiries')}
+  </button>
+  </div>
  )}
 
   {/* Typing Indicator */}

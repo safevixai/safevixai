@@ -1,0 +1,26 @@
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
+const onLocationChange = jest.fn();
+
+jest.mock('next/dynamic', () => {
+  const MockLocationPicker = (props: Record<string, unknown>) => (
+    <div data-testid="location-picker-inner" data-lat={props.lat} data-lon={props.lon}>Map Placeholder</div>
+  );
+  return () => MockLocationPicker;
+});
+
+describe('LocationPicker', () => {
+  it('renders dynamically loaded map component', async () => {
+    const LocationPicker = (await import('../report/LocationPicker')).default;
+    const { container } = render(<LocationPicker lat={13.0827} lon={80.2707} onLocationChange={onLocationChange} />);
+    expect(container.querySelector('[data-testid="location-picker-inner"]')).toBeInTheDocument();
+  });
+
+  it('renders without crashing', async () => {
+    const LocationPicker = (await import('../report/LocationPicker')).default;
+    render(<LocationPicker lat={13.0827} lon={80.2707} onLocationChange={onLocationChange} />);
+    expect(screen.getByTestId('location-picker-inner')).toBeInTheDocument();
+  });
+});

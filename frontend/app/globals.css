@@ -24,7 +24,9 @@
   --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
   --header-h: 52px;
   --navbar-bottom-h: 64px;
+  --full-content-h: calc(100vh - var(--header-h) - var(--navbar-bottom-h));
   --full-content-h: calc(100dvh - var(--header-h) - var(--navbar-bottom-h));
+  --full-content-h-desktop: calc(100vh - var(--header-h));
   --full-content-h-desktop: calc(100dvh - var(--header-h));
 }
 
@@ -780,3 +782,8 @@ body {
     border-color: var(--border);
   }
 }
+
+::view-transition-old(root) { animation: 200ms ease-in both fade-out; }
+::view-transition-new(root) { animation: 300ms ease-out both fade-in; }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes fade-in  { from { opacity: 0; } }

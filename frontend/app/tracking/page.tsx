@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { useAppStore } from '@/lib/store';
-import { logClientError } from '@/lib/client-logger';
+
 import { publicApiWebSocketUrl } from '@/lib/public-env';
 import { GROUP_TRACKING_BROADCAST_INTERVAL_MS } from '@/lib/safety-constants';
 import { useWebSocket, type WSStatus } from '@/lib/useWebSocket';
 import { EmergencyMap } from '@/components/EmergencyMap';
 import SystemHeader from '@/components/dashboard/SystemHeader';
-import { Loader2, Users, MapPin, Navigation, Wifi, WifiOff, RefreshCw } from 'lucide-react';
+import { Loader2, Users, Wifi, WifiOff, RefreshCw } from 'lucide-react';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 

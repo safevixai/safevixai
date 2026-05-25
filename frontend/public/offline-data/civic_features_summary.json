@@ -1,0 +1,647 @@
+{
+  "ahmedabad_bus": {
+    "stop": 111,
+    "_total": 111
+  },
+  "ahmedabad": {
+    "cctv": 5,
+    "hospital": 691,
+    "parking": 4,
+    "streetlight": 42,
+    "_total": 742
+  },
+  "ahmedabad_fire": {
+    "station": 2,
+    "_total": 2
+  },
+  "ahmedabad_fuel": {
+    "station": 21,
+    "_total": 21
+  },
+  "ahmedabad_toll": {
+    "booth": 14,
+    "_total": 14
+  },
+  "ahmedabad_traffic": {
+    "signal": 66,
+    "_total": 66
+  },
+  "ahmedabad_zebra": {
+    "crossing": 19,
+    "_total": 19
+  },
+  "bengaluru_bus": {
+    "stop": 3237,
+    "_total": 3237
+  },
+  "bengaluru": {
+    "cctv": 2805,
+    "hospital": 869,
+    "parking": 246,
+    "streetlight": 5821,
+    "_total": 9741
+  },
+  "bengaluru_fire": {
+    "station": 4,
+    "_total": 4
+  },
+  "bengaluru_fuel": {
+    "station": 143,
+    "_total": 143
+  },
+  "bengaluru_police": {
+    "station": 70,
+    "_total": 70
+  },
+  "bengaluru_speed": {
+    "bump": 342,
+    "_total": 342
+  },
+  "bengaluru_toll": {
+    "booth": 45,
+    "_total": 45
+  },
+  "bengaluru_traffic": {
+    "signal": 1372,
+    "_total": 1372
+  },
+  "bengaluru_zebra": {
+    "crossing": 8,
+    "_total": 8
+  },
+  "bhopal_bus": {
+    "stop": 44,
+    "_total": 44
+  },
+  "bhopal": {
+    "cctv": 3,
+    "hospital": 257,
+    "parking": 5,
+    "_total": 265
+  },
+  "bhopal_fuel": {
+    "station": 30,
+    "_total": 30
+  },
+  "bhopal_police": {
+    "station": 15,
+    "_total": 15
+  },
+  "bhopal_speed": {
+    "bump": 1,
+    "_total": 1
+  },
+  "bhopal_toll": {
+    "booth": 2,
+    "_total": 2
+  },
+  "bhopal_traffic": {
+    "signal": 48,
+    "_total": 48
+  },
+  "bhopal_zebra": {
+    "crossing": 3,
+    "_total": 3
+  },
+  "chennai_bus": {
+    "stop": 828,
+    "_total": 828
+  },
+  "chennai": {
+    "cctv": 165,
+    "hospital": 564,
+    "parking": 40,
+    "streetlight": 1559,
+    "_total": 2328
+  },
+  "chennai_fire": {
+    "station": 4,
+    "_total": 4
+  },
+  "chennai_fuel": {
+    "station": 151,
+    "_total": 151
+  },
+  "chennai_police": {
+    "station": 56,
+    "_total": 56
+  },
+  "chennai_speed": {
+    "bump": 57,
+    "_total": 57
+  },
+  "chennai_toll": {
+    "booth": 7,
+    "_total": 7
+  },
+  "chennai_traffic": {
+    "signal": 393,
+    "_total": 393
+  },
+  "chennai_zebra": {
+    "crossing": 1,
+    "_total": 1
+  },
+  "delhi_bus": {
+    "stop": 2243,
+    "_total": 2243
+  },
+  "delhi": {
+    "cctv": 1385,
+    "hospital": 696,
+    "parking": 109,
+    "streetlight": 1125,
+    "_total": 3315
+  },
+  "delhi_fire": {
+    "station": 22,
+    "_total": 22
+  },
+  "delhi_fuel": {
+    "station": 318,
+    "_total": 318
+  },
+  "delhi_police": {
+    "station": 139,
+    "_total": 139
+  },
+  "delhi_speed": {
+    "bump": 705,
+    "_total": 705
+  },
+  "delhi_toll": {
+    "booth": 52,
+    "_total": 52
+  },
+  "delhi_traffic": {
+    "signal": 1271,
+    "_total": 1271
+  },
+  "delhi_zebra": {
+    "crossing": 16,
+    "_total": 16
+  },
+  "hyderabad_bus": {
+    "stop": 582,
+    "_total": 582
+  },
+  "hyderabad": {
+    "cctv": 43,
+    "hospital": 935,
+    "parking": 109,
+    "streetlight": 1717,
+    "_total": 2804
+  },
+  "hyderabad_fire": {
+    "station": 6,
+    "_total": 6
+  },
+  "hyderabad_fuel": {
+    "station": 280,
+    "_total": 280
+  },
+  "hyderabad_police": {
+    "station": 67,
+    "_total": 67
+  },
+  "hyderabad_speed": {
+    "bump": 45,
+    "_total": 45
+  },
+  "hyderabad_toll": {
+    "booth": 33,
+    "_total": 33
+  },
+  "hyderabad_traffic": {
+    "signal": 252,
+    "_total": 252
+  },
+  "hyderabad_zebra": {
+    "crossing": 11,
+    "_total": 11
+  },
+  "indore_bus": {
+    "stop": 80,
+    "_total": 80
+  },
+  "indore_fuel": {
+    "station": 101,
+    "_total": 101
+  },
+  "indore": {
+    "hospital": 342,
+    "parking": 1,
+    "streetlight": 3,
+    "_total": 346
+  },
+  "indore_police": {
+    "station": 9,
+    "_total": 9
+  },
+  "indore_speed": {
+    "bump": 20,
+    "_total": 20
+  },
+  "indore_toll": {
+    "booth": 2,
+    "_total": 2
+  },
+  "indore_traffic": {
+    "signal": 97,
+    "_total": 97
+  },
+  "jaipur_bus": {
+    "stop": 352,
+    "_total": 352
+  },
+  "jaipur": {
+    "cctv": 5,
+    "hospital": 395,
+    "parking": 14,
+    "streetlight": 122,
+    "_total": 536
+  },
+  "jaipur_fire": {
+    "station": 1,
+    "_total": 1
+  },
+  "jaipur_fuel": {
+    "station": 68,
+    "_total": 68
+  },
+  "jaipur_police": {
+    "station": 15,
+    "_total": 15
+  },
+  "jaipur_speed": {
+    "bump": 12,
+    "_total": 12
+  },
+  "jaipur_toll": {
+    "booth": 1,
+    "_total": 1
+  },
+  "jaipur_traffic": {
+    "signal": 75,
+    "_total": 75
+  },
+  "kanpur_bus": {
+    "stop": 5,
+    "_total": 5
+  },
+  "kanpur": {
+    "cctv": 5,
+    "hospital": 167,
+    "parking": 2,
+    "streetlight": 9,
+    "_total": 183
+  },
+  "kanpur_fuel": {
+    "station": 4,
+    "_total": 4
+  },
+  "kanpur_police": {
+    "station": 5,
+    "_total": 5
+  },
+  "kanpur_speed": {
+    "bump": 1,
+    "_total": 1
+  },
+  "kanpur_traffic": {
+    "signal": 34,
+    "_total": 34
+  },
+  "kolkata_bus": {
+    "stop": 465,
+    "_total": 465
+  },
+  "kolkata": {
+    "cctv": 10,
+    "hospital": 220,
+    "parking": 3,
+    "streetlight": 137,
+    "_total": 370
+  },
+  "kolkata_fire": {
+    "station": 3,
+    "_total": 3
+  },
+  "kolkata_fuel": {
+    "station": 54,
+    "_total": 54
+  },
+  "kolkata_police": {
+    "station": 29,
+    "_total": 29
+  },
+  "kolkata_speed": {
+    "bump": 24,
+    "_total": 24
+  },
+  "kolkata_toll": {
+    "booth": 4,
+    "_total": 4
+  },
+  "kolkata_traffic": {
+    "signal": 60,
+    "_total": 60
+  },
+  "kolkata_zebra": {
+    "crossing": 1,
+    "_total": 1
+  },
+  "lucknow_bus": {
+    "stop": 25,
+    "_total": 25
+  },
+  "lucknow": {
+    "cctv": 36,
+    "hospital": 227,
+    "parking": 9,
+    "streetlight": 75,
+    "_total": 347
+  },
+  "lucknow_fuel": {
+    "station": 25,
+    "_total": 25
+  },
+  "lucknow_police": {
+    "station": 19,
+    "_total": 19
+  },
+  "lucknow_speed": {
+    "bump": 12,
+    "_total": 12
+  },
+  "lucknow_toll": {
+    "booth": 2,
+    "_total": 2
+  },
+  "lucknow_traffic": {
+    "signal": 32,
+    "_total": 32
+  },
+  "ludhiana_bus": {
+    "stop": 14,
+    "_total": 14
+  },
+  "ludhiana_fire": {
+    "station": 1,
+    "_total": 1
+  },
+  "ludhiana_fuel": {
+    "station": 36,
+    "_total": 36
+  },
+  "ludhiana": {
+    "hospital": 322,
+    "parking": 9,
+    "streetlight": 1,
+    "_total": 332
+  },
+  "ludhiana_police": {
+    "station": 18,
+    "_total": 18
+  },
+  "ludhiana_speed": {
+    "bump": 1,
+    "_total": 1
+  },
+  "ludhiana_traffic": {
+    "signal": 28,
+    "_total": 28
+  },
+  "mumbai_bus": {
+    "stop": 1983,
+    "_total": 1983
+  },
+  "mumbai": {
+    "cctv": 115,
+    "hospital": 933,
+    "parking": 60,
+    "streetlight": 524,
+    "_total": 1632
+  },
+  "mumbai_fire": {
+    "station": 8,
+    "_total": 8
+  },
+  "mumbai_fuel": {
+    "station": 83,
+    "_total": 83
+  },
+  "mumbai_police": {
+    "station": 69,
+    "_total": 69
+  },
+  "mumbai_speed": {
+    "bump": 157,
+    "_total": 157
+  },
+  "mumbai_toll": {
+    "booth": 26,
+    "_total": 26
+  },
+  "mumbai_traffic": {
+    "signal": 1804,
+    "_total": 1804
+  },
+  "mumbai_zebra": {
+    "crossing": 3,
+    "_total": 3
+  },
+  "nagpur_bus": {
+    "stop": 15,
+    "_total": 15
+  },
+  "nagpur_fire": {
+    "station": 2,
+    "_total": 2
+  },
+  "nagpur_fuel": {
+    "station": 56,
+    "_total": 56
+  },
+  "nagpur": {
+    "hospital": 397,
+    "parking": 7,
+    "_total": 404
+  },
+  "nagpur_police": {
+    "station": 23,
+    "_total": 23
+  },
+  "nagpur_speed": {
+    "bump": 3,
+    "_total": 3
+  },
+  "nagpur_toll": {
+    "booth": 2,
+    "_total": 2
+  },
+  "nagpur_traffic": {
+    "signal": 80,
+    "_total": 80
+  },
+  "patna_bus": {
+    "stop": 8,
+    "_total": 8
+  },
+  "patna": {
+    "cctv": 2,
+    "hospital": 153,
+    "parking": 1,
+    "streetlight": 1,
+    "_total": 157
+  },
+  "patna_fuel": {
+    "station": 15,
+    "_total": 15
+  },
+  "patna_police": {
+    "station": 14,
+    "_total": 14
+  },
+  "patna_toll": {
+    "booth": 10,
+    "_total": 10
+  },
+  "patna_traffic": {
+    "signal": 7,
+    "_total": 7
+  },
+  "pune_bus": {
+    "stop": 561,
+    "_total": 561
+  },
+  "pune": {
+    "cctv": 191,
+    "hospital": 580,
+    "parking": 37,
+    "streetlight": 86,
+    "_total": 894
+  },
+  "pune_fire": {
+    "station": 9,
+    "_total": 9
+  },
+  "pune_fuel": {
+    "station": 78,
+    "_total": 78
+  },
+  "pune_police": {
+    "station": 45,
+    "_total": 45
+  },
+  "pune_speed": {
+    "bump": 105,
+    "_total": 105
+  },
+  "pune_traffic": {
+    "signal": 508,
+    "_total": 508
+  },
+  "pune_zebra": {
+    "crossing": 1,
+    "_total": 1
+  },
+  "surat_bus": {
+    "stop": 9,
+    "_total": 9
+  },
+  "surat": {
+    "cctv": 1,
+    "hospital": 731,
+    "parking": 2,
+    "_total": 734
+  },
+  "surat_fire": {
+    "station": 1,
+    "_total": 1
+  },
+  "surat_fuel": {
+    "station": 34,
+    "_total": 34
+  },
+  "surat_police": {
+    "station": 3,
+    "_total": 3
+  },
+  "surat_speed": {
+    "bump": 1,
+    "_total": 1
+  },
+  "surat_traffic": {
+    "signal": 1,
+    "_total": 1
+  },
+  "vadodara_bus": {
+    "stop": 4,
+    "_total": 4
+  },
+  "vadodara": {
+    "cctv": 8,
+    "hospital": 363,
+    "_total": 371
+  },
+  "vadodara_fire": {
+    "station": 1,
+    "_total": 1
+  },
+  "vadodara_fuel": {
+    "station": 36,
+    "_total": 36
+  },
+  "vadodara_police": {
+    "station": 1,
+    "_total": 1
+  },
+  "vadodara_toll": {
+    "booth": 9,
+    "_total": 9
+  },
+  "vadodara_traffic": {
+    "signal": 2,
+    "_total": 2
+  },
+  "visakhapatnam_bus": {
+    "stop": 261,
+    "_total": 261
+  },
+  "visakhapatnam": {
+    "cctv": 40,
+    "hospital": 213,
+    "parking": 4,
+    "streetlight": 46,
+    "_total": 303
+  },
+  "visakhapatnam_fire": {
+    "station": 3,
+    "_total": 3
+  },
+  "visakhapatnam_fuel": {
+    "station": 50,
+    "_total": 50
+  },
+  "visakhapatnam_police": {
+    "station": 9,
+    "_total": 9
+  },
+  "visakhapatnam_speed": {
+    "bump": 126,
+    "_total": 126
+  },
+  "visakhapatnam_toll": {
+    "booth": 4,
+    "_total": 4
+  },
+  "visakhapatnam_traffic": {
+    "signal": 63,
+    "_total": 63
+  },
+  "visakhapatnam_zebra": {
+    "crossing": 1,
+    "_total": 1
+  }
+}

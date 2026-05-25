@@ -1,23 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import {
-  ShieldAlert,
   Loader2,
-  TrendingUp,
-  Briefcase,
   AlertTriangle,
   UserCheck,
-  Send,
   MapPin,
-  Calendar,
   CheckCircle,
-  ThumbsUp,
   Activity,
-  PlusCircle,
-  BarChart3,
   Clock,
+  Search,
+  X,
 } from 'lucide-react';
 
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
@@ -28,7 +22,7 @@ import { client } from '@/lib/api';
 const MapLibreDashboard = dynamic(() => import('@/components/command-center/MapLibreDashboard'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[380px] bg-slate-900 rounded-[1.8rem] flex items-center justify-center border border-border">
+    <div className="w-full h-[380px] bg-surface-2 dark:bg-slate-900 rounded-[1.8rem] flex items-center justify-center border border-border">
       <div className="flex flex-col items-center gap-3">
         <Loader2 size={32} className="animate-spin text-brand" />
         <span className="text-xs font-semibold uppercase tracking-widest text-text-3">Warming GIS Engines...</span>
@@ -96,6 +90,65 @@ export default function CommandCenterPage() {
   const [selectedOfficerId, setSelectedOfficerId] = useState<string>('');
   const [actionLoading, setActionLoading] = useState(false);
 
+  // Enterprise: Search, Filter, Detail Panel
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [selectedComplaint, setSelectedComplaint] = useState<Complaint | null>(null);
+
+  // Status filter tabs
+  const STATUS_TABS = [
+    { key: 'all', label: 'All' },
+    { key: 'open', label: 'Open' },
+    { key: 'acknowledged', label: 'Assigned' },
+    { key: 'in_progress', label: 'In Progress' },
+    { key: 'resolved', label: 'Resolved' },
+  ];
+
+  // Time ago helper
+  function timeAgo(dateStr: string): string {
+    const now = Date.now();
+    const then = new Date(dateStr).getTime();
+    const diffMs = now - then;
+    const mins = Math.floor(diffMs / 60000);
+    if (mins < 1) return 'Just now';
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    const days = Math.floor(hrs / 24);
+    if (days === 1) return 'Yesterday';
+    if (days < 7) return `${days}d ago`;
+    return new Date(dateStr).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+  }
+
+  // Filtered complaints
+  const filteredComplaints = useMemo(() => {
+    let result = complaints;
+    if (statusFilter !== 'all') {
+      result = result.filter((c) => c.status === statusFilter);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (c) =>
+          (c.location_address || '').toLowerCase().includes(q) ||
+          (c.category || '').toLowerCase().includes(q) ||
+          (c.issue_type || '').toLowerCase().includes(q) ||
+          (c.ward_name || '').toLowerCase().includes(q) ||
+          (c.complaint_ref || '').toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [complaints, statusFilter, searchQuery]);
+
+  // Status counts
+  const statusCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: complaints.length };
+    for (const c of complaints) {
+      counts[c.status] = (counts[c.status] || 0) + 1;
+    }
+    return counts;
+  }, [complaints]);
+
   async function loadDashboardData() {
     try {
       // 1. Fetch Overall Stats (Admin Dashboard)
@@ -156,7 +209,7 @@ export default function CommandCenterPage() {
   if (!mounted) return null;
 
   return (
-    <div className="sv-page aurora-glow relative min-h-screen bg-slate-950 text-slate-100 pb-20">
+    <div className="sv-page aurora-glow relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-20">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-10%] h-[40rem] w-[40rem] rounded-full bg-brand/5 blur-[150px]" />
         <div className="absolute left-[-5%] top-[10%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/5 blur-[130px]" />
@@ -181,7 +234,7 @@ export default function CommandCenterPage() {
                   <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">ACTIVE INCIDENTS</div>
                   <Activity size={16} className="text-cyan-400 animate-pulse" />
                 </div>
-                <div className="mt-4 text-3xl font-black font-space tracking-tight text-white">{kpis?.active_complaints ?? 0}</div>
+                <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.active_complaints ?? 0}</div>
                 <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">Deserving Immediate Patrol</div>
               </SurfaceCard>
 
@@ -190,7 +243,7 @@ export default function CommandCenterPage() {
                   <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400">SLA BREACHES</div>
                   <Clock size={16} className="text-red-400 animate-bounce" />
                 </div>
-                <div className="mt-4 text-3xl font-black font-space tracking-tight text-white">{kpis?.sla_breaches ?? 0}</div>
+                <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.sla_breaches ?? 0}</div>
                 <div className="mt-2 text-[10px] font-semibold text-red-400 uppercase tracking-wider font-semibold animate-pulse">Needs Escalation</div>
               </SurfaceCard>
 
@@ -199,7 +252,7 @@ export default function CommandCenterPage() {
                   <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400">RESOLVED TICKETS</div>
                   <CheckCircle size={16} className="text-emerald-400" />
                 </div>
-                <div className="mt-4 text-3xl font-black font-space tracking-tight text-white">{kpis?.resolved_complaints ?? 0}</div>
+                <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.resolved_complaints ?? 0}</div>
                 <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">{kpis?.overall_resolution_rate ?? 0}% overall resolution rate</div>
               </SurfaceCard>
 
@@ -208,7 +261,7 @@ export default function CommandCenterPage() {
                   <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-light">ACTIVE TEAMS</div>
                   <UserCheck size={16} className="text-brand-light" />
                 </div>
-                <div className="mt-4 text-3xl font-black font-space tracking-tight text-white">{kpis?.active_field_officers ?? 0}</div>
+                <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.active_field_officers ?? 0}</div>
                 <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">GPS tracked field squads</div>
               </SurfaceCard>
             </div>
@@ -240,7 +293,7 @@ export default function CommandCenterPage() {
                         <span>🛣️ Roads & Bridges</span>
                         <span>{categories.roads}</span>
                       </div>
-                      <div className="mt-2 h-2.5 w-full rounded-full bg-slate-800 overflow-hidden">
+                      <div className="mt-2 h-2.5 w-full rounded-full bg-surface-3 dark:bg-slate-800 overflow-hidden">
                         <div className="h-full bg-cyan-500 rounded-full" style={{ width: `${(categories.roads / (kpis?.active_complaints || 1)) * 100}%` }} />
                       </div>
                     </div>
@@ -251,7 +304,7 @@ export default function CommandCenterPage() {
                         <span>🚦 Traffic & Signage</span>
                         <span>{categories.traffic}</span>
                       </div>
-                      <div className="mt-2 h-2.5 w-full rounded-full bg-slate-800 overflow-hidden">
+                      <div className="mt-2 h-2.5 w-full rounded-full bg-surface-3 dark:bg-slate-800 overflow-hidden">
                         <div className="h-full bg-amber-500 rounded-full" style={{ width: `${(categories.traffic / (kpis?.active_complaints || 1)) * 100}%` }} />
                       </div>
                     </div>
@@ -262,7 +315,7 @@ export default function CommandCenterPage() {
                         <span>💡 Public Streetlighting</span>
                         <span>{categories.streetlight}</span>
                       </div>
-                      <div className="mt-2 h-2.5 w-full rounded-full bg-slate-800 overflow-hidden">
+                      <div className="mt-2 h-2.5 w-full rounded-full bg-surface-3 dark:bg-slate-800 overflow-hidden">
                         <div className="h-full bg-brand-light rounded-full" style={{ width: `${(categories.streetlight / (kpis?.active_complaints || 1)) * 100}%` }} />
                       </div>
                     </div>
@@ -280,7 +333,7 @@ export default function CommandCenterPage() {
                     {breaches.slice(0, 5).map((b) => (
                       <div key={b.uuid} className="py-2.5 flex items-center justify-between gap-3">
                         <div className="min-w-0">
-                          <div className="text-xs font-black uppercase tracking-wider text-white truncate">{b.complaint_ref} — {b.issue_type}</div>
+                          <div className="text-xs font-black uppercase tracking-wider text-text-1 dark:text-white truncate">{b.complaint_ref} — {b.issue_type}</div>
                           <div className="text-[10px] text-text-3 mt-0.5 truncate">{b.location_address}</div>
                         </div>
                         <span className="text-[9px] font-bold uppercase tracking-widest text-red-400 bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded">
@@ -303,26 +356,64 @@ export default function CommandCenterPage() {
                 <SurfaceCard>
                   <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Dispatch Desk</div>
                   <h2 className="mt-1 text-xl font-black font-space tracking-tight text-text-1 uppercase">LIVE CITIZEN COMPLAINT STREAM</h2>
+
+                  {/* Search Bar */}
+                  <div className="mt-4 relative">
+                    <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-3" />
+                    <input
+                      id="cc-search"
+                      type="text"
+                      placeholder="Search complaints..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-9 pr-4 py-2.5 bg-surface-2 border border-border rounded-xl text-xs text-text-1 placeholder:text-text-3 focus:outline-none focus:border-brand/50 transition-colors"
+                    />
+                  </div>
+
+                  {/* Status Filter Tabs */}
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {STATUS_TABS.map((tab) => (
+                      <button
+                        key={tab.key}
+                        onClick={() => setStatusFilter(tab.key)}
+                        className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                          statusFilter === tab.key
+                            ? 'bg-brand text-white'
+                            : 'bg-surface-3 text-text-3 hover:text-text-1'
+                        }`}
+                      >
+                        {tab.label}
+                        <span className="ml-1.5 px-1.5 py-0.5 rounded bg-black/20 text-[9px]">
+                          {statusCounts[tab.key] ?? 0}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                   
-                  <div className="mt-6 overflow-x-auto">
+                  <div className="mt-4 overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
                         <tr className="border-b border-border/20 text-[10px] font-black uppercase tracking-widest text-text-3">
                           <th className="pb-3">REF / TYPE</th>
                           <th className="pb-3">LOCATION</th>
                           <th className="pb-3">SEVERITY</th>
+                          <th className="pb-3">TIME</th>
                           <th className="pb-3 text-right">ACTION</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border/10 text-xs">
-                        {complaints.map((c) => (
-                          <tr key={c.uuid} className="hover:bg-surface-2 transition">
+                        {filteredComplaints.map((c) => (
+                          <tr
+                            key={c.uuid}
+                            className="hover:bg-surface-2 transition cursor-pointer"
+                            onClick={() => setSelectedComplaint(c)}
+                          >
                             <td className="py-4 pr-3">
-                              <div className="font-black text-white">{c.complaint_ref}</div>
+                              <div className="font-black text-text-1 dark:text-white">{c.complaint_ref || c.uuid.slice(0, 8).toUpperCase()}</div>
                               <div className="text-[10px] text-text-3 mt-1 uppercase tracking-wider">{c.category} - {c.issue_type}</div>
                             </td>
                             <td className="py-4 pr-3 max-w-[200px] truncate">
-                              <div className="font-semibold text-text-2">{c.location_address || 'Chennai Link Road'}</div>
+                              <div className="font-semibold text-text-2">{c.location_address || 'Location pending'}</div>
                               <div className="text-[10px] text-text-3 mt-1 uppercase tracking-wider">{c.ward_name}</div>
                             </td>
                             <td className="py-4 pr-3">
@@ -332,13 +423,16 @@ export default function CommandCenterPage() {
                                 Sev {c.severity}
                               </span>
                             </td>
-                            <td className="py-4 text-right">
+                            <td className="py-4 pr-3">
+                              <span className="text-[10px] font-semibold text-text-3">{timeAgo(c.created_at)}</span>
+                            </td>
+                            <td className="py-4 text-right" onClick={(e) => e.stopPropagation()}>
                               {assigningUuid === c.uuid ? (
                                 <div className="inline-flex items-center gap-2">
                                   <select
                                     value={selectedOfficerId}
                                     onChange={(e) => setSelectedOfficerId(e.target.value)}
-                                    className="rounded bg-slate-900 border border-border text-xs px-2 py-1 outline-none font-semibold"
+                                    className="rounded bg-surface-2 dark:bg-slate-900 border border-border text-xs px-2 py-1 outline-none font-semibold"
                                   >
                                     <option value="">Select Officer</option>
                                     {officers.map((o) => (
@@ -354,7 +448,7 @@ export default function CommandCenterPage() {
                                   </button>
                                   <button
                                     onClick={() => setAssigningUuid(null)}
-                                    className="bg-slate-800 text-text-2 text-[10px] font-black px-2.5 py-1 rounded hover:bg-slate-700"
+                                    className="bg-surface-3 dark:bg-slate-800 text-text-2 text-[10px] font-black px-2.5 py-1 rounded hover:bg-surface-1 dark:hover:bg-slate-700"
                                   >
                                     Cancel
                                   </button>
@@ -377,6 +471,11 @@ export default function CommandCenterPage() {
                             </td>
                           </tr>
                         ))}
+                        {filteredComplaints.length === 0 && (
+                          <tr>
+                            <td colSpan={5} className="py-8 text-center text-text-3 text-xs">No complaints match filters</td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -395,7 +494,7 @@ export default function CommandCenterPage() {
                         <div className="flex items-center gap-3">
                           <span className="font-black text-text-3">{index + 1}</span>
                           <div>
-                            <div className="font-bold text-white uppercase tracking-wider">{w.ward_name}</div>
+                            <div className="font-bold text-text-1 dark:text-white uppercase tracking-wider">{w.ward_name}</div>
                             <div className="text-[10px] text-text-3 mt-0.5">{w.zone_name}</div>
                           </div>
                         </div>
@@ -414,6 +513,108 @@ export default function CommandCenterPage() {
         )}
 
       </main>
+
+      {/* ── Complaint Detail Side Panel ── */}
+      {selectedComplaint && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none lg:pointer-events-none"
+            onClick={() => setSelectedComplaint(null)}
+          />
+          {/* Panel */}
+          <div className="fixed right-0 top-0 z-50 h-full w-full max-w-md bg-surface-1 border-l border-border shadow-2xl overflow-y-auto animate-in slide-in-from-right-5">
+            <div className="p-6">
+              {/* Close */}
+              <button
+                onClick={() => setSelectedComplaint(null)}
+                className="mb-4 p-2 rounded-xl bg-surface-2 text-text-3 hover:text-text-1 hover:bg-surface-3 transition-colors"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Ref */}
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-text-3">Complaint Details</div>
+              <h2 className="mt-1 text-xl font-black text-text-1">
+                {selectedComplaint.complaint_ref || selectedComplaint.uuid.slice(0, 8).toUpperCase()}
+              </h2>
+
+              {/* Status + Severity */}
+              <div className="mt-4 flex items-center gap-2">
+                <span className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${
+                  selectedComplaint.status === 'resolved'
+                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                    : selectedComplaint.status === 'in_progress'
+                    ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                    : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'
+                }`}>
+                  {selectedComplaint.status.replace('_', ' ')}
+                </span>
+                <span className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${
+                  selectedComplaint.severity >= 4 ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-brand/10 text-brand-light border border-brand/20'
+                }`}>
+                  Severity {selectedComplaint.severity}
+                </span>
+              </div>
+
+              {/* Category */}
+              <div className="mt-6">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">Category</p>
+                <p className="text-sm font-bold text-text-1">{selectedComplaint.category} — {selectedComplaint.issue_type}</p>
+              </div>
+
+              {/* Location */}
+              <div className="mt-4">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">Location</p>
+                <div className="flex items-start gap-2">
+                  <MapPin size={14} className="text-brand-light mt-0.5 shrink-0" />
+                  <p className="text-sm text-text-2">{selectedComplaint.location_address || 'Location pending'}</p>
+                </div>
+                {selectedComplaint.ward_name && (
+                  <p className="text-xs text-text-3 mt-1 ml-5">Ward: {selectedComplaint.ward_name}</p>
+                )}
+              </div>
+
+              {/* Description */}
+              {selectedComplaint.description && (
+                <div className="mt-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">Description</p>
+                  <p className="text-sm text-text-2 leading-relaxed">{selectedComplaint.description}</p>
+                </div>
+              )}
+
+              {/* Timeline */}
+              <div className="mt-6">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-3">Timeline</p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-cyan-400" />
+                    <div>
+                      <p className="text-xs font-semibold text-text-1">Created</p>
+                      <p className="text-[10px] text-text-3">{new Date(selectedComplaint.created_at).toLocaleString('en-IN')}</p>
+                    </div>
+                  </div>
+                  {selectedComplaint.assigned_officer_id && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-amber-400" />
+                      <p className="text-xs font-semibold text-text-1">Officer Assigned</p>
+                    </div>
+                  )}
+                  {selectedComplaint.sla_deadline && (
+                    <div className="flex items-center gap-3">
+                      <div className={`w-2 h-2 rounded-full ${new Date(selectedComplaint.sla_deadline) < new Date() ? 'bg-red-400' : 'bg-brand-light'}`} />
+                      <div>
+                        <p className="text-xs font-semibold text-text-1">SLA Deadline</p>
+                        <p className="text-[10px] text-text-3">{new Date(selectedComplaint.sla_deadline).toLocaleString('en-IN')}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { AlertCircle } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { generateSosWhatsAppLink, generateSosSmsLink } from '@/lib/sos-share';
@@ -12,7 +12,7 @@ import { useShallow } from 'zustand/react/shallow';
  * SOSButton — Pulsative Tactical Emergency Trigger
  * Features: Double-tap verification, pulse animation, WhatsApp + SMS share.
  */
-export function SOSButton() {
+export const SOSButton = memo(function SOSButton() {
  const { userProfile, gpsLocation, soundsEnabled } = useAppStore(useShallow((s) => ({ userProfile: s.userProfile, gpsLocation: s.gpsLocation, soundsEnabled: s.soundsEnabled })));
  const [isExpanding, setIsExpanding] = useState(false);
 
@@ -56,35 +56,38 @@ export function SOSButton() {
  </p>
  </div>
  <div className="space-y-3">
- <button
- onClick={triggerWhatsApp}
- className="w-full py-4 rounded-lg text-[10px] font-semibold uppercase tracking-widest transition-all hover:brightness-110 active:scale-95"
-  style={{
-    backgroundColor: 'var(--emergency)',
-    color: 'white',
-    boxShadow: 'var(--glow-red)',
-  }}
- >
- Send WhatsApp SOS
- </button>
- <button
- onClick={triggerSms}
- className="w-full py-4 rounded-lg text-[10px] font-semibold uppercase tracking-widest transition-all hover:brightness-110 active:scale-95"
-  style={{
-    backgroundColor: 'transparent',
-    border: '1px solid color-mix(in srgb, var(--emergency) 20%, transparent)',
-    color: 'var(--emergency-dark)',
-  }}
- >
- Standard SMS Alert
- </button>
- <button
- onClick={() => setIsExpanding(false)}
- className="w-full py-2 text-[9px] font-bold uppercase tracking-widest transition-all"
-  style={{ color: 'var(--text-3)' }}
- >
- Cancel
- </button>
+  <button
+  onClick={triggerWhatsApp}
+  aria-label="Send emergency alert via WhatsApp"
+  className="w-full py-4 rounded-lg text-[10px] font-semibold uppercase tracking-widest transition-all hover:brightness-110 active:scale-95"
+   style={{
+     backgroundColor: 'var(--emergency)',
+     color: 'white',
+     boxShadow: 'var(--glow-red)',
+   }}
+  >
+  Send WhatsApp SOS
+  </button>
+  <button
+  onClick={triggerSms}
+  aria-label="Send emergency alert via SMS"
+  className="w-full py-4 rounded-lg text-[10px] font-semibold uppercase tracking-widest transition-all hover:brightness-110 active:scale-95"
+   style={{
+     backgroundColor: 'transparent',
+     border: '1px solid color-mix(in srgb, var(--emergency) 20%, transparent)',
+     color: 'var(--emergency-dark)',
+   }}
+  >
+  Standard SMS Alert
+  </button>
+  <button
+  onClick={() => setIsExpanding(false)}
+  aria-label="Cancel emergency SOS"
+  className="w-full py-2 text-[9px] font-bold uppercase tracking-widest transition-all"
+   style={{ color: 'var(--text-3)' }}
+  >
+  Cancel
+  </button>
  </div>
  </div>
  )}
@@ -122,6 +125,6 @@ export function SOSButton() {
  </div>
  </div>
  </button>
- </div>
- );
-}
+  </div>
+  );
+})

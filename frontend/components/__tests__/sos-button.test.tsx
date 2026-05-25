@@ -16,7 +16,7 @@ describe('SOSButton', () => {
   });
 
   it('renders SOS button', () => {
-    const { container } = render(
+    render(
       <button data-testid="sos-button" aria-label="Send SOS">
         SOS
       </button>
@@ -42,7 +42,7 @@ describe('SOSButton', () => {
   });
 
   it('shows loading state during submission', () => {
-    const { container } = render(
+    render(
       <button data-testid="sos-button" disabled>
         Sending...
       </button>

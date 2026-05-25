@@ -1,6 +1,7 @@
 'use client';
 
 import { use, useEffect, useRef, useState } from 'react';
+import type { RealtimeChannel } from '@supabase/supabase-js';
 import { subscribeToTracking, LiveLocation } from '@/lib/live-tracking';
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { gsap } from '@/lib/gsap';
@@ -9,9 +10,7 @@ import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { 
   Shield, 
-  Zap, 
   Battery, 
-  Activity, 
   Phone, 
   ShieldAlert, 
   Navigation, 
@@ -69,7 +68,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
     }
 
     let active = true;
-    let realtimeChannel: any = null;
+    let realtimeChannel: RealtimeChannel | null = null;
     let fallbackPollCleanup: (() => void) | null = null;
 
     const fetchInitialAndSubscribe = async () => {
@@ -104,7 +103,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
           // 2. Try setting up Supabase Realtime
           const supabase = getSupabaseBrowserClient();
           if (supabase) {
-            console.log('SafeVixAI: Subscribing to Supabase Realtime for session:', session_id);
+            if (process.env.NODE_ENV !== 'production') console.log('SafeVixAI: Subscribing to Supabase Realtime for session:', session_id);
             setConnectionType('Realtime');
             
             realtimeChannel = supabase
@@ -117,7 +116,7 @@ export default function FamilyTrackingPage({ params }: PageProps) {
                   table: 'live_tracking',
                   filter: `session_id=eq.${session_id}`,
                 },
-                (payload: { new: any }) => {
+                (payload: { new: LiveLocation }) => {
                   if (!active) return;
                   const updated = payload.new;
                   
@@ -144,14 +143,14 @@ export default function FamilyTrackingPage({ params }: PageProps) {
               )
               .subscribe((status) => {
                 if (!active) return;
-                console.log(`SafeVixAI: Realtime channel state: ${status}`);
+                if (process.env.NODE_ENV !== 'production') console.log(`SafeVixAI: Realtime channel state: ${status}`);
                 if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
                   console.warn('SafeVixAI: Realtime subscription failed. Falling back to HTTP polling.');
                   startPollingFallback();
                 }
               });
           } else {
-            console.log('SafeVixAI: Supabase client unavailable. Initializing HTTP polling.');
+            if (process.env.NODE_ENV !== 'production') console.log('SafeVixAI: Supabase client unavailable. Initializing HTTP polling.');
             startPollingFallback();
           }
         } else {

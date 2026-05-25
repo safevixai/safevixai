@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+
+
 import Image from 'next/image';
 import { 
   User, Shield, ShieldCheck, CheckCircle, 
@@ -9,7 +10,7 @@ import {
   CloudOff, ShieldAlert, Award,
   Heart, Star, Edit3, Save, X, Bell
 } from 'lucide-react';
-import { useAppStore } from '@/lib/store';
+import { useAppStore, type UserProfile } from '@/lib/store';
 import TopSearch from '@/components/dashboard/TopSearch';
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
@@ -22,7 +23,7 @@ import { track } from '@/lib/analytics';
 import { toast } from 'sonner';
 
 export default function ProfilePage() {
-  const { crashDetectionEnabled, setCrashDetectionEnabled, userProfile, setUserProfile, clearAuth, operatorName, isAuthenticated } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, userProfile: s.userProfile, setUserProfile: s.setUserProfile, clearAuth: s.clearAuth, operatorName: s.operatorName, isAuthenticated: s.isAuthenticated })));
+  const { crashDetectionEnabled, setCrashDetectionEnabled, userProfile, setUserProfile, clearAuth, isAuthenticated } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, userProfile: s.userProfile, setUserProfile: s.setUserProfile, clearAuth: s.clearAuth, isAuthenticated: s.isAuthenticated })));
   const pageRef = usePageEntry();
 
   const [offlineMode, setOfflineMode] = useState(false);
@@ -153,6 +154,7 @@ export default function ProfilePage() {
                     value={editDraft.photo || ''}
                     onChange={e => setEditDraft(d => ({ ...d, photo: e.target.value }))}
                     placeholder="Avatar Image URL"
+                    aria-label="Avatar Image URL"
                     className="text-[10px] w-28 bg-surface-2 dark:bg-white/5 border border-border p-1 rounded text-center outline-none text-text-2"
                   />
                 </div>
@@ -182,6 +184,7 @@ export default function ProfilePage() {
                     value={editDraft.name}
                     onChange={e => setEditDraft(d => ({ ...d, name: e.target.value }))}
                     placeholder="Your Full Name"
+                    aria-label="Full Name"
                     className="text-3xl font-black tracking-tight text-text-1 dark:text-white uppercase font-space leading-none bg-transparent border-b-2 border-brand-light outline-none placeholder:text-text-4 dark:placeholder:text-white/20 w-full"
                   />
                   <input
@@ -189,6 +192,7 @@ export default function ProfilePage() {
                     value={editDraft.subtitle || ''}
                     onChange={e => setEditDraft(d => ({ ...d, subtitle: e.target.value }))}
                     placeholder="Operator Subtitle (e.g. TACTICAL RESPONDER)"
+                    aria-label="Operator Subtitle"
                     className="text-xs font-semibold tracking-tight text-text-2 dark:text-text-3 uppercase font-space bg-transparent border-b border-brand-light/40 outline-none placeholder:text-text-4 dark:placeholder:text-white/20 w-full"
                   />
                 </div>
@@ -230,6 +234,7 @@ export default function ProfilePage() {
                       value={editDraft.vehicleNumber}
                       onChange={e => setEditDraft(d => ({ ...d, vehicleNumber: e.target.value }))}
                       placeholder="MH 01 AB 1234"
+                      aria-label="Vehicle Number"
                       className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-transparent border-b-2 border-brand-light/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
                     />
                   ) : (
@@ -250,7 +255,8 @@ export default function ProfilePage() {
                   {isEditing ? (
                     <select
                       value={editDraft.bloodGroup}
-                      onChange={e => setEditDraft(d => ({ ...d, bloodGroup: e.target.value as any }))}
+                      onChange={e => setEditDraft(d => ({ ...d, bloodGroup: e.target.value as UserProfile['bloodGroup'] }))}
+                      aria-label="Blood Group"
                       className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-surface-2 dark:bg-white/5 border border-border rounded p-1 outline-none"
                     >
                       <option value="">Select Blood Group</option>
@@ -280,6 +286,7 @@ export default function ProfilePage() {
                       value={editDraft.phone || ''}
                       onChange={e => setEditDraft(d => ({ ...d, phone: e.target.value }))}
                       placeholder="+91 98765 43210"
+                      aria-label="Phone Number"
                       className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
                     />
                   ) : (
@@ -304,6 +311,7 @@ export default function ProfilePage() {
                       value={editDraft.medicalConditions || ''}
                       onChange={e => setEditDraft(d => ({ ...d, medicalConditions: e.target.value }))}
                       placeholder="e.g. Asthma, Penicillin allergy"
+                      aria-label="Medical Conditions"
                       className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
                     />
                   ) : (
@@ -328,6 +336,7 @@ export default function ProfilePage() {
                       value={editDraft.emergencyContact}
                       onChange={e => setEditDraft(d => ({ ...d, emergencyContact: e.target.value }))}
                       placeholder="+91 98765 43210"
+                      aria-label="Emergency Contact"
                       className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
                     />
                   ) : (

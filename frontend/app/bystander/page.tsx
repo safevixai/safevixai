@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import {
  Eye, MapPin, Phone, AlertTriangle, CheckCircle2,
- Navigation, Heart, Activity, ArrowRight, Mic, MicOff,
- Loader2, ShieldAlert, ChevronRight, X, Map
+  Navigation, Activity,
+  Loader2, ShieldAlert, Map
 } from 'lucide-react';
 import { fetchNearbyServices, submitReport } from '@/lib/api';
 import { usePageEntry } from '@/hooks/usePageEntry';
@@ -43,13 +43,10 @@ export default function BystanderModePage() {
  const [gps, setGps] = useState<GpsPos | null>(null);
  const [gpsError, setGpsError] = useState<string | null>(null);
  const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
- const [isTTSActive, setIsTTSActive] = useState(false);
- const [accidentReported, setAccidentReported] = useState(false);
+  const [accidentReported, setAccidentReported] = useState(false);
  const [mapsUrl, setMapsUrl] = useState<string>('');
  const [nearestHospital, setNearestHospital] = useState<{ name: string; distance: string } | null>(null);
- const gpsRef = useRef<number | null>(null);
-
- // ── GPS capture ──────────────────────────────────────────────────────────────
+  // ── GPS capture ──────────────────────────────────────────────────────────────
  const startGPS = useCallback(() => {
  setPhase('gps');
  speak('GPS is capturing your location. Stay calm.');
@@ -123,23 +120,7 @@ export default function BystanderModePage() {
  if (s.size === BYSTANDER_STEPS.length) setPhase('done');
  }
 
- function callAmbulance() {
- speak('Calling 1-0-8. Ambulance Emergency.');
- if (gps) {
- // Pre-open WhatsApp or call based on availability
- const popup = window.open(
- `https://wa.me/91112?text=${encodeURIComponent(
- ` ROAD ACCIDENT witnessed at:\nGPS: https://maps.google.com/?q=${gps.lat},${gps.lon}\nNearest hospital: ${nearestHospital?.name || 'Unknown'}\nPlease send ambulance immediately.`
- )}`,
- '_blank',
- 'noopener,noreferrer',
- );
- if (popup) popup.opener = null;
- }
- window.location.href = 'tel:108';
- }
-
- // ── Entry Screen ─────────────────────────────────────────────────────────────
+  // ── Entry Screen ─────────────────────────────────────────────────────────────
  if (phase === 'entry') {
  return (
  <div ref={pageRef} className="min-h-screen bg-bg flex flex-col items-center justify-center p-6 font-sans">

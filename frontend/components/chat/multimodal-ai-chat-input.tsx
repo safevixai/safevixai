@@ -57,9 +57,9 @@ interface SpeechRecognitionLike {
   continuous: boolean;
   interimResults: boolean;
   lang: string;
-  onresult: ((event: SpeechRecognitionResultEventLike) => void) | null;
+  onresult: ((_event: SpeechRecognitionResultEventLike) => void) | null;
   onend: (() => void) | null;
-  onerror: ((event: SpeechRecognitionErrorEventLike) => void) | null;
+  onerror: ((_event: SpeechRecognitionErrorEventLike) => void) | null;
   start(): void;
   stop(): void;
 }
@@ -101,7 +101,7 @@ const buttonVariants = cva(
 );
 
 const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants> & { asChild?: boolean }>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, ...props }, ref) => {
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}
@@ -176,7 +176,7 @@ function PureMicButton({
   selectedLanguage = 'en'
 }: { 
   disabled?: boolean;
-  onTranscript: (text: string) => void;
+  onTranscript: (_text: string) => void;
   isGenerating?: boolean;
   selectedLanguage?: string;
 }) {
@@ -436,26 +436,21 @@ const PreviewAttachment = ({
 
 // Main Component
 export interface MultimodalInputProps {
-  chatId?: string;
-  messages?: Array<UIMessage>;
   attachments?: Array<Attachment>;
   setAttachments?: Dispatch<SetStateAction<Array<Attachment>>>;
-  onSendMessage?: (params: { input: string; attachments: Attachment[] }) => void;
+  onSendMessage?: (_params: { input: string; attachments: Attachment[] }) => void;
   onStopGenerating?: () => void;
   isGenerating?: boolean;
   canSend?: boolean;
   className?: string;
-  selectedVisibilityType?: VisibilityType;
   // Local fallback states if not provided by parent
   value?: string;
-  onChange?: (val: string) => void;
+  onChange?: (_val: string) => void;
   selectedLanguage?: string;
-  onLanguageChange?: (lang: string) => void;
+  onLanguageChange?: (_lang: string) => void;
 }
 
 export function PureMultimodalInput({
-  chatId = 'default-chat',
-  messages = [],
   attachments: externalAttachments,
   setAttachments: externalSetAttachments,
   onSendMessage,
@@ -463,7 +458,6 @@ export function PureMultimodalInput({
   isGenerating = false,
   canSend = true,
   className,
-  selectedVisibilityType = 'public',
   value,
   onChange,
   selectedLanguage: externalLanguage,

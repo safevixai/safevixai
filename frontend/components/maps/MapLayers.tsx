@@ -248,7 +248,7 @@ export function MapLayers({
       if (clusterId == null) return;
 
       const source = map.getSource(FACILITY_SOURCE_ID) as maplibregl.GeoJSONSource & {
-        getClusterExpansionZoom: (clusterId: number, callback: (error: Error | null, zoom: number) => void) => void;
+        getClusterExpansionZoom: (_clusterId: number, _callback: (_error: Error | null, _zoom: number) => void) => void;
       };
 
       source.getClusterExpansionZoom(clusterId, (error, expansionZoom) => {

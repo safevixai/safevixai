@@ -26,7 +26,6 @@ const DrivingScore = ({ score }: { score: number }) => {
   const { label, color, glow } = getStatus(score);
   const radius = 20;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (circumference * score) / 100;
 
   return (
     <div

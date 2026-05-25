@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 jest.mock('../../lib/public-env', () => ({
@@ -21,7 +21,7 @@ describe('ChallanCalculator', () => {
   });
 
   it('renders calculator form', () => {
-    const { container } = render(
+    render(
       <div data-testid="challan-form">
         <select data-testid="violation-select">
           <option value="dui">Drunk Driving</option>
@@ -74,7 +74,7 @@ describe('ChallanCalculator', () => {
   });
 
   it('displays calculation result', () => {
-    const { container } = render(
+    render(
       <div data-testid="result-container">
         <p data-testid="fine-amount">Fine: ₹10,000</p>
         <p data-testid="section">Section: 185</p>
@@ -86,7 +86,7 @@ describe('ChallanCalculator', () => {
   });
 
   it('shows loading state during calculation', () => {
-    const { container } = render(
+    render(
       <div data-testid="loading-state">
         <span>Calculating...</span>
       </div>
@@ -96,7 +96,7 @@ describe('ChallanCalculator', () => {
   });
 
   it('shows error state on API failure', () => {
-    const { container } = render(
+    render(
       <div data-testid="error-state">
         <p>Failed to calculate fine. Please try again.</p>
       </div>
@@ -106,7 +106,7 @@ describe('ChallanCalculator', () => {
   });
 
   it('supports repeat offender toggle', () => {
-    const { container } = render(
+    render(
       <div>
         <label>
           <input type="checkbox" data-testid="repeat-toggle" />

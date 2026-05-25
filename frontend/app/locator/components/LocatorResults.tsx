@@ -11,8 +11,8 @@ interface ResultsProps {
   filtered: LocatorService[];
   selectedServiceId: string | null;
   routeLoadingId: string | null;
-  onLocateService: (service: LocatorService) => void;
-  onPreviewService: (service: LocatorService) => void;
+  onLocateService: (_service: LocatorService) => void;
+  onPreviewService: (_service: LocatorService) => void;
 }
 
 export function MobileResultsList({
@@ -35,76 +35,106 @@ export function MobileResultsList({
     }
   }, { scope: containerRef, dependencies: [filtered] });
 
-  return (
-    <div ref={containerRef} className="space-y-4">
-      {filtered.map((service) => (
-        <div
-          key={service.id}
-          className={`locator-result-card group relative rounded-lg p-5 backdrop-blur-xl shadow-sm transition-all ${
-            selectedServiceId === service.id
-              ? 'border border-brand/30 bg-brand/90 dark:border-brand/40 dark:bg-surface-1/70'
-              : 'border border-border-md bg-white/80 dark:border-white/5 dark:bg-surface-2/40 hover:bg-white dark:hover:bg-surface-3/60'
-          }`}
-        >
-          <div className="absolute left-0 top-0 bottom-0 w-1.5" style={{ backgroundColor: service.accentColor }} />
+  const rowVirtualizer = useVirtualizer({
+    count: filtered.length,
+    getScrollElement: () => containerRef.current,
+    estimateSize: () => 190,
+    overscan: 3,
+  });
 
-          <div className="flex justify-between items-start mb-5">
-            <div className="flex gap-4">
+  return (
+    <div ref={containerRef} className="overflow-y-auto px-4 -mx-4" style={{ maxHeight: 'calc(100dvh - 320px)' }}>
+      <div
+        style={{
+          height: `${rowVirtualizer.getTotalSize()}px`,
+          width: '100%',
+          position: 'relative',
+        }}
+      >
+        {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+          const service = filtered[virtualRow.index];
+          return (
+            <div
+              key={virtualRow.key}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: `${virtualRow.size}px`,
+                transform: `translateY(${virtualRow.start}px)`,
+                paddingBottom: '16px',
+              }}
+            >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center bg-surface-2 dark:bg-white/5 border border-border-md dark:border-white/10 shadow-inner"
-                style={{ color: service.accentColor }}
+                className={`locator-result-card group relative rounded-lg p-5 backdrop-blur-xl shadow-sm transition-all ${
+                  selectedServiceId === service.id
+                    ? 'border border-brand/30 bg-brand/90 dark:border-brand/40 dark:bg-surface-1/70'
+                    : 'border border-border-md bg-white/80 dark:border-white/5 dark:bg-surface-2/40 hover:bg-white dark:hover:bg-surface-3/60'
+                }`}
               >
-                <ServiceIcon type={service.type} className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-text-1 dark:text-text-1 font-black text-base tracking-tight font-space">
-                  {service.name}
-                </h3>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <MapPin size={12} className="text-text-2" />
-                  <span className="text-xs text-text-2 dark:text-text-2 font-bold">{service.address}</span>
+                <div className="absolute left-0 top-0 bottom-0 w-1.5" style={{ backgroundColor: service.accentColor }} />
+
+                <div className="flex justify-between items-start mb-5">
+                  <div className="flex gap-4">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center bg-surface-2 dark:bg-white/5 border border-border-md dark:border-white/10 shadow-inner"
+                      style={{ color: service.accentColor }}
+                    >
+                      <ServiceIcon type={service.type} className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-text-1 dark:text-text-1 font-black text-base tracking-tight font-space">
+                        {service.name}
+                      </h3>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <MapPin size={12} className="text-text-2" />
+                        <span className="text-xs text-text-2 dark:text-text-2 font-bold">{service.address}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-brand/[0.08] dark:bg-brand/10 px-3 py-1 rounded-lg border border-brand/20 dark:border-brand/20">
+                    <span className="text-[10px] font-semibold text-brand dark:text-brand-light tracking-tight">
+                      {service.distance}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <Link href={`tel:${service.phone ?? fallbackNumber(service.filterType)}`} className="flex-1">
+                    <button className="w-full bg-brand-light hover:bg-brand text-white py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[12px] uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-brand-light/20">
+                      <Phone size={16} /> Call
+                    </button>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => onLocateService(service)}
+                    className="flex-1 bg-surface-2 dark:bg-white/5 border border-border-md dark:border-white/10 text-text-2 dark:text-text-3 py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[12px] uppercase tracking-widest transition-all hover:bg-surface-2 dark:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-70"
+                    disabled={routeLoadingId === service.id}
+                  >
+                    {routeLoadingId === service.id ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" /> Routing
+                      </>
+                    ) : (
+                      <>
+                        <Navigation size={16} /> Locate
+                      </>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onPreviewService(service)}
+                    className="flex-1 bg-surface-2 dark:bg-white/5 border border-border-md dark:border-white/10 text-text-2 dark:text-text-3 py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[12px] uppercase tracking-widest transition-all hover:bg-surface-2 dark:hover:bg-white/10"
+                  >
+                    <Search size={16} /> Focus
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="bg-brand/[0.08] dark:bg-brand/10 px-3 py-1 rounded-lg border border-brand/20 dark:border-brand/20">
-              <span className="text-[10px] font-semibold text-brand dark:text-brand-light tracking-tight">
-                {service.distance}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex gap-3">
-            <Link href={`tel:${service.phone ?? fallbackNumber(service.filterType)}`} className="flex-1">
-              <button className="w-full bg-brand-light hover:bg-brand text-white py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[12px] uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-brand-light/20">
-                <Phone size={16} /> Call
-              </button>
-            </Link>
-            <button
-              type="button"
-              onClick={() => onLocateService(service)}
-              className="flex-1 bg-surface-2 dark:bg-white/5 border border-border-md dark:border-white/10 text-text-2 dark:text-text-3 py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[12px] uppercase tracking-widest transition-all hover:bg-surface-2 dark:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-70"
-              disabled={routeLoadingId === service.id}
-            >
-              {routeLoadingId === service.id ? (
-                <>
-                  <Loader2 size={16} className="animate-spin" /> Routing
-                </>
-              ) : (
-                <>
-                  <Navigation size={16} /> Locate
-                </>
-              )}
-            </button>
-            <button
-              type="button"
-              onClick={() => onPreviewService(service)}
-              className="flex-1 bg-surface-2 dark:bg-white/5 border border-border-md dark:border-white/10 text-text-2 dark:text-text-3 py-3.5 rounded-xl flex items-center justify-center gap-2 font-black text-[12px] uppercase tracking-widest transition-all hover:bg-surface-2 dark:hover:bg-white/10"
-            >
-              <Search size={16} /> Focus
-            </button>
-          </div>
-        </div>
-      ))}
+          );
+        })}
+      </div>
     </div>
   );
 }

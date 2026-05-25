@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import maplibregl from 'maplibre-gl';
 import { toggleTrafficLayer } from '@/lib/traffic-layer';
 import { useAppStore } from '@/lib/store';

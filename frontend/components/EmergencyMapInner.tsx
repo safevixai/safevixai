@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 
 import {
   MapLibreCanvas,
@@ -41,7 +41,7 @@ export interface MapInnerProps {
   selectedFacilityId?: string | null;
 }
 
-export default function EmergencyMapInner({
+const EmergencyMapInner = memo(function EmergencyMapInner({
   center,
   facilities,
   route = null,
@@ -79,4 +79,6 @@ export default function EmergencyMapInner({
       className="w-full h-full rounded-lg overflow-hidden"
     />
   );
-}
+})
+
+export default EmergencyMapInner

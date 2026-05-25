@@ -25,7 +25,7 @@ export default function MapLibreDashboard({ activeCategory = '' }: MapLibreDashb
       style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
       center: [80.2707, 13.0827], // Center on Chennai
       zoom: 11,
-      attributionControl: false,
+      attributionControl: { compact: false },
     });
 
     mapRef.current = map;
@@ -195,7 +195,7 @@ export default function MapLibreDashboard({ activeCategory = '' }: MapLibreDashb
     <div className="relative w-full h-full">
       <div ref={mapContainerRef} className="w-full h-full rounded-[1.8rem] overflow-hidden" />
       {loading && (
-        <div className="absolute inset-0 bg-slate-950/80 flex items-center justify-center rounded-[1.8rem] z-10">
+        <div className="absolute inset-0 bg-black/40 dark:bg-slate-950/80 flex items-center justify-center rounded-[1.8rem] z-10">
           <div className="flex flex-col items-center gap-3">
             <Loader2 size={32} className="animate-spin text-brand" />
             <span className="text-xs font-semibold uppercase tracking-widest text-text-3">Acquiring GIS Feeds...</span>

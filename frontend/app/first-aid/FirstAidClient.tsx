@@ -1,29 +1,24 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { 
   HeartPulse, Activity, Flame, Bone, Droplets, 
   Search, ArrowLeft, X, CheckCircle2, 
   Phone, Clock, AlertTriangle, ShieldAlert,
-  ChevronRight, Camera, Globe, CameraOff,
-  Menu,
+  ChevronRight, Camera, Globe,
+  Menu, SearchX,
 } from 'lucide-react';
-import TopSearch from '@/components/dashboard/TopSearch';
-import SystemHeader from '@/components/dashboard/SystemHeader';
-import { logClientError } from '@/lib/client-logger';
+
+
+
 import { track } from '@/lib/analytics';
 import { useAppStore } from '@/lib/store';
+import { useTranslation } from 'react-i18next';
 
-interface Message {
-  id: string;
-  role: 'user' | 'ai' | 'system';
-  text: string;
-  timestamp: string;
-  citations?: string[];
-  suggestedQueries?: string[];
-}
+const CameraViewport = dynamic(() => import('@/components/first-aid/CameraViewport'), { ssr: false })
 
 interface Guide {
   id: string;
@@ -59,66 +54,10 @@ const TypingText = ({ text, onComplete }: { text: string; onComplete?: () => voi
   return <span>{displayedText}</span>;
 };
 
-const CameraViewport = ({ onError }: { onError: (err: string | null) => void }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function startCamera() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ 
-          video: { facingMode: 'environment' }, 
-          audio: false 
-        });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-        onError(null);
-      } catch (err) {
-        logClientError('Camera access denied:', err);
-        setError("Camera Access Denied");
-        onError("Camera Access Denied");
-      }
-    }
-    startCamera();
-    const currentVideo = videoRef.current;
-    return () => {
-      if (currentVideo?.srcObject) {
-        (currentVideo.srcObject as MediaStream).getTracks().forEach(track => track.stop());
-      }
-    };
-  }, [onError]);
-
-  if (error) return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-bg/40 backdrop-blur-sm text-text-3 font-bold uppercase tracking-widest text-[10px] px-12 text-center gap-3">
-      <div className="p-3 rounded-full bg-surface-2/50 border border-white/5">
-        <CameraOff size={24} className="text-text-3" />
-      </div>
-      <span>{error} — Enable permissions in settings to activate AI diagnostics</span>
-    </div>
-  );
-
-  return (
-    <div className="absolute inset-0 overflow-hidden bg-black">
-      <video 
-        ref={videoRef} 
-        autoPlay 
-        playsInline 
-        muted 
-        className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 mix-blend-screen"
-      />
-      {/* HUD Overlays - Simplified */}
-      <div className="absolute inset-0 border-[1px] border-white/10 pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-brand/20 rounded-full animate-pulse"></div>
-      <div className="absolute top-4 left-4 flex items-center gap-2">
-        <div className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
-        <span className="text-[9px] font-mono text-brand-light tracking-widest uppercase">Sentinel-X Active</span>
-      </div>
-    </div>
-  );
-};
 
 export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeGuide, setActiveGuide] = useState<string | null>(null);
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
@@ -132,8 +71,8 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
   
   useEffect(() => {
     setMounted(true);
-    document.title = 'First Aid Guide | SafeVixAI';
-  }, []);
+    document.title = `${t('nav.first_aid', 'First Aid')} | SafeVixAI`;
+  }, [t]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -181,7 +120,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
           </button>
           <h1 className="text-[20px] font-semibold text-[--emergency] uppercase tracking-tight font-space flex items-center gap-2">
             <ShieldAlert size={20} />
-            First Aid HUD
+            {t('first_aid.hud_title', 'First Aid HUD')}
           </h1>
         </div>
 
@@ -194,7 +133,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
           }`}
         >
           <AlertTriangle size={12} className={emergencyMode ? 'animate-pulse' : ''} />
-          {emergencyMode ? 'Emergency Active' : 'Normal Mode'}
+          {emergencyMode ? t('first_aid.emergency_active', 'Emergency Active') : t('first_aid.normal_mode', 'Normal Mode')}
         </button>
       </header>
       
@@ -205,9 +144,9 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-red-500 font-space">Emergency Response Protocol</span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-emergency font-space">{t('first_aid.emergency_guide', 'Emergency Guide')}</span>
               </div>
-              <p className="text-text-3 font-medium text-sm leading-relaxed">Select a category below to initiate standard first-aid treatment procedures.</p>
+              <p className="text-text-3 font-medium text-sm leading-relaxed">{t('first_aid.guide_subtitle', 'Select a category below to initiate standard first-aid treatment procedures.')}</p>
             </div>
           </div>
           {/* ── Search HUD ── */}
@@ -218,11 +157,11 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
               <div className="flex items-center justify-between mb-3 px-2">
                 <div className="flex items-center gap-2">
                   <Globe size={14} className="text-brand dark:text-brand-light" />
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand dark:text-brand-light font-space">System Status: <span className="text-brand-light">Operational</span></span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand dark:text-brand-light font-space">{t('first_aid.system_operational', 'System Status: Operational')}</span>
                 </div>
                 <div className="flex items-center gap-1">
                    <div className="w-1 h-1 rounded-full bg-text-2" />
-                   <span className="text-[8px] font-bold text-text-3 uppercase tracking-widest">L-09 Mission Ready</span>
+                   <span className="text-[8px] font-bold text-text-3 uppercase tracking-widest">{t('first_aid.mission_ready', 'L-09 Mission Ready')}</span>
                 </div>
               </div>
               <div className="absolute -inset-0.5 bg-gradient-to-r from-brand/10 to-brand-light/10 rounded-lg blur opacity-20 transition duration-500 group-hover:opacity-40"></div>
@@ -230,7 +169,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
                 <Search className="text-text-3 dark:text-text-3 shrink-0" size={18} />
                 <input 
                   className="bg-transparent border-none text-text-1 dark:text-text-1 placeholder:text-text-3/40 focus:ring-0 w-full text-base focus:outline-none font-medium" 
-                  placeholder="Search emergency protocol..." 
+                  placeholder={t('first_aid.search_placeholder', 'Search emergency protocol...')} 
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -253,10 +192,10 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Camera size={14} className="text-brand dark:text-brand-light" />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand dark:text-brand-light font-space">Diagnostic Module SVX-1</span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand dark:text-brand-light font-space">{t('first_aid.diagnostic_module', 'Diagnostic Module SVX-1')}</span>
               </div>
-              <h3 className="text-3xl font-black text-text-1 dark:text-white tracking-tight font-space uppercase mb-2">AI Vision Assessment</h3>
-              <p className="text-text-3 dark:text-text-3 font-medium text-sm max-w-lg leading-relaxed">Real-time identification of trauma, bleeding patterns, and skeletal anomalies using multi-spectral computer vision.</p>
+              <h3 className="text-3xl font-black text-text-1 dark:text-white tracking-tight font-space uppercase mb-2">{t('first_aid.ai_vision_title', 'AI Vision Assessment')}</h3>
+              <p className="text-text-3 dark:text-text-3 font-medium text-sm max-w-lg leading-relaxed">{t('first_aid.ai_vision_subtitle', 'Real-time identification of trauma, bleeding patterns, and skeletal anomalies using multi-spectral computer vision.')}</p>
             </div>
             
             <button 
@@ -264,7 +203,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
               className="bg-brand hover:bg-brand/80 shadow-[0_8px_25px_var(--brand-dim)] px-8 py-4 rounded-lg text-white font-black uppercase tracking-widest text-[10px] flex items-center gap-3 active:scale-95 transition-all w-fit"
             >
               <Camera size={18} />
-              Invoke Full Scan
+              {t('first_aid.invoke_scan', 'Invoke Full Scan')}
             </button>
           </div>
           
@@ -275,7 +214,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
             ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center text-text-3 gap-4 bg-bg/40">
                 <Camera size={48} className="opacity-20" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-text-3">Scanner Offline. Invoke full scan to initialize.</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-text-3">{t('first_aid.scanner_offline', 'Scanner Offline. Invoke full scan to initialize.')}</span>
               </div>
             )}
 
@@ -303,8 +242,8 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
                   <div className="w-10 h-10 border-b border-l border-brand/40" />
                   <div className="bg-black/80 backdrop-blur-md px-5 py-4 rounded-lg border border-white/5 flex items-center gap-4">
                      <div className="flex flex-col">
-                       <span className="text-[8px] font-semibold text-text-3 uppercase tracking-widest mb-0.5">Focus State</span>
-                       <span className="text-[10px] font-bold text-white font-mono">AWAITING_INPUT</span>
+                       <span className="text-[8px] font-semibold text-text-3 uppercase tracking-widest mb-0.5">{t('first_aid.focus_state', 'Focus State')}</span>
+                       <span className="text-[10px] font-bold text-white font-mono">{t('first_aid.awaiting_input', 'AWAITING_INPUT')}</span>
                      </div>
                      <div className="w-2 h-2 rounded-full bg-brand/80 animate-pulse shadow-[0_0_10px_var(--brand-dim)]" />
                   </div>
@@ -337,8 +276,9 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
   guideKeys: string[];
   guides: Record<string, Guide>;
   emergencyMode: boolean;
-  onGuideSelect: (key: string) => void;
+  onGuideSelect: (_key: string) => void;
 }) {
+  const { t } = useTranslation();
   const gridRef = useRef<HTMLDivElement>(null);
   const extraCardsRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
@@ -367,11 +307,14 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
   const renderCard = (key: string) => {
     const guide = guides[key];
     const isCritical = ['cpr', 'bleeding'].includes(key);
+    const titleText = t(`first_aid.${guide.id}.title`, guide.title);
+    const subtitleText = t(`first_aid.${guide.id}.subtitle`, guide.subtitle);
     return (
       <button
         type="button"
         key={key}
         onClick={() => onGuideSelect(key)}
+        aria-label={`Open ${titleText} first aid guide`}
         className={`protocol-card card-premium group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 text-left transition-all duration-300 border ${
           isCritical 
             ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
@@ -382,12 +325,12 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
           {isCritical && (
             <div className="bg-red-500/10 text-red-500 px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-red-500/20 flex items-center gap-1">
               <AlertTriangle size={10} />
-              Priority P0
+              {t('first_aid.priority_p0', 'Priority P0')}
             </div>
           )}
-          <div className="bg-brand-light/10 text-brand-dim dark:text-brand-light px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-brand-light/20 flex items-center gap-1">
+          <div className="bg-brand-light/10 text-brand dark:text-brand-light px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-widest uppercase border border-brand-light/20 flex items-center gap-1">
             <div className="w-1 h-1 rounded-full bg-brand-light animate-pulse" />
-            Offline
+            {t('first_aid.offline_badge', 'Offline')}
           </div>
         </div>
         <div className="flex flex-col h-full justify-between gap-8 relative z-10">
@@ -402,21 +345,21 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
               {key === 'fractures' && <Bone size={32} />}
             </div>
             <div>
-              <h2 className={`font-black tracking-tight dark:text-white mb-2 font-space uppercase ${
+              <h2 className={`font-black tracking-tight text-text-1 dark:text-white mb-2 font-space uppercase ${
                 emergencyMode && key === 'cpr' ? 'text-4xl sm:text-5xl' : 'text-2xl'
-              }`}>{guide.title}</h2>
+              }`}>{titleText}</h2>
               <p className={`text-text-3 font-medium leading-relaxed ${
                 emergencyMode && key === 'cpr' ? 'text-lg max-w-xl' : 'text-sm'
-              }`}>{guide.subtitle}</p>
+              }`}>{subtitleText}</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <span className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all ${
               isCritical 
                 ? 'bg-red-500 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40' 
-                : 'bg-surface-3 dark:bg-white/10 text-white hover:bg-surface-1 dark:hover:bg-white/20'
+                : 'bg-surface-3 dark:bg-white/10 text-text-1 dark:text-white hover:bg-surface-1 dark:hover:bg-white/20'
             }`}>
-              Start Guide <ChevronRight size={16} />
+              {t('first_aid.start_guide', 'Start Guide')} <ChevronRight size={16} />
             </span>
           </div>
         </div>
@@ -427,6 +370,18 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
       </button>
     );
   };
+
+  if (guideKeys.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-surface-3">
+          <SearchX size={24} className="text-text-3" />
+        </div>
+        <p className="text-sm font-semibold text-text-1">{t('first_aid.no_match', 'No protocols match your search')}</p>
+        <p className="mt-1 text-xs text-text-2">{t('first_aid.try_different', 'Try a different keyword or browse all categories')}</p>
+      </div>
+    );
+  }
 
   return (
     <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -446,22 +401,22 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
             onClick={() => setExpanded(!expanded)}
             className="px-6 py-2.5 rounded-full border border-border bg-surface-2 text-text-2 hover:text-text-1 font-bold text-xs uppercase tracking-widest transition-all"
           >
-            {expanded ? 'Show Less Protocols' : 'Show All Protocols'}
+            {expanded ? t('first_aid.show_less', 'Show Less Protocols') : t('first_aid.show_all', 'Show All Protocols')}
           </button>
         </div>
       )}
 
       {!emergencyMode && (
-        <div className="group cursor-pointer relative bg-gradient-to-br from-surface-3 to-surface-1 dark:from-surface-2 dark:to-bg rounded-xl p-8 border border-white/5 flex items-center justify-between col-span-1 md:col-span-2 lg:col-span-1 hover:border-brand/20 transition-all shadow-xl shadow-black/20">
+        <div className="group cursor-pointer relative bg-gradient-to-br from-surface-3 to-surface-1 dark:from-surface-2 dark:to-bg rounded-xl p-8 border border-border dark:border-white/5 flex items-center justify-between col-span-1 md:col-span-2 lg:col-span-1 hover:border-brand/20 transition-all shadow-xl shadow-black/20">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <Clock size={14} className="text-brand-light" />
-              <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest font-space">Inventory HUD</span>
+              <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest font-space">{t('first_aid.inventory_hud', 'Inventory HUD')}</span>
             </div>
-            <h3 className="text-xl font-black text-white font-space uppercase">First Aid Kit</h3>
-            <p className="text-text-3 text-xs font-medium">Inventory checklist & alerts</p>
+            <h3 className="text-xl font-black text-text-1 dark:text-white font-space uppercase">{t('first_aid.kit_title', 'First Aid Kit')}</h3>
+            <p className="text-text-3 text-xs font-medium">{t('first_aid.kit_subtitle', 'Inventory checklist & alerts')}</p>
           </div>
-          <button className="bg-white/10 p-4 rounded-lg text-white group-hover:bg-brand/80 group-hover:text-white transition-all duration-300">
+          <button className="bg-surface-3 dark:bg-white/10 p-4 rounded-lg text-text-1 dark:text-white group-hover:bg-brand/80 group-hover:text-white transition-all duration-300">
             <ChevronRight size={24} />
           </button>
         </div>
@@ -475,12 +430,13 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
   activeGuide: string | null;
   guides: Record<string, Guide>;
   completedSteps: Set<number>;
-  toggleStep: (idx: number) => void;
+  toggleStep: (_idx: number) => void;
   scrollProgress: number;
   modalScrollRef: React.RefObject<HTMLDivElement | null>;
   handleModalScroll: () => void;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
   const overlayRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -580,14 +536,14 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
           <div>
             <div className="flex items-center gap-2 mb-0.5">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[9px] font-semibold uppercase tracking-[0.1em] text-red-500 font-space">Live Protocol</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.1em] text-red-600 dark:text-red-400 font-space">{t('first_aid.live_protocol', 'Live Protocol')}</span>
             </div>
-            <h2 id="first-aid-modal-title" className="text-xl sm:text-2xl font-black text-text-1 dark:text-white font-space uppercase">{guide.title}</h2>
+            <h2 id="first-aid-modal-title" className="text-xl sm:text-2xl font-black text-text-1 dark:text-white font-space uppercase">{t(`first_aid.${guide.id}.title`, guide.title)}</h2>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <a href="tel:112" onClick={() => track.emergencyCallMade('112')} className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/25 active:scale-95 transition-transform">
-            <Phone size={14} /> Call 112
+          <a href="tel:112" onClick={() => track.emergencyCallMade('112')} aria-label="Call 112 emergency services" className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-red-500/25 active:scale-95 transition-transform">
+            <Phone size={14} /> {t('first_aid.call_112', 'Call 112')}
           </a>
           <button onClick={onClose} className="p-2 text-text-3 hover:text-text-2 dark:hover:text-white" aria-label="Close first aid guide">
             <X size={24} />
@@ -603,74 +559,77 @@ function GuideModal({ activeGuide, guides, completedSteps, toggleStep, scrollPro
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="bg-white dark:bg-surface-2 rounded-xl p-6 sm:p-8 border border-border dark:border-white/5 shadow-xl">
             <div className="flex items-start gap-6">
-              <div className="p-5 rounded-lg bg-red-500/10 text-red-500 hidden sm:block"><HeartPulse size={40} /></div>
-              <div>
-                <h3 className="text-sm font-semibold text-red-500 uppercase tracking-widest font-space mb-2">Instructions</h3>
+              <div className="p-5 rounded-lg bg-red-500/10 text-red-500">
+                <h3 className="text-sm font-semibold text-red-600 dark:text-red-400 uppercase tracking-widest font-space mb-2">{t('first_aid.instructions_label', 'Instructions')}</h3>
                 <p className="text-lg sm:text-xl text-text-2 dark:text-text-1 font-medium leading-relaxed">
-                  <TypingText text={guide.subtitle} />
+                  <TypingText text={t(`first_aid.${guide.id}.subtitle`, guide.subtitle)} />
                 </p>
               </div>
             </div>
-
+ 
             {activeGuide === 'cpr' && (
               <div className="mt-8 pt-8 border-t border-border-md dark:border-white/5 flex flex-col items-center">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-4">Compression Metronome (100 BPM)</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-4">{t('first_aid.metronome_title', 'Compression Metronome (100 BPM)')}</p>
                 <div className="relative">
                   <div ref={metronomeRef} className="w-24 h-24 rounded-full bg-red-500/20 border-2 border-red-500/40 flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full bg-red-500 shadow-[0_0_30px_rgba(239,68,68,0.5)]" />
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <span className="text-white font-black text-sm uppercase">PULSE</span>
+                    <span className="text-white font-black text-sm uppercase">{t('first_aid.metronome_pulse', 'PULSE')}</span>
                   </div>
                 </div>
-                <p className="mt-4 text-xs font-bold text-red-500 uppercase tracking-widest animate-pulse">Push Hard, Push Fast</p>
+                <p className="mt-4 text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-widest animate-pulse">{t('first_aid.push_hard_fast', 'Push Hard, Push Fast')}</p>
               </div>
             )}
           </div>
 
           <div ref={stepsRef} className="space-y-4">
             <div className="flex items-center justify-between px-2">
-              <h3 className="text-xs font-semibold text-text-3 uppercase tracking-[0.25em] font-space">Sequential Actions</h3>
+              <h3 className="text-xs font-semibold text-text-3 uppercase tracking-[0.25em] font-space">{t('first_aid.sequential_actions', 'Sequential Actions')}</h3>
               <span className="text-[10px] font-semibold text-brand-light uppercase tracking-widest">
-                {completedSteps.size} / {guide.steps.length} Complete
+                {t('first_aid.complete_count', { completed: completedSteps.size, total: guide.steps.length, defaultValue: `${completedSteps.size} / ${guide.steps.length} Complete` })}
               </span>
             </div>
-            {guide.steps.map((step, idx) => (
-              <button
-                type="button"
-                key={idx}
-                className={`step-item group w-full cursor-pointer p-5 sm:p-6 rounded-lg border text-left transition-all duration-300 flex gap-5 items-start ${
-                  completedSteps.has(idx)
-                    ? 'bg-brand-light/10 text-brand border-brand-light/20 dark:text-brand-light dark:border-brand-light/20 opacity-60 scale-[0.98]'
-                    : 'bg-white dark:bg-surface-2/60 dark:hover:bg-surface-2 border-border dark:border-white/5 text-text-1'
-                }`}
-                onClick={() => toggleStep(idx)}
-                aria-pressed={completedSteps.has(idx)}
-              >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black flex-shrink-0 text-xs transition-colors ${
-                  completedSteps.has(idx) ? 'bg-brand-light text-white' : 'bg-surface-2 dark:bg-white/10 text-text-3'
-                }`}>
-                  {completedSteps.has(idx) ? <CheckCircle2 size={16} /> : idx + 1}
-                </div>
-                <div className="flex-1 space-y-1">
-                  <p className="font-bold leading-relaxed">{step}</p>
-                  {idx === 0 && !completedSteps.has(idx) && (
-                    <div className="flex items-center gap-1.5 text-red-500 animate-pulse">
-                      <AlertTriangle size={12} />
-                      <span className="text-[10px] font-semibold uppercase tracking-widest">Critical Foundation</span>
-                    </div>
-                  )}
-                </div>
-              </button>
-            ))}
+            {guide.steps.map((step, idx) => {
+              const stepText = t(`first_aid.${guide.id}.steps.${idx}`, step);
+              return (
+                <button
+                  type="button"
+                  key={idx}
+                  className={`step-item group w-full cursor-pointer p-5 sm:p-6 rounded-lg border text-left transition-all duration-300 flex gap-5 items-start ${
+                    completedSteps.has(idx)
+                      ? 'bg-brand-light/10 text-brand border-brand-light/20 dark:text-brand-light dark:border-brand-light/20 opacity-60 scale-[0.98]'
+                      : 'bg-white dark:bg-surface-2/60 dark:hover:bg-surface-2 border-border dark:border-white/5 text-text-1'
+                  }`}
+                  onClick={() => toggleStep(idx)}
+                  aria-pressed={completedSteps.has(idx)}
+                  aria-label={`Step ${idx + 1}: ${stepText.replace(/<[^>]*>/g, '').substring(0, 60)}`}
+                >
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black flex-shrink-0 text-xs transition-colors ${
+                    completedSteps.has(idx) ? 'bg-brand-light text-white' : 'bg-surface-2 dark:bg-white/10 text-text-3'
+                  }`}>
+                    {completedSteps.has(idx) ? <CheckCircle2 size={16} /> : idx + 1}
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <p className="font-bold leading-relaxed">{stepText}</p>
+                    {idx === 0 && !completedSteps.has(idx) && (
+                      <div className="flex items-center gap-1.5 text-red-600 dark:text-red-400 animate-pulse">
+                        <AlertTriangle size={12} />
+                        <span className="text-[10px] font-semibold uppercase tracking-widest">{t('first_aid.critical_foundation', 'Critical Foundation')}</span>
+                      </div>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
           <div className="pt-8 pb-12 flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <button onClick={onClose} className="w-full sm:w-auto px-10 py-4 bg-surface-3 dark:bg-white/10 text-white font-black uppercase tracking-widest text-xs rounded-lg active:scale-95 transition-all">
-              Terminate Protocol
+            <button onClick={onClose} aria-label="Close first aid guide" className="w-full sm:w-auto px-10 py-4 bg-surface-3 dark:bg-white/10 text-text-1 dark:text-white font-black uppercase tracking-widest text-xs rounded-lg active:scale-95 transition-all">
+              {t('first_aid.terminate_protocol', 'Terminate Protocol')}
             </button>
-            <a href="tel:108" onClick={() => track.emergencyCallMade('108')} className="w-full sm:w-auto px-10 py-4 bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-lg shadow-xl shadow-red-500/20 animate-pulse flex items-center justify-center gap-2 active:scale-95 transition-all">
-              <Phone size={16} /> Emergency Hotline
+            <a href="tel:108" onClick={() => track.emergencyCallMade('108')} aria-label="Call 108 ambulance service" className="w-full sm:w-auto px-10 py-4 bg-red-500 text-white font-black uppercase tracking-widest text-xs rounded-lg shadow-xl shadow-red-500/20 animate-pulse flex items-center justify-center gap-2 active:scale-95 transition-all">
+              <Phone size={16} /> {t('first_aid.emergency_hotline', 'Emergency Hotline')}
             </a>
           </div>
         </div>

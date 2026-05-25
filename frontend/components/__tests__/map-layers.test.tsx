@@ -20,7 +20,7 @@ jest.mock('maplibre-gl', () => ({
 
 describe('MapLayers', () => {
   it('renders hazard heatmap layer', () => {
-    const { container } = render(
+    render(
       <div data-testid="map-container">
         <div data-testid="heatmap-layer" />
       </div>
@@ -36,7 +36,7 @@ describe('MapLayers', () => {
       { id: '2', name: 'Police Station', lat: 13.0850, lon: 80.2730, category: 'police' },
     ];
 
-    const { container } = render(
+    render(
       <div data-testid="map-container">
         {services.map((s) => (
           <div key={s.id} data-testid={`marker-${s.category}`}>
@@ -56,7 +56,7 @@ describe('MapLayers', () => {
       { id: '2', issueType: 'flooding', lat: 13.0850, lon: 80.2730, severity: 4 },
     ];
 
-    const { container } = render(
+    render(
       <div data-testid="map-container">
         {issues.map((i) => (
           <div key={i.id} data-testid={`issue-${i.issueType}`}>
@@ -71,7 +71,7 @@ describe('MapLayers', () => {
   });
 
   it('renders user location marker', () => {
-    const { container } = render(
+    render(
       <div data-testid="map-container">
         <div data-testid="user-marker" />
       </div>
@@ -86,7 +86,7 @@ describe('MapLayers', () => {
       showHeatmap = !showHeatmap;
     };
 
-    const { container, rerender } = render(
+    const { rerender } = render(
       <div data-testid="map-container">
         {showHeatmap && <div data-testid="heatmap-layer" />}
         <button data-testid="toggle-heatmap" onClick={toggle}>
@@ -116,7 +116,7 @@ describe('MapLayers', () => {
       { id: '1', name: 'Chennai Central', lat: 13.0827, lon: 80.2707 },
     ];
 
-    const { container } = render(
+    render(
       <div data-testid="map-container">
         {searchResults.map((r) => (
           <div key={r.id} data-testid={`search-result-${r.id}`}>

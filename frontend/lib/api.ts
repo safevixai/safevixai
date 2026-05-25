@@ -27,6 +27,8 @@ client.interceptors.request.use((config) => {
   if (csrf) {
     config.headers['X-CSRF-Token'] = csrf;
   }
+  const preferredLang = useAppStore.getState().userProfile.preferredLanguage || 'en';
+  config.headers['Accept-Language'] = preferredLang;
   return config;
 });
 
@@ -92,6 +94,8 @@ chatbotClient.interceptors.request.use((config) => {
   if (csrf) {
     config.headers['X-CSRF-Token'] = csrf;
   }
+  const preferredLang = useAppStore.getState().userProfile.preferredLanguage || 'en';
+  config.headers['Accept-Language'] = preferredLang;
   return config;
 });
 _withRetry(chatbotClient);
@@ -942,3 +946,195 @@ export async function calculateChallan(query: ChallanQuery): Promise<ChallanResu
     }
   }
 }
+
+// ─── Civic Intelligence – Municipality Guide ────────────────────────────
+
+export interface Municipality {
+  slug: string;
+  name: string;
+  shortName: string;
+  city: string;
+  stateCode: string;
+  municipalityType: string;
+  wardCount: number | null;
+  population: number | null;
+  helplinePhone: string | null;
+  centroidLat: number;
+  centroidLon: number;
+  distanceKm?: number | null;
+}
+
+export interface MunicipalityDetail extends Municipality {
+  headquartersAddress: string | null;
+  email: string | null;
+  websiteUrl: string | null;
+  whatsappNumber: string | null;
+  appName: string | null;
+  appUrl: string | null;
+  grievancePortalUrl: string | null;
+  mayorName: string | null;
+  mayorPhotoUrl: string | null;
+  commissionerName: string | null;
+  commissionerPhone: string | null;
+  areaSqkm: number | null;
+  description: string | null;
+  servicesOffered: string[] | null;
+}
+
+export interface MunicipalitiesResponse {
+  municipalities: Municipality[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function normalizeMunicipality(d: any): Municipality {
+  return {
+    slug: d.slug,
+    name: d.name,
+    shortName: d.short_name ?? d.shortName ?? '',
+    city: d.city,
+    stateCode: d.state_code ?? d.stateCode ?? '',
+    municipalityType: d.municipality_type ?? d.municipalityType ?? '',
+    wardCount: d.ward_count ?? d.wardCount ?? null,
+    population: d.population ?? null,
+    helplinePhone: d.helpline_phone ?? d.helplinePhone ?? null,
+    centroidLat: d.centroid_lat ?? d.centroidLat ?? 0,
+    centroidLon: d.centroid_lon ?? d.centroidLon ?? 0,
+    distanceKm: d.distance_km ?? d.distanceKm ?? null,
+  };
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function normalizeMunicipalityDetail(d: any): MunicipalityDetail {
+  return {
+    ...normalizeMunicipality(d),
+    headquartersAddress: d.headquarters_address ?? null,
+    email: d.email ?? null,
+    websiteUrl: d.website_url ?? null,
+    whatsappNumber: d.whatsapp_number ?? null,
+    appName: d.app_name ?? null,
+    appUrl: d.app_url ?? null,
+    grievancePortalUrl: d.grievance_portal_url ?? null,
+    mayorName: d.mayor_name ?? null,
+    mayorPhotoUrl: d.mayor_photo_url ?? null,
+    commissionerName: d.commissioner_name ?? null,
+    commissionerPhone: d.commissioner_phone ?? null,
+    areaSqkm: d.area_sqkm ?? null,
+    description: d.description ?? null,
+    servicesOffered: d.services_offered ?? null,
+  };
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+export async function fetchMunicipalities(params?: {
+  q?: string;
+  stateCode?: string;
+  municipalityType?: string;
+  page?: number;
+  pageSize?: number;
+}): Promise<MunicipalitiesResponse> {
+  const { data } = await client.get('/api/v1/civic/municipalities', {
+    params: {
+      q: params?.q,
+      state_code: params?.stateCode,
+      municipality_type: params?.municipalityType,
+      page: params?.page ?? 1,
+      page_size: params?.pageSize ?? 50,
+    },
+  });
+  return {
+    municipalities: (data.municipalities ?? data.items ?? []).map(normalizeMunicipality),
+    total: data.total ?? 0,
+    page: data.page ?? 1,
+    pageSize: data.page_size ?? 50,
+  };
+}
+
+export async function fetchMunicipalityBySlug(slug: string): Promise<MunicipalityDetail> {
+  const { data } = await client.get(`/api/v1/civic/municipalities/${slug}`);
+  return normalizeMunicipalityDetail(data);
+}
+
+export async function fetchNearbyMunicipalities(
+  lat: number,
+  lon: number,
+  limit?: number,
+): Promise<Municipality[]> {
+  const { data } = await client.get('/api/v1/civic/municipalities/nearby', {
+    params: { lat, lon, limit: limit ?? 10 },
+  });
+  return (data.municipalities ?? data ?? []).map(normalizeMunicipality);
+}
+
+// ─── Enterprise Civic Intelligence Workflow Systems ───────────────────
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function authorityAcceptComplaint(uuid: string): Promise<any> {
+  const { data } = await client.post(`/api/v1/authority/complaints/${uuid}/accept`);
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function authorityRejectComplaint(uuid: string, reason: string): Promise<any> {
+  const { data } = await client.post(`/api/v1/authority/complaints/${uuid}/reject`, { reason });
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function citizenConfirmResolution(ref: string, rating?: number, notes?: string): Promise<any> {
+  const { data } = await client.post(`/api/v1/citizen/complaints/${ref}/confirm`, { rating, notes });
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function citizenRejectResolution(ref: string, reason: string): Promise<any> {
+  const { data } = await client.post(`/api/v1/citizen/complaints/${ref}/reject`, { reason });
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fetchPublicWardRankings(): Promise<any> {
+  const { data } = await client.get('/api/v1/public/ward-rankings');
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fetchPublicStats(): Promise<any> {
+  const { data } = await client.get('/api/v1/public/stats');
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fieldStartWork(uuid: string, lat: number, lon: number): Promise<any> {
+  const { data } = await client.post(`/api/v1/field/complaints/${uuid}/start-work`, { lat, lon });
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fieldUploadEvidence(uuid: string, formData: FormData): Promise<any> {
+  const { data } = await client.post(`/api/v1/field/complaints/${uuid}/upload-evidence`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
+  return data;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fieldCompleteWork(
+  uuid: string,
+  afterPhotoUrl: string | null,
+  notes: string | null,
+  lat: number,
+  lon: number
+): Promise<any> {
+  const { data } = await client.post(`/api/v1/field/complaints/${uuid}/complete`, {
+    after_photo_url: afterPhotoUrl,
+    notes,
+    lat,
+    lon
+  });
+  return data;
+}
+
+

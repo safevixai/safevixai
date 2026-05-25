@@ -1,21 +1,23 @@
 'use client';
 
-import { useTheme } from '@/components/ThemeProvider';
+
+
 import DashboardMapBootstrap from '@/components/dashboard/DashboardMapBootstrap';
 import SystemHeader from '@/components/dashboard/SystemHeader';
 import TopSearch from '@/components/dashboard/TopSearch';
+import { useTranslation } from 'react-i18next';
 import { useLocatorSearch } from '@/hooks/useLocatorSearch';
-import { useAppStore } from '@/lib/store';
+import { useSwipe } from '@/hooks/useSwipe';
+import type { ServiceSearchMeta } from '@/lib/store';
 import { RouteOption, RoutePreviewResponse } from '@/lib/api';
-import { MapPin, Navigation, Siren } from 'lucide-react';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { MapPin } from 'lucide-react';
+import { useState } from 'react';
 
 import { LocatorFilters } from './components/LocatorFilters';
 import { LocatorMap } from './components/LocatorMap';
 import { DesktopResultsList, MobileResultsList } from './components/LocatorResults';
 import { EmptyState, RouteStatusCard } from './locator-components';
-import { Filter, LocatorService, fallbackNumber } from './locator-utils';
+import { Filter, LocatorService } from './locator-utils';
 import { SkeletonCard } from '@/components/ui/SkeletonCard';
 import { PRIMARY_EMERGENCY_BAR } from '@/lib/emergency-numbers';
 
@@ -53,10 +55,10 @@ function MobileLocator({
   address: string;
   filtered: LocatorService[];
   locating: boolean;
-  serviceSearchMeta: any;
+  serviceSearchMeta: ServiceSearchMeta;
   coverageSummary: string;
   activeFilter: Filter;
-  setActiveFilter: (filter: Filter) => void;
+  setActiveFilter: (_filter: Filter) => void;
   activeRoute: RoutePreviewResponse | null;
   activeRouteOption: RouteOption | null;
   alternativeRoutes: RouteOption[];
@@ -67,10 +69,18 @@ function MobileLocator({
   navigationHref: string | null;
   selectedRouteId: string | null;
   rerouting: boolean;
-  onLocateService: (service: LocatorService) => void;
-  onSelectRoute: (routeId: string) => void;
-  onPreviewService: (service: LocatorService) => void;
+  onLocateService: (_service: LocatorService) => void;
+  onSelectRoute: (_routeId: string) => void;
+  onPreviewService: (_service: LocatorService) => void;
 }) {
+  const { t } = useTranslation();
+  const [viewMode, setViewMode] = useState<'map' | 'list'>('map');
+  const { onTouchStart: swipeStart, onTouchEnd: swipeEnd } = useSwipe({
+    onSwipeUp: () => setViewMode('list'),
+    onSwipeDown: () => setViewMode('map'),
+    onSwipeLeft: () => setViewMode('list'),
+    onSwipeRight: () => setViewMode('map'),
+  });
   const locationIsApproximate = Boolean(currentLocation && currentLocation.accuracy >= 2500);
   const currentLocationAccuracy = currentLocation
     ? currentLocation.accuracy >= 1000
@@ -80,7 +90,7 @@ function MobileLocator({
 
   return (
     <div className="aurora-glow min-h-dvh pb-48 bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-brand/30 relative overflow-x-hidden w-full">
-      <SystemHeader title="Emergency Resource Dispatch" showBack={false} />
+      <SystemHeader title={t('locator.resource_dispatch')} showBack={false} />
 
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={true} forceShow={true} showBack={false} />
@@ -89,7 +99,7 @@ function MobileLocator({
       <div className="pt-24 lg:pt-0 px-5 flex items-center justify-between relative z-10 hide-on-short-screen">
         <div>
           <h2 className="text-text-1 dark:text-text-1 font-black tracking-tight text-xl font-space uppercase">
-            Emergency Locator
+            {t('locator.emergency_locator')}
           </h2>
           <p className="text-[11px] text-text-2 dark:text-brand-light font-bold opacity-80 mt-1 tracking-wider uppercase">
             {address} - {coverageSummary}
@@ -98,12 +108,20 @@ function MobileLocator({
         <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-light/10 border border-brand-light/20">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
           <span className="text-[10px] font-semibold text-brand-dim dark:text-brand-light uppercase tracking-widest">
-            Live HUD
+            {t('locator.live_hud')}
           </span>
         </div>
       </div>
 
-      <main className="relative z-10 pt-4 pb-40 w-full">
+      <main className="relative z-10 pt-4 pb-40 w-full sv-swipe-area" onTouchStart={swipeStart} onTouchEnd={swipeEnd}>
+        {/* View mode toggle indicator */}
+        <div className="flex justify-center gap-1.5 pb-2 lg:hidden">
+          <button onClick={() => setViewMode('map')} className={`h-1.5 rounded-full transition-all duration-300 ${viewMode === 'map' ? 'w-6 bg-brand-light' : 'w-2 bg-border'}`} aria-label={t('locator.locate')} />
+          <button onClick={() => setViewMode('list')} className={`h-1.5 rounded-full transition-all duration-300 ${viewMode === 'list' ? 'w-6 bg-brand-light' : 'w-2 bg-border'}`} aria-label={t('locator.filters.All')} />
+          <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest ml-2 self-center">Swipe ↔</span>
+        </div>
+
+        {viewMode === 'map' && (
         <section className="relative h-[calc(var(--full-content-h)_-_128px)] min-h-[320px] max-h-[520px] w-full px-4 border-b border-border-md dark:border-white/5 overflow-hidden">
           <div className="relative h-full w-full rounded-lg overflow-hidden bg-surface-3 dark:bg-[#030e20] border border-border-md dark:border-white/10 shadow-2xl">
             <div className="absolute inset-0 z-0">
@@ -120,7 +138,10 @@ function MobileLocator({
             <div className="absolute inset-0 pointer-events-none z-10" />
           </div>
         </section>
+        )}
 
+        {viewMode === 'list' && (
+        <>
         <section className="mt-6 px-4 relative">
           <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-surface-2 dark:from-surface-1 to-transparent z-20 pointer-events-none" />
           <LocatorFilters activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
@@ -141,10 +162,10 @@ function MobileLocator({
           {locationIsApproximate && currentLocationAccuracy ? (
             <div className="rounded-lg border border-warning/20 bg-warning/10/90 px-4 py-3 text-amber-900 shadow-sm dark:border-warning/20 dark:bg-warning/10 dark:text-warning">
               <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-amber-600 dark:text-amber-300">
-                Approximate Location
+                {t('locator.approximate_location')}
               </div>
               <p className="mt-1 text-sm font-semibold">
-                Your browser is giving an approximate fix ({currentLocationAccuracy}). Live routes may be offset until precise GPS settles.
+                {t('locator.approximate_location_warning', { accuracy: currentLocationAccuracy })}
               </p>
             </div>
           ) : null}
@@ -170,6 +191,8 @@ function MobileLocator({
             />
           )}
         </section>
+        </>
+        )}
       </main>
     </div>
   );
@@ -209,10 +232,10 @@ function DesktopLocator({
   address: string;
   filtered: LocatorService[];
   locating: boolean;
-  serviceSearchMeta: any;
+  serviceSearchMeta: ServiceSearchMeta;
   coverageSummary: string;
   activeFilter: Filter;
-  setActiveFilter: (filter: Filter) => void;
+  setActiveFilter: (_filter: Filter) => void;
   activeRoute: RoutePreviewResponse | null;
   activeRouteOption: RouteOption | null;
   alternativeRoutes: RouteOption[];
@@ -223,10 +246,11 @@ function DesktopLocator({
   navigationHref: string | null;
   selectedRouteId: string | null;
   rerouting: boolean;
-  onLocateService: (service: LocatorService) => void;
-  onSelectRoute: (routeId: string) => void;
-  onPreviewService: (service: LocatorService) => void;
+  onLocateService: (_service: LocatorService) => void;
+  onSelectRoute: (_routeId: string) => void;
+  onPreviewService: (_service: LocatorService) => void;
 }) {
+  const { t } = useTranslation();
   const locationIsApproximate = Boolean(currentLocation && currentLocation.accuracy >= 2500);
   const currentLocationAccuracy = currentLocation
     ? currentLocation.accuracy >= 1000
@@ -234,9 +258,16 @@ function DesktopLocator({
       : `${Math.round(currentLocation.accuracy)} m accuracy`
     : null;
 
+  const labelKeyMap: Record<string, string> = {
+    'SOS': 'emergency.system_sos',
+    'POLICE': 'emergency.police',
+    'AMBULANCE': 'emergency.ambulance',
+    'HIGHWAY': 'emergency.highway'
+  };
+
   return (
     <div className="w-full h-[var(--full-content-h-desktop)] bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] relative overflow-hidden flex flex-col">
-      <SystemHeader title="Emergency Resource Dispatch" showBack={false} />
+      <SystemHeader title={t('locator.resource_dispatch')} showBack={false} />
 
       <main className="flex-1 flex w-full relative z-0 overflow-hidden lg:mt-0">
         <section className="flex-1 h-full relative overflow-hidden bg-surface-3 dark:bg-bg border-r border-border-md dark:border-white/5">
@@ -262,7 +293,7 @@ function DesktopLocator({
           <div className="absolute bottom-8 left-8 z-20 bg-white/90 dark:bg-surface-1/90 backdrop-blur-md p-4 rounded-lg border border-border-md dark:border-white/10 shadow-xl min-w-[180px] hidden lg:block">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-2 h-2 rounded-full bg-brand-light animate-pulse" />
-              <span className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">Telemetry Active</span>
+              <span className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">{t('locator.telemetry_active')}</span>
             </div>
             <div className="text-sm font-semibold text-text-1 dark:text-brand-light tracking-tight">{address}</div>
             <div className="mt-1 text-xs font-semibold text-text-2 dark:text-text-2">{coverageSummary}</div>
@@ -277,15 +308,17 @@ function DesktopLocator({
               </div>
               <div className="overflow-hidden">
                 <h2 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:text-brand-light whitespace-nowrap">
-                  Locator Subsystem
+                  {t('locator.locator_subsystem')}
                 </h2>
                 <h2 className="text-xl lg:text-2xl font-black tracking-tight text-text-1 dark:text-white leading-none truncate">
-                  Emergency Resources
+                  {t('locator.emergency_resources')}
                 </h2>
               </div>
             </div>
             <p className="text-text-2 dark:text-text-2 text-xs lg:text-sm font-medium">
-              Found {filtered.length} priority facilities across {coverageSummary.toLowerCase()}.
+              {filtered.length === 1 
+                ? t('locator.found_facilities_one', { location: coverageSummary }) 
+                : t('locator.found_facilities_other', { count: filtered.length, location: coverageSummary })}
             </p>
             <div className="mt-4">
               <RouteStatusCard
@@ -302,10 +335,10 @@ function DesktopLocator({
               {locationIsApproximate && currentLocationAccuracy ? (
                 <div className="mt-4 rounded-lg border border-warning/20 bg-warning/10/90 px-4 py-3 text-amber-900 shadow-sm dark:border-warning/20 dark:bg-warning/10 dark:text-warning">
                   <div className="text-[10px] font-semibold uppercase tracking-[0.1em] text-amber-600 dark:text-amber-300">
-                    Approximate Location
+                    {t('locator.approximate_location')}
                   </div>
                   <p className="mt-1 text-sm font-semibold">
-                    The browser is reporting an approximate fix ({currentLocationAccuracy}). If this still shows Chennai, the device or browser geolocation itself is returning Chennai-area coordinates.
+                    {t('locator.approximate_location_warning_desktop', { accuracy: currentLocationAccuracy })}
                   </p>
                 </div>
               ) : null}
@@ -342,7 +375,7 @@ function DesktopLocator({
             {PRIMARY_EMERGENCY_BAR.map((dial) => (
               <a key={dial.service} href={`tel:${dial.service}`} className="flex flex-col items-center justify-center py-3 lg:py-4 bg-white dark:bg-white/5 rounded-lg border border-border-md dark:border-white/5 hover:border-brand/50 transition-all group">
                 <span className="text-base lg:text-lg font-black text-text-1 dark:text-white group-hover:text-brand dark:text-brand-light">{dial.service}</span>
-                <span className="text-[7px] lg:text-[8px] font-bold text-text-2 uppercase tracking-widest">{dial.label}</span>
+                <span className="text-[7px] lg:text-[8px] font-bold text-text-2 uppercase tracking-widest">{t(labelKeyMap[dial.label] || 'emergency.emergency')}</span>
               </a>
             ))}
           </div>
