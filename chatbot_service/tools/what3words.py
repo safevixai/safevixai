@@ -8,6 +8,7 @@ This is a jury-demo moment: SOS says "Location: ///filled.count.soap"
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import os
@@ -36,28 +37,38 @@ class What3WordsTool:
         if not self.api_key:
             return None
 
-        try:
-            response = await self._client.get(
-                f"{W3W_BASE_URL}/convert-to-3wa",
-                params={
-                    "coordinates": f"{lat},{lon}",
-                    "key": self.api_key,
-                },
-            )
-            response.raise_for_status()
-            data = response.json()
+        for attempt in range(3):
+            try:
+                response = await self._client.get(
+                    f"{W3W_BASE_URL}/convert-to-3wa",
+                    params={
+                        "coordinates": f"{lat},{lon}",
+                        "key": self.api_key,
+                    },
+                )
+                response.raise_for_status()
+                data = response.json()
 
-            words = data.get("words", "")
-            if not words:
-                return None
+                words = data.get("words", "")
+                if not words:
+                    return None
 
-            return {
-                "words": words,
-                "map_url": f"https://w3w.co/{words}",
-                "formatted": f"///{words}",
-            }
-        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
-            return None
+                return {
+                    "words": words,
+                    "map_url": f"https://w3w.co/{words}",
+                    "formatted": f"///{words}",
+                }
+            except httpx.HTTPStatusError as exc:
+                if exc.response.status_code not in (429, 500, 502, 503, 504):
+                    break
+                logger.warning("What3Words gps_to_words failed (attempt %d/3) with status %d: %s", attempt + 1, exc.response.status_code, exc)
+                if attempt < 2:
+                    await asyncio.sleep(0.5 * (2 ** attempt))
+            except (httpx.RequestError, json.JSONDecodeError) as exc:
+                logger.warning("What3Words gps_to_words failed (attempt %d/3): %s", attempt + 1, exc)
+                if attempt < 2:
+                    await asyncio.sleep(0.5 * (2 ** attempt))
+        return None
 
     async def words_to_gps(self, words: str) -> dict | None:
         """Convert a 3-word address back to GPS coordinates.
@@ -68,24 +79,35 @@ class What3WordsTool:
         if not self.api_key:
             return None
 
-        try:
-            response = await self._client.get(
-                f"{W3W_BASE_URL}/convert-to-coordinates",
-                params={
-                    "words": words.replace("///", ""),
-                    "key": self.api_key,
-                },
-            )
-            response.raise_for_status()
-            data = response.json()
+        for attempt in range(3):
+            try:
+                response = await self._client.get(
+                    f"{W3W_BASE_URL}/convert-to-coordinates",
+                    params={
+                        "words": words.replace("///", ""),
+                        "key": self.api_key,
+                    },
+                )
+                response.raise_for_status()
+                data = response.json()
 
-            coords = data.get("coordinates", {})
-            return {
-                "lat": coords.get("lat"),
-                "lon": coords.get("lng"),
-            }
-        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
-            return None
+                coords = data.get("coordinates", {})
+                return {
+                    "lat": coords.get("lat"),
+                    "lon": coords.get("lng"),
+                }
+            except httpx.HTTPStatusError as exc:
+                if exc.response.status_code not in (429, 500, 502, 503, 504):
+                    break
+                logger.warning("What3Words words_to_gps failed (attempt %d/3) with status %d: %s", attempt + 1, exc.response.status_code, exc)
+                if attempt < 2:
+                    await asyncio.sleep(0.5 * (2 ** attempt))
+            except (httpx.RequestError, json.JSONDecodeError) as exc:
+                logger.warning("What3Words words_to_gps failed (attempt %d/3): %s", attempt + 1, exc)
+                if attempt < 2:
+                    await asyncio.sleep(0.5 * (2 ** attempt))
+        return None
 
     async def aclose(self) -> None:
         await self._client.aclose()
+

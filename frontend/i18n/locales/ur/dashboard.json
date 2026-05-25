@@ -1,0 +1,28 @@
+{
+  "dashboard": {
+    "priority_vectors": "ترجیحی راستے مل گئے",
+    "secure_region": "محفوظ علاقہ",
+    "secure_region_sub": "{{radius}} کلومیٹر کے دائرے میں کوئی سنگین مسئلہ نہیں",
+    "caution_zone": "احتیاطی زون",
+    "caution_zone_sub_one": "[UNTRANSLATED] 1 active hazard nearby — proceed with care",
+    "caution_zone_sub_other": "[UNTRANSLATED] {{count}} active hazards nearby — proceed with care",
+    "high_risk_area": "اعلی خطرہ والا علاقہ",
+    "high_risk_area_one": "[UNTRANSLATED] High Risk Area",
+    "high_risk_area_sub_one": "[UNTRANSLATED] 1 unresolved hazard detected — SOS ready",
+    "high_risk_area_sub_other": "[UNTRANSLATED] {{count}} unresolved hazards detected — SOS ready"
+  },
+  "map_layers": {
+    "title": "نقشہ کی تہیں",
+    "satellite": "سیٹلائٹ",
+    "traffic": "ٹریفک",
+    "safe_spaces": "محفوظ مقامات",
+    "hazard_heatmap": "خطرہ ہیٹ میپ",
+    "emergency_services": "ہنگامی خدمات",
+    "hazard_legend": "خطرہ کی علامات",
+    "high_severity": "اعلی شدت (S4+)",
+    "traffic_accident": "ٹریفک اور حادثہ",
+    "weather_flood": "موسم اور سیلاب",
+    "relocate_sentinel": "مقام دوبارہ سیٹ کریں",
+    "tomtom_unavailable": "ٹام ٹام اے پی آئی کی ترتیب نہیں دی گئی ہے"
+  }
+}

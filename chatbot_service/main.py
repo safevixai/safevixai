@@ -151,6 +151,21 @@ def create_app() -> FastAPI:
         app.state.speech_service = speech_service
         app.state.llm_cache = llm_cache
 
+        # Initialize background task queue and worker
+        from core.queue import TaskQueue, BackgroundWorker, set_global_chat_engine
+        set_global_chat_engine(chat_engine)
+        if hasattr(memory_store, '_client') and memory_store._client is not None:
+            queue = TaskQueue(memory_store._client)
+            worker = BackgroundWorker(memory_store._client, concurrency=1)
+            app.state.queue = queue
+            app.state.worker = worker
+            await worker.start()
+            logger.info("Chatbot asynchronous task queue and worker started successfully")
+        else:
+            logger.warning("Chatbot task queue broker not available (Redis offline). Synchronous execution active.")
+            app.state.queue = None
+            app.state.worker = None
+
         # S15/C7: Preload speech model at startup so the first real request
         # doesn't incur a multi-second cold-start delay (audit finding).
         # _ensure_model_loaded is synchronous (HuggingFace model load), so run in executor.
@@ -165,6 +180,8 @@ def create_app() -> FastAPI:
         try:
             yield
         finally:
+            if hasattr(app.state, 'worker') and app.state.worker is not None:
+                await app.state.worker.stop()
             await chat_engine.close()  # Phase 0.7: Close governance resources
             await weather_tool.aclose()
             await backend_client.aclose()

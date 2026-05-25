@@ -1,0 +1,28 @@
+{
+  "dashboard": {
+    "priority_vectors": "प्राथमिकता क्षेत्र पाए गए",
+    "secure_region": "सुरक्षित क्षेत्र",
+    "secure_region_sub": "{{radius}} किमी के दायरे में कोई गंभीर समस्या नहीं",
+    "caution_zone": "सावधानी क्षेत्र",
+    "caution_zone_sub_one": "[UNTRANSLATED] 1 active hazard nearby — proceed with care",
+    "caution_zone_sub_other": "[UNTRANSLATED] {{count}} active hazards nearby — proceed with care",
+    "high_risk_area": "उच्च जोखिम क्षेत्र",
+    "high_risk_area_one": "[UNTRANSLATED] High Risk Area",
+    "high_risk_area_sub_one": "[UNTRANSLATED] 1 unresolved hazard detected — SOS ready",
+    "high_risk_area_sub_other": "[UNTRANSLATED] {{count}} unresolved hazards detected — SOS ready"
+  },
+  "map_layers": {
+    "title": "मानचित्र परतें",
+    "satellite": "उपग्रह",
+    "traffic": "यातायात",
+    "safe_spaces": "सुरक्षित स्थान",
+    "hazard_heatmap": "खतरा हीटमैप",
+    "emergency_services": "आपातकालीन सेवाएं",
+    "hazard_legend": "खतरा संकेत",
+    "high_severity": "उच्च गंभीरता (S4+)",
+    "traffic_accident": "यातायात और दुर्घटना",
+    "weather_flood": "मौसम और बाढ़",
+    "relocate_sentinel": "स्थान रीसेट करें",
+    "tomtom_unavailable": "टॉमटॉम एपीआई कुंजी कॉन्फ़िगर नहीं की गई है"
+  }
+}

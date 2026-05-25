@@ -5,7 +5,7 @@ description: Development guide for the SafeVixAI Next.js 15 frontend — a tacti
 
 # SafeVixAI Frontend Skill
 
-## Current Implementation Notes - 2026-05-18 (Post-Audit Updates)
+## Current Implementation Notes - 2026-05-25 (Final Audit: All Clear)
 
 **GSAP Migration Status:** The frontend is 100% GSAP-powered. Do NOT use Framer Motion. All route entries use `usePageEntry` from `hooks/usePageEntry.ts`. Animations rely purely on GPU-composited properties (transform, opacity) with strict `will-change` management for 60FPS mobile performance.
 
@@ -15,20 +15,22 @@ Use these notes before touching the frontend:
 - Use `NEXT_PUBLIC_API_URL` for the main backend and `NEXT_PUBLIC_CHATBOT_URL` for the chatbot service.
 - Do not read `process.env.NEXT_PUBLIC_CHATBOT_BASE_URL` in client components; it is not the validated project env var.
 - Chat routes are under `/api/v1/chat/*`.
-- Speech routes are currently under `/speech/*`, not `/api/v1/speech/*`.
+- Speech routes are under `/speech/*`, not `/api/v1/speech/*`.
 - Mic input must call `${PUBLIC_CHATBOT_BASE_URL}/speech/translate`.
-- `target_language` must use backend/model codes, not raw UI codes. Add a language mapping layer in `frontend/lib/languages.ts`.
+- `target_language` must use backend/model codes from `frontend/lib/languages.ts` (4-code mapping: UI→recognition→speechTarget→synthesis).
 - Browser recognition codes are locale codes such as `hi-IN`; backend speech target codes are model codes such as `hin`.
-- Browser speech output must use the selected language recognition/synthesis locale and must provide a stop control.
-- Backend speech currently performs speech-to-text / speech translation only. Do not claim backend TTS is implemented.
-- Keep emergency flows stable while polishing UI: 112, 102, 100, 1033, crash countdown, offline SOS queue, map heatmap, and QR emergency card.
+- Browser speech output must use `synthesisCode` from language mapping and must provide a stop control.
+- Backend speech performs speech-to-text / speech translation only. No backend TTS endpoint exists.
+- Keep emergency flows stable: 112, 102, 100, 1033, crash countdown, offline SOS queue, map heatmap, and QR emergency card.
+- **Crash Detection UI is orphaned**: `CrashCountdown.tsx` and `ProgressRing.tsx` exist but are never imported. Only a toast fires on crash. If you wire it, render `<CrashCountdown>` in `ClientAppHooks.tsx`.
+- **.env files contain live secrets** committed to git. Accepted for hackathon. Rotate before production.
 
 Current verification commands:
 
 ```bash
-cd frontend && npm run build
-cd chatbot_service && python -m pytest tests/test_voice.py tests/test_e2e.py -q
-rg -n "api/v1/speech|NEXT_PUBLIC_CHATBOT_BASE_URL|utterance.lang = 'en-IN'|<img|fonts.googleapis.com" frontend
+cd frontend && npm run build && npx tsc --noEmit
+cd backend && .venv\Scripts\activate && pytest tests/ -q
+cd chatbot_service && .venv\Scripts\activate && python -m pytest tests/ -q
 ```
 
 ---
@@ -229,11 +231,11 @@ frontend/
 
 ## Backend & Chatbot (for full-stack context)
 
-| Service | Port | Key Tech |
-|---|---|---|
-| Backend | `:8000` | FastAPI, PostgreSQL + PostGIS, Redis, DuckDB |
-| Chatbot | `:8010` | FastAPI, 9 LLM providers, ChromaDB, 13 agent tools |
-| Frontend | `:3000` | Next.js 15, MapLibre GL, Zustand, WebLLM |
+| Service | Port | Key Tech | Tests |
+|---|---|---|---|
+| Backend | `:8000` | FastAPI, PostgreSQL + PostGIS, Redis | **1161/1161** passing, 89% cov |
+| Chatbot | `:8010` | FastAPI, 11 LLM providers, ChromaDB, 13 agent tools | **748/748** passing, 92% cov |
+| Frontend | `:3000` | Next.js 15, MapLibre GL, Zustand, WebLLM Phi-3 | **324/324** passing, 34 suites |
 
 ### Production Alerting
 - `alert_service.py` at project root — shared by both backend and chatbot

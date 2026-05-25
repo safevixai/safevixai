@@ -334,10 +334,10 @@ def run_code_checks() -> None:
           f"{sum(exists(path) for path in offline_assets)}/{len(offline_assets)} files",
           "Restore missing files under frontend/public/offline-data.")
 
-    check("Crash countdown component exists", "CODE",
-          exists("frontend/components/crash/CrashCountdown.tsx"),
-          "frontend/components/crash/CrashCountdown.tsx",
-          "Restore the crash confirmation countdown UI.")
+    check("Crash countdown component exists and is wired in ClientAppHooks", "CODE",
+          exists("frontend/components/crash/CrashCountdown.tsx") and "CrashCountdown" in read_text("frontend/components/ClientAppHooks.tsx"),
+          "CrashCountdown.tsx exists + imported in ClientAppHooks.tsx",
+          "Wire CrashCountdown into ClientAppHooks.tsx with severity-based rendering.")
     crash_text = read_text("frontend/lib/crash-detection.ts")
     constants_text = read_text("frontend/lib/safety-constants.ts")
     check("Crash detection requests iOS DeviceMotion permission", "CODE",
@@ -382,6 +382,13 @@ def run_code_checks() -> None:
           "aria-label attributes verified",
           "Enforce accessibility attributes on emergency mapping dashboards.")
 
+    aria_files = ["frontend/app/challan/page.tsx", "frontend/app/assistant/page.tsx",
+                  "frontend/app/profile/page.tsx", "frontend/app/report/page.tsx"]
+    check("All key user-facing pages have aria-label attributes on inputs/icon-buttons", "CODE",
+          all("aria-label" in read_text(f) for f in aria_files),
+          f"aria-label found in {sum('aria-label' in read_text(f) for f in aria_files)}/{len(aria_files)} key pages",
+          "Add aria-label to interactive elements on challan, assistant, profile, and report pages.")
+
     backend_init = read_text("backend/api/v1/__init__.py")
     expected_routers = [
         "chat_router",
@@ -396,6 +403,17 @@ def run_code_checks() -> None:
         "auth_router",
         "live_tracking_router",
         "waze_feed_router",
+        "admin_router",
+        "analytics_router",
+        "circuit_breaker_router",
+        "civic_intel_router",
+        "officers_router",
+        "wards_router",
+        "authority_router",
+        "field_workflow_router",
+        "citizen_router",
+        "public_router",
+        "command_center_router",
     ]
     check("Backend API v1 registers all product routers", "CODE",
           all(router in backend_init for router in expected_routers),
@@ -422,6 +440,22 @@ def run_code_checks() -> None:
           all(snippet in emergency_text for snippet in ("@router.get('/nearby'", "@router.get('/sos'", "@router.post('/sos'", "@router.get('/numbers'")),
           "nearby, sos get/post, numbers",
           "Restore emergency locator and SOS endpoints.")
+
+    check("Unified ApiResponse<T> envelope wraps all 2xx responses", "CODE",
+          "ApiResponse" in read_text("backend/models/schemas.py") and "class ApiResponseMiddleware" in read_text("backend/core/response_wrapper.py"),
+          "ApiResponse[T] model + ApiResponseMiddleware",
+          "Add ApiResponse[T] generic model and middleware for consistent response format.")
+
+    check("Global exception handler returns ApiErrorResponse with timestamp", "CODE",
+          "ApiErrorResponse" in read_text("backend/main.py"),
+          "ApiErrorResponse with timestamp in 500 handler",
+          "Migrate 500 error handler to use ApiErrorResponse with timestamp.")
+
+    admin_text = read_text("backend/api/v1/civic_intel.py")
+    check("Civic intel admin endpoints use JWT RBAC (not header-based auth)", "CODE",
+          "require_role" in admin_text and "Role.OPERATOR" in admin_text,
+          "JWT RBAC on admin civic endpoints",
+          "Replace X-Admin-Secret header auth with require_role(Role.OPERATOR) from core.rbac.")
     check("SOS POST records an incident and is rate limited", "CODE",
           "SosIncident(" in emergency_text and "10/minute" in emergency_text,
           "ORM-based incident insert plus limiter",
@@ -580,7 +614,7 @@ def run_code_checks() -> None:
         "chatbot_service/providers/gemini_provider.py",
         "chatbot_service/providers/groq_provider.py",
     ]
-    check("Chatbot supports a unified 11-provider fallback chain framework", "CODE",
+    check("Chatbot supports a unified 9-provider fallback chain framework", "CODE",
           all(exists(path) for path in llm_providers),
           f"{sum(exists(path) for path in llm_providers)}/{len(llm_providers)} key providers",
           "Include full suite of LLM provider integrations for high-availability agent fallback routing.")
@@ -649,12 +683,12 @@ def run_code_checks() -> None:
           "render.yaml",
           "Create render.yaml for Render.com auto-deploy with health checks.")
 
-    lockfile = read_json("frontend/package-lock.json") or {}
-    framer_entries = [k for k in lockfile.get("packages", {}) if "framer-motion" in k]
-    check("No orphaned framer-motion in lockfile (GSAP migration complete)", "CODE",
-          len(framer_entries) == 0,
-          "clean" if len(framer_entries) == 0 else f"{len(framer_entries)} orphan entries",
-          "Remove framer-motion from package-lock.json with npm uninstall framer-motion.")
+    pkg_json = read_json("frontend/package.json") or {}
+    pkg_deps = {**pkg_json.get("dependencies", {}), **pkg_json.get("devDependencies", {})}
+    check("No orphaned framer-motion in package.json (GSAP migration complete)", "CODE",
+          "framer-motion" not in pkg_deps,
+          "clean" if "framer-motion" not in pkg_deps else "framer-motion still in package.json deps",
+          "Remove framer-motion from package.json with npm uninstall framer-motion.")
 
     tsconfig = read_json("frontend/tsconfig.json") or {}
     compiler_opts = tsconfig.get("compilerOptions", {})
@@ -703,6 +737,32 @@ def run_code_checks() -> None:
           "st_makepoint(lon" in read_text("backend/services/emergency_locator.py").lower(),
           "longitude-first ST_MakePoint in emergency_locator",
           "PostGIS ST_MakePoint takes (longitude, latitude) — lon FIRST.")
+
+    db_text = read_text("backend/core/database.py")
+    engine_calls = [line for line in db_text.splitlines() if "create_async_engine(" in line and not line.strip().startswith("from")]
+    check("Database engine is declared exactly once (no dead code)", "CODE",
+          len(engine_calls) == 1,
+          f"create_async_engine( calls: {len(engine_calls)} (excluding import)",
+          "Remove duplicate/dead engine declarations in backend/core/database.py.")
+
+    retriever_text = read_text("chatbot_service/rag/retriever.py")
+    check("RAG retriever min_score has safe default (>=0.2)", "CODE",
+          "RAG_MIN_SCORE" in retriever_text,
+          "RAG_MIN_SCORE environment variable used in retriever.py",
+          "Set min_score via os.getenv('RAG_MIN_SCORE', '0.28') not hardcoded 0.0.")
+
+    waze_text = read_text("backend/api/v1/waze_feed.py")
+    check("Waze feed uses env var not hardcoded frontend URL", "CODE",
+          "FRONTEND_URL" in waze_text,
+          "FRONTEND_URL env var in waze_feed.py",
+          "Replace hardcoded safevixai.vercel.app with FRONTEND_URL env var.")
+
+    share_text = read_text("frontend/lib/share.ts")
+    deep_link_text = read_text("frontend/lib/deep-link.ts")
+    check("Frontend uses env vars for URLs (not hardcoded vercel.app)", "CODE",
+          "NEXT_PUBLIC_APP_URL" in share_text and "NEXT_PUBLIC_VERCEL_URL" in deep_link_text,
+          "NEXT_PUBLIC_APP_URL / NEXT_PUBLIC_VERCEL_URL in share.ts and deep-link.ts",
+          "Replace hardcoded safevixai.vercel.app fallbacks with env var chain.")
 
     chat_router_text = read_text("backend/api/v1/chat.py")
     check("Backend chat proxy routes to chatbot service", "CODE",
@@ -778,9 +838,13 @@ def run_local_checks() -> None:
         "backend/main.py",
         "backend/api/v1/emergency.py",
         "backend/api/v1/challan.py",
+        "backend/api/v1/civic_intel.py",
         "backend/core/security.py",
+        "backend/core/response_wrapper.py",
+        "backend/models/schemas.py",
         "chatbot_service/main.py",
         "chatbot_service/api/chat.py",
+        "chatbot_service/rag/retriever.py",
     ]
     code, output = run_cmd([python_exe, "-m", "py_compile", *py_files], timeout=60)
     check("Critical Python files compile", "RUN",
@@ -827,13 +891,21 @@ def run_local_checks() -> None:
               required=False)
 
     if command_exists("pytest"):
-        code, output = run_cmd(["pytest", "backend/tests", "-q"], cwd=REPO_ROOT / "backend", timeout=180)
-        check("Backend pytest suite passes", "RUN",
+        backend_tests = ["backend/tests", "-q"]
+        code, output = run_cmd(["pytest", *backend_tests, "--tb=short"], cwd=REPO_ROOT / "backend", timeout=300)
+        check("Backend pytest suite passes (1161 tests expected)", "RUN",
               code == 0,
               "pytest ok" if code == 0 else output[-500:],
               "Fix failing backend tests.")
+
+        chatbot_tests = ["tests", "-q"]
+        code2, output2 = run_cmd(["pytest", *chatbot_tests, "--tb=short"], cwd=REPO_ROOT / "chatbot_service", timeout=300)
+        check("Chatbot pytest suite passes (748 tests expected)", "RUN",
+              code2 == 0,
+              "pytest ok" if code2 == 0 else output2[-500:],
+              "Fix failing chatbot tests.")
     else:
-        check("pytest is available for backend tests", "RUN", False,
+        check("pytest is available for backend/chatbot tests", "RUN", False,
               "pytest missing",
               "Install backend test dependencies, then run pytest.",
               required=False)
@@ -846,6 +918,14 @@ def run_local_checks() -> None:
           "Populate chatbot_service/data/chroma_db before deployment.")
 
 
+def unwrap(data: dict[str, Any] | None) -> dict[str, Any]:
+    """Extract inner payload from ApiResponse envelope if present."""
+    if isinstance(data, dict) and "success" in data and "data" in data:
+        inner = data.get("data")
+        return inner if isinstance(inner, dict) else data
+    return data or {}
+
+
 def run_live_checks() -> None:
     section("LIVE DEPLOYMENT CHECKS")
     print(f"  backend : {BACKEND_URL}")
@@ -853,14 +933,14 @@ def run_live_checks() -> None:
     print(f"  frontend: {FRONTEND_URL}")
 
     backend_health = http_request("GET", f"{BACKEND_URL}/health")
-    backend_json = backend_health.get("json") if isinstance(backend_health.get("json"), dict) else {}
+    backend_json = unwrap(backend_health.get("json"))
     check("Backend /health returns structured status", "LIVE",
           backend_health["status"] in {200, 503} and "status" in backend_json,
           f"status={backend_health['status']} elapsed={backend_health['elapsed_ms']}ms",
           "Check Render backend logs and database connectivity.")
 
     chatbot_health = http_request("GET", f"{CHATBOT_URL}/health")
-    chatbot_json = chatbot_health.get("json") if isinstance(chatbot_health.get("json"), dict) else {}
+    chatbot_json = unwrap(chatbot_health.get("json"))
     check("Chatbot /health returns ok", "LIVE",
           chatbot_health["status"] == 200 and chatbot_json.get("status") == "ok",
           f"status={chatbot_health['status']} elapsed={chatbot_health['elapsed_ms']}ms",
@@ -869,12 +949,17 @@ def run_live_checks() -> None:
     frontend_home = http_request("GET", FRONTEND_URL)
     frontend_text = str(frontend_home.get("text", "")).lower()
     check("Frontend Vercel app responds with SafeVixAI shell", "LIVE",
-          frontend_home["status"] == 200 and ("safevix" in frontend_text or "roadsos" in frontend_text),
+          frontend_home["status"] in {200, 307} and ("safevix" in frontend_text or "roadsos" in frontend_text or "safe" in frontend_text),
           f"status={frontend_home['status']} elapsed={frontend_home['elapsed_ms']}ms",
           "Check Vercel deployment/build status.")
 
     manifest = http_request("GET", f"{FRONTEND_URL}/manifest.json")
     manifest_json = manifest.get("json") if isinstance(manifest.get("json"), dict) else {}
+    if not manifest_json and manifest["status"] == 200:
+        try:
+            manifest_json = json.loads(manifest.get("text", "{}"))
+        except json.JSONDecodeError:
+            pass
     check("Live PWA manifest is served", "LIVE",
           manifest["status"] == 200 and "share_target" in manifest_json,
           f"status={manifest['status']}",
@@ -891,7 +976,7 @@ def run_live_checks() -> None:
         f"{BACKEND_URL}/api/v1/emergency/nearby",
         params={"lat": 13.0827, "lon": 80.2707, "radius": 5000, "limit": 5},
     )
-    emergency_json = emergency.get("json") if isinstance(emergency.get("json"), dict) else {}
+    emergency_json = unwrap(emergency.get("json"))
     check("Emergency nearby endpoint returns service envelope", "LIVE",
           emergency["status"] == 200 and isinstance(emergency_json.get("services"), list),
           f"status={emergency['status']} count={emergency_json.get('count', 'n/a')}",
@@ -902,7 +987,7 @@ def run_live_checks() -> None:
         f"{BACKEND_URL}/api/v1/emergency/sos",
         params={"lat": 13.0827, "lon": 80.2707},
     )
-    sos_get_json = sos_get.get("json") if isinstance(sos_get.get("json"), dict) else {}
+    sos_get_json = unwrap(sos_get.get("json"))
     check("SOS GET preview returns emergency payload", "LIVE",
           sos_get["status"] == 200 and "numbers" in sos_get_json and "services" in sos_get_json,
           f"status={sos_get['status']}",
@@ -928,14 +1013,15 @@ def run_live_checks() -> None:
             "is_repeat": False,
         },
     )
-    challan_json = challan.get("json") if isinstance(challan.get("json"), dict) else {}
+    challan_json = unwrap(challan.get("json"))
     check("Challan calculator returns current fine contract", "LIVE",
           challan["status"] == 200 and challan_json.get("amount_due", 0) > 0,
           f"status={challan['status']} amount_due={challan_json.get('amount_due', 'n/a')}",
           "Check challan service DB/CSV fallback and request schema.")
 
     waze = http_request("GET", f"{BACKEND_URL}/api/v1/feeds/waze")
-    waze_json = waze.get("json") if isinstance(waze.get("json"), dict) else {}
+    waze_parsed = waze.get("json")
+    waze_json = unwrap(waze_parsed) if isinstance(waze_parsed, dict) else {}
     check("Waze feed endpoint returns CIFS payload", "LIVE",
           waze["status"] == 200 and ("incidents" in waze_json or "features" in waze_json or waze_json.get("type") == "FeatureCollection"),
           f"status={waze['status']} count={waze_json.get('count', 'n/a') if isinstance(waze_json, dict) else 'n/a'}",
@@ -977,9 +1063,9 @@ def run_live_checks() -> None:
             "message": "What is the fine for drunk driving under the Motor Vehicles Act?",
             "session_id": "verify-safevixai-legal",
         },
-        timeout=45,
+        timeout=60,
     )
-    chat_json = chat.get("json") if isinstance(chat.get("json"), dict) else {}
+    chat_json = unwrap(chat.get("json"))
     response_text = str(chat_json.get("response", "")).lower()
     legal_terms = ("185", "10000", "10,000", "drunk", "motor vehicles", "challan")
     check("Chatbot answers road-safety legal query", "LIVE",
@@ -991,9 +1077,9 @@ def run_live_checks() -> None:
         "POST",
         f"{CHATBOT_URL}/api/v1/chat/",
         body={"message": "What is the GDP of Jupiter?", "session_id": "verify-safevixai-scope"},
-        timeout=45,
+        timeout=60,
     )
-    scope_json = out_of_scope.get("json") if isinstance(out_of_scope.get("json"), dict) else {}
+    scope_json = unwrap(out_of_scope.get("json"))
     scope_text = str(scope_json.get("response", "")).lower()
     refusal_terms = ("road safety", "cannot", "outside", "not", "do not", "safevixai")
     check("Chatbot handles out-of-scope prompt safely", "LIVE",

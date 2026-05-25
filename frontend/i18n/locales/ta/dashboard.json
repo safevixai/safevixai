@@ -1,0 +1,28 @@
+{
+  "dashboard": {
+    "priority_vectors": "முன்னுரிமைப் பகுதிகள் கண்டறியப்பட்டன",
+    "secure_region": "பாதுகாப்பான பகுதி",
+    "secure_region_sub": "{{radius}} கிமீ சுற்றளவில் அச்சுறுத்தல்கள் இல்லை",
+    "caution_zone": "எச்சரிக்கை மண்டலம்",
+    "caution_zone_sub_one": "[UNTRANSLATED] 1 active hazard nearby — proceed with care",
+    "caution_zone_sub_other": "[UNTRANSLATED] {{count}} active hazards nearby — proceed with care",
+    "high_risk_area": "அதி அபாயப் பகுதி",
+    "high_risk_area_one": "[UNTRANSLATED] High Risk Area",
+    "high_risk_area_sub_one": "[UNTRANSLATED] 1 unresolved hazard detected — SOS ready",
+    "high_risk_area_sub_other": "[UNTRANSLATED] {{count}} unresolved hazards detected — SOS ready"
+  },
+  "map_layers": {
+    "title": "வரைபட அடுக்குகள்",
+    "satellite": "செயற்கைக்கோள்",
+    "traffic": "போக்குவரத்து",
+    "safe_spaces": "பாதுகாப்பான இடங்கள்",
+    "hazard_heatmap": "ஆபத்து வரைபடம்",
+    "emergency_services": "அவசர சேவைகள்",
+    "hazard_legend": "ஆபத்து விளக்கம்",
+    "high_severity": "அதி தீவிரம் (S4+)",
+    "traffic_accident": "போக்குவரத்து & விபத்து",
+    "weather_flood": "வானிலை & வெள்ளம்",
+    "relocate_sentinel": "இருப்பிடத்தை மீட்டமை",
+    "tomtom_unavailable": "TomTom API விசை கட்டமைக்கப்படவில்லை"
+  }
+}

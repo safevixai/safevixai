@@ -10,6 +10,7 @@ to prevent key exposure in server access logs, proxy logs, and browser history.
 """
 from __future__ import annotations
 
+import json
 import os
 
 import httpx

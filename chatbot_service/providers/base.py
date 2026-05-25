@@ -1,6 +1,7 @@
 """Provider base classes — shared httpx transport + prompt builder for all LLM providers."""
 from __future__ import annotations
 
+import json
 import logging
 import re
 import unicodedata

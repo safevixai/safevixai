@@ -1,0 +1,40 @@
+{
+  "chat": {
+    "title": "HUD asistente",
+    "subtitle": "INTELIGENCIA TÁCTICA Y LEGAL",
+    "online": "En línea",
+    "offline": "Desconectado",
+    "audio_enabled": "Audio habilitado",
+    "audio_disabled": "Audio desactivado",
+    "stop_reading": "dejar de leer",
+    "auto_read_enable": "Habilitar lectura automática",
+    "auto_read_disable": "Desactivar lectura automática",
+    "suggested_inquiries": "Consultas sugeridas",
+    "show_suggested": "Mostrar consultas sugeridas",
+    "hide_suggested": "Ocultar sugerencias",
+    "welcome_msg": "Asistente SafeVixAI en línea. Puedo responder preguntas sobre la Ley de vehículos motorizados, sanciones de tránsito, sus derechos durante una parada policial y las leyes de seguridad vial en toda la India. ¿Qué necesitas?",
+    "connection_interrupted": "Enlace neuronal interrumpido. Verifique la conectividad y vuelva a intentar el protocolo.",
+    "copied": "¡Copiado al portapapeles!",
+    "clipboard_unavailable": "Portapapeles no disponible",
+    "reading_aloud": "Leyendo en voz alta...",
+    "feedback_recorded": "Comentarios grabados",
+    "retrying": "Reintentando...",
+    "ask_placeholder": "Pregúntale a la IA cualquier cosa...",
+    "starters": {
+      "accident": "¡Ayuda! He tenido un accidente, ¿qué hago?",
+      "ambulance": "Enviar una ambulancia a mi ubicación actual",
+      "hit_and_run": "Explicar el procedimiento legal de atropello y fuga.",
+      "police_stop": "¿Cuáles son mis derechos durante una inspección policial?"
+    },
+    "select_language": "Seleccionar idioma",
+    "language_selection": "Selección de idioma",
+    "switch_online": "Cambie a la IA en línea",
+    "switch_offline": "Cambiar a IA sin conexión (Gemma)",
+    "copy": "Copiar",
+    "read_aloud": "Leer en voz alta",
+    "thumbs_up": "Pulgares hacia arriba",
+    "thumbs_down": "Pulgar hacia abajo",
+    "retry": "Rever",
+    "offline_ai_failed": "La IA sin conexión no pudo inicializarse. Usando el modo en línea."
+  }
+}

@@ -6,6 +6,7 @@ Endpoint: https://api.open-meteo.com/v1/forecast
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 
@@ -76,56 +77,67 @@ class OpenMeteoClient:
 
     async def lookup(self, *, lat: float, lon: float) -> dict | None:
         """Fetch current weather + hourly precipitation/visibility for risk model."""
-        try:
-            response = await self._client.get(
-                self.BASE_URL,
-                params={
-                    "latitude": lat,
-                    "longitude": lon,
-                    "current_weather": "true",
-                    "hourly": "precipitation_probability,visibility",
-                    "forecast_days": 1,
-                    "timezone": "auto",
-                },
-            )
-            response.raise_for_status()
-            data = response.json()
+        for attempt in range(3):
+            try:
+                response = await self._client.get(
+                    self.BASE_URL,
+                    params={
+                        "latitude": lat,
+                        "longitude": lon,
+                        "current_weather": "true",
+                        "hourly": "precipitation_probability,visibility",
+                        "forecast_days": 1,
+                        "timezone": "auto",
+                    },
+                )
+                response.raise_for_status()
+                data = response.json()
 
-            current = data.get("current_weather", {})
-            weather_code = current.get("weathercode", 0)
-            temperature = current.get("temperature")
-            wind_speed = current.get("windspeed")
+                current = data.get("current_weather", {})
+                weather_code = current.get("weathercode", 0)
+                temperature = current.get("temperature")
+                wind_speed = current.get("windspeed")
 
-            # Get current hour's precipitation probability and visibility
-            hourly = data.get("hourly", {})
-            precip_probs = hourly.get("precipitation_probability", [])
-            visibilities = hourly.get("visibility", [])
+                # Get current hour's precipitation probability and visibility
+                hourly = data.get("hourly", {})
+                precip_probs = hourly.get("precipitation_probability", [])
+                visibilities = hourly.get("visibility", [])
 
-            # Use first value (current hour)
-            precip_prob = precip_probs[0] if precip_probs else None
-            visibility = visibilities[0] if visibilities else None
+                # Use first value (current hour)
+                precip_prob = precip_probs[0] if precip_probs else None
+                visibility = visibilities[0] if visibilities else None
 
-            summary = _WMO_CODES.get(weather_code, "Unknown")
-            risk = _RISK_MULTIPLIERS.get(weather_code, 1.0)
+                summary = _WMO_CODES.get(weather_code, "Unknown")
+                risk = _RISK_MULTIPLIERS.get(weather_code, 1.0)
 
-            # Increase risk for low visibility
-            if visibility is not None and visibility < 1000:
-                risk = max(risk, 2.0)
-            elif visibility is not None and visibility < 5000:
-                risk = max(risk, 1.5)
+                # Increase risk for low visibility
+                if visibility is not None and visibility < 1000:
+                    risk = max(risk, 2.0)
+                elif visibility is not None and visibility < 5000:
+                    risk = max(risk, 1.5)
 
-            return {
-                "summary": summary,
-                "temperature": temperature,
-                "wind_speed_kmh": wind_speed,
-                "precipitation_probability": precip_prob,
-                "visibility_meters": visibility,
-                "weather_code": weather_code,
-                "risk_multiplier": risk,
-                "source": "open-meteo",
-            }
-        except (httpx.HTTPError, httpx.TimeoutException, json.JSONDecodeError):
-            return None
+                return {
+                    "summary": summary,
+                    "temperature": temperature,
+                    "wind_speed_kmh": wind_speed,
+                    "precipitation_probability": precip_prob,
+                    "visibility_meters": visibility,
+                    "weather_code": weather_code,
+                    "risk_multiplier": risk,
+                    "source": "open-meteo",
+                }
+            except httpx.HTTPStatusError as exc:
+                if exc.response.status_code not in (429, 500, 502, 503, 504):
+                    break
+                logger.warning("Open-Meteo failed (attempt %d/3) with status %d: %s", attempt + 1, exc.response.status_code, exc)
+                if attempt < 2:
+                    await asyncio.sleep(0.5 * (2 ** attempt))
+            except (httpx.RequestError, json.JSONDecodeError) as exc:
+                logger.warning("Open-Meteo failed (attempt %d/3): %s", attempt + 1, exc)
+                if attempt < 2:
+                    await asyncio.sleep(0.5 * (2 ** attempt))
+        return None
 
     async def aclose(self) -> None:
         await self._client.aclose()
+

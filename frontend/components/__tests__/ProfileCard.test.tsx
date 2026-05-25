@@ -16,18 +16,24 @@ jest.mock('@/lib/store', () => ({
 
 describe('ProfileCard', () => {
   it('renders user name', async () => {
+    mockState.userProfile.name = 'John Doe';
     const ProfileCard = (await import('../dashboard/ProfileCard')).default;
     render(<ProfileCard />);
-    expect(screen.getByText('JOHN DOE')).toBeInTheDocument();
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
   });
 
   it('shows avatar initials derived from name', async () => {
+    mockState.userProfile.name = 'John Doe';
     const ProfileCard = (await import('../dashboard/ProfileCard')).default;
     render(<ProfileCard />);
     expect(screen.getByText('JD')).toBeInTheDocument();
   });
 
   it('shows blood group, vehicle number, and emergency contact', async () => {
+    mockState.userProfile.name = 'John Doe';
+    mockState.userProfile.bloodGroup = 'O+';
+    mockState.userProfile.vehicleNumber = 'TN01AB1234';
+    mockState.userProfile.emergencyContact = '+91-9876543210';
     const ProfileCard = (await import('../dashboard/ProfileCard')).default;
     render(<ProfileCard />);
     expect(screen.getByText('O+')).toBeInTheDocument();
@@ -36,6 +42,7 @@ describe('ProfileCard', () => {
   });
 
   it('shows verified emergency profile status when name exists', async () => {
+    mockState.userProfile.name = 'John Doe';
     const ProfileCard = (await import('../dashboard/ProfileCard')).default;
     render(<ProfileCard />);
     expect(screen.getByText('Verified emergency profile')).toBeInTheDocument();
@@ -50,7 +57,7 @@ describe('ProfileCard', () => {
     };
     const ProfileCard = (await import('../dashboard/ProfileCard')).default;
     render(<ProfileCard />);
-    expect(screen.getByText('EMERGENCY PROFILE')).toBeInTheDocument();
+    expect(screen.getByText('Emergency Profile')).toBeInTheDocument();
     expect(screen.getByText('Blood group')).toBeInTheDocument();
     expect(screen.getByText('Vehicle ID')).toBeInTheDocument();
     expect(screen.getByText('Emergency contact')).toBeInTheDocument();

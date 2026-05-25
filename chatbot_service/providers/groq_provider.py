@@ -8,6 +8,7 @@ Fix: Cap MAX_RESPONSE_TOKENS at 400 for Groq, skip if estimated context > 4,000 
 """
 from __future__ import annotations
 
+import json
 import logging
 
 from providers.base import HttpProvider, ProviderRequest, ProviderResult, build_messages
@@ -28,7 +29,7 @@ def _estimate_request_tokens(request: ProviderRequest) -> int:
     """Estimate total token count for a provider request."""
     messages = build_messages(request)
     total_chars = sum(len(m.get("content", "")) for m in messages)
-    return _estimate_tokens(total_chars) + _GROQ_MAX_RESPONSE_TOKENS
+    return max(1, total_chars // 4) + _GROQ_MAX_RESPONSE_TOKENS
 
 
 class GroqProvider(HttpProvider):

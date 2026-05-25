@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 
 from rag.vectorstore import LocalVectorStore
@@ -20,11 +21,11 @@ class Retriever:
         vectorstore: LocalVectorStore,
         *,
         default_top_k: int = 5,
-        min_score: float = 0.0,
+        min_score: float | None = None,
     ) -> None:
         self.vectorstore = vectorstore
         self.default_top_k = default_top_k
-        self.min_score = min_score
+        self.min_score = min_score if min_score is not None else float(os.getenv('RAG_MIN_SCORE', '0.28'))
 
     def retrieve(
         self,

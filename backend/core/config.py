@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     db_max_overflow: int = 20
     db_pool_timeout_seconds: float = 30.0
     db_pool_recycle_seconds: int = 1800
+    echo_queries: bool = False
 
     default_radius: int = 5000
     max_radius: int = 50000
@@ -54,6 +55,7 @@ class Settings(BaseSettings):
     supabase_url: str | None = None
     supabase_service_role_key: str | None = None
     road_photo_bucket: str = 'road-photos'
+    default_officer_ward: str = 'ward_09_teynampet'
 
     chatbot_mode: str = 'external_service'
     chatbot_ready: bool = False
@@ -69,6 +71,18 @@ class Settings(BaseSettings):
         default='image/jpeg,image/png,image/webp',
         validation_alias='ALLOWED_UPLOAD_CONTENT_TYPES',
     )
+
+    # --- Civic Intelligence ETL settings ---
+    cpgrams_api_url: str | None = None
+    cpgrams_api_key: str | None = None
+    lgd_api_key: str | None = None
+    datameet_github_base: str = 'https://raw.githubusercontent.com/datameet/maps/master'
+    india_geodata_base: str = 'https://raw.githubusercontent.com/udit-001/india-maps-data/main/geojson'
+    lgd_csv_base_url: str = 'https://lgdirectory.gov.in/downloadDirectory'
+    etl_batch_size: int = 1000
+    etl_enabled: bool = True
+    municipal_gis_registry_env: str = Field(default='{}', validation_alias='MUNICIPAL_GIS_REGISTRY')
+    grievance_portals_env: str = Field(default='{}', validation_alias='GRIEVANCE_PORTALS')
 
     model_config = SettingsConfigDict(
         env_file='.env',
@@ -101,6 +115,16 @@ class Settings(BaseSettings):
             normalized = normalized.replace('postgres://', 'postgresql://', 1)
         if normalized.startswith('postgresql://'):
             normalized = normalized.replace('postgresql://', 'postgresql+asyncpg://', 1)
+        
+        # Auto-correct Supabase pooler using direct port 5432 to standard transaction port 6543
+        if 'pooler.supabase.com' in normalized and ':5432' in normalized:
+            import logging
+            logging.getLogger('safevixai.config').warning(
+                'Supabase pooler host detected with direct session port 5432! '
+                'Rewriting database port to transaction pooler port 6543 to prevent connection saturation.'
+            )
+            normalized = normalized.replace(':5432', ':6543', 1)
+            
         return normalized
 
     @property
@@ -190,6 +214,7 @@ def get_settings() -> Settings:
     try:
         settings.data_dir.mkdir(parents=True, exist_ok=True)
         settings.upload_dir.mkdir(parents=True, exist_ok=True)
+        (settings.upload_dir / 'temp_pending').mkdir(parents=True, exist_ok=True)
     except OSError:
         pass
     return settings

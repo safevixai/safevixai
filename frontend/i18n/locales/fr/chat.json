@@ -1,0 +1,40 @@
+{
+  "chat": {
+    "title": "Assistant HUD",
+    "subtitle": "INFORMATIONS TACTIQUES ET JURIDIQUES",
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "audio_enabled": "Audio activé",
+    "audio_disabled": "Audio désactivé",
+    "stop_reading": "Arrêter de lire",
+    "auto_read_enable": "Activer la lecture automatique",
+    "auto_read_disable": "Désactiver la lecture automatique",
+    "suggested_inquiries": "Demandes suggérées",
+    "show_suggested": "Afficher les demandes de renseignements suggérées",
+    "hide_suggested": "Masquer les suggestions",
+    "welcome_msg": "Assistant SafeVixAI en ligne. Je peux répondre aux questions sur la loi sur les véhicules à moteur, les sanctions routières, vos droits lors d'un contrôle de police et les lois sur la sécurité routière dans toute l'Inde. De quoi avez-vous besoin?",
+    "connection_interrupted": "Lien neuronal interrompu. Veuillez vérifier la connectivité et réessayer le protocole.",
+    "copied": "Copié dans le presse-papier !",
+    "clipboard_unavailable": "Presse-papiers indisponible",
+    "reading_aloud": "Lire à haute voix...",
+    "feedback_recorded": "Commentaires enregistrés",
+    "retrying": "Nouvelle tentative...",
+    "ask_placeholder": "Demandez n'importe quoi à l'IA...",
+    "starters": {
+      "accident": "Aide! J'ai eu un accident, que dois-je faire ?",
+      "ambulance": "Envoyer une ambulance à ma position actuelle",
+      "hit_and_run": "Expliquer la procédure judiciaire du délit de fuite",
+      "police_stop": "Quels sont mes droits lors d'un contrôle de police ?"
+    },
+    "select_language": "Sélectionnez la langue",
+    "language_selection": "Sélection de la langue",
+    "switch_online": "Passer à l'IA en ligne",
+    "switch_offline": "Passer à l'IA hors ligne (Gemma)",
+    "copy": "Copie",
+    "read_aloud": "Lire à haute voix",
+    "thumbs_up": "Bravo",
+    "thumbs_down": "Pouce vers le bas",
+    "retry": "Réessayer",
+    "offline_ai_failed": "L'IA hors ligne n'a pas pu s'initialiser. Utilisation du mode en ligne."
+  }
+}

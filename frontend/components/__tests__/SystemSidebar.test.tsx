@@ -33,10 +33,11 @@ describe('SystemSidebar', () => {
   it('renders all main navigation items', async () => {
     const SystemSidebar = (await import('../dashboard/SystemSidebar')).default;
     render(<SystemSidebar />);
-    const navLabels = ['Map', 'AI Assistant', 'Locator', 'Tracking', 'First Aid', 'Report Road Issue', 'Challan Calculator', 'Emergency', 'Profile', 'Settings'];
+    const navLabels = ['Map', 'AI Assistant', 'Locator', 'Tracking', 'First Aid', 'Report Road Issue', 'Challan Calculator', 'Profile', 'Settings'];
     for (const label of navLabels) {
       expect(screen.getByText(label)).toBeInTheDocument();
     }
+    expect(screen.getAllByText('Emergency').length).toBeGreaterThanOrEqual(1);
   });
 
   it('highlights active link based on pathname', async () => {

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+from datetime import datetime, timezone
 import logging.config
 import sys
 import time
@@ -23,11 +24,13 @@ from core.limiter import limiter
 from core.idempotency import IdempotencyMiddleware
 from core.versioning import APIVersioningMiddleware
 from core.jwks import JWKSManager
+from core.response_wrapper import ApiResponseMiddleware
 from core.tenant import apply_tenant_filter
+from core.i18n_middleware import setup_backend_i18n
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from core.redis_client import create_cache
-from models.schemas import DependencyHealth, HealthResponse
+from models.schemas import ApiErrorResponse, DependencyHealth, HealthResponse
 from services.authority_router import AuthorityRouter
 from services.challan_service import ChallanService
 from services.emergency_locator import EmergencyLocatorService
@@ -138,19 +141,62 @@ def create_app() -> FastAPI:
         app.state.llm_service = llm_service
         app.state.roadwatch_service = roadwatch_service
 
+        # Initialize Event Bus and Redis adapter
+        from services.event_bus import get_event_bus, RedisPubSubAdapter
+        event_bus = get_event_bus()
+        try:
+            adapter = RedisPubSubAdapter(cache)
+            event_bus.set_redis_adapter(adapter)
+        except Exception as e:
+            logger.warning("Could not attach Redis adapter to EventBus: %s", e)
+
+        # Global audit event logger
+        async def global_event_logger(event):
+            logger.info("DOMAIN EVENT PROCESSED: %s [%s] payload=%s", event.event_type, event.event_id[:8], event.payload)
+        
+        event_bus.subscribe("*", global_event_logger)
+        app.state.event_bus = event_bus
+
         # Initialize and start SLAMonitor background task
         sla_monitor = SLAMonitor(AsyncSessionLocal)
         app.state.sla_monitor = sla_monitor
         sla_interval = 60 if settings.environment == "development" else 900
         app.state.sla_task = asyncio.create_task(sla_monitor.start_loop(interval_seconds=sla_interval))
 
+        # Initialize and start ETL Scheduler for civic intelligence pipelines
+        from services.civic_intel.etl_scheduler import ETLScheduler
+        etl_scheduler = ETLScheduler(
+            session_factory=AsyncSessionLocal,
+            overpass_service=overpass_service,
+        )
+        app.state.etl_scheduler = etl_scheduler
+        await etl_scheduler.start()
+
+        # Initialize and start background task queue and worker daemon
+        from core.queue import TaskQueue, BackgroundWorker
+        if cache._client is not None:
+            queue = TaskQueue(cache._client)
+            worker = BackgroundWorker(cache._client, concurrency=2)
+            app.state.queue = queue
+            app.state.worker = worker
+            await worker.start()
+            logger.info("Asynchronous background queue and worker started successfully")
+        else:
+            logger.warning("Queue broker not available (Redis is offline). Tasks will fall back to synchronous execution.")
+            app.state.queue = None
+            app.state.worker = None
+
         try:
             yield
         finally:
+            if hasattr(app.state, 'worker') and app.state.worker is not None:
+                await app.state.worker.stop()
             if hasattr(app.state, 'sla_monitor'):
                 app.state.sla_monitor.stop()
             if hasattr(app.state, 'sla_task'):
                 app.state.sla_task.cancel()
+            if hasattr(app.state, 'etl_scheduler'):
+                await app.state.etl_scheduler.stop()
             
             await jwks_manager.stop()
             from services.safe_spaces import close_safe_spaces_client
@@ -174,6 +220,9 @@ def create_app() -> FastAPI:
         redoc_url=redoc_url,
         openapi_url=openapi_url,
     )
+    
+    # Mount backend multi-language exception and validation localization
+    setup_backend_i18n(app)
     
     # OBSERVABILITY#2: OpenTelemetry distributed tracing
     try:
@@ -353,6 +402,9 @@ def create_app() -> FastAPI:
             "X-Requested-With",
         ],
     )
+    # Phase 7: ApiResponse<T> envelope wrapping — outermost middleware
+    app.add_middleware(ApiResponseMiddleware)
+
     app.mount('/uploads', StaticFiles(directory=settings.upload_dir), name='uploads')
 
     # ── Global unhandled exception handler with alerting ─────────────────
@@ -373,7 +425,10 @@ def create_app() -> FastAPI:
         )
         return JSONResponse(
             status_code=500,
-            content={"error": {"code": "INTERNAL_ERROR", "message": "Internal server error. The team has been notified."}},
+            content=ApiErrorResponse(
+                error={"code": "INTERNAL_ERROR", "message": "Internal server error. The team has been notified."},
+                timestamp=datetime.now(timezone.utc).isoformat(),
+            ).model_dump(),
         )
 
     @app.get('/', tags=['System'])

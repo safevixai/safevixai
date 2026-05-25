@@ -1,0 +1,43 @@
+name: Branch Protection Checks
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main, develop]
+
+jobs:
+  check-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enforce linear history
+        run: |
+          if [ "${{ github.base_ref }}" = "main" ]; then
+            echo "Pull request into main - requiring rebase/squash merge."
+          fi
+
+      - name: Check commits are signed
+        id: check-signed
+        run: |
+          UNSIGNED=$(git log --format='%H %G?' "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" | grep -v ' G$' | wc -l)
+          echo "unsigned=$UNSIGNED" >> "$GITHUB_OUTPUT"
+          if [ "$UNSIGNED" -gt 0 ]; then
+            echo "::warning title=Unsigned commits::$UNSIGNED commit(s) are not signed"
+          fi
+
+      - name: Check for merge commits
+        id: check-merge-commits
+        run: |
+          MERGE_COUNT=$(git log --merges --oneline "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" | wc -l)
+          echo "merge_commits=$MERGE_COUNT" >> "$GITHUB_OUTPUT"
+          if [ "$MERGE_COUNT" -gt 0 ]; then
+            echo "::warning title=Merge commits found::$MERGE_COUNT merge commit(s) detected. Consider rebasing."
+          fi
+
+      - name: Validate PR title convention
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          if ! echo "$TITLE" | grep -qE '^(feat|fix|chore|docs|refactor|test|ci|perf|style|security)(\(.+\))?:'; then
+            echo "::error title=Invalid PR title::PR title must follow conventional commits format (e.g. 'feat: add user login')"
+            exit 1
+          fi

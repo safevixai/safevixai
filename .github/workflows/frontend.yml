@@ -48,6 +48,10 @@ jobs:
         run: |
           npx tsc --noEmit
 
+      - name: Validate i18n key parity
+        working-directory: ./frontend
+        run: npm run lint:i18n
+
   build-and-test:
     name: Frontend Build & Tests
     runs-on: ubuntu-latest
@@ -74,8 +78,22 @@ jobs:
           # Copy public assets to standalone build for E2E tests
           cp -r public .next/standalone/public
         env:
+          ANALYZE: 'true'
           NEXT_PUBLIC_API_URL: http://localhost:8000
           NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010
+
+      - name: Check bundle size
+        run: |
+          $MAIN_JS = Get-ChildItem -Recurse -Path ".next/static/chunks" -Filter "main-*.js" | Select-Object -First 1
+          if ($MAIN_JS) {
+            $SIZE_KB = [math]::Round($MAIN_JS.Length / 1KB)
+            Write-Host "Main bundle: ${SIZE_KB}KB"
+            if ($SIZE_KB -gt 300) {
+              Write-Host "::warning title=Bundle Size::Main bundle is ${SIZE_KB}KB (limit: 300KB)"
+            }
+          }
+        shell: pwsh
+        working-directory: ./frontend
 
       - name: Run Jest unit tests
         working-directory: ./frontend
@@ -83,6 +101,31 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: http://localhost:8000
           NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010
+
+      - name: Check coverage threshold
+        working-directory: ./frontend
+        run: |
+          if [ -f coverage/cobertura-coverage.xml ]; then
+            echo "Checking coverage thresholds..."
+            python3 -c "
+import xml.etree.ElementTree as ET, sys
+tree = ET.parse('coverage/cobertura-coverage.xml')
+root = tree.getroot()
+line_rate = float(root.get('line-rate', 0))
+branch_rate = float(root.get('branch-rate', 0))
+print(f'Line coverage: {line_rate:.2%}')
+print(f'Branch coverage: {branch_rate:.2%}')
+if line_rate < 0.50:
+    print(f'FAIL: Line coverage {line_rate:.2%} below 50% threshold')
+    sys.exit(1)
+if branch_rate < 0.40:
+    print(f'FAIL: Branch coverage {branch_rate:.2%} below 40% threshold')
+    sys.exit(1)
+print('PASS: All coverage thresholds met')
+"
+          else
+            echo "cobertura-coverage.xml not found - skipping threshold check"
+          fi
 
       - name: Upload Frontend Coverage
         uses: actions/upload-artifact@v4

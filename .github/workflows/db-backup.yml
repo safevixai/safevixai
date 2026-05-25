@@ -1,0 +1,49 @@
+name: Database Backup
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: safevixai
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Run backup
+        run: |
+          mkdir -p backups
+          TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+          PGPASSWORD=postgres pg_dump \
+            -h localhost \
+            -U postgres \
+            -d safevixai \
+            --no-owner \
+            --no-acl \
+            --compress=9 \
+            --file="backups/safevixai_${TIMESTAMP}.sql.gz" \
+            --format=custom
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: safevixai-db-backup
+          path: backups/
+          retention-days: 7

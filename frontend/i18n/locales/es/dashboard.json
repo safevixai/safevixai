@@ -1,0 +1,28 @@
+{
+  "dashboard": {
+    "priority_vectors": "Vectores prioritarios detectados",
+    "secure_region": "Secure Region",
+    "secure_region_sub": "No hay anomalías críticas en un radio de {{radius}} km",
+    "caution_zone": "Caution Zone",
+    "caution_zone_sub_one": "1 peligro activo cercano: proceda con cuidado",
+    "caution_zone_sub_other": "{{count}} peligros activos cercanos: proceda con cuidado",
+    "high_risk_area": "High Risk Area",
+    "high_risk_area_one": "High Risk Area",
+    "high_risk_area_sub_one": "1 peligro no resuelto detectado: SOS listo",
+    "high_risk_area_sub_other": "{{count}} peligros no resueltos detectados: SOS listo"
+  },
+  "map_layers": {
+    "title": "Capas de mapa",
+    "satellite": "Satélite",
+    "traffic": "Tráfico",
+    "safe_spaces": "Espacios seguros",
+    "hazard_heatmap": "Mapa de calor de peligro",
+    "emergency_services": "Servicios de emergencia",
+    "hazard_legend": "Leyenda de peligro",
+    "high_severity": "Gravedad alta (T4+)",
+    "traffic_accident": "Tráfico y accidentes",
+    "weather_flood": "Clima e inundaciones",
+    "relocate_sentinel": "Reubicar centinela",
+    "tomtom_unavailable": "Clave API de TomTom no configurada"
+  }
+}

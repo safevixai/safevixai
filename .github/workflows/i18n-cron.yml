@@ -1,0 +1,78 @@
+name: Automated Weekly i18n Translation Sync
+
+on:
+  schedule:
+    # Run every Sunday at midnight UTC
+    - cron: '0 0 * * 0'
+  push:
+    paths:
+      - 'frontend/public/offline-data/translations/en.json'
+      - 'frontend/i18n/locales/en/**'
+  pull_request:
+    paths:
+      - 'frontend/public/offline-data/translations/en.json'
+      - 'frontend/i18n/locales/en/**'
+  workflow_dispatch:
+    # Allow manual triggering of the translation generation pipeline
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  i18n-translate:
+    name: Generate & Sync AI Translations
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Node.js dependencies
+        working-directory: ./frontend
+        run: npm ci --legacy-peer-deps
+
+      - name: Split monolithic translations into namespaces
+        working-directory: ./frontend
+        run: npm run i18n:split
+
+      - name: Run AI translation script
+        run: |
+          echo "=== Generating AI Translations ==="
+          python frontend/scripts/generate-ai-translations.py
+
+      - name: Generate TypeScript type interfaces
+        working-directory: ./frontend
+        run: npm run i18n:types
+
+      - name: Run key parity checks
+        working-directory: ./frontend
+        run: npm run lint:i18n
+
+      - name: Create Pull Request for Translation Updates
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "i18n: auto-update localized target translations [automated]"
+          title: "i18n: Auto-Sync Localized Target Translations"
+          body: |
+            Automated translation synchronization and key verification updates.
+            
+            This pull request synchronizes the monolithic `en.json` file, splits it into namespace files, runs `generate-ai-translations.py` to compile translation targets, updates TypeScript type definitions, and executes verification tests to ensure parity.
+          branch: "i18n-auto-translations-sync"
+          base: "main"
+          add-paths: |
+            frontend/i18n/locales/**
+            frontend/public/offline-data/translations/**
