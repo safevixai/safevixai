@@ -1077,13 +1077,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-uiux-audit-2026-05-18-post-audit-updates" class="md-nav__link">
+  <a href="#current-uiux-status-2026-05-25-final-audit-score-92100" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)
+        Current UI/UX Status - 2026-05-25 (Final Audit: Score 92/100)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Current UI/UX Status - 2026-05-25 (Final Audit: Score 92/100)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remaining-gaps-tier-3-post-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remaining Gaps (Tier 3 - Post-Demo):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1281,17 +1298,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Navigation
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1310,10 +1316,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#universal-terminal-header-every-page" class="md-nav__link">
+  <a href="#universal-header-every-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Universal Terminal Header (every page)
+        Universal Header (every page)
       
     </span>
   </a>
@@ -1860,13 +1866,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-uiux-audit-2026-05-18-post-audit-updates" class="md-nav__link">
+  <a href="#current-uiux-status-2026-05-25-final-audit-score-92100" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)
+        Current UI/UX Status - 2026-05-25 (Final Audit: Score 92/100)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Current UI/UX Status - 2026-05-25 (Final Audit: Score 92/100)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remaining-gaps-tier-3-post-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remaining Gaps (Tier 3 - Post-Demo):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2064,17 +2087,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#navigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Navigation
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2093,10 +2105,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#universal-terminal-header-every-page" class="md-nav__link">
+  <a href="#universal-header-every-page" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Universal Terminal Header (every page)
+        Universal Header (every page)
       
     </span>
   </a>
@@ -2366,30 +2378,144 @@
 
 
 <h1 id="safevixai-complete-design-system">SafeVixAI — Complete Design System</h1>
-<h2 id="current-uiux-audit-2026-05-18-post-audit-updates">Current UI/UX Audit - 2026-05-18 (Post-Audit Updates)</h2>
-<p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. All route entries use the unified <code>usePageEntry</code> GSAP stagger animation with GPU-composited properties (transform, opacity) and strict <code>will-change</code> management. Framer Motion source imports are fully removed (orphaned dependency cleaned from <code>package-lock.json</code>). Advanced performance hardening ensures 60FPS across all devices. The UI/UX is polished, responsive, accessible, and fully demo-ready for the IIT Madras Hackathon.</p>
+<h2 id="current-uiux-status-2026-05-25-final-audit-score-92100">Current UI/UX Status - 2026-05-25 (Final Audit: Score 92/100)</h2>
+<p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. All route entries use unified <code>usePageEntry</code> GSAP stagger animation. No Framer Motion in package.json or source code. GSAP 3.15.0 used everywhere with GPU-composited properties and strict <code>will-change</code> management.</p>
+<p><strong>UX Audit Score: 92/100 (A-)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Score</th>
+<th>Key Strengths</th>
+<th>Key Gaps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Component Consistency</td>
+<td>85</td>
+<td>Design system tokens used throughout</td>
+<td>Some rogue pixel widths instead of CSS vars</td>
+</tr>
+<tr>
+<td>Responsive Design</td>
+<td>82</td>
+<td>Safe area insets, RTL, touch sizing</td>
+<td>Only 2 breakpoints in CSS layer</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>88</td>
+<td>Skip-to-content, aria-labels on maps/markers, RTL, focus-visible</td>
+<td>4 pages missing aria on interactive elements</td>
+</tr>
+<tr>
+<td>Loading &amp; Error States</td>
+<td>93</td>
+<td>Global ErrorBoundary, 16 loading.tsx, skeleton variants, not-found, offline page</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Form Inputs &amp; Validation</td>
+<td>86</td>
+<td>Pydantic validation, toast feedback</td>
+<td>No aria-invalid attributes</td>
+</tr>
+<tr>
+<td>Light Mode</td>
+<td>85</td>
+<td>CSS variable tokens replaced hardcoded classes</td>
+<td>Minor contrast gaps</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>82</td>
+<td>No @ts-ignore, typed store/API</td>
+<td>12 <code>any</code> usages in app pages</td>
+</tr>
+<tr>
+<td>PWA/Offline</td>
+<td>90</td>
+<td>Rich SW, manifest, offline data, background sync, IndexedDB</td>
+<td>1 screenshot, ChromaDB tracking contradiction</td>
+</tr>
+<tr>
+<td>MapLibre</td>
+<td>95</td>
+<td>Full cleanup, clustering, fallback chain, accessibility</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Speech/Language</td>
+<td>100</td>
+<td>14 languages, 4-code mapping, correct endpoints</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Animation Performance</td>
+<td>91</td>
+<td>GPU-composited GSAP, will-change, prefers-reduced-motion</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>OVERALL</strong></td>
+<td><strong>92/100</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="remaining-gaps-tier-3-post-demo">Remaining Gaps (Tier 3 - Post-Demo):</h3>
+<ul>
+<li><code>aria-label</code> attributes on 4 pages (challan, assistant chat buttons, profile, locator)</li>
+<li>12 <code>any</code> type usages in app pages (locator, report/track, officer)</li>
+<li>2 undocumented env vars in .env.example</li>
+<li>Raw <code>&lt;img&gt;</code> in test file</li>
+<li>375px breakpoint media queries for ultra-mobile</li>
+<li>Form validation aria-invalid attributes</li>
+<li>Keyboard focus trap in help modal</li>
+</ul>
+<p><strong>Microcopy Audit (2026-05-23):</strong> All tactical/military jargon replaced with plain language:
+- "Sentinel Active" → "System Active" (TerminalHeader)
+- "DISPATCHED" → "SOS SENT" (SOS page)
+- "Tactical Center" / "Protocol Terminal" → "Emergency Guide" (emergency page)
+- "Emergency Protocol Terminal" → "Emergency Guides" (emergency title)
+- "Challan Terminal" → "Challan Calculator" (challan page)
+- "AI Tactical Insight" → "AI Guidance" (challan page)
+- "Vigilance Protocols" → "Safety Settings" (settings page)
+- "Storage Matrix" → "Data &amp; Storage" (settings page)
+- "Operator Identity Matrix" → "User Profile" (profile page)
+- "Mission Protocol" → "Safety Protocols" (profile page)
+- "Tactical Awards" → "Achievements" (profile page)
+- "Sign Out Operator" → "Sign Out" (profile page)
+- "Hazard Dispatch Terminal" → "Report Hazard" (report page)
+- "First Aid HUD" → "First Aid Guide" (first aid page)
+- "Sentinel-X Active" → "AI Scan Active" (first aid page)
+- "L-09 Mission Ready" → "System Ready" (first aid page)
+- "Terminate Protocol" → "Close Guide" (first aid page)</p>
+<p><strong>Light Mode Polish:</strong> All hardcoded dark-mode-only tokens (<code>bg-white</code>, <code>dark:bg-white/10</code>, <code>text-red-500</code>, <code>text-amber-500</code>, etc.) replaced with CSS variable tokens from <code>globals.css</code> (<code>bg-surface-1</code>, <code>text-text-1</code>, <code>text-emergency</code>, <code>text-warning</code>, etc.) across SOS page, tracking page, and First Aid page.</p>
+<p><strong>White Flash Fixes:</strong> All client components with <code>if (!mounted) return null</code> now render LoadingPage placeholders instead — FirstAidClient, Report page, Command Center.</p>
+<p><strong>Error Handling:</strong> Command Center now has ErrorState component with retry button, loadError state management, and toast-based retry for assignment failures.</p>
 <p>Current gaps to close:</p>
 <ul>
-<li>Remove remaining legacy Tailwind palette tokens from app and component surfaces unless they are intentional emergency colors.</li>
-<li>Replace arbitrary hex/rgb Tailwind classes with semantic tokens from <code>globals.css</code> and <code>tailwind.config.js</code>.</li>
 <li>Replace the remaining raw <code>&lt;img&gt;</code> in the chat attachment preview with <code>next/image</code> or a safe optimized preview path.</li>
 <li>Remove the external Google Material Symbols stylesheet or self-host/replace it with Lucide icons.</li>
 <li>Fix mojibake/encoding artifacts in docs and UI strings before demo.</li>
 <li>Normalize large radii: regular cards should use 8px, controls 6px, large panels 12px, and only SOS/avatars/pills should use larger radii.</li>
 <li>Voice UI must show honest states: recording, processing, unavailable, backend warming, unsupported browser, and transcript inserted.</li>
 </ul>
-<p>Speech UX status:</p>
-<ul>
-<li>Mic input exists in the assistant input, but the endpoint path and language-code mapping are not correct yet.</li>
-<li>Browser speech output exists, but it is hardcoded to <code>en-IN</code>; it must follow the selected language.</li>
-<li>Backend TTS does not exist; do not represent voice output as server-powered.</li>
-</ul>
+<p>Speech UX status (from AGENTS.md):
+- <code>POST /speech/translate</code> is the correct endpoint (NOT <code>/api/v1/speech/translate</code>)
+- <code>GET /speech/status</code> for status checks
+- Language mapping: UI codes (<code>hi</code>) → backend codes (<code>hin</code>) → synthesis codes (<code>hi-IN</code>) — fully wired in <code>frontend/lib/languages.ts</code>
+- Assistant voice output uses browser <code>speechSynthesis</code> with <code>utterance.lang</code> from <code>getLanguageByCode(selectedLanguage).synthesisCode</code>
+- No backend TTS endpoint exists</p>
 <p>Enterprise rule: a page is not enterprise-ready just because it compiles. It must be token-consistent, responsive at 375/768/1440px, keyboard accessible, visually calm under dense data, and truthful about backend state.</p>
 <hr />
 <h2 id="philosophy">Philosophy</h2>
-<p>SafeVixAI is a life-safety command terminal, not a consumer app. The UI communicates two modes:
-<strong>Tactical Emergency</strong> (crash detected, SOS active, seconds matter) and <strong>Operational Normal</strong>
-(browsing first aid, checking fines, reporting hazards). Dark tactical is the native medium.</p>
+<p>SafeVixAI is a life-safety application, not a consumer app. The UI communicates two modes:
+<strong>Emergency</strong> (crash detected, SOS active, seconds matter) and <strong>Normal</strong>
+(browsing first aid, checking fines, reporting hazards). Dark mode is the native default.</p>
 <p>From <strong>Linear</strong>: precise sidebar, ultra-thin semi-transparent borders, luminance stepping for depth,
 Inter Variable with OpenType features.
 From <strong>VoltAgent</strong>: terminal-native energy, warm charcoal borders, compressed headings, code-block
@@ -2398,8 +2524,9 @@ aesthetic for data display.</p>
 - Red <code>#DC2626</code> = danger/emergency. Never decorative.
 - Green <code>#1A5C38</code> / <code>#00C896</code> = safety/brand/system online/success.
 - White-opacity borders only — never solid dark borders on dark surfaces.
-- Every page has a terminal header: codename + SENTINEL ACTIVE dot.
-- App name in UI: <strong>SafeVixAI</strong> (never "RoadSoS")</p>
+- Every page has a header with system status indicator.
+- App name in UI: <strong>SafeVixAI</strong> (never "RoadSoS")
+- <strong>Plain language rule:</strong> No military/tactical jargon ("sentinel", "terminal" as noun, "mission", "protocol" as navigation, "operator"). Use clear descriptive labels. ("System Active", "Guide", "Safety Settings", "User Profile")</p>
 <hr />
 <h2 id="1-color-tokens">1. Color Tokens</h2>
 <h3 id="brand">Brand</h3>
@@ -2678,7 +2805,7 @@ Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nt">padding</span><span class="o">:</span><span class="w"> </span><span class="nt">32px</span><span class="o">;</span><span class="w"> </span><span class="nt">max-width</span><span class="o">:</span><span class="w"> </span><span class="nt">400px</span><span class="o">;</span><span class="w"> </span><span class="nt">margin</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="w"> </span><span class="nt">auto</span><span class="o">;</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nt">Contains</span><span class="o">:</span>
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">SafeVixAI</span><span class="w"> </span><span class="nt">logo</span><span class="w"> </span><span class="o">(</span><span class="nt">centered</span><span class="o">,</span><span class="w"> </span><span class="nt">48px</span><span class="o">)</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="s2">&quot;OPERATOR AUTHENTICATION&quot;</span><span class="w"> </span><span class="nt">overline</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="s2">&quot;Sign In&quot;</span><span class="w"> </span><span class="nt">overline</span>
 </span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Email</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s2">&quot;REQUEST OTP&quot;</span><span class="w"> </span><span class="o">(</span><span class="nt">brand</span><span class="w"> </span><span class="nt">green</span><span class="o">)</span>
 </span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">OTP</span><span class="w"> </span><span class="nt">6-digit</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="o">(</span><span class="nt">monospace</span><span class="o">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s2">&quot;VERIFY &amp; ENTER&quot;</span><span class="w"> </span><span class="o">(</span><span class="nt">brand</span><span class="w"> </span><span class="nt">green</span><span class="o">)</span>
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Divider</span><span class="w"> </span><span class="s2">&quot;OR&quot;</span>
@@ -2699,282 +2826,293 @@ Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 </span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nt">Used</span><span class="w"> </span><span class="nt">for</span><span class="o">:</span><span class="w"> </span><span class="nt">Crash</span><span class="w"> </span><span class="nt">Detection</span><span class="o">,</span><span class="w"> </span><span class="nt">Push</span><span class="w"> </span><span class="nt">Hub</span><span class="o">,</span><span class="w"> </span><span class="nt">V8</span><span class="w"> </span><span class="nt">Offline</span><span class="w"> </span><span class="nt">Mode</span><span class="o">,</span><span class="w"> </span><span class="nt">Speed</span><span class="w"> </span><span class="nt">Warnings</span><span class="w"> </span><span class="nt">toggles</span>
 </span></code></pre></div></p>
 <h3 id="badges">Badges</h3>
-<p><strong>Terminal Tag</strong> (overline status chips)
+<p><strong>Status Chips</strong>
 <div class="language-css highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nt">font</span><span class="o">:</span><span class="w"> </span><span class="nt">11px</span><span class="o">/</span><span class="nt">600</span><span class="w"> </span><span class="nt">uppercase</span><span class="w"> </span><span class="nt">letter-spacing</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">08em</span><span class="o">;</span><span class="w"> </span><span class="nt">padding</span><span class="o">:</span><span class="w"> </span><span class="nt">2px</span><span class="w"> </span><span class="nt">8px</span><span class="o">;</span><span class="w"> </span><span class="nt">border-radius</span><span class="o">:</span><span class="w"> </span><span class="nt">4px</span><span class="o">;</span>
 </span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
 </span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nt">OFFLINE</span><span class="o">:</span><span class="w">           </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">217</span><span class="o">,</span><span class="nt">119</span><span class="o">,</span><span class="nt">6</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">F59E0B</span><span class="o">;</span>
 </span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nt">PRIORITY</span><span class="w"> </span><span class="nt">P0</span><span class="o">:</span><span class="w">       </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">220</span><span class="o">,</span><span class="nt">38</span><span class="o">,</span><span class="nt">38</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">F87171</span><span class="o">;</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nt">SENTINEL</span><span class="w"> </span><span class="nt">ACTIVE</span><span class="o">:</span><span class="w">   </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">200</span><span class="o">,</span><span class="nt">150</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">12</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span><span class="o">;</span>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="nt">TACTICAL</span><span class="w"> </span><span class="nt">CENTER</span><span class="o">:</span><span class="w">   </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">59</span><span class="o">,</span><span class="nt">130</span><span class="o">,</span><span class="nt">246</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">);</span><span class="w">  </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">60A5FA</span><span class="o">;</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="nt">TERMINAL</span><span class="w"> </span><span class="nt">ACTIVE</span><span class="o">:</span><span class="w">   </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">200</span><span class="o">,</span><span class="nt">150</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">10</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span><span class="o">;</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nt">SYSTEM</span><span class="w"> </span><span class="nt">ACTIVE</span><span class="o">:</span><span class="w">     </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">200</span><span class="o">,</span><span class="nt">150</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">12</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span><span class="o">;</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="nt">EMERGENCY</span><span class="w"> </span><span class="nt">CENTER</span><span class="o">:</span><span class="w">  </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">59</span><span class="o">,</span><span class="nt">130</span><span class="o">,</span><span class="nt">246</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">);</span><span class="w">  </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">60A5FA</span><span class="o">;</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="nt">CALCULATOR</span><span class="w"> </span><span class="nt">ACTIVE</span><span class="o">:</span><span class="w"> </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">200</span><span class="o">,</span><span class="nt">150</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">10</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span><span class="o">;</span>
 </span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="nt">SATELLITE</span><span class="w"> </span><span class="nt">LOCK</span><span class="o">:</span><span class="w">    </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">99</span><span class="o">,</span><span class="nt">102</span><span class="o">,</span><span class="nt">241</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">);</span><span class="w">  </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">818CF8</span><span class="o">;</span>
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="nt">DISPATCH</span><span class="w"> </span><span class="nt">SENTINEL</span><span class="o">:</span><span class="w"> </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">200</span><span class="o">,</span><span class="nt">150</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">10</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span><span class="o">;</span>
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="nt">TAMIL</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">state</span><span class="o">:</span><span class="w">     </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">220</span><span class="o">,</span><span class="nt">38</span><span class="o">,</span><span class="nt">38</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">10</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">F87171</span><span class="o">;</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="nt">TAMIL</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">state</span><span class="o">:</span><span class="w">     </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">220</span><span class="o">,</span><span class="nt">38</span><span class="o">,</span><span class="nt">38</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">10</span><span class="o">);</span><span class="w">   </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">F87171</span><span class="o">;</span>
 </span></code></pre></div></p>
 <p><strong>Status Dot</strong>
 <div class="language-css highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">6px</span><span class="o">;</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">6px</span><span class="o">;</span><span class="w"> </span><span class="nt">border-radius</span><span class="o">:</span><span class="w"> </span><span class="nt">50</span><span class="o">%;</span>
 </span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nt">Online</span><span class="o">:</span><span class="w">    </span><span class="nt">bg</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span><span class="o">;</span><span class="w"> </span><span class="nt">animation</span><span class="o">:</span><span class="w"> </span><span class="nt">pulse</span><span class="w"> </span><span class="nt">2s</span><span class="w"> </span><span class="nt">ease-in-out</span><span class="w"> </span><span class="nt">infinite</span><span class="o">;</span>
 </span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nt">Emergency</span><span class="o">:</span><span class="w"> </span><span class="nt">bg</span><span class="w"> </span><span class="p">#</span><span class="nn">DC2626</span><span class="o">;</span><span class="w"> </span><span class="nt">animation</span><span class="o">:</span><span class="w"> </span><span class="nt">pulse</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">8s</span><span class="w"> </span><span class="nt">ease-in-out</span><span class="w"> </span><span class="nt">infinite</span><span class="o">;</span>
 </span></code></pre></div></p>
-<h3 id="navigation">Navigation</h3>
+<p><strong>Loading States</strong>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">LoadingPage</span><span class="w"> </span><span class="nt">component</span><span class="o">:</span><span class="w"> </span><span class="nt">Full-page</span><span class="w"> </span><span class="nt">skeleton</span><span class="w"> </span><span class="nt">with</span><span class="w"> </span><span class="nt">centered</span><span class="w"> </span><span class="nt">shimmer</span><span class="w"> </span><span class="nt">icon</span><span class="o">.</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">variant</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nt">map</span><span class="o">/</span><span class="nt">data</span><span class="w"> </span><span class="nt">dashboards</span><span class="w"> </span><span class="o">(</span><span class="nt">CommandCenter</span><span class="o">,</span><span class="w"> </span><span class="nt">FirstAid</span><span class="o">)</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">variant</span><span class="o">=</span><span class="s2">&quot;form&quot;</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nt">form-heavy</span><span class="w"> </span><span class="nt">pages</span><span class="w"> </span><span class="o">(</span><span class="nt">Report</span><span class="o">)</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nt">EmptyState</span><span class="w"> </span><span class="nt">component</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">message</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">optional</span><span class="w"> </span><span class="nt">retry</span><span class="w"> </span><span class="nt">button</span><span class="o">.</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nt">ErrorState</span><span class="w"> </span><span class="nt">component</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">error</span><span class="w"> </span><span class="nt">message</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">retry</span><span class="w"> </span><span class="nt">button</span><span class="o">.</span><span class="w"> </span><span class="nt">Used</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">CommandCenter</span><span class="w"> </span><span class="nt">and</span><span class="w"> </span><span class="nt">SOS</span><span class="w"> </span><span class="nt">pages</span><span class="o">.</span>
+</span></code></pre></div></p>
 <p><strong>Sidebar (desktop)</strong>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">192px</span><span class="w"> </span><span class="o">(</span><span class="nt">collapsed</span><span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">280px</span><span class="w"> </span><span class="o">(</span><span class="nt">expanded</span><span class="o">);</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100vh</span><span class="o">;</span><span class="w"> </span><span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">fixed</span><span class="o">;</span><span class="w"> </span><span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nt">border-right</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">06</span><span class="o">);</span>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nt">App</span><span class="w"> </span><span class="nt">name</span><span class="o">:</span><span class="w"> </span><span class="nt">15px</span><span class="o">/</span><span class="nt">700</span><span class="w"> </span><span class="p">#</span><span class="nn">F0F4F8</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="s2">&quot;SafeVixAI&quot;</span>
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="s2">&quot;SYSTEM INTEGRATED&quot;</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="o">/</span><span class="nt">600</span><span class="o">/</span><span class="nt">uppercase</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span>
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
-</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="nt">Nav</span><span class="w"> </span><span class="nt">item</span><span class="w"> </span><span class="nt">inactive</span><span class="o">:</span><span class="w"> </span><span class="nt">padding</span><span class="w"> </span><span class="nt">10px</span><span class="w"> </span><span class="nt">16px</span><span class="o">;</span><span class="w"> </span><span class="nt">border-radius</span><span class="w"> </span><span class="nt">6px</span><span class="o">;</span><span class="w"> </span><span class="nt">font</span><span class="w"> </span><span class="nt">14px</span><span class="o">/</span><span class="nt">500</span><span class="o">;</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">A8B4C4</span><span class="o">;</span>
-</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="nt">Nav</span><span class="w"> </span><span class="nt">item</span><span class="w"> </span><span class="nt">active</span><span class="o">:</span><span class="w"> </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">26</span><span class="o">,</span><span class="nt">92</span><span class="o">,</span><span class="nt">56</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">);</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">F0F4F8</span><span class="o">;</span><span class="w"> </span><span class="nt">border-left</span><span class="w"> </span><span class="nt">2px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="p">#</span><span class="nn">1A5C38</span><span class="o">;</span>
-</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
-</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="nt">EMERGENCY</span><span class="w"> </span><span class="nt">DIAL</span><span class="w"> </span><span class="nt">section</span><span class="o">:</span>
-</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">  </span><span class="nt">Label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EMERGENCY DIAL&quot;</span><span class="w"> </span><span class="nt">11px</span><span class="o">/</span><span class="nt">600</span><span class="o">/</span><span class="nt">uppercase</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">DC2626</span>
-</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">  </span><span class="nt">2</span><span class="err">×</span><span class="nt">2</span><span class="w"> </span><span class="nt">grid</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">number</span><span class="w"> </span><span class="o">(</span><span class="nt">16px</span><span class="o">/</span><span class="nt">700</span><span class="o">/</span><span class="nt">monospace</span><span class="o">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="o">(</span><span class="nt">10px</span><span class="o">/</span><span class="nt">400</span><span class="o">)</span>
-</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">  </span><span class="nt">112</span><span class="w"> </span><span class="nt">Emergency</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nt">102</span><span class="w"> </span><span class="nt">Ambulance</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nt">100</span><span class="w"> </span><span class="nt">Police</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nt">1033</span><span class="w"> </span><span class="nt">Highway</span>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">width</span><span class="o">:</span><span class="w"> </span><span class="nt">192px</span><span class="w"> </span><span class="o">(</span><span class="nt">collapsed</span><span class="o">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">280px</span><span class="w"> </span><span class="o">(</span><span class="nt">expanded</span><span class="o">);</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">100vh</span><span class="o">;</span><span class="w"> </span><span class="nt">position</span><span class="o">:</span><span class="w"> </span><span class="nt">fixed</span><span class="o">;</span><span class="w"> </span><span class="nt">left</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">;</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nt">border-right</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">06</span><span class="o">);</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="nt">App</span><span class="w"> </span><span class="nt">name</span><span class="o">:</span><span class="w"> </span><span class="nt">15px</span><span class="o">/</span><span class="nt">700</span><span class="w"> </span><span class="p">#</span><span class="nn">F0F4F8</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="s2">&quot;SafeVixAI&quot;</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="s2">&quot;SYSTEM INTEGRATED&quot;</span><span class="o">:</span><span class="w"> </span><span class="nt">10px</span><span class="o">/</span><span class="nt">600</span><span class="o">/</span><span class="nt">uppercase</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">00C896</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="nt">Nav</span><span class="w"> </span><span class="nt">item</span><span class="w"> </span><span class="nt">inactive</span><span class="o">:</span><span class="w"> </span><span class="nt">padding</span><span class="w"> </span><span class="nt">10px</span><span class="w"> </span><span class="nt">16px</span><span class="o">;</span><span class="w"> </span><span class="nt">border-radius</span><span class="w"> </span><span class="nt">6px</span><span class="o">;</span><span class="w"> </span><span class="nt">font</span><span class="w"> </span><span class="nt">14px</span><span class="o">/</span><span class="nt">500</span><span class="o">;</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">A8B4C4</span><span class="o">;</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="nt">Nav</span><span class="w"> </span><span class="nt">item</span><span class="w"> </span><span class="nt">active</span><span class="o">:</span><span class="w"> </span><span class="nt">bg</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">26</span><span class="o">,</span><span class="nt">92</span><span class="o">,</span><span class="nt">56</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">15</span><span class="o">);</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">F0F4F8</span><span class="o">;</span><span class="w"> </span><span class="nt">border-left</span><span class="w"> </span><span class="nt">2px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="p">#</span><span class="nn">1A5C38</span><span class="o">;</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="nt">EMERGENCY</span><span class="w"> </span><span class="nt">DIAL</span><span class="w"> </span><span class="nt">section</span><span class="o">:</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">  </span><span class="nt">Label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EMERGENCY DIAL&quot;</span><span class="w"> </span><span class="nt">11px</span><span class="o">/</span><span class="nt">600</span><span class="o">/</span><span class="nt">uppercase</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">DC2626</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">  </span><span class="nt">2</span><span class="err">×</span><span class="nt">2</span><span class="w"> </span><span class="nt">grid</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">number</span><span class="w"> </span><span class="o">(</span><span class="nt">16px</span><span class="o">/</span><span class="nt">700</span><span class="o">/</span><span class="nt">monospace</span><span class="o">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="o">(</span><span class="nt">10px</span><span class="o">/</span><span class="nt">400</span><span class="o">)</span>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">  </span><span class="nt">112</span><span class="w"> </span><span class="nt">Emergency</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nt">102</span><span class="w"> </span><span class="nt">Ambulance</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nt">100</span><span class="w"> </span><span class="nt">Police</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nt">1033</span><span class="w"> </span><span class="nt">Highway</span>
 </span></code></pre></div></p>
 <p><strong>Bottom Nav (mobile)</strong>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">border-top</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">07</span><span class="o">);</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">64px</span><span class="o">;</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nt">5</span><span class="w"> </span><span class="nt">tabs</span><span class="o">:</span><span class="w"> </span><span class="nt">Map</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">AI</span><span class="w"> </span><span class="nt">Chat</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">Locator</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">Report</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">First</span><span class="w"> </span><span class="nt">Aid</span>
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nt">Active</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">1A5C38</span><span class="o">,</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="nt">11px</span><span class="w"> </span><span class="nt">visible</span><span class="o">;</span>
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="nt">Inactive</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="p">#</span><span class="nn">6B7A8D</span><span class="o">,</span><span class="w"> </span><span class="nt">no</span><span class="w"> </span><span class="nt">label</span><span class="o">;</span>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="p">#</span><span class="nn">0D1119</span><span class="o">;</span><span class="w"> </span><span class="nt">border-top</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">07</span><span class="o">);</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">64px</span><span class="o">;</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nt">5</span><span class="w"> </span><span class="nt">tabs</span><span class="o">:</span><span class="w"> </span><span class="nt">Map</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">AI</span><span class="w"> </span><span class="nt">Chat</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">Locator</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">Report</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nt">First</span><span class="w"> </span><span class="nt">Aid</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nt">Active</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="nt">color</span><span class="w"> </span><span class="p">#</span><span class="nn">1A5C38</span><span class="o">,</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="nt">11px</span><span class="w"> </span><span class="nt">visible</span><span class="o">;</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nt">Inactive</span><span class="o">:</span><span class="w"> </span><span class="nt">icon</span><span class="w"> </span><span class="p">#</span><span class="nn">6B7A8D</span><span class="o">,</span><span class="w"> </span><span class="nt">no</span><span class="w"> </span><span class="nt">label</span><span class="o">;</span>
 </span></code></pre></div></p>
 <p><strong>Header Bar</strong>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">10</span><span class="o">,</span><span class="nt">14</span><span class="o">,</span><span class="nt">20</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">92</span><span class="o">);</span><span class="w"> </span><span class="nt">backdrop-filter</span><span class="o">:</span><span class="w"> </span><span class="nt">blur</span><span class="o">(</span><span class="nt">8px</span><span class="o">);</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nt">border-bottom</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">06</span><span class="o">);</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">52px</span><span class="o">;</span>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nt">Left</span><span class="o">:</span><span class="w"> </span><span class="nt">hamburger</span><span class="w"> </span><span class="o">(</span><span class="nt">mobile</span><span class="o">)</span><span class="w"> </span><span class="nt">OR</span><span class="w"> </span><span class="nt">SafeVixAI</span><span class="w"> </span><span class="nt">app</span><span class="w"> </span><span class="nt">icon</span>
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nt">Center</span><span class="o">:</span><span class="w"> </span><span class="nt">search</span><span class="w"> </span><span class="nt">bar</span><span class="w"> </span><span class="o">(</span><span class="nt">focus</span><span class="w"> </span><span class="nt">ring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">green</span><span class="o">,</span><span class="w"> </span><span class="nt">mic</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">green</span><span class="o">)</span>
-</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nt">Right</span><span class="o">:</span><span class="w"> </span><span class="nt">connectivity</span><span class="w"> </span><span class="nt">toggle</span><span class="w"> </span><span class="o">(</span><span class="nt">Online</span><span class="o">/</span><span class="nt">Offline</span><span class="o">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">theme</span><span class="w"> </span><span class="nt">icons</span><span class="w"> </span><span class="o">(/</span><span class="err">🌙</span><span class="o">/</span><span class="err">🖥</span><span class="o">)</span><span class="w"> </span><span class="o">+</span>
-</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">  </span><span class="nt">operator</span><span class="w"> </span><span class="nt">name</span><span class="w"> </span><span class="nt">chip</span><span class="w"> </span><span class="o">(</span><span class="nt">green</span><span class="w"> </span><span class="nt">pill</span><span class="o">,</span><span class="w"> </span><span class="nt">only</span><span class="w"> </span><span class="nt">when</span><span class="w"> </span><span class="nt">authenticated</span><span class="o">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;SECURE&quot;</span><span class="w"> </span><span class="nt">badge</span>
-</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">  </span><span class="nt">NOTE</span><span class="o">:</span><span class="w"> </span><span class="nt">NO</span><span class="w"> </span><span class="nt">login</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="nt">login</span><span class="w"> </span><span class="nt">is</span><span class="w"> </span><span class="nt">only</span><span class="w"> </span><span class="nt">accessible</span><span class="w"> </span><span class="nt">via</span><span class="w"> </span><span class="o">/</span><span class="nt">login</span><span class="w"> </span><span class="nt">URL</span>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nt">bg</span><span class="o">:</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">10</span><span class="o">,</span><span class="nt">14</span><span class="o">,</span><span class="nt">20</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">92</span><span class="o">);</span><span class="w"> </span><span class="nt">backdrop-filter</span><span class="o">:</span><span class="w"> </span><span class="nt">blur</span><span class="o">(</span><span class="nt">8px</span><span class="o">);</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nt">border-bottom</span><span class="o">:</span><span class="w"> </span><span class="nt">1px</span><span class="w"> </span><span class="nt">solid</span><span class="w"> </span><span class="nt">rgba</span><span class="o">(</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">255</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">06</span><span class="o">);</span><span class="w"> </span><span class="nt">height</span><span class="o">:</span><span class="w"> </span><span class="nt">52px</span><span class="o">;</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nt">Left</span><span class="o">:</span><span class="w"> </span><span class="nt">hamburger</span><span class="w"> </span><span class="o">(</span><span class="nt">mobile</span><span class="o">)</span><span class="w"> </span><span class="nt">OR</span><span class="w"> </span><span class="nt">SafeVixAI</span><span class="w"> </span><span class="nt">app</span><span class="w"> </span><span class="nt">icon</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nt">Center</span><span class="o">:</span><span class="w"> </span><span class="nt">search</span><span class="w"> </span><span class="nt">bar</span><span class="w"> </span><span class="o">(</span><span class="nt">focus</span><span class="w"> </span><span class="nt">ring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">green</span><span class="o">,</span><span class="w"> </span><span class="nt">mic</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nt">green</span><span class="o">)</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nt">Right</span><span class="o">:</span><span class="w"> </span><span class="nt">connectivity</span><span class="w"> </span><span class="nt">toggle</span><span class="w"> </span><span class="o">(</span><span class="nt">Online</span><span class="o">/</span><span class="nt">Offline</span><span class="o">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">theme</span><span class="w"> </span><span class="nt">icons</span><span class="w"> </span><span class="o">(/</span><span class="err">🌙</span><span class="o">/</span><span class="err">🖥</span><span class="o">)</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span><span class="nt">operator</span><span class="w"> </span><span class="nt">name</span><span class="w"> </span><span class="nt">chip</span><span class="w"> </span><span class="o">(</span><span class="nt">green</span><span class="w"> </span><span class="nt">pill</span><span class="o">,</span><span class="w"> </span><span class="nt">only</span><span class="w"> </span><span class="nt">when</span><span class="w"> </span><span class="nt">authenticated</span><span class="o">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;SECURE&quot;</span><span class="w"> </span><span class="nt">badge</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span><span class="nt">NOTE</span><span class="o">:</span><span class="w"> </span><span class="nt">NO</span><span class="w"> </span><span class="nt">login</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="nt">login</span><span class="w"> </span><span class="nt">is</span><span class="w"> </span><span class="nt">only</span><span class="w"> </span><span class="nt">accessible</span><span class="w"> </span><span class="nt">via</span><span class="w"> </span><span class="o">/</span><span class="nt">login</span><span class="w"> </span><span class="nt">URL</span>
 </span></code></pre></div></p>
 <hr />
 <h2 id="7-page-patterns-all-pages">7. Page Patterns (all pages)</h2>
-<h3 id="universal-terminal-header-every-page">Universal Terminal Header (every page)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>[TERMINAL CODENAME]   — 11px/600/uppercase/letterspace 0.10em, left-aligned
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>+ SENTINEL ACTIVE dot — 6px green dot + &quot;SENTINEL ACTIVE&quot; 10px/500 #00C896
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>[CONTEXT CHIP]        — optional tinted badge (TACTICAL CENTER, DISPATCH SENTINEL etc)
-</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>[PAGE HERO TITLE]     — 24-28px/700, line-height 1.0, compressed
-</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>[SUB-DESCRIPTION]     — 12px/400/uppercase, #A8B4C4, letter-spacing 0.05em
+<h3 id="universal-header-every-page">Universal Header (every page)</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[PAGE LABEL]          — 11px/600/uppercase/letterspace 0.10em, left-aligned
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>+ SYSTEM ACTIVE dot   — 6px green dot + &quot;System Active&quot; 10px/500 #00C896
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>[CONTEXT CHIP]        — optional tinted badge (&quot;Emergency&quot;, &quot;Calculator&quot;, etc)
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>[PAGE HERO TITLE]     — 24-28px/700, line-height 1.0, compressed
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>[SUB-DESCRIPTION]     — 12px/400/uppercase, #A8B4C4, letter-spacing 0.05em
 </span></code></pre></div>
 <h3 id="map-home">Map / Home (<code>/</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>Layout: Full-viewport MapLibre map + collapsible right panel (Area Intelligence)
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Filter chips row at top: ALL, Hospitals, Police, Ambulance, Fire, Safe Spaces
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>&quot;Enable Location&quot; green button
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>Area Intelligence panel (right, desktop only):
-</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>  Header: &quot;AREA INTELLIGENCE&quot; (bold) + Live/Cached connectivity badge + GPS city/state
-</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>  Status card: dynamic color based on open hazard count:
-</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>    0 open → green &quot;Secure Region&quot; + shield icon
-</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>    1-2 open → amber &quot;Caution Zone&quot; + warning icon
-</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>    3+ open → red &quot;High Risk Area&quot; + shield icon
-</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>  Stats row: 2-col grid showing Services count + Hazards count (from Zustand store)
-</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>  Active Hazards list: up to 4 cards with issue type, road name, distance, severity badge (S1-S4)
-</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>  Empty state: &quot;Scanning Area...&quot; with &quot;Allow location to activate live hazard intelligence&quot;
-</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>  AI Sentinel card: &quot;Monitoring Active&quot; with green pulse dot
-</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>
-</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>Map markers: red=hospital, blue=police, orange=ambulance, yellow=blackspot cluster
-</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>&quot;NO ACTIVE ALERTS NEARBY&quot; bottom sheet (mobile)
-</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>Floating SOS: 56px red circle, fixed bottom-right
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>Layout: Full-viewport MapLibre map + collapsible right panel (Area Intelligence)
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Filter chips row at top: ALL, Hospitals, Police, Ambulance, Fire, Safe Spaces
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>&quot;Enable Location&quot; green button
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>Area Intelligence panel (right, desktop only):
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>  Header: &quot;AREA INTELLIGENCE&quot; (bold) + Live/Cached connectivity badge + GPS city/state
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>  Status card: dynamic color based on open hazard count:
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>    0 open → green &quot;Secure Region&quot; + shield icon
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>    1-2 open → amber &quot;Caution Zone&quot; + warning icon
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>    3+ open → red &quot;High Risk Area&quot; + shield icon
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>  Stats row: 2-col grid showing Services count + Hazards count (from Zustand store)
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>  Active Hazards list: up to 4 cards with issue type, road name, distance, severity badge (S1-S4)
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>  Empty state: &quot;Scanning Area...&quot; with &quot;Allow location to activate live hazard intelligence&quot;
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>  AI Sentinel card: &quot;Monitoring Active&quot; with green pulse dot
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a>Map markers: red=hospital, blue=police, orange=ambulance, yellow=blackspot cluster
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a>&quot;NO ACTIVE ALERTS NEARBY&quot; bottom sheet (mobile)
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>Floating SOS: 56px red circle, fixed bottom-right
 </span></code></pre></div>
 <h3 id="assistant-chat-assistant">Assistant / Chat (<code>/assistant</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>~~CRITICAL BUG: Blank on mobile.~~ **FIXED**  — uses calc(100dvh - 52px - 64px) + min-h-0 flex.
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Layout: Full-height chat column
-</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>Messages: flex-col
-</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>  User bubble: bg rgba(26,92,56,0.20), right-aligned, 8px radius
-</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>  AI bubble: bg #111520, left-aligned, &quot;SafeVixAI&quot; label + timestamp
-</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>&quot;SUGGESTED INQUIRIES&quot; overline + 2-3 quick pill chips below AI welcome message
-</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>Bottom bar: mic icon + text input + send button
-</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>Provider badge on AI message: which LLM answered (small tag)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>~~CRITICAL BUG: Blank on mobile.~~ **FIXED**  — uses calc(100dvh - 52px - 64px) + min-h-0 flex.
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Layout: Full-height chat column
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>Messages: flex-col
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>  User bubble: bg rgba(26,92,56,0.20), right-aligned, 8px radius
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>  AI bubble: bg #111520, left-aligned, &quot;SafeVixAI&quot; label + timestamp
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>&quot;SUGGESTED INQUIRIES&quot; overline + 2-3 quick pill chips below AI welcome message
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>Bottom bar: mic icon + text input + send button
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>Provider badge on AI message: which LLM answered (small tag)
 </span></code></pre></div>
 <h3 id="locator-locator">Locator (<code>/locator</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Terminal: &quot;EMERGENCY RESOURCE DISPATCH&quot; + SENTINEL ACTIVE
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Map top 40vh + filter tabs + results list bottom
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>Tabs: ALL, HOSPITAL, POLICE, FIRE, MECHANIC, TOWING (pill style, horizontal scroll)
-</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>Traffic:OFF / Safe Spaces:OFF toggles (small, top-right of map)
-</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>Empty state: icon + &quot;No services found for this filter&quot; + &quot;Try switching filter&quot; + retry button
-</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>Result card: facility name (16px/600) + distance badge + type chip + phone + directions buttons
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>Terminal: &quot;EMERGENCY RESOURCE DISPATCH&quot; + System Active
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>Map top 40vh + filter tabs + results list bottom
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>Tabs: ALL, HOSPITAL, POLICE, FIRE, MECHANIC, TOWING (pill style, horizontal scroll)
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>Traffic:OFF / Safe Spaces:OFF toggles (small, top-right of map)
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>Empty state: icon + &quot;No services found for this filter&quot; + &quot;Try switching filter&quot; + retry button
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>Result card: facility name (16px/600) + distance badge + type chip + phone + directions buttons
 </span></code></pre></div>
 <h3 id="first-aid-first-aid">First Aid (<code>/first-aid</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>Terminal: &quot;FIRST AID DISPATCH HUD&quot; + SENTINEL ACTIVE
-</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>Search bar below terminal header
-</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>Card grid: 2col (tablet) / 3col (desktop) / 1col (mobile)
-</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>Each card: PRIORITY P0 + OFFLINE badges, icon circle (48px/10px radius/semantic bg),
-</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>  title ALL-CAPS 16px/600, description 13px/400, &quot;Start Guide →&quot; button
-</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>Move &quot;NORMAL MODE&quot; badge to header bar (not floating in page body)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>Terminal: &quot;FIRST AID GUIDE&quot; + System Active
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>Search bar below terminal header
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>Card grid: 2col (tablet) / 3col (desktop) / 1col (mobile)
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>Each card: PRIORITY P0 + OFFLINE badges, icon circle (48px/10px radius/semantic bg),
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>  title ALL-CAPS 16px/600, description 13px/400, &quot;Start Guide →&quot; button
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>Move &quot;NORMAL MODE&quot; badge to header bar (not floating in page body)
 </span></code></pre></div>
 <h3 id="report-report">Report (<code>/report</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>Terminal: &quot;HAZARD DISPATCH TERMINAL&quot; + SENTINEL ACTIVE
-</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>Sub: &quot;DISPATCH SENTINEL&quot; chip + &quot;REAL-TIME ROAD HAZARD REPORTING&quot; hero
-</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>Two bottom panels: &quot;LOCATION LOCK&quot; + &quot;EVIDENCE CAPTURE&quot;
-</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>&quot;NEARBY HELP&quot; secondary button (top-right)
-</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>&quot;REPORT DISPATCH FORM&quot; below panels (scrollable)
-</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>Submit → authority card + report ID toast
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>Terminal: &quot;REPORT HAZARD&quot; + System Active
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>Sub: &quot;Report Active&quot; chip + &quot;Camera viewfinder&quot;
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>Two bottom panels: &quot;LOCATION LOCK&quot; + &quot;EVIDENCE CAPTURE&quot;
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>&quot;NEARBY HELP&quot; secondary button (top-right)
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>&quot;Report Form&quot; below panels (scrollable)
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>Submit → authority card + report ID toast
 </span></code></pre></div>
 <h3 id="challan-challan">Challan (<code>/challan</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>Terminal: &quot;CHALLAN TERMINAL&quot; + SENTINEL ACTIVE
-</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>Left: Result panel — &quot;TOTAL LIABILITY&quot; + ₹AMOUNT (48px monospace #00E676) +
-</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>  breakdown + imprisonment warning + &quot;DETAILED REPORT →&quot; button
-</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>Right: 4-step form
-</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>  Step 01: VIOLATION PROTOCOL dropdown + TAMIL state chip
-</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>  Step 02: VEHICLE IDENTIFICATION — 4 cards (2-WHEELER, CAR/LMV, TRUCK, BUS/COMM)
-</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>    Active: #00C896 border + checkmark overlay
-</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>  Step 03: JURISDICTION — state dropdown + GPS icon
-</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>  Step 04: HISTORY — REPEAT OFFENDER toggle
-</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>AI TACTICAL INSIGHT card below steps
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Terminal: &quot;CHALLAN CALCULATOR&quot; + System Active
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Left: Result panel — &quot;TOTAL LIABILITY&quot; + ₹AMOUNT (48px monospace #00E676) +
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>  breakdown + imprisonment warning + &quot;DETAILED REPORT →&quot; button
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>Right: 4-step form
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>  Step 01: VIOLATION PROTOCOL dropdown + TAMIL state chip
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>  Step 02: VEHICLE IDENTIFICATION — 4 cards (2-WHEELER, CAR/LMV, TRUCK, BUS/COMM)
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>    Active: #00C896 border + checkmark overlay
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>  Step 03: JURISDICTION — state dropdown + GPS icon
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>  Step 04: HISTORY — REPEAT OFFENDER toggle
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>  AI Guidance card below steps
 </span></code></pre></div>
 <h3 id="emergency-emergency">Emergency (<code>/emergency</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Terminal: &quot;EMERGENCY PROTOCOL TERMINAL&quot; + SENTINEL ACTIVE
-</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Status chips: TACTICAL CENTER + SATELLITE LOCK
-</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>Hero: &quot;PROTOCOL TERMINAL&quot; 28px/700 compressed
-</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>Emergency SOS card (full-width): red gradient, shield icon, &quot;EMERGENCY SOS&quot;,
-</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>  &quot;LIVE GEOLOC SYNC ACTIVE&quot; dot, &quot;CALL 112 NOW →&quot; button, &quot;ARMED &amp; READY&quot; + &quot;SECURE CONNECTION&quot;
-</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>Filter tabs: MEDICAL, FIRE, ACCIDENT, CRIMINAL
-</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>Protocol items: expand/collapse, numbered steps, &quot;DISPATCH 108&quot; CTA
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>Terminal: &quot;EMERGENCY GUIDES&quot; + System Active
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>Status chips: Emergency Center + SATELLITE LOCK
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>Hero: &quot;EMERGENCY GUIDE&quot; 28px/700 compressed
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>Emergency SOS card (full-width): red gradient, shield icon, &quot;EMERGENCY SOS&quot;,
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>  &quot;LIVE GEOLOC SYNC ACTIVE&quot; dot, &quot;CALL 112 NOW →&quot; button, &quot;ARMED &amp; READY&quot; + &quot;SECURE CONNECTION&quot;
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>Filter tabs: MEDICAL, FIRE, ACCIDENT, CRIMINAL
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>Protocol items: expand/collapse, numbered steps, &quot;DISPATCH 108&quot; CTA
 </span></code></pre></div>
 <h3 id="profile-profile">Profile (<code>/profile</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>Terminal: &quot;OPERATOR IDENTITY MATRIX&quot; + SENTINEL ACTIVE
-</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>&quot;PROFILE MATRIX SYNC&quot; chip + &quot;EDIT PROFILE&quot; ghost button
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>Avatar (80px circle) + name (20px/600) + ID badge (mono) + SAFEVIXAI brand chip
-</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>Identity cards:
-</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>  - ACTIVE VESSEL — vehicle number
-</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>  - BIO SIGNATURE — blood group + EMERGENCY_BROADCAST_ON
-</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>  - EMERGENCY CONTACT — phone + SOS_DISPATCH_CONTACT
-</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
-</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>QR EMERGENCY CODE card (after identity cards):
-</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>  &quot;EMERGENCY QR CODE&quot; overline header (green)
-</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a>  128×128 QR code (white on dark, generate from user profile data)
-</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>  Name + Blood group shown below QR
-</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>  &quot;Scan in emergency — no app needed&quot; caption
-</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>  &quot;Download&quot; + &quot;Share&quot; ghost buttons
-</span><span id="__span-35-15"><a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a>
-</span><span id="__span-35-16"><a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a>MISSION PROTOCOL toggles:
-</span><span id="__span-35-17"><a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a>  V8 OFFLINE MODE / CRASH DETECTION / PUSH HUB
-</span><span id="__span-35-18"><a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a>
-</span><span id="__span-35-19"><a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a>TACTICAL AWARDS section (badges — must be dynamic not hardcoded)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Terminal: &quot;USER PROFILE&quot; + System Active
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>&quot;Profile Sync&quot; chip + &quot;EDIT PROFILE&quot; ghost button
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>Avatar (80px circle) + name (20px/600) + ID badge (mono) + SAFEVIXAI brand chip
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>Profile cards:
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>  - Vehicle number
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>  - Blood group + Emergency Broadcast
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>  - Emergency contact + SOS_CONTACT
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>QR EMERGENCY CARD:
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>  &quot;EMERGENCY QR CODE&quot; overline header (green)
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>  128×128 QR code (white on dark, generate from user profile data)
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>  Name + Blood group shown below QR
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>  &quot;Scan in emergency — no app needed&quot; caption
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>  &quot;Download&quot; + &quot;Share&quot; ghost buttons
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>Safety Protocols toggles:
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>  OFFLINE MODE / CRASH DETECTION / PUSH HUB
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a>
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a>Achievements section (badges — must be dynamic not hardcoded)
 </span></code></pre></div>
 <h3 id="settings-settings">Settings (<code>/settings</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Terminal: &quot;SYSTEM SETTINGS&quot; + SENTINEL ACTIVE
-</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>&quot;IDENTITY MATRIX ACTIVE&quot; / &quot;AUTHENTICATED OPERATOR&quot; chip (conditional)
-</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
-</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>Section 1 — OPERATOR IDENTITY:
-</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>  If authenticated: operator name card with JWT badge (green border, User icon)
-</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>  ProfileCard component: avatar + name + blood group + vehicle + phone (from store)
-</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>
-</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>Section 2 — VISUAL INTERFACE:
-</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>  LIGHT / DARK / SYSTEM selector (3 cards, active = green border #1A5C38)
-</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>
-</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>Section 3 — VIGILANCE PROTOCOLS:
-</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>  4 toggle rows with icons:
-</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>    - CRASH DETECTION (red shield icon) — bound to store.crashDetectionEnabled
-</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>    - SPEED WARNINGS (amber zap icon)
-</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>    - HAZARD ALERTS (blue bell icon) — push notifications
-</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>    - SOS VIBRATION (purple vibrate icon) — haptic feedback
-</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>
-</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a>Section 4 — LOCATION &amp; PRIVACY:
-</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a>  3 toggle rows:
-</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a>    - LIVE LOCATION (green nav icon) — GPS tracking
-</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a>    - AUTO-OFFLINE BUNDLE (emerald database icon) — cache on connectivity drop
-</span><span id="__span-36-22"><a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a>    - USAGE ANALYTICS (slate map icon) — anonymous telemetry opt-in
-</span><span id="__span-36-23"><a id="__codelineno-36-23" name="__codelineno-36-23" href="#__codelineno-36-23"></a>  Privacy note: &quot;SafeVixAI does not sell your data...&quot; (10px slate)
-</span><span id="__span-36-24"><a id="__codelineno-36-24" name="__codelineno-36-24" href="#__codelineno-36-24"></a>
-</span><span id="__span-36-25"><a id="__codelineno-36-25" name="__codelineno-36-25" href="#__codelineno-36-25"></a>Section 5 — STORAGE MATRIX:
-</span><span id="__span-36-26"><a id="__codelineno-36-26" name="__codelineno-36-26" href="#__codelineno-36-26"></a>  - OFFLINE CACHE: Database icon + PURGE red button (clears svai-offline-bundle)
-</span><span id="__span-36-27"><a id="__codelineno-36-27" name="__codelineno-36-27" href="#__codelineno-36-27"></a>  - EXPORT PROFILE: Download icon + EXPORT green button (JSON download, GDPR compliant)
-</span><span id="__span-36-28"><a id="__codelineno-36-28" name="__codelineno-36-28" href="#__codelineno-36-28"></a>  - Version: &quot;SafeVixAI v2.4.0-SVA&quot; + green checkmark
-</span><span id="__span-36-29"><a id="__codelineno-36-29" name="__codelineno-36-29" href="#__codelineno-36-29"></a>
-</span><span id="__span-36-30"><a id="__codelineno-36-30" name="__codelineno-36-30" href="#__codelineno-36-30"></a>Section 6 — SYSTEM LINKS:
-</span><span id="__span-36-31"><a id="__codelineno-36-31" name="__codelineno-36-31" href="#__codelineno-36-31"></a>  - Edit Profile → /profile (chevron)
-</span><span id="__span-36-32"><a id="__codelineno-36-32" name="__codelineno-36-32" href="#__codelineno-36-32"></a>  - Emergency Protocols → /emergency (chevron)
-</span><span id="__span-36-33"><a id="__codelineno-36-33" name="__codelineno-36-33" href="#__codelineno-36-33"></a>  - Build Info: &quot;IIT Madras Hackathon 2026&quot; + version number
-</span><span id="__span-36-34"><a id="__codelineno-36-34" name="__codelineno-36-34" href="#__codelineno-36-34"></a>
-</span><span id="__span-36-35"><a id="__codelineno-36-35" name="__codelineno-36-35" href="#__codelineno-36-35"></a>Section 7 — SIGN OUT (conditional, only when authenticated):
-</span><span id="__span-36-36"><a id="__codelineno-36-36" name="__codelineno-36-36" href="#__codelineno-36-36"></a>  Full-width red outlined button: &quot;SIGN OUT OPERATOR — {name}&quot;
-</span><span id="__span-36-37"><a id="__codelineno-36-37" name="__codelineno-36-37" href="#__codelineno-36-37"></a>  Clears auth from store → redirects to /login
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Terminal: &quot;SYSTEM SETTINGS&quot; + System Active
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>&quot;Signed In&quot; / &quot;Profile Active&quot; chip (conditional)
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>Section 1 — PROFILE:
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>  If authenticated: user name card with JWT badge (green border, User icon)
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>  ProfileCard component: avatar + name + blood group + vehicle + phone (from store)
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>Section 2 — VISUAL INTERFACE:
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>  LIGHT / DARK / SYSTEM selector (3 cards, active = green border #1A5C38)
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>Section 3 — SAFETY SETTINGS:
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a>  4 toggle rows with icons:
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>    - CRASH DETECTION (red shield icon) — bound to store.crashDetectionEnabled
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>    - SPEED WARNINGS (amber zap icon)
+</span><span id="__span-37-15"><a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a>    - HAZARD ALERTS (blue bell icon) — push notifications
+</span><span id="__span-37-16"><a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a>    - SOS VIBRATION (purple vibrate icon) — haptic feedback
+</span><span id="__span-37-17"><a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a>
+</span><span id="__span-37-18"><a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a>Section 4 — LOCATION &amp; PRIVACY:
+</span><span id="__span-37-19"><a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a>  3 toggle rows:
+</span><span id="__span-37-20"><a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a>    - LIVE LOCATION (green nav icon) — GPS tracking
+</span><span id="__span-37-21"><a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a>    - AUTO-OFFLINE BUNDLE (emerald database icon) — cache on connectivity drop
+</span><span id="__span-37-22"><a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a>    - USAGE ANALYTICS (slate map icon) — anonymous telemetry opt-in
+</span><span id="__span-37-23"><a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a>  Privacy note: &quot;SafeVixAI does not sell your data...&quot; (10px slate)
+</span><span id="__span-37-24"><a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a>
+</span><span id="__span-37-25"><a id="__codelineno-37-25" name="__codelineno-37-25" href="#__codelineno-37-25"></a>Section 5 — DATA &amp; STORAGE:
+</span><span id="__span-37-26"><a id="__codelineno-37-26" name="__codelineno-37-26" href="#__codelineno-37-26"></a>  - OFFLINE CACHE: Database icon + PURGE red button (clears svai-offline-bundle)
+</span><span id="__span-37-27"><a id="__codelineno-37-27" name="__codelineno-37-27" href="#__codelineno-37-27"></a>  - EXPORT PROFILE: Download icon + EXPORT green button (JSON download, GDPR compliant)
+</span><span id="__span-37-28"><a id="__codelineno-37-28" name="__codelineno-37-28" href="#__codelineno-37-28"></a>  - Version: &quot;SafeVixAI v2.4.0-SVA&quot; + green checkmark
+</span><span id="__span-37-29"><a id="__codelineno-37-29" name="__codelineno-37-29" href="#__codelineno-37-29"></a>
+</span><span id="__span-37-30"><a id="__codelineno-37-30" name="__codelineno-37-30" href="#__codelineno-37-30"></a>Section 6 — SYSTEM LINKS:
+</span><span id="__span-37-31"><a id="__codelineno-37-31" name="__codelineno-37-31" href="#__codelineno-37-31"></a>  - Edit Profile → /profile (chevron)
+</span><span id="__span-37-32"><a id="__codelineno-37-32" name="__codelineno-37-32" href="#__codelineno-37-32"></a>  - Emergency Guides → /emergency (chevron)
+</span><span id="__span-37-33"><a id="__codelineno-37-33" name="__codelineno-37-33" href="#__codelineno-37-33"></a>  - Build Info: &quot;IIT Madras Hackathon 2026&quot; + version number
+</span><span id="__span-37-34"><a id="__codelineno-37-34" name="__codelineno-37-34" href="#__codelineno-37-34"></a>
+</span><span id="__span-37-35"><a id="__codelineno-37-35" name="__codelineno-37-35" href="#__codelineno-37-35"></a>Section 7 — SIGN OUT (conditional, only when authenticated):
+</span><span id="__span-37-36"><a id="__codelineno-37-36" name="__codelineno-37-36" href="#__codelineno-37-36"></a>  Full-width red outlined button: &quot;SIGN OUT — {name}&quot;
+</span><span id="__span-37-37"><a id="__codelineno-37-37" name="__codelineno-37-37" href="#__codelineno-37-37"></a>  Clears auth from store → redirects to /login
 </span></code></pre></div>
 <h3 id="login-auth-login">Login / Auth (<code>/login</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Full-screen: bg #0A0E14, centered card 400px max-width
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>SafeVixAI logo + &quot;SafeVixAI&quot; wordmark (centered)
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>&quot;OPERATOR AUTHENTICATION&quot; overline
-</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>Email input → &quot;REQUEST OTP&quot; green button
-</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>6-digit OTP input (monospace) → &quot;VERIFY &amp; ENTER&quot; green button
-</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>Divider line + &quot;OR&quot;
-</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>&quot;CONTINUE AS GUEST&quot; ghost button
-</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>&quot;Your data stays on your device&quot; privacy note (12px/#6B7A8D)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>Full-screen: bg #0A0E14, centered card 400px max-width
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>SafeVixAI logo + &quot;SafeVixAI&quot; wordmark (centered)
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>&quot;OPERATOR AUTHENTICATION&quot; overline
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>Email input → &quot;REQUEST OTP&quot; green button
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>6-digit OTP input (monospace) → &quot;VERIFY &amp; ENTER&quot; green button
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>Divider line + &quot;OR&quot;
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>&quot;CONTINUE AS GUEST&quot; ghost button
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>&quot;Your data stays on your device&quot; privacy note (12px/#6B7A8D)
 </span></code></pre></div>
 <h3 id="emergency-card-emergency-carduserid">Emergency Card (<code>/emergency-card/[userId]</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>Public page — no login required. Accessible via QR scan.
-</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>Full-screen: bg #0A0E14
-</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>SafeVixAI + &quot;EMERGENCY CARD&quot; overline
-</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>Name (large, 28px/700)
-</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>Blood group (hero, 48px/800 monospace, #FF6B6B)
-</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>Emergency contact (clickable tel: link, 20px/600)
-</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>Vehicle number (16px/600 monospace)
-</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>&quot;CALL 112 EMERGENCY&quot; red button (full-width)
-</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>Footer: &quot;Powered by SafeVixAI — India Road Safety AI&quot;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>Public page — no login required. Accessible via QR scan.
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>Full-screen: bg #0A0E14
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>SafeVixAI + &quot;EMERGENCY CARD&quot; overline
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>Name (large, 28px/700)
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>Blood group (hero, 48px/800 monospace, #FF6B6B)
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>Emergency contact (clickable tel: link, 20px/600)
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>Vehicle number (16px/600 monospace)
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>&quot;CALL 112 EMERGENCY&quot; red button (full-width)
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>Footer: &quot;Powered by SafeVixAI — India Road Safety AI&quot;
 </span></code></pre></div>
 <h3 id="error-boundary-errortsx">Error Boundary (<code>/error.tsx</code>)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>Global error boundary — catches all unhandled errors.
-</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>Full-screen: bg #0A0E14, centered card max-w-xl
-</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>AlertTriangle icon (red pill bg, 24px)
-</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>&quot;SYSTEM RECOVERY&quot; overline (11px/600/uppercase/red-200)
-</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>&quot;SafeVixAI hit a recoverable error&quot; (24px/900/tracking-tight)
-</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>&quot;The current screen failed to render safely...&quot; (14px/400/slate-300)
-</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>Error digest monospace (if available)
-</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>Two buttons: &quot;Retry&quot; (red bg) + &quot;Home&quot; (ghost border)
-</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>Footer: &quot;Your emergency shortcuts remain available from the home screen&quot;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>Global error boundary — catches all unhandled errors.
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>Full-screen: bg #0A0E14, centered card max-w-xl
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>AlertTriangle icon (red pill bg, 24px)
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>&quot;Something went wrong&quot; label (11px/600/uppercase/red-200)
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>&quot;SafeVixAI hit an error&quot; (24px/900/tracking-tight)
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>&quot;The current screen failed to load...&quot; (14px/400/slate-300)
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>Error digest monospace (if available)
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>Two buttons: &quot;Try Again&quot; (red bg) + &quot;Home&quot; (ghost border)
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>Footer: &quot;Your emergency shortcuts remain available from the home screen&quot;
 </span></code></pre></div>
 <hr />
 <h2 id="8-css-variables-full-set">8. CSS Variables (full set)</h2>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">  </span><span class="nv">--font-sans</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Inter Variable&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Inter&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">apple-system</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
-</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">  </span><span class="nv">--font-mono</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;JetBrains Mono&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SF Mono&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ui-monospace</span><span class="p">,</span><span class="w"> </span><span class="kc">monospace</span><span class="p">;</span>
-</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
-</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="w">  </span><span class="nv">--bg</span><span class="p">:</span><span class="w">          </span><span class="mh">#0A0E14</span><span class="p">;</span>
-</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="w">  </span><span class="nv">--surface-1</span><span class="p">:</span><span class="w">   </span><span class="mh">#111520</span><span class="p">;</span>
-</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="w">  </span><span class="nv">--surface-2</span><span class="p">:</span><span class="w">   </span><span class="mh">#181D2A</span><span class="p">;</span>
-</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="w">  </span><span class="nv">--surface-3</span><span class="p">:</span><span class="w">   </span><span class="mh">#1F2535</span><span class="p">;</span>
-</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="w">  </span><span class="nv">--surface-4</span><span class="p">:</span><span class="w">   </span><span class="mh">#252B3A</span><span class="p">;</span>
-</span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>
-</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="w">  </span><span class="nv">--border</span><span class="p">:</span><span class="w">      </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mf">0.07</span><span class="p">);</span>
-</span><span id="__span-40-12"><a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="w">  </span><span class="nv">--border-md</span><span class="p">:</span><span class="w">   </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mf">0.12</span><span class="p">);</span>
-</span><span id="__span-40-13"><a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="w">  </span><span class="nv">--border-warm</span><span class="p">:</span><span class="w"> </span><span class="mh">#2A2E3A</span><span class="p">;</span>
-</span><span id="__span-40-14"><a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="w">  </span><span class="nv">--border-green</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mf">0.30</span><span class="p">);</span>
-</span><span id="__span-40-15"><a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="w">  </span><span class="nv">--border-red</span><span class="p">:</span><span class="w">   </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mf">0.40</span><span class="p">);</span>
-</span><span id="__span-40-16"><a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a>
-</span><span id="__span-40-17"><a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a><span class="w">  </span><span class="nv">--brand</span><span class="p">:</span><span class="w">       </span><span class="mh">#1A5C38</span><span class="p">;</span>
-</span><span id="__span-40-18"><a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a><span class="w">  </span><span class="nv">--brand-light</span><span class="p">:</span><span class="w"> </span><span class="mh">#00C896</span><span class="p">;</span>
-</span><span id="__span-40-19"><a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a><span class="w">  </span><span class="nv">--brand-dim</span><span class="p">:</span><span class="w">   </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mf">0.12</span><span class="p">);</span>
-</span><span id="__span-40-20"><a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a>
-</span><span id="__span-40-21"><a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a><span class="w">  </span><span class="nv">--emergency</span><span class="p">:</span><span class="w">   </span><span class="mh">#DC2626</span><span class="p">;</span>
-</span><span id="__span-40-22"><a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a><span class="w">  </span><span class="nv">--emergency-dim</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mf">0.15</span><span class="p">);</span>
-</span><span id="__span-40-23"><a id="__codelineno-40-23" name="__codelineno-40-23" href="#__codelineno-40-23"></a>
-</span><span id="__span-40-24"><a id="__codelineno-40-24" name="__codelineno-40-24" href="#__codelineno-40-24"></a><span class="w">  </span><span class="nv">--challan-amount</span><span class="p">:</span><span class="w"> </span><span class="mh">#00E676</span><span class="p">;</span>
-</span><span id="__span-40-25"><a id="__codelineno-40-25" name="__codelineno-40-25" href="#__codelineno-40-25"></a>
-</span><span id="__span-40-26"><a id="__codelineno-40-26" name="__codelineno-40-26" href="#__codelineno-40-26"></a><span class="w">  </span><span class="nv">--text-1</span><span class="p">:</span><span class="w">  </span><span class="mh">#F0F4F8</span><span class="p">;</span>
-</span><span id="__span-40-27"><a id="__codelineno-40-27" name="__codelineno-40-27" href="#__codelineno-40-27"></a><span class="w">  </span><span class="nv">--text-2</span><span class="p">:</span><span class="w">  </span><span class="mh">#A8B4C4</span><span class="p">;</span>
-</span><span id="__span-40-28"><a id="__codelineno-40-28" name="__codelineno-40-28" href="#__codelineno-40-28"></a><span class="w">  </span><span class="nv">--text-3</span><span class="p">:</span><span class="w">  </span><span class="mh">#6B7A8D</span><span class="p">;</span>
-</span><span id="__span-40-29"><a id="__codelineno-40-29" name="__codelineno-40-29" href="#__codelineno-40-29"></a><span class="w">  </span><span class="nv">--text-green</span><span class="p">:</span><span class="w"> </span><span class="mh">#00C896</span><span class="p">;</span>
-</span><span id="__span-40-30"><a id="__codelineno-40-30" name="__codelineno-40-30" href="#__codelineno-40-30"></a><span class="w">  </span><span class="nv">--text-red</span><span class="p">:</span><span class="w">   </span><span class="mh">#FF6B6B</span><span class="p">;</span>
-</span><span id="__span-40-31"><a id="__codelineno-40-31" name="__codelineno-40-31" href="#__codelineno-40-31"></a><span class="w">  </span><span class="nv">--text-amber</span><span class="p">:</span><span class="w"> </span><span class="mh">#F59E0B</span><span class="p">;</span>
-</span><span id="__span-40-32"><a id="__codelineno-40-32" name="__codelineno-40-32" href="#__codelineno-40-32"></a>
-</span><span id="__span-40-33"><a id="__codelineno-40-33" name="__codelineno-40-33" href="#__codelineno-40-33"></a><span class="w">  </span><span class="nv">--r-sm</span><span class="p">:</span><span class="w">   </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-40-34"><a id="__codelineno-40-34" name="__codelineno-40-34" href="#__codelineno-40-34"></a><span class="w">  </span><span class="nv">--r-md</span><span class="p">:</span><span class="w">   </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-40-35"><a id="__codelineno-40-35" name="__codelineno-40-35" href="#__codelineno-40-35"></a><span class="w">  </span><span class="nv">--r-lg</span><span class="p">:</span><span class="w">   </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-40-36"><a id="__codelineno-40-36" name="__codelineno-40-36" href="#__codelineno-40-36"></a><span class="w">  </span><span class="nv">--r-xl</span><span class="p">:</span><span class="w">   </span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-40-37"><a id="__codelineno-40-37" name="__codelineno-40-37" href="#__codelineno-40-37"></a><span class="w">  </span><span class="nv">--r-hero</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-40-38"><a id="__codelineno-40-38" name="__codelineno-40-38" href="#__codelineno-40-38"></a><span class="w">  </span><span class="nv">--r-pill</span><span class="p">:</span><span class="w"> </span><span class="mi">9999</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-40-39"><a id="__codelineno-40-39" name="__codelineno-40-39" href="#__codelineno-40-39"></a><span class="p">}</span>
-</span><span id="__span-40-40"><a id="__codelineno-40-40" name="__codelineno-40-40" href="#__codelineno-40-40"></a>
-</span><span id="__span-40-41"><a id="__codelineno-40-41" name="__codelineno-40-41" href="#__codelineno-40-41"></a><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-40-42"><a id="__codelineno-40-42" name="__codelineno-40-42" href="#__codelineno-40-42"></a><span class="w">  </span><span class="nv">--bg</span><span class="p">:</span><span class="w">         </span><span class="mh">#F0F2F5</span><span class="p">;</span>
-</span><span id="__span-40-43"><a id="__codelineno-40-43" name="__codelineno-40-43" href="#__codelineno-40-43"></a><span class="w">  </span><span class="nv">--surface-1</span><span class="p">:</span><span class="w">  </span><span class="mh">#FFFFFF</span><span class="p">;</span>
-</span><span id="__span-40-44"><a id="__codelineno-40-44" name="__codelineno-40-44" href="#__codelineno-40-44"></a><span class="w">  </span><span class="nv">--surface-2</span><span class="p">:</span><span class="w">  </span><span class="mh">#F7F9FC</span><span class="p">;</span>
-</span><span id="__span-40-45"><a id="__codelineno-40-45" name="__codelineno-40-45" href="#__codelineno-40-45"></a><span class="w">  </span><span class="nv">--border</span><span class="p">:</span><span class="w">     </span><span class="mh">#E2E6ED</span><span class="p">;</span>
-</span><span id="__span-40-46"><a id="__codelineno-40-46" name="__codelineno-40-46" href="#__codelineno-40-46"></a><span class="w">  </span><span class="nv">--border-md</span><span class="p">:</span><span class="w">  </span><span class="mh">#CDD3DC</span><span class="p">;</span>
-</span><span id="__span-40-47"><a id="__codelineno-40-47" name="__codelineno-40-47" href="#__codelineno-40-47"></a><span class="w">  </span><span class="nv">--text-1</span><span class="p">:</span><span class="w">     </span><span class="mh">#0F1A2E</span><span class="p">;</span>
-</span><span id="__span-40-48"><a id="__codelineno-40-48" name="__codelineno-40-48" href="#__codelineno-40-48"></a><span class="w">  </span><span class="nv">--text-2</span><span class="p">:</span><span class="w">     </span><span class="mh">#4A5568</span><span class="p">;</span>
-</span><span id="__span-40-49"><a id="__codelineno-40-49" name="__codelineno-40-49" href="#__codelineno-40-49"></a><span class="w">  </span><span class="nv">--text-3</span><span class="p">:</span><span class="w">     </span><span class="mh">#8A95A3</span><span class="p">;</span>
-</span><span id="__span-40-50"><a id="__codelineno-40-50" name="__codelineno-40-50" href="#__codelineno-40-50"></a><span class="p">}</span>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">  </span><span class="nv">--font-sans</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Inter Variable&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Inter&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">apple-system</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">  </span><span class="nv">--font-mono</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;JetBrains Mono&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SF Mono&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ui-monospace</span><span class="p">,</span><span class="w"> </span><span class="kc">monospace</span><span class="p">;</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">  </span><span class="nv">--bg</span><span class="p">:</span><span class="w">          </span><span class="mh">#0A0E14</span><span class="p">;</span>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="w">  </span><span class="nv">--surface-1</span><span class="p">:</span><span class="w">   </span><span class="mh">#111520</span><span class="p">;</span>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="w">  </span><span class="nv">--surface-2</span><span class="p">:</span><span class="w">   </span><span class="mh">#181D2A</span><span class="p">;</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="w">  </span><span class="nv">--surface-3</span><span class="p">:</span><span class="w">   </span><span class="mh">#1F2535</span><span class="p">;</span>
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="w">  </span><span class="nv">--surface-4</span><span class="p">:</span><span class="w">   </span><span class="mh">#252B3A</span><span class="p">;</span>
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>
+</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="w">  </span><span class="nv">--border</span><span class="p">:</span><span class="w">      </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mf">0.07</span><span class="p">);</span>
+</span><span id="__span-41-12"><a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="w">  </span><span class="nv">--border-md</span><span class="p">:</span><span class="w">   </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mf">0.12</span><span class="p">);</span>
+</span><span id="__span-41-13"><a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a><span class="w">  </span><span class="nv">--border-warm</span><span class="p">:</span><span class="w"> </span><span class="mh">#2A2E3A</span><span class="p">;</span>
+</span><span id="__span-41-14"><a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="w">  </span><span class="nv">--border-green</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mf">0.30</span><span class="p">);</span>
+</span><span id="__span-41-15"><a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="w">  </span><span class="nv">--border-red</span><span class="p">:</span><span class="w">   </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mf">0.40</span><span class="p">);</span>
+</span><span id="__span-41-16"><a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a>
+</span><span id="__span-41-17"><a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="w">  </span><span class="nv">--brand</span><span class="p">:</span><span class="w">       </span><span class="mh">#1A5C38</span><span class="p">;</span>
+</span><span id="__span-41-18"><a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a><span class="w">  </span><span class="nv">--brand-light</span><span class="p">:</span><span class="w"> </span><span class="mh">#00C896</span><span class="p">;</span>
+</span><span id="__span-41-19"><a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a><span class="w">  </span><span class="nv">--brand-dim</span><span class="p">:</span><span class="w">   </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mf">0.12</span><span class="p">);</span>
+</span><span id="__span-41-20"><a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a>
+</span><span id="__span-41-21"><a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a><span class="w">  </span><span class="nv">--emergency</span><span class="p">:</span><span class="w">   </span><span class="mh">#DC2626</span><span class="p">;</span>
+</span><span id="__span-41-22"><a id="__codelineno-41-22" name="__codelineno-41-22" href="#__codelineno-41-22"></a><span class="w">  </span><span class="nv">--emergency-dim</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mf">0.15</span><span class="p">);</span>
+</span><span id="__span-41-23"><a id="__codelineno-41-23" name="__codelineno-41-23" href="#__codelineno-41-23"></a>
+</span><span id="__span-41-24"><a id="__codelineno-41-24" name="__codelineno-41-24" href="#__codelineno-41-24"></a><span class="w">  </span><span class="nv">--challan-amount</span><span class="p">:</span><span class="w"> </span><span class="mh">#00E676</span><span class="p">;</span>
+</span><span id="__span-41-25"><a id="__codelineno-41-25" name="__codelineno-41-25" href="#__codelineno-41-25"></a><span class="w">  </span><span class="nv">--color-info</span><span class="p">:</span><span class="w">     </span><span class="mh">#3B82F6</span><span class="p">;</span>
+</span><span id="__span-41-26"><a id="__codelineno-41-26" name="__codelineno-41-26" href="#__codelineno-41-26"></a>
+</span><span id="__span-41-27"><a id="__codelineno-41-27" name="__codelineno-41-27" href="#__codelineno-41-27"></a><span class="w">  </span><span class="nv">--warning</span><span class="p">:</span><span class="w">     </span><span class="mh">#D97706</span><span class="p">;</span>
+</span><span id="__span-41-28"><a id="__codelineno-41-28" name="__codelineno-41-28" href="#__codelineno-41-28"></a><span class="w">  </span><span class="nv">--warning-dim</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span><span class="mi">119</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.12</span><span class="p">);</span>
+</span><span id="__span-41-29"><a id="__codelineno-41-29" name="__codelineno-41-29" href="#__codelineno-41-29"></a><span class="w">  </span><span class="nv">--info-dim</span><span class="p">:</span><span class="w">    </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">59</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="mi">246</span><span class="p">,</span><span class="mf">0.12</span><span class="p">);</span>
+</span><span id="__span-41-30"><a id="__codelineno-41-30" name="__codelineno-41-30" href="#__codelineno-41-30"></a><span class="w">  </span><span class="nv">--text-1</span><span class="p">:</span><span class="w">  </span><span class="mh">#F0F4F8</span><span class="p">;</span>
+</span><span id="__span-41-31"><a id="__codelineno-41-31" name="__codelineno-41-31" href="#__codelineno-41-31"></a><span class="w">  </span><span class="nv">--text-2</span><span class="p">:</span><span class="w">  </span><span class="mh">#A8B4C4</span><span class="p">;</span>
+</span><span id="__span-41-32"><a id="__codelineno-41-32" name="__codelineno-41-32" href="#__codelineno-41-32"></a><span class="w">  </span><span class="nv">--text-3</span><span class="p">:</span><span class="w">  </span><span class="mh">#6B7A8D</span><span class="p">;</span>
+</span><span id="__span-41-33"><a id="__codelineno-41-33" name="__codelineno-41-33" href="#__codelineno-41-33"></a><span class="w">  </span><span class="nv">--text-green</span><span class="p">:</span><span class="w"> </span><span class="mh">#00C896</span><span class="p">;</span>
+</span><span id="__span-41-34"><a id="__codelineno-41-34" name="__codelineno-41-34" href="#__codelineno-41-34"></a><span class="w">  </span><span class="nv">--text-red</span><span class="p">:</span><span class="w">   </span><span class="mh">#FF6B6B</span><span class="p">;</span>
+</span><span id="__span-41-35"><a id="__codelineno-41-35" name="__codelineno-41-35" href="#__codelineno-41-35"></a><span class="w">  </span><span class="nv">--text-amber</span><span class="p">:</span><span class="w"> </span><span class="mh">#F59E0B</span><span class="p">;</span>
+</span><span id="__span-41-36"><a id="__codelineno-41-36" name="__codelineno-41-36" href="#__codelineno-41-36"></a>
+</span><span id="__span-41-37"><a id="__codelineno-41-37" name="__codelineno-41-37" href="#__codelineno-41-37"></a><span class="w">  </span><span class="nv">--r-sm</span><span class="p">:</span><span class="w">   </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-41-38"><a id="__codelineno-41-38" name="__codelineno-41-38" href="#__codelineno-41-38"></a><span class="w">  </span><span class="nv">--r-md</span><span class="p">:</span><span class="w">   </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-41-39"><a id="__codelineno-41-39" name="__codelineno-41-39" href="#__codelineno-41-39"></a><span class="w">  </span><span class="nv">--r-lg</span><span class="p">:</span><span class="w">   </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-41-40"><a id="__codelineno-41-40" name="__codelineno-41-40" href="#__codelineno-41-40"></a><span class="w">  </span><span class="nv">--r-xl</span><span class="p">:</span><span class="w">   </span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-41-41"><a id="__codelineno-41-41" name="__codelineno-41-41" href="#__codelineno-41-41"></a><span class="w">  </span><span class="nv">--r-hero</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-41-42"><a id="__codelineno-41-42" name="__codelineno-41-42" href="#__codelineno-41-42"></a><span class="w">  </span><span class="nv">--r-pill</span><span class="p">:</span><span class="w"> </span><span class="mi">9999</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-41-43"><a id="__codelineno-41-43" name="__codelineno-41-43" href="#__codelineno-41-43"></a><span class="p">}</span>
+</span><span id="__span-41-44"><a id="__codelineno-41-44" name="__codelineno-41-44" href="#__codelineno-41-44"></a>
+</span><span id="__span-41-45"><a id="__codelineno-41-45" name="__codelineno-41-45" href="#__codelineno-41-45"></a><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-46"><a id="__codelineno-41-46" name="__codelineno-41-46" href="#__codelineno-41-46"></a><span class="w">  </span><span class="nv">--bg</span><span class="p">:</span><span class="w">         </span><span class="mh">#F0F2F5</span><span class="p">;</span>
+</span><span id="__span-41-47"><a id="__codelineno-41-47" name="__codelineno-41-47" href="#__codelineno-41-47"></a><span class="w">  </span><span class="nv">--surface-1</span><span class="p">:</span><span class="w">  </span><span class="mh">#FFFFFF</span><span class="p">;</span>
+</span><span id="__span-41-48"><a id="__codelineno-41-48" name="__codelineno-41-48" href="#__codelineno-41-48"></a><span class="w">  </span><span class="nv">--surface-2</span><span class="p">:</span><span class="w">  </span><span class="mh">#F7F9FC</span><span class="p">;</span>
+</span><span id="__span-41-49"><a id="__codelineno-41-49" name="__codelineno-41-49" href="#__codelineno-41-49"></a><span class="w">  </span><span class="nv">--border</span><span class="p">:</span><span class="w">     </span><span class="mh">#E2E6ED</span><span class="p">;</span>
+</span><span id="__span-41-50"><a id="__codelineno-41-50" name="__codelineno-41-50" href="#__codelineno-41-50"></a><span class="w">  </span><span class="nv">--border-md</span><span class="p">:</span><span class="w">  </span><span class="mh">#CDD3DC</span><span class="p">;</span>
+</span><span id="__span-41-51"><a id="__codelineno-41-51" name="__codelineno-41-51" href="#__codelineno-41-51"></a><span class="w">  </span><span class="nv">--border-warm</span><span class="p">:</span><span class="w"> </span><span class="mh">#D4D8E0</span><span class="p">;</span>
+</span><span id="__span-41-52"><a id="__codelineno-41-52" name="__codelineno-41-52" href="#__codelineno-41-52"></a><span class="w">  </span><span class="nv">--color-info</span><span class="p">:</span><span class="w"> </span><span class="mh">#2563EB</span><span class="p">;</span>
+</span><span id="__span-41-53"><a id="__codelineno-41-53" name="__codelineno-41-53" href="#__codelineno-41-53"></a><span class="w">  </span><span class="nv">--text-1</span><span class="p">:</span><span class="w">     </span><span class="mh">#0F1A2E</span><span class="p">;</span>
+</span><span id="__span-41-54"><a id="__codelineno-41-54" name="__codelineno-41-54" href="#__codelineno-41-54"></a><span class="w">  </span><span class="nv">--text-2</span><span class="p">:</span><span class="w">     </span><span class="mh">#4A5568</span><span class="p">;</span>
+</span><span id="__span-41-55"><a id="__codelineno-41-55" name="__codelineno-41-55" href="#__codelineno-41-55"></a><span class="w">  </span><span class="nv">--text-3</span><span class="p">:</span><span class="w">     </span><span class="mh">#8A95A3</span><span class="p">;</span>
+</span><span id="__span-41-56"><a id="__codelineno-41-56" name="__codelineno-41-56" href="#__codelineno-41-56"></a><span class="p">}</span>
 </span></code></pre></div>
 <hr />
 <h2 id="9-responsive">9. Responsive</h2>
@@ -3012,18 +3150,27 @@ Chat: <code>height: calc(100dvh - 52px - 64px)</code> mobile to fix blank screen
 - Filter chip row on Map and Locator 
 - Vehicle selector card grid (Challan) with green active state 
 - DARK/LIGHT/SYSTEM theme selector in Settings 
-- Bottom nav 5 tabs </p>
+- Bottom nav 5 tabs 
+- LoadingPage, EmptyState, ErrorState shared UI components</p>
 <hr />
 <h2 id="11-bugs-status">11. Bugs — Status</h2>
 <ol>
 <li>~~<code>/assistant</code> blank on mobile~~ — <strong>FIXED</strong>  (min-h-0 flex constraint + calc height)</li>
-<li>"NORMAL MODE" badge on First Aid — move to header bar (low priority)</li>
+<li>~~"NORMAL MODE" badge on First Aid~~ — <strong>LOW</strong> remaining</li>
 <li>~~Chat bubble z-index issue on <code>/assistant</code>~~ — <strong>FIXED</strong>  (proper z-layering)</li>
 <li>~~Settings identity card must bind to <code>useAppStore().userProfile.name</code>~~ — <strong>FIXED</strong>  (ProfileCard component)</li>
 <li>~~Global blue token migration~~ — <strong>FIXED</strong>  (zero blue-500/600/400 remaining)</li>
 <li>~~SafeVision AI branding remnants~~ — <strong>FIXED</strong>  (zero matches remaining)</li>
-<li>~~Map re-render blinking on GPS update~~ — <strong>FIXED</strong>  (memoized <code>center</code> prop + removed <code>center</code>/<code>zoom</code> from init effect deps; viewport sync handled by dedicated <code>easeTo</code> effect)</li>
+<li>~~White flash on all client-mounted pages~~ — <strong>FIXED</strong>  (LoadingPage placeholders on FirstAid, Report, CommandCenter)</li>
+<li>~~Map re-render blinking on GPS update~~ — <strong>FIXED</strong>  (memoized <code>center</code> prop)</li>
 <li>~~Map Ctrl+scroll required to zoom~~ — <strong>FIXED</strong>  (<code>cooperativeGestures: false</code>)</li>
+<li>~~Tactical/military microcopy across 8+ pages~~ — <strong>FIXED</strong>  (plain language migration)</li>
+<li>~~SOS/tracking pages broken in light mode~~ — <strong>FIXED</strong>  (CSS variable tokens)</li>
+<li><strong>CrashCountdown UI never rendered</strong> — <code>CrashCountdown.tsx</code> and <code>ProgressRing.tsx</code> exist in <code>components/crash/</code> but are never imported. <code>ClientAppHooks.tsx</code> only shows a toast. Wire <code>&lt;CrashCountdown&gt;</code> into the crash detection flow.</li>
+<li><strong>Crash detection toast lacks <code>role="alert"</code></strong> in <code>ClientAppHooks.tsx</code> crash handler.</li>
+<li><strong><code>aria-label</code> gaps on 4 pages</strong>: challan, assistant chat buttons, profile, locator view mode toggle — add <code>aria-label</code> translations.</li>
+<li><strong>12 <code>any</code> types in app pages</strong> — locator/page.tsx (2), report/track/page.tsx (4), officer/page.tsx (3), lib/i18n.ts (1), lib/use-translation.ts (1), lib/chat-history.ts (1).</li>
+<li><strong>Raw <code>&lt;img&gt;</code> in test file</strong> — <code>tests/accessibility.test.tsx:39</code> uses raw HTML <code>&lt;img&gt;</code> instead of <code>next/image</code>.</li>
 </ol>
 <hr />
 <h2 id="12-naming-conventions">12. Naming Conventions</h2>
@@ -3053,8 +3200,13 @@ Chat: <code>height: calc(100dvh - 52px - 64px)</code> mobile to fix blank screen
 </tr>
 <tr>
 <td>Emergency number header</td>
-<td>"SAFEVIXAI SENTINEL"</td>
-<td>"ROADOS SENTINEL"</td>
+<td>"SafeVixAI"</td>
+<td>"SAFEVIXAI SENTINEL", "ROADOS SENTINEL"</td>
+</tr>
+<tr>
+<td>Page titles</td>
+<td>Plain descriptive labels</td>
+<td>Tactical jargon ("Terminal", "Matrix", "HUD")</td>
 </tr>
 </tbody>
 </table>
@@ -3110,9 +3262,9 @@ Chat: <code>height: calc(100dvh - 52px - 64px)</code> mobile to fix blank screen
 3. <strong>3 solutions</strong>: Specific, actionable steps (check keys, check rate limits, check status page)
 4. <strong>Cooldown</strong>: 5 minutes between same-type alerts to prevent inbox flooding</p>
 <h3 id="setup">Setup</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nv">ALERT_EMAIL</span><span class="o">=</span>your-gmail@gmail.com
-</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nv">ALERT_EMAIL_PASSWORD</span><span class="o">=</span>abcd<span class="w"> </span>efgh<span class="w"> </span>ijkl<span class="w"> </span>mnop<span class="w">   </span><span class="c1"># Gmail App Password</span>
-</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="nv">ALERT_EMAIL_TO</span><span class="o">=</span>team-lead@gmail.com
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nv">ALERT_EMAIL</span><span class="o">=</span>your-gmail@gmail.com
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="nv">ALERT_EMAIL_PASSWORD</span><span class="o">=</span>abcd<span class="w"> </span>efgh<span class="w"> </span>ijkl<span class="w"> </span>mnop<span class="w">   </span><span class="c1"># Gmail App Password</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="nv">ALERT_EMAIL_TO</span><span class="o">=</span>team-lead@gmail.com
 </span></code></pre></div>
 
 

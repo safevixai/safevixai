@@ -735,10 +735,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-implementation-notes-2026-05-18-post-audit-updates" class="md-nav__link">
+  <a href="#current-implementation-notes-2026-05-25-final-audit-all-clear" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Implementation Notes - 2026-05-18 (Post-Audit Updates)
+        Current Implementation Notes - 2026-05-25 (Final Audit: All Clear)
       
     </span>
   </a>
@@ -1573,10 +1573,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-implementation-notes-2026-05-18-post-audit-updates" class="md-nav__link">
+  <a href="#current-implementation-notes-2026-05-25-final-audit-all-clear" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Implementation Notes - 2026-05-18 (Post-Audit Updates)
+        Current Implementation Notes - 2026-05-25 (Final Audit: All Clear)
       
     </span>
   </a>
@@ -1792,7 +1792,7 @@
 
 
 <h1 id="safevixai-frontend-skill">SafeVixAI Frontend Skill</h1>
-<h2 id="current-implementation-notes-2026-05-18-post-audit-updates">Current Implementation Notes - 2026-05-18 (Post-Audit Updates)</h2>
+<h2 id="current-implementation-notes-2026-05-25-final-audit-all-clear">Current Implementation Notes - 2026-05-25 (Final Audit: All Clear)</h2>
 <p><strong>GSAP Migration Status:</strong> The frontend is 100% GSAP-powered. Do NOT use Framer Motion. All route entries use <code>usePageEntry</code> from <code>hooks/usePageEntry.ts</code>. Animations rely purely on GPU-composited properties (transform, opacity) with strict <code>will-change</code> management for 60FPS mobile performance.</p>
 <p>Use these notes before touching the frontend:</p>
 <ul>
@@ -1800,18 +1800,20 @@
 <li>Use <code>NEXT_PUBLIC_API_URL</code> for the main backend and <code>NEXT_PUBLIC_CHATBOT_URL</code> for the chatbot service.</li>
 <li>Do not read <code>process.env.NEXT_PUBLIC_CHATBOT_BASE_URL</code> in client components; it is not the validated project env var.</li>
 <li>Chat routes are under <code>/api/v1/chat/*</code>.</li>
-<li>Speech routes are currently under <code>/speech/*</code>, not <code>/api/v1/speech/*</code>.</li>
+<li>Speech routes are under <code>/speech/*</code>, not <code>/api/v1/speech/*</code>.</li>
 <li>Mic input must call <code>${PUBLIC_CHATBOT_BASE_URL}/speech/translate</code>.</li>
-<li><code>target_language</code> must use backend/model codes, not raw UI codes. Add a language mapping layer in <code>frontend/lib/languages.ts</code>.</li>
+<li><code>target_language</code> must use backend/model codes from <code>frontend/lib/languages.ts</code> (4-code mapping: UI→recognition→speechTarget→synthesis).</li>
 <li>Browser recognition codes are locale codes such as <code>hi-IN</code>; backend speech target codes are model codes such as <code>hin</code>.</li>
-<li>Browser speech output must use the selected language recognition/synthesis locale and must provide a stop control.</li>
-<li>Backend speech currently performs speech-to-text / speech translation only. Do not claim backend TTS is implemented.</li>
-<li>Keep emergency flows stable while polishing UI: 112, 102, 100, 1033, crash countdown, offline SOS queue, map heatmap, and QR emergency card.</li>
+<li>Browser speech output must use <code>synthesisCode</code> from language mapping and must provide a stop control.</li>
+<li>Backend speech performs speech-to-text / speech translation only. No backend TTS endpoint exists.</li>
+<li>Keep emergency flows stable: 112, 102, 100, 1033, crash countdown, offline SOS queue, map heatmap, and QR emergency card.</li>
+<li><strong>Crash Detection UI is orphaned</strong>: <code>CrashCountdown.tsx</code> and <code>ProgressRing.tsx</code> exist but are never imported. Only a toast fires on crash. If you wire it, render <code>&lt;CrashCountdown&gt;</code> in <code>ClientAppHooks.tsx</code>.</li>
+<li><strong>.env files contain live secrets</strong> committed to git. Accepted for hackathon. Rotate before production.</li>
 </ul>
 <p>Current verification commands:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>chatbot_service<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/test_voice.py<span class="w"> </span>tests/test_e2e.py<span class="w"> </span>-q
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>rg<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;api/v1/speech|NEXT_PUBLIC_CHATBOT_BASE_URL|utterance.lang = &#39;en-IN&#39;|&lt;img|fonts.googleapis.com&quot;</span><span class="w"> </span>frontend
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npx<span class="w"> </span>tsc<span class="w"> </span>--noEmit
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>backend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-q
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>chatbot_service<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-q
 </span></code></pre></div>
 <hr />
 <h2 id="what-it-is">What it is</h2>
@@ -2076,23 +2078,27 @@
 <th>Service</th>
 <th>Port</th>
 <th>Key Tech</th>
+<th>Tests</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Backend</td>
 <td><code>:8000</code></td>
-<td>FastAPI, PostgreSQL + PostGIS, Redis, DuckDB</td>
+<td>FastAPI, PostgreSQL + PostGIS, Redis</td>
+<td><strong>1161/1161</strong> passing, 89% cov</td>
 </tr>
 <tr>
 <td>Chatbot</td>
 <td><code>:8010</code></td>
-<td>FastAPI, 9 LLM providers, ChromaDB, 13 agent tools</td>
+<td>FastAPI, 11 LLM providers, ChromaDB, 13 agent tools</td>
+<td><strong>748/748</strong> passing, 92% cov</td>
 </tr>
 <tr>
 <td>Frontend</td>
 <td><code>:3000</code></td>
-<td>Next.js 15, MapLibre GL, Zustand, WebLLM</td>
+<td>Next.js 15, MapLibre GL, Zustand, WebLLM Phi-3</td>
+<td><strong>324/324</strong> passing, 34 suites</td>
 </tr>
 </tbody>
 </table>
