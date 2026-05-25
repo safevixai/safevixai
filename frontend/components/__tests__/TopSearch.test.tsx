@@ -21,12 +21,10 @@ jest.mock('@/components/ThemeProvider', () => ({
   useTheme: () => ({ theme: 'dark', setTheme: jest.fn() }),
 }));
 
+const mockDebouncedFn = jest.fn();
+mockDebouncedFn.cancel = jest.fn();
 jest.mock('use-debounce', () => ({
-  useDebouncedCallback: jest.fn(() => {
-    const fn = jest.fn();
-    fn.cancel = jest.fn();
-    return fn;
-  }),
+  useDebouncedCallback: () => mockDebouncedFn,
 }));
 
 jest.mock('@/lib/geocoding', () => ({
