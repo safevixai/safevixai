@@ -24,6 +24,7 @@ class DummySession:
 def app(monkeypatch):
     monkeypatch.setenv("REDIS_URL", "")
     monkeypatch.setenv("ENVIRONMENT", "test")
+    monkeypatch.setenv("ADMIN_SECRET", "test-admin-secret-2026")
     from core.config import get_settings
     get_settings.cache_clear()
     application = create_app()
@@ -38,4 +39,10 @@ def app(monkeypatch):
 @pytest.fixture
 def auth_headers():
     token = create_access_token({'sub': 'test-user', 'role': 'operator'})
+    return {'Authorization': f'Bearer {token}'}
+
+
+@pytest.fixture
+def admin_auth_headers():
+    token = create_access_token({'sub': 'admin-user'}, role='admin')
     return {'Authorization': f'Bearer {token}'}

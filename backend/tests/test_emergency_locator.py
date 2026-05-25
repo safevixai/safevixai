@@ -1354,3 +1354,127 @@ class TestDefaultEmergencyNumbersData:
 
     def test_has_13_entries(self):
         assert len(DEFAULT_EMERGENCY_NUMBERS_DATA) == 13
+
+
+# ── _find_nearby edge cases ──────────────────────────────────────────────────
+
+
+class TestFindNearbyEdgeCases:
+    @patch.object(EmergencyLocatorService, "_search_local_catalog")
+    async def test_database_and_local_merged(self, mock_local, service, cache, overpass_service):
+        cache.get_json.return_value = None
+        db_items = [_make_service_item(id="1", name="DB Hospital", source="database")]
+        db = _db_mock_with_rows(db_items, total=1)
+        overpass_service.search_services.return_value = []
+        mock_local.return_value = [
+            _make_service_item(id="2", name="Local Clinic", source="local_csv"),
+        ]
+
+        result = await service.find_nearby(db=db, lat=13.08, lon=80.27, categories=None)
+
+        assert result.count == 2
+        assert result.source == "database+local"
+
+    @patch.object(EmergencyLocatorService, "_search_local_catalog")
+    async def test_local_only_when_no_db_results(self, mock_local, service, cache, overpass_service):
+        cache.get_json.return_value = None
+        db = _db_mock(scalar_return=0)
+        overpass_service.search_services.return_value = []
+        mock_local.return_value = [
+            _make_service_item(id="1", name="Local Only", source="local_csv"),
+        ]
+
+        result = await service.find_nearby(db=db, lat=13.08, lon=80.27, categories=None)
+
+        assert result.count == 1
+        assert result.source == "local"
+
+    async def test_healthsites_flat_none_skipped(self, service):
+        object.__setattr__(service.settings, 'healthsites_api_key', 'test-key')
+        with patch("httpx.AsyncClient") as mock_cls:
+            mock_inst = MagicMock()
+            mock_cls.return_value = mock_inst
+            mock_inst.__aenter__ = AsyncMock(return_value=mock_inst)
+            mock_resp = MagicMock()
+            mock_resp.is_success = True
+            mock_resp.json.return_value = [
+                {
+                    "id": "hs-1",
+                    "attributes": {"name": "Null Coord", "amenity": "hospital"},
+                    "geometry": {"coordinates": [None, None]},
+                },
+                {
+                    "id": "hs-2",
+                    "attributes": {"name": "Good Hosp", "amenity": "hospital"},
+                    "geometry": {"coordinates": [80.27, 13.08]},
+                },
+            ]
+            mock_inst.get = AsyncMock(return_value=mock_resp)
+            result = await service._query_healthsites(lat=13.08, lon=80.27)
+        assert len(result) == 1
+        assert result[0].id == "healthsites-hs-2"
+
+
+# ── _find_nearby_uncached edge cases ──────────────────────────────────────────
+
+
+class TestFindNearbyUncachedEdgeCases:
+    @patch.object(EmergencyLocatorService, "_search_local_catalog", return_value=[])
+    async def test_break_on_sufficient_results(self, mock_local, service, overpass_service):
+        items = [_make_service_item(id=str(i), name=f"H{i}", source="database") for i in range(5)]
+        db = _db_mock_with_rows(items, total=5)
+        overpass_service.search_services.return_value = []
+
+        result = await service._find_nearby_uncached(
+            db=db, lat=13.08, lon=80.27, categories=["hospital"],
+            radius_steps=[500, 1000, 5000], limit=20,
+        )
+
+        assert result.count == 5
+
+    @patch.object(EmergencyLocatorService, "_search_local_catalog")
+    async def test_database_local_overpass_all_sources(self, mock_local, service, overpass_service):
+        db_items = [_make_service_item(id="1", name="DB", source="database")]
+        db = _db_mock_with_rows(db_items, total=1)
+        overpass_service.search_services.return_value = [
+            _make_service_item(id="2", name="Overpass", source="overpass"),
+        ]
+        mock_local.return_value = [
+            _make_service_item(id="3", name="Local", source="local_csv"),
+        ]
+
+        result = await service._find_nearby_uncached(
+            db=db, lat=13.08, lon=80.27, categories=["hospital"],
+            radius_steps=[1000, 5000], limit=20,
+        )
+
+        assert result.count == 3
+        assert result.source == "database+local+overpass"
+
+    @patch.object(EmergencyLocatorService, "_search_local_catalog", return_value=[])
+    async def test_source_database_when_best_exists(self, mock_local, service, overpass_service):
+        db_items = [_make_service_item(id="1", name="DB Hospital", source="database")]
+        db = _db_mock_with_rows(db_items, total=1)
+        overpass_service.search_services.return_value = []
+
+        result = await service._find_nearby_uncached(
+            db=db, lat=13.08, lon=80.27, categories=["hospital"],
+            radius_steps=[5000], limit=20,
+        )
+
+        assert result.source == "database"
+
+    @patch.object(EmergencyLocatorService, "_search_local_catalog", return_value=[])
+    async def test_overpass_with_local_fallback_source(self, mock_local, service, overpass_service):
+        db = _db_mock(scalar_return=0)
+        overpass_service.search_services.return_value = []
+        mock_local.return_value = [
+            _make_service_item(id="1", name="Local Only", source="local_csv"),
+        ]
+
+        result = await service._find_nearby_uncached(
+            db=db, lat=13.08, lon=80.27, categories=["hospital"],
+            radius_steps=[5000], limit=20,
+        )
+
+        assert result.source == "local"

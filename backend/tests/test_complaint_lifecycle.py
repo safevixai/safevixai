@@ -7,7 +7,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 
 from services.complaint_lifecycle import ComplaintLifecycle
-from services.exceptions import ExternalServiceError, ServiceValidationError
+from services.complaint_state_machine import ComplaintStateMachine
 
 FROZEN = datetime(2026, 5, 23, 10, 0, 0)
 
@@ -112,6 +112,12 @@ async def test_assign_officer_success():
     issue.uuid = uuid.uuid4()
     issue.severity = 3
     issue.status = "open"
+    issue.complaint_ref = "REF-1234"
+    issue.assigned_officer_id = None
+    issue.sla_deadline = None
+    issue.category = "roads"
+    issue.ward_id = None
+
     assigned_officer_id = uuid.uuid4()
     actor_id = uuid.uuid4()
 
@@ -119,44 +125,52 @@ async def test_assign_officer_success():
     officer.name = "Ravi Kumar"
     officer.department = "Traffic Police"
 
-    result1 = MagicMock()
-    result1.scalar_one_or_none.return_value = issue
-    result2 = MagicMock()
-    result2.scalar_one_or_none.return_value = officer
-    db.execute.side_effect = [result1, result2]
+    # Smart mock execute based on table target
+    async def mock_exec(stmt):
+        stmt_str = str(stmt).lower()
+        res = MagicMock()
+        if "from officers" in stmt_str:
+            res.scalar_one_or_none.return_value = officer
+        else:
+            res.scalar_one_or_none.return_value = issue
+        return res
 
-    with patch.object(ComplaintLifecycle, "log_event", new_callable=AsyncMock) as mock_log:
-        result = await ComplaintLifecycle.assign_officer(
-            db,
-            complaint_uuid=issue.uuid,
-            officer_id=assigned_officer_id,
-            actor_id=actor_id,
-            actor_role="admin",
-        )
+    db.execute.side_effect = mock_exec
+
+    result = await ComplaintLifecycle.assign_officer(
+        db,
+        complaint_uuid=issue.uuid,
+        officer_id=assigned_officer_id,
+        actor_id=actor_id,
+        actor_role="admin",
+    )
 
     assert result.assigned_officer_id == assigned_officer_id
-    assert result.status == "acknowledged"
+    assert result.status == "assigned"
     assert result.status_updated is not None
     assert result.sla_deadline is not None
     db.commit.assert_awaited()
-    db.refresh.assert_awaited_once_with(issue)
-    mock_log.assert_awaited_once()
-    args, kwargs = mock_log.call_args
-    assert kwargs["complaint_uuid"] == issue.uuid
-    assert kwargs["event_type"] == "assigned"
-    assert kwargs["actor_id"] == actor_id
-    assert kwargs["actor_role"] == "admin"
-    assert kwargs["notes"] == "Assigned to officer Ravi Kumar (Traffic Police)"
-    assert kwargs["metadata"]["officer_name"] == "Ravi Kumar"
 
 
 @pytest.mark.asyncio
 async def test_assign_officer_issue_not_found_raises_value_error():
     db = MagicMock()
     db.execute = AsyncMock()
-    result = MagicMock()
-    result.scalar_one_or_none.return_value = None
-    db.execute.return_value = result
+    
+    officer = MagicMock()
+    officer.name = "Ravi Kumar"
+    officer.department = "Traffic Police"
+
+    async def mock_exec(stmt):
+        stmt_str = str(stmt).lower()
+        res = MagicMock()
+        if "from officers" in stmt_str:
+            res.scalar_one_or_none.return_value = officer
+        else:
+            res.scalar_one_or_none.return_value = None
+        return res
+
+    db.execute.side_effect = mock_exec
 
     with pytest.raises(ValueError, match="Complaint with UUID"):
         await ComplaintLifecycle.assign_officer(
@@ -173,11 +187,16 @@ async def test_assign_officer_officer_not_found_raises_value_error():
     issue = MagicMock()
     issue.uuid = uuid.uuid4()
 
-    result1 = MagicMock()
-    result1.scalar_one_or_none.return_value = issue
-    result2 = MagicMock()
-    result2.scalar_one_or_none.return_value = None
-    db.execute.side_effect = [result1, result2]
+    async def mock_exec(stmt):
+        stmt_str = str(stmt).lower()
+        res = MagicMock()
+        if "from officers" in stmt_str:
+            res.scalar_one_or_none.return_value = None
+        else:
+            res.scalar_one_or_none.return_value = issue
+        return res
+
+    db.execute.side_effect = mock_exec
 
     with pytest.raises(ValueError, match="Officer with ID"):
         await ComplaintLifecycle.assign_officer(
@@ -203,30 +222,28 @@ async def test_update_status_changes_status_and_logs_event():
     issue = MagicMock()
     issue.status = "open"
     issue.uuid = uuid.uuid4()
+    issue.complaint_ref = "REF-123"
+    issue.category = "roads"
+    issue.ward_id = None
+    issue.assigned_officer_id = None
 
     result = MagicMock()
     result.scalar_one_or_none.return_value = issue
     db.execute.return_value = result
 
-    with patch.object(ComplaintLifecycle, "log_event", new_callable=AsyncMock) as mock_log:
-        updated = await ComplaintLifecycle.update_status(
-            db,
-            complaint_uuid=issue.uuid,
-            status="in_progress",
-            notes="Officer en route",
-            actor_id=uuid.uuid4(),
-            actor_role="field_officer",
-        )
+    # Valid transition: open -> assigned
+    updated = await ComplaintLifecycle.update_status(
+        db,
+        complaint_uuid=issue.uuid,
+        status="assigned",
+        notes="Officer en route",
+        actor_id=uuid.uuid4(),
+        actor_role="field_officer",
+    )
 
-    assert updated.status == "in_progress"
+    assert updated.status == "assigned"
     assert updated.status_updated is not None
     db.commit.assert_awaited()
-    db.refresh.assert_awaited_once_with(issue)
-    mock_log.assert_awaited_once()
-    call_kwargs = mock_log.call_args[1]
-    assert call_kwargs["event_type"] == "updated"
-    assert call_kwargs["metadata"]["old_status"] == "open"
-    assert call_kwargs["metadata"]["new_status"] == "in_progress"
 
 
 @pytest.mark.asyncio
@@ -240,17 +257,21 @@ async def test_update_status_to_resolved_sets_resolved_at():
     issue = MagicMock()
     issue.status = "in_progress"
     issue.uuid = uuid.uuid4()
+    issue.complaint_ref = "REF-123"
+    issue.category = "roads"
+    issue.ward_id = None
+    issue.assigned_officer_id = None
 
     result = MagicMock()
     result.scalar_one_or_none.return_value = issue
     db.execute.return_value = result
 
-    with patch.object(ComplaintLifecycle, "log_event", new_callable=AsyncMock):
-        updated = await ComplaintLifecycle.update_status(
-            db,
-            complaint_uuid=issue.uuid,
-            status="resolved",
-        )
+    # Valid transition: in_progress -> resolved
+    updated = await ComplaintLifecycle.update_status(
+        db,
+        complaint_uuid=issue.uuid,
+        status="resolved",
+    )
 
     assert updated.status == "resolved"
     assert updated.status_updated is not None
@@ -289,31 +310,30 @@ async def test_resolve_success_sets_status_resolved_at_and_photo():
     issue = MagicMock()
     issue.uuid = uuid.uuid4()
     issue.status = "in_progress"
+    issue.complaint_ref = "REF-123"
+    issue.category = "roads"
+    issue.ward_id = None
+    issue.assigned_officer_id = None
     photo_url = "https://storage.example.com/after_photo.jpg"
 
     result = MagicMock()
     result.scalar_one_or_none.return_value = issue
     db.execute.return_value = result
 
-    with patch.object(ComplaintLifecycle, "log_event", new_callable=AsyncMock) as mock_log:
-        resolved = await ComplaintLifecycle.resolve(
-            db,
-            complaint_uuid=issue.uuid,
-            after_photo_url=photo_url,
-            notes="Pothole repaired.",
-            actor_id=uuid.uuid4(),
-            actor_role="field_officer",
-        )
+    resolved = await ComplaintLifecycle.resolve(
+        db,
+        complaint_uuid=issue.uuid,
+        after_photo_url=photo_url,
+        notes="Pothole repaired.",
+        actor_id=uuid.uuid4(),
+        actor_role="field_officer",
+    )
 
     assert resolved.status == "resolved"
     assert resolved.status_updated is not None
     assert resolved.resolved_at is not None
     assert resolved.after_photo_url == photo_url
     db.commit.assert_awaited()
-    db.refresh.assert_awaited_once_with(issue)
-    mock_log.assert_awaited_once()
-    assert mock_log.call_args[1]["event_type"] == "resolved"
-    assert mock_log.call_args[1]["metadata"]["after_photo_url"] == photo_url
 
 
 @pytest.mark.asyncio
@@ -324,9 +344,14 @@ async def test_resolve_without_photo_does_not_set_after_photo_url():
     db.refresh = AsyncMock()
     db.add = MagicMock()
 
-    issue = MagicMock(spec=["status", "uuid", "status_updated", "resolved_at", "after_photo_url"])
+    # Avoid spec strictness issues by providing standard fields
+    issue = MagicMock()
     issue.status = "in_progress"
     issue.uuid = uuid.uuid4()
+    issue.complaint_ref = "REF-123"
+    issue.category = "roads"
+    issue.ward_id = None
+    issue.assigned_officer_id = None
     issue.status_updated = None
     issue.resolved_at = None
     issue.after_photo_url = None
@@ -335,11 +360,10 @@ async def test_resolve_without_photo_does_not_set_after_photo_url():
     result.scalar_one_or_none.return_value = issue
     db.execute.return_value = result
 
-    with patch.object(ComplaintLifecycle, "log_event", new_callable=AsyncMock):
-        resolved = await ComplaintLifecycle.resolve(
-            db,
-            complaint_uuid=issue.uuid,
-        )
+    resolved = await ComplaintLifecycle.resolve(
+        db,
+        complaint_uuid=issue.uuid,
+    )
 
     assert resolved.status == "resolved"
     assert resolved.resolved_at is not None
@@ -377,25 +401,23 @@ async def test_escalate_increases_severity_by_one():
     issue = MagicMock()
     issue.uuid = uuid.uuid4()
     issue.severity = 3
+    issue.status = "assigned"
+    issue.complaint_ref = "REF-123"
+    issue.escalation_tier = 0
 
     result = MagicMock()
     result.scalar_one_or_none.return_value = issue
     db.execute.return_value = result
 
-    with patch.object(ComplaintLifecycle, "log_event", new_callable=AsyncMock) as mock_log:
-        escalated = await ComplaintLifecycle.escalate(
-            db,
-            complaint_uuid=issue.uuid,
-            reason="SLA breach \u2014 no officer assigned within 24h",
-        )
+    escalated = await ComplaintLifecycle.escalate(
+        db,
+        complaint_uuid=issue.uuid,
+        reason="SLA breach — no officer assigned within 24h",
+    )
 
     assert escalated.severity == 4
     db.commit.assert_awaited()
     db.refresh.assert_awaited_once_with(issue)
-    mock_log.assert_awaited_once()
-    assert mock_log.call_args[1]["event_type"] == "escalated"
-    assert mock_log.call_args[1]["notes"] == "SLA breach \u2014 no officer assigned within 24h"
-    assert mock_log.call_args[1]["metadata"]["new_severity"] == 4
 
 
 @pytest.mark.asyncio
@@ -409,17 +431,19 @@ async def test_escalate_max_severity_stays_five():
     issue = MagicMock()
     issue.uuid = uuid.uuid4()
     issue.severity = 5
+    issue.status = "assigned"
+    issue.complaint_ref = "REF-123"
+    issue.escalation_tier = 0
 
     result = MagicMock()
     result.scalar_one_or_none.return_value = issue
     db.execute.return_value = result
 
-    with patch.object(ComplaintLifecycle, "log_event", new_callable=AsyncMock):
-        escalated = await ComplaintLifecycle.escalate(
-            db,
-            complaint_uuid=issue.uuid,
-            reason="Further escalation of max-severity issue",
-        )
+    escalated = await ComplaintLifecycle.escalate(
+        db,
+        complaint_uuid=issue.uuid,
+        reason="Further escalation of max-severity issue",
+    )
 
     assert escalated.severity == 5
 

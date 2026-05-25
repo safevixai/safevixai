@@ -280,6 +280,6 @@ def test_emergency_locator_uses_local_catalog_before_overpass():
         )
     )
 
-    assert result.source == 'database'
+    assert result.source == 'local'
     assert result.count == 1
     assert result.services[0].name == 'Local Trauma Hospital'

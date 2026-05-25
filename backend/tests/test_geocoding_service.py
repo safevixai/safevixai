@@ -633,3 +633,136 @@ class TestGetNominatim:
             svc._client = mock_client
             with pytest.raises(GeocodingError, match="Nominatim geocoding unavailable"):
                 await svc._get_nominatim("/search", {"q": "test"})
+
+
+# ── 26-29. _search_photon / _reverse_photon / _search_nominatim / _reverse_nominatim ──
+
+
+class TestSearchPhoton:
+    async def test_returns_results(self):
+        settings = Settings()
+        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+            svc = GeocodingService(settings=settings)
+            mock_resp = MagicMock()
+            mock_resp.json.return_value = {
+                "features": [
+                    {"geometry": {"coordinates": [80.27, 13.08]}, "properties": {"name": "Test Place", "city": "Chennai"}},
+                ]
+            }
+            mock_resp.raise_for_status.return_value = None
+            svc._client = MagicMock()
+            async def fake_get(*args, **kwargs):
+                return mock_resp
+            svc._client.get = fake_get
+            results = await svc._search_photon("chennai")
+            assert len(results) == 1
+            assert results[0].city == "Chennai"
+
+    async def test_no_features_raises(self):
+        settings = Settings()
+        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+            svc = GeocodingService(settings=settings)
+            mock_resp = MagicMock()
+            mock_resp.json.return_value = {}
+            mock_resp.raise_for_status.return_value = None
+            svc._client = MagicMock()
+            async def fake_get(*args, **kwargs):
+                return mock_resp
+            svc._client.get = fake_get
+            with pytest.raises(GeocodingError, match="Photon geocoding unavailable"):
+                await svc._search_photon("nowhere")
+
+
+class TestReversePhoton:
+    async def test_returns_result(self):
+        settings = Settings()
+        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+            svc = GeocodingService(settings=settings)
+            mock_resp = MagicMock()
+            mock_resp.json.return_value = {
+                "features": [
+                    {"geometry": {"coordinates": [80.27, 13.08]}, "properties": {"name": "Place", "city": "Chennai"}},
+                ]
+            }
+            mock_resp.raise_for_status.return_value = None
+            svc._client = MagicMock()
+            async def fake_get(*args, **kwargs):
+                return mock_resp
+            svc._client.get = fake_get
+            result = await svc._reverse_photon(lat=13.08, lon=80.27)
+            assert result.city == "Chennai"
+
+    async def test_no_features_raises(self):
+        settings = Settings()
+        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+            svc = GeocodingService(settings=settings)
+            mock_resp = MagicMock()
+            mock_resp.json.return_value = {}
+            mock_resp.raise_for_status.return_value = None
+            svc._client = MagicMock()
+            async def fake_get(*args, **kwargs):
+                return mock_resp
+            svc._client.get = fake_get
+            with pytest.raises(GeocodingError, match="Photon geocoding unavailable"):
+                await svc._reverse_photon(lat=0.0, lon=0.0)
+
+
+class TestSearchNominatim:
+    async def test_returns_results(self):
+        settings = Settings()
+        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+            svc = GeocodingService(settings=settings)
+            mock_resp = MagicMock()
+            mock_resp.json.return_value = [
+                {"display_name": "Chennai, India", "lat": "13.08", "lon": "80.27", "address": {"city": "Chennai"}},
+            ]
+            mock_resp.raise_for_status.return_value = None
+            svc._client = MagicMock()
+            async def fake_get(*args, **kwargs):
+                mock_resp.raise_for_status.return_value = None
+                return mock_resp
+            svc._client.get = fake_get
+            with patch.object(svc, '_last_nominatim_request_at', 0.0), patch('asyncio.sleep', new_callable=AsyncMock):
+                results = await svc._search_nominatim("chennai")
+            assert len(results) == 1
+            assert results[0].city == "Chennai"
+
+    async def test_empty_response(self):
+        settings = Settings()
+        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+            svc = GeocodingService(settings=settings)
+            mock_resp = MagicMock()
+            mock_resp.json.return_value = []
+            mock_resp.raise_for_status.return_value = None
+            svc._client = MagicMock()
+            async def fake_get(*args, **kwargs):
+                mock_resp.raise_for_status.return_value = None
+                return mock_resp
+            svc._client.get = fake_get
+            with patch.object(svc, '_last_nominatim_request_at', 0.0), patch('asyncio.sleep', new_callable=AsyncMock):
+                results = await svc._search_nominatim("")
+            assert results == []
+
+
+class TestReverseNominatim:
+    async def test_returns_result(self):
+        settings = Settings()
+        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+            svc = GeocodingService(settings=settings)
+            mock_resp = MagicMock()
+            mock_resp.json.return_value = {
+                "display_name": "Test, Chennai, India",
+                "lat": "13.08", "lon": "80.27",
+                "address": {"city": "Chennai", "state": "Tamil Nadu", "country_code": "in", "postcode": "600001"},
+            }
+            mock_resp.raise_for_status.return_value = None
+            svc._client = MagicMock()
+            async def fake_get(*args, **kwargs):
+                mock_resp.raise_for_status.return_value = None
+                return mock_resp
+            svc._client.get = fake_get
+            with patch.object(svc, '_last_nominatim_request_at', 0.0), patch('asyncio.sleep', new_callable=AsyncMock):
+                result = await svc._reverse_nominatim(lat=13.08, lon=80.27)
+            assert result.city == "Chennai"
+            assert result.state == "Tamil Nadu"
+            assert result.country_code == "IN"

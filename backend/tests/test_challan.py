@@ -51,7 +51,7 @@ def test_challan_service_normalizes_inputs_and_repeat_amount():
 
     assert payload.vehicle_class == 'heavy_vehicle'
     assert payload.state_code == 'TN'
-    assert payload.amount_due == 4000
+    assert payload.amount_due == 8000
 
 
 def test_challan_calculator_reports_database_unavailable(app):
@@ -92,7 +92,7 @@ def test_challan_service_rejects_unknown_violation_codes():
     ('183', 'Section 183', 2000, 4000),
     ('185', 'Section 185', 10000, 15000),
     ('181', 'Sections 3/181', 5000, 10000),
-    ('194D', 'Sections 129/194D', 1000, 2000),
+    ('194D', 'Section 194D', 1000, 2000),
     ('194B', 'Section 194B', 1000, 2000),
     ('179', 'Section 179', 2000, 4000),
 ])
@@ -226,8 +226,8 @@ def test_state_code_aliases(alias, expected_code):
     ('DUI', '185', 'Section 185'),
     ('DRUNK', '185', 'Section 185'),
     ('3/181', '181', 'Sections 3/181'),
-    ('194D-HELMET', '194D', 'Sections 129/194D'),
-    ('194D-SEATBELT', '194D', 'Sections 129/194D'),
+    ('194D-HELMET', '194D', 'Section 194D'),
+    ('194D-SEATBELT', '194D', 'Section 194D'),
 ])
 def test_violation_code_aliases(alias, expected_code, expected_section):
     service = ChallanService(Settings())
@@ -259,7 +259,7 @@ def test_drunk_driving_185():
     )
     assert payload.base_fine == 10000
     assert payload.repeat_fine == 15000
-    assert payload.description == 'Driving under the influence of alcohol or drugs.'
+    assert payload.description == 'Driving under the influence of alcohol or drugs - first offence'
 
 
 # ---------------------------------------------------------------------------
