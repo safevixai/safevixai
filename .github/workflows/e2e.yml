@@ -75,10 +75,36 @@ jobs:
           # Copy public assets to standalone build for E2E tests
           cp -r public .next/standalone/public
 
+      - name: Start standalone server (background)
+        working-directory: ./frontend
+        env:
+          PORT: "3100"
+          HOSTNAME: "127.0.0.1"
+        run: |
+          echo "Starting standalone server on port 3100..."
+          node .next/standalone/server.js &
+          SERVER_PID=$!
+          echo "Server PID: $SERVER_PID"
+          # Wait for server to be ready (curl retries up to 60s)
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:3100 > /dev/null 2>&1; then
+              echo "Server is ready!"
+              echo "PID=$SERVER_PID" >> $GITHUB_ENV
+              exit 0
+            fi
+            echo "Waiting for server... ($i/60)"
+            sleep 1
+          done
+          echo "Server failed to start within 60s"
+          cat server.log 2>/dev/null || true
+          kill $SERVER_PID 2>/dev/null || true
+          exit 1
+
       - name: Run E2E tests
         working-directory: ./frontend
         env:
           CI: 'true'
+          CI_SKIP_WEBSERVER: 'true'
           E2E_BASE_URL: http://127.0.0.1:3100
           E2E_PORT: "3100"
           NEXT_PUBLIC_API_URL: http://localhost:8000
@@ -92,5 +118,14 @@ jobs:
           name: sos-e2e-results
           path: frontend/test-results/
           retention-days: 7
+
+      - name: Stop standalone server
+        if: always()
+        working-directory: ./frontend
+        run: |
+          if [ -n "$PID" ]; then
+            kill $PID 2>/dev/null || true
+            echo "Server stopped"
+          fi
 
 

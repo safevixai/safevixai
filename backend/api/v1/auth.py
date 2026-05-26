@@ -28,6 +28,19 @@ from core.database import get_db
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
+import secrets
+
+class RegisterRequest(BaseModel):
+    email: str = Field(min_length=3, max_length=254)
+    password: str = Field(min_length=8, max_length=256)
+    name: str = Field(min_length=2, max_length=255)
+    role: str = Field(default="operator", min_length=2, max_length=32)
+
+class RegisterResponse(BaseModel):
+    message: str
+    operator_name: str
+    email: str
+
 class LoginRequest(BaseModel):
     email: str = Field(min_length=3, max_length=254)
     password: str = Field(min_length=8, max_length=256)
@@ -56,6 +69,55 @@ def _configured_operator() -> dict[str, str] | None:
     if not email or not password_hash:
         return None
     return {"email": email, "password_hash": password_hash, "name": name}
+
+def _hash_password(password: str) -> str:
+    """Generate PBKDF2 hash of the password."""
+    salt = secrets.token_hex(16)
+    iterations = 100000
+    digest = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt.encode("utf-8"), iterations).hex()
+    return f"pbkdf2_sha256${iterations}${salt}${digest}"
+
+@router.post("/register", response_model=RegisterResponse)
+@limiter.limit("5/minute")
+async def register(
+    request: Request,
+    body: RegisterRequest,
+    db: AsyncSession = Depends(get_db),
+) -> JSONResponse:
+    from sqlalchemy import select
+    from models.user import OperatorUser
+
+    email = body.email.strip().lower()
+    
+    # Check if user already exists
+    stmt = select(OperatorUser).where(OperatorUser.email == email)
+    result = await db.execute(stmt)
+    existing_user = result.scalar_one_or_none()
+    
+    if existing_user is not None:
+        raise HTTPException(status_code=400, detail="Operator with this email already exists")
+
+    hashed = _hash_password(body.password)
+    new_operator = OperatorUser(
+        email=email,
+        hashed_password=hashed,
+        name=body.name,
+        role=body.role,
+        is_active=True
+    )
+    
+    db.add(new_operator)
+    await db.commit()
+    await db.refresh(new_operator)
+    
+    return JSONResponse(
+        status_code=201,
+        content={
+            "message": "Operator registered successfully",
+            "operator_name": new_operator.name,
+            "email": new_operator.email
+        }
+    )
 
 @router.post("/login", response_model=LoginResponse)
 @limiter.limit("5/minute")

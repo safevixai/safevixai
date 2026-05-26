@@ -42,11 +42,14 @@ export default defineConfig({
   // Skip visual regression tests in CI (platform-specific snapshots)
   grep: isCI ? /./ : undefined,
   grepInvert: isCI ? /Visual Regression/ : undefined,
-  webServer: {
-    command: webServerCommand,
-    url: baseURL,
-    reuseExistingServer: !isCI,
-    timeout: 300 * 1000,
-    cwd: process.cwd(),
-  },
+  // CI starts the server manually in the workflow; disable webServer
+  webServer: process.env.CI_SKIP_WEBSERVER === 'true'
+    ? undefined
+    : {
+        command: webServerCommand,
+        url: baseURL,
+        reuseExistingServer: !isCI,
+        timeout: 300 * 1000,
+        cwd: process.cwd(),
+      },
 });

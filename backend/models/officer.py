@@ -24,7 +24,7 @@ class Officer(Base):
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     last_checkin: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     last_location: Mapped[str | None] = mapped_column(
-        Geometry(geometry_type='POINT', srid=4326),
+        Geometry(geometry_type='POINT', srid=4326, spatial_index=True),
         nullable=True
     )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
