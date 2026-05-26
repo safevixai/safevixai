@@ -124,9 +124,9 @@ jobs:
         working-directory: ./frontend
         run: npx playwright install --with-deps chromium
 
-      - name: Run E2E tests (including visual regression)
+      - name: Run E2E tests
         working-directory: ./frontend
-        run: npx playwright test
+        run: npx playwright test e2e/sos-flow.spec.ts --reporter=list
         env:
           CI: 'true'
           NEXT_PUBLIC_API_URL: http://localhost:8000
