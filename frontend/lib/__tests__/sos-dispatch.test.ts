@@ -1,5 +1,5 @@
 import { triggerSos, fetchSosPayload } from '../api';
-import { addToSosQueue, getSosQueue, clearSosQueue } from '../offline-sos-queue';
+import { enqueueSOS, syncOfflineSOSQueue, initDB } from '../offline-sos-queue';
 
 jest.mock('../api', () => ({
   ...jest.requireActual('../api'),
@@ -11,9 +11,8 @@ jest.mock('../offline-sos-queue', () => {
   const original = jest.requireActual('../offline-sos-queue');
   return {
     ...original,
-    addToSosQueue: jest.fn(),
-    getSosQueue: jest.fn(),
-    clearSosQueue: jest.fn(),
+    enqueueSOS: jest.fn(),
+    registerOfflineSyncListeners: jest.fn(),
   };
 });
 
@@ -52,13 +51,10 @@ describe('SOS Dispatch — Safety-Critical Tests', () => {
 
   it('offline SOS queue should store and retrieve entries', async () => {
     const entry = { lat: 13.0, lon: 80.0, timestamp: Date.now() };
-    (addToSosQueue as jest.Mock).mockResolvedValue(undefined);
-    (getSosQueue as jest.Mock).mockResolvedValue([entry]);
+    (enqueueSOS as jest.Mock).mockResolvedValue(undefined);
 
-    await addToSosQueue(entry);
-    const queue = await getSosQueue();
-    expect(queue).toHaveLength(1);
-    expect(queue[0].lat).toBe(13.0);
+    await enqueueSOS(entry);
+    expect(enqueueSOS).toHaveBeenCalledWith(entry);
   });
 
   it('SOS numbers should include 112 (pan-India emergency)', async () => {

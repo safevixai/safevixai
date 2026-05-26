@@ -21,8 +21,7 @@ jest.mock('@/components/ThemeProvider', () => ({
   useTheme: () => ({ theme: 'dark', setTheme: jest.fn() }),
 }));
 
-const mockDebouncedFn = jest.fn();
-mockDebouncedFn.cancel = jest.fn();
+const mockDebouncedFn = Object.assign(jest.fn(), { cancel: jest.fn() });
 jest.mock('use-debounce', () => ({
   useDebouncedCallback: () => mockDebouncedFn,
 }));
