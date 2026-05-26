@@ -43,6 +43,28 @@ async def get_nearby_issues(
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
 ) -> RoadIssuesResponse:
+    """
+    Retrieve reported road hazards and infrastructure complaints within a geographic radius.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Latitude of current position.
+        lon: Longitude of current position.
+        radius: Radial search range in meters (100m to 50km). Defaults to 5000m.
+        limit: Max number of items to return (1 to 100).
+        offset: Pagination offset.
+        statuses: Comma-separated list of issue statuses. Defaults to open, acknowledged, and in-progress.
+        category: Optional issue classification category (e.g., 'pothole', 'lighting').
+        sub_category: Optional specific sub-classification.
+        db: Database session injection.
+        roadwatch_service: RoadWatch database-backed handler service.
+
+    Returns:
+        RoadIssuesResponse with a listing of matched issues and paging information.
+
+    Raises:
+        HTTPException (422): If query statuses are invalid.
+    """
     parsed_statuses = [part.strip() for part in (statuses or '').split(',') if part.strip()]
     invalid_statuses = sorted(set(parsed_statuses) - ALL_ROAD_ISSUE_STATUSES)
     if invalid_statuses:
@@ -72,6 +94,19 @@ async def get_authority_preview(
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
 ) -> AuthorityPreviewResponse:
+    """
+    Look up the managing municipal authority for a specified coordinate pair.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Target latitude coordinate.
+        lon: Target longitude coordinate.
+        db: Database session injection.
+        roadwatch_service: RoadWatch database-backed handler service.
+
+    Returns:
+        AuthorityPreviewResponse containing corporate authority contact, slug, and jurisdiction metadata.
+    """
     return await roadwatch_service.get_authority(db=db, lat=lat, lon=lon)
 
 
@@ -84,6 +119,22 @@ async def get_road_infrastructure(
     db: AsyncSession = Depends(get_db),
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
 ) -> RoadInfrastructureResponse:
+    """
+    Retrieve road network and infrastructure classification for a coordinate location.
+
+    Fetches physical road segment names, types (national highway, local street),
+    and speeds from PostGIS state layers.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Centroid coordinate latitude.
+        lon: Centroid coordinate longitude.
+        db: Database session injection.
+        roadwatch_service: RoadWatch database-backed handler service.
+
+    Returns:
+        RoadInfrastructureResponse containing speed limits and classification strings.
+    """
     return await roadwatch_service.get_infrastructure(db=db, lat=lat, lon=lon)
 
 
@@ -102,7 +153,31 @@ async def submit_road_issue(
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
     current_user: dict | None = Depends(get_current_user_optional),
 ) -> RoadReportResponse:
-    """Accept a rate-limited public RoadWatch report with strict form/file validation."""
+    """
+    Accept and queue a new public RoadWatch hazard report with strict validation.
+
+    Parses multi-part form parameters, performs file size checks and image sanitization,
+    calculates jurisdiction, and queues report verification.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Form latitude coordinate.
+        lon: Form longitude coordinate.
+        issue_type: Classification code for the hazard (e.g., 'pothole').
+        severity: Severity rating on 1-5 scale.
+        description: Optional textual notes.
+        photo: Optional evidence image file.
+        citizen_phone: Optional contact phone of citizen reporter.
+        db: Database session injection.
+        roadwatch_service: RoadWatch database-backed handler service.
+        current_user: Optional authenticated citizen user from bearer token.
+
+    Returns:
+        RoadReportResponse containing created complaint references, assigned ward, and SLA deadlines.
+
+    Raises:
+        HTTPException (422): When input forms or file attachments violate parameters.
+    """
     try:
         queue = getattr(request.app.state, "queue", None)
         return await roadwatch_service.submit_report(
@@ -127,7 +202,21 @@ async def get_issue_details(
     issue_uuid: str,
     db: AsyncSession = Depends(get_db),
 ) -> RoadIssueItem:
-    """Get complete details for a single complaint."""
+    """
+    Get comprehensive historical and current details for a single reported complaint.
+
+    Args:
+        request: The FastAPI request instance.
+        issue_uuid: The primary key UUID string of the target complaint.
+        db: Database session injection.
+
+    Returns:
+        RoadIssueItem containing location, assigned officer, photos, and SLA deadlines.
+
+    Raises:
+        HTTPException (422): When UUID format is malformed.
+        HTTPException (404): When no report matches the UUID.
+    """
     import uuid
     from sqlalchemy import select, func
     try:
@@ -183,7 +272,22 @@ async def get_complaint_timeline(
     issue_uuid: str,
     db: AsyncSession = Depends(get_db),
 ) -> ComplaintTimelineResponse:
-    """Get the audit timeline log for a complaint."""
+    """
+    Retrieve the chronological transition audit log for a complaint.
+
+    Tracks life cycle status, operator notes, assignment transfers, and confirmation events.
+
+    Args:
+        request: The FastAPI request instance.
+        issue_uuid: The UUID of the complaint.
+        db: Database session injection.
+
+    Returns:
+        ComplaintTimelineResponse including historical audit events and overall count.
+
+    Raises:
+        HTTPException (422): If UUID is invalid.
+    """
     import uuid
     from services.complaint_lifecycle import ComplaintLifecycle
     try:
@@ -217,7 +321,23 @@ async def confirm_road_issue(
     issue_uuid: str,
     db: AsyncSession = Depends(get_db),
 ) -> dict:
-    """Citizens confirm/upvote a complaint to verify its legitimacy."""
+    """
+    Confirm/upvote an existing road hazard to assert legitimacy.
+
+    Increments the verification counter and registers confirmation log events.
+
+    Args:
+        request: The FastAPI request instance.
+        issue_uuid: UUID of the hazard report.
+        db: Database session injection.
+
+    Returns:
+        A dictionary showing new confirmation counters and current status.
+
+    Raises:
+        HTTPException (422): If UUID is invalid.
+        HTTPException (404): If the complaint cannot be found.
+    """
     import uuid
     from services.duplicate_detector import DuplicateDetector
     from services.complaint_lifecycle import ComplaintLifecycle
@@ -256,7 +376,28 @@ async def resolve_road_issue(
     roadwatch_service: RoadWatchService = Depends(get_roadwatch_service),
     current_user: dict = Depends(require_role(Role.FIELD_OFFICER)),
 ) -> dict:
-    """Resolve a road issue with evidence (after photo). Required role: operator/officer."""
+    """
+    Mark a complaint resolved with attached resolution notes and evidence.
+
+    Restricted to authorized field officers or municipal operator roles. Saves evidence 
+    photos to isolated media storage and marks complaint states as 'resolved'.
+
+    Args:
+        request: The FastAPI request instance.
+        issue_uuid: Target complaint UUID.
+        after_photo: Optional photo demonstrating resolved condition.
+        notes: Optional resolution feedback notes.
+        db: Database session injection.
+        roadwatch_service: RoadWatch service layer.
+        current_user: Authenticated operator context with Role.FIELD_OFFICER role validation.
+
+    Returns:
+        A dictionary with resolution timestamps and references.
+
+    Raises:
+        HTTPException (422): If UUID format is malformed.
+        HTTPException (404): If the complaint does not exist.
+    """
     import uuid
     from services.complaint_lifecycle import ComplaintLifecycle
     try:
@@ -300,15 +441,24 @@ async def verify_road_report(
     current_user: dict = Depends(require_role(Role.OPERATOR)),
 ) -> dict:
     """
-    Verify a road report (requires 2+ confirmations).
+    Verify a road report and trigger downstream geographic network synchronization.
 
-    On verification, the report is:
-    1. Marked as 'verified' in Supabase
-    2. Contributed to OpenStreetMap as a hazard node
-    3. Automatically included in the Waze CIFS feed
+    Restricted to operator roles. Upon validation, the report is marked as 'verified', 
+    submitted as a hazard node to OpenStreetMap, and added to the Waze CIFS feeds.
 
-    This creates a closed-loop data contribution pipeline:
-    RoadWatch report → Verification → OSM node + Waze pin
+    Args:
+        request: The FastAPI request instance.
+        report_id: UUID string of the reported issue.
+        db: Database session injection.
+        roadwatch_service: RoadWatch database-backed handler service.
+        current_user: Authenticated operator context with Role.OPERATOR role validation.
+
+    Returns:
+        A status dictionary detailing OSM contribution response and Waze status.
+
+    Raises:
+        HTTPException (404): If report is not found.
+        HTTPException (422): If report has insufficient confirmations or is ineligible.
     """
     import logging
     from services.osm_contributor import get_osm_contributor

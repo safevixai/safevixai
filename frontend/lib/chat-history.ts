@@ -29,6 +29,19 @@ async function openChatDb() {
   });
 }
 
+interface SupabaseChatRow {
+  message_id: string | null;
+  role: string;
+  content: string | null;
+  metadata: {
+    id?: string;
+    timestamp?: string;
+    citations?: string[];
+    provider?: string;
+  } | null;
+  created_at: string;
+}
+
 export async function loadChatHistory(sessionId: string): Promise<ChatLog[]> {
   const supabase = getSupabaseBrowserClient();
   if (supabase) {
@@ -39,11 +52,10 @@ export async function loadChatHistory(sessionId: string): Promise<ChatLog[]> {
       .order('created_at', { ascending: true });
 
     if (!error && data) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return data.map((row: any) => ({
+      return (data as unknown as SupabaseChatRow[]).map((row: SupabaseChatRow) => ({
         id: row.message_id || row.metadata?.id || row.created_at,
         sessionId,
-        role: row.role === 'assistant' ? 'ai' : row.role,
+        role: row.role === 'assistant' ? 'ai' : row.role as 'user' | 'ai' | 'system',
         text: row.content || '',
         timestamp: row.metadata?.timestamp || '',
         citations: row.metadata?.citations || [],

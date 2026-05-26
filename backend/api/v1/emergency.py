@@ -40,6 +40,29 @@ async def get_nearby_services(
     db: AsyncSession = Depends(get_db),
     emergency_service: EmergencyLocatorService = Depends(get_emergency_service),
 ) -> EmergencyResponse:
+    """
+    Retrieve nearest active emergency responder stations and services.
+
+    Queries database and Overpass API to locate nearby medical, police, fire, 
+    and highway helpline responders filtered by dynamic radius and categories.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Latitude of search centroid (degrees, -90 to 90).
+        lon: Longitude of search centroid (degrees, -180 to 180).
+        categories: Optional comma-separated list of emergency categories.
+        radius: Search radius in meters (100m to 50km). Defaults to service config.
+        limit: Max number of records to return (1 to 50).
+        offset: Pagination offset index.
+        db: Database session injection.
+        emergency_service: Emergency locator service layer.
+
+    Returns:
+        EmergencyResponse containing lists of matched emergency facilities and metadata.
+
+    Raises:
+        HTTPException (503): When upstream geospatial Overpass query fails.
+    """
     try:
         return await emergency_service.find_nearby(
             db=db,
@@ -63,6 +86,25 @@ async def get_sos_payload(
     db: AsyncSession = Depends(get_db),
     emergency_service: EmergencyLocatorService = Depends(get_emergency_service),
 ) -> SosResponse:
+    """
+    Synthesize an emergency SOS response package for offline/online sync.
+
+    Fetches critical numbers, nearby hospitals, and police contacts based on 
+    current GPS coordinates, optimized to keep offline sync payloads lightweight.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Latitude of distress point.
+        lon: Longitude of distress point.
+        db: Database session injection.
+        emergency_service: Emergency locator service layer.
+
+    Returns:
+        SosResponse including localized service contacts and fallback coordinates.
+
+    Raises:
+        HTTPException (503): When contact synthesis or geo-resolution fails.
+    """
     try:
         return await emergency_service.build_sos_payload(db=db, lat=lat, lon=lon)
     except ExternalServiceError as exc:
@@ -79,6 +121,26 @@ async def create_sos_incident(
     emergency_service: EmergencyLocatorService = Depends(get_emergency_service),
     current_user: dict | None = Depends(get_current_user_optional),
 ) -> SosResponse:
+    """
+    Register a live panic SOS incident and dispatch rescue operations.
+
+    Logs a panic trigger, records user-agent metadata, records response metrics,
+    and returns localized emergency numbers and facilities for coordinate rescue.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Latitude of user at distress initiation.
+        lon: Longitude of user at distress initiation.
+        db: Database session injection.
+        emergency_service: Emergency locator service layer.
+        current_user: Optional authenticated user context from bearer token.
+
+    Returns:
+        SosResponse detailing dispatched incident context and surrounding resources.
+
+    Raises:
+        HTTPException (503): If incident recording or DB serialization commits fail.
+    """
     start = time.monotonic()
     try:
         incident = SosIncident(
@@ -126,6 +188,18 @@ async def create_sos_incident(
 async def get_emergency_numbers(
     request: Request,
 ) -> EmergencyNumbersResponse:
+    """
+    Retrieve national static emergency responder hotlines.
+
+    Returns the unified catalog of primary emergency dispatch numbers including 
+    Police, Ambulance, Fire, Women Helpline, and National Emergency Response.
+
+    Args:
+        request: The FastAPI request instance.
+
+    Returns:
+        EmergencyNumbersResponse containing verified hotline strings.
+    """
     return EMERGENCY_NUMBERS
 
 
@@ -137,6 +211,20 @@ async def safe_spaces(
     lon: float = Query(..., ge=-180, le=180),
     radius: int = Query(default=1000, ge=100, le=50000),
 ) -> dict:
-    """Returns nearby safe public spaces for women safety use case."""
+    """
+    Identify secure spaces and localized emergency resources for women safety.
+
+    Queries police checkpoints, transit terminals, and operational municipal 
+    buildings within a specified circular search radius.
+
+    Args:
+        request: The FastAPI request instance.
+        lat: Latitude coordinate of current position.
+        lon: Longitude coordinate of current position.
+        radius: Geospatial search boundary radius in meters (100m to 50km).
+
+    Returns:
+        A dictionary containing safe zones and resource coordinates.
+    """
     from services.safe_spaces import get_safe_spaces
     return await get_safe_spaces(lat, lon, radius)

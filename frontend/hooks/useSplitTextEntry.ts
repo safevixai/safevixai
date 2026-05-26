@@ -4,7 +4,13 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 
-let SplitText: any = null;
+interface SplitTextInstance {
+  chars: Element[];
+}
+
+type SplitTextClass = new (target: any, vars?: any) => SplitTextInstance;
+
+let SplitText: SplitTextClass | null = null;
 
 async function loadSplitText() {
   if (typeof window === 'undefined') return;

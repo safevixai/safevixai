@@ -84,6 +84,23 @@ async def register(
     body: RegisterRequest,
     db: AsyncSession = Depends(get_db),
 ) -> JSONResponse:
+    """
+    Register a new municipal operator profile dynamically in the system.
+
+    Hashes the user password securely via PBKDF2 with unique salts, checks email 
+    uniqueness, and persists the record to the backend SQL database.
+
+    Args:
+        request: The FastAPI request instance.
+        body: RegisterRequest containing email, password, name, and role.
+        db: Database session injection.
+
+    Returns:
+        JSONResponse (201) detailing success message, name, and email of the user.
+
+    Raises:
+        HTTPException (400): If an operator account with the same email already exists.
+    """
     from sqlalchemy import select
     from models.user import OperatorUser
 
@@ -126,6 +143,25 @@ async def login(
     body: LoginRequest,
     db: AsyncSession = Depends(get_db),
 ) -> JSONResponse:
+    """
+    Authenticate municipal operators and issue secure HTTP-only session cookies.
+
+    Performs dynamic multi-operator database lookups first, falling back to 
+    environment-based static operator settings if required. Validates passwords 
+    via secure PBKDF2 comparison.
+
+    Args:
+        request: The FastAPI request instance.
+        body: LoginRequest containing email and plain-text password.
+        db: Database session injection.
+
+    Returns:
+        JSONResponse containing confirmation message and operator display name, 
+        decorated with an HTTP-only JWT access cookie.
+
+    Raises:
+        HTTPException (401): If credentials are invalid or user is inactive.
+    """
     from sqlalchemy import select
     from models.user import OperatorUser
 
@@ -167,6 +203,18 @@ async def login(
 @router.post("/logout")
 @limiter.limit("10/minute")
 async def logout(request: Request) -> JSONResponse:
+    """
+    Terminate operator sessions and clear secure cookies.
+
+    Deletes the 'access_token' cookie from the client browser matching path,
+    domain, and security attributes.
+
+    Args:
+        request: The FastAPI request instance.
+
+    Returns:
+        JSONResponse confirming successful session termination.
+    """
     from core.security import COOKIE_HTTPONLY, COOKIE_SECURE, COOKIE_SAMESITE, COOKIE_PATH
     response = JSONResponse(content={"message": "Logged out successfully"})
     response.delete_cookie(
@@ -181,7 +229,19 @@ async def logout(request: Request) -> JSONResponse:
 @router.get("/verify")
 @limiter.limit("20/minute")
 async def verify_token(request: Request, current_user: dict = Depends(get_current_user)) -> dict:
-    """Validate the caller's bearer token."""
+    """
+    Validate the caller's active session bearer token.
+
+    Decodes JWT token structures, validating expiration, audience, issuer, 
+    and checks if the token has been JTI blacklisted.
+
+    Args:
+        request: The FastAPI request instance.
+        current_user: JWT payload context injected from request bearer dependencies.
+
+    Returns:
+        A dictionary containing token status, subject identifier (email), and authorization role.
+    """
     return {"status": "valid", "sub": current_user.get("sub"), "role": current_user.get("role")}
 
 
@@ -192,7 +252,22 @@ class RefreshTokenRequest(BaseModel):
 @router.post("/refresh")
 @limiter.limit("5/minute")
 async def refresh_access_token(request: Request, body: RefreshTokenRequest) -> JSONResponse:
-    """Issue a new access token from a valid refresh token."""
+    """
+    Issue a new JWT access token using a valid, unexpired refresh token.
+
+    Verifies refresh token signatures, audience, issuer, validates purpose constraints, 
+    and verifies that the token's JTI has not been blacklisted.
+
+    Args:
+        request: The FastAPI request instance.
+        body: RefreshTokenRequest containing the raw refresh JWT string.
+
+    Returns:
+        JSONResponse with a new access JWT decorated as a secure browser cookie.
+
+    Raises:
+        HTTPException (401): If the refresh token has expired, is invalid, or has been revoked.
+    """
     try:
         payload = jwt.decode(
             body.refresh_token,
@@ -229,7 +304,19 @@ async def revoke_access_token(
     request: Request,
     current_user: dict = Depends(get_current_user),
 ) -> dict:
-    """Revoke the current access token."""
+    """
+    Revoke the current user's session token.
+
+    Adds the token's JTI (JWT ID) to the blacklisted cache registry to immediately 
+    block any subsequent requests utilizing the token.
+
+    Args:
+        request: The FastAPI request instance.
+        current_user: Current authenticated JWT payload.
+
+    Returns:
+        A dictionary confirming successful revocation.
+    """
     jti = current_user.get("jti")
     if jti:
         cache = getattr(request.app.state, 'cache', None)

@@ -988,13 +988,49 @@ export interface MunicipalitiesResponse {
   pageSize: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function normalizeMunicipality(d: any): Municipality {
+export interface RawMunicipality {
+  slug?: string;
+  name?: string;
+  short_name?: string;
+  shortName?: string;
+  city?: string;
+  state_code?: string;
+  stateCode?: string;
+  municipality_type?: string;
+  municipalityType?: string;
+  ward_count?: number | null;
+  wardCount?: number | null;
+  population?: number | null;
+  helpline_phone?: string | null;
+  helplinePhone?: string | null;
+  centroid_lat?: number;
+  centroidLat?: number;
+  centroid_lon?: number;
+  centroidLon?: number;
+  distance_km?: number | null;
+  distanceKm?: number | null;
+  headquarters_address?: string | null;
+  email?: string | null;
+  website_url?: string | null;
+  whatsapp_number?: string | null;
+  app_name?: string | null;
+  app_url?: string | null;
+  grievance_portal_url?: string | null;
+  mayor_name?: string | null;
+  mayor_photo_url?: string | null;
+  commissioner_name?: string | null;
+  commissioner_phone?: string | null;
+  area_sqkm?: number | null;
+  description?: string | null;
+  services_offered?: string[] | null;
+}
+
+function normalizeMunicipality(d: RawMunicipality): Municipality {
   return {
-    slug: d.slug,
-    name: d.name,
+    slug: d.slug ?? '',
+    name: d.name ?? '',
     shortName: d.short_name ?? d.shortName ?? '',
-    city: d.city,
+    city: d.city ?? '',
     stateCode: d.state_code ?? d.stateCode ?? '',
     municipalityType: d.municipality_type ?? d.municipalityType ?? '',
     wardCount: d.ward_count ?? d.wardCount ?? null,
@@ -1006,8 +1042,7 @@ function normalizeMunicipality(d: any): Municipality {
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function normalizeMunicipalityDetail(d: any): MunicipalityDetail {
+function normalizeMunicipalityDetail(d: RawMunicipality): MunicipalityDetail {
   return {
     ...normalizeMunicipality(d),
     headquartersAddress: d.headquarters_address ?? null,
@@ -1026,7 +1061,6 @@ function normalizeMunicipalityDetail(d: any): MunicipalityDetail {
     servicesOffered: d.services_offered ?? null,
   };
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export async function fetchMunicipalities(params?: {
   q?: string;
@@ -1070,64 +1104,55 @@ export async function fetchNearbyMunicipalities(
 
 // ─── Enterprise Civic Intelligence Workflow Systems ───────────────────
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function authorityAcceptComplaint(uuid: string): Promise<any> {
+export async function authorityAcceptComplaint(uuid: string): Promise<Record<string, unknown>> {
   const { data } = await client.post(`/api/v1/authority/complaints/${uuid}/accept`);
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function authorityRejectComplaint(uuid: string, reason: string): Promise<any> {
+export async function authorityRejectComplaint(uuid: string, reason: string): Promise<Record<string, unknown>> {
   const { data } = await client.post(`/api/v1/authority/complaints/${uuid}/reject`, { reason });
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function citizenConfirmResolution(ref: string, rating?: number, notes?: string): Promise<any> {
+export async function citizenConfirmResolution(ref: string, rating?: number, notes?: string): Promise<Record<string, unknown>> {
   const { data } = await client.post(`/api/v1/citizen/complaints/${ref}/confirm`, { rating, notes });
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function citizenRejectResolution(ref: string, reason: string): Promise<any> {
+export async function citizenRejectResolution(ref: string, reason: string): Promise<Record<string, unknown>> {
   const { data } = await client.post(`/api/v1/citizen/complaints/${ref}/reject`, { reason });
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function fetchPublicWardRankings(): Promise<any> {
+export async function fetchPublicWardRankings(): Promise<Record<string, unknown>[]> {
   const { data } = await client.get('/api/v1/public/ward-rankings');
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function fetchPublicStats(): Promise<any> {
+export async function fetchPublicStats(): Promise<Record<string, unknown>> {
   const { data } = await client.get('/api/v1/public/stats');
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function fieldStartWork(uuid: string, lat: number, lon: number): Promise<any> {
+export async function fieldStartWork(uuid: string, lat: number, lon: number): Promise<Record<string, unknown>> {
   const { data } = await client.post(`/api/v1/field/complaints/${uuid}/start-work`, { lat, lon });
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function fieldUploadEvidence(uuid: string, formData: FormData): Promise<any> {
+export async function fieldUploadEvidence(uuid: string, formData: FormData): Promise<Record<string, unknown>> {
   const { data } = await client.post(`/api/v1/field/complaints/${uuid}/upload-evidence`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   });
   return data;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function fieldCompleteWork(
   uuid: string,
   afterPhotoUrl: string | null,
   notes: string | null,
   lat: number,
   lon: number
-): Promise<any> {
+): Promise<Record<string, unknown>> {
   const { data } = await client.post(`/api/v1/field/complaints/${uuid}/complete`, {
     after_photo_url: afterPhotoUrl,
     notes,
