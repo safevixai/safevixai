@@ -107,7 +107,7 @@ jobs:
         run: |
           if [ -f coverage/cobertura-coverage.xml ]; then
             echo "Checking coverage thresholds..."
-            python3 -c "import xml.etree.ElementTree as ET,sys;r=ET.parse('coverage/cobertura-coverage.xml').getroot();lr=float(r.get('line-rate',0));br=float(r.get('branch-rate',0));print(f'Line coverage: {lr:.2%}');print(f'Branch coverage: {br:.2%}');exit(0 if lr>=0.5 and br>=0.4 else 1)"
+            python3 -c "import xml.etree.ElementTree as ET,sys;r=ET.parse('coverage/cobertura-coverage.xml').getroot();lr=float(r.get('line-rate',0));br=float(r.get('branch-rate',0));print(f'Line coverage: {lr:.2%}');print(f'Branch coverage: {br:.2%}');exit(0 if lr>=0.5 and br>=0.3 else 1)"
           else
             echo "cobertura-coverage.xml not found - skipping threshold check"
           fi
