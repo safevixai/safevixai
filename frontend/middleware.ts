@@ -10,6 +10,12 @@ const DEFAULT_LOCALE = 'en';
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
+  // 0. Skip locale redirect if this is an internal rewrite from the locale handler
+  //    (prevents infinite loop: hasLocale → rewrite → no locale → redirect → hasLocale → ...)
+  if (request.headers.get('x-middleware-rewrite') !== null) {
+    return NextResponse.next();
+  }
+
   // 1. Skip middleware for static assets, public assets, and API routes
   if (
     pathname.startsWith('/_next') ||
