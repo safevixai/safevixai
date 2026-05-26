@@ -20,5 +20,5 @@ redis==7.4.0
 httpx==0.28.1
 requests==2.33.1
 
-pypdf==6.10.2
+pypdf==6.12.1
 pdfplumber==0.11.9
