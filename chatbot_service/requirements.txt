@@ -16,7 +16,7 @@ slowapi==0.1.9
 # --- Data validation ---
 pydantic==2.13.4
 python-dotenv==1.2.2
-python-multipart==0.0.27
+python-multipart==0.0.29
 
 # --- LLM / RAG ---
 langgraph==1.1.10
