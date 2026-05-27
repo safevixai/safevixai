@@ -13,6 +13,8 @@ exclude-paths:
   - "frontend/public/**"
   - "frontend/e2e/visual.spec.ts-snapshots/**"
   - "chatbot_service/data/chroma_db/**"
+  - "chatbot_service/data/accidents/**"
+  - "e2e/**"
   - "node_modules/**"
   - "frontend/node_modules/**"
   - "backend/venv/**"
