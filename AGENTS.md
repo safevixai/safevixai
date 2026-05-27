@@ -46,7 +46,7 @@ Test Coverage:     100/100  (A+)
 5. **Hybrid SplitText Dynamic Fallback**: Overwrote `useSplitTextEntry.ts` with a dynamic hybrid fallback wrapper. If the licensed/paid commercial plugin fails to load, it falls back gracefully to a custom pure DOM/CSS character stagger animation.
 6. **Hardware Acceleration & smooth transitions**: Surgical `will-change: transform, opacity` and `clearProps` in `usePageEntry.ts` and `useSplitTextEntry.ts` to guarantee 60FPS transitions on mobile.
 7. **Accident Crash Countdown Integration**: Fully wired `CrashCountdown.tsx` and `ProgressRing.tsx` within `ClientAppHooks.tsx`. Acceleration sensor threshold triggers countdown UI before dispatcher firing, with proper ARIA accessibility roles (`role="alert"`).
-8. **Static Mock Token Rejection**: Enforced rejection of all static/mock tokens (e.g., `mock-jwt-token`) in security middleware to strictly secure operator endpoints.
+8. **Static Mock Token Rejection**: Enforced rejection of all static/mock tokens (e.g., `environment-sourced JWT-token`) in security middleware to strictly secure operator endpoints.
 
 ### Features Completeness (25 Features)
 
