@@ -5,26 +5,21 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+      time: "09:00"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 10
     labels:
       - "dependencies"
       - "frontend"
-    commit-message:
-      prefix: "chore(deps)"
-    ignore:
-      - dependency-name: "next"
-        versions: [">=17.0.0"]
-      - dependency-name: "react"
-        versions: [">=19.0.0"]
-      - dependency-name: "react-dom"
-        versions: [">=19.0.0"]
 
   - package-ecosystem: "pip"
     directory: "/backend"
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+      time: "09:00"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 10
     labels:
       - "dependencies"
       - "backend"
@@ -34,7 +29,9 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+      time: "09:00"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 10
     labels:
       - "dependencies"
       - "chatbot"
@@ -42,6 +39,11 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 5
     labels:
+      - "dependencies"
       - "ci"

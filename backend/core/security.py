@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import secrets
+import time
 from datetime import datetime, timedelta, timezone
 import uuid
 from typing import Any
@@ -11,9 +12,22 @@ from fastapi.responses import JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 import jwt
 
+import re
+
 import logging
 
 logger = logging.getLogger(__name__)
+
+# Regex matching any development/static/mock token patterns
+REJECTED_TOKEN_RE = re.compile(
+    r'(?:mock|fake|test|demo|dev|hackathon|sample|placeholder).*(?:token|jwt|key|secret)',
+    re.IGNORECASE,
+)
+
+# Static mock tokens that must be explicitly rejected
+REJECTED_STATIC_TOKENS = {
+    "mock-jwt-token-for-hackathon",
+}
 
 # JWT secrets must come from environment in production. In development, an
 # ephemeral key avoids shipping a static secret while keeping local auth usable.
@@ -41,12 +55,6 @@ APP_JWT_ISSUER = os.environ.get("APP_JWT_ISSUER", "safevixai-auth-service")
 
 SUPABASE_JWT_SECRET = os.environ.get("SUPABASE_JWT_SECRET", "").strip()
 SUPABASE_JWT_AUDIENCE = os.environ.get("SUPABASE_JWT_AUDIENCE", "authenticated").strip()
-REJECTED_STATIC_TOKENS = {
-    "mock-jwt-token-for-hackathon",
-    "mock-jwt-token",
-    "fake-token",
-    "test-token",
-}
 
 # Token revocation set (in-memory fallback, persisted to Redis when available)
 _revoked_token_jtis: set[str] = set()
@@ -217,7 +225,7 @@ def _decode_supabase_token(token: str) -> dict[str, Any]:
 
 def _decode_bearer_token(token: str) -> dict[str, Any]:
     token = token.strip()
-    if not token or token in REJECTED_STATIC_TOKENS:
+    if not token or REJECTED_TOKEN_RE.search(token) or token in REJECTED_STATIC_TOKENS:
         raise _unauthorized()
     try:
         return _decode_app_token(token)
@@ -237,6 +245,25 @@ def _decode_bearer_token(token: str) -> dict[str, Any]:
             raise _unauthorized() from app_error
 
 
+# Simple in-memory rate limiter for internal auth bypass attempts
+_internal_auth_attempts: dict[str, list[float]] = {}
+
+async def _check_internal_auth_rate_limit(client_ip: str | None) -> None:
+    """Allow max 5 internal auth attempts per IP per 60 seconds."""
+    if not client_ip:
+        return
+    now = time.monotonic()
+    window = 60.0
+    key = f"internal_auth:{client_ip}"
+    attempts = _internal_auth_attempts.setdefault(key, [])
+    # Prune old entries
+    attempts[:] = [t for t in attempts if now - t < window]
+    if len(attempts) >= 5:
+        logger.warning("Internal auth rate limit exceeded for IP: %s", client_ip)
+        raise HTTPException(status_code=429, detail="Too many authentication attempts. Try again later.")
+    attempts.append(now)
+
+
 async def get_current_user_optional(
     request: Request,
 ) -> dict[str, Any] | None:
@@ -244,11 +271,13 @@ async def get_current_user_optional(
     # Internal service token authentication bypass for Chatbot
     internal_key = request.headers.get("X-Internal-Api-Key") or request.headers.get("X-Service-Token")
     if internal_key:
+        client_ip = request.client.host if request.client else None
+        await _check_internal_auth_rate_limit(client_ip)
         from core.config import get_settings
         settings = get_settings()
-        if settings.chatbot_internal_api_key and internal_key == settings.chatbot_internal_api_key:
+        if settings.chatbot_internal_api_key and secrets.compare_digest(internal_key, settings.chatbot_internal_api_key):
             return {"sub": "chatbot-service", "role": "operator", "org_id": None, "auth_provider": "internal"}
-        if settings.admin_secret and internal_key == settings.admin_secret:
+        if settings.admin_secret and secrets.compare_digest(internal_key, settings.admin_secret):
             return {"sub": "admin-system", "role": "admin", "org_id": None, "auth_provider": "internal"}
 
     token = request.cookies.get("access_token")

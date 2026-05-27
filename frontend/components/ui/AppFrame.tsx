@@ -13,6 +13,7 @@ import { KeyboardShortcutsHelp } from '@/components/ui/KeyboardShortcutsHelp';
 import { OfflineBanner } from '@/components/ui/OfflineBanner';
 import { SystemStatusBar } from '@/components/ui/SystemStatusBar';
 import { ServerWarmingBanner } from '@/components/ui/ServerWarmingBanner';
+import { ServerHealthStatus } from '@/components/ServerHealthStatus';
 import { useAppStore } from '@/lib/store';
 import { Menu } from 'lucide-react';
 
@@ -41,6 +42,7 @@ export function AppFrame({ children }: AppFrameProps) {
         <SystemStatusBar />
         <OfflineBanner />
         <ServerWarmingBanner />
+        <ServerHealthStatus />
         {/* Intentionally omitting GlobalSOS, Sidebar, and BottomNav for these standalone pages */}
         <main className="flex-1 w-full relative flex flex-col">
           {children}
@@ -64,6 +66,7 @@ export function AppFrame({ children }: AppFrameProps) {
       <SystemStatusBar />
       <OfflineBanner />
       <ServerWarmingBanner />
+      <ServerHealthStatus />
 
       {/* ── Navigation Shell ── */}
       

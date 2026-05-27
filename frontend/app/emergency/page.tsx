@@ -13,6 +13,8 @@ import { useAppStore } from '@/lib/store';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { useSplitTextEntry } from '@/hooks/useSplitTextEntry';
+import { PUBLIC_API_BASE_URL, PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
+
 
 
 const CATEGORIES = ['All', 'Medical', 'Fire', 'Accident', 'Criminal'] as const;
@@ -124,6 +126,13 @@ export default function EmergencyProtocolsPage() {
   useEffect(() => {
     setMounted(true);
     document.title = 'Emergency Protocols | SafeVixAI';
+    // Pre-warm backend + chatbot for emergency cold-start prevention
+    const BACKEND = PUBLIC_API_BASE_URL;
+    const CHATBOT = PUBLIC_CHATBOT_BASE_URL;
+    Promise.allSettled([
+      fetch(`${BACKEND}/health`, { method: 'GET', cache: 'no-store' }),
+      fetch(`${CHATBOT}/health`, { method: 'GET', cache: 'no-store' }),
+    ]);
   }, []);
 
   // GSAP Emergency Animations - fast snap

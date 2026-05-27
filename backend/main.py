@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from datetime import datetime, timezone
 import logging.config
 import sys
@@ -102,8 +103,8 @@ def create_app() -> FastAPI:
         sentry_sdk.init(
             dsn=settings.sentry_dsn,
             environment=settings.environment,
-            traces_sample_rate=0.1,
-            profiles_sample_rate=0.1,
+            traces_sample_rate=0.05,
+            profiles_sample_rate=0.05,
         )
 
     @asynccontextmanager
@@ -289,6 +290,23 @@ def create_app() -> FastAPI:
         response = await call_next(request)
         duration_ms = round((time.monotonic() - start) * 1000, 1)
         response.headers["X-Request-ID"] = request_id
+        # Extract user_id from JWT payload without verification (fast path for logging)
+        user_id = "anonymous"
+        auth_header = request.headers.get("Authorization", "")
+        if auth_header.startswith("Bearer "):
+            token = auth_header.removeprefix("Bearer ")
+            # Decode JWT payload without verification for logging
+            import json as _json
+            import base64 as _b64
+            try:
+                parts = token.split(".")
+                if len(parts) >= 2:
+                    padded = parts[1] + "=" * (4 - len(parts[1]) % 4)
+                    decoded = _b64.urlsafe_b64decode(padded)
+                    payload = _json.loads(decoded)
+                    user_id = payload.get("sub") or payload.get("user_id") or "authenticated"
+            except Exception:
+                user_id = "authenticated"
         logger.info(
             "%s %s → %d (%.1fms)",
             request.method,
@@ -297,6 +315,7 @@ def create_app() -> FastAPI:
             duration_ms,
             extra={
                 "request_id": request_id,
+                "user_id": user_id,
                 "method": request.method,
                 "path": request.url.path,
                 "status": response.status_code,
@@ -360,7 +379,7 @@ def create_app() -> FastAPI:
             response.set_cookie(
                 key="csrf_token",
                 value=new_token,
-                httponly=False,
+                httponly=True,
                 secure=is_prod,
                 samesite="lax",
                 path="/"
@@ -401,9 +420,23 @@ def create_app() -> FastAPI:
     from middleware.compression import setup_compression
     setup_compression(app)
 
+    # SECURITY#03: CORS origin validator — rejects requests from origins not in allowlist
+    cors_origins = settings.cors_origins
+    if cors_origins == ['*']:
+        logger.warning("CORS configured with wildcard origin — all origins accepted")
+    else:
+        cors_set = set(cors_origins)
+        @app.middleware("http")
+        async def _cors_origin_check(request: Request, call_next):
+            origin = request.headers.get("origin")
+            if origin and origin not in cors_set:
+                logger.warning("Blocked request from unauthorized origin: %s", origin)
+                return JSONResponse(status_code=403, content={"detail": "Origin not allowed"})
+            return await call_next(request)
+
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.cors_origins,
+        allow_origins=cors_origins,
         allow_credentials=True,
         # P0-04: Restrict methods and headers (audit issue H2)
         # Wildcard allow_methods + allow_headers with allow_credentials=True is a CORS misconfiguration
@@ -413,6 +446,7 @@ def create_app() -> FastAPI:
             "Content-Type",
             "Accept",
             "X-Admin-Key",
+            "X-CSRF-Token",
             "X-Request-ID",
             "X-Requested-With",
         ],
@@ -426,12 +460,16 @@ def create_app() -> FastAPI:
     @app.exception_handler(Exception)
     async def _unhandled_exception_handler(request: Request, exc: Exception):
         logger.error("Unhandled exception on %s %s: %s", request.method, request.url.path, exc)
-        # SECURITY#18: Sanitize exception message — don't leak SQL queries or PII in alerts
+        # SECURITY#18: Sanitize exception message — don't leak SQL, PII, or secrets in alerts
         exc_msg = str(exc)
         if len(exc_msg) > 500:
             exc_msg = exc_msg[:500] + "...[truncated]"
         # Remove potential SQL queries from error messages
         exc_msg = exc_msg.replace("SELECT", "[REDACTED]").replace("INSERT", "[REDACTED]").replace("DELETE", "[REDACTED]")
+        # Redact PII patterns: emails, phone numbers, IP addresses
+        exc_msg = re.sub(r'[\w\.-]+@[\w\.-]+\.\w{2,}', '[EMAIL REDACTED]', exc_msg)
+        exc_msg = re.sub(r'\b\d{10}\b', '[PHONE REDACTED]', exc_msg)
+        exc_msg = re.sub(r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b', '[IP REDACTED]', exc_msg)
         get_alert_service().alert_external_api_failed(
             service_name="Backend Unhandled Error",
             endpoint=f"{request.method} {request.url.path}",

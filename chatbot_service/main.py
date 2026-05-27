@@ -26,6 +26,9 @@ from slowapi.errors import RateLimitExceeded
 
 from limiter import limiter
 
+from middleware.query_profiler import setup_query_profiler
+from middleware.correlation_id import setup_correlation_id
+
 from memory.redis_memory import ConversationMemoryStore
 from providers.router import ProviderRouter
 from rag.retriever import Retriever
@@ -222,6 +225,12 @@ def create_app() -> FastAPI:
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+    # OBSERVABILITY#2: Query profiler middleware (logs slow responses)
+    setup_query_profiler(app)
+
+    # OBSERVABILITY#3: Correlation ID middleware (ContextVar-based tracing)
+    setup_correlation_id(app)
+
     # P2-02: Prometheus metrics middleware
     @app.middleware("http")
     async def _prometheus_metrics_middleware(request: Request, call_next):
@@ -264,12 +273,19 @@ def create_app() -> FastAPI:
             "magnetometer=(), "
             "payment=()"
         )
+        is_prod = get_settings().environment == "production"
         response.headers["Content-Security-Policy"] = (
             "default-src 'self'; "
             "script-src 'self' 'unsafe-inline'; "
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
             "font-src 'self' https://fonts.gstatic.com; "
-            "connect-src 'self' https: wss: ws:"
+            "img-src 'self' https: data: blob:; "
+            "connect-src 'self' https: wss: ws:; "
+            "media-src 'self' blob:; "
+            "worker-src 'self' blob:; "
+            "frame-ancestors 'none'; "
+            "base-uri 'self'; "
+            "form-action 'self'"
         )
         return response
 
@@ -280,6 +296,21 @@ def create_app() -> FastAPI:
         response = await call_next(request)
         duration_ms = round((time.monotonic() - start) * 1000, 1)
         response.headers["X-Request-ID"] = request_id
+        auth_header = request.headers.get("Authorization", "")
+        user_id = "anonymous"
+        if auth_header.startswith("Bearer "):
+            token = auth_header.removeprefix("Bearer ")
+            try:
+                import json as _json
+                import base64 as _b64
+                parts = token.split(".")
+                if len(parts) >= 2:
+                    padded = parts[1] + "=" * (4 - len(parts[1]) % 4)
+                    decoded = _b64.urlsafe_b64decode(padded)
+                    payload = _json.loads(decoded)
+                    user_id = payload.get("sub") or payload.get("user_id") or "authenticated"
+            except Exception:
+                user_id = "authenticated"
         logger.info(
             "%s %s → %d (%.1fms)",
             request.method,
@@ -288,6 +319,7 @@ def create_app() -> FastAPI:
             duration_ms,
             extra={
                 "request_id": request_id,
+                "user_id": user_id,
                 "method": request.method,
                 "path": request.url.path,
                 "status": response.status_code,

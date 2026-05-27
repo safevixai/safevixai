@@ -71,4 +71,20 @@ export const track = {
   /** Feature flag or integration error */
   integrationError: (source: string, error: string) =>
     posthog.capture('integration_error', { source, error }),
+
+  /** Navigation timing: page load performance metrics from Performance API */
+  pageLoadTiming: () => {
+    if (typeof window === 'undefined' || !window.performance?.timing) return;
+    const t = window.performance.timing;
+    const navStart = t.navigationStart || t.fetchStart || 0;
+    if (!navStart) return;
+    posthog.capture('page_load_timing', {
+      dns_ms: t.domainLookupEnd - t.domainLookupStart,
+      tcp_ms: t.connectEnd - t.connectStart,
+      ttfb_ms: t.responseStart - navStart,
+      dom_ready_ms: t.domContentLoadedEventEnd - navStart,
+      full_load_ms: t.loadEventEnd - navStart,
+      redirect_ms: t.redirectEnd - t.redirectStart,
+    });
+  },
 };

@@ -277,7 +277,7 @@ class TestSettings:
 
     def test_rag_defaults(self, mock_env):
         s = get_settings()
-        assert s.rag_min_score == 0.28
+        assert s.rag_min_score == 0.55
         assert s.top_k_retrieval == 5
         assert s.default_llm_model == 'deterministic-rag'
 

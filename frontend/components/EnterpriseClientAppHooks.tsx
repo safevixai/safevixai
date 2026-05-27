@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner';
 import type { Session } from '@supabase/supabase-js'
-import { triggerSos } from '@/lib/api'
+import { triggerSos, fetchCsrfToken } from '@/lib/api'
 import { startCrashDetection, stopCrashDetection } from '@/lib/crash-detection'
 import { enqueueSOS, registerOfflineSyncListeners } from '@/lib/offline-sos-queue'
 import { STANDARD_GRAVITY_MS2 } from '@/lib/safety-constants'
 import { useAppStore } from '@/lib/store'
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth'
-import { PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
+import { PUBLIC_API_BASE_URL, PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
 import { FEATURES } from '@/lib/features'
 import { beginLocationBroadcast, startFamilyTracking } from '@/lib/live-tracking'
 import { Loader2 } from 'lucide-react'
@@ -21,32 +21,32 @@ import InstallPrompt from '@/components/InstallPrompt'
 
 function SystemBanners() {
   const connectivity = useAppStore(state => state.connectivity)
-  const [warming, setWarming] = useState(false)
+  const [localWarming, setLocalWarming] = useState(false)
+  const setServerWarming = useAppStore(state => state.setServerWarming)
 
   useEffect(() => {
-    // Check if backend needs warming up (e.g., cold starts)
     const checkHealth = async () => {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout means it's likely waking up
-        
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
         const res = await fetch(`${PUBLIC_CHATBOT_BASE_URL}/speech/status`, { signal: controller.signal });
         clearTimeout(timeoutId);
         if (!res.ok) throw new Error('Not ready');
-        setWarming(false);
+        setLocalWarming(false);
+        setServerWarming(false);
       } catch (err) {
         if ((err as Error).name === 'AbortError') {
-          setWarming(true);
-          // Wait a bit and it will likely be up. In a real scenario we'd poll.
+          setLocalWarming(true);
+          setServerWarming(true);
         }
       }
     };
     checkHealth();
-  }, []);
+  }, [setServerWarming]);
 
   return (
     <>
-      {warming && connectivity !== 'offline' && (
+      {localWarming && connectivity !== 'offline' && (
         <div className="fixed top-0 left-0 w-full z-[9999] bg-brand text-white text-xs font-bold px-4 py-1.5 flex items-center justify-center gap-2 shadow-md">
           <Loader2 size={14} className="animate-spin" />
           CONNECTING... (~30 SECONDS ON FIRST LOAD)
@@ -156,6 +156,60 @@ export function EnterpriseClientAppHooks() {
 
     return () => data.subscription.unsubscribe()
   }, [])
+
+  // Keep-alive pings: warm Render free tier instances + fetch CSRF token
+  useEffect(() => {
+    const PING_INTERVAL_MS = 540_000; // 9 minutes (Render idles at 15 min)
+    const ENDPOINTS = [
+      `${PUBLIC_API_BASE_URL}/health`,
+      `${PUBLIC_CHATBOT_BASE_URL}/health`,
+    ];
+
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    let terminated = false;
+
+    const ping = async () => {
+      await Promise.allSettled(ENDPOINTS.map(url =>
+        fetch(url, { method: 'GET', cache: 'no-store', mode: 'cors' })
+      ));
+    };
+
+    const startPinging = () => {
+      ping(); // immediate ping
+      intervalId = setInterval(ping, PING_INTERVAL_MS);
+    };
+
+    // Fetch CSRF token on mount (needed because cookie is httponly)
+    const init = async () => {
+      await fetchCsrfToken();
+      if (!terminated) startPinging();
+    };
+    init();
+
+    // Re-ping on page focus (user returns after idle)
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible' && !terminated) {
+        ping();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      terminated = true;
+      if (intervalId) clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, []);
+
+  // Report page load timing on first render
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (document.readyState === 'complete') {
+      track.pageLoadTiming();
+    } else {
+      window.addEventListener('load', () => track.pageLoadTiming(), { once: true });
+    }
+  }, []);
 
   useEffect(() => {
     if (!FEATURES.crashDetection || !crashDetectionEnabled) return

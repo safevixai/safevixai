@@ -28,7 +28,32 @@ from core.database import get_db
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
+
 import secrets
+
+
+@router.get("/csrf-token")
+@limiter.limit("30/minute")
+async def get_csrf_token(request: Request) -> dict:
+    """Return CSRF token for mutation requests.
+
+    The token is stored in an httponly cookie. Frontend reads it
+    via this endpoint and sends it back as X-CSRF-Token header.
+    """
+    import secrets as _secrets
+    token = _secrets.token_urlsafe(32)
+    response = JSONResponse(content={"csrf_token": token})
+    is_prod = os.environ.get("ENVIRONMENT", "development") == "production"
+    response.set_cookie(
+        key="csrf_token",
+        value=token,
+        httponly=True,
+        secure=is_prod,
+        samesite="lax",
+        path="/",
+        max_age=86400,
+    )
+    return response
 
 class RegisterRequest(BaseModel):
     email: str = Field(min_length=3, max_length=254)

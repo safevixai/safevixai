@@ -421,6 +421,17 @@ export default function ChallanPage() {
                 </p>
               </div>
            </div>
+
+           {/* Legal Disclaimer Box */}
+           <div className="p-5 rounded-2xl bg-surface-2 border border-border flex flex-col gap-2 opacity-80">
+             <p className="text-[9px] font-bold text-text-3 uppercase tracking-widest flex items-center gap-1.5">
+               <Scale size={10} className="text-text-3" />
+               Legal Disclaimer & Caveats
+             </p>
+             <p className="text-[10px] font-medium text-text-3 leading-relaxed">
+               This is a citizens' estimation terminal. Fine amounts are estimates based on the Motor Vehicles (Amendment) Act 2019 and state-level overrides. This tool does not provide binding legal advice, official adjudications, or formal citation resolutions. Please consult legal counsel or refer to official government traffic department notifications for absolute verification.
+             </p>
+           </div>
         </div>
       </main>
     </div>

@@ -68,10 +68,10 @@ jobs:
           fi
           run_count=$(jq '.runs | length' results.sarif)
           for i in $(seq 0 $((run_count - 1))); do
-            jq "{version: .version, runs: [.runs[$i]], \"$schema\": .\"$schema\"}" results.sarif > /tmp/run-$i.sarif
+            jq --argjson idx "$i" '{version: .version, runs: [.runs[$idx]]}' results.sarif > /tmp/run-$i.sarif
             echo "Uploading run $i/$run_count"
             gh api \
-              --method PUT \
+              --method POST \
               -H "Accept: application/vnd.github+json" \
               "/repos/${{ github.repository }}/code-scanning/sarifs" \
               -f "commit_sha=${{ github.sha }}" \

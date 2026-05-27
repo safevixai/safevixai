@@ -370,4 +370,50 @@ curl "http://localhost:8000/api/v1/challan/calculate?violation_code=MVA_185"
 
 ---
 
-*Document version: 1.1 | IIT Madras Road Safety Hackathon 2026 | Updated: May 2026*
+## Free Tier Cold Start Mitigation
+
+Render free web services spin down after **15 minutes of inactivity** and take **30–60 seconds** to cold start. The app mitigates this with three layers:
+
+### 1. cron-job.org (Automatic Keep-Alive)
+
+Set up two free cron jobs at [cron-job.org](https://cron-job.org) (no signup cost):
+
+| Job | URL to Ping | Interval |
+|-----|-------------|----------|
+| Backend | `https://safevixai-api.onrender.com/health` | Every 10 minutes |
+| Chatbot | `https://safevixai-chatbot.onrender.com/health` | Every 10 minutes |
+
+1. Create account at cron-job.org
+2. Add new cron job → URL, 10-minute interval, GET request
+3. Disable "Save Responses" to save their resources
+4. Both jobs stay free forever (10 min interval = 6 jobs/day × 30 days = 180 requests/month ≈ free)
+
+### 2. Client-Side Warm-Up (Automatic)
+
+The frontend automatically pings both `/health` endpoints:
+
+- **On page load** — immediately sends warm-up pings
+- **Every 9 minutes** — interval timer keeps instances awake
+- **On tab focus** — re-warms when user returns after idle
+- **Emergency page** — pre-warms before user needs to act
+
+This runs in `EnterpriseClientAppHooks.tsx` (keep-alive pings) and `app/emergency/page.tsx` (emergency pre-warm).
+
+### 3. Server Warming Banner (Visual Feedback)
+
+When a request takes >5 seconds (cold start signal), a "Connecting..." banner appears at the bottom of the screen. Controlled by `components/ui/ServerWarmingBanner.tsx` + warming interceptors in `lib/api.ts`.
+
+### Expected Cold Start Behavior
+
+| Scenario | Delay | User Sees |
+|----------|-------|-----------|
+| First visit (or after >15 min idle) | 30–60s warming + page load | "Connecting..." banner, then normal page |
+| Active user (returning within 15 min) | ~1–2s | No delay, instant response |
+| cron-job.org ping arrives | 30–60s warming (server wakes up) | No user impact (next user request is fast) |
+| Emergency page visited | Immediate pre-warm ping | Minimal delay on SOS actions |
+
+> **Note:** On free tier, the combined idle+startup time per month is ~750 hours per service. With 10-min keep-alive, expect ~744 hours/month uptime (99.9%).
+
+---
+
+*Document version: 1.2 | IIT Madras Road Safety Hackathon 2026 | Updated: May 2026*

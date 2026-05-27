@@ -9,23 +9,38 @@ const BASE_URL = PUBLIC_API_BASE_URL;
 // Chatbot service runs on a separate port/service
 const CHATBOT_URL = PUBLIC_CHATBOT_BASE_URL;
 
+// In-memory CSRF token (httponly cookie is not readable from JS)
+let _csrfToken: string | null = null;
+
+/** Fetch CSRF token from the dedicated endpoint (sets httponly cookie + returns token in body) */
+export async function fetchCsrfToken(): Promise<string | null> {
+  try {
+    const res = await fetch(`${BASE_URL}/api/v1/auth/csrf-token`, {
+      credentials: 'include',
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    _csrfToken = data.csrf_token ?? null;
+    return _csrfToken;
+  } catch {
+    return null;
+  }
+}
+
+/** Override the in-memory CSRF token (e.g. after SSR hydration) */
+export function setCsrfToken(token: string | null) {
+  _csrfToken = token;
+}
+
 export const client = axios.create({
   baseURL: BASE_URL,
   timeout: 8_000,
   withCredentials: true,
 });
 
-function getCsrfToken() {
-  if (typeof document === 'undefined') return null;
-  const match = document.cookie.match(new RegExp('(^| )csrf_token=([^;]+)'));
-  if (match) return match[2];
-  return null;
-}
-
 client.interceptors.request.use((config) => {
-  const csrf = getCsrfToken();
-  if (csrf) {
-    config.headers['X-CSRF-Token'] = csrf;
+  if (_csrfToken) {
+    config.headers['X-CSRF-Token'] = _csrfToken;
   }
   const preferredLang = useAppStore.getState().userProfile.preferredLanguage || 'en';
   config.headers['Accept-Language'] = preferredLang;
@@ -90,9 +105,8 @@ const chatbotClient = axios.create({
 });
 
 chatbotClient.interceptors.request.use((config) => {
-  const csrf = getCsrfToken();
-  if (csrf) {
-    config.headers['X-CSRF-Token'] = csrf;
+  if (_csrfToken) {
+    config.headers['X-CSRF-Token'] = _csrfToken;
   }
   const preferredLang = useAppStore.getState().userProfile.preferredLanguage || 'en';
   config.headers['Accept-Language'] = preferredLang;
