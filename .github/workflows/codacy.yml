@@ -56,8 +56,26 @@ jobs:
           # Only run ESLint (pmd/pmd-legacy Docker containers crash on this repo)
           tool: "eslint"
 
-      # Upload the SARIF file generated in the previous step
-      - name: Upload SARIF results file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: results.sarif
+      # Upload Codacy SARIF results to GitHub Code Scanning
+      # Split multi-run SARIF into individual uploads (CodeQL API rejects multiple runs per file since July 2025)
+      - name: Upload SARIF results
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -f results.sarif ]; then
+            echo "No results.sarif found — skipping upload"
+            exit 0
+          fi
+          run_count=$(jq '.runs | length' results.sarif)
+          for i in $(seq 0 $((run_count - 1))); do
+            jq "{version: .version, runs: [.runs[$i]], \"$schema\": .\"$schema\"}" results.sarif > /tmp/run-$i.sarif
+            echo "Uploading run $i/$run_count"
+            gh api \
+              --method PUT \
+              -H "Accept: application/vnd.github+json" \
+              "/repos/${{ github.repository }}/code-scanning/sarifs" \
+              -f "commit_sha=${{ github.sha }}" \
+              -f "ref=${{ github.ref }}" \
+              -f "sarif=$(base64 -w0 < /tmp/run-$i.sarif)" \
+              -f "category=codacy-eslint-run-$i"
+          done
