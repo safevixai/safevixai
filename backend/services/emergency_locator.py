@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from collections.abc import Iterable
 import json
 import math
@@ -23,6 +24,10 @@ from services.exceptions import ExternalServiceError
 from services.exceptions import ServiceValidationError
 from services.local_emergency_catalog import LocalEmergencyEntry, load_local_emergency_catalog
 from services.overpass_service import OverpassService
+from core.redis_client import STALE_CACHE_MAX_AGE_SECONDS
+
+logger = logging.getLogger('uvicorn.emergency_locator')
+
 
 
 SUPPORTED_CATEGORIES = {
@@ -205,15 +210,25 @@ class EmergencyLocatorService:
         if cached:
             return EmergencyResponse.model_validate(cached)
 
-        response = await self._find_nearby_uncached(
-            db=db,
-            lat=lat,
-            lon=lon,
-            categories=parsed_categories,
-            radius_steps=radius_steps,
-            limit=limit,
-            offset=offset,
-        )
+        try:
+            response = await self._find_nearby_uncached(
+                db=db,
+                lat=lat,
+                lon=lon,
+                categories=parsed_categories,
+                radius_steps=radius_steps,
+                limit=limit,
+                offset=offset,
+            )
+        except ExternalServiceError:
+            stale = await self.cache.get_json_stale(cache_key)
+            if stale is not None:
+                logger.warning('Serving stale emergency cache for key=%s (live data unavailable)', cache_key)
+                stale_response = EmergencyResponse.model_validate(stale)
+                stale_response.source = 'stale_cache'
+                return stale_response
+            raise
+
         await self.cache.set_json(cache_key, response.model_dump(mode='json'), self.settings.cache_ttl_seconds)
         return response
 

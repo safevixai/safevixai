@@ -1,15 +1,18 @@
 import logging
-from fastapi import APIRouter, File, UploadFile, HTTPException, Depends
+from fastapi import APIRouter, File, UploadFile, HTTPException, Depends, Request
 
 logger = logging.getLogger(__name__)
 
 from services.pothole_validator import PotholeValidator
 from api.chat import verify_internal_auth
+from limiter import limiter
 
 router = APIRouter(prefix='/api/v1/ai', tags=['AI'])
 
 @router.post('/validate-image')
+@limiter.limit("10/minute")
 async def validate_image(
+    request: Request,
     file: UploadFile = File(...),
     _auth: None = Depends(verify_internal_auth),
 ):

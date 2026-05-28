@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.audit import AuditLog
 from core.database import get_db
 from core.limiter import limiter
 from core.rbac import require_role, Role
@@ -131,6 +132,13 @@ async def assign_complaint_to_officer(
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
+    ip = request.client.host if request.client else "unknown"
+    AuditLog.log_admin_action(
+        str(current_user.get("sub", "unknown")),
+        "complaint_assigned",
+        ip,
+        {"complaint_ref": issue.complaint_ref, "officer_id": officer_id}
+    )
     return {
         "status": "assigned",
         "complaint_ref": issue.complaint_ref,
@@ -238,6 +246,12 @@ async def trigger_data_retention_cleanup(
         await db.execute("SELECT safevixai_cleanup_expired_data()")
         await db.commit()
         
+        ip = request.client.host if request.client else "unknown"
+        AuditLog.log_admin_action(
+            str(current_user.get("sub", "unknown")),
+            "data_retention_cleanup",
+            ip
+        )
         return {
             "status": "success",
             "message": "Data retention cleanup executed successfully",

@@ -8,7 +8,7 @@ import {
   Download, Info, LogOut,
   Map, Vibrate, Navigation, Database,
   ShieldCheck, User,
-  ChevronRight, Volume2
+  ChevronRight, Volume2, Scale
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
@@ -415,6 +415,20 @@ export default function SettingsPage() {
               title={t('settings.emergency_protocols')}
               description={t('settings.emergency_protocols_sub')}
               onClick={() => router.push('/emergency')}
+              rightElement={<ChevronRight size={16} className="text-text-3" />}
+            />
+            <SettingRow
+              icon={<ShieldCheck size={18} className="text-brand-light" />}
+              title="Privacy Policy"
+              description="Digital Personal Data Protection Bill 2023 Compliance Policy"
+              onClick={() => router.push('/privacy')}
+              rightElement={<ChevronRight size={16} className="text-text-3" />}
+            />
+            <SettingRow
+              icon={<Scale size={18} className="text-text-3" />}
+              title="Terms of Service"
+              description="SafeVixAI DriveLegal Citizen Terms and SLA Commitments"
+              onClick={() => router.push('/terms')}
               rightElement={<ChevronRight size={16} className="text-text-3" />}
             />
             <SettingRow

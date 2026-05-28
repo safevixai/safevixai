@@ -18,6 +18,8 @@ import { loadUserProfileFromIndexedDB, migrateUserProfileFromLocalStorage } from
 import i18n from '@/lib/i18n'
 import { CrashCountdown } from '@/components/crash/CrashCountdown'
 import InstallPrompt from '@/components/InstallPrompt'
+import CookieConsent from '@/components/ui/CookieConsent'
+
 
 function SystemBanners() {
   const connectivity = useAppStore(state => state.connectivity)
@@ -321,6 +323,7 @@ export function EnterpriseClientAppHooks() {
         />
       )}
       <InstallPrompt />
+      <CookieConsent />
     </>
   )
 }

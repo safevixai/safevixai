@@ -1,9 +1,17 @@
 from __future__ import annotations
 
+import sys
 import time
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent.parent))
+from alert_service import get_alert_service
+
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from core.audit import AuditLog
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.circuit_breaker import CircuitBreakerRegistry
 from core.database import get_db
 from core.limiter import limiter
 from core.security import get_current_user_optional
@@ -151,6 +159,9 @@ async def create_sos_incident(
         )
         db.add(incident)
         await db.commit()
+        user_id = str(current_user["sub"]) if current_user else None
+        ip = request.client.host if request.client else "unknown"
+        AuditLog.log_sos_trigger(user_id, lat, lon, ip)
         
         result = await emergency_service.build_sos_payload(db=db, lat=lat, lon=lon)
         
@@ -176,10 +187,22 @@ async def create_sos_incident(
         return result
     except ExternalServiceError as exc:
         sos_dispatch_total.labels(status="failed", mode="online").inc()
+        get_alert_service().alert_external_api_failed(
+            service_name="SOS Dispatch",
+            endpoint=f"POST /api/v1/emergency/sos lat={lat} lon={lon}",
+            status_code=503,
+            error_msg=f"External service error: {exc}",
+        )
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     except Exception as exc:
         await db.rollback()
         sos_dispatch_total.labels(status="failed", mode="online").inc()
+        get_alert_service().alert_external_api_failed(
+            service_name="SOS Dispatch",
+            endpoint=f"POST /api/v1/emergency/sos lat={lat} lon={lon}",
+            status_code=500,
+            error_msg=f"Unexpected SOS error: {exc}",
+        )
         raise HTTPException(status_code=503, detail="Unable to record SOS incident") from exc
 
 

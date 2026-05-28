@@ -29,7 +29,7 @@ You are auditing **SafeVixAI** — an AI-powered road safety PWA built for the I
 - Frontend: Next.js 15, TypeScript 5, Tailwind CSS 3, shadcn/ui, MapLibre GL JS, OpenFreeMap, Zustand 5, WebLLM/Transformers.js Gemma (offline AI), GSAP 3.15.0 animations, SWR data fetching
 - Backend: FastAPI (main :8000), FastAPI (chatbot_service :8010 — separate deployment)
 - Database: Supabase (PostgreSQL 16 + PostGIS 3.4 + pgvector)
-- AI: RAG + LangGraph Agent, ChromaDB, 11-provider LLM fallback chain (Groq → Cerebras → Sarvam-30B → GitHub Models → Gemini → NVIDIA NIM → OpenRouter → Mistral → Together AI → Sarvam-105B → TemplateProvider). Indian language detection (Unicode script regex) pre-routes to Sarvam-30B (general) or Sarvam-105B (legal/challan). Circuit breakers, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
+- AI: RAG + LangGraph Agent, ChromaDB, 9-provider LLM fallback chain (Groq → Cerebras → Sarvam-30B → GitHub Models → Gemini → NVIDIA NIM → OpenRouter → Mistral → Together AI → Sarvam-105B → TemplateProvider). Indian language detection (Unicode script regex) pre-routes to Sarvam-30B (general) or Sarvam-105B (legal/challan). Circuit breakers, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
 - Hosting: Render (free tier, 2 services) + Vercel (frontend)
 - PWA: Service worker (safevixai-v3), offline SOS queue (IndexedDB + idb library), Web Share Target, PWA shortcuts (3: SOS, Hospital, Report), push notifications, Background Sync
 - Speech: `POST /speech/translate` (MediaRecorder → IndicSeamlessM4Tv2), `GET /speech/status`. 14 languages mapped via `frontend/lib/languages.ts` (UI code → recognitionCode → speechTargetCode → synthesisCode)
@@ -1223,7 +1223,7 @@ These checks are specific to SafeVixAI's exact stack and are NOT covered by Sect
 ## AUDIT SECTION 24 — MONITORING DEEP AUDIT (GAPS FROM SECTION 13)
 
 **24.1 LLM Provider Health Dashboard**
-- Which of the 11 LLM providers are currently up?
+- Which of the 9 LLMs providers are currently up?
 - Is there a `/api/v1/status` endpoint that pings each provider and returns their health?
 - Useful for debugging: "Chatbot is slow" → check which providers are down → explains fallback latency
 
@@ -1289,7 +1289,7 @@ The remaining 5% are operational concerns that require live runtime data:
 - Are exceptions re-raised after logging? Or are they swallowed silently?
 - Specific check: what happens when Supabase is completely unreachable — `ConnectionRefusedError`?
 - Specific check: what happens when ChromaDB `PersistentClient` fails to load corrupt data?
-- Specific check: what happens when all 11 LLM providers fail — does it return a 500 or a graceful "service unavailable" message?
+- Specific check: what happens when all 9 LLMs providers fail — does it return a 500 or a graceful "service unavailable" message?
 - Is there a global FastAPI exception handler registered for unhandled exceptions?
   ```python
   @app.exception_handler(Exception)
@@ -2055,7 +2055,7 @@ async def check_all_providers_on_startup():
         )
     elif active_count < 3:
         await send_alert_email(
-            subject=f"SafeVixAI WARNING: Only {active_count}/11 LLM providers available",
+            subject=f"SafeVixAI WARNING: Only {active_count}/9 LLMs providers available",
             body=f"Results: {results}"
         )
 
@@ -2232,7 +2232,7 @@ You already added email alerts for critical failures — bro this is exactly the
 **What should trigger email alerts:**
 ```
 CRITICAL (send immediately):
-  - All 11 LLM providers down simultaneously
+  - All 9 LLMs providers down simultaneously
   - Backend service crashes (Render restart)
   - Supabase connection failed
   - Any API key returning 403 (key invalid/banned)
@@ -2354,7 +2354,7 @@ await send_alert_email(
 
 # When all providers fail simultaneously:
 await send_alert_email(
-    subject="CRITICAL: All 11 LLM providers down — chatbot using templates only",
+    subject="CRITICAL: All 9 LLMs providers down — chatbot using templates only",
     body=f"Provider status: {provider_results}",
     severity="CRITICAL",
     dedupe_key="all_providers_down"

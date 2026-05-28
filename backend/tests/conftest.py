@@ -11,9 +11,16 @@ if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
 
+from core.circuit_breaker import CircuitBreakerRegistry  # noqa: E402
 from core.database import get_db  # noqa: E402
 from core.security import create_access_token  # noqa: E402
 from main import create_app  # noqa: E402
+
+
+@pytest.fixture(autouse=True)
+def reset_circuit_breakers():
+    """Reset all circuit breakers before each test to avoid shared state."""
+    CircuitBreakerRegistry.reset_all()
 
 
 class DummySession:

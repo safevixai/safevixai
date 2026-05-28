@@ -7,13 +7,17 @@ from typing import Any
 from redis.asyncio import Redis
 
 
+# Max age for stale cache entries (24 hours) — served when live data unavailable
+STALE_CACHE_MAX_AGE_SECONDS = 86400
+
+
 class CacheHelper:
     # Max in-memory cache entries before eviction (prevents OOM when Redis is down)
     _MEMORY_MAX_ENTRIES = 1000
 
     def __init__(self, client: Redis | None = None) -> None:
         self._client = client
-        self._memory_store: dict[str, tuple[float | None, str]] = {}
+        self._memory_store: dict[str, tuple[float | None, float | None, str]] = {}
         self._memory_keys: list[str] = []
         self._redis_healthy = client is not None
 
@@ -69,6 +73,37 @@ class CacheHelper:
         if isinstance(payload, bytes):
             payload = payload.decode('utf-8')
         return json.loads(payload)
+
+    async def get_json_stale(self, key: str) -> Any | None:
+        """Get cached value even if expired (stale-while-revalidate).
+        Returns None if no cache entry exists at all, even stale.
+        """
+        payload = None
+        if self._client:
+            try:
+                payload = await self._client.get(key)
+                if payload is None:
+                    # Redis returns bytes even for plain strings; get returns None if key missing
+                    pass
+                self._redis_healthy = True
+            except Exception:
+                self._redis_healthy = False
+                payload = None
+        if payload is None:
+            payload = self._memory_get_stale(key)
+        if payload is None:
+            return None
+        if isinstance(payload, bytes):
+            payload = payload.decode('utf-8')
+        return json.loads(payload)
+
+    def _memory_get_stale(self, key: str) -> str | None:
+        """Like _memory_get but ignores TTL — returns entry if it exists."""
+        entry = self._memory_store.get(key)
+        if entry is None:
+            return None
+        _expires_at, payload = entry
+        return payload
 
     async def set_json(self, key: str, value: Any, ttl_seconds: int) -> None:
         payload = json.dumps(value, default=str)

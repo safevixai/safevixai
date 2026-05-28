@@ -10,6 +10,7 @@ from urllib.parse import quote_plus
 import httpx
 
 from core.config import Settings
+from core.circuit_breaker import CircuitBreakerRegistry, CircuitBreakerOpenError
 from core.redis_client import CacheHelper
 from models.schemas import GeocodeResult
 from services.exceptions import ExternalServiceError
@@ -168,6 +169,14 @@ class GeocodingService:
         return self._normalize_nominatim(payload)
 
     async def _get_nominatim(self, path: str, params: dict) -> dict | list:
+        cb = CircuitBreakerRegistry.get("nominatim", failure_threshold=3, recovery_timeout=60.0)
+        try:
+            return await cb.call(self._do_get_nominatim, path, params)
+        except CircuitBreakerOpenError:
+            logger.warning("Nominatim circuit breaker OPEN")
+            raise GeocodingError("Nominatim unavailable (circuit breaker open)")
+
+    async def _do_get_nominatim(self, path: str, params: dict) -> dict | list:
         async with self._rate_limit_lock:
             elapsed = time.monotonic() - self._last_nominatim_request_at
             if elapsed < 1.0:
@@ -182,6 +191,14 @@ class GeocodingService:
         return response.json()
 
     async def _get(self, base_url: str, path: str, params: dict) -> dict | list:
+        cb = CircuitBreakerRegistry.get("photon", failure_threshold=3, recovery_timeout=30.0)
+        try:
+            return await cb.call(self._do_get, base_url, path, params)
+        except CircuitBreakerOpenError:
+            logger.warning("Photon circuit breaker OPEN")
+            raise GeocodingError("Photon unavailable (circuit breaker open)")
+
+    async def _do_get(self, base_url: str, path: str, params: dict) -> dict | list:
         try:
             response = await self._client.get(f'{base_url}{path}', params=params)
             response.raise_for_status()

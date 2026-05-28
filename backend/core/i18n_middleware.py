@@ -1,6 +1,13 @@
 # c:\Hackathons\IITM\SafeVixAI\backend\core\i18n_middleware.py
 
 import logging
+import time
+import sys
+from pathlib import Path
+from collections import defaultdict
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+from alert_service import get_alert_service
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -87,10 +94,39 @@ async def localized_validation_exception_handler(request: Request, exc: RequestV
         content={"detail": localized_errors}
     )
 
+# In-memory rate limit hit tracker for alerting
+_rate_limit_hits: dict[str, list[float]] = defaultdict(list)
+_RATE_LIMIT_ALERT_THRESHOLD = 20
+_RATE_LIMIT_WINDOW_SECONDS = 300  # 5 minutes
+
+
 async def localized_rate_limit_exceeded_handler(request: Request, exc: RateLimitExceeded):
-    """Localizes RateLimitExceeded exceptions."""
+    """Localizes RateLimitExceeded exceptions and monitors rate limit hit rate."""
     locale = getattr(request.state, "locale", DEFAULT_LOCALE)
     msg = translate_message("Rate limit exceeded", locale)
+
+    # Track rate limit hits per endpoint
+    now = time.time()
+    endpoint = request.url.path
+    hits = _rate_limit_hits[endpoint]
+    hits.append(now)
+    # Prune old entries outside the window
+    cutoff = now - _RATE_LIMIT_WINDOW_SECONDS
+    _rate_limit_hits[endpoint] = [h for h in hits if h > cutoff]
+    recent_count = len(_rate_limit_hits[endpoint])
+
+    if recent_count == _RATE_LIMIT_ALERT_THRESHOLD:
+        logger.warning(
+            "Rate limit threshold reached: %d hits on %s in %ds window",
+            recent_count, endpoint, _RATE_LIMIT_WINDOW_SECONDS,
+        )
+        get_alert_service().alert_external_api_failed(
+            service_name="Rate Limiter",
+            endpoint=endpoint,
+            status_code=429,
+            error_msg=f"{recent_count} rate limit hits in {_RATE_LIMIT_WINDOW_SECONDS}s on {endpoint}",
+        )
+
     return JSONResponse(
         status_code=429,
         content={"detail": msg}

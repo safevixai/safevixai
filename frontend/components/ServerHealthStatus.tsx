@@ -20,6 +20,7 @@ export function ServerHealthStatus() {
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
+    if (typeof fetch === 'undefined') return;
     let terminated = false;
 
     const check = async () => {

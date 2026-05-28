@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy import delete as sa_delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.audit import AuditLog, AuditEvent
 from core.database import get_db
 from core.limiter import limiter
 from core.security import get_current_user
@@ -102,6 +103,8 @@ async def update_user_profile(
         
     await db.commit()
     await db.refresh(profile)
+    ip = request.client.host if request.client else "unknown"
+    AuditLog.log(AuditEvent.PROFILE_UPDATE, user_id=str(current_user["sub"]), ip_address=ip, details={"updated_fields": list(update_data.keys())})
     return profile
 
 
@@ -178,6 +181,8 @@ async def delete_user_data(
 
     await db.delete(profile)
     await db.commit()
+    ip = request.client.host if request.client else "unknown"
+    AuditLog.log(AuditEvent.PROFILE_UPDATE, user_id=str(current_user["sub"]), ip_address=ip, details={"action": "user_deletion", "deleted_sos": deleted_sos, "deleted_roads": deleted_roads})
 
     return UserDeleteResponse(
         status="ok",

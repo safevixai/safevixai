@@ -110,8 +110,21 @@ def create_app() -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         import asyncio
-        from core.database import AsyncSessionLocal
+        import signal
+        from core.database import AsyncSessionLocal, engine
         from services.sla_monitor import SLAMonitor
+
+        _shutdown_requested = False
+        def _handle_signal():
+            nonlocal _shutdown_requested
+            _shutdown_requested = True
+            logger.info("Received shutdown signal — draining connections")
+        try:
+            loop = asyncio.get_event_loop()
+            for sig in (signal.SIGTERM, signal.SIGINT):
+                loop.add_signal_handler(sig, _handle_signal)
+        except (NotImplementedError, ValueError):
+            logger.warning("Signal handlers not supported on this platform")
 
         cache = create_cache(settings.redis_url)
         jwks_manager = JWKSManager(jwks_url=settings.jwks_url if hasattr(settings, 'jwks_url') else None)
@@ -218,6 +231,11 @@ def create_app() -> FastAPI:
             from services.osm_contributor import get_osm_contributor
             await get_osm_contributor().close()
             await cache.close()
+            try:
+                await engine.dispose()
+                logger.info("Database connection pool disposed")
+            except Exception:
+                logger.warning("Database pool disposal failed (expected if already closed)")
 
     docs_url = None if settings.environment == 'production' else '/docs'
     redoc_url = None if settings.environment == 'production' else '/redoc'
@@ -379,7 +397,7 @@ def create_app() -> FastAPI:
             response.set_cookie(
                 key="csrf_token",
                 value=new_token,
-                httponly=True,
+                httponly=False,
                 secure=is_prod,
                 samesite="lax",
                 path="/"

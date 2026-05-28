@@ -10,6 +10,7 @@ from pathlib import Path
 import httpx
 
 from core.config import Settings
+from core.circuit_breaker import CircuitBreakerRegistry, CircuitBreakerOpenError
 from models.schemas import EmergencyServiceItem
 from services.exceptions import ExternalServiceError
 
@@ -130,6 +131,23 @@ class OverpassService:
         return 'URBAN', 'Urban Road'
 
     async def _execute_query(self, query: str) -> dict:
+        cb = CircuitBreakerRegistry.get("overpass", failure_threshold=3, recovery_timeout=60.0)
+        last_error: Exception | None = None
+        try:
+            return await cb.call(self._do_execute_query, query)
+        except CircuitBreakerOpenError:
+            logger.warning("Overpass circuit breaker OPEN — skipping query")
+            get_alert_service().alert_external_api_failed(
+                service_name="Overpass API",
+                endpoint="_execute_query",
+                status_code=0,
+                error_msg="Circuit breaker OPEN — too many failures",
+            )
+            raise ExternalServiceError("Overpass API temporarily unavailable")
+        except ExternalServiceError:
+            raise
+
+    async def _do_execute_query(self, query: str) -> dict:
         last_error: Exception | None = None
         for index, url in enumerate(self.settings.overpass_urls):
             # P1-06: Exponential backoff for Overpass API to handle 429s (audit H26)

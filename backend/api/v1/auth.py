@@ -5,6 +5,7 @@ import hmac
 import os
 
 from fastapi import APIRouter, Depends, HTTPException, Request
+from core.audit import AuditLog, AuditEvent
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
@@ -151,6 +152,7 @@ async def register(
     db.add(new_operator)
     await db.commit()
     await db.refresh(new_operator)
+    AuditLog.log_auth_login(str(new_operator.id), request.client.host if request.client else "unknown", new_operator.name)
     
     return JSONResponse(
         status_code=201,
@@ -203,11 +205,15 @@ async def login(
                 data={"sub": email, "name": db_operator.name},
                 role=db_operator.role,
             )
+            ip = request.client.host if request.client else "unknown"
+            AuditLog.log_auth_login(email, ip, db_operator.name)
             return create_secure_cookie_response(
                 content={"message": "Login successful", "operator_name": db_operator.name},
                 token=token,
             )
         else:
+            ip = request.client.host if request.client else "unknown"
+            AuditLog.log_auth_failed(email, ip, "invalid_password_db")
             raise HTTPException(status_code=401, detail="Invalid credentials")
 
     # 2. Fall back to environment-based single-operator authentication
@@ -218,11 +224,15 @@ async def login(
                 data={"sub": email, "name": operator["name"]},
                 role="operator",
             )
+            ip = request.client.host if request.client else "unknown"
+            AuditLog.log_auth_login(email, ip, operator["name"])
             return create_secure_cookie_response(
                 content={"message": "Login successful", "operator_name": operator["name"]},
                 token=token,
             )
-            
+
+    ip = request.client.host if request.client else "unknown"
+    AuditLog.log_auth_failed(email, ip, "invalid_credentials_fallback")
     raise HTTPException(status_code=401, detail="Invalid credentials")
 
 @router.post("/logout")
@@ -241,6 +251,8 @@ async def logout(request: Request) -> JSONResponse:
         JSONResponse confirming successful session termination.
     """
     from core.security import COOKIE_HTTPONLY, COOKIE_SECURE, COOKIE_SAMESITE, COOKIE_PATH
+    ip = request.client.host if request.client else "unknown"
+    AuditLog.log(AuditEvent.AUTH_LOGOUT, ip_address=ip)
     response = JSONResponse(content={"message": "Logged out successfully"})
     response.delete_cookie(
         key="access_token",

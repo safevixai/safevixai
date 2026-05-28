@@ -245,13 +245,27 @@ def _decode_bearer_token(token: str) -> dict[str, Any]:
             raise _unauthorized() from app_error
 
 
-# Simple in-memory rate limiter for internal auth bypass attempts
+# Simple in-memory rate limiter fallback for internal auth bypass attempts
 _internal_auth_attempts: dict[str, list[float]] = {}
 
-async def _check_internal_auth_rate_limit(client_ip: str | None) -> None:
-    """Allow max 5 internal auth attempts per IP per 60 seconds."""
+async def _check_internal_auth_rate_limit(client_ip: str | None, cache=None) -> None:
+    """Allow max 5 internal auth attempts per IP per 60 seconds (Redis-backed with in-memory fallback)."""
     if not client_ip:
         return
+    
+    if cache is not None:
+        key = f"internal_auth:{client_ip}"
+        try:
+            current = await cache.increment(key)
+            if current == 1:
+                await cache.set_json(key, 1, ttl_seconds=60)
+            elif current > 5:
+                logger.warning("Internal auth rate limit exceeded for IP: %s (Redis)", client_ip)
+                raise HTTPException(status_code=429, detail="Too many authentication attempts. Try again later.")
+            return
+        except Exception as e:
+            logger.warning("Redis rate limiter failed, falling back to in-memory: %s", e)
+
     now = time.monotonic()
     window = 60.0
     key = f"internal_auth:{client_ip}"
@@ -259,7 +273,7 @@ async def _check_internal_auth_rate_limit(client_ip: str | None) -> None:
     # Prune old entries
     attempts[:] = [t for t in attempts if now - t < window]
     if len(attempts) >= 5:
-        logger.warning("Internal auth rate limit exceeded for IP: %s", client_ip)
+        logger.warning("Internal auth rate limit exceeded for IP: %s (InMemory)", client_ip)
         raise HTTPException(status_code=429, detail="Too many authentication attempts. Try again later.")
     attempts.append(now)
 
@@ -272,7 +286,8 @@ async def get_current_user_optional(
     internal_key = request.headers.get("X-Internal-Api-Key") or request.headers.get("X-Service-Token")
     if internal_key:
         client_ip = request.client.host if request.client else None
-        await _check_internal_auth_rate_limit(client_ip)
+        cache = getattr(request.app.state, 'cache', None)
+        await _check_internal_auth_rate_limit(client_ip, cache)
         from core.config import get_settings
         settings = get_settings()
         if settings.chatbot_internal_api_key and secrets.compare_digest(internal_key, settings.chatbot_internal_api_key):

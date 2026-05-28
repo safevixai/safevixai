@@ -234,7 +234,7 @@ frontend/
 | Service | Port | Key Tech | Tests |
 |---|---|---|---|
 | Backend | `:8000` | FastAPI, PostgreSQL + PostGIS, Redis | **1161/1161** passing, 89% cov |
-| Chatbot | `:8010` | FastAPI, 11 LLM providers, ChromaDB, 13 agent tools | **748/748** passing, 92% cov |
+| Chatbot | `:8010` | FastAPI, 9 LLMs providers, ChromaDB, 13 agent tools | **748/748** passing, 92% cov |
 | Frontend | `:3000` | Next.js 15, MapLibre GL, Zustand, WebLLM Phi-3 | **324/324** passing, 34 suites |
 
 ### Production Alerting

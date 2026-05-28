@@ -9,6 +9,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.limiter import limiter
 from core.config import get_settings
 from core.database import get_async_session
 from core.rbac import require_role, Role
@@ -31,8 +32,9 @@ router = APIRouter(tags=['Civic Intelligence'])
 # BOUNDARIES
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/boundaries')
-async def get_boundaries(
+async def get_boundaries(request: Request, 
     level: str = Query('district', description='state, district, subdistrict, ward'),
     state_code: str | None = Query(None),
     db: AsyncSession = Depends(get_async_session),
@@ -74,8 +76,9 @@ async def get_boundaries(
     return {'type': 'FeatureCollection', 'features': features}
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/boundaries/contains')
-async def boundary_point_lookup(
+async def boundary_point_lookup(request: Request, 
     lat: float = Query(..., ge=-90, le=90, description='Latitude'),
     lon: float = Query(..., ge=-180, le=180, description='Longitude'),
     db: AsyncSession = Depends(get_async_session),
@@ -106,8 +109,9 @@ async def boundary_point_lookup(
 # LGD DIRECTORY
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/lgd/lookup')
-async def lgd_lookup(
+async def lgd_lookup(request: Request, 
     q: str | None = Query(None, description='Search term'),
     entity_type: str | None = Query(None),
     state_code: str | None = Query(None),
@@ -149,8 +153,9 @@ async def lgd_lookup(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/lgd/hierarchy')
-async def lgd_hierarchy(
+async def lgd_hierarchy(request: Request, 
     state_code: str = Query(..., description='State code (e.g., TN, AP, MH)'),
     db: AsyncSession = Depends(get_async_session),
 ) -> dict[str, Any]:
@@ -179,8 +184,9 @@ async def lgd_hierarchy(
 # OSM CIVIC FEATURES
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/features/nearby')
-async def get_nearby_features(
+async def get_nearby_features(request: Request, 
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     radius: int = Query(2000, description='Radius in meters'),
@@ -232,8 +238,9 @@ async def get_nearby_features(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/features/heatmap')
-async def get_feature_heatmap(
+async def get_feature_heatmap(request: Request, 
     feature_type: str = Query(...),
     state_code: str | None = Query(None),
     db: AsyncSession = Depends(get_async_session),
@@ -264,8 +271,9 @@ async def get_feature_heatmap(
 # DATA.GOV.IN DATASETS
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/datasets')
-async def get_datasets(
+async def get_datasets(request: Request, 
     slug: str | None = Query(None),
     state_code: str | None = Query(None),
     year: int | None = Query(None),
@@ -304,8 +312,9 @@ async def get_datasets(
 # GRIEVANCES
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/grievances')
-async def get_grievances(
+async def get_grievances(request: Request, 
     source: str | None = Query(None),
     category: str | None = Query(None),
     state_code: str | None = Query(None),
@@ -350,8 +359,9 @@ async def get_grievances(
 # COMPOSITE OVERLAY
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/stats')
-async def get_civic_stats(
+async def get_civic_stats(request: Request, 
     state_code: str | None = Query(None),
     db: AsyncSession = Depends(get_async_session),
 ) -> dict[str, Any]:
@@ -411,8 +421,9 @@ async def get_civic_stats(
 # MUNICIPALITY CIVIC HUB (MeraWard-style)
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/municipalities')
-async def list_municipalities(
+async def list_municipalities(request: Request, 
     q: str | None = Query(None, description='Search by name'),
     state_code: str | None = Query(None),
     municipality_type: str | None = Query(None),
@@ -457,8 +468,9 @@ async def list_municipalities(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/municipalities/nearby')
-async def nearby_municipality(
+async def nearby_municipality(request: Request, 
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     limit: int = Query(5, le=20),
@@ -495,8 +507,9 @@ async def nearby_municipality(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/municipalities/{slug}')
-async def get_municipality(
+async def get_municipality(request: Request, 
     slug: str,
     db: AsyncSession = Depends(get_async_session),
 ) -> dict[str, Any]:
@@ -544,8 +557,9 @@ async def get_municipality(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/municipalities/{slug}/stats')
-async def get_municipality_stats(
+async def get_municipality_stats(request: Request, 
     slug: str,
     db: AsyncSession = Depends(get_async_session),
 ) -> dict[str, Any]:
@@ -591,8 +605,9 @@ async def get_municipality_stats(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/municipalities/{slug}/wards')
-async def get_municipality_wards(
+async def get_municipality_wards(request: Request, 
     slug: str,
     db: AsyncSession = Depends(get_async_session),
 ) -> dict[str, Any]:
@@ -641,10 +656,10 @@ async def get_municipality_wards(
 # ADMIN ETL MANAGEMENT
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("5/minute")
 @router.post('/admin/civic/ingest/{pipeline}')
-async def trigger_ingest(
+async def trigger_ingest(request: Request, 
     pipeline: str,
-    request: Request,
     current_user: dict = Depends(require_role(Role.OPERATOR)),
 ) -> dict[str, Any]:
     """Manually trigger an ETL pipeline (admin only)."""
@@ -675,8 +690,9 @@ async def trigger_ingest(
     return {'pipeline': pipeline, 'status': 'failed', 'error': 'Pipeline execution failed'}
 
 
+@limiter.limit("5/minute")
 @router.get('/admin/civic/etl-log')
-async def get_etl_log(
+async def get_etl_log(request: Request, 
     pipeline: str | None = Query(None),
     limit: int = Query(20, le=100),
     db: AsyncSession = Depends(get_async_session),
@@ -708,9 +724,9 @@ async def get_etl_log(
     }
 
 
+@limiter.limit("5/minute")
 @router.post('/admin/civic/export')
-async def export_civic_data(
-    request: Request,
+async def export_civic_data(request: Request, 
     db: AsyncSession = Depends(get_async_session),
     current_user: dict = Depends(require_role(Role.OPERATOR)),
 ) -> dict[str, Any]:
@@ -747,8 +763,9 @@ async def export_civic_data(
 # COMPLAINT CLUSTERING & HOTSPOTS
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/clusters')
-async def get_complaint_clusters(
+async def get_complaint_clusters(request: Request, 
     city: str | None = Query(None),
     ward_id: str | None = Query(None),
     eps_meters: float = Query(200, description='DBSCAN neighborhood radius in meters'),
@@ -780,8 +797,9 @@ async def get_complaint_clusters(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/hotspots')
-async def get_hotspots(
+async def get_hotspots(request: Request, 
     city: str | None = Query(None),
     top_n: int = Query(10, le=50),
     db: AsyncSession = Depends(get_async_session),
@@ -797,8 +815,9 @@ async def get_hotspots(
 # ESCALATION PREDICTION
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/escalation-risk')
-async def get_escalation_risk(
+async def get_escalation_risk(request: Request, 
     city: str | None = Query(None),
     min_risk: float = Query(0.25, ge=0.0, le=1.0),
     db: AsyncSession = Depends(get_async_session),
@@ -829,8 +848,9 @@ async def get_escalation_risk(
 # STREETLIGHT ASSET REGISTRY
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/streetlights/qr/{qr_code}')
-async def lookup_streetlight_qr(
+async def lookup_streetlight_qr(request: Request, 
     qr_code: str,
     db: AsyncSession = Depends(get_async_session),
 ) -> dict[str, Any]:
@@ -855,8 +875,9 @@ async def lookup_streetlight_qr(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/streetlights/nearby')
-async def nearby_streetlights(
+async def nearby_streetlights(request: Request, 
     lat: float = Query(..., ge=-90, le=90),
     lon: float = Query(..., ge=-180, le=180),
     radius: int = Query(500, le=2000),
@@ -881,8 +902,9 @@ async def nearby_streetlights(
     }
 
 
+@limiter.limit("10/minute")
 @router.post('/civic/streetlights/{pole_id}/outage')
-async def report_streetlight_outage(
+async def report_streetlight_outage(request: Request, 
     pole_id: str,
     notes: str | None = Query(None),
     db: AsyncSession = Depends(get_async_session),
@@ -900,8 +922,9 @@ async def report_streetlight_outage(
     }
 
 
+@limiter.limit("20/minute")
 @router.get('/civic/streetlights/maintenance-prediction')
-async def streetlight_maintenance_prediction(
+async def streetlight_maintenance_prediction(request: Request, 
     city: str | None = Query(None),
     top_n: int = Query(20, le=100),
     db: AsyncSession = Depends(get_async_session),
@@ -917,8 +940,9 @@ async def streetlight_maintenance_prediction(
 # OFFICER ROUTE OPTIMIZATION
 # ──────────────────────────────────────────────────────────
 
+@limiter.limit("20/minute")
 @router.get('/civic/officer/route')
-async def get_officer_route(
+async def get_officer_route(request: Request, 
     officer_id: str = Query(...),
     lat: float = Query(..., description='Officer current latitude'),
     lon: float = Query(..., description='Officer current longitude'),

@@ -100,6 +100,20 @@ def create_app() -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
+        import signal
+        import asyncio
+        _shutdown_requested = False
+        def _handle_signal():
+            nonlocal _shutdown_requested
+            _shutdown_requested = True
+            logger.info("Chatbot received shutdown signal — draining connections")
+        try:
+            loop = asyncio.get_event_loop()
+            for sig in (signal.SIGTERM, signal.SIGINT):
+                loop.add_signal_handler(sig, _handle_signal)
+        except (NotImplementedError, ValueError):
+            logger.warning("Signal handlers not supported on this platform")
+
         backend_client = BackendToolClient(settings)
         memory_store = ConversationMemoryStore(
             settings.redis_url,
@@ -173,7 +187,6 @@ def create_app() -> FastAPI:
         # doesn't incur a multi-second cold-start delay (audit finding).
         # _ensure_model_loaded is synchronous (HuggingFace model load), so run in executor.
         try:
-            import asyncio
             loop = asyncio.get_event_loop()
             await loop.run_in_executor(None, speech_service._ensure_model_loaded)
             logger.info("IndicSeamless speech model preloaded successfully")

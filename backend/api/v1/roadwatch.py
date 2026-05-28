@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, Request, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from core.audit import AuditLog, AuditEvent
 from core.database import get_db
 from core.rbac import require_role, Role
 from core.security import get_current_user, get_current_user_optional
@@ -180,7 +181,7 @@ async def submit_road_issue(
     """
     try:
         queue = getattr(request.app.state, "queue", None)
-        return await roadwatch_service.submit_report(
+        result = await roadwatch_service.submit_report(
             db=db,
             lat=lat,
             lon=lon,
@@ -191,6 +192,10 @@ async def submit_road_issue(
             citizen_phone=citizen_phone,
             queue=queue,
         )
+        ip = request.client.host if request.client else "unknown"
+        user_id = str(current_user["sub"]) if current_user else None
+        AuditLog.log(AuditEvent.ROAD_REPORT_SUBMITTED, user_id=user_id, ip_address=ip, details={"issue_type": issue_type, "lat": lat, "lon": lon, "severity": severity})
+        return result
     except ServiceValidationError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
