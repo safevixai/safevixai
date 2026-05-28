@@ -2402,7 +2402,7 @@
 - Frontend: Next.js 15, TypeScript 5, Tailwind CSS 3, shadcn/ui, MapLibre GL JS, OpenFreeMap, Zustand 5, WebLLM/Transformers.js Gemma (offline AI), GSAP 3.15.0 animations, SWR data fetching
 - Backend: FastAPI (main :8000), FastAPI (chatbot_service :8010 — separate deployment)
 - Database: Supabase (PostgreSQL 16 + PostGIS 3.4 + pgvector)
-- AI: RAG + LangGraph Agent, ChromaDB, 11-provider LLM fallback chain (Groq → Cerebras → Sarvam-30B → GitHub Models → Gemini → NVIDIA NIM → OpenRouter → Mistral → Together AI → Sarvam-105B → TemplateProvider). Indian language detection (Unicode script regex) pre-routes to Sarvam-30B (general) or Sarvam-105B (legal/challan). Circuit breakers, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
+- AI: RAG + LangGraph Agent, ChromaDB, 9-provider LLM fallback chain (Groq → Cerebras → Sarvam-30B → GitHub Models → Gemini → NVIDIA NIM → OpenRouter → Mistral → Together AI → Sarvam-105B → TemplateProvider). Indian language detection (Unicode script regex) pre-routes to Sarvam-30B (general) or Sarvam-105B (legal/challan). Circuit breakers, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
 - Hosting: Render (free tier, 2 services) + Vercel (frontend)
 - PWA: Service worker (safevixai-v3), offline SOS queue (IndexedDB + idb library), Web Share Target, PWA shortcuts (3: SOS, Hospital, Report), push notifications, Background Sync
 - Speech: <code>POST /speech/translate</code> (MediaRecorder → IndicSeamlessM4Tv2), <code>GET /speech/status</code>. 14 languages mapped via <code>frontend/lib/languages.ts</code> (UI code → recognitionCode → speechTargetCode → synthesisCode)</p>
@@ -3401,7 +3401,7 @@ Cover all items from:
 <hr />
 <h2 id="audit-section-24-monitoring-deep-audit-gaps-from-section-13">AUDIT SECTION 24 — MONITORING DEEP AUDIT (GAPS FROM SECTION 13)</h2>
 <p><strong>24.1 LLM Provider Health Dashboard</strong>
-- Which of the 11 LLM providers are currently up?
+- Which of the 9 LLMs providers are currently up?
 - Is there a <code>/api/v1/status</code> endpoint that pings each provider and returns their health?
 - Useful for debugging: "Chatbot is slow" → check which providers are down → explains fallback latency</p>
 <p><strong>24.2 Error Budget + Alerts</strong>
@@ -3454,7 +3454,7 @@ Cover all items from:
 - Are exceptions re-raised after logging? Or are they swallowed silently?
 - Specific check: what happens when Supabase is completely unreachable — <code>ConnectionRefusedError</code>?
 - Specific check: what happens when ChromaDB <code>PersistentClient</code> fails to load corrupt data?
-- Specific check: what happens when all 11 LLM providers fail — does it return a 500 or a graceful "service unavailable" message?
+- Specific check: what happens when all 9 LLMs providers fail — does it return a 500 or a graceful "service unavailable" message?
 - Is there a global FastAPI exception handler registered for unhandled exceptions?
   <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">global_handler</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">exc</span><span class="p">):</span>
@@ -4502,7 +4502,7 @@ actual Lighthouse scores, live DB query EXPLAIN ANALYZE plans, actual LLM latenc
 </span><span id="__span-34-27"><a id="__codelineno-34-27" name="__codelineno-34-27" href="#__codelineno-34-27"></a>        <span class="p">)</span>
 </span><span id="__span-34-28"><a id="__codelineno-34-28" name="__codelineno-34-28" href="#__codelineno-34-28"></a>    <span class="k">elif</span> <span class="n">active_count</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
 </span><span id="__span-34-29"><a id="__codelineno-34-29" name="__codelineno-34-29" href="#__codelineno-34-29"></a>        <span class="k">await</span> <span class="n">send_alert_email</span><span class="p">(</span>
-</span><span id="__span-34-30"><a id="__codelineno-34-30" name="__codelineno-34-30" href="#__codelineno-34-30"></a>            <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;SafeVixAI WARNING: Only </span><span class="si">{</span><span class="n">active_count</span><span class="si">}</span><span class="s2">/11 LLM providers available&quot;</span><span class="p">,</span>
+</span><span id="__span-34-30"><a id="__codelineno-34-30" name="__codelineno-34-30" href="#__codelineno-34-30"></a>            <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;SafeVixAI WARNING: Only </span><span class="si">{</span><span class="n">active_count</span><span class="si">}</span><span class="s2">/9 LLMs providers available&quot;</span><span class="p">,</span>
 </span><span id="__span-34-31"><a id="__codelineno-34-31" name="__codelineno-34-31" href="#__codelineno-34-31"></a>            <span class="n">body</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Results: </span><span class="si">{</span><span class="n">results</span><span class="si">}</span><span class="s2">&quot;</span>
 </span><span id="__span-34-32"><a id="__codelineno-34-32" name="__codelineno-34-32" href="#__codelineno-34-32"></a>        <span class="p">)</span>
 </span><span id="__span-34-33"><a id="__codelineno-34-33" name="__codelineno-34-33" href="#__codelineno-34-33"></a>
@@ -4707,7 +4707,7 @@ actual Lighthouse scores, live DB query EXPLAIN ANALYZE plans, actual LLM latenc
 <p>You already added email alerts for critical failures — bro this is exactly the right thinking. Here is the complete implementation:</p>
 <p><strong>What should trigger email alerts:</strong>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>CRITICAL (send immediately):
-</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>  - All 11 LLM providers down simultaneously
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>  - All 9 LLMs providers down simultaneously
 </span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>  - Backend service crashes (Render restart)
 </span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>  - Supabase connection failed
 </span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>  - Any API key returning 403 (key invalid/banned)
@@ -4827,7 +4827,7 @@ actual Lighthouse scores, live DB query EXPLAIN ANALYZE plans, actual LLM latenc
 </span><span id="__span-40-98"><a id="__codelineno-40-98" name="__codelineno-40-98" href="#__codelineno-40-98"></a>
 </span><span id="__span-40-99"><a id="__codelineno-40-99" name="__codelineno-40-99" href="#__codelineno-40-99"></a><span class="c1"># When all providers fail simultaneously:</span>
 </span><span id="__span-40-100"><a id="__codelineno-40-100" name="__codelineno-40-100" href="#__codelineno-40-100"></a><span class="k">await</span> <span class="n">send_alert_email</span><span class="p">(</span>
-</span><span id="__span-40-101"><a id="__codelineno-40-101" name="__codelineno-40-101" href="#__codelineno-40-101"></a>    <span class="n">subject</span><span class="o">=</span><span class="s2">&quot;CRITICAL: All 11 LLM providers down — chatbot using templates only&quot;</span><span class="p">,</span>
+</span><span id="__span-40-101"><a id="__codelineno-40-101" name="__codelineno-40-101" href="#__codelineno-40-101"></a>    <span class="n">subject</span><span class="o">=</span><span class="s2">&quot;CRITICAL: All 9 LLMs providers down — chatbot using templates only&quot;</span><span class="p">,</span>
 </span><span id="__span-40-102"><a id="__codelineno-40-102" name="__codelineno-40-102" href="#__codelineno-40-102"></a>    <span class="n">body</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Provider status: </span><span class="si">{</span><span class="n">provider_results</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
 </span><span id="__span-40-103"><a id="__codelineno-40-103" name="__codelineno-40-103" href="#__codelineno-40-103"></a>    <span class="n">severity</span><span class="o">=</span><span class="s2">&quot;CRITICAL&quot;</span><span class="p">,</span>
 </span><span id="__span-40-104"><a id="__codelineno-40-104" name="__codelineno-40-104" href="#__codelineno-40-104"></a>    <span class="n">dedupe_key</span><span class="o">=</span><span class="s2">&quot;all_providers_down&quot;</span>

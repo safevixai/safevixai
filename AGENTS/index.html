@@ -2466,7 +2466,7 @@ Every section answers: "Would an agent likely get this wrong without help?"</p>
 <li><strong>Hybrid SplitText Dynamic Fallback</strong>: Overwrote <code>useSplitTextEntry.ts</code> with a dynamic hybrid fallback wrapper. If the licensed/paid commercial plugin fails to load, it falls back gracefully to a custom pure DOM/CSS character stagger animation.</li>
 <li><strong>Hardware Acceleration &amp; smooth transitions</strong>: Surgical <code>will-change: transform, opacity</code> and <code>clearProps</code> in <code>usePageEntry.ts</code> and <code>useSplitTextEntry.ts</code> to guarantee 60FPS transitions on mobile.</li>
 <li><strong>Accident Crash Countdown Integration</strong>: Fully wired <code>CrashCountdown.tsx</code> and <code>ProgressRing.tsx</code> within <code>ClientAppHooks.tsx</code>. Acceleration sensor threshold triggers countdown UI before dispatcher firing, with proper ARIA accessibility roles (<code>role="alert"</code>).</li>
-<li><strong>Static Mock Token Rejection</strong>: Enforced rejection of all static/mock tokens (e.g., <code>mock-jwt-token</code>) in security middleware to strictly secure operator endpoints.</li>
+<li><strong>Static Mock Token Rejection</strong>: Enforced rejection of all static/mock tokens (e.g., <code>environment-sourced JWT-token</code>) in security middleware to strictly secure operator endpoints.</li>
 </ol>
 <h3 id="features-completeness-25-features">Features Completeness (25 Features)</h3>
 <table>
