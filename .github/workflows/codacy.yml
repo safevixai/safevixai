@@ -58,6 +58,7 @@ jobs:
 
       # Upload Codacy SARIF results to GitHub Code Scanning
       # Split multi-run SARIF into individual uploads (CodeQL API rejects multiple runs per file since July 2025)
+      # If upload fails (e.g., CodeQL scanning not enabled), SARIF is saved as a workflow artifact.
       - name: Upload SARIF results
         env:
           GH_TOKEN: ${{ github.token }}
@@ -66,16 +67,35 @@ jobs:
             echo "No results.sarif found — skipping upload"
             exit 0
           fi
+          mkdir -p /tmp/sarif-runs
           run_count=$(jq '.runs | length' results.sarif)
+          uploaded=0
           for i in $(seq 0 $((run_count - 1))); do
-            jq --argjson idx "$i" '{version: .version, runs: [.runs[$idx]]}' results.sarif > /tmp/run-$i.sarif
+            jq --argjson idx "$i" '{version: .version, runs: [.runs[$idx]]}' results.sarif > /tmp/sarif-runs/run-$i.sarif
             echo "Uploading run $i/$run_count"
-            gh api \
+            if gh api \
               --method POST \
               -H "Accept: application/vnd.github+json" \
               "/repos/${{ github.repository }}/code-scanning/sarifs" \
               -f "commit_sha=${{ github.sha }}" \
               -f "ref=${{ github.ref }}" \
-              -f "sarif=$(base64 -w0 < /tmp/run-$i.sarif)" \
-              -f "category=codacy-eslint-run-$i"
+              -f "sarif=$(base64 -w0 < /tmp/sarif-runs/run-$i.sarif)" \
+              -f "category=codacy-eslint-run-$i" 2>/dev/null; then
+              uploaded=$((uploaded + 1))
+            else
+              echo "  → Upload failed (CodeQL scanning may not be enabled). Saved to artifact."
+            fi
           done
+          if [ "$uploaded" -eq 0 ]; then
+            echo "No runs uploaded — saving full SARIF as workflow artifact"
+          fi
+
+      # Always persist SARIF as a downloadable artifact so results are never lost
+      - name: Upload SARIF artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codacy-sarif
+          path: |
+            results.sarif
+            /tmp/sarif-runs/*.sarif
