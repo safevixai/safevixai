@@ -223,6 +223,12 @@ frontend/public/models/yolov8n_pothole.onnx
 .agents/
 graphify-out/
 
+# Local security-tool config
+.securecoderignore
+.securecoder-ignore
+**/.securecoderignore
+**/.securecoder-ignore
+
 # ============================================================
 # DOCS (auto-generated audit reports, runbooks, verification)
 # ============================================================
