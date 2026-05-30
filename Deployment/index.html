@@ -1524,6 +1524,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#free-tier-cold-start-mitigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free Tier Cold Start Mitigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Free Tier Cold Start Mitigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cron-joborg-automatic-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. cron-job.org (Automatic Keep-Alive)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-client-side-warm-up-automatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Client-Side Warm-Up (Automatic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-server-warming-banner-visual-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Server Warming Banner (Visual Feedback)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-cold-start-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Cold Start Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2039,6 +2100,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#free-tier-cold-start-mitigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free Tier Cold Start Mitigation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Free Tier Cold Start Mitigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cron-joborg-automatic-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. cron-job.org (Automatic Keep-Alive)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-client-side-warm-up-automatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Client-Side Warm-Up (Automatic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-server-warming-banner-visual-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Server Warming Banner (Visual Feedback)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-cold-start-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Cold Start Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2412,7 +2534,85 @@
 </span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/challan/calculate?violation_code=MVA_185&quot;</span>
 </span></code></pre></div>
 <hr />
-<p><em>Document version: 1.1 | IIT Madras Road Safety Hackathon 2026 | Updated: May 2026</em></p>
+<h2 id="free-tier-cold-start-mitigation">Free Tier Cold Start Mitigation</h2>
+<p>Render free web services spin down after <strong>15 minutes of inactivity</strong> and take <strong>30–60 seconds</strong> to cold start. The app mitigates this with three layers:</p>
+<h3 id="1-cron-joborg-automatic-keep-alive">1. cron-job.org (Automatic Keep-Alive)</h3>
+<p>Set up two free cron jobs at <a href="https://cron-job.org">cron-job.org</a> (no signup cost):</p>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>URL to Ping</th>
+<th>Interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend</td>
+<td><code>https://safevixai-api.onrender.com/health</code></td>
+<td>Every 10 minutes</td>
+</tr>
+<tr>
+<td>Chatbot</td>
+<td><code>https://safevixai-chatbot.onrender.com/health</code></td>
+<td>Every 10 minutes</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Create account at cron-job.org</li>
+<li>Add new cron job → URL, 10-minute interval, GET request</li>
+<li>Disable "Save Responses" to save their resources</li>
+<li>Both jobs stay free forever (10 min interval = 6 jobs/day × 30 days = 180 requests/month ≈ free)</li>
+</ol>
+<h3 id="2-client-side-warm-up-automatic">2. Client-Side Warm-Up (Automatic)</h3>
+<p>The frontend automatically pings both <code>/health</code> endpoints:</p>
+<ul>
+<li><strong>On page load</strong> — immediately sends warm-up pings</li>
+<li><strong>Every 9 minutes</strong> — interval timer keeps instances awake</li>
+<li><strong>On tab focus</strong> — re-warms when user returns after idle</li>
+<li><strong>Emergency page</strong> — pre-warms before user needs to act</li>
+</ul>
+<p>This runs in <code>EnterpriseClientAppHooks.tsx</code> (keep-alive pings) and <code>app/emergency/page.tsx</code> (emergency pre-warm).</p>
+<h3 id="3-server-warming-banner-visual-feedback">3. Server Warming Banner (Visual Feedback)</h3>
+<p>When a request takes &gt;5 seconds (cold start signal), a "Connecting..." banner appears at the bottom of the screen. Controlled by <code>components/ui/ServerWarmingBanner.tsx</code> + warming interceptors in <code>lib/api.ts</code>.</p>
+<h3 id="expected-cold-start-behavior">Expected Cold Start Behavior</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Delay</th>
+<th>User Sees</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First visit (or after &gt;15 min idle)</td>
+<td>30–60s warming + page load</td>
+<td>"Connecting..." banner, then normal page</td>
+</tr>
+<tr>
+<td>Active user (returning within 15 min)</td>
+<td>~1–2s</td>
+<td>No delay, instant response</td>
+</tr>
+<tr>
+<td>cron-job.org ping arrives</td>
+<td>30–60s warming (server wakes up)</td>
+<td>No user impact (next user request is fast)</td>
+</tr>
+<tr>
+<td>Emergency page visited</td>
+<td>Immediate pre-warm ping</td>
+<td>Minimal delay on SOS actions</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> On free tier, the combined idle+startup time per month is ~750 hours per service. With 10-min keep-alive, expect ~744 hours/month uptime (99.9%).</p>
+</blockquote>
+<hr />
+<p><em>Document version: 1.2 | IIT Madras Road Safety Hackathon 2026 | Updated: May 2026</em></p>
 
 
 
