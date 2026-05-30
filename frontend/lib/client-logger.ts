@@ -1,7 +1,6 @@
 type LogDetail = unknown;
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const sentryAvailable = typeof window !== 'undefined' && (window as any).Sentry;
 
 // Batched error reporting — accumulate errors and flush on threshold
 interface ErrorRecord {
@@ -63,7 +62,7 @@ function emit(level: 'error' | 'warn', message: string, detail?: LogDetail) {
   }
 
   // Send errors to Sentry in production
-  if (!isDevelopment && sentryAvailable) {
+  if (!isDevelopment && typeof window !== 'undefined' && (window as any).Sentry) {
     try {
       const sentry = (window as any).Sentry;
       if (level === 'error') {

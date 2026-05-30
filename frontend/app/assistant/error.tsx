@@ -23,7 +23,7 @@ export default function AssistantError({ error, reset }: { error: Error; reset: 
             <h1 className="text-2xl font-black tracking-tight">Chat service unavailable</h1>
             <p className="text-sm leading-6 text-text-3">The AI assistant encountered an error. Please try again or use the emergency services directly.</p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <button onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-bg transition hover:bg-red-300"><RefreshCw aria-hidden="true" size={16} /> Retry</button>
+              <button type="button" onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-bg transition hover:bg-red-300"><RefreshCw aria-hidden="true" size={16} /> Retry</button>
               <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-md px-4 text-sm font-bold text-text-1 transition hover:bg-white/10"><Home aria-hidden="true" size={16} /> Home</Link>
             </div>
           </div>

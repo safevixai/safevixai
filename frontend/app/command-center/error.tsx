@@ -21,7 +21,7 @@ export default function CommandCenterError({ error, reset }: { error: Error; res
             <h1 className="text-2xl font-black tracking-tight">Command center unavailable</h1>
             <p className="text-sm leading-6 text-text-3">The dispatch dashboard encountered an error. Critical dispatch functions may be affected.</p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <button onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-bg hover:bg-red-300"><RefreshCw size={16} /> Retry</button>
+              <button type="button" onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-bg hover:bg-red-300"><RefreshCw size={16} /> Retry</button>
               <Link href="/" className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-md px-4 text-sm font-bold text-text-1 hover:bg-white/10"><Home size={16} /> Home</Link>
             </div>
           </div>

@@ -74,7 +74,7 @@ export default function TermsOfServicePage() {
                 CRITICAL WARNING FOR EMERGENCIES:
               </div>
               <span className="text-[11px] font-medium text-text-3 leading-relaxed">
-                SafeVixAI is a auxiliary support system and is NOT a substitute for direct government emergency channels. In critical situations where life or property is in immediate danger, you must ALWAYS dial <strong>112</strong> (Unified India Emergency), <strong>108</strong> (Medical Services), or <strong>101</strong> (Fire Department) directly using a telephone line, regardless of application status.
+                SafeVixAI is an auxiliary support system and is NOT a substitute for direct government emergency channels. In critical situations where life or property is in immediate danger, you must ALWAYS dial <strong>112</strong> (Unified India Emergency), <strong>108</strong> (Medical Services), or <strong>101</strong> (Fire Department) directly using a telephone line, regardless of application status.
               </span>
             </div>
           </div>
