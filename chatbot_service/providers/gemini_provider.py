@@ -140,5 +140,19 @@ class GeminiProvider(HttpProvider):
         raise_for_provider_status(resp, provider=self.name, model=model)
 
         data = resp.json()
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        try:
+            candidates = data.get("candidates", [])
+            if not candidates:
+                raise KeyError("empty candidates")
+            parts = candidates[0].get("content", {}).get("parts", [])
+            if not parts:
+                raise KeyError("empty parts")
+            text = parts[0].get("text", "")
+            if not text:
+                raise KeyError("empty text")
+        except (KeyError, IndexError, TypeError) as exc:
+            raise RuntimeError(
+                f"GeminiProvider: unexpected response structure: {exc}. "
+                f"Response keys: {list(data.keys())}"
+            ) from exc
         return ProviderResult(text=text, provider=self.name, model=model)

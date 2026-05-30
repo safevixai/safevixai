@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import html as _html
 from fastapi import APIRouter, Depends, Header, HTTPException, Request
 from fastapi.responses import HTMLResponse
 
@@ -183,10 +184,10 @@ async def provider_health_dashboard(
         error = info['error'] or '—'
         rows.append(
             f'<tr>'
-            f'<td class="name">{name}</td>'
+            f'<td class="name">{_html.escape(name)}</td>'
             f'<td class="status" style="color:{color}">{status.upper()}</td>'
             f'<td class="latency">{latency}</td>'
-            f'<td class="error" title="{error}">{error[:60]}</td>'
+            f'<td class="error" title="{_html.escape(error)}">{_html.escape(error[:60])}</td>'
             f'</tr>'
         )
 

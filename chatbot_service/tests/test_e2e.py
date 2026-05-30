@@ -204,8 +204,27 @@ class FakeSpeechService:
         raise RuntimeError('Speech translation is not used in these tests')
 
 
+class FakeAIGovernance:
+    def __init__(self, redis_url=None) -> None:
+        pass
+
+    async def evaluate(self, response_text, retrieved_context, tool_results, prompt):
+        from agent.governance import GovernanceResult
+        return GovernanceResult(
+            text=response_text,
+            hallucination_score=1.0,
+            factuality_score=1.0,
+            citations=[],
+            flagged=False,
+            prompt_version="v1",
+        )
+
+    async def close(self) -> None:
+        pass
+
+
 class FakeProviderRouter:
-    def __init__(self, settings) -> None:
+    def __init__(self, settings, *args, **kwargs) -> None:
         self.settings = settings
 
     async def generate(self, request) -> ProviderResult:
@@ -246,6 +265,8 @@ def app(monkeypatch):
     monkeypatch.setattr(main, 'SubmitReportTool', FakeSubmitReportTool)
     monkeypatch.setattr(main, 'IndicSeamlessService', FakeSpeechService)
     monkeypatch.setattr(main, 'ProviderRouter', FakeProviderRouter)
+    import agent.graph
+    monkeypatch.setattr(agent.graph, 'AIGovernance', FakeAIGovernance)
     return main.create_app()
 
 

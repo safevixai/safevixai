@@ -112,7 +112,18 @@ class SarvamProvider(HttpProvider):
         raise_for_provider_status(resp, provider=self.name, model=model)
 
         data = resp.json()
-        text = data["choices"][0]["message"]["content"]
+        try:
+            choices = data.get("choices", [])
+            if not choices:
+                raise KeyError("empty choices")
+            text = choices[0].get("message", {}).get("content", "")
+            if not text:
+                raise KeyError("empty content")
+        except (KeyError, IndexError, TypeError) as exc:
+            raise RuntimeError(
+                f"SarvamProvider: unexpected response structure: {exc}. "
+                f"Response keys: {list(data.keys())}"
+            ) from exc
         return ProviderResult(text=text, provider=self.name, model=model, india_badge=True)
 
 

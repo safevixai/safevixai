@@ -25,7 +25,7 @@ class Retriever:
     ) -> None:
         self.vectorstore = vectorstore
         self.default_top_k = default_top_k
-        self.min_score = min_score if min_score is not None else float(os.getenv('RAG_MIN_SCORE', '0.28'))
+        self.min_score = min_score if min_score is not None else float(os.getenv('RAG_MIN_SCORE', '0.55'))
 
     def retrieve(
         self,

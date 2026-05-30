@@ -23,6 +23,7 @@ from api import api_router
 from config import get_settings
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
+from starlette.responses import JSONResponse
 
 from limiter import limiter
 
@@ -238,6 +239,19 @@ def create_app() -> FastAPI:
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+    # Global exception handler — catches all unhandled exceptions
+    @app.exception_handler(Exception)
+    async def _global_exception_handler(request: Request, exc: Exception):
+        import traceback
+        logger.error(
+            "Unhandled exception: %s | path=%s | tb=%s",
+            exc, request.url.path, "".join(traceback.format_tb(exc.__traceback__)),
+        )
+        return JSONResponse(
+            status_code=500,
+            content={"detail": "Internal server error. Please try again later."},
+        )
+
     # OBSERVABILITY#2: Query profiler middleware (logs slow responses)
     setup_query_profiler(app)
 
@@ -268,6 +282,38 @@ def create_app() -> FastAPI:
         ).observe(duration)
 
         return response
+
+    # Host header validation middleware — blocks Host header injection (production only)
+    @app.middleware("http")
+    async def _host_validation_middleware(request: Request, call_next):
+        if get_settings().environment != "production":
+            return await call_next(request)
+        from urllib.parse import urlparse
+        import os as _os
+        settings = get_settings()
+        cors_hosts = {urlparse(u).hostname for u in settings.cors_origins if u} - {None}
+        extra_allowed = {h.strip().lower() for h in _os.getenv("ALLOWED_HOSTS", "").split(",") if h.strip()}
+        allowed = cors_hosts | extra_allowed
+        host = request.headers.get("host", "").split(":")[0].strip().lower()
+        if host and host not in allowed and not any(host.endswith("." + h) for h in {a for a in allowed if a.startswith("*.")}):
+            logger.warning("Blocked request with invalid Host header: %s", host)
+            return JSONResponse(status_code=403, content={"detail": "Invalid Host header"})
+        return await call_next(request)
+
+    # Body size limit middleware — prevents oversized request bodies
+    _MAX_BODY_BYTES = 1 * 1024 * 1024  # 1 MB default
+    _SPEECH_PATH = "/speech/translate"
+
+    @app.middleware("http")
+    async def _body_size_middleware(request: Request, call_next):
+        max_size = 10 * 1024 * 1024 if request.url.path == _SPEECH_PATH else _MAX_BODY_BYTES
+        content_length = request.headers.get("content-length")
+        if content_length and int(content_length) > max_size:
+            return JSONResponse(
+                status_code=413,
+                content={"detail": f"Request body too large (max {max_size // 1024 // 1024} MB)."},
+            )
+        return await call_next(request)
 
     # P2-02: Request-ID correlation middleware
     @app.middleware("http")

@@ -221,7 +221,7 @@ class ProviderRouter:
         provider = self.providers.get(primary) or self.providers.get('groq') or self.providers['template']
 
         try:
-            if self._provider_unavailable(primary):
+            if not await self._is_provider_available_async(primary):
                 raise ProviderUnavailableError(f"{primary} is temporarily disabled by circuit breaker")
             result = await self._generate_with_timeout(provider, request)
 
@@ -296,7 +296,7 @@ class ProviderRouter:
 
         failed_providers = [primary]
         for fallback_name in candidate_chain:
-            if self._provider_unavailable(fallback_name):
+            if not await self._is_provider_available_async(fallback_name):
                 failed_providers.append(fallback_name)
                 continue
             try:
@@ -425,7 +425,7 @@ class ProviderRouter:
         provider = self.providers.get(primary) or self.providers.get('groq') or self.providers['template']
 
         try:
-            if self._provider_unavailable(primary):
+            if not await self._is_provider_available_async(primary):
                 raise ProviderUnavailableError(f"{primary} is temporarily disabled by circuit breaker")
 
             stream_method = getattr(provider, 'stream', None)
@@ -489,6 +489,7 @@ class ProviderRouter:
             ) from exc
 
     def _provider_unavailable(self, provider_name: str) -> bool:
+        """Fallback synchronous check (retained for compatibility)."""
         if provider_name == 'template':
             return False
         until = self._unavailable_until.get(provider_name)
@@ -497,6 +498,28 @@ class ProviderRouter:
         if until <= time.time():
             self._unavailable_until.pop(provider_name, None)
             return False
+        return True
+
+    async def _is_provider_available_async(self, provider_name: str) -> bool:
+        """Check if provider is available, using in-memory fast-path and Redis fallback."""
+        if provider_name == 'template':
+            return True
+        now = time.time()
+        until = self._unavailable_until.get(provider_name)
+        if until is not None:
+            if until > now:
+                return False
+            else:
+                self._unavailable_until.pop(provider_name, None)
+
+        # Fallback to checking Redis if available
+        if self.cache and hasattr(self.cache, 'get_provider_unavailable_until'):
+            redis_until = await self.cache.get_provider_unavailable_until(provider_name)
+            if redis_until is not None and isinstance(redis_until, (int, float)):
+                if redis_until > now:
+                    # Sync to local in-memory dict for rapid future queries
+                    self._unavailable_until[provider_name] = redis_until
+                    return False
         return True
 
     def _mark_provider_failure(self, provider_name: str, exc: Exception) -> None:
@@ -514,7 +537,18 @@ class ProviderRouter:
         elif isinstance(exc, TimeoutError):
             duration = 60
         if duration > 0:
-            self._unavailable_until[provider_name] = time.time() + duration
+            until_time = time.time() + duration
+            self._unavailable_until[provider_name] = until_time
+            # Persistent state synchronization to Redis
+            if self.cache and hasattr(self.cache, 'set_provider_unavailable_until'):
+                try:
+                    loop = asyncio.get_running_loop()
+                    if loop.is_running():
+                        loop.create_task(
+                            self.cache.set_provider_unavailable_until(provider_name, until_time, int(duration))
+                        )
+                except RuntimeError:
+                    pass
             logger.warning(
                 "Provider %s disabled for %ss after %s",
                 provider_name,

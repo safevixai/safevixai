@@ -13,7 +13,7 @@ router = APIRouter(prefix='/speech', tags=['Speech'])
 
 # Max audio upload: 10 MB
 _MAX_AUDIO_BYTES = 10 * 1024 * 1024
-_ALLOWED_CONTENT_TYPES = {'audio/wav', 'audio/mpeg', 'audio/ogg', 'audio/webm', 'audio/flac', 'application/octet-stream'}
+_ALLOWED_CONTENT_TYPES = {'audio/wav', 'audio/mpeg', 'audio/ogg', 'audio/webm', 'audio/flac'}
 
 
 from limiter import limiter

@@ -94,6 +94,24 @@ class LLMResponseCache:
             self._healthy = False
             return False
 
+    async def get_provider_unavailable_until(self, provider_name: str) -> float | None:
+        if not self._client:
+            return None
+        try:
+            val = await self._client.get(f"circuit:unavailable:{provider_name}")
+            return float(val) if val else None
+        except Exception as exc:
+            logger.warning("Failed to get provider availability from Redis: %s", exc)
+            return None
+
+    async def set_provider_unavailable_until(self, provider_name: str, until: float, ttl_seconds: int) -> None:
+        if not self._client:
+            return
+        try:
+            await self._client.setex(f"circuit:unavailable:{provider_name}", ttl_seconds, str(until))
+        except Exception as exc:
+            logger.warning("Failed to set provider availability in Redis: %s", exc)
+
     async def close(self) -> None:
         if self._client:
             try:

@@ -55,6 +55,8 @@ class IndicSeamlessService:
     ) -> SpeechTranslationResult:
         if not audio_bytes:
             raise ValueError('Audio payload is empty')
+        if len(audio_bytes) > 10_000_000:
+            raise ValueError('Audio payload exceeds 10 MB limit')
         torch, torchaudio, _, _, _ = self._import_dependencies()
         if torch is None:
             raise RuntimeError(
@@ -63,34 +65,55 @@ class IndicSeamlessService:
             )
 
         self._ensure_model_loaded()
-        waveform, sample_rate = torchaudio.load(BytesIO(audio_bytes))
-        if waveform.ndim == 2 and waveform.shape[0] > 1:
-            waveform = waveform.mean(dim=0, keepdim=True)
+        target_lang = (target_language or self.settings.speech_default_target_lang).lower()
+        try:
+            waveform, sample_rate = torchaudio.load(BytesIO(audio_bytes))
+        except Exception as exc:
+            raise RuntimeError(f"Failed to load audio: {exc}") from exc
+        try:
+            if waveform.ndim == 2 and waveform.shape[0] > 1:
+                waveform = waveform.mean(dim=0, keepdim=True)
+        except Exception as exc:
+            raise RuntimeError(f"Failed to process audio channels: {exc}") from exc
         if sample_rate != 16_000:
-            waveform = torchaudio.functional.resample(
-                waveform,
-                orig_freq=sample_rate,
-                new_freq=16_000,
+            try:
+                waveform = torchaudio.functional.resample(
+                    waveform,
+                    orig_freq=sample_rate,
+                    new_freq=16_000,
+                )
+                sample_rate = 16_000
+            except Exception as exc:
+                raise RuntimeError(f"Failed to resample audio: {exc}") from exc
+
+        try:
+            audio_array = waveform.squeeze(0)
+            inputs = self._processor(audio_array, sampling_rate=sample_rate, return_tensors='pt')
+            inputs = {key: value.to(self._device) for key, value in inputs.items()}
+        except Exception as exc:
+            raise RuntimeError(f"Failed to prepare audio input: {exc}") from exc
+
+        try:
+            generated = self._model.generate(
+                **inputs,
+                tgt_lang=target_lang,
             )
-            sample_rate = 16_000
+        except Exception as exc:
+            raise RuntimeError(f"Model inference failed: {exc}") from exc
 
-        audio_array = waveform.squeeze(0)
-        inputs = self._processor(audio_array, sampling_rate=sample_rate, return_tensors='pt')
-        inputs = {key: value.to(self._device) for key, value in inputs.items()}
+        try:
+            tokens = generated[0].detach().cpu().numpy().squeeze()
+            text = self._tokenizer.decode(
+                tokens,
+                clean_up_tokenization_spaces=True,
+                skip_special_tokens=True,
+            ).strip()
+        except Exception as exc:
+            raise RuntimeError(f"Failed to decode model output: {exc}") from exc
 
-        generated = self._model.generate(
-            **inputs,
-            tgt_lang=(target_language or self.settings.speech_default_target_lang).lower(),
-        )
-        tokens = generated[0].detach().cpu().numpy().squeeze()
-        text = self._tokenizer.decode(
-            tokens,
-            clean_up_tokenization_spaces=True,
-            skip_special_tokens=True,
-        ).strip()
         return SpeechTranslationResult(
             text=text,
-            target_language=(target_language or self.settings.speech_default_target_lang).lower(),
+            target_language=target_lang,
             device=self._device,
             model_source=self.model_source,
             sample_rate=sample_rate,
@@ -117,9 +140,15 @@ class IndicSeamlessService:
         if Model is None:
             raise RuntimeError('IndicSeamless dependencies not available')
         model_source = self.model_source
-        self._model = Model.from_pretrained(model_source).to(self._device)
-        self._processor = FeatureExtractor.from_pretrained(model_source)
-        self._tokenizer = Tokenizer.from_pretrained(model_source)
+        try:
+            self._model = Model.from_pretrained(model_source).to(self._device)
+            self._processor = FeatureExtractor.from_pretrained(model_source)
+            self._tokenizer = Tokenizer.from_pretrained(model_source)
+        except Exception as exc:
+            self._model = None
+            self._processor = None
+            self._tokenizer = None
+            raise RuntimeError(f"Failed to load model from {model_source}: {exc}") from exc
 
     def _resolve_device(self) -> str:
         configured = (self.settings.speech_device or 'auto').lower()

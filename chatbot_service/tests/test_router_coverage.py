@@ -759,3 +759,38 @@ class TestConstants:
             assert code in INDIAN_LANGUAGE_CODES
     def test_sanskrit_included(self):
         assert "sa" in INDIAN_LANGUAGE_CODES
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 17. Provider availability edge cases
+# ══════════════════════════════════════════════════════════════════════════════
+
+class TestProviderAvailability:
+    @pytest.mark.asyncio
+    async def test_non_numeric_cache_does_not_crash(self):
+        """Non-numeric cache return (e.g. AsyncMock) must not crash availability check."""
+        cache = MagicMock(spec=LLMResponseCache)
+        cache.get_provider_unavailable_until = AsyncMock(return_value=MagicMock())
+        r = _router({"groq": _mock_prov("groq", "ok")})
+        r.cache = cache
+        available = await r._is_provider_available_async("groq")
+        assert available is True
+
+    @pytest.mark.asyncio
+    async def test_template_always_available(self):
+        """Template provider must always report as available, regardless of cache."""
+        r = _router({"template": TemplateProvider()})
+        r.cache = MagicMock(spec=LLMResponseCache)
+        r.cache.get_provider_unavailable_until = AsyncMock(return_value=9999999999.0)
+        available = await r._is_provider_available_async("template")
+        assert available is True
+
+    @pytest.mark.asyncio
+    async def test_unavailable_until_cleanup_after_expiry(self):
+        """In-memory unavailable_until must be cleaned up after the timestamp expires."""
+        r = _router({"groq": _mock_prov("groq", "ok")})
+        past = time.time() - 100
+        r._unavailable_until["groq"] = past
+        available = await r._is_provider_available_async("groq")
+        assert available is True
+        assert "groq" not in r._unavailable_until

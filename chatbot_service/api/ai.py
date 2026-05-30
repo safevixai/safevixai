@@ -24,9 +24,12 @@ async def validate_image(
         if not content_type.startswith("image/"):
             raise HTTPException(status_code=400, detail="Only image files are allowed.")
         
+        _MAX_IMAGE_BYTES = 5 * 1024 * 1024
         contents = await file.read()
         if len(contents) == 0:
             raise HTTPException(status_code=400, detail="Empty file uploaded.")
+        if len(contents) > _MAX_IMAGE_BYTES:
+            raise HTTPException(status_code=413, detail=f"Image too large (max {_MAX_IMAGE_BYTES // 1024 // 1024} MB).")
             
         result = PotholeValidator.validate_image(contents)
         return result

@@ -163,7 +163,18 @@ class GroqProvider(HttpProvider):
         resp = await self._get_client().post(self.base_url(), headers=headers, json=payload)
         raise_for_provider_status(resp, provider=self.name, model=model)
         data = resp.json()
-        text = data["choices"][0]["message"]["content"]
+        try:
+            choices = data.get("choices", [])
+            if not choices:
+                raise KeyError("empty choices")
+            text = choices[0].get("message", {}).get("content", "")
+            if not text:
+                raise KeyError("empty content")
+        except (KeyError, IndexError, TypeError) as exc:
+            raise RuntimeError(
+                f"GroqProvider: unexpected response structure: {exc}. "
+                f"Response keys: {list(data.keys())}"
+            ) from exc
 
         usage = data.get("usage", {})
         total_tokens = usage.get("total_tokens", 0)
