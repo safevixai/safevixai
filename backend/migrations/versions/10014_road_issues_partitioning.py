@@ -85,8 +85,33 @@ def upgrade() -> None:
                 -- Temporary disable triggers/RLS during data load
                 ALTER TABLE public.road_issues DISABLE TRIGGER ALL;
                 
-                INSERT INTO public.road_issues_partitioned 
-                SELECT * FROM public.road_issues 
+                -- List columns explicitly to avoid position mismatch from ALTER TABLE ADD COLUMN
+                INSERT INTO public.road_issues_partitioned (
+                    id, org_id, uuid, issue_type, severity, description,
+                    location, location_address, road_name, road_type, road_number,
+                    photo_url, ai_detection, reporter_id, authority_name,
+                    authority_phone, authority_email, complaint_ref, status,
+                    status_updated, created_at, category, sub_category, ward_id,
+                    ward_name, assigned_officer_id, sla_deadline, resolved_at,
+                    duplicate_of_uuid, citizen_phone, confirmation_count,
+                    before_photo_url, after_photo_url, ai_confidence,
+                    ai_model_version, escalation_tier, accepted_at, accepted_by,
+                    work_started_at, citizen_confirmed_at, citizen_rating,
+                    department, rejection_reason, reopen_count
+                )
+                SELECT
+                    id, org_id, uuid::uuid, issue_type, severity, description,
+                    location, location_address, road_name, road_type, road_number,
+                    photo_url, ai_detection, reporter_id, authority_name,
+                    authority_phone, authority_email, complaint_ref, status,
+                    status_updated, created_at, category, sub_category, ward_id,
+                    ward_name, assigned_officer_id, sla_deadline, resolved_at,
+                    duplicate_of_uuid, citizen_phone, confirmation_count,
+                    before_photo_url, after_photo_url, ai_confidence,
+                    ai_model_version, escalation_tier, accepted_at, accepted_by,
+                    work_started_at, citizen_confirmed_at, citizen_rating,
+                    department, rejection_reason, reopen_count
+                FROM public.road_issues 
                 ON CONFLICT (id, created_at) DO NOTHING;
                 
                 ALTER TABLE public.road_issues ENABLE TRIGGER ALL;

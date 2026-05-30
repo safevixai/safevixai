@@ -123,7 +123,7 @@ def create_app() -> FastAPI:
             loop = asyncio.get_event_loop()
             for sig in (signal.SIGTERM, signal.SIGINT):
                 loop.add_signal_handler(sig, _handle_signal)
-        except (NotImplementedError, ValueError):
+        except (NotImplementedError, ValueError, RuntimeError):
             logger.warning("Signal handlers not supported on this platform")
 
         cache = create_cache(settings.redis_url)
