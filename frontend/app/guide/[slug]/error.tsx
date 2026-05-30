@@ -21,7 +21,7 @@ export default function GuideSlugError({ error, reset }: { error: Error; reset: 
             <h1 className="text-2xl font-black tracking-tight">Guide detail unavailable</h1>
             <p className="text-sm leading-6 text-text-3">The municipality guide detail encountered an error.</p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <button onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-bg hover:bg-red-300"><RefreshCw size={16} /> Retry</button>
+              <button type="button" onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-md bg-red-400 px-4 text-sm font-bold text-bg hover:bg-red-300"><RefreshCw size={16} /> Retry</button>
               <Link href="/guide" className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-md px-4 text-sm font-bold text-text-1 hover:bg-white/10"><MapPin size={16} /> Back to Guide</Link>
             </div>
           </div>

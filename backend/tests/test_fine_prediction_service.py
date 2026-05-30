@@ -1,14 +1,9 @@
-import re
 import pathlib
 from unittest.mock import patch, mock_open
 
 import pytest
 from models.schemas import FinePredictionRequest, TelemetryDataPoint
 from services.fine_prediction_service import FinePredictionService, DEFAULT_FINES
-import services.fine_prediction_service as _fps
-
-
-_fps.re = re
 
 
 def _payload(vehicle_number="TN-01-AB-1234", state_code="DL",
