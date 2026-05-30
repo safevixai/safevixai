@@ -37,7 +37,8 @@ def test_reverse_geocode_endpoint(app):
         response = client.get('/api/v1/geocode/reverse?lat=13.0827&lon=80.2707')
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert payload['city'] == 'Chennai'
     assert payload['state_code'] == 'TN'
 
@@ -48,6 +49,7 @@ def test_search_geocode_endpoint(app):
         response = client.get('/api/v1/geocode/search?q=Chennai')
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert len(payload['results']) == 1
     assert payload['results'][0]['display_name'].startswith('Chennai')

@@ -40,7 +40,7 @@ def test_verify_accepts_operator_jwt(app):
         )
 
     assert response.status_code == 200
-    assert response.json()['sub'] == 'operator@example.com'
+    assert response.json()['data']['sub'] == 'operator@example.com'
 
 
 def test_verify_accepts_supabase_auth_jwt(app, monkeypatch):
@@ -67,7 +67,7 @@ def test_verify_accepts_supabase_auth_jwt(app, monkeypatch):
         )
 
     assert response.status_code == 200
-    assert response.json()['sub'] == 'supabase-user-id'
+    assert response.json()['data']['sub'] == 'supabase-user-id'
 
 
 def test_profile_endpoint_requires_auth(app):

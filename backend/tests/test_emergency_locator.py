@@ -362,6 +362,7 @@ class TestFindNearby:
     @patch.object(EmergencyLocatorService, "_search_local_catalog", return_value=[])
     async def test_external_service_error(self, mock_local, service, cache, overpass_service):
         cache.get_json.return_value = None
+        cache.get_json_stale.return_value = None
         db = _db_mock(scalar_return=0)
         overpass_service.search_services.side_effect = ExternalServiceError("Overpass down")
 
@@ -525,6 +526,7 @@ class TestBuildSosPayload:
 
     async def test_external_error(self, service, cache):
         cache.get_json.return_value = None
+        cache.get_json_stale.return_value = None
         db = _db_mock(scalar_return=0)
         db.execute.side_effect = ExternalServiceError("Upstream timeout")
 
@@ -1304,6 +1306,7 @@ class TestSosDispatch:
     @patch.object(EmergencyLocatorService, "_search_local_catalog", return_value=[])
     async def test_external_error_propagates(self, mock_local, service, cache):
         cache.get_json.return_value = None
+        cache.get_json_stale.return_value = None
         db = _db_mock(scalar_return=0)
         db.execute.side_effect = ExternalServiceError("Upstream timeout")
 

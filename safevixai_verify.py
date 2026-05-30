@@ -811,6 +811,23 @@ def run_code_checks() -> None:
           "chatbot_service/services/speech_translation.py",
           "Enable localized multimodal audio transcription and Indic translation for voice-driven emergency navigation.")
 
+    k8s_files = ["k8s/backend-deployment.yaml", "k8s/chatbot-deployment.yaml", "k8s/frontend-deployment.yaml"]
+    check("Enterprise Kubernetes deployment manifests exist for all three services", "CODE",
+          all(exists(f) for f in k8s_files),
+          f"{sum(exists(f) for f in k8s_files)}/3 k8s manifests present",
+          "Ensure backend-deployment.yaml, chatbot-deployment.yaml, and frontend-deployment.yaml are configured under k8s/.")
+
+    tf_files = ["terraform/provider.tf", "terraform/variables.tf", "terraform/main.tf", "terraform/rds.tf", "terraform/elasticache.tf", "terraform/api_gateway.tf"]
+    check("Enterprise Terraform IaC configuration files exist", "CODE",
+          all(exists(f) for f in tf_files),
+          f"{sum(exists(f) for f in tf_files)}/6 terraform configs present",
+          "Bootstrap complete AWS-compatible IaC configs inside terraform/.")
+
+    check("DPDP 2023 GPS Consent dialog is created and wired globally", "CODE",
+          exists("frontend/components/ui/GpsConsent.tsx") and "GpsConsent" in read_text("frontend/components/EnterpriseClientAppHooks.tsx") and "locationTracking" in read_text("frontend/lib/geolocation.ts"),
+          "GpsConsent.tsx exists and is wired in Hooks and hook settings",
+          "Wire GpsConsent dialog into client app hooks and check locationTracking state.")
+
 
 def run_local_checks() -> None:
     section("LOCAL RUN CHECKS")

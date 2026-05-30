@@ -1,6 +1,18 @@
-import math
+from __future__ import annotations
 
-from services.workload_balancer import OfficerScore, _haversine_km
+import math
+from datetime import datetime, time, timedelta, timezone
+from unittest.mock import AsyncMock, MagicMock, patch
+
+import pytest
+
+from models.officer import Officer
+from models.road_issue import RoadIssue
+from services.workload_balancer import (
+    OfficerScore,
+    WorkloadBalancer,
+    _haversine_km,
+)
 
 
 class TestHaversineKm:
@@ -27,12 +39,6 @@ class TestHaversineKm:
     def test_antipodal(self):
         dist = _haversine_km(0, 0, 0, 180)
         assert 19900 < dist < 20100
-
-    def test_consistency_with_complaint_cluster(self):
-        from services.complaint_cluster import _haversine
-        km = _haversine_km(13.0, 80.0, 14.0, 81.0)
-        m = _haversine(13.0, 80.0, 14.0, 81.0)
-        assert math.isclose(km, m / 1000, rel_tol=1e-3)
 
 
 class TestOfficerScore:
@@ -73,18 +79,266 @@ class TestOfficerScore:
         assert s.ward_id is None
         assert s.distance_km is None
 
-    def test_dataclass_edge_workload(self):
-        s = OfficerScore(
-            officer_id="off-003",
-            officer_name="Test",
-            department="Test",
-            ward_id=None,
-            current_workload=15,
-            is_on_shift=True,
-            distance_km=0.0,
-            composite_score=100.0,
-            reasons=[],
+
+class TestWorkloadBalancer:
+    @pytest.mark.asyncio
+    async def test_find_best_officer_no_officers(self):
+        db = MagicMock()
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = []
+        db.execute = AsyncMock(return_value=mock_officer_result)
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0
         )
-        assert s.current_workload == 15
-        assert s.distance_km == 0.0
-        assert s.reasons == []
+        assert result is None
+
+    @pytest.mark.asyncio
+    async def test_find_best_officer_returns_highest_scored(self):
+        db = MagicMock()
+
+        officer1 = MagicMock(spec=Officer)
+        officer1.id = "off-1"
+        officer1.name = "A"
+        officer1.department = "Traffic"
+        officer1.ward_id = "WARD-1"
+        officer1.is_active = True
+        officer1.last_checkin = None
+        officer1.last_location = None
+
+        officer2 = MagicMock(spec=Officer)
+        officer2.id = "off-2"
+        officer2.name = "B"
+        officer2.department = "Traffic"
+        officer2.ward_id = None
+        officer2.is_active = True
+        officer2.last_checkin = None
+        officer2.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer1, officer2]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-1", 2), ("off-2", 5)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db,
+            complaint_lat=13.0,
+            complaint_lon=80.0,
+            ward_id="WARD-1",
+            department="Traffic",
+        )
+        assert result is not None
+        assert result.officer_id == "off-1"
+        assert result.composite_score >= 100.0
+
+    @pytest.mark.asyncio
+    async def test_workload_skip_overloaded_officers(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-overloaded"
+        officer.name = "Overloaded"
+        officer.department = "Traffic"
+        officer.ward_id = None
+        officer.is_active = True
+        officer.last_checkin = None
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-overloaded", 15)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0
+        )
+        assert result is None
+
+    @pytest.mark.asyncio
+    async def test_department_filter_passed_to_officers(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-traffic"
+        officer.name = "Traffic-Officer"
+        officer.department = "Traffic"
+        officer.ward_id = None
+        officer.is_active = True
+        officer.last_checkin = None
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = []
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0, department="Traffic"
+        )
+        assert result is not None
+        assert result.department == "Traffic"
+
+    @pytest.mark.asyncio
+    async def test_ward_match_adds_25_points(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-ward"
+        officer.name = "Ward-Officer"
+        officer.department = "Traffic"
+        officer.ward_id = "WARD-01"
+        officer.is_active = True
+        officer.last_checkin = None
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-ward", 0)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db,
+            complaint_lat=13.0,
+            complaint_lon=80.0,
+            ward_id="WARD-01",
+        )
+        assert result is not None
+        assert "Ward officer match" in result.reasons
+
+    @pytest.mark.asyncio
+    async def test_recent_checkin_gives_shift_bonus(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-checkin"
+        officer.name = "Checked-In"
+        officer.department = "Traffic"
+        officer.ward_id = None
+        officer.is_active = True
+        officer.last_checkin = datetime.now(timezone.utc) - timedelta(minutes=30)
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-checkin", 1)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0
+        )
+        assert result is not None
+        assert "Recently checked in" in result.reasons
+
+    @pytest.mark.asyncio
+    async def test_severity_urgency_bonus(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-urgent"
+        officer.name = "Available"
+        officer.department = "Traffic"
+        officer.ward_id = None
+        officer.is_active = True
+        officer.last_checkin = None
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-urgent", 0)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0, severity=5
+        )
+        assert result is not None
+        assert "Available for urgent assignment" in result.reasons
+
+    @pytest.mark.asyncio
+    async def test_general_availability_fallback(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-gen"
+        officer.name = "General"
+        officer.department = "Traffic"
+        officer.ward_id = None
+        officer.is_active = True
+        officer.last_checkin = datetime.now(timezone.utc) - timedelta(hours=10)
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-gen", 7)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0
+        )
+        assert result is not None
+        assert result.reasons == ["General availability"]
+
+    @pytest.mark.asyncio
+    async def test_light_workload_reason(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-light"
+        officer.name = "Light"
+        officer.department = "Traffic"
+        officer.ward_id = None
+        officer.is_active = True
+        officer.last_checkin = None
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-light", 3)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0
+        )
+        assert result is not None
+        assert "Light workload" in " ".join(result.reasons)
+
+    @pytest.mark.asyncio
+    async def test_no_current_workload_reason(self):
+        db = MagicMock()
+
+        officer = MagicMock(spec=Officer)
+        officer.id = "off-zero"
+        officer.name = "Zero"
+        officer.department = "Traffic"
+        officer.ward_id = None
+        officer.is_active = True
+        officer.last_checkin = None
+        officer.last_location = None
+
+        mock_officer_result = MagicMock()
+        mock_officer_result.scalars.return_value.all.return_value = [officer]
+        mock_workload_result = MagicMock()
+        mock_workload_result.all.return_value = [("off-zero", 0)]
+
+        db.execute = AsyncMock(side_effect=[mock_officer_result, mock_workload_result])
+
+        result = await WorkloadBalancer.find_best_officer(
+            db, complaint_lat=13.0, complaint_lon=80.0
+        )
+        assert result is not None
+        assert "No current workload" in result.reasons

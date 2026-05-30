@@ -35,7 +35,7 @@ class CacheHelper:
         entry = self._memory_store.get(key)
         if entry is None:
             return None
-        expires_at, payload = entry
+        expires_at, _created_at, payload = entry
         if expires_at is not None and expires_at <= time.monotonic():
             self._memory_store.pop(key, None)
             return None
@@ -50,7 +50,8 @@ class CacheHelper:
                     oldest = self._memory_keys.pop(0)
                     self._memory_store.pop(oldest, None)
         expires_at = None if ttl_seconds is None else time.monotonic() + ttl_seconds
-        self._memory_store[key] = (expires_at, payload)
+        created_at = time.monotonic()
+        self._memory_store[key] = (expires_at, created_at, payload)
         if key not in self._memory_keys:
             self._memory_keys.append(key)
 
@@ -74,35 +75,39 @@ class CacheHelper:
             payload = payload.decode('utf-8')
         return json.loads(payload)
 
-    async def get_json_stale(self, key: str) -> Any | None:
+    async def get_json_stale(self, key: str, max_age_seconds: int = STALE_CACHE_MAX_AGE_SECONDS) -> Any | None:
         """Get cached value even if expired (stale-while-revalidate).
-        Returns None if no cache entry exists at all, even stale.
+        Returns None if no cache entry exists at all, or if the entry
+        is older than max_age_seconds.
         """
         payload = None
         if self._client:
             try:
                 payload = await self._client.get(key)
                 if payload is None:
-                    # Redis returns bytes even for plain strings; get returns None if key missing
+                    # Redis auto-deletes expired keys, so stale only from memory
                     pass
                 self._redis_healthy = True
             except Exception:
                 self._redis_healthy = False
                 payload = None
         if payload is None:
-            payload = self._memory_get_stale(key)
+            payload = self._memory_get_stale(key, max_age_seconds)
         if payload is None:
             return None
         if isinstance(payload, bytes):
             payload = payload.decode('utf-8')
         return json.loads(payload)
 
-    def _memory_get_stale(self, key: str) -> str | None:
-        """Like _memory_get but ignores TTL — returns entry if it exists."""
+    def _memory_get_stale(self, key: str, max_age_seconds: int = STALE_CACHE_MAX_AGE_SECONDS) -> str | None:
+        """Like _memory_get but ignores TTL, enforces max_age_seconds instead."""
         entry = self._memory_store.get(key)
         if entry is None:
             return None
-        _expires_at, payload = entry
+        _expires_at, created_at, payload = entry
+        if created_at is not None and (time.monotonic() - created_at) > max_age_seconds:
+            self._memory_store.pop(key, None)
+            return None
         return payload
 
     async def set_json(self, key: str, value: Any, ttl_seconds: int) -> None:

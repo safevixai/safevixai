@@ -218,7 +218,7 @@ def _normalize_rule_row(row: dict[str, str]) -> dict[str, str] | None:
             repeat_fines['default'] = default_repeat
 
     aliases = [
-        item.strip().upper()
+        _normalize_violation_code(item)
         for item in (row.get('aliases') or row.get('alternate_codes') or '').split('|')
         if item.strip()
     ]
@@ -375,7 +375,7 @@ def _merge_rule_rows(existing: dict[str, str], incoming: dict[str, str]) -> dict
             }
             merged['aliases'] = '|'.join(sorted(aliases))
             continue
-        if not merged.get(column) and incoming.get(column):
+        if incoming.get(column):
             merged[column] = incoming[column]
     return merged
 
@@ -455,7 +455,8 @@ def main() -> None:
     source_rules = None if args.defaults_only else _resolve_source(output_dir, RULE_SOURCE_CANDIDATES, args.rules_source)
     if source_rules and source_rules.exists():
         for row in _load_rule_rows(source_rules):
-            rule_map[row['violation_code']] = row
+            existing = rule_map.get(row['violation_code'])
+            rule_map[row['violation_code']] = _merge_rule_rows(existing, row) if existing else row
 
     override_rows: list[dict[str, str]] = []
     source_overrides = None if args.defaults_only else _resolve_source(output_dir, OVERRIDE_SOURCE_CANDIDATES, args.overrides_source)

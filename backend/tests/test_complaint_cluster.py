@@ -1,8 +1,16 @@
-import math
-import uuid
-from collections import Counter
+from __future__ import annotations
 
-from services.complaint_cluster import SpatialCluster, _haversine, dbscan_cluster
+import uuid
+from unittest.mock import AsyncMock, MagicMock, patch
+
+import pytest
+
+from services.complaint_cluster import (
+    ComplaintClusterService,
+    SpatialCluster,
+    _haversine,
+    dbscan_cluster,
+)
 
 
 class TestHaversine:
@@ -16,7 +24,7 @@ class TestHaversine:
     def test_symmetric(self):
         d1 = _haversine(13.0, 80.0, 14.0, 81.0)
         d2 = _haversine(14.0, 81.0, 13.0, 80.0)
-        assert math.isclose(d1, d2, rel_tol=1e-9)
+        assert pytest.approx(d1, rel=1e-9) == d2
 
     def test_chennai_to_delhi_approx(self):
         dist = _haversine(13.0827, 80.2707, 28.6139, 77.2090)
@@ -152,3 +160,128 @@ class TestDbscanCluster:
         loose = dbscan_cluster(points, eps_meters=3000, min_samples=3)
         assert len(tight) == 0
         assert len(loose) == 1
+
+    def test_identical_complaints_same_location(self):
+        points = [
+            {"lat": 13.0, "lon": 80.0, "uuid": "a", "issue_type": "pothole", "severity": 3},
+            {"lat": 13.0, "lon": 80.0, "uuid": "b", "issue_type": "pothole", "severity": 3},
+            {"lat": 13.0, "lon": 80.0, "uuid": "c", "issue_type": "pothole", "severity": 3},
+        ]
+        result = dbscan_cluster(points, eps_meters=100, min_samples=3)
+        assert len(result) == 1
+        assert result[0].point_count == 3
+        assert result[0].radius_meters == 0.0
+
+
+class TestComplaintClusterService:
+    @pytest.mark.asyncio
+    async def test_find_clusters_returns_empty_below_min_samples(self):
+        db = AsyncMock()
+        mock_result = MagicMock()
+        mock_result.all.return_value = []  # 0 rows < min_samples(3)
+        db.execute = AsyncMock(return_value=mock_result)
+
+        clusters = await ComplaintClusterService.find_clusters(db)
+        assert clusters == []
+
+    @pytest.mark.asyncio
+    async def test_find_clusters_with_city_filter(self):
+        db = AsyncMock()
+        mock_result = MagicMock()
+        mock_result.all.return_value = []
+        db.execute = AsyncMock(return_value=mock_result)
+
+        with patch("services.complaint_cluster.RoadIssue.city", "Chennai", create=True):
+            clusters = await ComplaintClusterService.find_clusters(db, city="Chennai")
+        assert clusters == []
+
+    @pytest.mark.asyncio
+    async def test_find_clusters_with_ward_filter(self):
+        db = AsyncMock()
+        mock_result = MagicMock()
+        mock_result.all.return_value = []
+        db.execute = AsyncMock(return_value=mock_result)
+
+        clusters = await ComplaintClusterService.find_clusters(db, ward_id="WARD-01")
+        assert clusters == []
+
+    @pytest.mark.asyncio
+    async def test_find_clusters_with_custom_status_filter(self):
+        db = AsyncMock()
+        mock_result = MagicMock()
+        mock_result.all.return_value = []
+        db.execute = AsyncMock(return_value=mock_result)
+
+        clusters = await ComplaintClusterService.find_clusters(
+            db, status_filter=["open"]
+        )
+        assert clusters == []
+
+    @pytest.mark.asyncio
+    async def test_find_clusters_with_rows_given(self):
+        db = AsyncMock()
+        row1 = MagicMock()
+        row1.lat = 13.0
+        row1.lon = 80.0
+        row1.uuid = "aaa"
+        row1.issue_type = "pothole"
+        row1.severity = 3
+
+        row2 = MagicMock()
+        row2.lat = 13.0005
+        row2.lon = 80.0
+        row2.uuid = "bbb"
+        row2.issue_type = "pothole"
+        row2.severity = 4
+
+        row3 = MagicMock()
+        row3.lat = 13.0010
+        row3.lon = 80.0
+        row3.uuid = "ccc"
+        row3.issue_type = "road_hazard"
+        row3.severity = 5
+
+        mock_result = MagicMock()
+        mock_result.all.return_value = [row1, row2, row3]
+        db.execute = AsyncMock(return_value=mock_result)
+
+        clusters = await ComplaintClusterService.find_clusters(db, eps_meters=500)
+        assert len(clusters) == 1
+        assert clusters[0].point_count == 3
+
+    @pytest.mark.asyncio
+    async def test_get_hotspots_returns_top_n(self):
+        db = AsyncMock()
+
+        rows = []
+        for i in range(5):
+            r = MagicMock()
+            r.lat = 13.0 + i * 0.001
+            r.lon = 80.0 + i * 0.001
+            r.uuid = f"uuid-{i}"
+            r.issue_type = "pothole"
+            r.severity = 3
+            rows.append(r)
+
+        mock_result = MagicMock()
+        mock_result.all.return_value = rows
+        db.execute = AsyncMock(return_value=mock_result)
+
+        hotspots = await ComplaintClusterService.get_hotspots(db, top_n=2)
+        assert isinstance(hotspots, list)
+        assert len(hotspots) <= 2
+        if hotspots:
+            assert "cluster_id" in hotspots[0]
+            assert "lat" in hotspots[0]
+            assert "lon" in hotspots[0]
+            assert "complaint_count" in hotspots[0]
+
+    @pytest.mark.asyncio
+    async def test_get_hotspots_empty(self):
+        db = AsyncMock()
+        mock_result = MagicMock()
+        mock_result.all.return_value = []
+        db.execute = AsyncMock(return_value=mock_result)
+
+        hotspots = await ComplaintClusterService.get_hotspots(db)
+        assert hotspots == []

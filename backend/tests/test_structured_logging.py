@@ -184,7 +184,8 @@ class TestTimingContext:
         """Test timing context logs duration."""
         logger = logging.getLogger("test.timing")
         logger.setLevel(logging.DEBUG)
-        
+        logger.handlers.clear()
+        logger.propagate = True
         with caplog.at_level(logging.DEBUG):
             with TimingContext(logger, "Test operation"):
                 time.sleep(0.05)

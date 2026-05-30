@@ -33,7 +33,8 @@ def test_chat_endpoint_returns_backend_chat_payload(app, auth_headers):
         )
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert payload['response'] == 'Handled: What is Section 185?'
     assert payload['intent'] == 'test'
     assert payload['sources'] == ['unit:test']

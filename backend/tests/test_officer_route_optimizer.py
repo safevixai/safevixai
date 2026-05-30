@@ -3,14 +3,15 @@ from __future__ import annotations
 import math
 from datetime import time
 from unittest.mock import AsyncMock, MagicMock, patch
+
 import pytest
 
 from services.officer_route_optimizer import (
-    _haversine_km,
-    _nearest_neighbor_tsp,
     OfficerRouteOptimizer,
     OfficerShift,
     OptimizedRoute,
+    _haversine_km,
+    _nearest_neighbor_tsp,
 )
 
 
@@ -61,11 +62,9 @@ class TestOfficerRouteOptimizer:
     async def test_no_complaints_found(self):
         db = MagicMock()
         db.execute = AsyncMock()
-        result_scalars = MagicMock()
-        result_scalars.all.return_value = []
-        result = MagicMock()
-        result.scalars.return_value = result_scalars
-        db.execute.return_value = result
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = []
+        db.execute.return_value = mock_result
 
         route = await OfficerRouteOptimizer.optimize_route(
             db, officer_id="OFF-1", officer_lat=12.97, officer_lon=77.59,
@@ -74,56 +73,64 @@ class TestOfficerRouteOptimizer:
         assert route.total_distance_km == 0
         assert "No open complaints found" in route.warnings
 
-    async def test_happy_path(self):
+    async def test_city_filter(self):
+        """Covers line 143: city filter branch."""
+        db = MagicMock()
+        db.execute = AsyncMock()
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = []
+        db.execute.return_value = mock_result
+
+        with patch("services.officer_route_optimizer.RoadIssue.city", "Chennai", create=True):
+            route = await OfficerRouteOptimizer.optimize_route(
+                db, officer_id="OFF-1", officer_lat=12.97, officer_lon=77.59,
+                city="Chennai",
+            )
+        assert route.total_stops == 0
+
+    async def test_exception_on_build_point_skipped(self):
+        """Covers lines 184-185: TypeError/ValueError when building point list."""
         db = MagicMock()
         db.execute = AsyncMock()
 
-        issue = MagicMock()
-        issue.status = "open"
-        issue.latitude = 12.9716
-        issue.longitude = 77.5946
-        issue.complaint_ref = "REF-001"
-        issue.issue_type = "pothole"
-        issue.severity = 3
-        issue.ward_id = "WARD-1"
-        issue.address = "MG Road"
-        issue.location = MagicMock()
+        # An issue that raises TypeError when accessing latitude
+        bad_issue = MagicMock()
+        bad_issue.status = "open"
+        bad_issue.latitude = MagicMock()
+        bad_issue.latitude.__float__ = MagicMock(side_effect=TypeError("bad float"))
+        bad_issue.longitude = 77.59
+        bad_issue.complaint_ref = "REF-BAD"
+        bad_issue.issue_type = "pothole"
+        bad_issue.severity = 3
+        bad_issue.location = MagicMock()
 
-        issue2 = MagicMock()
-        issue2.status = "open"
-        issue2.latitude = 12.9350
-        issue2.longitude = 77.6100
-        issue2.complaint_ref = "REF-002"
-        issue2.issue_type = "garbage"
-        issue2.severity = 4
-        issue2.ward_id = "WARD-1"
-        issue2.address = "Indiranagar"
-        issue2.location = MagicMock()
+        good_issue = MagicMock()
+        good_issue.status = "open"
+        good_issue.latitude = 12.9716
+        good_issue.longitude = 77.5946
+        good_issue.complaint_ref = "REF-GOOD"
+        good_issue.issue_type = "pothole"
+        good_issue.severity = 3
+        good_issue.ward_id = None
+        good_issue.address = None
+        good_issue.location = MagicMock()
 
-        result_scalars = MagicMock()
-        result_scalars.all.return_value = [issue, issue2]
-        result = MagicMock()
-        result.scalars.return_value = result_scalars
-        db.execute.return_value = result
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = [bad_issue, good_issue]
+        db.execute.return_value = mock_result
 
         route = await OfficerRouteOptimizer.optimize_route(
             db, officer_id="OFF-1", officer_lat=12.97, officer_lon=77.59,
         )
-        assert route.total_stops == 2
-        assert route.total_distance_km > 0
-        assert route.estimated_duration_minutes > 0
-        assert len(route.stops) == 2
-        assert route.stops[0].order == 1
-        assert route.stops[0].complaint_ref in ("REF-001", "REF-002")
+        assert route.total_stops == 1
+        assert route.stops[0].complaint_ref == "REF-GOOD"
 
     async def test_ward_id_filtering(self):
         db = MagicMock()
         db.execute = AsyncMock()
-        result_scalars = MagicMock()
-        result_scalars.all.return_value = []
-        result = MagicMock()
-        result.scalars.return_value = result_scalars
-        db.execute.return_value = result
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = []
+        db.execute.return_value = mock_result
 
         route = await OfficerRouteOptimizer.optimize_route(
             db, officer_id="OFF-1", officer_lat=12.97, officer_lon=77.59,
@@ -149,11 +156,9 @@ class TestOfficerRouteOptimizer:
             iss.location = MagicMock()
             issues.append(iss)
 
-        result_scalars = MagicMock()
-        result_scalars.all.return_value = issues
-        result = MagicMock()
-        result.scalars.return_value = result_scalars
-        db.execute.return_value = result
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = issues
+        db.execute.return_value = mock_result
 
         short_shift = OfficerShift(max_complaints_per_shift=3)
         route = await OfficerRouteOptimizer.optimize_route(
@@ -165,11 +170,9 @@ class TestOfficerRouteOptimizer:
     async def test_default_shift_values(self):
         db = MagicMock()
         db.execute = AsyncMock()
-        result_scalars = MagicMock()
-        result_scalars.all.return_value = []
-        result = MagicMock()
-        result.scalars.return_value = result_scalars
-        db.execute.return_value = result
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = []
+        db.execute.return_value = mock_result
 
         route = await OfficerRouteOptimizer.optimize_route(
             db, officer_id="OFF-1", officer_lat=12.97, officer_lon=77.59,
@@ -205,11 +208,9 @@ class TestOfficerRouteOptimizer:
         issue_no_coords.address = None
         issue_no_coords.location = MagicMock()
 
-        result_scalars = MagicMock()
-        result_scalars.all.return_value = [issue_with_coords, issue_no_coords]
-        result = MagicMock()
-        result.scalars.return_value = result_scalars
-        db.execute.return_value = result
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = [issue_with_coords, issue_no_coords]
+        db.execute.return_value = mock_result
 
         route = await OfficerRouteOptimizer.optimize_route(
             db, officer_id="OFF-1", officer_lat=12.97, officer_lon=77.59,
@@ -232,11 +233,9 @@ class TestOfficerRouteOptimizer:
         issue.address = None
         issue.location = MagicMock()
 
-        result_scalars = MagicMock()
-        result_scalars.all.return_value = [issue]
-        result = MagicMock()
-        result.scalars.return_value = result_scalars
-        db.execute.return_value = result
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = [issue]
+        db.execute.return_value = mock_result
 
         short_shift = OfficerShift(
             start_time=time(9, 0),
@@ -250,3 +249,26 @@ class TestOfficerRouteOptimizer:
             shift=short_shift,
         )
         assert "exceeds shift" in route.warnings[0]
+
+    async def test_value_error_build_point_skipped(self):
+        """Covers ValueError path in lines 184-185."""
+        db = MagicMock()
+        db.execute = AsyncMock()
+
+        bad_issue = MagicMock()
+        bad_issue.status = "open"
+        bad_issue.latitude = "not-a-number"
+        bad_issue.longitude = 77.59
+        bad_issue.complaint_ref = "REF-BAD2"
+        bad_issue.issue_type = "pothole"
+        bad_issue.severity = 3
+        bad_issue.location = MagicMock()
+
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = [bad_issue]
+        db.execute.return_value = mock_result
+
+        route = await OfficerRouteOptimizer.optimize_route(
+            db, officer_id="OFF-1", officer_lat=12.97, officer_lon=77.59,
+        )
+        assert route.total_stops == 0

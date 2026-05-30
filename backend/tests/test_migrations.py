@@ -21,7 +21,8 @@ def test_postgis_extension_exists(app):
         response = client.get("/health")
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert payload["status"] == "ok"
 
 

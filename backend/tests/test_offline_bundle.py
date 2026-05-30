@@ -31,10 +31,11 @@ def test_valid_city_returns_bundle(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload["city"] == "Chennai"
-    assert "emergency_numbers" in payload
-    assert "hospitals" in payload
-    assert payload["version"] == "1.0"
+    data = payload.get("data", payload)
+    assert data["city"] == "Chennai"
+    assert "emergency_numbers" in data
+    assert "hospitals" in data
+    assert data["version"] == "1.0"
 
 
 def test_invalid_city_returns_404(app):
@@ -87,8 +88,9 @@ def test_bundle_contains_emergency_numbers(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert "112" in payload["emergency_numbers"]
-    assert "108" in payload["emergency_numbers"]
+    data = payload.get("data", payload)
+    assert "112" in data["emergency_numbers"]
+    assert "108" in data["emergency_numbers"]
 
 
 def test_bundle_contains_location_data(app):
@@ -98,6 +100,7 @@ def test_bundle_contains_location_data(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert len(payload["hospitals"]) >= 1
-    assert "lat" in payload["hospitals"][0]
-    assert "lon" in payload["hospitals"][0]
+    data = payload.get("data", payload)
+    assert len(data["hospitals"]) >= 1
+    assert "lat" in data["hospitals"][0]
+    assert "lon" in data["hospitals"][0]

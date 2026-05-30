@@ -297,8 +297,22 @@ def create_app() -> FastAPI:
             "img-src 'self' https: data: blob:; "
             "connect-src 'self' https: wss: ws:; "
             "media-src 'self' blob:; "
-            "worker-src 'self' blob:"
         )
+        # Performance: Cache-Control headers for suitable GET endpoints
+        if request.method == "GET" and response.status_code < 400:
+            path = request.url.path
+            if path == "/api/v1/emergency/numbers" or path == "/health":
+                response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=60"
+            elif path.startswith("/api/v1/emergency/nearby"):
+                response.headers["Cache-Control"] = "public, max-age=60, stale-while-revalidate=30"
+            elif path.startswith("/api/v1/emergency/sos"):
+                response.headers["Cache-Control"] = "public, max-age=120, stale-while-revalidate=60"
+            elif path.startswith("/api/v1/challan/calculate"):
+                response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=60"
+            elif path.startswith("/api/v1/roadwatch/feed"):
+                response.headers["Cache-Control"] = "public, max-age=120, stale-while-revalidate=60"
+            elif path.startswith("/api/v1/user/"):
+                response.headers["Cache-Control"] = "private, max-age=60, stale-while-revalidate=30"
         return response
 
     @app.middleware("http")

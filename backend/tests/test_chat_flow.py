@@ -41,7 +41,8 @@ def test_chat_proxy_success(app, auth_headers):
         )
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert payload["response"] == "Handled: What is Section 185?"
     assert payload["intent"] == "general"
     assert payload["sources"] == ["unit:test"]
@@ -72,7 +73,8 @@ def test_chat_timeout_fallback(app, auth_headers):
         )
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert "fallback" in payload["sources"][0] or "unavailable" in payload["response"].lower()
 
 
@@ -89,7 +91,8 @@ def test_chat_error_fallback(app, auth_headers):
         )
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert "fallback" in payload["sources"][0] or "unavailable" in payload["response"].lower()
 
 

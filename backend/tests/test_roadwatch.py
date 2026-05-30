@@ -94,8 +94,8 @@ def test_authority_endpoint(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload['authority_name'] == 'NHAI'
-    assert payload['road_type_code'] == 'NH'
+    assert payload['data']['authority_name'] == 'NHAI'
+    assert payload['data']['road_type_code'] == 'NH'
 
 
 def test_infrastructure_endpoint(app):
@@ -105,8 +105,8 @@ def test_infrastructure_endpoint(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload['contractor_name'] == 'ABC Infra'
-    assert payload['source'] == 'road_infrastructure'
+    assert payload['data']['contractor_name'] == 'ABC Infra'
+    assert payload['data']['source'] == 'road_infrastructure'
 
 
 def test_nearby_issues_endpoint(app):
@@ -116,8 +116,8 @@ def test_nearby_issues_endpoint(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload['count'] == 1
-    assert payload['issues'][0]['issue_type'] == 'pothole'
+    assert payload['data']['count'] == 1
+    assert payload['data']['issues'][0]['issue_type'] == 'pothole'
 
 
 def test_submit_report_endpoint(app):
@@ -136,9 +136,9 @@ def test_submit_report_endpoint(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload['authority_name'] == 'NHAI'
-    assert payload['status'] == 'open'
-    assert payload['complaint_ref'] == 'RS-TEST-0001'
+    assert payload['data']['authority_name'] == 'NHAI'
+    assert payload['data']['status'] == 'open'
+    assert payload['data']['complaint_ref'] == 'RS-TEST-0001'
 
 
 def test_nearby_issues_rejects_invalid_status(app):

@@ -12,7 +12,7 @@ import zipfile
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_ROOT = PROJECT_ROOT / 'backend'
 
 import importlib.util as _ilu
@@ -32,7 +32,7 @@ def _load_backend_module(rel_path: str, module_name: str):
     return mod
 
 
-_seed_viol = _load_backend_module("scripts/seed_violations.py", "scripts.seed_violations")
+_seed_viol = _load_backend_module("scripts/data/seed_violations.py", "scripts.seed_violations")
 DEFAULT_RULES = _seed_viol.DEFAULT_RULES
 OVERRIDE_COLUMNS = _seed_viol.OVERRIDE_COLUMNS
 RULE_COLUMNS = _seed_viol.RULE_COLUMNS
@@ -88,7 +88,8 @@ def sync_challan_assets() -> None:
     rule_map = {rule.violation_code: _rule_to_row(rule) for rule in DEFAULT_RULES}
     if rules_source.exists():
         for row in _load_rule_rows(rules_source):
-            rule_map[row['violation_code']] = row
+            existing = rule_map.get(row['violation_code'])
+            rule_map[row['violation_code']] = _seed_viol._merge_rule_rows(existing, row) if existing else row
     override_rows = _load_override_rows(overrides_source) if overrides_source.exists() else []
 
     sorted_rules = [rule_map[key] for key in sorted(rule_map)]

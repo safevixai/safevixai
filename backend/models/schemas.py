@@ -632,3 +632,61 @@ class ApiErrorResponse(BaseModel):
     data: None = None
     error: dict
     timestamp: str = ""
+
+
+# ════════════════════════════════════════════════════════════
+# ENTERPRISE EXTENSION SCHEMAS: GARAGE, DISPUTE, PREDICTION
+# ════════════════════════════════════════════════════════════
+
+class VehicleGarageItem(BaseModel):
+    id: UUID
+    vehicle_number: str
+    owner_name: str
+    vehicle_make: str
+    vehicle_model: str
+    rc_status: str
+    insurance_expiry: datetime | None = None
+    puc_expiry: datetime | None = None
+    created_at: datetime
+
+
+class GarageSyncResponse(BaseModel):
+    vehicles: list[VehicleGarageItem]
+    sync_status: str
+    last_synced_at: datetime
+
+
+class TelemetryDataPoint(BaseModel):
+    speeding_events: int = 0
+    harsh_braking_events: int = 0
+    night_driving_minutes: int = 0
+    total_km_driven: float = 0.0
+
+
+class FinePredictionRequest(BaseModel):
+    vehicle_number: str
+    state_code: str
+    telemetry: TelemetryDataPoint
+
+
+class FinePredictionResponse(BaseModel):
+    predicted_violations_count: int
+    estimated_annual_liability: int
+    risk_score: float
+    risk_level: Literal['low', 'medium', 'high']
+    recommendations: list[str]
+
+
+class DisputeDraftRequest(BaseModel):
+    challan_ref: str
+    violation_code: str
+    fine_amount: int
+    mitigating_factors: str
+
+
+class DisputeDraftResponse(BaseModel):
+    dispute_ref: str
+    appeal_letter: str
+    cited_mva_sections: list[str]
+    confidence_score: float
+    instructions: list[str]

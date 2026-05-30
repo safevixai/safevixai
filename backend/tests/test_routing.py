@@ -76,11 +76,12 @@ def test_routing_preview_endpoint(app):
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload['provider'] == 'osrm'
-    assert payload['distance_meters'] == 4250.0
-    assert len(payload['path']) == 2
-    assert payload['selected_route_id'] == 'route-1'
-    assert payload['routes'][0]['steps'][0]['instruction'] == 'Head south-west on Anna Salai'
+    data = payload.get("data", payload)
+    assert data['provider'] == 'osrm'
+    assert data['distance_meters'] == 4250.0
+    assert len(data['path']) == 2
+    assert data['selected_route_id'] == 'route-1'
+    assert data['routes'][0]['steps'][0]['instruction'] == 'Head south-west on Anna Salai'
 
 
 def test_routing_preview_rejects_invalid_profile(app):

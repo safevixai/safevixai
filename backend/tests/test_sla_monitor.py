@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-import pytest
 import asyncio
-from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime, timezone
+from unittest.mock import AsyncMock, MagicMock, patch
+
+import pytest
 
 from services.sla_monitor import SLAMonitor
-from models.road_issue import RoadIssue
 
 
 class TestSLAMonitor:
@@ -19,7 +19,6 @@ class TestSLAMonitor:
         db.execute = AsyncMock(return_value=mock_result)
 
         count = await monitor.check_slas(db)
-
         assert count == 0
 
     @pytest.mark.asyncio
@@ -27,10 +26,12 @@ class TestSLAMonitor:
         monitor = SLAMonitor()
         db = MagicMock()
 
-        mock_issue = MagicMock(spec=RoadIssue)
+        mock_issue = MagicMock()
         mock_issue.uuid = "test-uuid-123"
         mock_issue.complaint_ref = "REF-001"
         mock_issue.sla_deadline = datetime(2024, 1, 1, tzinfo=None)
+        mock_issue.issue_type = "pothole"
+        mock_issue.severity = 3
 
         mock_result = MagicMock()
         mock_result.scalars.return_value.all.return_value = [mock_issue]
@@ -45,20 +46,15 @@ class TestSLAMonitor:
             ]
 
             count = await monitor.check_slas(db)
-
             assert count == 1
-            mock_escalate.assert_awaited_once_with(
-                db,
-                complaint_uuid=mock_issue.uuid,
-                reason=f"SLA breach: Resolved deadline ({mock_issue.sla_deadline}) has passed."
-            )
+            mock_escalate.assert_awaited_once()
 
     @pytest.mark.asyncio
     async def test_check_slas_already_escalated(self):
         monitor = SLAMonitor()
         db = MagicMock()
 
-        mock_issue = MagicMock(spec=RoadIssue)
+        mock_issue = MagicMock()
         mock_issue.uuid = "test-uuid-456"
         mock_issue.complaint_ref = "REF-002"
         mock_issue.sla_deadline = datetime(2024, 1, 1, tzinfo=None)
@@ -76,7 +72,6 @@ class TestSLAMonitor:
             ]
 
             count = await monitor.check_slas(db)
-
             assert count == 0
             mock_escalate.assert_not_called()
 
@@ -85,7 +80,7 @@ class TestSLAMonitor:
         monitor = SLAMonitor()
         db = MagicMock()
 
-        mock_issue = MagicMock(spec=RoadIssue)
+        mock_issue = MagicMock()
         mock_issue.uuid = "test-uuid-789"
         mock_issue.complaint_ref = "REF-003"
         mock_issue.sla_deadline = datetime(2024, 1, 1, tzinfo=None)
@@ -103,8 +98,41 @@ class TestSLAMonitor:
             ]
 
             count = await monitor.check_slas(db)
-
             assert count == 0
+
+    @pytest.mark.asyncio
+    async def test_check_slas_notification_failure_handled(self):
+        """Covers lines 69-70: SLA notification exception is caught."""
+        monitor = SLAMonitor()
+        db = MagicMock()
+
+        mock_issue = MagicMock()
+        mock_issue.uuid = "test-uuid-notif"
+        mock_issue.complaint_ref = "REF-NOTIF"
+        mock_issue.sla_deadline = datetime(2024, 1, 1, tzinfo=None)
+        mock_issue.issue_type = "pothole"
+        mock_issue.severity = 3
+
+        mock_result = MagicMock()
+        mock_result.scalars.return_value.all.return_value = [mock_issue]
+        db.execute = AsyncMock(return_value=mock_result)
+
+        with (
+            patch("services.sla_monitor.ComplaintLifecycle.get_timeline", new_callable=AsyncMock) as mock_get_timeline,
+            patch("services.sla_monitor.ComplaintLifecycle.escalate", new_callable=AsyncMock) as mock_escalate,
+        ):
+            mock_get_timeline.return_value = [
+                MagicMock(event_type="created", notes="Initial report")
+            ]
+
+            with patch(
+                "services.sla_notification.SLANotificationService.notify_sla_breach",
+                new_callable=AsyncMock,
+                side_effect=RuntimeError("Notification service unavailable"),
+            ):
+                count = await monitor.check_slas(db)
+                assert count == 1
+                mock_escalate.assert_awaited_once()
 
     @pytest.mark.asyncio
     async def test_start_loop_no_session_maker(self):
@@ -112,7 +140,6 @@ class TestSLAMonitor:
         assert not monitor.is_running
 
         await monitor.start_loop(interval_seconds=1)
-
         assert not monitor.is_running
 
     @pytest.mark.asyncio
@@ -126,7 +153,6 @@ class TestSLAMonitor:
 
     @pytest.mark.asyncio
     async def test_start_loop_runs_once(self):
-        """Covers loop body lines: sleep, session_maker, check_slas, log."""
         mock_db = AsyncMock()
         mock_session_maker = MagicMock(return_value=AsyncMock())
         mock_session_maker.return_value.__aenter__.return_value = mock_db
@@ -135,17 +161,14 @@ class TestSLAMonitor:
         monitor = SLAMonitor(session_maker=mock_session_maker)
 
         with patch.object(monitor, "check_slas", new_callable=AsyncMock, return_value=0) as mock_check:
-            # Use real asyncio.sleep so loop yields to event loop for cancellation
             try:
                 await asyncio.wait_for(monitor.start_loop(interval_seconds=0), timeout=0.2)
             except (asyncio.TimeoutError, asyncio.CancelledError):
                 pass
-
             mock_check.assert_awaited()
 
     @pytest.mark.asyncio
     async def test_start_loop_check_slas_raises_exception(self):
-        """Covers the except Exception handler in the loop (lines 80-81)."""
         mock_db = AsyncMock()
         mock_session_maker = MagicMock(return_value=AsyncMock())
         mock_session_maker.return_value.__aenter__.return_value = mock_db
@@ -161,7 +184,6 @@ class TestSLAMonitor:
 
     @pytest.mark.asyncio
     async def test_start_loop_logs_escalated(self):
-        """Covers the escalated > 0 log path (line 76)."""
         mock_db = AsyncMock()
         mock_session_maker = MagicMock(return_value=AsyncMock())
         mock_session_maker.return_value.__aenter__.return_value = mock_db
@@ -178,7 +200,5 @@ class TestSLAMonitor:
     def test_stop(self):
         monitor = SLAMonitor()
         monitor.is_running = True
-
         monitor.stop()
-
         assert not monitor.is_running

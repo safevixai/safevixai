@@ -91,7 +91,8 @@ def test_health_endpoint_returns_stable_response(app, monkeypatch):
         response = client.get('/health')
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert payload['status'] == 'ok'
     assert payload['database_available'] is True
     assert payload['chatbot_mode'] == 'external_service'
@@ -105,7 +106,8 @@ def test_emergency_numbers_endpoint(app):
         response = client.get('/api/v1/emergency/numbers')
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert payload['numbers']['national_emergency']['service'] == '112'
     assert payload['numbers']['national_highway']['service'] == '1033'
 
@@ -116,7 +118,8 @@ def test_nearby_endpoint_uses_api_service(app):
         response = client.get('/api/v1/emergency/nearby?lat=13.0827&lon=80.2707&categories=hospital')
 
     assert response.status_code == 200
-    payload = response.json()
+    body = response.json()
+    payload = body.get("data", body)
     assert payload['count'] == 1
     assert payload['services'][0]['name'] == 'City Hospital'
     assert payload['radius_used'] == 1000

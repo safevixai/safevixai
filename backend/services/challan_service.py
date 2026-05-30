@@ -302,7 +302,7 @@ class ChallanService:
                         continue
                     repeat_fines = self._extract_fines(row, prefix='repeat_fine')
                     aliases = tuple(
-                        item.strip().upper()
+                        self._normalize_violation_code(item)
                         for item in (row.get('aliases') or '').split('|')
                         if item.strip()
                     )

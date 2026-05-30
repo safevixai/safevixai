@@ -159,7 +159,7 @@ Do not reply to this email.
                 }
             ]
         }
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=30.0) as client:
             await client.post(
                 self.webhook_url,
                 json=payload,
