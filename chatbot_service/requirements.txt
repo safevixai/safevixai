@@ -22,7 +22,7 @@ python-multipart==0.0.29
 langgraph==1.1.10
 langchain==1.2.15
 langchain-community==0.4.1
-langchain-openai==1.1.14
+langchain-openai==1.2.2
 langchain-google-genai==4.2.2
 chromadb==1.5.8
 sentence-transformers==5.4.1
