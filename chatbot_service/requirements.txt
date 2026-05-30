@@ -34,7 +34,7 @@ openai==2.38.0
 mistralai==2.4.0
 
 # --- Cache / Memory ---
-redis==7.4.0
+redis==8.0.0
 
 # --- Observability ---
 sentry-sdk[fastapi]==2.51.0
