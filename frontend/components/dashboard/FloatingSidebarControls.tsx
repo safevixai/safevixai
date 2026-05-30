@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   ShieldAlert,
   Layers,
@@ -14,13 +15,15 @@ import {
   X,
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
+import { useTranslation } from 'react-i18next';
 
 // ── Driving Score 2.0 (High-Fidelity Gauge) ──
 const DrivingScore = ({ score }: { score: number }) => {
+  const { t } = useTranslation('common');
   const getStatus = (s: number) => {
-    if (s >= 80) return { label: 'OPTIMAL', color: 'var(--brand-light)', glow: 'var(--brand-dim)' };
-    if (s >= 60) return { label: 'CAUTION', color: 'var(--text-amber)', glow: 'rgba(245, 212, 79, 0.5)' };
-    return { label: 'CRITICAL', color: 'var(--emergency)', glow: 'var(--emergency-dim)' };
+    if (s >= 80) return { label: t('common.status_optimal', 'OPTIMAL'), color: 'var(--brand-light)', glow: 'var(--brand-dim)' };
+    if (s >= 60) return { label: t('common.status_caution', 'CAUTION'), color: 'var(--text-amber)', glow: 'rgba(245, 212, 79, 0.5)' };
+    return { label: t('common.status_critical', 'CRITICAL'), color: 'var(--emergency)', glow: 'var(--emergency-dim)' };
   };
 
   const { label, color, glow } = getStatus(score);
@@ -36,7 +39,7 @@ const DrivingScore = ({ score }: { score: number }) => {
         <div className="self-center bg-white/90 dark:bg-surface-1/90 backdrop-blur-xl rounded-full px-4 py-1.5 border border-border-md dark:border-white/10 shadow-xl flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-emergency animate-pulse shadow-[0_0_8px_var(--emergency)]"></span>
           <span className="text-[10px] font-semibold tracking-[0.1em] text-text-1 dark:text-brand uppercase font-space">
-            Priority Vectors Detected
+            {t('common.priority_vectors', 'Priority Vectors Detected')}
           </span>
         </div>
         <p className="text-xs font-semibold tracking-widest font-space" style={{ color }}>{label}</p>
@@ -107,7 +110,6 @@ const LayerToggle = ({
   activeColor = 'var(--brand)',
 }: LayerToggleProps) => (
   <button
-    role="button"
     aria-label={`Toggle ${label} layer`}
     aria-pressed={active}
     aria-disabled={disabled}
@@ -190,6 +192,8 @@ const TRAFFIC_KEY_AVAILABLE = !!process.env.NEXT_PUBLIC_TOMTOM_KEY;
 
 // ── Main Dashboard HUD ──
 export default function FloatingSidebarControls() {
+  const { t } = useTranslation('common');
+  const router = useRouter();
   const [isScanning, setIsScanning] = useState(false);
   const [showLayersMenu, setShowLayersMenu] = useState(false);
   const drivingScore = useAppStore((state) => state.drivingScore);
@@ -226,8 +230,8 @@ export default function FloatingSidebarControls() {
         <div className="relative pointer-events-auto">
           <HUDButton
             icon={<Layers size={20} strokeWidth={2.5} />}
-            label="Map Layers"
-            ariaLabel={`Map Layers – ${activeLayerCount} active`}
+            label={t('common.map_layers', 'Map Layers')}
+            ariaLabel={t('common.map_layers_count_aria', 'Map Layers – {{count}} active', { count: activeLayerCount })}
             onClick={() => setShowLayersMenu(!showLayersMenu)}
             color={showLayersMenu ? 'var(--brand)' : undefined}
           />
@@ -240,142 +244,141 @@ export default function FloatingSidebarControls() {
 
         <HUDButton
           icon={<LocateFixed size={20} strokeWidth={2.5} />}
-          label="Relocate Sentinel"
-          ariaLabel="Re-center map on current location"
+          label={t('common.relocate_sentinel', 'Relocate Sentinel')}
+          ariaLabel={t('common.recenter_map_desc', 'Re-center map on current location')}
           onClick={handleRelocate}
         />
 
         <HUDButton
           icon={<ShieldAlert size={20} strokeWidth={2.5} />}
-          label="Emergency Protocols"
-          ariaLabel="Open emergency protocols"
+          label={t('common.emergency_protocols', 'Emergency Protocols')}
+          ariaLabel={t('common.open_emergency_protocols', 'Open emergency protocols')}
           href="/emergency"
           color="var(--emergency)"
         />
       </div>
 
       {/* ── Consolidated Layer Menu ── */}
-              {showLayersMenu && (
-          <div
-            className="absolute right-[72px] bottom-[60px] bg-white/95 dark:bg-surface-2/95 backdrop-blur-2xl border border-border-md dark:border-white/10 rounded-2xl shadow-2xl w-64 pointer-events-auto z-50 overflow-hidden"
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 pt-4 pb-2">
-              <h4 className="text-xs font-bold text-text-3 uppercase tracking-[0.15em] font-space">
-                Map Layers
-              </h4>
-              <button
-                onClick={() => setShowLayersMenu(false)}
-                className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-surface-3 transition-colors text-text-3"
-                aria-label="Close layer menu"
-              >
-                <X size={14} strokeWidth={2.5} />
-              </button>
-            </div>
+      {showLayersMenu && (
+        <div
+          className="absolute right-[72px] bottom-[60px] bg-white/95 dark:bg-surface-2/95 backdrop-blur-2xl border border-border-md dark:border-white/10 rounded-2xl shadow-2xl w-64 pointer-events-auto z-50 overflow-hidden"
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 pt-4 pb-2">
+            <h4 className="text-xs font-bold text-text-3 uppercase tracking-[0.15em] font-space">
+              {t('common.map_layers', 'Map Layers')}
+            </h4>
+            <button
+              onClick={() => setShowLayersMenu(false)}
+              className="w-6 h-6 rounded-full flex items-center justify-center hover:bg-surface-3 transition-colors text-text-3"
+              aria-label={t('common.close_layer_menu', 'Close layer menu')}
+            >
+              <X size={14} strokeWidth={2.5} />
+            </button>
+          </div>
 
-            {/* Layer Toggles */}
-            <div className="px-2 pb-2 flex flex-col gap-0.5">
-              <LayerToggle
-                icon={<Satellite size={16} strokeWidth={2.5} />}
-                label="Satellite"
-                active={showSatellite}
-                onToggle={() => setShowSatellite(!showSatellite)}
-                activeColor="#3B82F6"
-              />
+          {/* Layer Toggles */}
+          <div className="px-2 pb-2 flex flex-col gap-0.5">
+            <LayerToggle
+              icon={<Satellite size={16} strokeWidth={2.5} />}
+              label={t('common.layers.satellite', 'Satellite')}
+              active={showSatellite}
+              onToggle={() => setShowSatellite(!showSatellite)}
+              activeColor="#3B82F6"
+            />
 
-              <LayerToggle
-                icon={<TrafficCone size={16} strokeWidth={2.5} />}
-                label="Traffic"
-                active={showTraffic}
-                onToggle={() => {
-                  if (TRAFFIC_KEY_AVAILABLE) setShowTraffic(!showTraffic);
-                }}
-                disabled={!TRAFFIC_KEY_AVAILABLE}
-                disabledReason="TomTom API key not configured"
-                activeColor="#F59E0B"
-              />
+            <LayerToggle
+              icon={<TrafficCone size={16} strokeWidth={2.5} />}
+              label={t('common.layers.traffic', 'Traffic')}
+              active={showTraffic}
+              onToggle={() => {
+                if (TRAFFIC_KEY_AVAILABLE) setShowTraffic(!showTraffic);
+              }}
+              disabled={!TRAFFIC_KEY_AVAILABLE}
+              disabledReason={t('common.tomtom_not_configured', 'TomTom API key not configured')}
+              activeColor="#F59E0B"
+            />
 
-              <LayerToggle
-                icon={<Shield size={16} strokeWidth={2.5} />}
-                label="Safe Spaces"
-                active={showSafeSpaces}
-                onToggle={() => setShowSafeSpaces(!showSafeSpaces)}
-                activeColor="var(--brand-light)"
-              />
+            <LayerToggle
+              icon={<Shield size={16} strokeWidth={2.5} />}
+              label={t('common.layers.safe_spaces', 'Safe Spaces')}
+              active={showSafeSpaces}
+              onToggle={() => setShowSafeSpaces(!showSafeSpaces)}
+              activeColor="var(--brand-light)"
+            />
 
-              <LayerToggle
-                icon={<Flame size={16} strokeWidth={2.5} />}
-                label="Hazard Heatmap"
-                active={showHazardHeatmap}
-                onToggle={() => setShowHazardHeatmap(!showHazardHeatmap)}
-                activeColor="var(--emergency)"
-              />
+            <LayerToggle
+              icon={<Flame size={16} strokeWidth={2.5} />}
+              label={t('common.layers.hazard_heatmap', 'Hazard Heatmap')}
+              active={showHazardHeatmap}
+              onToggle={() => setShowHazardHeatmap(!showHazardHeatmap)}
+              activeColor="var(--emergency)"
+            />
 
-              <LayerToggle
-                icon={<Cross size={16} strokeWidth={2.5} />}
-                label="Emergency Services"
-                active={showEmergencyServices}
-                onToggle={() => setShowEmergencyServices(!showEmergencyServices)}
-                activeColor="var(--brand)"
-              />
-            </div>
+            <LayerToggle
+              icon={<Cross size={16} strokeWidth={2.5} />}
+              label={t('common.layers.emergency_services', 'Emergency Services')}
+              active={showEmergencyServices}
+              onToggle={() => setShowEmergencyServices(!showEmergencyServices)}
+              activeColor="var(--brand)"
+            />
+          </div>
 
-            {/* Heatmap Legend — only shown when heatmap is active */}
-                          {showHazardHeatmap && (
-                <div
-                  className="overflow-hidden"
-                >
-                  <div className="mx-3 mb-3 pt-3 border-t border-border dark:border-white/10">
-                    <p className="text-[10px] font-semibold text-text-3 uppercase tracking-widest mb-2 font-space">
-                      Hazard Legend
-                    </p>
-                    <div className="flex flex-col gap-2 text-xs">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-emergency shadow-[0_0_8px_var(--emergency)]" />
-                        <span className="text-text-2">High Severity (S4+)</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-warning shadow-[0_0_8px_var(--warning)]" />
-                        <span className="text-text-2">Traffic &amp; Accident</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]" />
-                        <span className="text-text-2">Weather &amp; Flood</span>
-                      </div>
-                    </div>
+          {/* Heatmap Legend — only shown when heatmap is active */}
+          {showHazardHeatmap && (
+            <div
+              className="overflow-hidden"
+            >
+              <div className="mx-3 mb-3 pt-3 border-t border-border dark:border-white/10">
+                <p className="text-[10px] font-semibold text-text-3 uppercase tracking-widest mb-2 font-space">
+                  {t('common.hazard_legend', 'Hazard Legend')}
+                </p>
+                <div className="flex flex-col gap-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-emergency shadow-[0_0_8px_var(--emergency)]" />
+                    <span className="text-text-2">{t('common.high_severity', 'High Severity (S4+)')}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-warning shadow-[0_0_8px_var(--warning)]" />
+                    <span className="text-text-2">{t('common.traffic_accident', 'Traffic & Accident')}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#3B82F6] shadow-[0_0_8px_#3B82F6]" />
+                    <span className="text-text-2">{t('common.weather_flood', 'Weather & Flood')}</span>
                   </div>
                 </div>
-              )}
-          </div>
-        )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ── Priority Action: SOS ── */}
-      <Link href="/sos" className="pointer-events-auto mt-2">
-        <button
-          onClick={() => {
-             try { if (navigator?.vibrate) navigator.vibrate(50); } catch { console.warn('Vibration not supported'); }
-          }}
-          aria-label="Emergency SOS – tap for immediate help"
-          className="sos-rings relative w-16 h-16 bg-gradient-to-br from-emergency to-red-800 rounded-full flex items-center justify-center group z-50 overflow-visible"
-          style={{
-            boxShadow: '0 0 40px rgba(220,38,38,0.4), 0 0 80px rgba(220,38,38,0.15), inset 0 -2px 8px rgba(0,0,0,0.3)',
-          }}
-        >
-          {/* Inner glow ring */}
-          <div className="absolute inset-[2px] rounded-full border border-white/20" />
+      <button
+        onClick={() => {
+          try { if (navigator?.vibrate) navigator.vibrate(50); } catch { /* not supported */ }
+          router.push('/sos');
+        }}
+        aria-label={t('common.sos_button_aria', 'Emergency SOS – tap for immediate help')}
+        className="sos-rings relative w-16 h-16 bg-gradient-to-br from-emergency to-red-800 rounded-full flex items-center justify-center group z-50 overflow-visible"
+        style={{
+          boxShadow: '0 0 40px rgba(220,38,38,0.4), 0 0 80px rgba(220,38,38,0.15), inset 0 -2px 8px rgba(0,0,0,0.3)',
+        }}
+      >
+        {/* Inner glow ring */}
+        <div className="absolute inset-[2px] rounded-full border border-white/20" />
 
-          <span className="text-white text-lg font-black tracking-[0.1em] relative z-10 drop-shadow-md">
-            SOS
-          </span>
+        <span className="text-white text-lg font-black tracking-[0.1em] relative z-10 drop-shadow-md">
+          {t('common.emergency.system_sos_label', 'SOS')}
+        </span>
 
-          {/* Dynamic "Scanning" Overlay effect */}
-                      {isScanning && (
-              <div
-                className="absolute inset-x-0 h-10 w-full bg-white/20 blur-xl pointer-events-none z-20"
-              />
-            )}
-        </button>
-      </Link>
+        {/* Dynamic "Scanning" Overlay effect */}
+        {isScanning && (
+          <div
+            className="absolute inset-x-0 h-10 w-full bg-white/20 blur-xl pointer-events-none z-20"
+          />
+        )}
+      </button>
     </div>
   );
 }

@@ -5,11 +5,13 @@ import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { WifiOff } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
+import { useTranslation } from 'react-i18next';
 
 export function OfflineBanner() {
   const isOnline = useOnlineStatus();
   const bannerRef = useRef<HTMLDivElement>(null);
   const [shouldRender, setShouldRender] = useState(!isOnline);
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (!isOnline) {
@@ -43,12 +45,12 @@ export function OfflineBanner() {
   return (
     <div
       ref={bannerRef}
-      className="fixed top-[52px] left-0 right-0 z-[999] bg-brand text-white text-xs font-semibold px-4 py-2 flex items-center justify-center gap-2 shadow-md border-b border-brand-light/20"
+      className="fixed top-0 left-0 right-0 z-[999] bg-brand text-white text-xs font-semibold px-4 py-2 flex items-center justify-center gap-2 shadow-md border-b border-brand-light/20"
       role="alert"
       aria-live="assertive"
     >
       <WifiOff size={14} className="shrink-0 text-brand-light animate-pulse" />
-      <span>Offline — Emergency locator, First Aid & SOS still work</span>
+      <span>{t('common.offline_banner_text', 'Offline — Emergency locator, First Aid & SOS still work')}</span>
     </div>
   );
 }

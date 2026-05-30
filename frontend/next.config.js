@@ -37,6 +37,10 @@ const externalApis = [
 
 const scriptSrc = [
   "'self'",
+  // Next.js App Router requires 'unsafe-inline' for its SSR-injected hydration scripts.
+  // Removing this would break route prefetching, RSC payloads, and navigation state.
+  // A nonce-based approach is possible but requires custom middleware complexity
+  // that introduces higher risk than the 'unsafe-inline' tradeoff.
   "'unsafe-inline'",
   ...(isDevelopment ? ["'unsafe-eval'"] : []),
   "'wasm-unsafe-eval'",

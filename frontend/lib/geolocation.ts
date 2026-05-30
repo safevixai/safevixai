@@ -11,11 +11,12 @@ interface GeolocationResult {
 }
 
 export function useGeolocation(): GeolocationResult {
-  const { setGpsLocation, setGpsError, gpsLocation, gpsError } = useAppStore((s) => ({
+  const { setGpsLocation, setGpsError, gpsLocation, gpsError, locationTracking } = useAppStore((s) => ({
     setGpsLocation: s.setGpsLocation,
     setGpsError: s.setGpsError,
     gpsLocation: s.gpsLocation,
     gpsError: s.gpsError,
+    locationTracking: s.locationTracking,
   }));
   const [loading, setLoading] = useState(false);
   const watchIdRef = useRef<number | null>(null);
@@ -28,6 +29,12 @@ export function useGeolocation(): GeolocationResult {
   }, []);
 
   const requestLocation = useCallback(() => {
+    if (!locationTracking) {
+      setGpsError('Location tracking consent not granted. Enable location services in settings.');
+      setLoading(false);
+      return;
+    }
+
     const isLocalhost =
       window.location.hostname === 'localhost' ||
       window.location.hostname === '127.0.0.1';
@@ -61,12 +68,19 @@ export function useGeolocation(): GeolocationResult {
     };
 
     const handleError = (err: GeolocationPositionError) => {
-      const messages: Record<number, string> = {
-        1: 'Location permission denied. Please allow access in browser settings.',
-        2: 'Location unavailable. Try again or check GPS signal.',
-        3: 'Location request timed out. Please try again.',
-      };
-      setGpsError(messages[err.code] ?? 'Unknown location error.');
+      let errMsg = 'Unknown location error.';
+      switch (err.code) {
+        case 1:
+          errMsg = 'Location permission denied. Please allow access in browser settings.';
+          break;
+        case 2:
+          errMsg = 'Location unavailable. Try again or check GPS signal.';
+          break;
+        case 3:
+          errMsg = 'Location request timed out. Please try again.';
+          break;
+      }
+      setGpsError(errMsg);
       setLoading(false);
     };
 
@@ -105,7 +119,7 @@ export function useGeolocation(): GeolocationResult {
       .catch(() => {
         resolvePosition();
       });
-  }, [clearWatch, gpsLocation?.city, gpsLocation?.displayName, gpsLocation?.state, setGpsLocation, setGpsError]);
+  }, [clearWatch, gpsLocation?.city, gpsLocation?.displayName, gpsLocation?.state, setGpsLocation, setGpsError, locationTracking]);
 
   useEffect(() => {
     requestLocation();

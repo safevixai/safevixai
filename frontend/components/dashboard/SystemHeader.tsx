@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Search, Mic, Sun, Moon, Monitor, Menu, ShieldCheck, User } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { useTheme } from '@/components/ThemeProvider';
+import { useTranslation } from 'react-i18next';
 
 type ThemeChoice = 'light' | 'dark' | 'system';
 
@@ -29,6 +30,7 @@ const SystemHeader = memo(function SystemHeader({
   const setSystemSidebarOpen = useAppStore((state) => state.setSystemSidebarOpen);
   const isAuthenticated = useAppStore((s) => s.isAuthenticated);
   const operatorName = useAppStore((s) => s.operatorName);
+  const { t } = useTranslation('common');
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -60,7 +62,7 @@ const SystemHeader = memo(function SystemHeader({
         {showBack && (
           <Link 
             href={backHref} 
-            aria-label="Go back"
+            aria-label={t('common.go_back', 'Go back')}
             className="text-text-2 hover:bg-surface-2 transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center border border-transparent hover:border-border"
           >
             <ArrowLeft size={20} />
@@ -76,7 +78,7 @@ const SystemHeader = memo(function SystemHeader({
           </h1>
           <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-brand-light/10 border border-brand-light/20 w-fit mt-0.5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse"></span>
-            <span className="text-[9px] font-bold text-brand-light uppercase tracking-widest font-mono">Sentinel Active</span>
+            <span className="text-[9px] font-bold text-brand-light uppercase tracking-widest font-mono">{t('common.sentinel_active', 'Sentinel Active')}</span>
           </div>
         </div>
       </div>
@@ -103,12 +105,13 @@ const SystemHeader = memo(function SystemHeader({
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Ask Maps or Search System"
+          placeholder={t('common.search_placeholder', 'Ask Maps or Search System')}
           aria-label="Search input"
           className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 px-3 text-sm text-text-1 placeholder:text-text-3 font-medium h-full w-full"
         />
         <button 
           type="button"
+          aria-label="Start voice search"
           className="p-1.5 mr-1 rounded-full bg-brand/10 text-brand-light hover:bg-brand/20 transition-all"
         >
           <Mic className="w-4 h-4" />
@@ -123,14 +126,14 @@ const SystemHeader = memo(function SystemHeader({
             disabled={isOnline}
             className={`px-3 py-1 text-[11px] rounded-lg font-bold transition-all duration-200 ${isOnline ? 'bg-surface-3 text-text-1 shadow-sm ring-1 ring-border' : 'text-text-3 hover:text-text-1'}`}
           >
-            Online
+            {t('common.online', 'Online')}
           </button>
           <button
             title="Force Offline Mode"
             disabled={!isOnline}
             className={`px-3 py-1 text-[11px] rounded-lg font-bold transition-all duration-200 ${!isOnline ? 'bg-surface-3 text-text-1 shadow-sm ring-1 ring-border' : 'text-text-3 hover:text-text-1'}`}
           >
-            Offline
+            {t('common.offline', 'Offline')}
           </button>
         </div>
 
@@ -138,17 +141,17 @@ const SystemHeader = memo(function SystemHeader({
         {mounted && (
           <div className="flex items-center h-8 gap-1 bg-surface-2 rounded-full p-1 border border-border shadow-sm">
             {([
-              { id: 'light', icon: <Sun size={14} />, title: 'Light' },
-              { id: 'dark', icon: <Moon size={14} />, title: 'Dark' },
-              { id: 'system', icon: <Monitor size={14} />, title: 'Auto' }
-            ] satisfies Array<{ id: ThemeChoice; icon: React.ReactNode; title: string }>).map((t) => (
+              { id: 'light', icon: <Sun size={14} />, label: t('common.light_mode', 'Light mode') },
+              { id: 'dark', icon: <Moon size={14} />, label: t('common.dark_mode', 'Dark mode') },
+              { id: 'system', icon: <Monitor size={14} />, label: t('common.auto_theme', 'Auto theme') }
+            ] satisfies Array<{ id: ThemeChoice; icon: React.ReactNode; label: string }>).map((tObj) => (
               <button
-                key={t.id}
-                onClick={() => setTheme(t.id)}
-                title={t.title}
-                className={`p-1 rounded-full transition-all ${theme === t.id ? 'bg-brand/20 text-brand-light shadow-sm' : 'text-text-3 hover:text-text-1'}`}
+                key={tObj.id}
+                onClick={() => setTheme(tObj.id)}
+                aria-label={tObj.label}
+                className={`p-1 rounded-full transition-all ${theme === tObj.id ? 'bg-brand/20 text-brand-light shadow-sm' : 'text-text-3 hover:text-text-1'}`}
               >
-                {t.icon}
+                {tObj.icon}
               </button>
             ))}
           </div>
@@ -164,7 +167,7 @@ const SystemHeader = memo(function SystemHeader({
 
         <div className="hidden xl:flex items-center gap-2 bg-brand-light/10 px-3 py-1.5 rounded-full border border-brand-light/20 shadow-sm">
           <ShieldCheck size={14} className="text-brand-light" />
-          <span className="text-[10px] uppercase tracking-widest font-black text-brand-light">Secure</span>
+          <span className="text-[10px] uppercase tracking-widest font-black text-brand-light">{t('common.secure', 'Secure')}</span>
         </div>
       </div>
     </header>

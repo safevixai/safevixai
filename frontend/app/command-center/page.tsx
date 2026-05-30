@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import dynamic from 'next/dynamic';
 import {
   Loader2,
@@ -18,17 +19,22 @@ import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
 import { client } from '@/lib/api';
 
-// Dynamically import MapLibre Component to disable SSR
-const MapLibreDashboard = dynamic(() => import('@/components/command-center/MapLibreDashboard'), {
-  ssr: false,
-  loading: () => (
+const MapLibreLoader = () => {
+  const { t } = useTranslation('common');
+  return (
     <div className="w-full h-[380px] bg-surface-2 dark:bg-slate-900 rounded-[1.8rem] flex items-center justify-center border border-border">
       <div className="flex flex-col items-center gap-3">
         <Loader2 size={32} className="animate-spin text-brand" />
-        <span className="text-xs font-semibold uppercase tracking-widest text-text-3">Warming GIS Engines...</span>
+        <span className="text-xs font-semibold uppercase tracking-widest text-text-3">{t('dashboard.gis_warming', 'Warming GIS Engines...')}</span>
       </div>
     </div>
-  ),
+  );
+};
+
+// Dynamically import MapLibre Component to disable SSR
+const MapLibreDashboard = dynamic(() => import('@/components/command-center/MapLibreDashboard'), {
+  ssr: false,
+  loading: MapLibreLoader,
 });
 
 interface KPI {
@@ -76,6 +82,7 @@ interface WardSummary {
 }
 
 export default function CommandCenterPage() {
+  const { t } = useTranslation('common');
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [kpis, setKpis] = useState<KPI | null>(null);
@@ -142,9 +149,9 @@ export default function CommandCenterPage() {
 
   // Status counts
   const statusCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: complaints.length };
+    const counts = new Map<string, number>([['all', complaints.length]]);
     for (const c of complaints) {
-      counts[c.status] = (counts[c.status] || 0) + 1;
+      counts.set(c.status, (counts.get(c.status) ?? 0) + 1);
     }
     return counts;
   }, [complaints]);
@@ -222,7 +229,7 @@ export default function CommandCenterPage() {
         {loading ? (
           <div className="flex h-[60vh] w-full flex-col items-center justify-center gap-4">
             <Loader2 size={42} className="animate-spin text-brand" />
-            <div className="text-xs font-black uppercase tracking-[0.2em] text-text-3">DISPATCHING SENSORS...</div>
+            <div className="text-xs font-black uppercase tracking-[0.2em] text-text-3">{t('dashboard.dispatching_sensors', 'DISPATCHING SENSORS...')}</div>
           </div>
         ) : (
           <div className="grid gap-6">
@@ -231,38 +238,38 @@ export default function CommandCenterPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <SurfaceCard className="border-cyan-500/20 bg-cyan-950/10">
                 <div className="flex items-center justify-between">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">ACTIVE INCIDENTS</div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">{t('dashboard.active_incidents', 'ACTIVE INCIDENTS')}</div>
                   <Activity size={16} className="text-cyan-400 animate-pulse" />
                 </div>
                 <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.active_complaints ?? 0}</div>
-                <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">Deserving Immediate Patrol</div>
+                <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">{t('dashboard.deserving_patrol', 'Deserving Immediate Patrol')}</div>
               </SurfaceCard>
 
               <SurfaceCard className="border-red-500/20 bg-red-950/10">
                 <div className="flex items-center justify-between">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400">SLA BREACHES</div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400">{t('dashboard.sla_breaches', 'SLA BREACHES')}</div>
                   <Clock size={16} className="text-red-400 animate-bounce" />
                 </div>
                 <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.sla_breaches ?? 0}</div>
-                <div className="mt-2 text-[10px] font-semibold text-red-400 uppercase tracking-wider font-semibold animate-pulse">Needs Escalation</div>
+                <div className="mt-2 text-[10px] font-semibold text-red-400 uppercase tracking-wider font-semibold animate-pulse">{t('dashboard.needs_escalation', 'Needs Escalation')}</div>
               </SurfaceCard>
 
               <SurfaceCard className="border-emerald-500/20 bg-emerald-950/10">
                 <div className="flex items-center justify-between">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400">RESOLVED TICKETS</div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400">{t('dashboard.resolved_tickets', 'RESOLVED TICKETS')}</div>
                   <CheckCircle size={16} className="text-emerald-400" />
                 </div>
                 <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.resolved_complaints ?? 0}</div>
-                <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">{kpis?.overall_resolution_rate ?? 0}% overall resolution rate</div>
+                <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">{kpis?.overall_resolution_rate ?? 0}% {t('dashboard.overall_resolution_rate_desc', 'overall resolution rate')}</div>
               </SurfaceCard>
 
               <SurfaceCard className="border-brand/20 bg-brand/10">
                 <div className="flex items-center justify-between">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-light">ACTIVE TEAMS</div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-light">{t('dashboard.active_teams', 'ACTIVE TEAMS')}</div>
                   <UserCheck size={16} className="text-brand-light" />
                 </div>
                 <div className="mt-4 text-3xl font-black font-space tracking-tight text-text-1 dark:text-white">{kpis?.active_field_officers ?? 0}</div>
-                <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">GPS tracked field squads</div>
+                <div className="mt-2 text-[10px] font-semibold text-text-3 uppercase tracking-wider">{t('dashboard.gps_tracked_squads', 'GPS tracked field squads')}</div>
               </SurfaceCard>
             </div>
 
@@ -271,8 +278,8 @@ export default function CommandCenterPage() {
               <div className="lg:col-span-2">
                 <SurfaceCard padding="none" className="h-full overflow-hidden">
                   <div className="p-5 border-b border-border">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">GCC LIVE FEEDS</div>
-                    <h2 className="text-lg font-black font-space tracking-tight text-text-1">GCC CHOROPLETH WARD HEATMAP</h2>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('dashboard.gcc_live_feeds', 'GCC LIVE FEEDS')}</div>
+                    <h2 className="text-lg font-black font-space tracking-tight text-text-1">{t('dashboard.gcc_choropleth_heatmap', 'GCC CHOROPLETH WARD HEATMAP')}</h2>
                   </div>
                   <div className="h-[380px] w-full">
                     <MapLibreDashboard activeCategory="" />
@@ -283,8 +290,8 @@ export default function CommandCenterPage() {
               {/* Category charts & breaches */}
               <div className="flex flex-col gap-6">
                 <SurfaceCard className="flex-1">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Category Breakdown</div>
-                  <h3 className="mt-1 text-lg font-black font-space tracking-tight text-text-1 uppercase">DISTRIBUTION BY DEPARTMENTS</h3>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('dashboard.category_breakdown', 'Category Breakdown')}</div>
+                  <h3 className="mt-1 text-lg font-black font-space tracking-tight text-text-1 uppercase">{t('dashboard.distribution_departments', 'DISTRIBUTION BY DEPARTMENTS')}</h3>
                   
                   <div className="mt-6 space-y-4">
                     {/* Roads */}
@@ -326,7 +333,7 @@ export default function CommandCenterPage() {
                 <SurfaceCard className="max-h-[220px] overflow-y-auto">
                   <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-500">
                     <AlertTriangle size={12} className="animate-pulse" />
-                    CRITICAL SLA BREACH FEED ({breaches.length})
+                    {t('dashboard.critical_sla_feed', 'CRITICAL SLA BREACH FEED ({{count}})', { count: breaches.length })}
                   </div>
                   
                   <div className="mt-3 divide-y divide-border/10">
@@ -337,12 +344,12 @@ export default function CommandCenterPage() {
                           <div className="text-[10px] text-text-3 mt-0.5 truncate">{b.location_address}</div>
                         </div>
                         <span className="text-[9px] font-bold uppercase tracking-widest text-red-400 bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded">
-                          OVERDUE
+                          {t('dashboard.overdue', 'OVERDUE')}
                         </span>
                       </div>
                     ))}
                     {breaches.length === 0 && (
-                      <div className="text-xs text-text-3 font-semibold py-4 text-center">No active SLA breaches! Good response time.</div>
+                      <div className="text-xs text-text-3 font-semibold py-4 text-center">{t('dashboard.no_sla_breaches', 'No active SLA breaches! Good response time.')}</div>
                     )}
                   </div>
                 </SurfaceCard>
@@ -354,8 +361,8 @@ export default function CommandCenterPage() {
               {/* Incident list */}
               <div className="lg:col-span-2">
                 <SurfaceCard>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Dispatch Desk</div>
-                  <h2 className="mt-1 text-xl font-black font-space tracking-tight text-text-1 uppercase">LIVE CITIZEN COMPLAINT STREAM</h2>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('dashboard.dispatch_desk', 'Dispatch Desk')}</div>
+                  <h2 className="mt-1 text-xl font-black font-space tracking-tight text-text-1 uppercase">{t('dashboard.live_complaint_stream', 'LIVE CITIZEN COMPLAINT STREAM')}</h2>
 
                   {/* Search Bar */}
                   <div className="mt-4 relative">
@@ -364,6 +371,7 @@ export default function CommandCenterPage() {
                       id="cc-search"
                       type="text"
                       placeholder="Search complaints..."
+                      aria-label="Search complaints"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full pl-9 pr-4 py-2.5 bg-surface-2 border border-border rounded-xl text-xs text-text-1 placeholder:text-text-3 focus:outline-none focus:border-brand/50 transition-colors"
@@ -384,7 +392,7 @@ export default function CommandCenterPage() {
                       >
                         {tab.label}
                         <span className="ml-1.5 px-1.5 py-0.5 rounded bg-black/20 text-[9px]">
-                          {statusCounts[tab.key] ?? 0}
+                          {statusCounts.get(tab.key) ?? 0}
                         </span>
                       </button>
                     ))}
@@ -394,11 +402,11 @@ export default function CommandCenterPage() {
                     <table className="w-full text-left border-collapse">
                       <thead>
                         <tr className="border-b border-border/20 text-[10px] font-black uppercase tracking-widest text-text-3">
-                          <th className="pb-3">REF / TYPE</th>
-                          <th className="pb-3">LOCATION</th>
-                          <th className="pb-3">SEVERITY</th>
-                          <th className="pb-3">TIME</th>
-                          <th className="pb-3 text-right">ACTION</th>
+                          <th className="pb-3">{t('dashboard.table.ref_type', 'REF / TYPE')}</th>
+                          <th className="pb-3">{t('dashboard.table.location', 'LOCATION')}</th>
+                          <th className="pb-3">{t('dashboard.table.severity', 'SEVERITY')}</th>
+                          <th className="pb-3">{t('dashboard.table.time', 'TIME')}</th>
+                          <th className="pb-3 text-right">{t('dashboard.table.action', 'ACTION')}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border/10 text-xs">
@@ -420,7 +428,7 @@ export default function CommandCenterPage() {
                               <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${
                                 c.severity >= 4 ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-brand/10 text-brand-light border border-brand/20'
                               }`}>
-                                Sev {c.severity}
+                                {t('dashboard.sev_prefix', 'Sev')} {c.severity}
                               </span>
                             </td>
                             <td className="py-4 pr-3">
@@ -434,7 +442,7 @@ export default function CommandCenterPage() {
                                     onChange={(e) => setSelectedOfficerId(e.target.value)}
                                     className="rounded bg-surface-2 dark:bg-slate-900 border border-border text-xs px-2 py-1 outline-none font-semibold"
                                   >
-                                    <option value="">Select Officer</option>
+                                    <option value="">{t('dashboard.select_officer', 'Select Officer')}</option>
                                     {officers.map((o) => (
                                       <option key={o.id} value={o.id}>{o.name} ({o.department})</option>
                                     ))}
@@ -444,13 +452,13 @@ export default function CommandCenterPage() {
                                     disabled={actionLoading || !selectedOfficerId}
                                     className="bg-brand text-white text-[10px] font-black px-2.5 py-1 rounded transition hover:bg-brand-light disabled:opacity-50"
                                   >
-                                    OK
+                                    {t('common:ok', 'OK')}
                                   </button>
                                   <button
                                     onClick={() => setAssigningUuid(null)}
                                     className="bg-surface-3 dark:bg-slate-800 text-text-2 text-[10px] font-black px-2.5 py-1 rounded hover:bg-surface-1 dark:hover:bg-slate-700"
                                   >
-                                    Cancel
+                                    {t('common:cancel', 'Cancel')}
                                   </button>
                                 </div>
                               ) : (
@@ -473,7 +481,7 @@ export default function CommandCenterPage() {
                         ))}
                         {filteredComplaints.length === 0 && (
                           <tr>
-                            <td colSpan={5} className="py-8 text-center text-text-3 text-xs">No complaints match filters</td>
+                            <td colSpan={5} className="py-8 text-center text-text-3 text-xs">{t('dashboard.no_complaints_matching', 'No complaints match filters')}</td>
                           </tr>
                         )}
                       </tbody>
@@ -485,8 +493,8 @@ export default function CommandCenterPage() {
               {/* Ward leaderboards */}
               <div className="flex flex-col gap-6">
                 <SurfaceCard>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Ward Leaderboard</div>
-                  <h3 className="mt-1 text-lg font-black font-space tracking-tight text-text-1 uppercase">RESOLUTION SPEED RANKINGS</h3>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('dashboard.ward_leaderboard', 'Ward Leaderboard')}</div>
+                  <h3 className="mt-1 text-lg font-black font-space tracking-tight text-text-1 uppercase">{t('dashboard.resolution_rankings', 'RESOLUTION SPEED RANKINGS')}</h3>
                   
                   <div className="mt-5 divide-y divide-border/10">
                     {wards.map((w, index) => (
@@ -534,7 +542,7 @@ export default function CommandCenterPage() {
               </button>
 
               {/* Ref */}
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-text-3">Complaint Details</div>
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-text-3">{t('dashboard.details.title', 'Complaint Details')}</div>
               <h2 className="mt-1 text-xl font-black text-text-1">
                 {selectedComplaint.complaint_ref || selectedComplaint.uuid.slice(0, 8).toUpperCase()}
               </h2>
@@ -553,58 +561,58 @@ export default function CommandCenterPage() {
                 <span className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${
                   selectedComplaint.severity >= 4 ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-brand/10 text-brand-light border border-brand/20'
                 }`}>
-                  Severity {selectedComplaint.severity}
+                  {t('dashboard.details.severity_prefix', 'Severity')} {selectedComplaint.severity}
                 </span>
               </div>
 
               {/* Category */}
               <div className="mt-6">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">Category</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">{t('dashboard.details.category', 'Category')}</p>
                 <p className="text-sm font-bold text-text-1">{selectedComplaint.category} — {selectedComplaint.issue_type}</p>
               </div>
 
               {/* Location */}
               <div className="mt-4">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">Location</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">{t('dashboard.details.location', 'Location')}</p>
                 <div className="flex items-start gap-2">
                   <MapPin size={14} className="text-brand-light mt-0.5 shrink-0" />
                   <p className="text-sm text-text-2">{selectedComplaint.location_address || 'Location pending'}</p>
                 </div>
                 {selectedComplaint.ward_name && (
-                  <p className="text-xs text-text-3 mt-1 ml-5">Ward: {selectedComplaint.ward_name}</p>
+                  <p className="text-xs text-text-3 mt-1 ml-5">{t('dashboard.details.ward_prefix', 'Ward: ')}{selectedComplaint.ward_name}</p>
                 )}
               </div>
 
               {/* Description */}
               {selectedComplaint.description && (
                 <div className="mt-4">
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">Description</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-1">{t('dashboard.details.description', 'Description')}</p>
                   <p className="text-sm text-text-2 leading-relaxed">{selectedComplaint.description}</p>
                 </div>
               )}
 
               {/* Timeline */}
               <div className="mt-6">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-3">Timeline</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-3">{t('dashboard.details.timeline', 'Timeline')}</p>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-cyan-400" />
                     <div>
-                      <p className="text-xs font-semibold text-text-1">Created</p>
+                      <p className="text-xs font-semibold text-text-1">{t('dashboard.details.created', 'Created')}</p>
                       <p className="text-[10px] text-text-3">{new Date(selectedComplaint.created_at).toLocaleString('en-IN')}</p>
                     </div>
                   </div>
                   {selectedComplaint.assigned_officer_id && (
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-amber-400" />
-                      <p className="text-xs font-semibold text-text-1">Officer Assigned</p>
+                      <p className="text-xs font-semibold text-text-1">{t('dashboard.details.officer_assigned', 'Officer Assigned')}</p>
                     </div>
                   )}
                   {selectedComplaint.sla_deadline && (
                     <div className="flex items-center gap-3">
                       <div className={`w-2 h-2 rounded-full ${new Date(selectedComplaint.sla_deadline) < new Date() ? 'bg-red-400' : 'bg-brand-light'}`} />
                       <div>
-                        <p className="text-xs font-semibold text-text-1">SLA Deadline</p>
+                        <p className="text-xs font-semibold text-text-1">{t('dashboard.details.sla_deadline', 'SLA Deadline')}</p>
                         <p className="text-[10px] text-text-3">{new Date(selectedComplaint.sla_deadline).toLocaleString('en-IN')}</p>
                       </div>
                     </div>

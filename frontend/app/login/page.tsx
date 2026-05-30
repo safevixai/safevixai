@@ -12,6 +12,7 @@ import { useAppStore } from '@/lib/store';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 import { useTranslation } from 'react-i18next';
+import { useFormValidation } from '@/lib/use-form-validation';
 
 const API_URL = PUBLIC_API_BASE_URL;
 const DEMO_CREDS: Array<{ label: string; email: string; password: string; color: string }> = [];
@@ -31,6 +32,11 @@ export default function LoginPage() {
   const [scanLine, setScanLine] = useState(0);
   const emailRef = useRef<HTMLInputElement>(null);
 
+  const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation([
+    { key: 'email', label: 'Email', required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMessage: 'Invalid email address' },
+    { key: 'password', label: 'Password', required: true, minLength: 1 },
+  ]);
+
   // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) router.replace('/');
@@ -49,56 +55,55 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !password.trim()) {
-      setError(t('all_fields_required'));
-      return;
-    }
-    setError('');
-    setLoading(true);
+    const values = { email, password };
+    const canSubmit = await formSubmit(values, async () => {
+      setError('');
+      setLoading(true);
+      try {
+        const supabase = getSupabaseBrowserClient();
+        if (supabase) {
+          const { data, error: supabaseError } = await supabase.auth.signInWithPassword({
+            email: email.trim().toLowerCase(),
+            password,
+          });
 
-    try {
-      const supabase = getSupabaseBrowserClient();
-      if (supabase) {
-        const { data, error: supabaseError } = await supabase.auth.signInWithPassword({
-          email: email.trim().toLowerCase(),
-          password,
+          if (!supabaseError && data.session?.access_token) {
+            const displayName =
+              (data.user?.user_metadata?.name as string | undefined) ||
+              data.user?.email ||
+              'SafeVixAI User';
+            setAuth(displayName);
+            setUserProfile({ name: displayName });
+            setSuccess(`Welcome, ${displayName}`);
+            setTimeout(() => router.replace('/'), 1200);
+            return;
+          }
+        }
+
+        const res = await fetch(`${API_URL}/api/v1/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
         });
 
-        if (!supabaseError && data.session?.access_token) {
-          const displayName =
-            (data.user?.user_metadata?.name as string | undefined) ||
-            data.user?.email ||
-            'SafeVixAI User';
-          setAuth(displayName);
-          setUserProfile({ name: displayName });
-          setSuccess(`Welcome, ${displayName}`);
-          setTimeout(() => router.replace('/'), 1200);
-          return;
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.detail || 'Invalid credentials');
         }
+
+        const data = await res.json();
+        setAuth(data.operator_name);
+        setUserProfile({ name: data.operator_name });
+        setSuccess(`Welcome, ${data.operator_name}`);
+        setTimeout(() => router.replace('/'), 1200);
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : 'Authentication failed';
+        setError(msg);
+      } finally {
+        setLoading(false);
       }
-
-      const res = await fetch(`${API_URL}/api/v1/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.detail || 'Invalid credentials');
-      }
-
-      const data = await res.json();
-      setAuth(data.operator_name);
-      setUserProfile({ name: data.operator_name });
-      setSuccess(`Welcome, ${data.operator_name}`);
-      setTimeout(() => router.replace('/'), 1200);
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Authentication failed';
-      setError(msg);
-    } finally {
-      setLoading(false);
-    }
+    });
+    if (!canSubmit) return;
   };
 
   const handleDemoMode = () => {
@@ -153,7 +158,7 @@ export default function LoginPage() {
 
               <div className="text-center">
                 <h1 className="text-2xl font-black text-white tracking-tight font-space uppercase">
-                  SafeVixAI
+                  {t('common:app_name', 'SafeVixAI')}
                 </h1>
                 <p className="text-[10px] font-bold text-brand-light uppercase tracking-[0.1em] mt-0.5">
                   {t('operator_authentication', { defaultValue: 'Operator Authentication' })}
@@ -188,10 +193,12 @@ export default function LoginPage() {
                     type="email"
                     autoComplete="email"
                     value={email}
-                    onChange={e => { setEmail(e.target.value); setError(''); }}
+                    onChange={e => { setEmail(e.target.value); handleChange('email', e.target.value); setError(''); }}
+                    onBlur={e => handleBlur('email', e.target.value)}
                     placeholder="operator@safevixai.app"
-                    className="w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
+                    className={`w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.email ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
                   />
+                  {errors.email && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.email}</p>}
                 </div>
               </div>
 
@@ -206,10 +213,12 @@ export default function LoginPage() {
                     type={showPwd ? 'text' : 'password'}
                     autoComplete="current-password"
                     value={password}
-                    onChange={e => { setPassword(e.target.value); setError(''); }}
+                    onChange={e => { setPassword(e.target.value); handleChange('password', e.target.value); setError(''); }}
+                    onBlur={e => handleBlur('password', e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand/40 transition-all"
+                    className={`w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.password ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
                   />
+                  {errors.password && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.password}</p>}
                   <button
                     type="button"
                     onClick={() => setShowPwd(v => !v)}
@@ -291,7 +300,7 @@ export default function LoginPage() {
                 {/* ── Quick-fill Demo Credentials ── */}
                 <div className="mt-5 flex flex-col gap-2">
                   <p className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em] text-center mb-1">
-                    Demo Credentials
+                    {t('demo_credentials', 'Demo Credentials')}
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     {DEMO_CREDS.map((c) => (
@@ -318,19 +327,19 @@ export default function LoginPage() {
             <div className="flex items-center gap-1.5">
               <Shield size={10} className="text-brand" />
               <span className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em]">
-                SafeVixAI Sentinel Protocol
+                {t('sentinel_protocol', 'SafeVixAI Sentinel Protocol')}
               </span>
             </div>
             <div className="flex items-center gap-1">
               <Wifi size={9} className="text-brand-light" />
-              <span className="text-[8px] font-bold text-brand-light uppercase tracking-widest">Secure</span>
+              <span className="text-[8px] font-bold text-brand-light uppercase tracking-widest">{t('secure_status', 'Secure')}</span>
             </div>
           </div>
         </div>
 
         {/* Outside card — version tag */}
         <p className="text-center text-[9px] font-bold text-text-3 uppercase tracking-[0.1em] mt-5">
-          SafeVixAI v2.4 · IIT Madras Hackathon 2026
+          {t('hackathon_version_footer', 'SafeVixAI v2.4 · IIT Madras Hackathon 2026')}
         </p>
       </div>
     </div>

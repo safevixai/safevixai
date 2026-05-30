@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 
 
 import Image from 'next/image';
-import { 
-  User, Shield, ShieldCheck, CheckCircle, 
+import {
+  User, Shield, ShieldCheck, CheckCircle,
   Car, LogOut,
   CloudOff, ShieldAlert, Award,
   Heart, Star, Edit3, Save, X, Bell
@@ -21,6 +21,7 @@ import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 import { track } from '@/lib/analytics';
 import { toast } from 'sonner';
+import { getOrCreateGuestId, getGuestProfile, updateGuestProfile, isGuestMode } from '@/lib/guest-auth';
 
 export default function ProfilePage() {
   const { crashDetectionEnabled, setCrashDetectionEnabled, userProfile, setUserProfile, clearAuth, isAuthenticated } = useAppStore(useShallow((s) => ({ crashDetectionEnabled: s.crashDetectionEnabled, setCrashDetectionEnabled: s.setCrashDetectionEnabled, userProfile: s.userProfile, setUserProfile: s.setUserProfile, clearAuth: s.clearAuth, isAuthenticated: s.isAuthenticated })));
@@ -50,6 +51,18 @@ export default function ProfilePage() {
     setIsEditing(false);
     setSaveFlash(true);
     track.profileCompleted();
+    // Sync to guest profile if in guest mode
+    if (!isAuthenticated) {
+      const guestProfile = getGuestProfile();
+      const firstContact = editDraft.emergencyContacts?.[0];
+      updateGuestProfile({
+        bloodGroup: editDraft.bloodGroup || guestProfile?.bloodGroup,
+        preferredLanguage: editDraft.preferredLanguage || guestProfile?.preferredLanguage,
+        emergencyContacts: editDraft.emergencyContacts.length > 0
+          ? editDraft.emergencyContacts
+          : (firstContact ? [{ name: firstContact.name || '', phone: firstContact.phone || '', relation: firstContact.relation || '' }] : guestProfile?.emergencyContacts),
+      });
+    }
     setTimeout(() => setSaveFlash(false), 2000);
   };
 
@@ -69,37 +82,50 @@ export default function ProfilePage() {
     }
   };
 
-  // Generate random id on mount if not exists
+  // Initialize guest session on mount if not authenticated
   useEffect(() => {
-    if (!userProfile.id) {
-      const generatedId = `SVA-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
-      setUserProfile({ id: generatedId });
+    if (!isAuthenticated) {
+      const guestId = getOrCreateGuestId();
+      const guestProfile = getGuestProfile();
+      if (!userProfile.id) {
+        setUserProfile({ id: guestId });
+      }
+      if (guestProfile) {
+        const updates: Partial<UserProfile> = {};
+        if (guestProfile.bloodGroup) updates.bloodGroup = guestProfile.bloodGroup as UserProfile['bloodGroup'];
+        if (guestProfile.emergencyContacts && guestProfile.emergencyContacts.length > 0) {
+          updates.emergencyContacts = guestProfile.emergencyContacts;
+          updates.emergencyContact = guestProfile.emergencyContacts[0]?.phone ?? '';
+        }
+        if (guestProfile.preferredLanguage) updates.preferredLanguage = guestProfile.preferredLanguage;
+        if (Object.keys(updates).length > 0) setUserProfile(updates);
+      }
     }
-  }, [userProfile.id, setUserProfile]);
+  }, [isAuthenticated, userProfile.id, setUserProfile]);
 
   // Derive a display ID from the user profile
   const displayId = userProfile.id || 'NOT SET';
 
   return (
     <div ref={pageRef} className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
-      
+
       {/* ── Unified Tactical Navigation Header ── */}
       <TerminalHeader title="Operator Identity Matrix" subtitle="PROFILE & SETTINGS" />
-      
+
       <div className="lg:hidden relative z-[100]">
         <TopSearch isMapPage={false} forceShow={true} showBack={false} />
       </div>
       <main className="flex-1 w-full max-w-2xl mx-auto pt-28 lg:pt-24 pb-44 px-6 space-y-12 relative z-10">
-        
+
         {/* ── Save Flash Banner ── */}
-                  {saveFlash && (
-            <div
-              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-brand-light text-white px-6 py-3 rounded-full shadow-xl text-sm font-semibold uppercase tracking-widest"
-            >
-              <CheckCircle size={16} />
-              Profile Saved
-            </div>
-          )}
+        {saveFlash && (
+          <div
+            className="fixed top-24 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-brand-light text-white px-6 py-3 rounded-full shadow-xl text-sm font-semibold uppercase tracking-widest"
+          >
+            <CheckCircle size={16} />
+            Profile Saved
+          </div>
+        )}
 
         {/* ── Section 1: Hero Identity Matrix ── */}
         <section className="flex flex-col gap-8 relative">
@@ -175,7 +201,7 @@ export default function ProfilePage() {
                 </>
               )}
             </div>
-            
+
             <div className="text-center sm:text-left flex flex-col gap-2 flex-1">
               {isEditing ? (
                 <div className="flex flex-col gap-2 w-full">
@@ -210,11 +236,11 @@ export default function ProfilePage() {
               )}
               <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
                 <div className="px-2 py-1 bg-surface-2 dark:bg-white/5 rounded-lg border border-border dark:border-white/10">
-                   <span className="text-[9px] font-semibold text-text-3 dark:text-brand-light uppercase tracking-widest leading-none">ID: {displayId}</span>
+                  <span className="text-[9px] font-semibold text-text-3 dark:text-brand-light uppercase tracking-widest leading-none">ID: {displayId}</span>
                 </div>
                 <div className="px-2 py-1 bg-warning/10 rounded-lg border border-warning/20 flex items-center gap-1">
-                   <Award size={10} className="text-warning-dim dark:text-warning" />
-                   <span className="text-[9px] font-semibold text-warning-dim dark:text-warning uppercase tracking-widest leading-none">SafeVixAI</span>
+                  <Award size={10} className="text-warning-dim dark:text-warning" />
+                  <span className="text-[9px] font-semibold text-warning-dim dark:text-warning uppercase tracking-widest leading-none">SafeVixAI</span>
                 </div>
               </div>
             </div>
@@ -223,129 +249,129 @@ export default function ProfilePage() {
           {/* Vitals HUD Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <SurfaceCard padding="md" className="flex flex-col gap-4">
-               <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Active Vessel</p>
-                  <Car size={16} className="text-brand-light" />
-               </div>
-               <div className="flex flex-col">
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={editDraft.vehicleNumber}
-                      onChange={e => setEditDraft(d => ({ ...d, vehicleNumber: e.target.value }))}
-                      placeholder="MH 01 AB 1234"
-                      aria-label="Vehicle Number"
-                      className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-transparent border-b-2 border-brand-light/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
-                    />
-                  ) : (
-                    <span className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter">
-                      {userProfile.vehicleNumber || <span className="text-text-4 dark:text-white/20">Not Set</span>}
-                    </span>
-                  )}
-                  <span className="text-[10px] font-bold text-text-2 uppercase mt-1">VEHICLE_REGISTRATION</span>
-               </div>
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Active Vessel</p>
+                <Car size={16} className="text-brand-light" />
+              </div>
+              <div className="flex flex-col">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editDraft.vehicleNumber}
+                    onChange={e => setEditDraft(d => ({ ...d, vehicleNumber: e.target.value }))}
+                    placeholder="MH 01 AB 1234"
+                    aria-label="Vehicle Number"
+                    className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-transparent border-b-2 border-brand-light/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
+                  />
+                ) : (
+                  <span className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter">
+                    {userProfile.vehicleNumber || <span className="text-text-4 dark:text-white/20">Not Set</span>}
+                  </span>
+                )}
+                <span className="text-[10px] font-bold text-text-2 uppercase mt-1">VEHICLE_REGISTRATION</span>
+              </div>
             </SurfaceCard>
-            
+
             <SurfaceCard padding="md" className="flex flex-col gap-4">
-               <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Bio Signature</p>
-                  <Heart size={16} className="text-red-500" />
-               </div>
-               <div className="flex flex-col">
-                  {isEditing ? (
-                    <select
-                      value={editDraft.bloodGroup}
-                      onChange={e => setEditDraft(d => ({ ...d, bloodGroup: e.target.value as UserProfile['bloodGroup'] }))}
-                      aria-label="Blood Group"
-                      className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-surface-2 dark:bg-white/5 border border-border rounded p-1 outline-none"
-                    >
-                      <option value="">Select Blood Group</option>
-                      {['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', 'Unknown'].map((g) => (
-                        <option key={g} value={g}>{g}</option>
-                      ))}
-                    </select>
-                  ) : (
-                    <span className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter">
-                      {userProfile.bloodGroup || <span className="text-text-4 dark:text-white/20">Not Set</span>}
-                    </span>
-                  )}
-                  <span className="text-[10px] font-bold text-text-2 uppercase mt-1">EMERGENCY_BROADCAST_ON</span>
-               </div>
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Bio Signature</p>
+                <Heart size={16} className="text-red-500" />
+              </div>
+              <div className="flex flex-col">
+                {isEditing ? (
+                  <select
+                    value={editDraft.bloodGroup}
+                    onChange={e => setEditDraft(d => ({ ...d, bloodGroup: e.target.value as UserProfile['bloodGroup'] }))}
+                    aria-label="Blood Group"
+                    className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter bg-surface-2 dark:bg-white/5 border border-border rounded p-1 outline-none"
+                  >
+                    <option value="">Select Blood Group</option>
+                    {['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', 'Unknown'].map((g) => (
+                      <option key={g} value={g}>{g}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <span className="text-xl font-black text-text-1 dark:text-white uppercase tracking-tighter">
+                    {userProfile.bloodGroup || <span className="text-text-4 dark:text-white/20">Not Set</span>}
+                  </span>
+                )}
+                <span className="text-[10px] font-bold text-text-2 uppercase mt-1">EMERGENCY_BROADCAST_ON</span>
+              </div>
             </SurfaceCard>
 
             {/* Operator Mobile Links */}
             <SurfaceCard padding="md" className="flex flex-col gap-4">
-               <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Phone Signature</p>
-                  <User size={16} className="text-brand dark:text-brand-light" />
-               </div>
-               <div className="flex flex-col">
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={editDraft.phone || ''}
-                      onChange={e => setEditDraft(d => ({ ...d, phone: e.target.value }))}
-                      placeholder="+91 98765 43210"
-                      aria-label="Phone Number"
-                      className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
-                    />
-                  ) : (
-                    <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter">
-                      {userProfile.phone || <span className="text-text-4 dark:text-white/20">Not Set</span>}
-                    </span>
-                  )}
-                  <span className="text-[10px] font-bold text-text-2 uppercase mt-1">OPERATOR_MOBILE_LINK</span>
-               </div>
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Phone Signature</p>
+                <User size={16} className="text-brand dark:text-brand-light" />
+              </div>
+              <div className="flex flex-col">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editDraft.phone || ''}
+                    onChange={e => setEditDraft(d => ({ ...d, phone: e.target.value }))}
+                    placeholder="+91 98765 43210"
+                    aria-label="Phone Number"
+                    className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
+                  />
+                ) : (
+                  <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter">
+                    {userProfile.phone || <span className="text-text-4 dark:text-white/20">Not Set</span>}
+                  </span>
+                )}
+                <span className="text-[10px] font-bold text-text-2 uppercase mt-1">OPERATOR_MOBILE_LINK</span>
+              </div>
             </SurfaceCard>
 
             {/* Biometric Anomalies */}
             <SurfaceCard padding="md" className="flex flex-col gap-4">
-               <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Medical Record</p>
-                  <ShieldCheck size={16} className="text-brand dark:text-brand-light" />
-               </div>
-               <div className="flex flex-col">
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={editDraft.medicalConditions || ''}
-                      onChange={e => setEditDraft(d => ({ ...d, medicalConditions: e.target.value }))}
-                      placeholder="e.g. Asthma, Penicillin allergy"
-                      aria-label="Medical Conditions"
-                      className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
-                    />
-                  ) : (
-                    <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter truncate max-w-xs">
-                      {userProfile.medicalConditions || <span className="text-text-4 dark:text-white/20">None</span>}
-                    </span>
-                  )}
-                  <span className="text-[10px] font-bold text-text-2 uppercase mt-1">BIOMETRIC_ANOMALIES</span>
-               </div>
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Medical Record</p>
+                <ShieldCheck size={16} className="text-brand dark:text-brand-light" />
+              </div>
+              <div className="flex flex-col">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editDraft.medicalConditions || ''}
+                    onChange={e => setEditDraft(d => ({ ...d, medicalConditions: e.target.value }))}
+                    placeholder="e.g. Asthma, Penicillin allergy"
+                    aria-label="Medical Conditions"
+                    className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
+                  />
+                ) : (
+                  <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter truncate max-w-xs">
+                    {userProfile.medicalConditions || <span className="text-text-4 dark:text-white/20">None</span>}
+                  </span>
+                )}
+                <span className="text-[10px] font-bold text-text-2 uppercase mt-1">BIOMETRIC_ANOMALIES</span>
+              </div>
             </SurfaceCard>
 
             {/* Emergency Contact — full width */}
             <SurfaceCard padding="md" className="sm:col-span-2 flex flex-col gap-4">
-               <div className="flex items-center justify-between">
-                  <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Emergency Contact</p>
-                  <Shield size={16} className="text-brand dark:text-brand-light" />
-               </div>
-               <div className="flex flex-col">
-                  {isEditing ? (
-                    <input
-                      type="tel"
-                      value={editDraft.emergencyContact}
-                      onChange={e => setEditDraft(d => ({ ...d, emergencyContact: e.target.value }))}
-                      placeholder="+91 98765 43210"
-                      aria-label="Emergency Contact"
-                      className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
-                    />
-                  ) : (
-                    <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter">
-                      {userProfile.emergencyContact || <span className="text-text-4 dark:text-white/20 font-normal text-base">Add emergency contact</span>}
-                    </span>
-                  )}
-                  <span className="text-[10px] font-bold text-text-2 uppercase mt-1">SOS_DISPATCH_CONTACT</span>
-               </div>
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-semibold text-text-2 uppercase tracking-widest">Emergency Contact</p>
+                <Shield size={16} className="text-brand dark:text-brand-light" />
+              </div>
+              <div className="flex flex-col">
+                {isEditing ? (
+                  <input
+                    type="tel"
+                    value={editDraft.emergencyContact}
+                    onChange={e => setEditDraft(d => ({ ...d, emergencyContact: e.target.value }))}
+                    placeholder="+91 98765 43210"
+                    aria-label="Emergency Contact"
+                    className="text-xl font-black text-text-1 dark:text-white tracking-tighter bg-transparent border-b-2 border-brand/60 outline-none placeholder:text-text-4 dark:placeholder:text-white/20"
+                  />
+                ) : (
+                  <span className="text-xl font-black text-text-1 dark:text-white tracking-tighter">
+                    {userProfile.emergencyContact || <span className="text-text-4 dark:text-white/20 font-normal text-base">Add emergency contact</span>}
+                  </span>
+                )}
+                <span className="text-[10px] font-bold text-text-2 uppercase mt-1">SOS_DISPATCH_CONTACT</span>
+              </div>
             </SurfaceCard>
           </div>
         </section>
@@ -357,67 +383,72 @@ export default function ProfilePage() {
         <section className="flex flex-col gap-6">
           <h3 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-2 font-space px-2">Mission Protocol</h3>
           <SurfaceCard padding="md">
-             {[
-               { id: 'offline', icon: <CloudOff size={18} />, label: 'V8 Offline Mode', sub: 'Process locally, no network leakage', state: offlineMode, toggle: setOfflineMode },
-               { id: 'crash', icon: <ShieldAlert size={18} />, label: 'Crash Detection', sub: 'Instant satellite SOS engagement', state: crashDetectionEnabled, toggle: setCrashDetectionEnabled },
-               { id: 'notify', icon: <Bell size={18} />, label: 'Push Hub', sub: 'Critical hazard & P0 alerts', state: pushNotifs, toggle: setPushNotifs },
-             ].map(item => (
-                <SettingRow
-                  key={item.id}
-                  icon={<div className={item.state ? 'text-brand-light' : 'text-text-2'}>{item.icon}</div>}
-                  title={item.label}
-                  description={item.sub}
-                  rightElement={<Toggle checked={item.state} onChange={item.toggle} ariaLabel={`Toggle ${item.label}`} />}
-                />
-             ))}
+            {[
+              { id: 'offline', icon: <CloudOff size={18} />, label: 'V8 Offline Mode', sub: 'Process locally, no network leakage', state: offlineMode, toggle: setOfflineMode },
+              { id: 'crash', icon: <ShieldAlert size={18} />, label: 'Crash Detection', sub: 'Instant satellite SOS engagement', state: crashDetectionEnabled, toggle: setCrashDetectionEnabled },
+              { id: 'notify', icon: <Bell size={18} />, label: 'Push Hub', sub: 'Critical hazard & P0 alerts', state: pushNotifs, toggle: setPushNotifs },
+            ].map(item => (
+              <SettingRow
+                key={item.id}
+                icon={<div className={item.state ? 'text-brand-light' : 'text-text-2'}>{item.icon}</div>}
+                title={item.label}
+                description={item.sub}
+                rightElement={<Toggle checked={item.state} onChange={item.toggle} ariaLabel={`Toggle ${item.label}`} />}
+              />
+            ))}
           </SurfaceCard>
         </section>
 
         {/* ── Section 3: Achievements & Legacy ── */}
         <section className="flex flex-col gap-6">
-           <h3 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-2 font-space px-2">Tactical Awards</h3>
-           <div className="flex gap-4 overflow-x-auto pb-6 -mx-6 px-6 scrollbar-thin scrollbar-thumb-border-md dark:scrollbar-thumb-surface-3 scrollbar-track-transparent">
-              {[
-                { title: 'Road Safety', score: 'Active User', bgColor: 'bg-brand-light/10', iconColor: 'text-brand-light' },
-                { title: 'First Responder', score: 'Trained', bgColor: 'bg-warning/10', iconColor: 'text-warning' },
-                { title: 'AI Master', score: 'SafeVixAI', bgColor: 'bg-brand/10', iconColor: 'text-brand dark:text-brand-light' },
-              ].map(badge => (
-                <SurfaceCard key={badge.title} padding="md" className="flex-shrink-0 w-40 flex flex-col items-center gap-3">
-                   <div className={`p-4 rounded-xl ${badge.bgColor}`}>
-                      <Star size={24} className={badge.iconColor} />
-                   </div>
-                   <div className="text-center">
-                     <p className="text-[10px] font-semibold text-text-1 dark:text-white uppercase tracking-tight leading-none">{badge.title}</p>
-                     <p className="text-[9px] font-bold text-text-2 uppercase tracking-widest mt-2">{badge.score}</p>
-                   </div>
-                </SurfaceCard>
-              ))}
-           </div>
+          <h3 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-text-2 font-space px-2">Tactical Awards</h3>
+          <div className="flex gap-4 overflow-x-auto pb-6 -mx-6 px-6 scrollbar-thin scrollbar-thumb-border-md dark:scrollbar-thumb-surface-3 scrollbar-track-transparent">
+            {[
+              { title: 'Road Safety', score: 'Active User', bgColor: 'bg-brand-light/10', iconColor: 'text-brand-light' },
+              { title: 'First Responder', score: 'Trained', bgColor: 'bg-warning/10', iconColor: 'text-warning' },
+              { title: 'AI Master', score: 'SafeVixAI', bgColor: 'bg-brand/10', iconColor: 'text-brand dark:text-brand-light' },
+            ].map(badge => (
+              <SurfaceCard key={badge.title} padding="md" className="flex-shrink-0 w-40 flex flex-col items-center gap-3">
+                <div className={`p-4 rounded-xl ${badge.bgColor}`}>
+                  <Star size={24} className={badge.iconColor} />
+                </div>
+                <div className="text-center">
+                  <p className="text-[10px] font-semibold text-text-1 dark:text-white uppercase tracking-tight leading-none">{badge.title}</p>
+                  <p className="text-[9px] font-bold text-text-2 uppercase tracking-widest mt-2">{badge.score}</p>
+                </div>
+              </SurfaceCard>
+            ))}
+          </div>
         </section>
 
         {/* Action Panel */}
         <section className="flex flex-col items-center gap-4 pt-10">
-           {/* Sign Out — only if using real auth */}
-           {isAuthenticated && (
-             <button
-               onClick={() => { clearAuth(); }}
-               className="w-full h-14 rounded-full border-2 border-brand/30 bg-brand/10 hover:bg-brand/20 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:text-brand-light flex items-center justify-center gap-2 transition-all active:scale-95"
-             >
-               <LogOut size={14} />
-               Sign Out Operator
-             </button>
-           )}
-           <button 
-             onClick={handlePurge}
-             className={`h-14 px-10 rounded-full border-2 text-[10px] font-semibold uppercase tracking-[0.1em] transition-all active:scale-95 ${
-               showPurgeConfirm
-                 ? 'border-red-500 bg-red-500/10 text-red-500'
-                 : 'border-border dark:border-white/10 text-text-2 hover:text-red-500 hover:border-red-500/20'
-             }`}
-           >
-             {showPurgeConfirm ? 'CONFIRM PURGE?' : 'PURGE LOCAL SESSION'}
-           </button>
-           <p className="text-[9px] font-semibold text-text-3 dark:text-text-3 uppercase tracking-[0.1em]">Sentinel V4.2 Real-time Security Layer</p>
+          {/* Sign Out — only if using real auth */}
+          {isAuthenticated && (
+            <button
+              onClick={() => { clearAuth(); }}
+              className="w-full h-14 rounded-full border-2 border-brand/30 bg-brand/10 hover:bg-brand/20 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand dark:text-brand-light flex items-center justify-center gap-2 transition-all active:scale-95"
+            >
+              <LogOut size={14} />
+              Sign Out Operator
+            </button>
+          )}
+          {!isAuthenticated && isGuestMode() && (
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-2 dark:bg-white/5 border border-border text-text-3 text-[10px] font-semibold uppercase tracking-widest">
+              <Shield size={12} />
+              Guest Mode — Data stored locally
+            </div>
+          )}
+          <button
+            onClick={handlePurge}
+            className={`h-14 px-10 rounded-full border-2 text-[10px] font-semibold uppercase tracking-[0.1em] transition-all active:scale-95 ${showPurgeConfirm
+                ? 'border-red-500 bg-red-500/10 text-red-500'
+                : 'border-border dark:border-white/10 text-text-2 hover:text-red-500 hover:border-red-500/20'
+              }`}
+          >
+            {showPurgeConfirm ? 'CONFIRM PURGE?' : 'PURGE LOCAL SESSION'}
+          </button>
+          <p className="text-[9px] font-semibold text-text-3 dark:text-text-3 uppercase tracking-[0.1em]">Sentinel V4.2 Real-time Security Layer</p>
         </section>
 
       </main>

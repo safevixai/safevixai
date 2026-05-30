@@ -10,7 +10,6 @@ export function EmergencyNumbers() {
     <nav
       className="emergency-bar"
       aria-label="Emergency phone numbers"
-      role="navigation"
     >
       {PRIMARY_EMERGENCY_BAR.map((n, i) => (
         <Fragment key={n.id}>

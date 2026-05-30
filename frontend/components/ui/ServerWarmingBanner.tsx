@@ -5,8 +5,10 @@ import { useServerWarming } from '@/lib/store';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function ServerWarmingBanner() {
+  const { t } = useTranslation('common');
   const serverWarming = useServerWarming();
   const bannerRef = useRef<HTMLDivElement>(null);
   const [shouldRender, setShouldRender] = useState(serverWarming);
@@ -45,9 +47,10 @@ export function ServerWarmingBanner() {
       ref={bannerRef}
       className="fixed bottom-[80px] md:bottom-[24px] left-1/2 -translate-x-1/2 z-[999] bg-[var(--surface-4)] border border-[var(--border-md)] text-[var(--text-1)] text-xs font-semibold px-5 py-3 rounded-full flex items-center gap-2.5 shadow-2xl backdrop-blur-md"
       role="status"
+      aria-live="polite"
     >
       <Loader2 size={14} className="animate-spin text-brand-light shrink-0" />
-      <span>Connecting... (~30 seconds on first load)</span>
+      <span>{t('connecting_server', 'Connecting... (~30 seconds on first load)')}</span>
     </div>
   );
 }

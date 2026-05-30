@@ -45,7 +45,7 @@ export function useEmergencyNumbers() {
 export function useFetchSos(lat: number | null, lon: number | null) {
   const key: FetcherArgs | null =
     lat != null && lon != null ? ['/api/v1/emergency/sos', { lat, lon }] : null;
-  return useSWR(key, fetcher, { ...BASE_CONFIG, dedupingInterval: 120_000 });
+  return useSWR(key, fetcher, { ...BASE_CONFIG, dedupingInterval: 120_000, keepPreviousData: true });
 }
 
 export function useRoadwatchFeed(lat: number | null, lon: number | null, radius = 5000) {

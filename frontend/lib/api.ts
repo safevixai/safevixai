@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'sonner';
 import { getAddressFromGPS } from './reverse-geocode';
 import { PUBLIC_API_BASE_URL, PUBLIC_CHATBOT_BASE_URL } from './public-env';
 import { useAppStore } from './store';
@@ -114,6 +115,85 @@ chatbotClient.interceptors.request.use((config) => {
 });
 _withRetry(chatbotClient);
 _addWarmingInterceptors(chatbotClient);
+
+// ── Shared API error extraction ──
+export interface ApiErrorDetail {
+  message: string;
+  code?: string;
+  status?: number;
+  details?: unknown;
+}
+
+export function extractApiError(err: unknown): ApiErrorDetail {
+  if (axios.isAxiosError(err)) {
+    const status = err.response?.status;
+    const data = err.response?.data as Record<string, unknown> | undefined;
+    const detail = typeof data?.detail === 'string'
+      ? data.detail
+      : Array.isArray(data?.detail)
+        ? (data.detail as Array<{ msg?: string; loc?: string[] }>).map(d => d.msg).filter(Boolean).join('; ')
+        : undefined;
+    return {
+      message: detail || err.message || 'Something went wrong',
+      code: data?.error_code as string | undefined,
+      status,
+      details: data,
+    };
+  }
+  if (err instanceof Error) return { message: err.message || 'An unexpected error occurred' };
+  return { message: 'An unexpected error occurred' };
+}
+
+// ── Global response error interceptor: toast on 5xx / network errors ──
+let _retryingToastId: string | number | null = null;
+
+function _addGlobalErrorToastInterceptor(axiosInstance: ReturnType<typeof axios.create>) {
+  axiosInstance.interceptors.response.use(
+    (res) => res,
+    (error) => {
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status;
+        const isNetworkError = !error.response;
+        // Only toast for server or network errors (not 4xx which are user errors)
+        if (isNetworkError) {
+          toast.error('Network error — check your connection', { id: 'api-network-error', duration: 4000 });
+        } else if (status && status >= 500) {
+          const { message } = extractApiError(error);
+          toast.error(message.length > 80 ? message.slice(0, 80) + '…' : message, { duration: 4000 });
+        }
+      }
+      return Promise.reject(error);
+    }
+  );
+}
+
+_addGlobalErrorToastInterceptor(client);
+_addGlobalErrorToastInterceptor(chatbotClient);
+
+// ── Retrying indicator interceptor ──
+let _retryCountGlobal = 0;
+
+function _addRetryIndicatorInterceptor(axiosInstance: ReturnType<typeof axios.create>) {
+  axiosInstance.interceptors.response.use(
+    (res) => {
+      if (_retryingToastId) { toast.dismiss(_retryingToastId); _retryingToastId = null; _retryCountGlobal = 0; }
+      return res;
+    },
+    (error) => {
+      const config = error.config as (typeof error.config) & { _retryCount?: number };
+      if (config?._retryCount && config._retryCount > 0 && !_retryingToastId) {
+        _retryingToastId = toast.info(`Retrying... (attempt ${config._retryCount}/3)`, {
+          duration: 4000,
+          id: 'retrying-indicator',
+        });
+      }
+      return Promise.reject(error);
+    }
+  );
+}
+
+_addRetryIndicatorInterceptor(client);
+_addRetryIndicatorInterceptor(chatbotClient);
 
 export type EmergencyServiceCategory =
   | 'hospital'
@@ -295,7 +375,7 @@ export interface RoadReportResponse {
   budgetSpent?: number | null;
   photoUrl?: string | null;
   status: RoadIssueStatus;
-  
+
   // Enterprise extensions
   category?: string | null;
   subCategory?: string | null;
@@ -559,7 +639,7 @@ function normalizeRoadReport(data: {
   budget_spent?: number | null;
   photo_url?: string | null;
   status: RoadIssueStatus;
-  
+
   category?: string | null;
   sub_category?: string | null;
   ward_id?: string | null;
@@ -586,7 +666,7 @@ function normalizeRoadReport(data: {
     budgetSpent: data.budget_spent ?? null,
     photoUrl: data.photo_url ?? null,
     status: data.status,
-    
+
     category: data.category ?? null,
     subCategory: data.sub_category ?? null,
     wardId: data.ward_id ?? null,
@@ -1177,3 +1257,73 @@ export async function fieldCompleteWork(
 }
 
 
+// ─── Enterprise Garage, Prediction & Dispute Assistant ───────────────
+
+export interface VehicleGarageItem {
+  id: string;
+  vehicle_number: string;
+  owner_name: string;
+  vehicle_make: string;
+  vehicle_model: string;
+  rc_status: string;
+  insurance_expiry?: string | null;
+  puc_expiry?: string | null;
+  created_at: string;
+}
+
+export interface GarageSyncResponse {
+  vehicles: VehicleGarageItem[];
+  sync_status: string;
+  last_synced_at: string;
+}
+
+export interface FinePredictionRequest {
+  vehicle_number: string;
+  state_code: string;
+  telemetry: {
+    speeding_events: number;
+    harsh_braking_events: number;
+    night_driving_minutes: number;
+    total_km_driven: number;
+  };
+}
+
+export interface FinePredictionResponse {
+  predicted_violations_count: number;
+  estimated_annual_liability: number;
+  risk_score: number;
+  risk_level: 'low' | 'medium' | 'high';
+  recommendations: string[];
+}
+
+export interface DisputeDraftRequest {
+  challan_ref: string;
+  violation_code: string;
+  fine_amount: number;
+  mitigating_factors: string;
+}
+
+export interface DisputeDraftResponse {
+  dispute_ref: string;
+  appeal_letter: string;
+  cited_mva_sections: string[];
+  confidence_score: number;
+  instructions: string[];
+}
+
+export async function syncGarage(vehicleNumber?: string): Promise<GarageSyncResponse> {
+  const { data } = await client.post('/api/v1/garage/sync', null, {
+    params: vehicleNumber ? { vehicle_number: vehicleNumber } : undefined,
+  });
+  return data;
+}
+
+export async function predictFineLiability(req: FinePredictionRequest): Promise<FinePredictionResponse> {
+  const { data } = await client.post('/api/v1/challan/predict', req);
+  return data;
+}
+
+export async function draftDisputeAppeal(req: DisputeDraftRequest): Promise<DisputeDraftResponse> {
+  const { data } = await client.post('/api/v1/challan/dispute', req);
+  return data;
+}

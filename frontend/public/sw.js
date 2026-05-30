@@ -1,6 +1,7 @@
 // SafeVixAI Service Worker - offline cache plus queued SOS/report replay.
 
 const CACHE_NAME = 'safevixai-v3';
+const CRITICAL_API_CACHE = 'safevixai-critical-api-v1';
 
 const OFFLINE_DATA_URLS = [
   '/offline-data/first-aid.json',
@@ -9,6 +10,11 @@ const OFFLINE_DATA_URLS = [
   '/offline-data/violations.csv',
   '/offline-data/state_overrides.csv',
   '/offline-data/accidents_summary.json',
+  '/offline-data/blackspot_seed.csv',
+  '/offline-data/nh_blackspots.csv',
+  '/offline-data/chennai.json',
+  '/offline-data/municipalities_bundle.json',
+  '/offline-data/civic_features_summary.json',
 ];
 
 const DUCKDB_WASM = [
@@ -56,7 +62,29 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  if (url.pathname.startsWith('/api/')) return;
+  if (url.pathname.startsWith('/api/')) {
+    // Critical API endpoints that should work offline
+    const criticalApis = ['/api/v1/emergency/numbers'];
+    if (criticalApis.some((path) => url.pathname === path)) {
+      event.respondWith(
+        fetch(event.request)
+          .then((response) => {
+            if (response.ok) {
+              const clone = response.clone();
+              caches.open(CRITICAL_API_CACHE).then((cache) => cache.put(event.request, clone));
+            }
+            return response;
+          })
+          .catch(async () => {
+            const cached = await caches.match(event.request);
+            if (cached) return cached;
+            return new Response(JSON.stringify({ error: 'offline' }), { status: 503, headers: { 'Content-Type': 'application/json' } });
+          })
+      );
+      return;
+    }
+    return;
+  }
 
   if (url.pathname.startsWith('/offline-data/')) {
     event.respondWith(
@@ -97,6 +125,28 @@ self.addEventListener('message', (event) => {
   }
 });
 
+// Track successful PWA installation for analytics
+self.addEventListener('appinstalled', () => {
+  self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {
+    clients.forEach((client) => {
+      client.postMessage({ type: 'APP_INSTALLED' });
+    });
+  });
+});
+
+// Register periodic sync if supported (Chromium 80+)
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    if ('periodicSync' in self.registration) {
+      try {
+        await self.registration.periodicSync.register('offline-data-refresh', {
+          minInterval: 24 * 60 * 60 * 1000, // once per day
+        });
+      } catch { /* periodic sync not supported */ }
+    }
+  })());
+});
+
 self.addEventListener('sync', (event) => {
   if (event.tag === 'sos-queue-flush') {
     event.waitUntil(flushSafeVixSosQueue());
@@ -123,8 +173,8 @@ async function flushSafeVixSosQueue() {
     ]);
 
     for (let i = 0; i < items.length; i += 1) {
-      const pendingSOS = items[i];
-      const key = keys[i];
+      const pendingSOS = items.at(i);
+      const key = keys.at(i);
       const apiBase = pendingSOS.apiUrl;
       if (!apiBase) continue;
 
@@ -172,8 +222,8 @@ async function flushSafeVixRoadReportQueue() {
     ]);
 
     for (let i = 0; i < items.length; i += 1) {
-      const pendingReport = items[i];
-      const key = keys[i];
+      const pendingReport = items.at(i);
+      const key = keys.at(i);
       const apiBase = pendingReport.apiUrl;
       if (!apiBase) continue;
 

@@ -150,5 +150,10 @@ module.exports = {
       minWidth: { touch: '44px' },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('rtl', '&:where([dir="rtl"] *)');
+      addVariant('ltr', '&:where([dir="ltr"] *)');
+    },
+  ],
 };

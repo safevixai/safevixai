@@ -186,6 +186,20 @@ interface AppState {
   setAuth: (name: string, token?: string) => void;
   clearAuth: () => void;
   setAuthToken: (token: string | null) => void;
+
+  // Garage and Telemetry (Enterprise Specs)
+  garageVehicles: any[];
+  lastSyncedGarage: number | null;
+  riskAnalysis: {
+    riskScore: number | null;
+    riskLevel: 'low' | 'medium' | 'high' | null;
+    estimatedLiability: number | null;
+    predictedViolationsCount: number | null;
+    recommendations: string[];
+  };
+  setGarageVehicles: (v: any[]) => void;
+  setLastSyncedGarage: (t: number | null) => void;
+  setRiskAnalysis: (analysis: any) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -341,6 +355,20 @@ export const useAppStore = create<AppState>()(
       setAuth: (name, token) => set({ isAuthenticated: true, operatorName: name, authToken: token || null }),
       clearAuth: () => set({ isAuthenticated: false, operatorName: '', authToken: null }),
       setAuthToken: (token) => set({ authToken: token }),
+
+      // Garage and Telemetry (Enterprise Specs)
+      garageVehicles: [],
+      lastSyncedGarage: null,
+      riskAnalysis: {
+        riskScore: null,
+        riskLevel: null,
+        estimatedLiability: null,
+        predictedViolationsCount: null,
+        recommendations: [],
+      },
+      setGarageVehicles: (v) => set({ garageVehicles: v }),
+      setLastSyncedGarage: (t) => set({ lastSyncedGarage: t }),
+      setRiskAnalysis: (analysis) => set({ riskAnalysis: analysis }),
     }),
     {
       name: 'svai-storage',

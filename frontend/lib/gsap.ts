@@ -4,16 +4,12 @@
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Flip } from 'gsap/Flip';
-import { Observer } from 'gsap/Observer';
 import { CustomEase } from 'gsap/CustomEase';
 
 // Register ALL plugins once - never in individual components
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(
     ScrollTrigger,
-    Flip,
-    Observer,
     CustomEase
   );
 }
@@ -31,4 +27,4 @@ if (typeof window !== 'undefined') {
   CustomEase.create('bounce', 'M0,0 C0.5,-0.5 0.75,1.5 1,1');   // spring
 }
 
-export { gsap, ScrollTrigger, Flip, Observer };
+export { gsap, ScrollTrigger };

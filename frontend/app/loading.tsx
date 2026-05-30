@@ -1,6 +1,12 @@
+'use client';
+
+import { useTranslation } from 'react-i18next';
+
 export default function RootLoading() {
+  const { t } = useTranslation('common');
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-bg gap-8 px-6">
+    <div role="status" aria-live="polite" className="flex min-h-screen flex-col items-center justify-center bg-bg gap-8 px-6">
+      <span className="sr-only">{t('loading_app', 'Loading SafeVixAI application')}</span>
       <div className="flex flex-col items-center gap-6">
         <svg
           className="h-12 w-12 animate-pulse"

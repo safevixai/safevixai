@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -60,6 +61,7 @@ interface OfficerProfile {
 }
 
 export default function OfficerFieldClient() {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const { isAuthenticated, clearAuth } = useAppStore();
 
@@ -113,6 +115,22 @@ export default function OfficerFieldClient() {
       loadOfficerData();
     }
   }, [isAuthenticated, loadOfficerData, router]);
+
+  // Escape key closes the issue detail drawer
+  useEffect(() => {
+    if (!selectedIssue) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedIssue(null);
+        setResPhoto(null);
+        setPhotoPreview(null);
+        setResNotes('');
+        setErrorMsg(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIssue]);
 
   // Handle GPS Checkin
   const handleCheckin = () => {
@@ -212,7 +230,7 @@ export default function OfficerFieldClient() {
   // Navigation Deeplinks
   const openNavigation = (lat: number, lon: number) => {
     const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const getCategoryColor = (cat?: string | null) => {
@@ -270,7 +288,7 @@ export default function OfficerFieldClient() {
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20 gap-3">
             <Loader2 size={36} className="animate-spin text-brand" />
-            <div className="text-xs font-black uppercase tracking-[0.2em] text-text-3">Syncing Local Field Matrix...</div>
+            <div className="text-xs font-black uppercase tracking-[0.2em] text-text-3">{t('officer.sync_matrix', 'Syncing Local Field Matrix...')}</div>
           </div>
         ) : (
           <>
@@ -309,20 +327,20 @@ export default function OfficerFieldClient() {
                           : 'bg-brand/10 hover:bg-brand/20 border-brand/20 text-brand-light shadow-md shadow-brand/10'
                       }`}
                     >
-                      {checkingIn ? (
+                            {checkingIn ? (
                         <>
                           <Loader2 size={13} className="animate-spin" />
-                          <span>Acquiring GPS...</span>
+                          <span>{t('officer.acquiring_gps', 'Acquiring GPS...')}</span>
                         </>
                       ) : checkinSuccess ? (
                         <>
                           <CheckCircle2 size={13} />
-                          <span>Location Uplinked!</span>
+                          <span>{t('officer.location_uplinked', 'Location Uplinked!')}</span>
                         </>
                       ) : (
                         <>
                           <Compass size={13} className="animate-pulse" />
-                          <span>Broadcast GPS</span>
+                          <span>{t('officer.broadcast_gps', 'Broadcast GPS')}</span>
                         </>
                       )}
                     </button>
@@ -332,7 +350,7 @@ export default function OfficerFieldClient() {
                       className="flex items-center justify-center gap-2 rounded-xl bg-surface-2 dark:bg-slate-900 border border-border px-4 py-3 text-xs font-bold uppercase tracking-widest text-text-2 hover:text-white transition-all hover:bg-surface-3 dark:hover:bg-slate-800"
                     >
                       <LogOut size={13} />
-                      <span className="hidden sm:inline">Stand Down</span>
+                      <span className="hidden sm:inline">{t('officer.stand_down', 'Stand Down')}</span>
                     </button>
                   </div>
                 </div>
@@ -344,10 +362,10 @@ export default function OfficerFieldClient() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <span>Status: ACTIVE FIELD DUTY</span>
+                    <span>{t('officer.status_duty', 'Status: ACTIVE FIELD DUTY')}</span>
                   </div>
                   <div>
-                    Last check-in: <span className="text-text-1">{lastCheckinTime ?? 'NA'}</span>
+                    {t('officer.last_checkin', 'Last check-in: ')} <span className="text-text-1">{lastCheckinTime ?? 'NA'}</span>
                   </div>
                 </div>
               </SurfaceCard>
@@ -358,17 +376,17 @@ export default function OfficerFieldClient() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-md font-black font-space tracking-tight text-text-1 uppercase">
-                    Active Dispatches ({workload.length})
+                    {t('officer.active_dispatches', 'Active Dispatches (')}{workload.length})
                   </h3>
                   <p className="text-[10px] font-bold text-text-3 uppercase tracking-wider mt-0.5">
-                    Tickets assigned to your response unit
+                    {t('officer.tickets_assigned_desc', 'Tickets assigned to your response unit')}
                   </p>
                 </div>
                 <button
                   onClick={loadOfficerData}
                   className="rounded-lg border border-border px-3 py-1.5 text-[9px] font-black uppercase tracking-wider text-text-2 hover:text-white transition"
                 >
-                  Sync Grid
+                  {t('officer.sync_grid', 'Sync Grid')}
                 </button>
               </div>
 
@@ -395,11 +413,11 @@ export default function OfficerFieldClient() {
                             {issue.category}
                           </span>
                           <span className={`rounded px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider ${getSeverityBadge(issue.severity)}`}>
-                            Lvl {issue.severity}
+                            {t('officer.lvl_prefix', 'Lvl ')} {issue.severity}
                           </span>
                           {issue.confirmation_count > 0 && (
                             <span className="rounded bg-surface-2 dark:bg-slate-900 border border-border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-text-3 flex items-center gap-1">
-                              <ThumbsUp size={10} /> {issue.confirmation_count} upvotes
+                              <ThumbsUp size={10} /> {issue.confirmation_count} {t('officer.upvotes', 'upvotes')}
                             </span>
                           )}
                         </div>
@@ -426,7 +444,7 @@ export default function OfficerFieldClient() {
 
                     <div className="flex items-center justify-between sm:justify-end gap-3 pt-3 sm:pt-0 border-t border-border/10 sm:border-none">
                       <span className="text-[9px] font-black uppercase tracking-widest text-brand-light group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                        Respond <ChevronRight size={12} />
+                        {t('officer.respond_action', 'Respond ')} <ChevronRight size={12} />
                       </span>
                     </div>
                   </div>
@@ -438,9 +456,9 @@ export default function OfficerFieldClient() {
                       <CheckCircle2 size={20} />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-text-1 uppercase font-space tracking-tight">GRID IS ENTIRELY SECURED</h4>
+                      <h4 className="text-sm font-bold text-text-1 uppercase font-space tracking-tight">{t('officer.grid_secured', 'GRID IS ENTIRELY SECURED')}</h4>
                       <p className="text-[10px] font-bold text-text-3 uppercase tracking-wider mt-1">
-                        No pending dispatches on your network. Good job!
+                        {t('officer.no_pending_dispatches_desc', 'No pending dispatches on your network. Good job!')}
                       </p>
                     </div>
                   </div>
@@ -452,7 +470,12 @@ export default function OfficerFieldClient() {
 
         {/* ── SECTION 3: DETAIL / RESOLUTION DRAWER OVERLAY ── */}
         {selectedIssue && (
-          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 dark:bg-slate-950/80 p-0 sm:p-4 backdrop-blur-sm">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Issue details: ${selectedIssue.issue_type.replace('_', ' ')}`}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 dark:bg-slate-950/80 p-0 sm:p-4 backdrop-blur-sm"
+          >
             <div className="w-full max-w-lg rounded-t-3xl sm:rounded-3xl border border-white/10 bg-surface-1 dark:bg-slate-950 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
               {/* Drawer Accent Line */}
               <div className="h-1.5 w-full bg-gradient-to-r from-brand via-brand-light to-brand" />
@@ -465,7 +488,7 @@ export default function OfficerFieldClient() {
                       {selectedIssue.category}
                     </span>
                     <span className="text-[10px] font-bold text-text-3 uppercase font-mono">
-                      Ref: RS-{selectedIssue.uuid.slice(0, 8).toUpperCase()}
+                      {t('officer.ref_prefix', 'Ref: RS-')}{selectedIssue.uuid.slice(0, 8).toUpperCase()}
                     </span>
                   </div>
                   <h3 className="text-lg font-black font-space tracking-tight text-text-1 uppercase mt-2">
@@ -480,6 +503,7 @@ export default function OfficerFieldClient() {
                     setResNotes('');
                     setErrorMsg(null);
                   }}
+                  aria-label="Close issue details"
                   className="rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 p-1.5 text-xs text-text-3 hover:text-white transition"
                 >
                   ✕ Close
@@ -491,23 +515,23 @@ export default function OfficerFieldClient() {
                 {/* Details list */}
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">Road Asset</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">{t('officer.road_asset', 'Road Asset')}</span>
                     <span className="text-text-1 font-semibold block mt-0.5">
                       {selectedIssue.road_name ?? 'Urban Link'} {selectedIssue.road_number ? `(${selectedIssue.road_number})` : ''}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">Geofence Ward</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">{t('officer.geofence_ward', 'Geofence Ward')}</span>
                     <span className="text-text-1 font-semibold block mt-0.5">{selectedIssue.ward_name ?? 'Chennai GCC Zone'}</span>
                   </div>
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">SLA Target Time</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">{t('officer.sla_target_time', 'SLA Target Time')}</span>
                     <span className="text-text-1 font-semibold block mt-0.5">
                       {selectedIssue.sla_deadline ? new Date(selectedIssue.sla_deadline).toLocaleString('en-IN') : 'None'}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">Complaint Date</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block">{t('officer.complaint_date', 'Complaint Date')}</span>
                     <span className="text-text-1 font-semibold block mt-0.5">
                       {new Date(selectedIssue.created_at).toLocaleString('en-IN')}
                     </span>
@@ -515,16 +539,16 @@ export default function OfficerFieldClient() {
                 </div>
 
                 <div className="rounded-xl border border-white/5 bg-surface-2 dark:bg-slate-900 p-4">
-                  <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block mb-1">Citizen Report Details</span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block mb-1">{t('officer.citizen_report_details', 'Citizen Report Details')}</span>
                   <p className="text-xs leading-relaxed text-text-2">
-                    {selectedIssue.description || 'No additional dispatcher comments.'}
+                    {selectedIssue.description || t('officer.no_dispatcher_comments', 'No additional dispatcher comments.')}
                   </p>
                 </div>
 
                 {/* Evidence Image */}
                 {selectedIssue.before_photo_url && (
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block mb-2">Attached Citizen Evidence</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-text-3 block mb-2">{t('officer.attached_evidence', 'Attached Citizen Evidence')}</span>
                     <div className="relative w-full h-44 rounded-xl overflow-hidden bg-surface-2 dark:bg-slate-900 border border-border/20">
                       <Image
                         src={selectedIssue.before_photo_url}
@@ -544,7 +568,7 @@ export default function OfficerFieldClient() {
                     className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 text-cyan-400 py-3 text-xs font-bold uppercase tracking-widest transition"
                   >
                     <Navigation size={14} />
-                    <span>Navigate GPS</span>
+                    <span>{t('officer.navigate_gps', 'Navigate GPS')}</span>
                   </button>
                 </div>
 
@@ -552,10 +576,10 @@ export default function OfficerFieldClient() {
                 <form onSubmit={handleResolve} className="border-t border-border/20 pt-5 space-y-4">
                   <div>
                     <h4 className="text-sm font-black font-space tracking-tight text-text-1 uppercase">
-                      Submit Resolution Evidence
+                      {t('officer.submit_resolution_evidence', 'Submit Resolution Evidence')}
                     </h4>
                     <p className="text-[10px] font-bold text-text-3 uppercase tracking-wider mt-0.5">
-                      Submit photographic confirmation of the patch repair to base station.
+                      {t('officer.submit_evidence_hint', 'Submit photographic confirmation of the patch repair to base station.')}
                     </p>
                   </div>
 
@@ -577,7 +601,7 @@ export default function OfficerFieldClient() {
                     ) : (
                       <label className="w-full h-32 flex flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border hover:border-brand/40 bg-surface-2 dark:bg-slate-900 cursor-pointer transition">
                         <Camera size={28} className="text-text-3" />
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-text-3">Capture Repair Evidence</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-text-3">{t('officer.capture_evidence', 'Capture Repair Evidence')}</span>
                         <input
                           type="file"
                           accept="image/*"
@@ -593,7 +617,7 @@ export default function OfficerFieldClient() {
                   {/* Dispatch Notes */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
-                      Field Resolution Notes
+                      {t('officer.field_resolution_notes', 'Field Resolution Notes')}
                     </label>
                     <textarea
                       value={resNotes}
@@ -614,12 +638,12 @@ export default function OfficerFieldClient() {
                     {resolving ? (
                       <>
                         <Loader2 size={14} className="animate-spin" />
-                        <span>Broadcasting to command center...</span>
+                        <span>{t('officer.broadcasting_base', 'Broadcasting to command center...')}</span>
                       </>
                     ) : (
                       <>
                         <CheckCircle2 size={14} />
-                        <span>Publish Ticket Resolution</span>
+                        <span>{t('officer.publish_resolution', 'Publish Ticket Resolution')}</span>
                       </>
                     )}
                   </button>

@@ -19,6 +19,7 @@ import i18n from '@/lib/i18n'
 import { CrashCountdown } from '@/components/crash/CrashCountdown'
 import InstallPrompt from '@/components/InstallPrompt'
 import CookieConsent from '@/components/ui/CookieConsent'
+import GpsConsent from '@/components/ui/GpsConsent'
 
 
 function SystemBanners() {
@@ -100,6 +101,14 @@ export function EnterpriseClientAppHooks() {
         navigator.serviceWorker.register('/sw.js')
           .then((reg) => {
             if (process.env.NODE_ENV !== 'production') console.log('SafeVixAI: ServiceWorker registered successfully:', reg.scope);
+            // Request persistent storage permission (mitigates Safari and Chrome IndexedDB offline data eviction risks)
+            if (navigator.storage && navigator.storage.persist) {
+              navigator.storage.persist().then((persistent) => {
+                if (persistent && process.env.NODE_ENV !== 'production') {
+                  console.log('SafeVixAI: Persistent storage granted by browser.');
+                }
+              }).catch(() => {});
+            }
           })
           .catch((err) => {
             console.error('SafeVixAI: ServiceWorker registration failed:', err);
@@ -324,6 +333,7 @@ export function EnterpriseClientAppHooks() {
       )}
       <InstallPrompt />
       <CookieConsent />
+      <GpsConsent />
     </>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { useAppStore } from '@/lib/store';
 import { addTrafficLayer, toggleTrafficLayer } from '@/lib/traffic-layer';
 import { addSafeSpacesLayer } from '@/lib/safe-spaces-layer';

@@ -1,4 +1,3 @@
-import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Toaster } from 'sonner';
@@ -8,6 +7,7 @@ import { SWRConfig } from 'swr';
 import './globals.css';
 import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { PUBLIC_API_BASE_URL, PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env';
 import { GSAPProvider } from '@/components/providers/GSAPProvider';
 import { SentryInit } from '@/components/providers/SentryInit';
 import { ViewTransitions } from 'next-view-transitions';
@@ -55,6 +55,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const locale = headerList.get('x-locale') || 'en';
   const isRtl = locale === 'ar' || locale === 'ur';
 
+  const skipTextMap: Record<string, string> = {
+    en: 'Skip to main content',
+    hi: 'मुख्य सामग्री पर जाएं',
+    ta: 'முக்கிய உள்ளடக்கத்திற்குச் செல்லவும்',
+    te: 'ముఖ్యమైన సమాచారానికి వెళ్ళండి',
+    kn: 'ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ',
+    ml: 'പ്രധാന ഉള്ളടക്കത്തിലേക്ക് പോകുക',
+    mr: 'मुख्य मजकुराकडे जा',
+    gu: 'મુખ્ય સામગ્રી પર જાઓ',
+    bn: 'মূল বিষয়বস্তুতে যান',
+    pa: 'ਮੁੱਖ ਸਮੱਗਰੀ ਤੇ ਜਾਓ',
+    ur: 'بنیادی مواد پر جائیں',
+    ar: 'انتقل إلى المحتوى الرئيسي',
+    es: 'Saltar al contenido principal',
+    fr: 'Passer au contenu principal',
+  };
+  const skipText = skipTextMap[locale] || skipTextMap.en;
+
   return (
     <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable} font-sans`}>
       <head>
@@ -63,9 +81,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="preconnect" href="https://mt1.google.com" />
         <link rel="preconnect" href="https://api.maptiler.com" />
         <link rel="preconnect" href="https://tiles.openfreemap.org" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href={new URL(PUBLIC_API_BASE_URL).origin} />
+        <link rel="preconnect" href={new URL(PUBLIC_CHATBOT_BASE_URL).origin} />
         <link rel="dns-prefetch" href="https://mt1.google.com" />
         <link rel="dns-prefetch" href="https://api.maptiler.com" />
         <link rel="dns-prefetch" href="https://tiles.openfreemap.org" />
+        <link rel="dns-prefetch" href={new URL(PUBLIC_API_BASE_URL).origin} />
+        <link rel="dns-prefetch" href={new URL(PUBLIC_CHATBOT_BASE_URL).origin} />
         <meta name="mobile-web-app-capable" content="yes" />
 
         {/* SEO Localization - Alternate Hreflang and Canonical URLs */}
@@ -86,21 +110,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="alternate" href={`${BASE_URL}/fr`} hrefLang="fr" />
         <link rel="alternate" href={BASE_URL} hrefLang="x-default" />
 
-        {/* Flash-free theme init - runs before React hydration to prevent FOUC */}
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function() {
-            var stored = localStorage.getItem('svai-theme');
-            var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            var theme = stored === 'system' || !stored ? system : stored;
-            document.documentElement.setAttribute('data-theme', theme);
-            document.documentElement.classList.add(theme);
-          })();
-        ` }} />
+        {/* Flash-free theme init - runs before React hydration to prevent FOUC (via theme-init.js below) */}
         <Script src="/theme-init.js" strategy="beforeInteractive" />
       </head>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-brand-light focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:outline-none">
-          Skip to main content
+          {skipText}
         </a>
         <SentryInit />
         <AnalyticsProvider>

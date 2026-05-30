@@ -2,7 +2,9 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { MapPin, Loader2, Navigation } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface LocationPickerInnerProps {
   lat: number;
@@ -15,7 +17,8 @@ function LocationPickerInner({ lat, lon, onLocationChange, className }: Location
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
   const marker = useRef<maplibregl.Marker | null>(null);
-  const [address, setAddress] = useState('Detecting location...');
+  const { t } = useTranslation('common');
+  const [address, setAddress] = useState(t('report.detecting_location', 'Detecting location...'));
   const [loading, setLoading] = useState(false);
 
   // Reverse geocode using BigDataCloud (free, no API key needed)
@@ -114,7 +117,8 @@ function LocationPickerInner({ lat, lon, onLocationChange, className }: Location
         <button
           onClick={centerOnUser}
           className="absolute bottom-3 right-3 p-2.5 bg-surface-1/90 backdrop-blur-sm border border-border rounded-xl text-brand-light hover:bg-surface-2 transition-colors shadow-lg"
-          title="Center on my location"
+          aria-label={t('report.recenter_map', 'Recenter map on your location')}
+          title={t('report.center_on_my_location', 'Center on my location')}
         >
           <Navigation size={18} />
         </button>
@@ -131,7 +135,7 @@ function LocationPickerInner({ lat, lon, onLocationChange, className }: Location
       </div>
 
       <p className="mt-2 text-[10px] text-text-3 uppercase tracking-wider font-semibold">
-        Drag the pin to adjust location
+        {t('report.drag_pin_hint', 'Drag the pin to adjust location')}
       </p>
     </div>
   );

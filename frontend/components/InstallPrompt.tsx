@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Download, X } from 'lucide-react';
+import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -12,6 +14,7 @@ export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -20,8 +23,29 @@ export default function InstallPrompt() {
       if (!dismissed) setVisible(true);
     };
     window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
-  }, [dismissed]);
+
+    const installedHandler = () => {
+      setVisible(false);
+      setDeferredPrompt(null);
+      setDismissed(true);
+      toast.success(t('common.install_success', 'SafeVixAI installed! Open it from your home screen.'), { duration: 5000 });
+    };
+    window.addEventListener('appinstalled', installedHandler);
+
+    // Listen for appinstalled from service worker
+    const messageHandler = (event: MessageEvent) => {
+      if (event.data?.type === 'APP_INSTALLED') {
+        installedHandler();
+      }
+    };
+    navigator.serviceWorker?.addEventListener('message', messageHandler);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+      window.removeEventListener('appinstalled', installedHandler);
+      navigator.serviceWorker?.removeEventListener('message', messageHandler);
+    };
+  }, [dismissed, t]);
 
   const handleInstall = async () => {
     if (!deferredPrompt) return;
@@ -42,7 +66,7 @@ export default function InstallPrompt() {
         <button
           onClick={() => { setVisible(false); setDismissed(true); }}
           className="absolute -top-2 -right-2 rounded-full bg-[#1a1f2e] p-0.5 text-zinc-400 hover:text-white transition-colors"
-          aria-label="Dismiss install prompt"
+          aria-label={t('common.dismiss_install', 'Dismiss install prompt')}
         >
           <X className="h-3.5 w-3.5" />
         </button>
@@ -50,14 +74,14 @@ export default function InstallPrompt() {
           <Download className="h-5 w-5 text-cyan-400" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-white">Install SafeVixAI</p>
-          <p className="text-xs text-zinc-400">Get offline access &amp; faster loading</p>
+          <p className="text-sm font-medium text-white">{t('common.install_title', 'Install SafeVixAI')}</p>
+          <p className="text-xs text-zinc-400">{t('common.install_desc', 'Get offline access & faster loading')}</p>
         </div>
         <button
           onClick={handleInstall}
           className="shrink-0 rounded-lg bg-cyan-500 px-3.5 py-1.5 text-xs font-semibold text-black hover:bg-cyan-400 transition-colors"
         >
-          Install
+          {t('common.install_btn', 'Install')}
         </button>
       </div>
     </div>

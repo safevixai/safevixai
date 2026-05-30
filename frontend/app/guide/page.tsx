@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Search,
   MapPin,
@@ -19,12 +20,13 @@ const STATE_CHIPS = [
 ] as const;
 
 const TYPE_FILTERS = [
-  { label: 'All', value: '' },
-  { label: 'Corporation', value: 'municipal_corporation' },
-  { label: 'Municipality', value: 'municipality' },
+  { labelKey: 'guide.all', defaultLabel: 'All', value: '' },
+  { labelKey: 'guide.corporation', defaultLabel: 'Corporation', value: 'municipal_corporation' },
+  { labelKey: 'guide.municipality', defaultLabel: 'Municipality', value: 'municipality' },
 ] as const;
 
 export default function GuidePage() {
+  const { t } = useTranslation('common');
   const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -134,8 +136,8 @@ export default function GuidePage() {
     <div className="min-h-screen bg-surface-1 px-4 md:px-8 py-6 pb-24">
       {/* Header */}
       <TerminalHeader
-        title="Municipality Guide"
-        subtitle={`${municipalities.length} municipalities across India`}
+        title={t('guide.title', 'Municipality Guide')}
+        subtitle={t('guide.subtitle', '{{count}} municipalities across India', { count: municipalities.length })}
       />
 
       {/* Search + Actions */}
@@ -146,7 +148,8 @@ export default function GuidePage() {
           <input
             id="guide-search"
             type="text"
-            placeholder="Search municipality..."
+            placeholder={t('guide.search_placeholder', 'Search municipality...')}
+            aria-label={t('guide.search_aria_label', 'Search municipalities')}
             value={searchQuery}
             onChange={(e) => { setSearchQuery(e.target.value); setNearbyMode(false); }}
             className="w-full pl-10 pr-4 py-3 bg-surface-2 border border-border rounded-xl text-sm text-text-1 placeholder:text-text-3 focus:outline-none focus:border-brand/50 transition-colors"
@@ -161,7 +164,7 @@ export default function GuidePage() {
           className="flex items-center justify-center gap-2 px-5 py-3 bg-brand/20 border border-brand/30 rounded-xl text-sm font-semibold text-brand-light hover:bg-brand/30 transition-colors disabled:opacity-50 shrink-0"
         >
           {locating ? <Loader2 size={16} className="animate-spin" /> : <Navigation size={16} />}
-          Find Nearby
+          {t('guide.find_nearby', 'Find Nearby')}
         </button>
 
         {/* Filter toggle */}
@@ -174,7 +177,7 @@ export default function GuidePage() {
           }`}
         >
           <Filter size={16} />
-          Filter
+          {t('guide.filter', 'Filter')}
         </button>
       </div>
 
@@ -183,7 +186,7 @@ export default function GuidePage() {
         <div className="mt-4 p-4 rounded-xl bg-surface-2/50 border border-border space-y-4">
           {/* State filters */}
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-2">State</p>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-2">{t('guide.state', 'State')}</p>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedState('')}
@@ -191,7 +194,7 @@ export default function GuidePage() {
                   !selectedState ? 'bg-brand text-white' : 'bg-surface-3 text-text-2 hover:text-text-1'
                 }`}
               >
-                All
+                {t('guide.all', 'All')}
               </button>
               {STATE_CHIPS.map((s) => (
                 <button
@@ -209,17 +212,17 @@ export default function GuidePage() {
 
           {/* Type filters */}
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-2">Type</p>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-2">{t('guide.type', 'Type')}</p>
             <div className="flex flex-wrap gap-2">
-              {TYPE_FILTERS.map((t) => (
+              {TYPE_FILTERS.map((tItem) => (
                 <button
-                  key={t.value}
-                  onClick={() => setSelectedType(selectedType === t.value ? '' : t.value)}
+                  key={tItem.value}
+                  onClick={() => setSelectedType(selectedType === tItem.value ? '' : tItem.value)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-                    selectedType === t.value ? 'bg-brand text-white' : 'bg-surface-3 text-text-2 hover:text-text-1'
+                    selectedType === tItem.value ? 'bg-brand text-white' : 'bg-surface-3 text-text-2 hover:text-text-1'
                   }`}
                 >
-                  {t.label}
+                  {t(tItem.labelKey, tItem.defaultLabel)}
                 </button>
               ))}
             </div>
@@ -231,12 +234,12 @@ export default function GuidePage() {
       {nearbyMode && (
         <div className="mt-4 flex items-center gap-2 text-brand-light text-sm">
           <MapPin size={14} />
-          <span className="font-semibold">Sorted by distance from your location</span>
+          <span className="font-semibold">{t('guide.sorted_by_distance', 'Sorted by distance from your location')}</span>
           <button
             onClick={() => { setNearbyMode(false); loadData(); }}
             className="ml-auto text-xs text-text-3 hover:text-text-1 underline"
           >
-            Reset
+            {t('guide.reset', 'Reset')}
           </button>
         </div>
       )}
@@ -244,14 +247,14 @@ export default function GuidePage() {
       {/* Results count */}
       <div className="mt-4 flex items-center justify-between">
         <p className="text-xs text-text-3 font-mono">
-          {filtered.length} of {municipalities.length} municipalities
+          {t('guide.results_count', '{{filteredCount}} of {{totalCount}} municipalities', { filteredCount: filtered.length, totalCount: municipalities.length })}
         </p>
         {(searchQuery || selectedState || selectedType) && (
           <button
             onClick={() => { setSearchQuery(''); setSelectedState(''); setSelectedType(''); }}
             className="text-xs text-brand-light hover:underline"
           >
-            Clear filters
+            {t('guide.clear_filters', 'Clear filters')}
           </button>
         )}
       </div>
@@ -260,7 +263,7 @@ export default function GuidePage() {
       {loading && (
         <div className="mt-16 flex flex-col items-center gap-4">
           <Loader2 size={32} className="animate-spin text-brand" />
-          <p className="text-sm font-semibold uppercase tracking-widest text-text-3">Loading municipalities...</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-text-3">{t('guide.loading_municipalities', 'Loading municipalities...')}</p>
         </div>
       )}
 
@@ -277,23 +280,23 @@ export default function GuidePage() {
       {!loading && filtered.length === 0 && (
         <div className="mt-16 flex flex-col items-center gap-4">
           <Building2 size={48} className="text-text-3" />
-          <p className="text-sm font-semibold text-text-3">No municipalities found</p>
-          <p className="text-xs text-text-3">Try a different search term or filter</p>
+          <p className="text-sm font-semibold text-text-3">{t('guide.no_municipalities_found', 'No municipalities found')}</p>
+          <p className="text-xs text-text-3">{t('guide.try_different_search', 'Try a different search term or filter')}</p>
         </div>
       )}
 
       {/* How to Use section */}
       {!loading && !searchQuery && !selectedState && !selectedType && !nearbyMode && (
         <div className="mt-12 p-6 rounded-2xl bg-surface-2/40 border border-border">
-          <h2 className="text-lg font-bold text-text-1 mb-3">How to Use This Guide</h2>
+          <h2 className="text-lg font-bold text-text-1 mb-3">{t('guide.how_to_use', 'How to Use This Guide')}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-text-2">
             <div className="flex items-start gap-3">
               <div className="p-2 rounded-lg bg-brand/10 text-brand-light shrink-0">
                 <Search size={18} />
               </div>
               <div>
-                <p className="font-semibold text-text-1 mb-1">Search</p>
-                <p>Find any municipality by name, city, or state code</p>
+                <p className="font-semibold text-text-1 mb-1">{t('guide.how_to_use_search_title', 'Search')}</p>
+                <p>{t('guide.how_to_use_search_desc', 'Find any municipality by name, city, or state code')}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -301,8 +304,8 @@ export default function GuidePage() {
                 <Navigation size={18} />
               </div>
               <div>
-                <p className="font-semibold text-text-1 mb-1">Find Nearby</p>
-                <p>Use GPS to find the nearest municipal offices to you</p>
+                <p className="font-semibold text-text-1 mb-1">{t('guide.how_to_use_nearby_title', 'Find Nearby')}</p>
+                <p>{t('guide.how_to_use_nearby_desc', 'Use GPS to find the nearest municipal offices to you')}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -310,8 +313,8 @@ export default function GuidePage() {
                 <MapPin size={18} />
               </div>
               <div>
-                <p className="font-semibold text-text-1 mb-1">View Details</p>
-                <p>Click any card for contact info, leadership, and services</p>
+                <p className="font-semibold text-text-1 mb-1">{t('guide.how_to_use_details_title', 'View Details')}</p>
+                <p>{t('guide.how_to_use_details_desc', 'Click any card for contact info, leadership, and services')}</p>
               </div>
             </div>
           </div>

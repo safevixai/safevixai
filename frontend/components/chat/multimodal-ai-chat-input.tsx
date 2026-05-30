@@ -10,6 +10,7 @@ import React, {
   type ChangeEvent,
   memo,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import equal from 'fast-deep-equal';
 import { Loader2 as LoaderIcon, X as XIcon, Mic, Send, Globe } from 'lucide-react';
@@ -99,22 +100,29 @@ const buttonVariants = cva(
     },
   },
 );
-
-const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants> & { asChild?: boolean }>(
-  ({ className, variant, size, ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants> & { asChild?: boolean; 'data-testid'?: string }>(
+  ({ className, variant, size, children, onClick, disabled, type = 'button', 'aria-label': ariaLabel, title, style, 'data-testid': testId }, ref) => {
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        {...props}
-      />
+        onClick={onClick}
+        disabled={disabled}
+        type={type}
+        aria-label={ariaLabel}
+        title={title}
+        style={style}
+        data-testid={testId}
+      >
+        {children}
+      </button>
     );
   },
 );
 Button.displayName = 'Button';
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentProps<'textarea'>>(
-  ({ className, ...props }, ref) => {
+  ({ className, placeholder, 'aria-label': ariaLabel, value, onChange, rows, autoFocus, disabled, onKeyDown }, ref) => {
     return (
       <textarea
         className={cn(
@@ -122,12 +130,20 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentProps<'tex
           className,
         )}
         ref={ref}
-        {...props}
+        placeholder={placeholder}
+        aria-label={ariaLabel}
+        value={value}
+        onChange={onChange}
+        rows={rows}
+        autoFocus={autoFocus}
+        disabled={disabled}
+        onKeyDown={onKeyDown}
       />
     );
   }
 );
 Textarea.displayName = 'Textarea';
+
 
 // Icons using currentColor
 const StopIcon = ({ size = 16 }: { size?: number }) => (
@@ -169,12 +185,12 @@ function PureAttachmentsButton({
 const AttachmentsButton = memo(PureAttachmentsButton, (prev, next) => prev.disabled === next.disabled);
 
 
-function PureMicButton({ 
-  disabled, 
-  onTranscript, 
+function PureMicButton({
+  disabled,
+  onTranscript,
   isGenerating,
   selectedLanguage = 'en'
-}: { 
+}: {
   disabled?: boolean;
   onTranscript: (_text: string) => void;
   isGenerating?: boolean;
@@ -205,7 +221,7 @@ function PureMicButton({
           const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
           const formData = new FormData();
           formData.append('audio', audioBlob, 'recording.webm');
-          
+
           const langObj = getLanguageByCode(selectedLanguage);
           const targetLangCode = langObj?.speechTargetCode || 'eng';
 
@@ -220,9 +236,9 @@ function PureMicButton({
               'Content-Type': 'audio/webm'
             }
           });
-          
+
           if (!res.ok) throw new Error('Translation failed');
-          
+
           const data = await res.json();
           if (data && data.text) {
             onTranscript(data.text);
@@ -261,21 +277,21 @@ function PureMicButton({
     recognition.interimResults = false;
     const langObj = getLanguageByCode(selectedLanguage);
     recognition.lang = langObj?.recognitionCode || 'en-IN';
-    
+
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       onTranscript(transcript);
     };
-    
+
     recognition.onend = () => {
       setIsActive(false);
     };
-    
+
     recognition.onerror = (event) => {
       logClientWarning('Web Speech error', event.error);
       setIsActive(false);
     };
-    
+
     recognitionRef.current = recognition;
     recognition.start();
     setIsActive(true);
@@ -306,8 +322,8 @@ function PureMicButton({
       data-testid="mic-button"
       className={cn(
         "p-2 h-fit rounded-full transition-all duration-200",
-        isActive 
-          ? "text-red-500 bg-red-500/10 hover:bg-red-500/20" 
+        isActive
+          ? "text-red-500 bg-red-500/10 hover:bg-red-500/20"
           : "text-text-2 hover:bg-surface-3 dark:text-text-2 dark:hover:bg-surface-3/50 hover:text-text-1 dark:hover:text-text-1"
       )}
       onClick={handleClick}
@@ -463,8 +479,30 @@ export function PureMultimodalInput({
   selectedLanguage: externalLanguage,
   onLanguageChange: externalOnLanguageChange
 }: MultimodalInputProps) {
+  const { t } = useTranslation('chat');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // iOS keyboard handling: adjust input position when keyboard opens/closes
+  useEffect(() => {
+    const visual = window.visualViewport;
+    if (!visual) return;
+    const el = containerRef.current;
+    if (!el) return;
+    const originalBottom = el.style.bottom;
+    const handleResize = () => {
+      const diff = (window.innerHeight - visual.height);
+      if (diff > 100) {
+        el.style.bottom = `${diff}px`;
+        el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      } else {
+        el.style.bottom = originalBottom || '';
+      }
+    };
+    visual.addEventListener('resize', handleResize);
+    return () => visual.removeEventListener('resize', handleResize);
+  }, []);
 
   // Use local state if parent doesn't provide controlled props
   const [localInput, setLocalInput] = useState('');
@@ -601,7 +639,7 @@ export function PureMultimodalInput({
   const isAttachmentDisabled = isGenerating || uploadQueue.length > 0;
 
   return (
-    <div className={cn("relative w-full md:max-w-3xl md:mx-auto flex flex-col pointer-events-auto", className)}>
+    <div ref={containerRef} className={cn("relative w-full md:max-w-3xl md:mx-auto flex flex-col pointer-events-auto", className)}>
       {/* Hidden file input */}
       <input
         type="file"
@@ -620,24 +658,24 @@ export function PureMultimodalInput({
         {/* Attachments Preview row */}
         {(attachments.length > 0 || uploadQueue.length > 0) && (
           <div className="flex pt-2 px-3 pb-2 gap-3 overflow-x-auto items-end scroll-smooth [scrollbar-width:none]">
-                          {attachments.map((attachment) => (
-                <div key={attachment.url || attachment.name} className="relative group shrink-0">
-                  <PreviewAttachment attachment={attachment} isUploading={false} />
-                  <Button
-                    variant="destructive"
-                    size="icon"
-                    className="absolute -top-1.5 -right-1.5 !size-5 rounded-full p-0 flex items-center justify-center shadow-sm"
-                    onClick={() => handleRemoveAttachment(attachment)}
-                  >
-                    <XIcon className="size-3" />
-                  </Button>
-                </div>
-              ))}
-              {uploadQueue.map((filename, index) => (
-                <div key={`upload-${filename}-${index}`} className="shrink-0">
-                  <PreviewAttachment attachment={{ url: '', name: filename, contentType: '', size: 0 }} isUploading={true} />
-                </div>
-              ))}
+            {attachments.map((attachment) => (
+              <div key={attachment.url || attachment.name} className="relative group shrink-0">
+                <PreviewAttachment attachment={attachment} isUploading={false} />
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  className="absolute -top-1.5 -right-1.5 !size-5 rounded-full p-0 flex items-center justify-center shadow-sm"
+                  onClick={() => handleRemoveAttachment(attachment)}
+                >
+                  <XIcon className="size-3" />
+                </Button>
+              </div>
+            ))}
+            {uploadQueue.map((filename, index) => (
+              <div key={`upload-${filename}-${index}`} className="shrink-0">
+                <PreviewAttachment attachment={{ url: '', name: filename, contentType: '', size: 0 }} isUploading={true} />
+              </div>
+            ))}
           </div>
         )}
 
@@ -651,45 +689,46 @@ export function PureMultimodalInput({
                 "p-2 rounded-full transition-colors flex items-center justify-center",
                 language !== 'en' ? "text-brand bg-brand/10" : "text-text-2 hover:bg-surface-3"
               )}
-              title="Select Language"
+              aria-label={t('chat.select_language')}
+              title={t('chat.select_language')}
             >
               <Globe size={24} />
             </button>
-            
-                          {isLangMenuOpen && (
-                <div
-                  className="absolute bottom-full left-0 mb-2 w-48 bg-surface-1 border border-border rounded-2xl shadow-2xl overflow-hidden z-50 py-1"
-                >
-                  <div className="px-3 py-2 text-[10px] font-bold text-text-3 uppercase tracking-widest border-b border-border/50 mb-1">
-                    Language Selection
-                  </div>
-                  <div className="max-h-[240px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {SUPPORTED_LANGUAGES.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setIsLangMenuOpen(false);
-                        }}
-                        className={cn(
-                          "w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center justify-between",
-                          language === lang.code ? "bg-brand/10 text-brand" : "text-text-1 hover:bg-surface-2"
-                        )}
-                      >
-                        <span>{lang.name}</span>
-                        <span className="text-[10px] opacity-50 uppercase">{lang.code}</span>
-                      </button>
-                    ))}
-                  </div>
+
+            {isLangMenuOpen && (
+              <div
+                className="absolute bottom-full left-0 mb-2 w-48 bg-surface-1 border border-border rounded-2xl shadow-2xl overflow-hidden z-50 py-1"
+              >
+                <div className="px-3 py-2 text-[10px] font-bold text-text-3 uppercase tracking-widest border-b border-border/50 mb-1">
+                  {t('chat.language_selection')}
                 </div>
-              )}
+                <div className="max-h-[240px] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                  {SUPPORTED_LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setIsLangMenuOpen(false);
+                      }}
+                      className={cn(
+                        "w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center justify-between",
+                        language === lang.code ? "bg-brand/10 text-brand" : "text-text-1 hover:bg-surface-2"
+                      )}
+                    >
+                      <span>{lang.name}</span>
+                      <span className="text-[10px] opacity-50 uppercase">{lang.code}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <AttachmentsButton fileInputRef={fileInputRef} disabled={isAttachmentDisabled} />
 
           <Textarea
             ref={textareaRef}
-            placeholder="Ask AI anything..."
+            placeholder={t('chat.ask_placeholder', 'Ask AI anything...')}
             aria-label="Chat message input"
             value={input}
             onChange={handleInput}
@@ -708,13 +747,13 @@ export function PureMultimodalInput({
             }}
           />
 
-          <MicButton 
-            disabled={isGenerating || uploadQueue.length > 0 || !canSend} 
+          <MicButton
+            disabled={isGenerating || uploadQueue.length > 0 || !canSend}
             isGenerating={isGenerating}
             selectedLanguage={language}
             onTranscript={(text) => {
               setInput(input ? `${input} ${text}` : text);
-            }} 
+            }}
           />
 
           <div className="flex items-center">
