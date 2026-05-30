@@ -37,7 +37,7 @@ mistralai==2.4.0
 redis==8.0.0
 
 # --- Observability ---
-sentry-sdk[fastapi]==2.51.0
+sentry-sdk[fastapi]==2.61.0
 
 # --- HTTP client ---
 httpx==0.28.1
