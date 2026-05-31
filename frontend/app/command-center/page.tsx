@@ -213,10 +213,8 @@ export default function CommandCenterPage() {
     }
   }
 
-  if (!mounted) return null;
-
   return (
-    <div className="sv-page aurora-glow relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-20">
+    <div className={`sv-page aurora-glow relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-20 ${!mounted ? 'opacity-0' : ''}`}>
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-10%] h-[40rem] w-[40rem] rounded-full bg-brand/5 blur-[150px]" />
         <div className="absolute left-[-5%] top-[10%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/5 blur-[130px]" />

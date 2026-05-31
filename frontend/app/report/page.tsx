@@ -115,8 +115,8 @@ function normalizeExternalUrl(url: string | null | undefined) {
 
 export default function ReportPage() {
   const { t } = useTranslation();
-  const [mounted, setMounted] = useState(false);
   const pageRef = usePageEntry();
+  const [mounted, setMounted] = useState(false);
   const [activeCategory, setActiveCategory] = useState<'roads' | 'traffic' | 'streetlight'>('roads');
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [citizenPhone, setCitizenPhone] = useState('');
@@ -329,10 +329,8 @@ export default function ReportPage() {
     setFormStep(0);
   }
 
-  if (!mounted) return null;
-
   return (
-    <div ref={pageRef} className="sv-page aurora-glow relative overflow-x-hidden">
+    <div ref={pageRef} className={cx("sv-page aurora-glow relative overflow-x-hidden", !mounted && 'opacity-0')}>
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] hidden h-[38rem] w-[38rem] rounded-full bg-cyan-500/10 blur-[150px] dark:block" />
         <div className="absolute left-[22%] top-[4%] hidden h-[20rem] w-[20rem] rounded-full bg-violet-500/8 blur-[120px] dark:block" />

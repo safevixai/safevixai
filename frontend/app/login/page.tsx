@@ -13,6 +13,7 @@ import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 import { useTranslation } from 'react-i18next';
 import { useFormValidation } from '@/lib/use-form-validation';
+import { Logo } from '@/components/ui/Logo';
 
 const API_URL = PUBLIC_API_BASE_URL;
 const DEMO_CREDS: Array<{ label: string; email: string; password: string; color: string }> = [];
@@ -150,11 +151,7 @@ export default function LoginPage() {
 
             {/* Logo + Brand */}
             <div className="flex flex-col items-center gap-4 mb-8">
-              <div
-                className="w-16 h-16 rounded-lg bg-brand flex items-center justify-center border border-brand-light/20"
-              >
-                <Shield size={32} className="text-white" />
-              </div>
+              <Logo size={68} status="online" />
 
               <div className="text-center">
                 <h1 className="text-2xl font-black text-white tracking-tight font-space uppercase">
@@ -169,11 +166,11 @@ export default function LoginPage() {
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/20 border border-brand/30">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
-                  <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">{t('sentinel_online')}</span>
+                  <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">{t('sentinel_online', 'Sentinel Online')}</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                   <Lock size={9} className="text-text-2" />
-                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">{t('jwt_secured')}</span>
+                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">{t('jwt_secured', 'JWT Secured')}</span>
                 </div>
               </div>
             </div>
@@ -271,7 +268,7 @@ export default function LoginPage() {
                 ) : (
                   <>
                     <LogIn size={16} />
-                    <span>{t('enter_command_center')}</span>
+                    <span>{t('enter_command_center', 'Enter Command Center')}</span>
                   </>
                 )}
               </button>

@@ -19,6 +19,7 @@ import { useAppStore } from '@/lib/store';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { Logo } from '@/components/ui/Logo';
 
 const SystemSidebar = memo(function SystemSidebar() {
   const isOpen = useAppStore((state) => state.isSystemSidebarOpen);
@@ -76,12 +77,7 @@ const SystemSidebar = memo(function SystemSidebar() {
         {/* Header */}
         <div className="p-6 flex items-center justify-between border-b border-border bg-surface-2/50 backdrop-blur-xl">
           <div className="flex items-center gap-3">
-            <div 
-              className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center text-white shadow-lg shadow-brand/30"
-              aria-hidden="true"
-            >
-              <ShieldAlert size={24} />
-            </div>
+            <Logo size={40} status="online" />
             <div>
               <h2 className="text-xl font-black text-text-1 tracking-tight font-mono uppercase">{t('app_name', 'SafeVixAI')}</h2>
               <p className="text-[10px] font-bold text-brand-light uppercase tracking-widest font-mono">{t('common.protocol_active', 'Protocol Active')}</p>

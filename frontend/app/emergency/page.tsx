@@ -191,30 +191,8 @@ export default function EmergencyProtocolsPage() {
     Criminal: '#d4a8ff',
   };
 
-  if (!mounted) {
-    return (
-      <div className="sv-page relative flex flex-col overflow-x-hidden">
-        <SystemHeader title="Emergency Protocol Terminal" showBack={false} />
-        <main className="flex-1 w-full max-w-7xl mx-auto pt-28 lg:pt-24 pb-44 px-5 sm:px-12 flex flex-col lg:grid lg:grid-cols-[1.2fr,2fr] lg:gap-14 lg:items-start animate-pulse">
-          <aside className="lg:sticky lg:top-28 flex flex-col gap-8">
-            <div className="h-20 bg-surface-2 rounded-lg w-3/4"></div>
-            <div className="h-64 bg-surface-2 rounded-[2.5rem] w-full"></div>
-          </aside>
-          <div className="flex flex-col gap-8 pt-8 lg:pt-0">
-            <div className="h-12 bg-surface-2 rounded-lg w-full"></div>
-            <div className="grid gap-4">
-              <div className="h-24 bg-surface-2 rounded-xl w-full"></div>
-              <div className="h-24 bg-surface-2 rounded-xl w-full"></div>
-              <div className="h-24 bg-surface-2 rounded-xl w-full"></div>
-            </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
   return (
-    <div className="sv-page aurora-glow relative flex flex-col overflow-x-hidden transition-colors duration-500">
+    <div className={`sv-page aurora-glow relative flex flex-col overflow-x-hidden transition-colors duration-500 ${!mounted ? 'opacity-0' : 'opacity-100'}`}>
       
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Emergency Protocol Terminal" showBack={false} />

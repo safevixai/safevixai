@@ -20,6 +20,7 @@ import {
   Building2
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
+import { Logo } from '@/components/ui/Logo';
 
 const navItems = [
   { icon: <MapPin size={20} />, label: 'Map', href: '/', color: 'text-brand-light' },
@@ -62,6 +63,7 @@ export function AppSidebar() {
         <div className="flex flex-col border-b border-border bg-surface-2/50 backdrop-blur-xl shrink-0">
           <div className="flex items-center justify-between p-6 pb-2">
             <div className="flex items-center gap-3">
+              <Logo size={38} status="online" />
               <div className="whitespace-nowrap">
                 <h2 className="text-xl font-black text-text-1 tracking-tight leading-none font-mono">SAFEVIX_AI</h2>
                 <p className="text-[10px] font-bold text-brand-light uppercase tracking-widest mt-1">System Integrated</p>

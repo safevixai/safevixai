@@ -102,8 +102,6 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
     guides[key].subtitle.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (!mounted) return null;
-
   const filteredGuideKeys = guideKeys.filter(key => !emergencyMode || ['cpr', 'choking', 'bleeding'].includes(key));
 
   return (

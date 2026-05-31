@@ -36,8 +36,8 @@ test.describe('Municipality guide flow', () => {
 
     await page.getByText(/Filter/i).first().click();
 
-    await expect(page.getByText(/State \/ UT/i)).toBeVisible();
-    await expect(page.getByText(/Municipal Corporation|Municipality|Town Panchayat|Cantonment/i).first()).toBeVisible();
+    await expect(page.getByText(/State|Type/i).first()).toBeVisible();
+    await expect(page.getByText(/All|Corporation|Municipality/i).first()).toBeVisible();
   });
 
   test('guide information section renders', async ({ page }) => {
@@ -48,6 +48,6 @@ test.describe('Municipality guide flow', () => {
     ).toBeVisible({ timeout: 15000 });
 
     await expect(page.getByText(/How to Use This Guide/i)).toBeVisible();
-    await expect(page.getByText(/Search or Filter|Explore Details|File a Report/i).first()).toBeVisible();
+    await expect(page.getByText(/Search|Find Nearby|View Details/i).first()).toBeVisible();
   });
 });

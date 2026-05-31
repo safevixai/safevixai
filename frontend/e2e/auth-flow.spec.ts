@@ -39,14 +39,16 @@ test.describe('Authentication Flow', () => {
   });
 
   test('shows error on invalid credentials', async ({ page }) => {
+    // Mock backend login endpoint to return 401
+    await page.route('**/api/v1/auth/login', async route => {
+      await route.fulfill({ status: 401, body: JSON.stringify({ detail: 'Invalid credentials' }) });
+    });
     await page.getByPlaceholder('operator@safevixai.app').fill('test@example.com');
     await page.locator('input[type="password"]').fill('wrongpassword');
     await page.getByText('Enter Command Center').click();
 
     // Should show an error — either API error or validation
-    await page.waitForTimeout(2000);
-    const errorVisible = await page.getByText(/failed|invalid|error|required/i).isVisible().catch(() => false);
-    expect(errorVisible).toBe(true);
+    await expect(page.getByText(/failed|invalid|error|required/i)).toBeVisible({ timeout: 10000 });
   });
 
   test('has working password field with autocomplete', async ({ page }) => {

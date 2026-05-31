@@ -7,6 +7,7 @@ import { ArrowLeft, Search, Mic, Sun, Moon, Monitor, Menu, ShieldCheck, User } f
 import { useAppStore } from '@/lib/store';
 import { useTheme } from '@/components/ThemeProvider';
 import { useTranslation } from 'react-i18next';
+import { Logo } from '@/components/ui/Logo';
 
 type ThemeChoice = 'light' | 'dark' | 'system';
 
@@ -69,16 +70,19 @@ const SystemHeader = memo(function SystemHeader({
           </Link>
         )}
         
-        <div className="flex flex-col">
-          <h1 
-            className="text-text-1 font-black tracking-tight text-base leading-tight font-mono uppercase"
-            aria-current="page"
-          >
-            {title}
-          </h1>
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-brand-light/10 border border-brand-light/20 w-fit mt-0.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse"></span>
-            <span className="text-[9px] font-bold text-brand-light uppercase tracking-widest font-mono">{t('common.sentinel_active', 'Sentinel Active')}</span>
+        <div className="flex items-center gap-3">
+          <Logo size={34} status={isOnline ? 'online' : 'offline'} />
+          <div className="flex flex-col">
+            <h1 
+              className="text-text-1 font-black tracking-tight text-base leading-tight font-mono uppercase"
+              aria-current="page"
+            >
+              {title}
+            </h1>
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-brand-light/10 border border-brand-light/20 w-fit mt-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse"></span>
+              <span className="text-[9px] font-bold text-brand-light uppercase tracking-widest font-mono">{t('common.sentinel_active', 'Sentinel Active')}</span>
+            </div>
           </div>
         </div>
       </div>
