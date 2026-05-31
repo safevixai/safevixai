@@ -7,14 +7,14 @@ test.describe('Authentication Flow', () => {
   });
 
   test('login page renders correctly', async ({ page }) => {
-    await expect(page.getByText('SafeVixAI')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'SafeVixAI' })).toBeVisible();
     await expect(page.getByText('Operator Authentication')).toBeVisible();
     await expect(page.getByPlaceholder('operator@safevixai.app')).toBeVisible();
-    await expect(page.getByText('ENTER COMMAND CENTER')).toBeVisible();
+    await expect(page.getByText('Enter Command Center')).toBeVisible();
   });
 
   test('shows validation errors on empty submit', async ({ page }) => {
-    await page.getByText('ENTER COMMAND CENTER').click();
+    await page.getByText('Enter Command Center').click();
     await expect(page.getByText('Email is required')).toBeVisible();
   });
 
@@ -41,7 +41,7 @@ test.describe('Authentication Flow', () => {
   test('shows error on invalid credentials', async ({ page }) => {
     await page.getByPlaceholder('operator@safevixai.app').fill('test@example.com');
     await page.locator('input[type="password"]').fill('wrongpassword');
-    await page.getByText('ENTER COMMAND CENTER').click();
+    await page.getByText('Enter Command Center').click();
 
     // Should show an error — either API error or validation
     await page.waitForTimeout(2000);
@@ -56,8 +56,8 @@ test.describe('Authentication Flow', () => {
   });
 
   test('page has proper security indicators', async ({ page }) => {
-    await expect(page.getByText('SENTINEL ONLINE')).toBeVisible();
-    await expect(page.getByText('JWT SECURED')).toBeVisible();
+    await expect(page.getByText('Sentinel Online')).toBeVisible();
+    await expect(page.getByText('JWT Secured')).toBeVisible();
     await expect(page.getByText('Secure')).toBeVisible();
   });
 });

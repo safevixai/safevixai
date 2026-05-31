@@ -11,7 +11,7 @@ test.describe('Emergency page flow', () => {
     ).toBeVisible({ timeout: 15000 });
 
     await expect(page.getByText(/Emergency SOS/i).first()).toBeVisible();
-    await expect(page.getByText(/Filter by Category/i).first()).toBeVisible();
+    await expect(page.getByRole('radiogroup', { name: /Filter/i })).toBeVisible();
     await expect(page.getByText(/CALL 112|Call 112/i).first()).toBeVisible();
   });
 

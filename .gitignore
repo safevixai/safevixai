@@ -144,7 +144,7 @@ chatbot_service/data/pothole_training/
 # Large boundary shapefiles
 chatbot_service/data/boundaries/*.zip
 frontend/public/offline-data/city-bundles/
-frontend/public/offline-data/translations/
+# frontend/public/offline-data/translations/ — REMOVED, tracked for i18n:split CI
 
 # TypeScript build cache
 *.tsbuildinfo

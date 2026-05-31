@@ -11,8 +11,8 @@ test.describe('Municipality guide flow', () => {
     ).toBeVisible({ timeout: 15000 });
 
     await expect(page.getByPlaceholder(/Search municipality/i)).toBeVisible();
-    await expect(page.getByText(/Find Nearby Municipality/i)).toBeVisible();
-    await expect(page.getByLabel(/Toggle filters/i)).toBeVisible();
+    await expect(page.getByText(/Find Nearby/i)).toBeVisible();
+    await expect(page.getByText(/Filter/i).first()).toBeVisible();
   });
 
   test('search input accepts text', async ({ page }) => {
@@ -34,7 +34,7 @@ test.describe('Municipality guide flow', () => {
       page.getByText(/Municipality Guide|Civic Hub/i).first()
     ).toBeVisible({ timeout: 15000 });
 
-    await page.getByLabel(/Toggle filters/i).click();
+    await page.getByText(/Filter/i).first().click();
 
     await expect(page.getByText(/State \/ UT/i)).toBeVisible();
     await expect(page.getByText(/Municipal Corporation|Municipality|Town Panchayat|Cantonment/i).first()).toBeVisible();

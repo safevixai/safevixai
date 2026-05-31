@@ -10,8 +10,8 @@ test.describe('Challan calculator flow', () => {
       page.getByText(/Challan Calculator|Estimation Terminal|Calculator Active/i).first()
     ).toBeVisible({ timeout: 15000 });
 
-    await expect(page.locator('select[aria-label="Violation type"]')).toBeVisible();
-    await expect(page.locator('select[aria-label="Jurisdiction state"]')).toBeVisible();
+    await expect(page.locator('select[aria-label="Select violation type"]')).toBeVisible();
+    await expect(page.locator('select[aria-label="Select jurisdiction state"]')).toBeVisible();
     await expect(page.getByText(/2-Wheeler|Car\/LMV/i).first()).toBeVisible();
     await expect(page.getByText(/Repeat Offender/i)).toBeVisible();
   });
@@ -27,9 +27,9 @@ test.describe('Challan calculator flow', () => {
   test('violation select contains options', async ({ page }) => {
     await page.goto(`${BASE_URL}/challan`);
 
-    await expect(page.locator('select[aria-label="Violation type"]')).toBeVisible();
+    await expect(page.locator('select[aria-label="Select violation type"]')).toBeVisible();
 
-    const options = page.locator('select[aria-label="Violation type"] option');
+    const options = page.locator('select[aria-label="Select violation type"] option');
     const count = await options.count();
     expect(count).toBeGreaterThanOrEqual(3);
   });
@@ -37,9 +37,9 @@ test.describe('Challan calculator flow', () => {
   test('jurisdiction select contains options', async ({ page }) => {
     await page.goto(`${BASE_URL}/challan`);
 
-    await expect(page.locator('select[aria-label="Jurisdiction state"]')).toBeVisible();
+    await expect(page.locator('select[aria-label="Select jurisdiction state"]')).toBeVisible();
 
-    const options = page.locator('select[aria-label="Jurisdiction state"] option');
+    const options = page.locator('select[aria-label="Select jurisdiction state"] option');
     const count = await options.count();
     expect(count).toBeGreaterThanOrEqual(3);
   });

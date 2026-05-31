@@ -9,7 +9,7 @@ test.describe('Road Report Flow', () => {
   test('report page renders with all steps', async ({ page }) => {
     await expect(page.getByText(/Report Road Issue/i)).toBeVisible();
     // Should show category selection as first step
-    await expect(page.getByText(/Pothole|Road Damage|Civic Issue|Accident/i)).toBeVisible();
+    await expect(page.getByText(/Pothole|Road Crack|Roads|Traffic|Streetlights/i)).toBeVisible();
   });
 
   test('requires GPS location before proceeding', async ({ page }) => {
@@ -28,7 +28,7 @@ test.describe('Road Report Flow', () => {
   });
 
   test('shows category options', async ({ page }) => {
-    const roadDamage = page.getByText(/Road Damage|Pothole|Civic|Accident/i);
+    const roadDamage = page.getByText(/Pothole|Road Crack|Roads|Traffic|Streetlights/i);
     await expect(roadDamage.first()).toBeVisible();
   });
 
