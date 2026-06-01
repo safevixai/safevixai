@@ -34,7 +34,7 @@ geopy==2.4.1
 
 # --- Data / Compute ---
 duckdb==1.5.3
-numpy==2.4.4
+numpy==2.4.6
 pandas==3.0.2
 Pillow==12.2.0
 
