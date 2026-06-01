@@ -1,9 +1,17 @@
 import { test, expect } from '@playwright/test';
 
+async function waitForMount(page: any) {
+  await page.waitForFunction(() => {
+    const h1 = document.querySelector('h1');
+    return h1 && h1.textContent?.includes('SafeVixAI') && window.getComputedStyle(h1).opacity !== '0';
+  }, { timeout: 15000 });
+}
+
 test.describe('Authentication Flow', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/login');
     await page.waitForLoadState('networkidle');
+    await waitForMount(page);
   });
 
   test('login page renders correctly', async ({ page }) => {
@@ -29,17 +37,14 @@ test.describe('Authentication Flow', () => {
     const passwordInput = page.locator('input[type="password"]');
     await expect(passwordInput).toBeVisible();
 
-    // Click show password
     await page.getByLabel('Show password').click();
     await expect(page.locator('input[type="text"]')).toBeVisible();
 
-    // Click hide password
     await page.getByLabel('Hide password').click();
     await expect(page.locator('input[type="password"]')).toBeVisible();
   });
 
   test('shows error on invalid credentials', async ({ page }) => {
-    // Mock backend login endpoint to return 401
     await page.route('**/api/v1/auth/login', async route => {
       await route.fulfill({ status: 401, body: JSON.stringify({ detail: 'Invalid credentials' }) });
     });
@@ -47,7 +52,6 @@ test.describe('Authentication Flow', () => {
     await page.locator('input[type="password"]').fill('wrongpassword');
     await page.getByText('Enter Command Center').click();
 
-    // Should show an error — either API error or validation
     await expect(page.getByText(/failed|invalid|error|required/i)).toBeVisible({ timeout: 10000 });
   });
 

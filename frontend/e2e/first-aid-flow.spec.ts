@@ -2,10 +2,20 @@ import { test, expect } from '@playwright/test';
 
 const BASE_URL = process.env.E2E_BASE_URL ?? 'http://127.0.0.1:3100';
 
-test.describe('First aid page flow', () => {
-  test('renders first aid guide cards', async ({ page }) => {
-    await page.goto(`${BASE_URL}/first-aid`);
+async function waitForMount(page: any) {
+  await page.waitForFunction(() => {
+    const el = document.querySelector('h1');
+    return el && el.textContent?.includes('First Aid') && window.getComputedStyle(el).opacity !== '0';
+  }, { timeout: 15000 });
+}
 
+test.describe('First aid page flow', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(`${BASE_URL}/first-aid`);
+    await waitForMount(page);
+  });
+
+  test('renders first aid guide cards', async ({ page }) => {
     await expect(
       page.getByText(/First Aid HUD|Emergency Guide|First Aid/i).first()
     ).toBeVisible({ timeout: 15000 });
@@ -15,8 +25,6 @@ test.describe('First aid page flow', () => {
   });
 
   test('clicking a card shows modal with details', async ({ page }) => {
-    await page.goto(`${BASE_URL}/first-aid`);
-
     await expect(
       page.getByText(/First Aid HUD|Emergency Guide|First Aid/i).first()
     ).toBeVisible({ timeout: 15000 });
@@ -30,8 +38,6 @@ test.describe('First aid page flow', () => {
   });
 
   test('search filters protocol list', async ({ page }) => {
-    await page.goto(`${BASE_URL}/first-aid`);
-
     await expect(
       page.getByText(/First Aid HUD|Emergency Guide|First Aid/i).first()
     ).toBeVisible({ timeout: 15000 });
@@ -43,8 +49,6 @@ test.describe('First aid page flow', () => {
   });
 
   test('emergency mode toggle works', async ({ page }) => {
-    await page.goto(`${BASE_URL}/first-aid`);
-
     await expect(
       page.getByText(/First Aid HUD|Emergency Guide|First Aid/i).first()
     ).toBeVisible({ timeout: 15000 });

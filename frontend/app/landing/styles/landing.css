@@ -1,0 +1,365 @@
+/* ══════════════════════════════════════════════════════
+   SafeVixAI Enterprise Landing Page — Extended Tokens
+   Extends globals.css design system for cinematic landing
+   ══════════════════════════════════════════════════════ */
+
+:root {
+  --landing-hero-h: 100dvh;
+  --landing-section-gap: clamp(80px, 12vw, 160px);
+  --landing-content-max: 1400px;
+  --landing-glow-brand: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(0,200,150,0.06), transparent);
+  --landing-glow-emergency: radial-gradient(ellipse 400px 300px at 50% 50%, rgba(220,38,38,0.04), transparent);
+  --landing-glow-info: radial-gradient(ellipse 500px 350px at 50% 50%, rgba(59,130,246,0.04), transparent);
+}
+
+/* ── Smooth scroll body for landing ── */
+.landing-smooth {
+  overflow-x: hidden;
+}
+
+/* ── Section base ── */
+.landing-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-block: var(--landing-section-gap);
+}
+
+.landing-container {
+  max-width: var(--landing-content-max);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ── Cinematic grain overlay ── */
+.grain-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* ── Ambient glow backgrounds ── */
+.glow-brand-ambient {
+  position: relative;
+}
+.glow-brand-ambient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--landing-glow-brand);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-emergency-ambient {
+  position: relative;
+}
+.glow-emergency-ambient::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  right: -10%;
+  bottom: -20%;
+  background: var(--landing-glow-emergency);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Hero gradient background ── */
+.hero-gradient-bg {
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 50%, rgba(26,92,56,0.08), transparent),
+    radial-gradient(ellipse 600px 400px at 80% 30%, rgba(0,200,150,0.04), transparent),
+    radial-gradient(ellipse 400px 400px at 60% 80%, rgba(220,38,38,0.03), transparent),
+    var(--bg);
+}
+
+/* ── Grid pattern background ── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.grid-pattern-dense {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Perspective grid for CTA ── */
+.perspective-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,200,150,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,200,150,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(500px) rotateX(60deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, transparent, white 20%, white 60%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, white 20%, white 60%, transparent);
+}
+
+/* ── Animated border gradient ── */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animated-border {
+  position: relative;
+  background: var(--surface-1);
+  border-radius: var(--r-xl);
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 40%,
+    rgba(0,200,150,0.4) 50%,
+    transparent 60%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: border-rotate 4s linear infinite;
+}
+
+@keyframes border-rotate {
+  to { --angle: 360deg; }
+}
+
+/* ── Card 3D tilt ── */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+.card-3d-inner {
+  transition: transform 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── Floating animation ── */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.float-gentle-delayed {
+  animation: float-gentle 6s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.float-gentle-slow {
+  animation: float-gentle 8s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* ── Pulse ring for markers ── */
+@keyframes marker-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.marker-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  animation: marker-pulse 2s ease-out infinite;
+}
+
+/* ── Counter number styling ── */
+.counter-number {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.03em;
+}
+
+/* ── Horizontal scroll section ── */
+.how-it-works-track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+}
+
+.how-it-works-stage {
+  width: 100vw;
+  height: 100dvh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Flow line animation ── */
+@keyframes flow-dash {
+  to { stroke-dashoffset: -24; }
+}
+
+.flow-line-animated {
+  stroke-dasharray: 8 16;
+  animation: flow-dash 1.5s linear infinite;
+}
+
+/* ── Orbital rotation ── */
+@keyframes orbit-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-counter-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.orbit-ring {
+  animation: orbit-rotate 30s linear infinite;
+}
+
+.orbit-ring-reverse {
+  animation: orbit-rotate 25s linear infinite reverse;
+}
+
+.orbit-item {
+  animation: orbit-counter-rotate 30s linear infinite;
+}
+
+.orbit-item-reverse {
+  animation: orbit-counter-rotate 25s linear infinite reverse;
+}
+
+/* ── Cinematic text reveal ── */
+.text-reveal-mask {
+  overflow: hidden;
+}
+
+.text-reveal-mask > * {
+  transform: translateY(110%);
+}
+
+/* ── Magnetic button ── */
+.magnetic-btn {
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Navbar glassmorphism ── */
+.navbar-glass {
+  background: rgba(10, 14, 20, 0.7);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar-glass-scrolled {
+  background: rgba(10, 14, 20, 0.92);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Module card semantic glows ── */
+.module-glow-sos {
+  box-shadow: 0 0 0 1px rgba(220,38,38,0.15), 0 4px 24px rgba(220,38,38,0.08);
+}
+.module-glow-sos:hover {
+  box-shadow: 0 0 0 1px rgba(220,38,38,0.3), 0 8px 40px rgba(220,38,38,0.15);
+}
+
+.module-glow-legal {
+  box-shadow: 0 0 0 1px rgba(0,200,150,0.15), 0 4px 24px rgba(0,200,150,0.08);
+}
+.module-glow-legal:hover {
+  box-shadow: 0 0 0 1px rgba(0,200,150,0.3), 0 8px 40px rgba(0,200,150,0.15);
+}
+
+.module-glow-watch {
+  box-shadow: 0 0 0 1px rgba(217,119,6,0.15), 0 4px 24px rgba(217,119,6,0.08);
+}
+.module-glow-watch:hover {
+  box-shadow: 0 0 0 1px rgba(217,119,6,0.3), 0 8px 40px rgba(217,119,6,0.15);
+}
+
+/* ── Dashboard mock panels ── */
+.dashboard-panel {
+  background: rgba(17, 21, 32, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--r-xl);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Gradient text ── */
+.text-gradient-brand {
+  background: linear-gradient(135deg, #00C896 0%, #1A5C38 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-emergency {
+  background: linear-gradient(135deg, #FF6B6B 0%, #DC2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Responsive helpers ── */
+@media (max-width: 768px) {
+  .landing-section {
+    padding-block: clamp(48px, 8vw, 80px);
+  }
+
+  .how-it-works-stage {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    padding: 2rem 1.25rem;
+  }
+
+  .how-it-works-track {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .float-gentle,
+  .float-gentle-delayed,
+  .float-gentle-slow,
+  .orbit-ring,
+  .orbit-ring-reverse,
+  .orbit-item,
+  .orbit-item-reverse,
+  .flow-line-animated,
+  .animated-border::before {
+    animation: none !important;
+  }
+
+  .card-3d-inner {
+    transition: none !important;
+  }
+}

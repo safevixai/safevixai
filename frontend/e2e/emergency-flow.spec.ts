@@ -2,10 +2,20 @@ import { test, expect } from '@playwright/test';
 
 const BASE_URL = process.env.E2E_BASE_URL ?? 'http://127.0.0.1:3100';
 
-test.describe('Emergency page flow', () => {
-  test('renders emergency page with protocol cards', async ({ page }) => {
-    await page.goto(`${BASE_URL}/emergency`);
+async function waitForMount(page: any) {
+  await page.waitForFunction(() => {
+    const el = document.querySelector('h1');
+    return el && el.textContent?.includes('Protocol Terminal') && window.getComputedStyle(el).opacity !== '0';
+  }, { timeout: 15000 });
+}
 
+test.describe('Emergency page flow', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(`${BASE_URL}/emergency`);
+    await waitForMount(page);
+  });
+
+  test('renders emergency page with protocol cards', async ({ page }) => {
     await expect(
       page.getByText(/Emergency Guide|Protocol Terminal|Emergency Center/i).first()
     ).toBeVisible({ timeout: 15000 });
@@ -16,8 +26,6 @@ test.describe('Emergency page flow', () => {
   });
 
   test('category filter buttons are present', async ({ page }) => {
-    await page.goto(`${BASE_URL}/emergency`);
-
     await expect(
       page.getByText(/Emergency Guide|Protocol Terminal/i).first()
     ).toBeVisible({ timeout: 15000 });
@@ -29,8 +37,6 @@ test.describe('Emergency page flow', () => {
   });
 
   test('protocol cards render and can be expanded', async ({ page }) => {
-    await page.goto(`${BASE_URL}/emergency`);
-
     await expect(
       page.getByText(/Emergency Guide|Protocol Terminal/i).first()
     ).toBeVisible({ timeout: 15000 });
@@ -39,8 +45,6 @@ test.describe('Emergency page flow', () => {
   });
 
   test('accordion expand shows protocol steps', async ({ page }) => {
-    await page.goto(`${BASE_URL}/emergency`);
-
     await expect(
       page.getByText(/Emergency Guide|Protocol Terminal/i).first()
     ).toBeVisible({ timeout: 15000 });
