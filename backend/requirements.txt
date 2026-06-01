@@ -35,7 +35,7 @@ geopy==2.4.1
 # --- Data / Compute ---
 duckdb==1.5.3
 numpy==2.4.4
-pandas==3.0.2
+pandas==3.0.3
 Pillow==12.2.0
 
 # --- Auth / JWT ---
