@@ -9,7 +9,7 @@ transformers==5.5.4
 datasets==4.8.4
 
 # --- Web Framework ---
-fastapi==0.136.0
+fastapi==0.136.3
 uvicorn[standard]==0.44.0
 slowapi==0.1.9
 
