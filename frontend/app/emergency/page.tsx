@@ -9,7 +9,7 @@ import {
 import { useTheme } from '@/components/ThemeProvider';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
-import { useAppStore } from '@/lib/store';
+import { useUserProfile } from '@/lib/store';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { useSplitTextEntry } from '@/hooks/useSplitTextEntry';
@@ -114,7 +114,7 @@ export default function EmergencyProtocolsPage() {
   const [expandedId, setExpandedId] = useState<string | null>('cpr');
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
-  const userProfile = useAppStore((state) => state.userProfile);
+  const userProfile = useUserProfile();
 
   // GSAP refs
   const sosCardRef = useRef<HTMLDivElement>(null);

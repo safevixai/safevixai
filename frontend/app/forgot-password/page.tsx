@@ -12,6 +12,7 @@ import { useAppStore } from '@/lib/store';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 import { useFormValidation } from '@/lib/use-form-validation';
+import { RESET_RULES } from '@/lib/validation-schemas';
 import { Logo } from '@/components/ui/Logo';
 
 export default function ForgotPasswordPage() {
@@ -26,9 +27,7 @@ export default function ForgotPasswordPage() {
   const [scanLine, setScanLine] = useState(0);
   const emailRef = useRef<HTMLInputElement>(null);
 
-  const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation([
-    { key: 'email', label: 'Email', required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMessage: 'Invalid email address' },
-  ]);
+  const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation(RESET_RULES);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -58,7 +57,7 @@ export default function ForgotPasswordPage() {
         if (supabase) {
           const { error: resetError } = await supabase.auth.resetPasswordForEmail(
             email.trim().toLowerCase(),
-            { redirectTo: `${window.location.origin}/login` }
+            { redirectTo: `${window.location.origin}/auth/callback?type=recovery` }
           );
 
           if (resetError) {

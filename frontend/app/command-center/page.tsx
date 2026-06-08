@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import dynamic from 'next/dynamic';
 import {
@@ -18,6 +18,7 @@ import {
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
 import { client } from '@/lib/api';
+import { sounds } from '@/lib/sounds';
 
 const MapLibreLoader = () => {
   const { t } = useTranslation('common');
@@ -91,6 +92,7 @@ export default function CommandCenterPage() {
   const [officers, setOfficers] = useState<Officer[]>([]);
   const [wards, setWards] = useState<WardSummary[]>([]);
   const [breaches, setBreaches] = useState<Complaint[]>([]);
+  const knownSev5Ids = useRef<Set<string>>(new Set());
   
   // Selection states for assignment modal/inline
   const [assigningUuid, setAssigningUuid] = useState<string | null>(null);
@@ -165,7 +167,24 @@ export default function CommandCenterPage() {
 
       // 2. Fetch Open Complaints
       const complaintsRes = await client.get('/api/v1/admin/complaints', { params: { limit: 50 } });
-      setComplaints(complaintsRes.data.issues || []);
+      const newComplaints = complaintsRes.data.issues || [];
+      setComplaints(newComplaints);
+
+      // Detect new Sev 5 incidents
+      let hasNewSev5 = false;
+      const currentSev5Ids = new Set<string>();
+      newComplaints.forEach((c: Complaint) => {
+        if (c.severity === 5) {
+          currentSev5Ids.add(c.uuid);
+          if (knownSev5Ids.current.size > 0 && !knownSev5Ids.current.has(c.uuid)) {
+            hasNewSev5 = true;
+          }
+        }
+      });
+      knownSev5Ids.current = currentSev5Ids;
+      if (hasNewSev5) {
+        sounds.sev5Alert();
+      }
 
       // 3. Fetch Officers
       const officersRes = await client.get('/api/v1/admin/officers');

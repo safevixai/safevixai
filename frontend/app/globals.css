@@ -138,19 +138,9 @@
   --surface-4:  #E2E8F0;
   --shadow-panel: 0 4px 20px rgba(0,0,0,0.06);
 
-  --bg-primary: var(--bg);
-  --bg-secondary: var(--surface-2);
-  --bg-card: var(--surface-1);
-  --bg-card-high: var(--surface-2);
-  --bg-card-highest: #EEF3FA;
-  --bg-input: #EDF2F7;
-  --accent-green: var(--brand);
-  --accent-green-container: rgba(26,92,56,0.10);
   --text-primary: var(--text-1);
   --text-secondary: var(--text-2);
   --text-muted: var(--text-3);
-  --outline: var(--border-md);
-  --outline-variant: var(--border);
 }
 
 @media (prefers-color-scheme: light) {

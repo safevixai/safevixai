@@ -13,6 +13,7 @@ import { useAppStore } from '@/lib/store';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 import { useFormValidation } from '@/lib/use-form-validation';
+import { SIGNUP_RULES } from '@/lib/validation-schemas';
 import { Logo } from '@/components/ui/Logo';
 
 const API_URL = PUBLIC_API_BASE_URL;
@@ -34,12 +35,7 @@ export default function SignupPage() {
   const [scanLine, setScanLine] = useState(0);
   const nameRef = useRef<HTMLInputElement>(null);
 
-  const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation([
-    { key: 'name', label: 'Full Name', required: true, minLength: 2 },
-    { key: 'email', label: 'Email', required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMessage: 'Invalid email address' },
-    { key: 'password', label: 'Password', required: true, minLength: 8, patternMessage: 'Minimum 8 characters' },
-    { key: 'confirmPassword', label: 'Confirm Password', required: true, validate: (val) => val !== password ? 'Passwords do not match' : null },
-  ]);
+  const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation(SIGNUP_RULES(password));
 
   // Redirect if already authenticated
   useEffect(() => {

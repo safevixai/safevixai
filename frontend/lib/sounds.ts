@@ -49,4 +49,8 @@ export const sounds = {
   reportSent: () => playTone(440, 0.2, 0.08), // confirmation
   countdown: (s: number) => playTone(s <= 5 ? 660 : 440, 0.1), // tick
   error: () => playTone(220, 0.4, 0.12), // low error
+  sev5Alert: () => {
+    playTone(987.77, 0.15, 0.15); // B5 note
+    setTimeout(() => playTone(1318.51, 0.3, 0.15), 120); // E6 note (urgent alarm)
+  },
 };

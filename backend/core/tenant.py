@@ -42,30 +42,22 @@ async def get_tenant_id(request: Request) -> str | None:
 def apply_tenant_filter(session: AsyncSession, tenant_id: str | None) -> None:
     """Apply tenant filter to all queries in the session.
     
-    This uses SQLAlchemy event listeners to automatically add
-    org_id filters to queries on tenant-aware tables.
-    
-    Note: This is a simplified implementation. For production use,
-    consider using a more robust approach like SQLAlchemy's
-    column_property or a custom query class.
+    This uses SQLAlchemy 2.0 event listeners to automatically add
+    org_id filters to queries on tenant-aware tables via do_orm_execute.
     """
     if not tenant_id:
         return
-    
-    @event.listens_for(session, "before_compile")
-    def before_compile(query):
-        for desc in query.column_descriptions:
-            entity = desc["entity"]
-            if entity is None:
-                continue
-            
-            table_name = getattr(entity, "__tablename__", None)
-            if table_name in TENANT_AWARE_TABLES:
-                # Check if org_id column exists
-                if hasattr(entity, "org_id"):
-                    query = query.filter(entity.org_id == tenant_id)
-        
-        return query
+
+    @event.listens_for(session, "do_orm_execute")
+    def _do_orm_execute(orm_execute_state):
+        if not orm_execute_state.is_select or not orm_execute_state.is_orm_statement:
+            return
+        for mapper in orm_execute_state.all_mappers:
+            table_name = mapper.class_.__tablename__
+            if table_name in TENANT_AWARE_TABLES and hasattr(mapper.class_, "org_id"):
+                orm_execute_state.statement = orm_execute_state.statement.where(
+                    mapper.class_.org_id == tenant_id
+                )
 
 
 class TenantAwareQuery:

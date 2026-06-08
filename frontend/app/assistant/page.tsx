@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { useShallow } from 'zustand/react/shallow';
-import { getOfflineAI, askOfflineAI } from '@/lib/offline-ai';
+import { getOfflineAI, askOfflineAI, isOfflineAIReady } from '@/lib/offline-ai';
 import { track } from '@/lib/analytics';
 import TopSearch from '@/components/dashboard/TopSearch';
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
@@ -91,6 +91,21 @@ export default function ChatPage() {
     if (mode === 'online') {
       setAiMode('online');
     } else {
+      const isAlreadyReady = isOfflineAIReady();
+      if (!isAlreadyReady) {
+        const conn = typeof navigator !== 'undefined' ? (navigator as any).connection : null;
+        const isCellular = conn && (conn.type === 'cellular' || conn.effectiveType === '2g' || conn.effectiveType === '3g' || conn.saveData);
+        if (isCellular) {
+          const confirmDownload = window.confirm(
+            t('chat.mobile_data_warning', 'Warning: Enabling offline AI requires downloading a ~1.3GB model. You appear to be on a cellular connection or have Data Saver active. Do you want to proceed with the download?')
+          );
+          if (!confirmDownload) {
+            setAiMode('online');
+            return;
+          }
+        }
+      }
+
       setAiMode('loading');
       try {
         await getOfflineAI((progress) => {

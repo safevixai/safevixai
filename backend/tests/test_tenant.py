@@ -84,9 +84,39 @@ def test_apply_tenant_filter_no_tenant():
 
 def test_apply_tenant_filter_with_tenant():
     """Test that tenant filter is applied when tenant_id is provided."""
-    # Skip this test as it requires a real SQLAlchemy session
-    # The event listener system can't be easily mocked
-    pytest.skip("Requires real SQLAlchemy session for event listener testing")
+    from sqlalchemy import create_engine, Column, String, Integer, select
+    from sqlalchemy.orm import declarative_base, Session
+    
+    Base = declarative_base()
+    
+    class TestUser(Base):
+        __tablename__ = 'users'
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+        org_id = Column(String)
+    
+    engine = create_engine('sqlite://', echo=False)
+    Base.metadata.create_all(engine)
+    
+    with Session(engine) as session:
+        session.add_all([
+            TestUser(name='alice', org_id='org_1'),
+            TestUser(name='bob', org_id='org_2'),
+            TestUser(name='charlie', org_id='org_1'),
+        ])
+        session.commit()
+    
+    with Session(engine) as session:
+        apply_tenant_filter(session, 'org_1')
+        users = session.execute(select(TestUser)).scalars().all()
+        names = [u.name for u in users]
+        assert names == ['alice', 'charlie'], f"Expected org_1 users, got {names}"
+    
+    with Session(engine) as session:
+        apply_tenant_filter(session, 'org_2')
+        users = session.execute(select(TestUser)).scalars().all()
+        names = [u.name for u in users]
+        assert names == ['bob'], f"Expected org_2 users, got {names}"
 
 
 def test_tenant_aware_query_init():

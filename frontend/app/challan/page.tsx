@@ -8,7 +8,7 @@ import {
   Scale, MapPin,
   ArrowRight, Activity, Zap, Clipboard,
   CheckCircle, RefreshCw, ShieldCheck, AlertOctagon, FileText,
-  Sliders, Plus, Check
+  Sliders, Plus, Check, Mail
 } from 'lucide-react';
 import TopSearch from '@/components/dashboard/TopSearch';
 import SystemHeader from '@/components/dashboard/SystemHeader';
@@ -332,6 +332,14 @@ export default function ChallanPage() {
       navigator.clipboard.writeText(disputeResponse.appeal_letter);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const handleEmailAppeal = () => {
+    if (disputeResponse?.appeal_letter) {
+      const subject = encodeURIComponent(`Challan Dispute Appeal - Ref: ${challanRefNo}`);
+      const body = encodeURIComponent(disputeResponse.appeal_letter);
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }
   };
 
@@ -1039,13 +1047,22 @@ export default function ChallanPage() {
                        <h4 className="text-xs font-semibold uppercase tracking-widest text-text-3 font-space">
                          {t('challan.draft_scroll', 'Draft Representation Scroll')}
                        </h4>
-                       <button
-                         onClick={handleCopy}
-                         className="text-[10px] font-bold font-space uppercase tracking-widest px-3 py-1.5 rounded-lg bg-surface-2 border border-border text-brand-light flex items-center gap-1.5 hover:bg-surface-3 transition-colors"
-                       >
-                         {copied ? <Check size={12} className="text-emerald-500" /> : <Clipboard size={12} />}
-                         {copied ? t('challan.copied', 'COPIED') : t('challan.copy_scroll', 'COPY SCROLL')}
-                       </button>
+                       <div className="flex gap-2">
+                         <button
+                           onClick={handleEmailAppeal}
+                           className="text-[10px] font-bold font-space uppercase tracking-widest px-3 py-1.5 rounded-lg bg-surface-2 border border-border text-brand-light flex items-center gap-1.5 hover:bg-surface-3 transition-colors"
+                         >
+                           <Mail size={12} />
+                           {t('challan.email_appeal', 'EMAIL APPEAL')}
+                         </button>
+                         <button
+                           onClick={handleCopy}
+                           className="text-[10px] font-bold font-space uppercase tracking-widest px-3 py-1.5 rounded-lg bg-surface-2 border border-border text-brand-light flex items-center gap-1.5 hover:bg-surface-3 transition-colors"
+                         >
+                           {copied ? <Check size={12} className="text-emerald-500" /> : <Clipboard size={12} />}
+                           {copied ? t('challan.copied', 'COPIED') : t('challan.copy_scroll', 'COPY SCROLL')}
+                         </button>
+                       </div>
                      </div>
 
                      <div className="p-8 rounded-[2rem] border border-border bg-amber-500/5 dark:bg-yellow-500/5 relative overflow-hidden font-serif text-sm leading-relaxed text-text-1 max-h-[400px] overflow-y-auto whitespace-pre-line shadow-inner">

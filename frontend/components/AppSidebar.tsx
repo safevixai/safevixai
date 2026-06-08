@@ -101,7 +101,7 @@ export function AppSidebar() {
           <button
             onClick={() => setDesktopSidebarCollapsed(false)}
             aria-label="Expand sidebar"
-            className="p-2 rounded-xl text-text-3 hover:text-text-1 hover:bg-surface-3 transition-colors"
+            className="w-12 h-12 flex items-center justify-center rounded-xl text-text-3 hover:text-text-1 hover:bg-surface-3 transition-colors hover:scale-105 active:scale-95"
           >
             <Menu size={24} strokeWidth={2} />
           </button>

@@ -30,7 +30,7 @@ export function AppFrame({ children }: AppFrameProps) {
 
   // Define routes that should NOT have the global navigation shell (e.g. auth, public emergency views)
   const NO_NAV_ROUTES = [
-    '/login', '/signup', '/forgot-password', 
+    '/login', '/signup', '/forgot-password', '/auth',
     '/bystander', '/emergency-card', '/share-receive', 
     '/track', '/landing', '/privacy', '/terms', '/offline'
   ];
@@ -82,7 +82,7 @@ export function AppFrame({ children }: AppFrameProps) {
           <button
             onClick={() => setDesktopSidebarCollapsed(false)}
             aria-label="Expand Sidebar"
-            className="fixed top-4 left-4 z-50 p-2.5 bg-surface-2/90 backdrop-blur-xl border border-border rounded-xl shadow-lg hover:bg-surface-3 transition-all text-text-1"
+            className="fixed top-4 left-4 z-50 w-12 h-12 flex items-center justify-center bg-surface-2/90 backdrop-blur-xl border border-border rounded-xl shadow-lg hover:bg-surface-3 hover:scale-105 active:scale-95 transition-all text-text-1"
           >
             <Menu className="w-5 h-5" aria-hidden="true" />
           </button>

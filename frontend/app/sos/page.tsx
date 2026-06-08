@@ -127,6 +127,7 @@ export default function EmergencyPage() {
   }
 
   let cancelled = false;
+  let autoStopTimeout: NodeJS.Timeout | null = null;
   setDispatchState('dispatching');
 
   const dispatchSos = async () => {
@@ -157,6 +158,14 @@ export default function EmergencyPage() {
   setTrackingUrl(session.tracking_url);
   // 3. Begin continuous GPS broadcast
   stopBroadcastRef.current = beginLocationBroadcast(session.session_id);
+  // Auto-stop GPS broadcast after 1 hour to prevent battery drain
+  autoStopTimeout = setTimeout(() => {
+    if (stopBroadcastRef.current) {
+      stopBroadcastRef.current();
+      stopBroadcastRef.current = null;
+      console.log('GPS broadcast automatically stopped after 1 hour to preserve battery.');
+    }
+  }, 3600000);
   // 4. Notify emergency contacts via WhatsApp
   const contacts = userProfile.emergencyContact
   ? [userProfile.emergencyContact]
@@ -172,6 +181,7 @@ export default function EmergencyPage() {
   return () => {
   cancelled = true;
   stopBroadcastRef.current?.();
+  if (autoStopTimeout) clearTimeout(autoStopTimeout);
   };
   }, [activated, coords, isOnline, userProfile]);
 

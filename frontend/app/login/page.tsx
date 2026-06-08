@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
   Shield, Eye, EyeOff, LogIn, AlertTriangle,
@@ -14,6 +14,7 @@ import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
 import { useTranslation } from 'react-i18next';
 import { useFormValidation } from '@/lib/use-form-validation';
+import { LOGIN_RULES } from '@/lib/validation-schemas';
 import { Logo } from '@/components/ui/Logo';
 
 const API_URL = PUBLIC_API_BASE_URL;
@@ -24,6 +25,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { setAuth, isAuthenticated, setUserProfile } = useAppStore(useShallow((s) => ({ setAuth: s.setAuth, isAuthenticated: s.isAuthenticated, setUserProfile: s.setUserProfile })));
   const pageRef = usePageEntry();
+  const searchParams = useSearchParams();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,10 +36,7 @@ export default function LoginPage() {
   const [scanLine, setScanLine] = useState(0);
   const emailRef = useRef<HTMLInputElement>(null);
 
-  const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation([
-    { key: 'email', label: 'Email', required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMessage: 'Invalid email address' },
-    { key: 'password', label: 'Password', required: true, minLength: 1 },
-  ]);
+  const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation(LOGIN_RULES);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -53,7 +52,16 @@ export default function LoginPage() {
   useEffect(() => {
     document.title = 'Operator Auth | SafeVixAI';
     emailRef.current?.focus();
-  }, []);
+
+    // Handle redirect query params from auth callback
+    const callbackError = searchParams.get('error');
+    const resetStatus = searchParams.get('reset');
+    if (callbackError) {
+      setError(callbackError);
+    } else if (resetStatus === 'success') {
+      setSuccess('Password reset successful. Please log in with your new password.');
+    }
+  }, [searchParams]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -19,7 +19,7 @@ import {
   ShieldAlert,
   Upload,
 } from 'lucide-react';
-import { validateImageFile } from '@/lib/validate-upload';
+import { validateImageFile, compressImageFile } from '@/lib/validate-upload';
 import { usePageEntry } from '@/hooks/usePageEntry';
 
 import TopSearch from '@/components/dashboard/TopSearch';
@@ -45,7 +45,7 @@ import {
   isApproximateLocation,
 } from '@/lib/location-utils';
 import { useSwipe } from '@/hooks/useSwipe';
-import { useAppStore } from '@/lib/store';
+import { useSetGpsLocation } from '@/lib/store';
 import { track } from '@/lib/analytics';
 
 const ISSUE_OPTIONS_BY_CATEGORY = {
@@ -156,7 +156,7 @@ export default function ReportPage() {
     },
   });
 
-  const setGpsLocation = useAppStore((state) => state.setGpsLocation);
+  const setGpsLocation = useSetGpsLocation();
   const { location: gpsLocation, error: gpsError, loading: locating, refresh } = useGeolocation();
 
   const coordinateSignature = useMemo(() => (gpsLocation ? `${gpsLocation.lat.toFixed(4)}:${gpsLocation.lon.toFixed(4)}` : null), [gpsLocation]);
@@ -303,7 +303,7 @@ export default function ReportPage() {
     }
   }
 
-  function handlePhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
+  async function handlePhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0] ?? null;
     if (file) {
       const error = validateImageFile(file);
@@ -311,8 +311,19 @@ export default function ReportPage() {
         setSubmitError(error);
         return;
       }
+      try {
+        setContextLoading(true);
+        const compressed = await compressImageFile(file);
+        setPhotoFile(compressed);
+      } catch (err) {
+        console.error('Image compression failed, using original file:', err);
+        setPhotoFile(file);
+      } finally {
+        setContextLoading(false);
+      }
+    } else {
+      setPhotoFile(null);
     }
-    setPhotoFile(file);
   }
 
   function resetForm() {

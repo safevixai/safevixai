@@ -49,10 +49,11 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
+  const KEEP_CACHES = [CACHE_NAME, CRITICAL_API_CACHE, 'safevixai-map-tiles-v1'];
   event.waitUntil(
     caches.keys().then((names) =>
       Promise.all(
-        names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))
+        names.filter((name) => !KEEP_CACHES.includes(name)).map((name) => caches.delete(name))
       )
     )
   );
@@ -94,6 +95,57 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           return response;
         });
+      })
+    );
+    return;
+  }
+
+  // ── Map Tile Runtime Caching ──
+  // Cache tiles from MapLibre, OpenStreetMap, OpenFreeMap, MapTiler, and Google Maps
+  // to enable offline base map rendering. Uses a dedicated cache with LRU eviction.
+  const MAP_TILE_CACHE = 'safevixai-map-tiles-v1';
+  const MAX_TILE_ENTRIES = 500;
+  const TILE_DOMAINS = [
+    'tile.openstreetmap.org',
+    'tiles.openfreemap.org',
+    'demotiles.maplibre.org',
+    'tiles.stadiamaps.com',
+    'api.maptiler.com',
+    'mt1.google.com',
+  ];
+
+  if (TILE_DOMAINS.some((domain) => url.hostname.endsWith(domain))) {
+    event.respondWith(
+      caches.open(MAP_TILE_CACHE).then(async (cache) => {
+        const cached = await cache.match(event.request);
+        if (cached) return cached;
+
+        try {
+          const response = await fetch(event.request);
+          if (response.ok) {
+            const clone = response.clone();
+            cache.put(event.request, clone);
+
+            // LRU eviction: keep the cache under MAX_TILE_ENTRIES
+            cache.keys().then((keys) => {
+              if (keys.length > MAX_TILE_ENTRIES) {
+                // Delete the oldest entries (FIFO — first cached = first evicted)
+                const toDelete = keys.slice(0, keys.length - MAX_TILE_ENTRIES);
+                toDelete.forEach((key) => cache.delete(key));
+              }
+            });
+          }
+          return response;
+        } catch {
+          // Offline: return a transparent 1x1 PNG tile placeholder
+          return new Response(
+            Uint8Array.from(atob('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAA0lEQVQI12P4z8BQDwAEgAF/QualzQAAAABJRU5ErkJggg=='), (c) => c.charCodeAt(0)),
+            {
+              status: 200,
+              headers: { 'Content-Type': 'image/png', 'Cache-Control': 'no-store' },
+            }
+          );
+        }
       })
     );
     return;

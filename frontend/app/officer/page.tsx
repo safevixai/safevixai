@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { client } from '@/lib/api';
 import { useAppStore } from '@/lib/store';
+import { useShallow } from 'zustand/react/shallow';
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
 import { SurfaceCard } from '@/components/ui/SurfaceCard';
 
@@ -63,7 +64,7 @@ interface OfficerProfile {
 export default function OfficerFieldClient() {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const { isAuthenticated, clearAuth } = useAppStore();
+  const { isAuthenticated, clearAuth } = useAppStore(useShallow((s) => ({ isAuthenticated: s.isAuthenticated, clearAuth: s.clearAuth })));
 
   const [officer, setOfficer] = useState<OfficerProfile | null>(null);
   const [workload, setWorkload] = useState<RoadIssueItem[]>([]);

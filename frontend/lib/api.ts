@@ -43,6 +43,10 @@ client.interceptors.request.use((config) => {
   if (_csrfToken) {
     config.headers['X-CSRF-Token'] = _csrfToken;
   }
+  const token = useAppStore.getState().authToken;
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
   const preferredLang = useAppStore.getState().userProfile.preferredLanguage || 'en';
   config.headers['Accept-Language'] = preferredLang;
   return config;
@@ -108,6 +112,10 @@ const chatbotClient = axios.create({
 chatbotClient.interceptors.request.use((config) => {
   if (_csrfToken) {
     config.headers['X-CSRF-Token'] = _csrfToken;
+  }
+  const token = useAppStore.getState().authToken;
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
   }
   const preferredLang = useAppStore.getState().userProfile.preferredLanguage || 'en';
   config.headers['Accept-Language'] = preferredLang;

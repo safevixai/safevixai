@@ -1,6 +1,7 @@
 'use client';
 
 import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { useBackendPrewarm } from './hooks/useBackendPrewarm';
 
 import LandingNavbar from './components/LandingNavbar';
 import HeroSection from './components/HeroSection';
@@ -17,7 +18,7 @@ import LandingFooter from './components/LandingFooter';
 
 export default function LandingPage() {
   useSmoothScroll();
-
+  useBackendPrewarm();
   return (
     <main className="bg-bg text-text-1 min-h-dvh overflow-x-hidden">
       <LandingNavbar />

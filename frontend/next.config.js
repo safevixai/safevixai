@@ -33,6 +33,12 @@ const externalApis = [
   'https://mt1.google.com',
   'https://api.maptiler.com',
   'https://api.what3words.com',
+  // MapLibre vector tile sources
+  'https://*.tile.openstreetmap.org',
+  'https://demotiles.maplibre.org',
+  'https://tiles.stadiamaps.com',
+  // Supabase Auth (dynamic — uses env var origin)
+  ...(process.env.NEXT_PUBLIC_SUPABASE_URL ? [process.env.NEXT_PUBLIC_SUPABASE_URL.trim()] : []),
 ];
 
 const scriptSrc = [

@@ -276,11 +276,10 @@ class TestCreateSOSIncident:
         assert data["count"] == 0
         assert "ambulance" in data["numbers"]
 
-    @pytest.mark.skip(reason="Test isolation issue - passes in isolation but fails in suite")
     def test_create_sos_incident_with_user(self, test_client, mock_emergency_service, mock_db_session):
         """Test SOS creation with authenticated user."""
         from models.schemas import SosResponse, EmergencyNumber
-        from core.security import SECRET_KEY, ALGORITHM
+        from core.security import SECRET_KEY, ALGORITHM, APP_JWT_AUDIENCE, APP_JWT_ISSUER
         import jwt
         from datetime import timedelta, datetime, timezone
         
@@ -299,6 +298,8 @@ class TestCreateSOSIncident:
         token = jwt.encode(
             {
                 "sub": "test-user-id",
+                "aud": APP_JWT_AUDIENCE,
+                "iss": APP_JWT_ISSUER,
                 "exp": datetime.now(timezone.utc) + timedelta(hours=1),
             },
             SECRET_KEY,
