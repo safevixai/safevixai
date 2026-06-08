@@ -215,7 +215,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      id="hero"
+      id="platform"
       className="relative min-h-dvh hero-gradient-bg grid-pattern overflow-hidden"
     >
       {/* ── Content Grid ── */}

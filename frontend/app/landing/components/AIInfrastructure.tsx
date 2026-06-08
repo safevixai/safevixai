@@ -149,7 +149,7 @@ export default function AIInfrastructure() {
 
   return (
     <section
-      id="ai-infrastructure"
+      id="intelligence"
       className="landing-section bg-bg glow-brand-ambient"
       ref={sectionRef}
     >
