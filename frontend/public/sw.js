@@ -2,6 +2,90 @@
 
 const CACHE_NAME = 'safevixai-v3';
 const CRITICAL_API_CACHE = 'safevixai-critical-api-v1';
+const OFFLINE_DATA_REFRESH_INTERVAL = 24 * 60 * 60 * 1000; // once per day
+const TILE_LRU_DB = 'safevixai-tile-lru-v1';
+const TILE_LRU_STORE = 'tileAccess';
+// 1x1 transparent PNG tile placeholder used when map tile fetch fails offline.
+const TRANSPARENT_TILE_PLACEHOLDER_BASE64 =
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAA0lEQVQI12P4z8BQDwAEgAF/QualzQAAAABJRU5ErkJggg==';
+
+function openTileLruDb() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(TILE_LRU_DB, 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if (!db.objectStoreNames.contains(TILE_LRU_STORE)) {
+        db.createObjectStore(TILE_LRU_STORE, { keyPath: 'url' });
+      }
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function touchTileAccess(url) {
+  const db = await openTileLruDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(TILE_LRU_STORE, 'readwrite');
+    tx.objectStore(TILE_LRU_STORE).put({ url, lastAccess: Date.now() });
+    tx.oncomplete = () => {
+      db.close();
+      resolve();
+    };
+    tx.onerror = () => {
+      db.close();
+      reject(tx.error);
+    };
+  });
+}
+
+async function getAllTileAccessEntries() {
+  const db = await openTileLruDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(TILE_LRU_STORE, 'readonly');
+    const req = tx.objectStore(TILE_LRU_STORE).getAll();
+    req.onsuccess = () => {
+      db.close();
+      resolve(req.result || []);
+    };
+    req.onerror = () => {
+      db.close();
+      reject(req.error);
+    };
+  });
+}
+
+async function removeTileAccess(url) {
+  const db = await openTileLruDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(TILE_LRU_STORE, 'readwrite');
+    tx.objectStore(TILE_LRU_STORE).delete(url);
+    tx.oncomplete = () => {
+      db.close();
+      resolve();
+    };
+    tx.onerror = () => {
+      db.close();
+      reject(tx.error);
+    };
+  });
+}
+
+async function evictLeastRecentlyUsedTiles(cache, maxEntries) {
+  const entries = await getAllTileAccessEntries();
+  if (entries.length <= maxEntries) return;
+
+  entries.sort((a, b) => a.lastAccess - b.lastAccess);
+  const excess = entries.length - maxEntries;
+  const toDelete = entries.slice(0, excess);
+
+  await Promise.all(
+    toDelete.map(async ({ url }) => {
+      await cache.delete(url);
+      await removeTileAccess(url);
+    })
+  );
+}
 
 const OFFLINE_DATA_URLS = [
   '/offline-data/first-aid.json',
@@ -50,13 +134,20 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   const KEEP_CACHES = [CACHE_NAME, CRITICAL_API_CACHE, 'safevixai-map-tiles-v1'];
-  event.waitUntil(
-    caches.keys().then((names) =>
-      Promise.all(
-        names.filter((name) => !KEEP_CACHES.includes(name)).map((name) => caches.delete(name))
-      )
-    )
-  );
+  event.waitUntil((async () => {
+    const names = await caches.keys();
+    await Promise.all(
+      names.filter((name) => !KEEP_CACHES.includes(name)).map((name) => caches.delete(name))
+    );
+
+    if ('periodicSync' in self.registration) {
+      try {
+        await self.registration.periodicSync.register('offline-data-refresh', {
+          minInterval: OFFLINE_DATA_REFRESH_INTERVAL,
+        });
+      } catch { /* periodic sync not supported */ }
+    }
+  })());
   self.clients.claim();
 });
 
@@ -118,28 +209,26 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       caches.open(MAP_TILE_CACHE).then(async (cache) => {
         const cached = await cache.match(event.request);
-        if (cached) return cached;
+        if (cached) {
+          await touchTileAccess(event.request.url).catch(() => undefined);
+          return cached;
+        }
 
         try {
           const response = await fetch(event.request);
           if (response.ok) {
             const clone = response.clone();
-            cache.put(event.request, clone);
+            await cache.put(event.request, clone);
+            await touchTileAccess(event.request.url).catch(() => undefined);
 
-            // LRU eviction: keep the cache under MAX_TILE_ENTRIES
-            cache.keys().then((keys) => {
-              if (keys.length > MAX_TILE_ENTRIES) {
-                // Delete the oldest entries (FIFO — first cached = first evicted)
-                const toDelete = keys.slice(0, keys.length - MAX_TILE_ENTRIES);
-                toDelete.forEach((key) => cache.delete(key));
-              }
-            });
+            // LRU eviction: keep the cache under MAX_TILE_ENTRIES using tracked access timestamps
+            await evictLeastRecentlyUsedTiles(cache, MAX_TILE_ENTRIES).catch(() => undefined);
           }
           return response;
         } catch {
           // Offline: return a transparent 1x1 PNG tile placeholder
           return new Response(
-            Uint8Array.from(atob('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQI12NgAAIABQABNjN9GQAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAA0lEQVQI12P4z8BQDwAEgAF/QualzQAAAABJRU5ErkJggg=='), (c) => c.charCodeAt(0)),
+            Uint8Array.from(atob(TRANSPARENT_TILE_PLACEHOLDER_BASE64), (c) => c.charCodeAt(0)),
             {
               status: 200,
               headers: { 'Content-Type': 'image/png', 'Cache-Control': 'no-store' },
@@ -186,19 +275,6 @@ self.addEventListener('appinstalled', () => {
   });
 });
 
-// Register periodic sync if supported (Chromium 80+)
-self.addEventListener('activate', (event) => {
-  event.waitUntil((async () => {
-    if ('periodicSync' in self.registration) {
-      try {
-        await self.registration.periodicSync.register('offline-data-refresh', {
-          minInterval: 24 * 60 * 60 * 1000, // once per day
-        });
-      } catch { /* periodic sync not supported */ }
-    }
-  })());
-});
-
 self.addEventListener('sync', (event) => {
   if (event.tag === 'sos-queue-flush') {
     event.waitUntil(flushSafeVixSosQueue());
@@ -242,7 +318,19 @@ async function flushSafeVixSosQueue() {
         { method: 'POST', headers }
       );
 
-      if (!resp.ok) break; // Stop on first failure; remaining items stay in queue
+      if (!resp.ok) {
+        console.error('SOS queue replay failed for item', {
+          key,
+          status: resp.status,
+          statusText: resp.statusText,
+        });
+        await notifyClients({
+          type: 'SOS_QUEUE_FLUSHED',
+          success: false,
+          error: `SOS replay failed (${resp.status} ${resp.statusText})`,
+        });
+        break; // Stop on first failure; remaining items stay in queue
+      }
 
       // Delete only this successfully-sent item in its own atomic transaction
       const delTx = db.transaction('sos-queue', 'readwrite');

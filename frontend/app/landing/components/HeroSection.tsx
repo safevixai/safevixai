@@ -225,7 +225,7 @@ export default function HeroSection() {
           {/* Overline */}
           <p
             ref={overlineRef}
-            className="font-mono text-[11px] font-semibold tracking-[0.10em] uppercase text-[#00C896] mb-6"
+            className="font-mono text-[11px] font-semibold tracking-[0.10em] uppercase text-brand-light mb-6"
             style={{ opacity: 0 }}
           >
             National Road Safety Intelligence
@@ -313,7 +313,7 @@ export default function HeroSection() {
             className="flex items-center gap-2 mt-8"
             style={{ opacity: 0 }}
           >
-            <div className="w-2 h-2 rounded-full bg-[#00C896] animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-brand-light animate-pulse" />
             <span className="text-xs text-text-3 font-mono uppercase tracking-wider">
               System Online — Monitoring Active
             </span>

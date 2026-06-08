@@ -15,6 +15,8 @@ interface NavLink {
   href: string;
 }
 
+const NAVBAR_SCROLL_OFFSET = 80;
+
 const NAV_LINKS: NavLink[] = [
   { label: 'Platform', href: '#platform' },
   { label: 'Modules', href: '#modules' },
@@ -104,7 +106,8 @@ export default function LandingNavbar() {
       setMobileOpen(false);
       const target = document.querySelector(href);
       if (target) {
-        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        const top =
+          target.getBoundingClientRect().top + window.scrollY - NAVBAR_SCROLL_OFFSET;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     },

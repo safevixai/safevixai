@@ -1,17 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-async function waitForMount(page: any) {
-  await page.waitForFunction(() => {
-    const h1 = document.querySelector('h1');
-    return h1 && h1.textContent?.includes('SafeVixAI') && window.getComputedStyle(h1).opacity !== '0';
-  }, { timeout: 15000 });
-}
-
 test.describe('Signup Flow', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/signup');
     await page.waitForLoadState('networkidle');
-    await waitForMount(page);
+    await page.waitForFunction(() => {
+      const h1 = document.querySelector('h1');
+      return h1 && h1.textContent?.includes('SafeVixAI') && window.getComputedStyle(h1).opacity !== '0';
+    }, { timeout: 15000 });
   });
 
   test('renders signup page with all elements', async ({ page }) => {
@@ -45,11 +41,17 @@ test.describe('Signup Flow', () => {
   });
 
   test('password show/hide toggle works', async ({ page }) => {
-    await page.getByPlaceholder('Min 8 characters').fill('secret123');
+    const passwordInput = page.getByPlaceholder('Min 8 characters');
+    await passwordInput.fill('secret123');
+    await expect(passwordInput).toHaveValue('secret123');
+
     await page.getByLabel('Show password').first().click();
     await expect(page.locator('input[type="text"]')).toBeVisible();
+    await expect(passwordInput).toHaveValue('secret123');
+
     await page.getByLabel('Hide password').first().click();
     await expect(page.locator('input[type="password"]')).toBeVisible();
+    await expect(passwordInput).toHaveValue('secret123');
   });
 
   test('has link to login page', async ({ page }) => {
