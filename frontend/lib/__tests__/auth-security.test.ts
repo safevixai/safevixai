@@ -7,7 +7,6 @@ describe('Auth Security — Critical Tests', () => {
   ];
 
   it.each(mockTokens)('should reject static token: %s', (token) => {
-    const payload = { sub: 'test', role: 'user', iat: 0 };
     const isRejected = mockTokens.includes(token);
     expect(isRejected).toBe(true);
   });

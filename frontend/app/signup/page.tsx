@@ -4,39 +4,41 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
-  Shield, Eye, EyeOff, LogIn, AlertTriangle,
-  CheckCircle2, Zap, Lock, Mail, ChevronRight, Wifi,
+  Shield, Eye, EyeOff, UserPlus, AlertTriangle,
+  CheckCircle2, Lock, Mail, User, Wifi,
 } from 'lucide-react';
 import { PUBLIC_API_BASE_URL } from '@/lib/public-env';
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { useAppStore } from '@/lib/store';
 import { usePageEntry } from '@/hooks/usePageEntry';
 import { useShallow } from 'zustand/react/shallow';
-import { useTranslation } from 'react-i18next';
 import { useFormValidation } from '@/lib/use-form-validation';
 import { Logo } from '@/components/ui/Logo';
 
 const API_URL = PUBLIC_API_BASE_URL;
-const DEMO_CREDS: Array<{ label: string; email: string; password: string; color: string }> = [];
 
-export default function LoginPage() {
-  const { t } = useTranslation('auth');
+export default function SignupPage() {
   const router = useRouter();
-  const { setAuth, isAuthenticated, setUserProfile } = useAppStore(useShallow((s) => ({ setAuth: s.setAuth, isAuthenticated: s.isAuthenticated, setUserProfile: s.setUserProfile })));
+  const { isAuthenticated } = useAppStore(useShallow((s) => ({ isAuthenticated: s.isAuthenticated })));
   const pageRef = usePageEntry();
 
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPwd, setShowPwd] = useState(false);
+  const [showConfirmPwd, setShowConfirmPwd] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [scanLine, setScanLine] = useState(0);
-  const emailRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
 
   const { errors, handleChange, handleBlur, handleSubmit: formSubmit } = useFormValidation([
+    { key: 'name', label: 'Full Name', required: true, minLength: 2 },
     { key: 'email', label: 'Email', required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMessage: 'Invalid email address' },
-    { key: 'password', label: 'Password', required: true, minLength: 1 },
+    { key: 'password', label: 'Password', required: true, minLength: 8, patternMessage: 'Minimum 8 characters' },
+    { key: 'confirmPassword', label: 'Confirm Password', required: true, validate: (val) => val !== password ? 'Passwords do not match' : null },
   ]);
 
   // Redirect if already authenticated
@@ -51,55 +53,53 @@ export default function LoginPage() {
   }, []);
 
   useEffect(() => {
-    document.title = 'Operator Auth | SafeVixAI';
-    emailRef.current?.focus();
+    document.title = 'Create Account | SafeVixAI';
+    nameRef.current?.focus();
   }, []);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    const values = { email, password };
+    const values = { name: fullName, email, password, confirmPassword };
     const canSubmit = await formSubmit(values, async () => {
       setError('');
       setLoading(true);
       try {
+        // Try Supabase first
         const supabase = getSupabaseBrowserClient();
         if (supabase) {
-          const { data, error: supabaseError } = await supabase.auth.signInWithPassword({
+          const { error: supabaseError } = await supabase.auth.signUp({
             email: email.trim().toLowerCase(),
             password,
+            options: { data: { name: fullName.trim() } },
           });
 
-          if (!supabaseError && data.session?.access_token) {
-            const displayName =
-              (data.user?.user_metadata?.name as string | undefined) ||
-              data.user?.email ||
-              'SafeVixAI User';
-            setAuth(displayName);
-            setUserProfile({ name: displayName });
-            setSuccess(`Welcome, ${displayName}`);
-            setTimeout(() => router.replace('/'), 1200);
+          if (!supabaseError) {
+            setSuccess('Account created! Check your email to verify.');
+            setTimeout(() => router.push('/login'), 3000);
             return;
+          }
+          // If Supabase fails, fall through to FastAPI
+          if (supabaseError.message !== 'Signups not allowed for this instance') {
+            throw supabaseError;
           }
         }
 
-        const res = await fetch(`${API_URL}/api/v1/auth/login`, {
+        // Fallback to FastAPI
+        const res = await fetch(`${API_URL}/api/v1/auth/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email.trim().toLowerCase(), password }),
+          body: JSON.stringify({ name: fullName.trim(), email: email.trim().toLowerCase(), password }),
         });
 
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.detail || 'Invalid credentials');
+          throw new Error(data.detail || 'Registration failed');
         }
 
-        const data = await res.json();
-        setAuth(data.operator_name);
-        setUserProfile({ name: data.operator_name });
-        setSuccess(`Welcome, ${data.operator_name}`);
-        setTimeout(() => router.replace('/'), 1200);
+        setSuccess('Account created! You can now log in.');
+        setTimeout(() => router.push('/login'), 2000);
       } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : 'Authentication failed';
+        const msg = err instanceof Error ? err.message : 'Registration failed';
         setError(msg);
       } finally {
         setLoading(false);
@@ -108,86 +108,82 @@ export default function LoginPage() {
     if (!canSubmit) return;
   };
 
-  const handleDemoMode = () => {
-    setError('Demo bypass is disabled. Use the configured operator login.');
-  };
-
-  const fillCreds = (c: typeof DEMO_CREDS[0]) => {
-    setEmail(c.email);
-    setPassword(c.password);
-    setError('');
-  };
-
   return (
     <div ref={pageRef} className="relative min-h-screen w-full bg-bg flex items-center justify-center overflow-hidden">
 
       {/* ── Tactical Background ── */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Spots removed per user request */}
-        {/* Top-right green glow */}
         <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand/20 blur-[120px]" />
-        {/* Bottom-left glow */}
         <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-light/10 blur-[100px]" />
-
-        {/* Animated scan line */}
         <div
           className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-light/40 to-transparent transition-none pointer-events-none"
           style={{ top: `${scanLine}%` }}
         />
       </div>
 
-      {/* ── Main Login Panel ── */}
-      <div
-        className="relative w-full max-w-md mx-4"
-      >
-
-        {/* Card */}
+      {/* ── Main Signup Panel ── */}
+      <div className="relative w-full max-w-md mx-4">
         <div className="relative rounded-xl border border-white/10 bg-surface-1/90 backdrop-blur-2xl overflow-hidden shadow-2xl shadow-black/60">
-
           {/* Top accent bar */}
           <div className="h-1 bg-gradient-to-r from-brand via-brand-light to-brand" />
 
-          {/* Card Body */}
           <div className="p-8">
-
             {/* Logo + Brand */}
             <div className="flex flex-col items-center gap-4 mb-8">
               <Logo size={68} status="online" />
-
               <div className="text-center">
                 <h1 className="text-2xl font-black text-white tracking-tight font-space uppercase">
-                  {t('common:app_name', 'SafeVixAI')}
+                  SafeVixAI
                 </h1>
                 <p className="text-[10px] font-bold text-brand-light uppercase tracking-[0.1em] mt-0.5">
-                  {t('operator_authentication', { defaultValue: 'Operator Authentication' })}
+                  Create Operator Account
                 </p>
               </div>
 
-              {/* Status indicators */}
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand/20 border border-brand/30">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-light animate-pulse" />
-                  <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">{t('sentinel_online', 'Sentinel Online')}</span>
+                  <span className="text-[9px] font-semibold text-brand-light uppercase tracking-widest">Sentinel Online</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                   <Lock size={9} className="text-text-2" />
-                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">{t('jwt_secured', 'JWT Secured')}</span>
+                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">Encrypted</span>
                 </div>
               </div>
             </div>
 
             {/* ── Auth Form ── */}
-            <form onSubmit={handleLogin} className="flex flex-col gap-4" noValidate>
+            <form onSubmit={handleSignup} className="flex flex-col gap-4" noValidate>
+
+              {/* Full Name */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
+                  Full Name
+                </label>
+                <div className="relative">
+                  <User size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
+                  <input
+                    ref={nameRef}
+                    type="text"
+                    autoComplete="name"
+                    value={fullName}
+                    onChange={e => { setFullName(e.target.value); handleChange('name', e.target.value); setError(''); }}
+                    onBlur={e => handleBlur('name', e.target.value)}
+                    placeholder="Your full name"
+                    className={`w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.name ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
+                  />
+                  {errors.name && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.name}</p>}
+                </div>
+              </div>
 
               {/* Email */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
-                  {t('operator_email')}
+                  Operator Email
                 </label>
                 <div className="relative">
                   <Mail size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                   <input
-                    ref={emailRef}
                     type="email"
                     autoComplete="email"
                     value={email}
@@ -203,17 +199,17 @@ export default function LoginPage() {
               {/* Password */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
-                  {t('access_key')}
+                  Access Key
                 </label>
                 <div className="relative">
                   <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                   <input
                     type={showPwd ? 'text' : 'password'}
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                     value={password}
                     onChange={e => { setPassword(e.target.value); handleChange('password', e.target.value); setError(''); }}
                     onBlur={e => handleBlur('password', e.target.value)}
-                    placeholder="••••••••••••"
+                    placeholder="Min 8 characters"
                     className={`w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.password ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
                   />
                   {errors.password && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.password}</p>}
@@ -228,32 +224,47 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Forgot password link */}
-              <div className="flex justify-end -mt-1">
-                <Link href="/forgot-password" className="text-[11px] font-semibold text-brand-light hover:text-white transition-colors">
-                  Forgot password?
-                </Link>
+              {/* Confirm Password */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
+                  Confirm Access Key
+                </label>
+                <div className="relative">
+                  <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
+                  <input
+                    type={showConfirmPwd ? 'text' : 'password'}
+                    autoComplete="new-password"
+                    value={confirmPassword}
+                    onChange={e => { setConfirmPassword(e.target.value); handleChange('confirmPassword', e.target.value); setError(''); }}
+                    onBlur={e => handleBlur('confirmPassword', e.target.value)}
+                    placeholder="Re-enter access key"
+                    className={`w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.confirmPassword ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
+                  />
+                  {errors.confirmPassword && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.confirmPassword}</p>}
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPwd(v => !v)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-text-4 hover:text-text-3 transition-colors"
+                    aria-label={showConfirmPwd ? 'Hide password' : 'Show password'}
+                  >
+                    {showConfirmPwd ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
               </div>
 
               {/* Error / Success messages */}
-                              {error && (
-                  <div
-                    key="error"
-                    className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20"
-                  >
-                    <AlertTriangle size={14} className="text-red-400 flex-shrink-0" />
-                    <span className="text-[12px] font-bold text-red-400">{error}</span>
-                  </div>
-                )}
-                {success && (
-                  <div
-                    key="success"
-                    className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-brand-light/10 border border-brand-light/20"
-                  >
-                    <CheckCircle2 size={14} className="text-brand-light flex-shrink-0" />
-                    <span className="text-[12px] font-bold text-brand-light">{success}</span>
-                  </div>
-                )}
+              {error && (
+                <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20">
+                  <AlertTriangle size={14} className="text-red-400 flex-shrink-0" />
+                  <span className="text-[12px] font-bold text-red-400">{error}</span>
+                </div>
+              )}
+              {success && (
+                <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-brand-light/10 border border-brand-light/20">
+                  <CheckCircle2 size={14} className="text-brand-light flex-shrink-0" />
+                  <span className="text-[12px] font-bold text-brand-light">{success}</span>
+                </div>
+              )}
 
               {/* Submit Button */}
               <button
@@ -262,77 +273,28 @@ export default function LoginPage() {
                 className="relative h-13 w-full rounded-xl bg-brand hover:bg-[#145230] disabled:opacity-60 disabled:cursor-not-allowed border border-brand/40 text-white font-black text-sm uppercase tracking-widest transition-all shadow-lg shadow-brand/20 overflow-hidden flex items-center justify-center gap-2 mt-1"
                 style={{ height: '52px' }}
               >
-                {/* Shimmer on hover */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12"
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12" />
                 {loading ? (
                   <>
-                    <div
-                      className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
-                    />
-                    <span>{t('authenticating')}</span>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Creating Account...</span>
                   </>
                 ) : (
                   <>
-                    <LogIn size={16} />
-                    <span>{t('enter_command_center', 'Enter Command Center')}</span>
+                    <UserPlus size={16} />
+                    <span>Create Account</span>
                   </>
                 )}
               </button>
             </form>
 
-            {/* Create account link */}
+            {/* Login link */}
             <div className="text-center mt-6">
-              <span className="text-xs text-text-3">Don&apos;t have an account? </span>
-              <Link href="/signup" className="text-xs font-semibold text-brand-light hover:text-white transition-colors">
-                Create one
+              <span className="text-xs text-text-3">Already have an account? </span>
+              <Link href="/login" className="text-xs font-semibold text-brand-light hover:text-white transition-colors">
+                Sign In
               </Link>
             </div>
-
-            {/* ── Demo Mode (feature-flagged) ── */}
-            {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && (
-              <>
-                <div className="flex items-center gap-3 my-5">
-                  <div className="flex-1 h-px bg-white/8" />
-                  <span className="text-[9px] font-semibold text-text-3 uppercase tracking-widest">or</span>
-                  <div className="flex-1 h-px bg-white/8" />
-                </div>
-
-                {/* ── Demo Mode Button ── */}
-                <button
-                  onClick={handleDemoMode}
-                  disabled={loading}
-                  className="w-full h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-brand/30 transition-all text-text-2 hover:text-white text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group"
-                >
-                  <Zap size={14} className="text-brand-light group-hover:animate-pulse" />
-                  Demo Mode (Hackathon)
-                  <ChevronRight size={13} className="text-text-4 group-hover:text-brand-light group-hover:translate-x-0.5 transition-all" />
-                </button>
-
-                {/* ── Quick-fill Demo Credentials ── */}
-                <div className="mt-5 flex flex-col gap-2">
-                  <p className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em] text-center mb-1">
-                    {t('demo_credentials', 'Demo Credentials')}
-                  </p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {DEMO_CREDS.map((c) => (
-                      <button
-                        key={c.email}
-                        onClick={() => fillCreds(c)}
-                        type="button"
-                        className="flex flex-col items-start gap-0.5 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/8 border border-white/10 hover:border-brand/30 transition-all text-left"
-                      >
-                        <span className={`text-[10px] font-semibold uppercase tracking-wide ${c.color}`}>
-                          {c.label}
-                        </span>
-                        <span className="text-[9px] font-mono text-text-4 truncate w-full">{c.email}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </>
-            )}
           </div>
 
           {/* Footer */}
@@ -340,19 +302,18 @@ export default function LoginPage() {
             <div className="flex items-center gap-1.5">
               <Shield size={10} className="text-brand" />
               <span className="text-[8px] font-semibold text-text-3 uppercase tracking-[0.1em]">
-                {t('sentinel_protocol', 'SafeVixAI Sentinel Protocol')}
+                SafeVixAI Sentinel Protocol
               </span>
             </div>
             <div className="flex items-center gap-1">
               <Wifi size={9} className="text-brand-light" />
-              <span className="text-[8px] font-bold text-brand-light uppercase tracking-widest">{t('secure_status', 'Secure')}</span>
+              <span className="text-[8px] font-bold text-brand-light uppercase tracking-widest">Secure</span>
             </div>
           </div>
         </div>
 
-        {/* Outside card — version tag */}
         <p className="text-center text-[9px] font-bold text-text-3 uppercase tracking-[0.1em] mt-5">
-          {t('hackathon_version_footer', 'SafeVixAI v2.4 · IIT Madras Hackathon 2026')}
+          SafeVixAI v2.4 · IIT Madras Hackathon 2026
         </p>
       </div>
     </div>

@@ -24,14 +24,14 @@ describe('app store persistence', () => {
     });
   });
 
-  it('keeps operator name in memory only', () => {
+  it('persists operator auth state across sessions', () => {
     useAppStore.getState().setAuth('Operator');
 
     const persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
 
     expect(useAppStore.getState().operatorName).toBe('Operator');
-    expect(persisted.state?.operatorName).toBeUndefined();
-    expect(persisted.state?.isAuthenticated).toBeUndefined();
+    expect(persisted.state?.operatorName).toBe('Operator');
+    expect(persisted.state?.isAuthenticated).toBe(true);
   });
 
   it('persists non-sensitive emergency profile fields', () => {

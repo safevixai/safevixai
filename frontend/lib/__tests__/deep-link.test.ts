@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { describe, it, expect } from '@jest/globals'
-import { parseDeepLink, DeepLinkContext } from '@/lib/deep-link'
+import { parseDeepLink } from '@/lib/deep-link'
 
 describe('parseDeepLink', () => {
   it('extracts lat/lon from URL', () => {

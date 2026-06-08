@@ -27,10 +27,10 @@ export function useSmoothScroll() {
 
         lenis.on('scroll', ScrollTrigger.update);
 
-        function update(time: number) {
+        const update = (time: number) => {
           lenis?.raf(time * 1000);
           raf = requestAnimationFrame(update);
-        }
+        };
         raf = requestAnimationFrame(update);
       } catch {
         // Lenis not available — native scroll is fine

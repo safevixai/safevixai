@@ -1,5 +1,5 @@
 import { triggerSos, fetchSosPayload } from '../api';
-import { enqueueSOS, syncOfflineSOSQueue, initDB } from '../offline-sos-queue';
+import { enqueueSOS } from '../offline-sos-queue';
 
 jest.mock('../api', () => ({
   ...jest.requireActual('../api'),

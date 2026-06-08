@@ -397,6 +397,9 @@ export const useAppStore = create<AppState>()(
         autoOffline: state.autoOffline,
         analyticsOptIn: state.analyticsOptIn,
         navApp: state.navApp,
+        isAuthenticated: state.isAuthenticated,
+        operatorName: state.operatorName,
+        authToken: state.authToken,
       }),
     }
   )

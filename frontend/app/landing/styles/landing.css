@@ -345,6 +345,12 @@
   }
 }
 
+/* ── Scan line for command center ── */
+@keyframes scan-line-move {
+  0% { top: -2%; }
+  100% { top: 102%; }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .float-gentle,
@@ -355,7 +361,8 @@
   .orbit-item,
   .orbit-item-reverse,
   .flow-line-animated,
-  .animated-border::before {
+  .animated-border::before,
+  .network-line {
     animation: none !important;
   }
 

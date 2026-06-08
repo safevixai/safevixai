@@ -62,7 +62,6 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
   const [activeGuide, setActiveGuide] = useState<string | null>(null);
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
   const [emergencyMode, setEmergencyMode] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -70,7 +69,6 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
   const setSystemSidebarOpen = useAppStore((state) => state.setSystemSidebarOpen);
   
   useEffect(() => {
-    setMounted(true);
     document.title = `${t('nav.first_aid', 'First Aid')} | SafeVixAI`;
   }, [t]);
 

@@ -66,6 +66,10 @@ jest.mock('@/components/ui/ServerWarmingBanner', () => ({
   ServerWarmingBanner: () => <div data-testid="server-warming-banner" />,
 }));
 
+jest.mock('@/components/auth/AuthGuard', () => ({
+  AuthGuard: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
+
 import { AppFrame } from '../ui/AppFrame';
 
 describe('AppFrame', () => {

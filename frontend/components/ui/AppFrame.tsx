@@ -15,6 +15,7 @@ import { SystemStatusBar } from '@/components/ui/SystemStatusBar';
 import { ServerWarmingBanner } from '@/components/ui/ServerWarmingBanner';
 import { ServerHealthStatus } from '@/components/ServerHealthStatus';
 import { useAppStore } from '@/lib/store';
+import { AuthGuard } from '@/components/auth/AuthGuard';
 import { Menu } from 'lucide-react';
 
 interface AppFrameProps {
@@ -28,7 +29,11 @@ export function AppFrame({ children }: AppFrameProps) {
   const isThinSidebarEnabled = useAppStore((state) => state.isThinSidebarEnabled);
 
   // Define routes that should NOT have the global navigation shell (e.g. auth, public emergency views)
-  const NO_NAV_ROUTES = ['/login', '/bystander', '/emergency-card', '/share-receive', '/track'];
+  const NO_NAV_ROUTES = [
+    '/login', '/signup', '/forgot-password', 
+    '/bystander', '/emergency-card', '/share-receive', 
+    '/track', '/landing', '/privacy', '/terms', '/offline'
+  ];
   
   // Check if current path matches or starts with a no-nav route
   const isNoNavRoute = NO_NAV_ROUTES.some(route => 
@@ -94,9 +99,11 @@ export function AppFrame({ children }: AppFrameProps) {
           !isDesktopSidebarCollapsed ? 'lg:ml-[280px]' : isThinSidebarEnabled ? 'lg:ml-[88px]' : 'lg:ml-0'
         }`}
       >
+        <AuthGuard>
         <div className="relative flex-1 w-full flex flex-col">
           {children}
         </div>
+        </AuthGuard>
       </main>
       
       {/* Right action panel is desktop-only; mobile uses bottom navigation and full-screen pages. */}
