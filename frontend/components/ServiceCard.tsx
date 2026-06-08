@@ -103,7 +103,7 @@ export const ServiceCard = memo(function ServiceCard({ service, className = '' }
  className="btn btn-outline-blue"
  aria-label={`Get directions to ${service.name}`}
  >
- ️ Directions
+  Map Directions
  </button>
 
  {/* Secondary: nav app chooser dropdown */}

@@ -98,6 +98,13 @@ jobs:
           kill $SERVER_PID 2>/dev/null || true
           exit 1
 
+      - name: Start mock API server
+        run: |
+          pip install fastapi uvicorn 2>/dev/null
+          python tests/e2e_mock_server.py &
+          echo "Mock API server started on :8000"
+          sleep 3
+
       - name: Run E2E tests (all flows except visual)
         working-directory: ./frontend
         env:

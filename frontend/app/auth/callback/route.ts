@@ -85,9 +85,7 @@ export async function GET(request: NextRequest) {
 
     switch (type) {
       case 'recovery':
-        // Password reset — send to login where the user is now authenticated
-        // and can update their password
-        redirectPath = '/login?reset=success';
+        redirectPath = '/reset-password';
         break;
       case 'signup':
       case 'email_change':

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { saveUserProfileToIndexedDB } from './profile-storage';
+import { markHydrated } from './use-hydrated';
 
 export interface GpsLocation {
   lat: number;
@@ -179,6 +180,10 @@ interface AppState {
   navApp: 'google' | 'waze' | 'apple';
   setNavApp: (v: 'google' | 'waze' | 'apple') => void;
 
+  // Profile hydration gate
+  profileHydrated: boolean;
+  setProfileHydrated: (v: boolean) => void;
+
   // Auth
   isAuthenticated: boolean;
   operatorName: string;
@@ -348,6 +353,10 @@ export const useAppStore = create<AppState>()(
       navApp: 'google',
       setNavApp: (v) => set({ navApp: v }),
 
+      // Profile hydration gate
+      profileHydrated: false,
+      setProfileHydrated: (v) => set({ profileHydrated: v }),
+
       // Auth
       isAuthenticated: false,
       operatorName: '',
@@ -379,6 +388,7 @@ export const useAppStore = create<AppState>()(
         }
         return { ...currentState, ...state };
       },
+      onRehydrateStorage: () => () => { markHydrated(); },
       partialize: (state) => ({
         aiMode: state.aiMode,
         serviceCategory: state.serviceCategory,
@@ -399,7 +409,6 @@ export const useAppStore = create<AppState>()(
         navApp: state.navApp,
         isAuthenticated: state.isAuthenticated,
         operatorName: state.operatorName,
-        authToken: state.authToken,
       }),
     }
   )

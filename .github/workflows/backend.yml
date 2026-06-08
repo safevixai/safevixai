@@ -106,8 +106,8 @@ jobs:
           print(f'{(lines_covered / lines_valid) * 100:.1f}')
           ")
           echo "Backend coverage: ${COVERAGE}%"
-          if (( $(echo "$COVERAGE < 70.0" | bc -l) )); then
-            echo "❌ Coverage ${COVERAGE}% is below 70% threshold"
+          if (( $(echo "$COVERAGE < 80.0" | bc -l) )); then
+            echo "❌ Coverage ${COVERAGE}% is below 80% threshold"
             exit 1
           fi
-          echo "✅ Coverage ${COVERAGE}% meets 70% threshold"
+          echo "✅ Coverage ${COVERAGE}% meets 80% threshold"

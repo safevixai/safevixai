@@ -20,7 +20,7 @@ export function ClientAppHooks() {
 
  const handleDispatch = useCallback(() => {
    setCrashState(null)
-   toast.success('️ SOS dispatched to emergency contacts!', {
+    toast.success('SOS dispatched to emergency contacts!', {
      duration: 8000,
    })
  }, [])
@@ -34,7 +34,7 @@ export function ClientAppHooks() {
 
      toast.error(
        <div className="flex flex-col gap-2">
-         <p className="font-bold text-lg">️ CRASH DETECTED!</p>
+          <p className="font-bold text-lg">CRASH DETECTED!</p>
          <p className="text-sm">G-Force Spike: {gForce.toFixed(1)}G</p>
        </div>,
        { duration: 5000, position: 'top-center' }

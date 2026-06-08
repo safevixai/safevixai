@@ -99,40 +99,62 @@ export function useCountUp(
 
 export function useTextReveal() {
   const ref = useRef<HTMLElement>(null);
+  const setupRef = useRef(false);
 
   useGSAP(
     () => {
-      if (!ref.current) return;
+      if (!ref.current || setupRef.current) return;
+      setupRef.current = true;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReducedMotion) return;
 
-      const text = ref.current.textContent || '';
+      const container = ref.current;
+      const text = container.textContent || '';
       const words = text.split(' ');
-      ref.current.innerHTML = words
-        .map(
-          (word) =>
-            `<span class="inline-block overflow-hidden"><span class="inline-block landing-word" style="transform: translateY(110%); opacity: 0;">${word}</span></span>`
-        )
-        .join(' ');
 
-      const wordEls = ref.current.querySelectorAll('.landing-word');
-      gsap.to(wordEls, {
+      const wordSpan = document.createElement('span');
+      wordSpan.style.display = 'inline-block';
+      container.textContent = '';
+      container.appendChild(wordSpan);
+
+      words.forEach((word, i) => {
+        const outer = document.createElement('span');
+        outer.className = 'inline-block overflow-hidden';
+        const inner = document.createElement('span');
+        inner.className = 'inline-block landing-word';
+        inner.style.transform = 'translateY(110%)';
+        inner.style.opacity = '0';
+        inner.textContent = word;
+        outer.appendChild(inner);
+        wordSpan.appendChild(outer);
+        if (i < words.length - 1) {
+          wordSpan.appendChild(document.createTextNode(' '));
+        }
+      });
+
+      const wordEls = container.querySelectorAll('.landing-word');
+      const tween = gsap.to(wordEls, {
         y: '0%',
         opacity: 1,
         duration: 0.6,
         stagger: 0.04,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: ref.current,
+          trigger: container,
           start: 'top 85%',
           toggleActions: 'play none none none',
         },
         onComplete: () => {
-          if (ref.current) {
-            ref.current.innerHTML = text;
+          if (container) {
+            container.textContent = text;
           }
         },
       });
+
+      return () => {
+        tween.kill();
+        if (container) container.textContent = text;
+      };
     },
     { scope: ref }
   );

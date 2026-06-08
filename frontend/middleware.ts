@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+export const config = {
+  matcher: [
+    '/((?!_next|api|icons|offline-data|leaflet|sw\\.js|.*\\..*).*)',
+  ],
+};
+
 const SUPPORTED_LOCALES = [
   'en', 'hi', 'ta', 'te', 'kn', 'ml', 'mr', 'gu', 'bn', 'pa', 'ur',
   'ar', 'fr', 'es'
@@ -35,6 +41,7 @@ function setLocaleHeaders(response: NextResponse, locale: string): void {
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
+  // Skip non-page routes early
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||

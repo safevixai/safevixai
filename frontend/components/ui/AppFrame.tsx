@@ -95,7 +95,7 @@ export function AppFrame({ children }: AppFrameProps) {
       {/* ── Main Content Area ── */}
       <main 
         id="main" 
-        className={`flex-1 relative flex flex-col min-h-dvh min-w-0 transition-all duration-300 pb-[84px] lg:pb-0 ${
+        className={`flex-1 relative flex flex-col min-h-dvh min-w-0 transition-all duration-300 pb-[var(--bottom-nav-h,84px)] lg:pb-0 ${
           !isDesktopSidebarCollapsed ? 'lg:ml-[280px]' : isThinSidebarEnabled ? 'lg:ml-[88px]' : 'lg:ml-0'
         }`}
       >

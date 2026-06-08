@@ -14,9 +14,9 @@ export function AuthorityCard() {
  gap: '1rem'
  }}
  >
- <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--surface-container-high)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>
- ️
- </div>
+  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--surface-container-high)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>
+  🏛️
+  </div>
  <div>
  <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-secondary)', letterSpacing: '0.05em', fontWeight: 600 }}>
  Assigned Authority

@@ -167,9 +167,11 @@ export default function EmergencyPage() {
     }
   }, 3600000);
   // 4. Notify emergency contacts via WhatsApp
-  const contacts = userProfile.emergencyContact
-  ? [userProfile.emergencyContact]
-  : [];
+          const contacts = userProfile.emergencyContacts?.length
+            ? userProfile.emergencyContacts.map(c => c.phone)
+            : userProfile.emergencyContact
+            ? [userProfile.emergencyContact]
+            : [];
   if (contacts.length > 0) {
   notifyContactsViaWhatsApp(contacts, userProfile.name, session.tracking_url);
   }
@@ -260,10 +262,10 @@ export default function EmergencyPage() {
  )}
  {(dispatchState === 'failed' || dispatchState === 'idle') && (
  <>
- <span className="text-orange-500 font-black tracking-[0.1em] uppercase text-xs">SOS Activated ?? Use Share Links</span>
- <p className="text-text-2 dark:text-[#e4bebc] text-xs mt-1 font-medium">
- {!isOnline ? 'Offline mode ?? share your location via WhatsApp or SMS below.' : 'Backend unreachable ?? share your location manually using the links below.'}
- </p>
+<span className="text-orange-500 font-black tracking-[0.1em] uppercase text-xs">SOS Activated - Use Share Links</span>
+<p className="text-text-2 dark:text-[#e4bebc] text-xs mt-1 font-medium">
+  {!isOnline ? 'Offline mode - share your location via WhatsApp or SMS below.' : 'Backend unreachable - share your location manually using the links below.'}
+</p>
  </>
  )}
  <button onClick={cancelDispatch} className="mt-4 px-5 py-2 bg-surface-3 dark:bg-white/10 text-text-1 dark:text-white rounded-full font-bold uppercase text-[10px] tracking-wider hover:bg-surface-3 dark:hover:bg-white/20 transition-colors">
@@ -367,11 +369,18 @@ export default function EmergencyPage() {
  </div>
 
  <div className="grid grid-cols-2 gap-4">
- <a href={waLink} target="_blank" rel="noopener noreferrer" onClick={() => track.trackingShared('whatsapp')} className="flex items-center justify-center gap-2 bg-[#05b046] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all shadow-md shadow-[#05b046]/20">
- <Share2 className="w-4 h-4" />
- WhatsApp
- </a>
- <a href={smsLink} onClick={() => track.trackingShared('sms')} className="flex items-center justify-center gap-2 bg-surface-2 dark:bg-white/5 text-text-1 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-border-md dark:border-white/10 shadow-sm">
+              {waLink ? (
+              <a href={waLink} target="_blank" rel="noopener noreferrer" onClick={() => track.trackingShared('whatsapp')} className="flex items-center justify-center gap-2 bg-[#05b046] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all shadow-md shadow-[#05b046]/20">
+                <Share2 className="w-4 h-4" />
+                WhatsApp
+              </a>
+              ) : (
+              <button disabled className="flex items-center justify-center gap-2 bg-[#05b046]/50 text-white/50 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest cursor-not-allowed">
+                <Share2 className="w-4 h-4" />
+                WhatsApp
+              </button>
+               )}
+              <a href={smsLink} onClick={() => track.trackingShared('sms')} className="flex items-center justify-center gap-2 bg-surface-2 dark:bg-white/5 text-text-1 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-border-md dark:border-white/10 shadow-sm">
  <MessageSquare className="w-4 h-4" />
  SMS Backup
  </a>
@@ -392,14 +401,19 @@ export default function EmergencyPage() {
  <div>
  <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Blood Group</p>
  <p className="text-xl font-black text-red-600 dark:text-[#ffb4aa]">
- {userProfile.bloodGroup || <span className="text-text-2 text-sm font-bold normal-case">Not set ?? add in Profile</span>}
+ {userProfile.bloodGroup || <span className="text-text-2 text-sm font-bold normal-case">Not set - add in Profile</span>}
  </p>
  </div>
  <div>
  <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Primary Contact</p>
- <p className="text-lg font-bold text-text-1 dark:text-text-1 truncate">
- {userProfile.emergencyContact || <span className="text-text-2 text-sm font-bold normal-case">Not set</span>}
- </p>
+              <p className="text-lg font-bold text-text-1 dark:text-text-1 truncate">
+                {(() => {
+                  const ec = userProfile.emergencyContacts?.[0];
+                  return ec
+                    ? `${ec.name} (${ec.phone})`
+                    : userProfile.emergencyContact || <span className="text-text-2 text-sm font-bold normal-case">Not set</span>;
+                })()}
+              </p>
  </div>
  <div>
  <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest mb-1">Vehicle ID</p>

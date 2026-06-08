@@ -18,8 +18,6 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 import { AppFrame } from '@/components/ui/AppFrame';
 import { AnalyticsProvider } from '@/lib/analytics-provider';
 import { EnterpriseClientAppHooks } from '@/components/EnterpriseClientAppHooks';
-import { ServerWarmingBanner } from '@/components/ui/ServerWarmingBanner';
-
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_VERCEL_URL || 'https://safevixai.com';
 
 export const metadata: Metadata = {
@@ -131,7 +129,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <GSAPProvider>
               <ConnectivityProvider>
                 <EnterpriseClientAppHooks />
-                <ServerWarmingBanner />
                 <AppFrame><ViewTransitions>{children}</ViewTransitions></AppFrame>
               <Toaster
                 position="top-right"

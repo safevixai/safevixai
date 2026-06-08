@@ -13,6 +13,9 @@ import {
   Clock,
   Search,
   X,
+  Navigation,
+  TrafficCone,
+  Lightbulb,
 } from 'lucide-react';
 
 import { TerminalHeader } from '@/components/ui/TerminalHeader';
@@ -86,6 +89,7 @@ export default function CommandCenterPage() {
   const { t } = useTranslation('common');
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [kpis, setKpis] = useState<KPI | null>(null);
   const [categories, setCategories] = useState<Record<string, number>>({ roads: 0, traffic: 0, streetlight: 0 });
   const [complaints, setComplaints] = useState<Complaint[]>([]);
@@ -115,8 +119,10 @@ export default function CommandCenterPage() {
 
   // Time ago helper
   function timeAgo(dateStr: string): string {
+    if (!dateStr) return 'Unknown';
     const now = Date.now();
     const then = new Date(dateStr).getTime();
+    if (isNaN(then)) return 'Invalid date';
     const diffMs = now - then;
     const mins = Math.floor(diffMs / 60000);
     if (mins < 1) return 'Just now';
@@ -200,6 +206,7 @@ export default function CommandCenterPage() {
 
     } catch (err) {
       console.error("Failed to load command center data:", err);
+      setLoadError(err instanceof Error ? err.message : 'Failed to load command center data');
     } finally {
       setLoading(false);
     }
@@ -247,6 +254,14 @@ export default function CommandCenterPage() {
           <div className="flex h-[60vh] w-full flex-col items-center justify-center gap-4">
             <Loader2 size={42} className="animate-spin text-brand" />
             <div className="text-xs font-black uppercase tracking-[0.2em] text-text-3">{t('dashboard.dispatching_sensors', 'DISPATCHING SENSORS...')}</div>
+          </div>
+        ) : loadError ? (
+          <div className="flex h-[60vh] w-full flex-col items-center justify-center gap-4">
+            <AlertTriangle size={42} className="text-red-400" />
+            <div className="text-sm font-bold text-red-400">{loadError}</div>
+            <button onClick={() => { setLoading(true); setLoadError(null); loadDashboardData(); }} className="px-4 py-2 bg-brand text-white rounded-xl text-xs font-bold uppercase tracking-wider">
+              Retry
+            </button>
           </div>
         ) : (
           <div className="grid gap-6">
@@ -314,7 +329,7 @@ export default function CommandCenterPage() {
                     {/* Roads */}
                     <div>
                       <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-text-2">
-                        <span>🛣️ Roads & Bridges</span>
+                        <span><Navigation size={14} className="inline mr-1.5 text-cyan-400" />Roads & Bridges</span>
                         <span>{categories.roads}</span>
                       </div>
                       <div className="mt-2 h-2.5 w-full rounded-full bg-surface-3 dark:bg-slate-800 overflow-hidden">
@@ -325,7 +340,7 @@ export default function CommandCenterPage() {
                     {/* Traffic */}
                     <div>
                       <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-text-2">
-                        <span>🚦 Traffic & Signage</span>
+                        <span><TrafficCone size={14} className="inline mr-1.5 text-amber-400" />Traffic & Signage</span>
                         <span>{categories.traffic}</span>
                       </div>
                       <div className="mt-2 h-2.5 w-full rounded-full bg-surface-3 dark:bg-slate-800 overflow-hidden">
@@ -336,7 +351,7 @@ export default function CommandCenterPage() {
                     {/* Streetlight */}
                     <div>
                       <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-text-2">
-                        <span>💡 Public Streetlighting</span>
+                        <span><Lightbulb size={14} className="inline mr-1.5 text-brand-light" />Public Streetlighting</span>
                         <span>{categories.streetlight}</span>
                       </div>
                       <div className="mt-2 h-2.5 w-full rounded-full bg-surface-3 dark:bg-slate-800 overflow-hidden">

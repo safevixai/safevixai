@@ -121,8 +121,8 @@ chatbotClient.interceptors.request.use((config) => {
   config.headers['Accept-Language'] = preferredLang;
   return config;
 });
-_withRetry(chatbotClient);
 _addWarmingInterceptors(chatbotClient);
+_withRetry(chatbotClient);
 
 // ── Shared API error extraction ──
 export interface ApiErrorDetail {

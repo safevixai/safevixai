@@ -132,8 +132,11 @@ export function EnterpriseClientAppHooks() {
     const hydrateProfile = async () => {
       await migrateUserProfileFromLocalStorage()
       const profile = await loadUserProfileFromIndexedDB()
-      if (!cancelled && profile) {
-        useAppStore.getState().setUserProfile(profile)
+      if (!cancelled) {
+        if (profile) {
+          useAppStore.getState().setUserProfile(profile)
+        }
+        useAppStore.getState().setProfileHydrated(true)
       }
     }
     void hydrateProfile()

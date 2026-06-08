@@ -5,12 +5,15 @@ import { useRouter } from 'next/navigation';
 import { useAppStore } from '@/lib/store';
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { useShallow } from 'zustand/react/shallow';
+import { useHydrated } from '@/lib/use-hydrated';
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { isAuthenticated, setAuth, setUserProfile, setAuthToken } = useAppStore(
+  const hydrated = useHydrated();
+  const { isAuthenticated, profileHydrated, setAuth, setUserProfile, setAuthToken } = useAppStore(
     useShallow((s) => ({
       isAuthenticated: s.isAuthenticated,
+      profileHydrated: s.profileHydrated,
       setAuth: s.setAuth,
       setUserProfile: s.setUserProfile,
       setAuthToken: s.setAuthToken,
@@ -19,14 +22,14 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
+    if (!hydrated || !profileHydrated) return;
+
     async function checkSession() {
-      // If already authenticated via Zustand, we're good
       if (isAuthenticated) {
         setChecking(false);
         return;
       }
 
-      // Try to recover from Supabase session
       const supabase = getSupabaseBrowserClient();
       if (supabase) {
         try {
@@ -44,12 +47,11 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
         }
       }
 
-      // Not authenticated — redirect to login
       router.replace('/login');
     }
 
     checkSession();
-  }, [isAuthenticated, router, setAuth, setUserProfile, setAuthToken]);
+  }, [isAuthenticated, hydrated, profileHydrated, router, setAuth, setUserProfile, setAuthToken]);
 
   if (checking && !isAuthenticated) {
     return (
