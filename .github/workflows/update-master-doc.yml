@@ -3,6 +3,8 @@ name: Update Master Document
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/SafeVixAI_MASTER.docx'
   workflow_dispatch:
 
 permissions:

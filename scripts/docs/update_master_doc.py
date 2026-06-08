@@ -271,6 +271,10 @@ def update_part_c(doc_path: str):
     doc = Document(doc_path)
     now = datetime.now(IST).strftime("%Y-%m-%d %H:%M IST")
 
+    body = doc.element.body
+    ns = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+    sectPr = body.find(f"{ns}sectPr")
+
     # ── Find PART C marker and clear everything after it ────────────────
     part_c_idx = None
     # Iterate backwards so we hit the actual heading instead of the Table of Contents
@@ -284,9 +288,7 @@ def update_part_c(doc_path: str):
         print("⚠ PART C marker not found — appending at end")
     else:
         # Remove all elements after PART C heading, but preserve sectPr
-        body = doc.element.body
         part_c_element = doc.paragraphs[part_c_idx]._element
-        ns = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
         # Find all siblings after the PART C paragraph
         found = False
         elements_to_remove = []
@@ -520,6 +522,14 @@ def update_part_c(doc_path: str):
         italic=True,
         font_size=8,
     )
+
+    # Ensure sectPr is the last element of the body (OpenXML spec compliance)
+    sectPr_el = body.find(f"{ns}sectPr")
+    if sectPr_el is not None:
+        body.remove(sectPr_el)
+        body.append(sectPr_el)
+    elif sectPr is not None:
+        body.append(sectPr)
 
     # ── Save ────────────────────────────────────────────────────────────
     doc.save(doc_path)

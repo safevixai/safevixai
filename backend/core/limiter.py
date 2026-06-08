@@ -13,3 +13,7 @@ if settings.redis_url:
 else:
     # Fallback to memory for local dev
     limiter = Limiter(key_func=get_remote_address)
+
+if settings.environment == "test":
+    limiter.enabled = False
+

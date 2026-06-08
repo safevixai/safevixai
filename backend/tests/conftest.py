@@ -23,6 +23,14 @@ def reset_circuit_breakers():
     CircuitBreakerRegistry.reset_all()
 
 
+@pytest.fixture(scope="session", autouse=True)
+def disable_rate_limiting():
+    """Disable rate limiting globally during test runs to prevent 429 errors."""
+    from core.limiter import limiter
+    limiter.enabled = False
+
+
+
 class DummySession:
     pass
 
