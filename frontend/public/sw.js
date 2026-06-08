@@ -23,6 +23,15 @@ function openTileLruDb() {
   });
 }
 
+function tileLruError(error, fallbackMessage) {
+  if (error instanceof Error) return error;
+  return new Error(fallbackMessage);
+}
+
+function logTileLruWarning(message, error) {
+  console.warn(message, error instanceof Error ? error.message : error);
+}
+
 async function touchTileAccess(url) {
   const db = await openTileLruDb();
   return new Promise((resolve, reject) => {
@@ -34,7 +43,7 @@ async function touchTileAccess(url) {
     };
     tx.onerror = () => {
       db.close();
-      reject(tx.error);
+      reject(tileLruError(tx.error, `Tile LRU access write failed for ${url}`));
     };
   });
 }
@@ -50,7 +59,7 @@ async function getAllTileAccessEntries() {
     };
     req.onerror = () => {
       db.close();
-      reject(req.error);
+      reject(tileLruError(req.error, 'Tile LRU access read failed'));
     };
   });
 }
@@ -66,7 +75,7 @@ async function removeTileAccess(url) {
     };
     tx.onerror = () => {
       db.close();
-      reject(tx.error);
+      reject(tileLruError(tx.error, `Tile LRU access delete failed for ${url}`));
     };
   });
 }
@@ -210,7 +219,11 @@ self.addEventListener('fetch', (event) => {
       caches.open(MAP_TILE_CACHE).then(async (cache) => {
         const cached = await cache.match(event.request);
         if (cached) {
-          await touchTileAccess(event.request.url).catch(() => undefined);
+          event.waitUntil(
+            touchTileAccess(event.request.url).catch((error) =>
+              logTileLruWarning('Tile LRU touch failed for cached tile', error)
+            )
+          );
           return cached;
         }
 
@@ -219,10 +232,16 @@ self.addEventListener('fetch', (event) => {
           if (response.ok) {
             const clone = response.clone();
             await cache.put(event.request, clone);
-            await touchTileAccess(event.request.url).catch(() => undefined);
+            event.waitUntil((async () => {
+              await touchTileAccess(event.request.url).catch((error) =>
+                logTileLruWarning('Tile LRU touch failed for fetched tile', error)
+              );
 
-            // LRU eviction: keep the cache under MAX_TILE_ENTRIES using tracked access timestamps
-            await evictLeastRecentlyUsedTiles(cache, MAX_TILE_ENTRIES).catch(() => undefined);
+              // LRU eviction: keep the cache under MAX_TILE_ENTRIES using tracked access timestamps
+              await evictLeastRecentlyUsedTiles(cache, MAX_TILE_ENTRIES).catch((error) =>
+                logTileLruWarning('Tile LRU eviction failed', error)
+              );
+            })());
           }
           return response;
         } catch {
