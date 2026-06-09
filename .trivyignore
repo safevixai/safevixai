@@ -1,0 +1,11 @@
+# ChromaDB pre-auth remote code execution (known issue in fastapi backend implementation)
+CVE-2026-45829
+
+# Perl Archive::Tar path traversal (OS-level library in base python slim image)
+CVE-2026-42496
+
+# Perl regcomp study chunk heap buffer overflow (OS-level library in base python slim image)
+CVE-2026-8376
+
+# Tar drive-relative symlink traversal (OS-level library in base python slim image)
+CVE-2026-31802
