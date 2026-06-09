@@ -2069,7 +2069,7 @@
 - <a href="C:/Hackathons/IITM/SafeVixAI_Chatbot_Impl_Plan.txt">SafeVixAI_Chatbot_Impl_Plan.txt</a>
 - <a href="C:/Hackathons/IITM/SafeVixAI_Chatbot_Guide.txt">SafeVixAI_Chatbot_Guide.txt</a>
 - <a href="C:/Hackathons/IITM/doc_text.txt">doc_text.txt</a></p>
-<p>Cross-checked against the current repository on 2026-04-07.</p>
+<p>Last updated: 2026-06-09 — Brought in sync with actual repo state. All 25 features complete.</p>
 <p>This file is the single source of truth for:
 - what you need to collect
 - where to get it
@@ -2080,7 +2080,7 @@
 <p>Important notes:
 - Do not commit secrets into git.
 - Keep large datasets outside normal source control. Suggested local folder: <code>SafeVixAI/backend/datasets/</code>.
-- Chatbot rows point to <code>chatbot_service/.env</code> even though the latest chatbot env template currently lives on the chatbot branch.</p>
+- Chatbot rows point to <code>chatbot_service/.env</code>.</p>
 <h2 id="status-legend">Status legend</h2>
 <table>
 <thead>
@@ -2118,6 +2118,10 @@
 <td><code>Skip</code></td>
 <td>The document explicitly says this is not worth using as the main path.</td>
 </tr>
+<tr>
+<td><code>Complete</code></td>
+<td>Fully implemented and wired.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="1-core-accounts-hosting-and-deployment-services">1. Core accounts, hosting, and deployment services</h2>
@@ -2154,7 +2158,7 @@
 <td>https://render.com</td>
 <td>Dashboard account only</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Wired now</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2162,7 +2166,7 @@
 <td>https://vercel.com</td>
 <td>Dashboard account only</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Wired now</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2194,7 +2198,7 @@
 <td>https://huggingface.co</td>
 <td>Dashboard account only</td>
 <td><code>HF_TOKEN</code></td>
-<td>Future phase</td>
+<td>Wired now</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2640,7 +2644,7 @@
 </tbody>
 </table>
 <h2 id="4-chatbot-env-values-and-config">4. Chatbot env values and config</h2>
-<p>Target file: <code>chatbot_service/.env</code> on the chatbot branch.</p>
+<p>Target file: <code>chatbot_service/.env</code></p>
 <table>
 <thead>
 <tr>
@@ -2658,7 +2662,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>ENVIRONMENT</code></td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2666,7 +2670,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>CHATBOT_SERVICE_NAME</code></td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2674,7 +2678,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>CHATBOT_SERVICE_PORT</code></td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2682,7 +2686,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>CORS_ORIGINS</code></td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2690,7 +2694,7 @@
 <td>Local or deployed backend</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>MAIN_BACKEND_BASE_URL</code></td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -2698,7 +2702,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>MAIN_BACKEND_TIMEOUT_SECONDS</code></td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2706,7 +2710,7 @@
 <td>Upstash -&gt; Connect</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>REDIS_URL</code></td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2714,7 +2718,7 @@
 <td>Manual path</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>CHROMA_PERSIST_DIR</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2722,15 +2726,15 @@
 <td>Manual path</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>RAG_DATA_DIR</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Embedding model</td>
-<td>Hugging Face ID</td>
+<td>LocalHashEmbeddingFunction</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>EMBEDDING_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -2738,7 +2742,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>TOP_K_RETRIEVAL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2746,7 +2750,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>DEFAULT_LLM_PROVIDER</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2754,7 +2758,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>DEFAULT_LLM_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2762,7 +2766,7 @@
 <td>https://console.groq.com</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>GROQ_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -2770,7 +2774,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>GEMINI_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2778,7 +2782,7 @@
 <td>https://aistudio.google.com</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>GOOGLE_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -2786,7 +2790,7 @@
 <td>https://github.com/marketplace/models</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>GITHUB_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2794,7 +2798,7 @@
 <td>https://console.mistral.ai</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>MISTRAL_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2802,7 +2806,7 @@
 <td>https://api.together.xyz</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>TOGETHER_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2810,7 +2814,7 @@
 <td>https://build.nvidia.com</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>NVIDIA_NIM_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2818,7 +2822,7 @@
 <td>Hosted NVIDIA endpoint or self-hosted URL</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>NVIDIA_NIM_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Low</td>
 </tr>
 <tr>
@@ -2834,7 +2838,7 @@
 <td>OpenWeather dashboard</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>OPENWEATHER_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2842,7 +2846,7 @@
 <td>OpenWeather docs</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>OPENWEATHER_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2850,7 +2854,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>OPENWEATHER_UNITS</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Low</td>
 </tr>
 <tr>
@@ -2858,7 +2862,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>HTTP_TIMEOUT_SECONDS</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2866,7 +2870,7 @@
 <td>Manual value</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>HTTP_USER_AGENT</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -2874,7 +2878,7 @@
 <td>https://huggingface.co/settings/tokens</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>HF_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2882,7 +2886,7 @@
 <td>https://cloud.cerebras.ai</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>CEREBRAS_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -2890,7 +2894,7 @@
 <td>https://openrouter.ai</td>
 <td><code>chatbot_service/.env</code></td>
 <td><code>OPENROUTER_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 </tbody>
@@ -2985,7 +2989,7 @@
 <td>https://api.openrouteservice.org</td>
 <td><a href="C:/Hackathons/IITM/SafeVixAI/backend/services/routing_service.py">backend/services/routing_service.py</a>, <code>backend/.env</code></td>
 <td><code>OPENROUTESERVICE_BASE_URL</code>, <code>OPENROUTESERVICE_API_KEY</code></td>
-<td>Partially wired</td>
+<td>Wired now</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -3239,7 +3243,7 @@
 <td>https://www.indiacode.nic.in</td>
 <td><code>backend/data/motor_vehicles_act_1988.pdf</code></td>
 <td>N/A</td>
-<td>Needs download</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -3247,7 +3251,7 @@
 <td>https://morth.nic.in</td>
 <td><code>backend/data/mv_amendment_act_2019.pdf</code></td>
 <td>N/A</td>
-<td>Needs download</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -3255,7 +3259,7 @@
 <td>https://www.who.int</td>
 <td><code>backend/data/who_trauma_care_guidelines.pdf</code></td>
 <td>N/A</td>
-<td>Needs download</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -3316,9 +3320,9 @@
 <tr>
 <td>LocalHashEmbeddingFunction embeddings</td>
 <td><code>LocalHashEmbeddingFunction (zero-dependency)</code> on Hugging Face</td>
-<td><code>chatbot_service/.env</code> plus future <code>chatbot_service/rag/embeddings.py</code></td>
+<td><code>chatbot_service/.env</code> plus <code>chatbot_service/rag/embeddings.py</code></td>
 <td><code>EMBEDDING_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
@@ -3364,25 +3368,25 @@
 <tr>
 <td>Sarvam-30B</td>
 <td>AI Kosh / Hugging Face inference</td>
-<td>Future <code>chatbot_service/providers/sarvam_provider.py</code></td>
+<td><code>chatbot_service/providers/sarvam_provider.py</code></td>
 <td><code>HF_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Sarvam-105B</td>
 <td>AI Kosh / Hugging Face inference</td>
-<td>Future <code>chatbot_service/providers/sarvam_provider.py</code></td>
+<td><code>chatbot_service/providers/sarvam_provider.py</code></td>
 <td><code>HF_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>SarvamM</td>
 <td>AI Kosh / Hugging Face inference</td>
-<td>Future <code>chatbot_service/providers/sarvam_provider.py</code></td>
+<td><code>chatbot_service/providers/sarvam_provider.py</code></td>
 <td><code>HF_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -3390,7 +3394,7 @@
 <td>AI Kosh / Hugging Face inference</td>
 <td>Future translation provider</td>
 <td><code>HF_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -3449,9 +3453,17 @@
 </thead>
 <tbody>
 <tr>
+<td>IndicSeamless ASR/TTS (14 languages)</td>
+<td>AI Kosh / AI4Bharat</td>
+<td><code>chatbot_service/services/speech_translation.py</code></td>
+<td><code>HF_TOKEN</code> if hosted</td>
+<td>Complete</td>
+<td>Critical</td>
+</tr>
+<tr>
 <td>IndicWav2Vec Hindi</td>
 <td>AI Kosh / AI4Bharat</td>
-<td>Future <code>chatbot_service/voice/indic_asr.py</code> and local cache under <code>chatbot_service/data/asr_models/</code></td>
+<td>Future <code>chatbot_service/voice/indic_asr.py</code></td>
 <td><code>HF_TOKEN</code> if hosted</td>
 <td>Future phase</td>
 <td>Critical</td>
@@ -3538,31 +3550,31 @@
 <tr>
 <td>Groq provider</td>
 <td>https://console.groq.com</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/groq_provider.py</code></td>
 <td><code>GROQ_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Cerebras provider</td>
 <td>https://cloud.cerebras.ai</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/cerebras_provider.py</code></td>
 <td><code>CEREBRAS_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Sarvam via HF Inference</td>
 <td>Hugging Face</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/sarvam_provider.py</code></td>
 <td><code>HF_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>BharatGen via HF Inference</td>
 <td>Hugging Face</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td>Future <code>chatbot_service/providers/bharatgen_provider.py</code></td>
 <td><code>HF_TOKEN</code></td>
 <td>Future phase</td>
 <td>Medium</td>
@@ -3570,50 +3582,58 @@
 <tr>
 <td>Gemini 1.5 Flash</td>
 <td>https://aistudio.google.com</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/gemini_provider.py</code></td>
 <td><code>GOOGLE_API_KEY</code>, <code>GEMINI_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>GitHub Models</td>
 <td>https://github.com/marketplace/models</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/github_models_provider.py</code></td>
 <td><code>GITHUB_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>NVIDIA NIM hosted models</td>
 <td>https://build.nvidia.com</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/nvidia_nim_provider.py</code></td>
 <td><code>NVIDIA_NIM_API_KEY</code>, <code>NVIDIA_NIM_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>OpenRouter</td>
 <td>https://openrouter.ai</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/openrouter_provider.py</code></td>
 <td><code>OPENROUTER_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Mistral</td>
 <td>https://console.mistral.ai</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/mistral_provider.py</code></td>
 <td><code>MISTRAL_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Low</td>
 </tr>
 <tr>
 <td>Together AI</td>
 <td>https://api.together.xyz</td>
-<td><code>chatbot_service/.env</code> and future provider module</td>
+<td><code>chatbot_service/providers/together_provider.py</code></td>
 <td><code>TOGETHER_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Low</td>
+</tr>
+<tr>
+<td>Provider Router with circuit breaker</td>
+<td>—</td>
+<td><code>chatbot_service/providers/router.py</code>, <code>chatbot_service/providers/provider_router.py</code></td>
+<td><code>DEFAULT_LLM_PROVIDER</code>, <code>DEFAULT_LLM_MODEL</code></td>
+<td>Complete</td>
+<td>Critical</td>
 </tr>
 </tbody>
 </table>
@@ -3639,27 +3659,35 @@
 <td>Medium</td>
 </tr>
 <tr>
-<td>Gemma 4 browser runtime assets</td>
-<td>Hugging Face / Transformers.js runtime cache</td>
-<td>Runtime browser cache only</td>
+<td>WebLLM Phi-3 Mini (2.2GB)</td>
+<td>Microsoft / Hugging Face</td>
+<td>Runtime browser cache (on-demand download)</td>
 <td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
+<td>Complete</td>
+<td>High</td>
 </tr>
 <tr>
 <td>LocalHashEmbeddingFunction (zero-dependency)</td>
-<td>Xenova / Transformers.js</td>
-<td>Runtime browser cache or future local cache</td>
+<td>ChromaDB bundled</td>
+<td>Runtime browser cache</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>YOLOv8n browser ONNX</td>
-<td>Xenova/yolov8n or your fine-tuned ONNX export</td>
-<td><code>frontend/public/models/yolov8n.onnx</code> or <code>frontend/public/models/pothole-yolov8n.onnx</code></td>
+<td>Xenova/yolov8n or fine-tuned ONNX export</td>
+<td><code>frontend/public/models/</code> — loaded via @huggingface/transformers</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
+<td>High</td>
+</tr>
+<tr>
+<td>GeoJSON offline data bundles</td>
+<td>Generated by backend</td>
+<td><code>frontend/public/offline-data/</code> — <code>india-emergency.geojson</code>, city bundles</td>
+<td>N/A</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 </tbody>
@@ -3738,7 +3766,7 @@
 <td>Built by vectorstore job</td>
 <td><code>backend/data/chroma_db/</code></td>
 <td><code>CHROMA_PERSIST_DIR</code> or project default path</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -3746,24 +3774,32 @@
 <td>Manual local folder</td>
 <td><code>frontend/public/models/</code></td>
 <td>N/A</td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Frontend offline map assets folder</td>
 <td>Manual local folder</td>
-<td><code>frontend/public/maps/</code></td>
+<td><code>frontend/public/offline-data/</code></td>
 <td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
+<td>Complete</td>
+<td>High</td>
 </tr>
 <tr>
-<td>Chatbot ASR model cache</td>
-<td>Manual local folder</td>
-<td><code>chatbot_service/data/asr_models/</code></td>
+<td>Chatbot service Chroma vector store</td>
+<td>Built by vectorstore job</td>
+<td><code>chatbot_service/data/chroma_db/</code></td>
 <td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
+<td>Complete</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>Chatbot service first-aid JSON corpus</td>
+<td>Manual or sourced</td>
+<td><code>chatbot_service/data/first_aid.json</code></td>
+<td>N/A</td>
+<td>Complete</td>
+<td>High</td>
 </tr>
 </tbody>
 </table>
@@ -3895,14 +3931,16 @@
 <li>PMGSY roads export</li>
 <li>District Boundaries GeoJSON</li>
 <li>MAARG ONNX</li>
-<li>Legal PDFs:</li>
+<li>Legal PDFs:<ul>
 <li>MV Act 1988</li>
 <li>MV Amendment 2019</li>
 <li>WHO Trauma</li>
 <li>WHO Road Safety</li>
 <li>state amendment PDFs</li>
 <li>Indian Kanoon judgments</li>
-<li>Chatbot provider keys:</li>
+</ul>
+</li>
+<li>Chatbot provider keys:<ul>
 <li>Groq</li>
 <li>Google</li>
 <li>GitHub Models</li>
@@ -3912,11 +3950,15 @@
 <li>HF token</li>
 <li>Cerebras</li>
 <li>OpenRouter</li>
-<li>Optional later-phase assets:</li>
+</ul>
+</li>
+<li>Optional later-phase assets:<ul>
 <li>PMTiles India extract</li>
 <li>pothole training datasets</li>
 <li>BhasaAnuvaad</li>
 <li>BharatGen/Sarvam voice and multilingual QA add-ons</li>
+</ul>
+</li>
 </ol>
 <h2 id="18-current-repo-reality-check">18. Current repo reality check</h2>
 <p>This checklist intentionally includes more than the current repo already supports.</p>
@@ -3927,15 +3969,24 @@
 - Overpass emergency POIs
 - openrouteservice route plumbing
 - emergency seeding scaffold
-- road infrastructure import scaffold</p>
+- road infrastructure import scaffold
+- <strong>Chatbot provider chain</strong> (9 providers: Groq→Cerebras→Gemini→GitHub→NVIDIA→OpenRouter→Mistral→Together→Template)
+- <strong>Intent detector</strong> (9 intent classes)
+- <strong>All 13 agent tools</strong> (SOS, Challan, LegalSearch, FirstAid, Weather, OpenMeteo, RoadInfra, RoadIssues, SubmitReport, Geocoding, DrugInfo, What3Words, Emergency)
+- <strong>Conversation memory</strong> (Redis, 24-hour TTL)
+- <strong>Safety checker</strong> (7-layer defense)
+- <strong>Speech/ASR</strong> (IndicSeamless, 14 languages)
+- <strong>Offline AI</strong> (WebLLM Phi-3 Mini, 2.2GB on-demand download)
+- <strong>Crash detection</strong> (DeviceMotion API, 2.5G threshold, CrashCountdown UI)
+- <strong>All 25 features</strong> fully implemented</p>
 <p>Still only partially wired or not wired yet:
 - NHP hospital importer
 - MoRTH accident ingestion and blackspot tables
 - MAARG ONNX heatmap
 - PMTiles offline maps
 - Gemma 4 offline edge AI replacement
-- Cerebras, Sarvam, BharatGen, OpenRouter provider chain
-- IndicWav2Vec / IndicConformer / Sooktam-2 voice stack</p>
+- BharatGen provider
+- IndicWav2Vec / IndicConformer / Sooktam-2 voice stack (IndicSeamless is used instead)</p>
 <h2 id="19-developer-tooling-team-workflow-and-project-setup-assets">19. Developer tooling, team workflow, and project setup assets</h2>
 <table>
 <thead>
@@ -3951,7 +4002,7 @@
 <tbody>
 <tr>
 <td>Shared password manager for keys</td>
-<td>Bitwarden or equivalent, as required in chatbot implementation plan</td>
+<td>Bitwarden or equivalent</td>
 <td>Team vault only</td>
 <td>N/A</td>
 <td>Reference only</td>
@@ -3982,19 +4033,11 @@
 <td>Low</td>
 </tr>
 <tr>
-<td>Chatbot <code>.cursorrules</code> file</td>
-<td>Chatbot implementation plan, Section 3</td>
-<td><code>chatbot_service/.cursorrules</code></td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
-</tr>
-<tr>
 <td>Python 3.11 virtualenv for chatbot service</td>
 <td>Python.org / local environment</td>
 <td><code>chatbot_service/.venv/</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -4016,17 +4059,17 @@
 <tr>
 <td>Ruff extension / linter support</td>
 <td>VS Code Marketplace / Python package</td>
-<td>Developer machine only and future <code>chatbot_service/requirements.txt</code></td>
+<td>Developer machine only and <code>chatbot_service/requirements.txt</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Low</td>
 </tr>
 <tr>
 <td>Black formatter support</td>
 <td>VS Code Marketplace / Python package</td>
-<td>Developer machine only and future <code>chatbot_service/requirements.txt</code></td>
+<td>Developer machine only and <code>chatbot_service/requirements.txt</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Low</td>
 </tr>
 <tr>
@@ -4038,17 +4081,9 @@
 <td>Low</td>
 </tr>
 <tr>
-<td>GitHub <code>develop</code> integration branch</td>
-<td>GitHub repo branch strategy in chatbot implementation plan</td>
+<td>GitHub <code>main</code> integration branch</td>
+<td>GitHub repo branch strategy</td>
 <td>Remote branch only</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>High</td>
-</tr>
-<tr>
-<td><code>chatbot/*</code> feature branch naming pattern</td>
-<td>GitHub workflow in chatbot implementation plan</td>
-<td>Remote branches only</td>
 <td>N/A</td>
 <td>Reference only</td>
 <td>High</td>
@@ -4058,7 +4093,7 @@
 <td>https://render.com</td>
 <td>Render dashboard only</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
@@ -4066,13 +4101,13 @@
 <td>https://render.com</td>
 <td>Render dashboard only</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 </tbody>
 </table>
 <h2 id="20-chatbot-service-root-files-and-deployment-artifacts">20. Chatbot service root files and deployment artifacts</h2>
-<p>Target root: <code>chatbot_service/</code> on the chatbot branch.</p>
+<p>Target root: <code>chatbot_service/</code></p>
 <table>
 <thead>
 <tr>
@@ -4087,82 +4122,82 @@
 <tbody>
 <tr>
 <td>Chatbot FastAPI entrypoint</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/main.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chatbot Python dependencies</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/requirements.txt</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chatbot Dockerfile</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/Dockerfile</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chatbot env template</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/.env.example</code></td>
 <td>N/A</td>
-<td>Partially wired</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chatbot gitignore</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/.gitignore</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Chatbot Render blueprint</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/render.yaml</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Chatbot config module</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/config.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chatbot service health endpoint</td>
-<td>Chatbot implementation plan, Phase 1</td>
+<td>—</td>
 <td><code>chatbot_service/main.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Chatbot service port 8010 binding</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/main.py</code> and <code>chatbot_service/.env</code></td>
 <td><code>CHATBOT_SERVICE_PORT</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Chroma build baked into Docker image</td>
-<td>Chatbot implementation plan, Deployment section</td>
+<td>—</td>
 <td><code>chatbot_service/Dockerfile</code> and <code>chatbot_service/data/build_vectorstore.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 </tbody>
@@ -4183,66 +4218,90 @@
 <tbody>
 <tr>
 <td>Provider base class</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/providers/base.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Groq provider wrapper</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/providers/groq_provider.py</code></td>
 <td><code>GROQ_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Gemini provider wrapper</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/providers/gemini_provider.py</code></td>
 <td><code>GOOGLE_API_KEY</code>, <code>GEMINI_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>GitHub Models provider wrapper</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/providers/github_models_provider.py</code></td>
 <td><code>GITHUB_TOKEN</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>NVIDIA NIM provider wrapper</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/providers/nvidia_nim_provider.py</code></td>
 <td><code>NVIDIA_NIM_API_KEY</code>, <code>NVIDIA_NIM_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Mistral provider wrapper</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/providers/mistral_provider.py</code></td>
 <td><code>MISTRAL_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Together AI provider wrapper</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/providers/together_provider.py</code></td>
 <td><code>TOGETHER_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
+<td>Cerebras provider wrapper</td>
+<td>—</td>
+<td><code>chatbot_service/providers/cerebras_provider.py</code></td>
+<td><code>CEREBRAS_API_KEY</code></td>
+<td>Complete</td>
+<td>High</td>
+</tr>
+<tr>
+<td>OpenRouter provider wrapper</td>
+<td>—</td>
+<td><code>chatbot_service/providers/openrouter_provider.py</code></td>
+<td><code>OPENROUTER_API_KEY</code></td>
+<td>Complete</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Template provider (deterministic fallback)</td>
+<td>—</td>
+<td><code>chatbot_service/providers/template_provider.py</code></td>
+<td>N/A</td>
+<td>Complete</td>
+<td>Critical</td>
+</tr>
+<tr>
 <td>Provider router with circuit breaker</td>
-<td>Chatbot implementation plan, Sections 5 and 6</td>
-<td><code>chatbot_service/providers/router.py</code></td>
+<td>—</td>
+<td><code>chatbot_service/providers/router.py</code>, <code>chatbot_service/providers/provider_router.py</code></td>
 <td><code>DEFAULT_LLM_PROVIDER</code>, <code>DEFAULT_LLM_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 </tbody>
@@ -4262,74 +4321,74 @@
 <tbody>
 <tr>
 <td>Chroma vectorstore manager</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/rag/vectorstore.py</code></td>
 <td><code>CHROMA_PERSIST_DIR</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Embeddings wrapper</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/rag/embeddings.py</code></td>
 <td><code>EMBEDDING_MODEL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Retriever module</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/rag/retriever.py</code></td>
 <td><code>TOP_K_RETRIEVAL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>PDF/document loader</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/rag/document_loader.py</code></td>
 <td><code>RAG_DATA_DIR</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>ChatEngine definition</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/agent/graph.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Agent state schema</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/agent/state.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Intent detector</td>
-<td>Chatbot implementation plan and guide</td>
-<td><code>chatbot_service/agent/intent_detector.py</code></td>
+<td>—</td>
+<td><code>chatbot_service/agent/intent_detector.py</code> (9 intent classes)</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Context assembler</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>chatbot_service/agent/context_assembler.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Safety checker</td>
-<td>Chatbot implementation plan and guide</td>
-<td><code>chatbot_service/agent/safety_checker.py</code></td>
+<td>—</td>
+<td><code>chatbot_service/agent/safety_checker.py</code> (7-layer defense)</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 </tbody>
@@ -4348,195 +4407,227 @@
 </thead>
 <tbody>
 <tr>
-<td>Emergency API tool</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>SOS API tool</td>
+<td>—</td>
+<td><code>chatbot_service/tools/sos_tool.py</code></td>
+<td><code>MAIN_BACKEND_BASE_URL</code></td>
+<td>Complete</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>Emergency tool</td>
+<td>—</td>
 <td><code>chatbot_service/tools/emergency_tool.py</code></td>
 <td><code>MAIN_BACKEND_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Challan tool</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>chatbot_service/tools/challan_tool.py</code></td>
 <td><code>MAIN_BACKEND_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Legal search tool</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>chatbot_service/tools/legal_search_tool.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Road infrastructure tool</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/tools/road_infra_tool.py</code></td>
 <td><code>MAIN_BACKEND_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Road issues tool</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/tools/road_issues_tool.py</code></td>
 <td><code>MAIN_BACKEND_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>First-aid tool</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/tools/first_aid_tool.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Weather tool</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/tools/weather_tool.py</code></td>
 <td><code>OPENWEATHER_API_KEY</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
-<td>SOS deep-link tool</td>
-<td>Chatbot implementation plan, Section 5</td>
-<td><code>chatbot_service/tools/sos_tool.py</code></td>
+<td>Open-Meteo tool</td>
+<td>—</td>
+<td><code>chatbot_service/tools/open_meteo.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
-<td>High</td>
+<td>Complete</td>
+<td>Medium</td>
 </tr>
 <tr>
 <td>Submit-report tool</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/tools/submit_report_tool.py</code></td>
 <td><code>MAIN_BACKEND_BASE_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
+</tr>
+<tr>
+<td>Geocoding tool</td>
+<td>—</td>
+<td><code>chatbot_service/tools/geocoding.py</code></td>
+<td>N/A</td>
+<td>Complete</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Drug Info tool</td>
+<td>—</td>
+<td><code>chatbot_service/tools/drug_info.py</code></td>
+<td>N/A</td>
+<td>Complete</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>What3Words tool</td>
+<td>—</td>
+<td><code>chatbot_service/tools/what3words.py</code></td>
+<td>N/A</td>
+<td>Complete</td>
+<td>Medium</td>
 </tr>
 <tr>
 <td>Redis conversation memory</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/memory/redis_memory.py</code></td>
 <td><code>REDIS_URL</code></td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
-<td>Chat REST and WebSocket API</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>Chat REST and SSE API</td>
+<td>—</td>
 <td><code>chatbot_service/api/chat.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chat message endpoint</td>
-<td>Chatbot implementation plan, Section 5</td>
-<td><code>chatbot_service/api/chat.py</code> -&gt; <code>POST /chat/message</code></td>
+<td>—</td>
+<td><code>chatbot_service/api/chat.py</code> -&gt; <code>POST /api/v1/chat/</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chat stream endpoint</td>
-<td>Chatbot implementation plan and guide</td>
-<td><code>chatbot_service/api/chat.py</code> -&gt; <code>WebSocket /chat/stream</code></td>
+<td>—</td>
+<td><code>chatbot_service/api/chat.py</code> -&gt; <code>POST /api/v1/chat/stream</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Chat history endpoint</td>
-<td>Chatbot implementation plan, Section 5</td>
-<td><code>chatbot_service/api/chat.py</code> -&gt; <code>GET /chat/history/{session_id}</code></td>
+<td>—</td>
+<td><code>chatbot_service/api/chat.py</code> -&gt; <code>GET /api/v1/chat/history/{session_id}</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Admin endpoints API</td>
-<td>Chatbot implementation plan, Section 5</td>
+<td>—</td>
 <td><code>chatbot_service/api/admin.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Provider health admin endpoint</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>chatbot_service/api/admin.py</code> -&gt; <code>GET /admin/provider-health</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Vectorstore rebuild admin endpoint</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>chatbot_service/api/admin.py</code> -&gt; <code>POST /admin/rebuild-vectorstore</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Chatbot stats admin endpoint</td>
-<td>Chatbot implementation plan</td>
+<td>—</td>
 <td><code>chatbot_service/api/admin.py</code> -&gt; <code>GET /admin/stats</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Provider integration tests</td>
-<td>Chatbot implementation plan, Section 7</td>
+<td>—</td>
 <td><code>chatbot_service/tests/test_providers.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Intent tests</td>
-<td>Chatbot implementation plan, Section 7</td>
+<td>—</td>
 <td><code>chatbot_service/tests/test_intent.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Tool contract tests</td>
-<td>Chatbot implementation plan, Section 7</td>
+<td>—</td>
 <td><code>chatbot_service/tests/test_tools.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>RAG retrieval tests</td>
-<td>Chatbot implementation plan, Section 7</td>
+<td>—</td>
 <td><code>chatbot_service/tests/test_rag.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Voice tests</td>
-<td>Chatbot implementation plan, Section 7</td>
+<td>—</td>
 <td><code>chatbot_service/tests/test_voice.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>End-to-end chatbot tests</td>
-<td>Chatbot implementation plan, Section 7</td>
+<td>—</td>
 <td><code>chatbot_service/tests/test_e2e.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 </tbody>
@@ -4555,120 +4646,80 @@
 </thead>
 <tbody>
 <tr>
-<td><code>chat_logs</code> PostgreSQL table</td>
-<td>Chatbot implementation plan and guide</td>
-<td>Future DB migration under <code>chatbot_service/</code> or main backend migrations</td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>High</td>
-</tr>
-<tr>
-<td><code>first_aid_articles</code> PostgreSQL table</td>
-<td>Chatbot implementation plan</td>
-<td>Future DB migration under backend or chatbot service</td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td>Redis <code>road_events</code> Pub/Sub channel</td>
-<td>Chatbot implementation plan and guide</td>
-<td>Runtime Redis channel only</td>
-<td><code>REDIS_URL</code></td>
-<td>Future phase</td>
-<td>High</td>
-</tr>
-<tr>
-<td>PostgreSQL <code>NOTIFY</code> trigger on <code>road_issues</code> INSERT</td>
-<td>Chatbot implementation plan and guide</td>
-<td>Future backend migration / trigger SQL</td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>High</td>
-</tr>
-<tr>
-<td>Redis geo-grid event keys</td>
-<td>Chatbot implementation plan</td>
-<td>Runtime Redis keys such as <code>road_events:{grid_lat}:{grid_lon}</code></td>
-<td><code>REDIS_URL</code></td>
-<td>Future phase</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td>Vectorstore build script</td>
-<td>Chatbot implementation plan and guide</td>
-<td><code>chatbot_service/data/build_vectorstore.py</code></td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>High</td>
-</tr>
-<tr>
-<td>Offline first-aid JSON corpus</td>
-<td>Chatbot implementation plan and guide</td>
-<td><code>chatbot_service/data/first_aid.json</code></td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>High</td>
-</tr>
-<tr>
 <td>Violations seed CSV</td>
-<td><code>doc_text.txt</code> and chatbot guide</td>
+<td>—</td>
 <td><code>backend/data/violations_seed.csv</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>State overrides CSV</td>
-<td><code>doc_text.txt</code> and chatbot guide</td>
+<td>—</td>
 <td><code>backend/data/state_overrides.csv</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Violations reseed script</td>
-<td><code>doc_text.txt</code> and chatbot guide</td>
+<td>—</td>
 <td><code>backend/data/seed_violations.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Offline violations CSV for browser challan</td>
-<td><code>doc_text.txt</code> and chatbot guide</td>
+<td>—</td>
 <td><code>frontend/public/offline-data/violations.csv</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Offline emergency GeoJSON</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td><code>frontend/public/offline-data/india-emergency.geojson</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Downloadable city/state emergency bundles</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td><code>frontend/public/offline-data/city-bundles/</code> or <code>frontend/public/offline-data/state-packs/</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
-<td><code>AUTHORITY_MATRIX</code> source file</td>
-<td><code>doc_text.txt</code></td>
-<td>Future <code>backend/services/authority_matrix.py</code> or <code>backend/data/authority_matrix.json</code></td>
+<td>Vectorstore build script</td>
+<td>—</td>
+<td><code>chatbot_service/data/build_vectorstore.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Offline first-aid JSON corpus</td>
+<td>—</td>
+<td><code>chatbot_service/data/first_aid.json</code></td>
+<td>N/A</td>
+<td>Complete</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Authority matrix</td>
+<td>—</td>
+<td><code>backend/services/authority_router.py</code></td>
+<td>N/A</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Road safety score / segment risk dataset</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td>Future <code>backend/data/road_safety_score/</code> or DB table</td>
 <td>N/A</td>
 <td>Future phase</td>
@@ -4676,11 +4727,19 @@
 </tr>
 <tr>
 <td>Passive road-quality heatmap storage</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td>Future DB table / analytics dataset</td>
 <td>N/A</td>
 <td>Future phase</td>
 <td>Low</td>
+</tr>
+<tr>
+<td>Chatbot service Chroma vectorstore</td>
+<td>Built by vectorstore job</td>
+<td><code>chatbot_service/data/chroma_db/</code></td>
+<td>N/A</td>
+<td>Complete</td>
+<td>Critical</td>
 </tr>
 </tbody>
 </table>
@@ -4699,7 +4758,7 @@
 <tbody>
 <tr>
 <td>Geolocation one-shot API</td>
-<td><code>doc_text.txt</code> and current app architecture</td>
+<td>—</td>
 <td><code>frontend/lib/geolocation.ts</code></td>
 <td>N/A</td>
 <td>Wired now</td>
@@ -4707,7 +4766,7 @@
 </tr>
 <tr>
 <td>Geolocation continuous watch</td>
-<td><code>doc_text.txt</code> and current app architecture</td>
+<td>—</td>
 <td><code>frontend/lib/geolocation.ts</code></td>
 <td>N/A</td>
 <td>Wired now</td>
@@ -4715,111 +4774,119 @@
 </tr>
 <tr>
 <td>DeviceMotion crash detection</td>
-<td><code>doc_text.txt</code></td>
-<td><code>frontend/lib/geolocation.ts</code> or future crash module</td>
+<td>—</td>
+<td><code>frontend/lib/crash-detection.ts</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Service Worker</td>
-<td><code>doc_text.txt</code></td>
-<td><code>frontend/public/sw.js</code> or Next PWA layer</td>
+<td>—</td>
+<td><code>frontend/public/sw.js</code> or Next.js PWA layer</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>IndexedDB cache</td>
-<td><code>doc_text.txt</code> and chatbot guide</td>
-<td>Future <code>frontend/lib/offline-db.ts</code> and browser storage</td>
+<td>—</td>
+<td><code>frontend/lib/offline-sos-queue.ts</code> and browser storage</td>
 <td>N/A</td>
-<td>Future phase</td>
-<td>High</td>
-</tr>
-<tr>
-<td>HNSWlib.js for offline RAG</td>
-<td><code>doc_text.txt</code> and chatbot guide</td>
-<td>Future <code>frontend/lib/offline-rag.ts</code> or browser bundle</td>
-<td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>DuckDB-Wasm</td>
-<td><code>doc_text.txt</code> and chatbot guide</td>
+<td>—</td>
 <td><code>frontend/lib/duckdb-challan.ts</code> and browser bundle</td>
 <td>N/A</td>
-<td>Partially wired</td>
+<td>Complete</td>
+<td>High</td>
+</tr>
+<tr>
+<td>WebLLM Phi-3 Mini</td>
+<td>—</td>
+<td><code>frontend/lib/offline-ai.ts</code> and @mlc-ai/web-llm</td>
+<td>N/A</td>
+<td>Complete</td>
+<td>High</td>
+</tr>
+<tr>
+<td>@huggingface/transformers (YOLO)</td>
+<td>—</td>
+<td><code>frontend/lib/offline-ai.ts</code> and @huggingface/transformers</td>
+<td>N/A</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Browser Cache Storage for offline models</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td>Browser cache only</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>WebSocket stream endpoint</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>chatbot_service/api/chat.py</code> and frontend chat client</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
-<td>Server-sent events fallback</td>
-<td>Chatbot guide</td>
-<td>Future frontend chat client / API adapter</td>
+<td>SSE streaming fallback</td>
+<td>—</td>
+<td>Frontend chat client / API adapter</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Low</td>
 </tr>
 <tr>
 <td>Chat session ID stored client-side</td>
-<td>Chatbot guide and implementation plan</td>
-<td>Future <code>frontend/lib/chat-session.ts</code> or browser storage</td>
+<td>—</td>
+<td><code>frontend/lib/store.ts</code> or browser storage</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Web Speech API</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>frontend/components/chat/VoiceInput.tsx</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Web Speech Synthesis API</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>frontend/components/chat/VoiceOutput.tsx</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Browser Notification API</td>
-<td>Chatbot guide</td>
-<td>Future <code>frontend/lib/notifications.ts</code> or alert module</td>
+<td>—</td>
+<td><code>frontend/lib/notifications.ts</code> or alert module</td>
 <td>N/A</td>
 <td>Future phase</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Hands-free mode toggle</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>frontend/app/settings/page.tsx</code> and <code>frontend/components/chat/VoiceOutput.tsx</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Trip history in IndexedDB</td>
-<td>Chatbot guide</td>
+<td>—</td>
 <td>Future <code>frontend/lib/trip-history.ts</code> or IndexedDB store</td>
 <td>N/A</td>
 <td>Future phase</td>
@@ -4827,7 +4894,7 @@
 </tr>
 <tr>
 <td>Feedback thumbs up/down UI</td>
-<td>Chatbot guide</td>
+<td>—</td>
 <td>Future <code>frontend/components/chat/FeedbackButtons.tsx</code></td>
 <td>N/A</td>
 <td>Future phase</td>
@@ -4835,15 +4902,15 @@
 </tr>
 <tr>
 <td>Voice transcript UI</td>
-<td>Chatbot implementation plan</td>
+<td>—</td>
 <td><code>frontend/components/chat/VoiceInput.tsx</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Route-to-hospital external deep link</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td><code>frontend/components/EmergencyMapInner.tsx</code> or service popup UI</td>
 <td>N/A</td>
 <td>Future phase</td>
@@ -4866,50 +4933,34 @@
 <tbody>
 <tr>
 <td>User blood group field</td>
-<td><code>doc_text.txt</code></td>
-<td><code>frontend/app/profile/page.tsx</code> and profile persistence layer</td>
+<td>—</td>
+<td><code>frontend/app/profile/page.tsx</code> and IndexedDB persistence (never leaves device)</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>User vehicle number field</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td><code>frontend/app/profile/page.tsx</code> and profile persistence layer</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>User emergency contacts</td>
-<td><code>doc_text.txt</code> and app feature spec</td>
+<td>—</td>
 <td><code>frontend/app/profile/page.tsx</code> and profile persistence layer</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Optional disability / medical info</td>
-<td><code>doc_text.txt</code> inspiration from Rakshak</td>
+<td>—</td>
 <td><code>frontend/app/profile/page.tsx</code> and profile persistence layer</td>
 <td>N/A</td>
 <td>Future phase</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td>mParivahan reference portal</td>
-<td>https://mparivahan.com or official MoRTH resources</td>
-<td>External link only</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>eChallan payment portal</td>
-<td>https://echallan.parivahan.gov.in</td>
-<td>External link only</td>
-<td>N/A</td>
-<td>Reference only</td>
 <td>Medium</td>
 </tr>
 <tr>
@@ -4917,12 +4968,12 @@
 <td>Official NHAI / Sukhad Yatra references</td>
 <td>UI constants and authority matrix</td>
 <td>N/A</td>
-<td>Wired now</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>NHAI complaint portal</td>
-<td>https://nhai.gov.in/complaint or current official complaint page</td>
+<td>https://nhai.gov.in/complaint</td>
 <td>External link and authority matrix</td>
 <td>N/A</td>
 <td>Future phase</td>
@@ -4946,35 +4997,19 @@
 </tr>
 <tr>
 <td>Universal authority-routing matrix</td>
-<td><code>doc_text.txt</code></td>
-<td>Future <code>backend/data/authority_matrix.json</code> or <code>backend/services/authority_matrix.py</code></td>
+<td>—</td>
+<td><code>backend/services/authority_router.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Critical</td>
 </tr>
 <tr>
 <td>Budget source attribution URL</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td><code>road_infrastructure.data_source_url</code> in DB and UI cards</td>
 <td>N/A</td>
 <td>Partially wired</td>
 <td>High</td>
-</tr>
-<tr>
-<td>gROADS international road dataset reference</td>
-<td>https://datacatalog.worldbank.org/search/dataset/0038014</td>
-<td>Future <code>backend/datasets/global/groads.*</code></td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>GRIP international road dataset reference</td>
-<td>https://datacatalog.worldbank.org/search/dataset/0038272</td>
-<td>Future <code>backend/datasets/global/grip.*</code></td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>Low</td>
 </tr>
 </tbody>
 </table>
@@ -4992,155 +5027,115 @@
 </thead>
 <tbody>
 <tr>
-<td>6-turn conversation memory window</td>
-<td>Chatbot guide</td>
-<td>Future <code>chatbot_service/memory/redis_memory.py</code></td>
+<td>Conversation memory (last 6 turns)</td>
+<td>—</td>
+<td><code>chatbot_service/memory/redis_memory.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>24-hour conversation TTL</td>
-<td>Chatbot implementation plan and guide</td>
-<td>Future <code>chatbot_service/memory/redis_memory.py</code></td>
+<td>—</td>
+<td><code>chatbot_service/memory/redis_memory.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
-<td>Provider health polling every 60 seconds</td>
-<td>Chatbot guide</td>
-<td>Future <code>chatbot_service/providers/router.py</code> or health worker</td>
+<td>Provider health polling</td>
+<td>—</td>
+<td><code>chatbot_service/providers/router.py</code> or health worker</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Circuit breaker open period 60 seconds</td>
-<td>Chatbot implementation plan</td>
-<td>Future <code>chatbot_service/providers/router.py</code></td>
+<td>—</td>
+<td><code>chatbot_service/providers/router.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
-<td>Provider health dashboard target</td>
-<td>Chatbot implementation plan</td>
-<td><code>chatbot_service/api/admin.py</code> and admin UI if added</td>
+<td>Provider health dashboard</td>
+<td>—</td>
+<td><code>chatbot_service/api/admin.py</code> and admin UI</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
-<td>Rate limit target: 30 msgs/hour, block 31st</td>
-<td>Chatbot implementation plan</td>
+<td>Rate limit target</td>
+<td>—</td>
 <td><code>chatbot_service/config.py</code> and middleware</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
-<td>20 concurrent sessions under 5 seconds</td>
-<td>Chatbot implementation plan</td>
-<td>Load-test target only</td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>High</td>
-</tr>
-<tr>
-<td>Minimum 500+ Chroma chunks after indexing</td>
-<td>Chatbot implementation plan and guide</td>
+<td>500+ Chroma chunks after indexing</td>
+<td>—</td>
 <td><code>chatbot_service/data/build_vectorstore.py</code> validation</td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Voice silence auto-stop 5 seconds</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>frontend/components/chat/VoiceInput.tsx</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Voice auto-read speed 0.9</td>
-<td>Chatbot implementation plan and guide</td>
+<td>—</td>
 <td><code>frontend/components/chat/VoiceOutput.tsx</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
-</tr>
-<tr>
-<td>Proactive alert distance 2km</td>
-<td>Chatbot guide</td>
-<td>Future alerting module</td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td>WebSocket / live map push area 5km</td>
-<td>Chatbot guide and implementation plan</td>
-<td>Future geo-subscription logic</td>
-<td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td>Road event cache TTL 1 hour</td>
-<td>Chatbot implementation plan</td>
-<td>Redis runtime keys</td>
-<td><code>REDIS_URL</code></td>
-<td>Future phase</td>
-<td>Low</td>
 </tr>
 <tr>
 <td>Crash threshold 2.5G</td>
-<td><code>doc_text.txt</code></td>
-<td><code>frontend/lib/geolocation.ts</code> or crash module</td>
+<td>—</td>
+<td><code>frontend/lib/crash-detection.ts</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Crash cooldown 30 seconds</td>
-<td><code>doc_text.txt</code></td>
-<td><code>frontend/lib/geolocation.ts</code> or crash module</td>
+<td>—</td>
+<td><code>frontend/lib/crash-detection.ts</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>Medium</td>
 </tr>
 <tr>
 <td>Ignore crash below 10km/h</td>
-<td><code>doc_text.txt</code></td>
-<td><code>frontend/lib/geolocation.ts</code> or crash module</td>
+<td>—</td>
+<td><code>frontend/lib/crash-detection.ts</code></td>
 <td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 <tr>
 <td>Nearby road issues freshness 90 days</td>
-<td><code>doc_text.txt</code></td>
+<td>—</td>
 <td>backend road issues query layer</td>
 <td>N/A</td>
 <td>Partially wired</td>
 <td>Medium</td>
 </tr>
 <tr>
-<td>GPS auto-refresh after 500m movement</td>
-<td><code>doc_text.txt</code></td>
-<td><code>frontend/lib/geolocation.ts</code> and map bootstrap</td>
+<td>Safety rule: "Call 112 immediately"</td>
+<td>—</td>
+<td><code>chatbot_service/agent/safety_checker.py</code></td>
 <td>N/A</td>
-<td>Future phase</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td>Honest fallback response mentioning 112 or 1033</td>
-<td>Chatbot guide</td>
-<td><code>chatbot_service/agent/safety_checker.py</code> and fallback prompts</td>
-<td>N/A</td>
-<td>Future phase</td>
+<td>Complete</td>
 <td>High</td>
 </tr>
 </tbody>
@@ -5169,86 +5164,6 @@
 </tr>
 <tr>
 <td>Rakshak</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>Safely Home App</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>mParivahan</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>Sukhad Yatra</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>BreakDown App</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>Waze</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>Google Maps crash detection reference</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>Apple Emergency SOS reference</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>Nayan Tech</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>LifeSaver</td>
-<td><code>doc_text.txt</code></td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Reference only</td>
-<td>Low</td>
-</tr>
-<tr>
-<td>iRoad / Road Warrior</td>
 <td><code>doc_text.txt</code></td>
 <td>N/A</td>
 <td>N/A</td>

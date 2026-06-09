@@ -1497,10 +1497,10 @@
 </span></code></pre></div>
 <p>After cloning, verify the structure:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls<span class="w"> </span>-la
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># You should see: backend/, frontend/, docs/, README.md, SETUP.md, SKILL.md</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># You should see: backend/, chatbot_service/, frontend/, docs/, README.md, SETUP.md</span>
 </span></code></pre></div></p>
 <hr />
-<h1 id="backend-setup">🔧 BACKEND SETUP</h1>
+<h1 id="backend-setup">BACKEND SETUP</h1>
 <hr />
 <h2 id="step-2-create-a-python-virtual-environment">Step 2 — Create a Python Virtual Environment</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>backend
@@ -1548,7 +1548,7 @@
 - Health check: <a href="http://localhost:8000/health">http://localhost:8000/health</a>
 - Swagger API docs: <a href="http://localhost:8000/docs">http://localhost:8000/docs</a></p>
 <hr />
-<h1 id="chatbot-service-setup">🤖 CHATBOT SERVICE SETUP</h1>
+<h1 id="chatbot-service-setup">CHATBOT SERVICE SETUP</h1>
 <hr />
 <h2 id="step-51-create-a-python-virtual-environment-for-chatbot">Step 5.1 — Create a Python Virtual Environment for Chatbot</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>chatbot_service
@@ -1566,7 +1566,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
 </span></code></pre></div>
-<p>Edit <code>chatbot_service/.env</code> with your API keys (Gemini, Groq, Twilio if needed).</p>
+<p>Edit <code>chatbot_service/.env</code> with your API keys (Gemini, Groq, etc.).</p>
 <p><strong>Optional but recommended — Email alerts for production failures:</strong>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># In chatbot_service/.env — add these for failure notifications:</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">ALERT_EMAIL</span><span class="o">=</span>your-gmail@gmail.com
@@ -1574,7 +1574,7 @@
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nv">ALERT_EMAIL_TO</span><span class="o">=</span>team-lead@gmail.com<span class="w">         </span><span class="c1"># Recipient (defaults to ALERT_EMAIL)</span>
 </span></code></pre></div></p>
 <blockquote>
-<p>💡 <strong>Get a Gmail App Password:</strong> Go to <a href="https://myaccount.google.com/apppasswords">myaccount.google.com/apppasswords</a> → Select "Mail" → "Other" → Name it "SafeVixAI" → Copy the 16-char code.</p>
+<p><strong>Get a Gmail App Password:</strong> Go to <a href="https://myaccount.google.com/apppasswords">myaccount.google.com/apppasswords</a> → Select "Mail" → "Other" → Name it "SafeVixAI" → Copy the 16-char code.</p>
 </blockquote>
 <hr />
 <h2 id="step-53-run-the-chatbot-service">Step 5.3 — Run the Chatbot Service</h2>
@@ -1584,7 +1584,7 @@
 - Health check: <a href="http://localhost:8010/health">http://localhost:8010/health</a>
 - Swagger API docs: <a href="http://localhost:8010/docs">http://localhost:8010/docs</a></p>
 <hr />
-<h1 id="frontend-setup">🖥️ FRONTEND SETUP</h1>
+<h1 id="frontend-setup">FRONTEND SETUP</h1>
 <hr />
 <h2 id="step-6-install-frontend-dependencies">Step 6 — Install Frontend Dependencies</h2>
 <p>Open a <strong>new terminal</strong> (keep backend running):</p>
@@ -1603,7 +1603,7 @@
 - <strong>@mlc-ai/web-llm</strong> — offline AI (browser-based LLM)
 - <strong>@turf/turf</strong> — geospatial analysis utilities</p>
 <blockquote>
-<p>⏱️ First install takes 2–4 minutes.</p>
+<p>First install takes 2–4 minutes.</p>
 </blockquote>
 <p>Verify:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>npx<span class="w"> </span>next<span class="w"> </span>--version
@@ -1615,6 +1615,7 @@
 </span></code></pre></div>
 <p>Edit <code>frontend/.env</code> and set:
 - <code>NEXT_PUBLIC_BACKEND_URL</code> — backend API URL (default: <code>http://localhost:8000</code>)
+- <code>NEXT_PUBLIC_CHATBOT_URL</code> — chatbot service URL (default: <code>http://localhost:8010</code>)
 - Any map tile API keys if using premium tiles</p>
 <hr />
 <h2 id="step-8-run-the-frontend">Step 8 — Run the Frontend</h2>
@@ -1660,15 +1661,15 @@
 </span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="c1"># Frontend: http://localhost:3000</span>
 </span></code></pre></div>
 <hr />
-<h1 id="all-useful-commands">📋 All Useful Commands</h1>
+<h1 id="all-useful-commands">All Useful Commands</h1>
 <h2 id="backend-commands">Backend Commands</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Run server</span>
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
 </span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Testing</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>pytest<span class="w"> </span>tests/<span class="w"> </span>-v<span class="w">                                         </span><span class="c1"># Run all tests</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>pytest<span class="w"> </span>tests/test_challan.py<span class="w"> </span>-v<span class="w">                          </span><span class="c1"># Run one test file</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>pytest<span class="w"> </span>tests/test_challan.py::test_drunk_driving_fine<span class="w"> </span>-v<span class="w"> </span><span class="c1"># Run single test</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>pytest<span class="w"> </span>tests/<span class="w"> </span>-q<span class="w">                                         </span><span class="c1"># Run all tests (quiet mode)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>pytest<span class="w"> </span>tests/test_challan.py<span class="w"> </span>-q<span class="w">                          </span><span class="c1"># Run one test file</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>pytest<span class="w"> </span>tests/test_challan.py::test_drunk_driving_fine<span class="w"> </span>-v<span class="w"> </span><span class="c1"># Run single test (verbose)</span>
 </span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
 </span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="c1"># Test API endpoints</span>
 </span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/emergency/nearby?lat=13.0827&amp;lon=80.2707&quot;</span>
@@ -1680,30 +1681,47 @@
 </span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">                                </span><span class="c1"># Activate (Linux/Mac)</span>
 </span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>deactivate<span class="w">                                               </span><span class="c1"># Deactivate</span>
 </span></code></pre></div>
+<h2 id="chatbot-service-commands">Chatbot Service Commands</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Run server</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8010</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Testing</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>pytest<span class="w"> </span>tests/<span class="w"> </span>-q<span class="w">                                         </span><span class="c1"># Run all tests (quiet mode)</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>pytest<span class="w"> </span>tests/test_safety_checker.py<span class="w"> </span>-q<span class="w">                   </span><span class="c1"># Run one test file</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c1"># Test API endpoints</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8010/health&quot;</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8010/api/v1/chat/&quot;</span><span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;message&quot;:&quot;Hello&quot;}&#39;</span>
+</span></code></pre></div>
 <h2 id="frontend-commands">Frontend Commands</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Development</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w">                                              </span><span class="c1"># Start dev server (hot reload)</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w">                                            </span><span class="c1"># Build for production</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>npm<span class="w"> </span>start<span class="w">                                                </span><span class="c1"># Run production build</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># Code quality</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>npm<span class="w"> </span>run<span class="w"> </span>lint<span class="w">                                             </span><span class="c1"># Run ESLint</span>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="c1"># Testing</span>
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>npm<span class="w"> </span><span class="nb">test</span><span class="w">                                                 </span><span class="c1"># Run tests</span>
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>npm<span class="w"> </span>run<span class="w"> </span>test:watch<span class="w">                                       </span><span class="c1"># Run tests in watch mode</span>
-</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
-</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># Packages</span>
-</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>npm<span class="w"> </span>install<span class="w">                                              </span><span class="c1"># Install all dependencies</span>
-</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>npm<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>package-name<span class="o">]</span><span class="w">                               </span><span class="c1"># Add a new package</span>
-</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>npm<span class="w"> </span>uninstall<span class="w"> </span><span class="o">[</span>package-name<span class="o">]</span><span class="w">                             </span><span class="c1"># Remove a package</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Development</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w">                                              </span><span class="c1"># Start dev server (hot reload)</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w">                                            </span><span class="c1"># Build for production</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>npm<span class="w"> </span>start<span class="w">                                                </span><span class="c1"># Run production build</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="c1"># Code quality</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>npm<span class="w"> </span>run<span class="w"> </span>lint<span class="w">                                             </span><span class="c1"># Run ESLint</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="c1"># Testing</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>npm<span class="w"> </span><span class="nb">test</span><span class="w">                                                 </span><span class="c1"># Run tests (572 total)</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="c1"># Packages</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>npm<span class="w"> </span>install<span class="w">                                              </span><span class="c1"># Install all dependencies</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>npm<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>package-name<span class="o">]</span><span class="w">                               </span><span class="c1"># Add a new package</span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>npm<span class="w"> </span>uninstall<span class="w"> </span><span class="o">[</span>package-name<span class="o">]</span><span class="w">                             </span><span class="c1"># Remove a package</span>
+</span></code></pre></div>
+<h2 id="e2e-testing">E2E Testing</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># From frontend/ directory</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>e2e/<span class="w">                                 </span><span class="c1"># Run all E2E tests</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>e2e/<span class="w"> </span>--grep-invert<span class="o">=</span><span class="s2">&quot;Visual&quot;</span><span class="w">          </span><span class="c1"># Run excluding visual tests</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>npx<span class="w"> </span>playwright<span class="w"> </span>show-report<span class="w">                               </span><span class="c1"># View last test report</span>
 </span></code></pre></div>
 <hr />
-<h1 id="troubleshooting">🔍 Troubleshooting</h1>
+<h1 id="troubleshooting">Troubleshooting</h1>
 <h3 id="modulenotfounderror-in-backend"><code>ModuleNotFoundError</code> in backend</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Make sure .venv is activated — check for (.venv) in terminal</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>.venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Make sure .venv is activated — check for (.venv) in terminal</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>.venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </span></code></pre></div>
 <h3 id="map-not-displaying-in-browser">Map not displaying in browser</h3>
 <ul>
@@ -1717,12 +1735,12 @@
 <li>Copy the <code>gsk_...</code> key into <code>backend/.env</code></li>
 </ul>
 <h3 id="port-already-in-use">Port already in use</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Windows — find and kill the process</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>netstat<span class="w"> </span>-ano<span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span>:8000
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>taskkill<span class="w"> </span>/PID<span class="w"> </span><span class="o">[</span>PID_NUMBER<span class="o">]</span><span class="w"> </span>/F
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="c1"># Run on a different port</span>
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w"> </span>--<span class="w"> </span>-p<span class="w"> </span><span class="m">3001</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Windows — find and kill the process</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>netstat<span class="w"> </span>-ano<span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span>:8000
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>taskkill<span class="w"> </span>/PID<span class="w"> </span><span class="o">[</span>PID_NUMBER<span class="o">]</span><span class="w"> </span>/F
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1"># Run on a different port</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>npm<span class="w"> </span>run<span class="w"> </span>dev<span class="w"> </span>--<span class="w"> </span>-p<span class="w"> </span><span class="m">3001</span>
 </span></code></pre></div>
 <hr />
 <p><em>For full deployment to Vercel + Render.com, see <a href="docs/Deployment.md"><code>docs/Deployment.md</code></a></em>

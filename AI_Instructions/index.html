@@ -707,10 +707,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview-of-ai-components" class="md-nav__link">
+  <a href="#chatbot-agent-architecture-v20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview of AI Components
+        Chatbot Agent Architecture v2.0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chatbot Agent Architecture v2.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-of-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location of Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-intent-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9 Intent Classes
       
     </span>
   </a>
@@ -718,73 +757,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-1-online-llm-9-provider-agentic-rag-server-side" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AI Layer 1: Online LLM — 9-provider Agentic RAG (Server-Side)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AI Layer 1: Online LLM — 9-provider Agentic RAG (Server-Side)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-it-does" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What It Does
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9-provider-fallback-chain" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9-provider Fallback Chain
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-multi-provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why Multi-Provider?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#system-prompt-do-not-change-without-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Prompt (Do Not Change Without Testing)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-agentic-rag-works-step-by-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How Agentic RAG Works Step by Step
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#13-agent-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -794,29 +766,24 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-2-offline-llm-webllm-phi-3-mini-browser-side" class="md-nav__link">
+  <a href="#9-llm-providers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 2: Offline LLM — WebLLM Phi-3 Mini (Browser-Side)
+        9 LLM Providers
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 2: Offline LLM — WebLLM Phi-3 Mini (Browser-Side)">
+    <nav class="md-nav" aria-label="9 LLM Providers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-it-does_1" class="md-nav__link">
+  <a href="#fallback-chain-in-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What It Does
+        Fallback Chain (in order)
       
     </span>
   </a>
@@ -824,10 +791,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-phi-3-mini" class="md-nav__link">
+  <a href="#indian-language-auto-routing-separate-path-not-in-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Phi-3 Mini?
+        Indian Language Auto-Routing (Separate Path, Not in Chain)
       
     </span>
   </a>
@@ -835,10 +802,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#model-selection-logic" class="md-nav__link">
+  <a href="#provider-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Model Selection Logic
+        Provider Files
       
     </span>
   </a>
@@ -846,21 +813,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#offline-rag-architecture" class="md-nav__link">
+  <a href="#auto-routing-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Offline RAG Architecture
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#key-offline-limitation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Offline Limitation
+        Auto-Routing Rules
       
     </span>
   </a>
@@ -873,22 +829,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-3-intent-detection" class="md-nav__link">
+  <a href="#system-prompt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 3: Intent Detection
+        System Prompt
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 3: Intent Detection">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RAG System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rule-based-classification-system" class="md-nav__link">
+  <a href="#vector-store" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rule-Based Classification System
+        Vector Store
       
     </span>
   </a>
@@ -896,10 +863,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-intent-first" class="md-nav__link">
+  <a href="#two-chromadb-instances" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Intent-First?
+        Two ChromaDB Instances
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuilding-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuilding the Index
       
     </span>
   </a>
@@ -912,22 +890,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-4-in-browser-computer-vision-yolov8n" class="md-nav__link">
+  <a href="#safety-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 4: In-Browser Computer Vision — YOLOv8n
+        Safety System
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 4: In-Browser Computer Vision — YOLOv8n">
+    <nav class="md-nav" aria-label="Safety System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-it-does_2" class="md-nav__link">
+  <a href="#safetychecker-chatbot_serviceagentsafety_checkerpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What It Does
+        SafetyChecker (chatbot_service/agent/safety_checker.py)
       
     </span>
   </a>
@@ -935,21 +913,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#ai-governance-chatbot_serviceagentgovernancepy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How It Works
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#confidence-display" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Confidence Display
+        AI Governance (chatbot_service/agent/governance.py)
       
     </span>
   </a>
@@ -962,22 +929,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-5-rag-knowledge-base-chromadb" class="md-nav__link">
+  <a href="#speech-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 5: RAG Knowledge Base — ChromaDB
+        Speech System
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 5: RAG Knowledge Base — ChromaDB">
+    <nav class="md-nav" aria-label="Speech System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#whats-indexed" class="md-nav__link">
+  <a href="#indicseamlessservice" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What's Indexed
+        IndicSeamlessService
       
     </span>
   </a>
@@ -985,32 +952,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#building-the-index" class="md-nav__link">
+  <a href="#endpoint-truth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building the Index
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#server-side-embeddings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Server-Side Embeddings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#chromadb-persistence-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚠ ChromaDB Persistence Rules
+        Endpoint Truth
       
     </span>
   </a>
@@ -1023,10 +968,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adding-new-knowledge-to-the-rag" class="md-nav__link">
+  <a href="#14-language-mapping" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adding New Knowledge to the RAG
+        14-Language Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversation-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offline-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline AI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Offline AI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offline-llm-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline LLM Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Worker
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Design Decisions
       
     </span>
   </a>
@@ -1038,6 +1044,17 @@
     <span class="md-ellipsis">
       
         Chatbot Testing Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-rules-never-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Rules (Never Break)
       
     </span>
   </a>
@@ -1712,10 +1729,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview-of-ai-components" class="md-nav__link">
+  <a href="#chatbot-agent-architecture-v20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview of AI Components
+        Chatbot Agent Architecture v2.0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chatbot Agent Architecture v2.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-of-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location of Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-intent-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9 Intent Classes
       
     </span>
   </a>
@@ -1723,73 +1779,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-1-online-llm-9-provider-agentic-rag-server-side" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AI Layer 1: Online LLM — 9-provider Agentic RAG (Server-Side)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AI Layer 1: Online LLM — 9-provider Agentic RAG (Server-Side)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-it-does" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What It Does
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9-provider-fallback-chain" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9-provider Fallback Chain
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-multi-provider" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why Multi-Provider?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#system-prompt-do-not-change-without-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Prompt (Do Not Change Without Testing)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-agentic-rag-works-step-by-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How Agentic RAG Works Step by Step
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#13-agent-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1799,29 +1788,24 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-2-offline-llm-webllm-phi-3-mini-browser-side" class="md-nav__link">
+  <a href="#9-llm-providers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 2: Offline LLM — WebLLM Phi-3 Mini (Browser-Side)
+        9 LLM Providers
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 2: Offline LLM — WebLLM Phi-3 Mini (Browser-Side)">
+    <nav class="md-nav" aria-label="9 LLM Providers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-it-does_1" class="md-nav__link">
+  <a href="#fallback-chain-in-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What It Does
+        Fallback Chain (in order)
       
     </span>
   </a>
@@ -1829,10 +1813,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-phi-3-mini" class="md-nav__link">
+  <a href="#indian-language-auto-routing-separate-path-not-in-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Phi-3 Mini?
+        Indian Language Auto-Routing (Separate Path, Not in Chain)
       
     </span>
   </a>
@@ -1840,10 +1824,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#model-selection-logic" class="md-nav__link">
+  <a href="#provider-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Model Selection Logic
+        Provider Files
       
     </span>
   </a>
@@ -1851,21 +1835,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#offline-rag-architecture" class="md-nav__link">
+  <a href="#auto-routing-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Offline RAG Architecture
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#key-offline-limitation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Offline Limitation
+        Auto-Routing Rules
       
     </span>
   </a>
@@ -1878,22 +1851,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-3-intent-detection" class="md-nav__link">
+  <a href="#system-prompt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 3: Intent Detection
+        System Prompt
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 3: Intent Detection">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RAG System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rule-based-classification-system" class="md-nav__link">
+  <a href="#vector-store" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rule-Based Classification System
+        Vector Store
       
     </span>
   </a>
@@ -1901,10 +1885,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-intent-first" class="md-nav__link">
+  <a href="#two-chromadb-instances" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Intent-First?
+        Two ChromaDB Instances
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuilding-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuilding the Index
       
     </span>
   </a>
@@ -1917,22 +1912,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-4-in-browser-computer-vision-yolov8n" class="md-nav__link">
+  <a href="#safety-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 4: In-Browser Computer Vision — YOLOv8n
+        Safety System
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 4: In-Browser Computer Vision — YOLOv8n">
+    <nav class="md-nav" aria-label="Safety System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-it-does_2" class="md-nav__link">
+  <a href="#safetychecker-chatbot_serviceagentsafety_checkerpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What It Does
+        SafetyChecker (chatbot_service/agent/safety_checker.py)
       
     </span>
   </a>
@@ -1940,21 +1935,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#ai-governance-chatbot_serviceagentgovernancepy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How It Works
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#confidence-display" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Confidence Display
+        AI Governance (chatbot_service/agent/governance.py)
       
     </span>
   </a>
@@ -1967,22 +1951,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai-layer-5-rag-knowledge-base-chromadb" class="md-nav__link">
+  <a href="#speech-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AI Layer 5: RAG Knowledge Base — ChromaDB
+        Speech System
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AI Layer 5: RAG Knowledge Base — ChromaDB">
+    <nav class="md-nav" aria-label="Speech System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#whats-indexed" class="md-nav__link">
+  <a href="#indicseamlessservice" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What's Indexed
+        IndicSeamlessService
       
     </span>
   </a>
@@ -1990,32 +1974,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#building-the-index" class="md-nav__link">
+  <a href="#endpoint-truth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building the Index
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#server-side-embeddings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Server-Side Embeddings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#chromadb-persistence-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚠ ChromaDB Persistence Rules
+        Endpoint Truth
       
     </span>
   </a>
@@ -2028,10 +1990,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adding-new-knowledge-to-the-rag" class="md-nav__link">
+  <a href="#14-language-mapping" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adding New Knowledge to the RAG
+        14-Language Mapping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversation-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offline-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline AI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Offline AI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offline-llm-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline LLM Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Worker
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Design Decisions
       
     </span>
   </a>
@@ -2043,6 +2066,17 @@
     <span class="md-ellipsis">
       
         Chatbot Testing Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-rules-never-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Rules (Never Break)
       
     </span>
   </a>
@@ -2070,345 +2104,520 @@
 
 
 <h1 id="safevixai-ai-instructions">SafeVixAI — AI Instructions</h1>
-<h2 id="overview-of-ai-components">Overview of AI Components</h2>
-<p>SafeVixAI uses AI at <strong>five distinct layers</strong> — each with a specific purpose and technical implementation. This document explains how each AI component works, why it was chosen, and how to implement or extend it.</p>
+<blockquote>
+<p><strong>Version 2.1</strong> | IIT Madras Road Safety Hackathon 2026<br />
+Reflects the current chatbot/agent architecture.</p>
+</blockquote>
 <hr />
-<h2 id="ai-layer-1-online-llm-9-provider-agentic-rag-server-side">AI Layer 1: Online LLM — 9-provider Agentic RAG (Server-Side)</h2>
-<h3 id="what-it-does">What It Does</h3>
-<p>Answers user questions about traffic laws, first aid, and emergency services using an <strong>agentic RAG pipeline</strong> running on the separate chatbot service (port 8010). Every answer is grounded in actual documents + 13 agent tools — not model training data.</p>
-<h3 id="9-provider-fallback-chain">9-provider Fallback Chain</h3>
-<p>Instead of relying on a single LLM, the chatbot cascades through 9 providers for zero downtime:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Groq → Cerebras → Gemini → GitHub Models → NVIDIA NIM → OpenRouter → Mistral → Together → Template
+<h2 id="chatbot-agent-architecture-v20">Chatbot Agent Architecture v2.0</h2>
+<h3 id="execution-flow">Execution Flow</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>User message
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  → SafetyChecker.evaluate()          # Block harmful queries, prepend &quot;Call 112 immediately&quot; for injuries
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  → IntentDetector.detect()           # 9 intent classes, keyword/regex, &lt;1ms
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  → ContextAssembler.assemble()        # Call relevant tools + retrieve RAG chunks
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  → ProviderRouter.generate()          # LLM call with asyncio.wait_for() timeout + auto-fallback chain
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  → ConversationMemoryStore.append()   # Redis session persistence (24h TTL)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  → ChatResponse
 </span></code></pre></div>
-<p><strong>Indian language auto-routing:</strong>
-- Hindi, Tamil, Telugu, Kannada, Bengali, etc. → <strong>Sarvam AI sarvam-30b</strong> (trained on 4 trillion Indic tokens)
-- Legal/challan queries in Indian languages → <strong>Sarvam AI sarvam-105b</strong> (higher accuracy for law)
-- English → Default chain (Groq primary, 300+ tok/s)
-- Language detection: regex-based Unicode script ranges (no NLTK dependency)</p>
-<h3 id="why-multi-provider">Why Multi-Provider?</h3>
-<ul>
-<li><strong>Zero downtime</strong>: If Groq rate-limits, Cerebras takes over, then Gemini, etc.</li>
-<li><strong>Speed</strong>: Groq delivers 300+ tok/s, Cerebras 2000+ tok/s</li>
-<li><strong>Cost</strong>: Every provider has a free tier — total LLM cost is ₹0</li>
-<li><strong>Specialization</strong>: Sarvam AI trained specifically for Indian languages</li>
-</ul>
-<h3 id="system-prompt-do-not-change-without-testing">System Prompt (Do Not Change Without Testing)</h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">&quot;You are SafeVixAI, an AI assistant built for Indian road safety and emergency response. &quot;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;Help users with: emergency contacts, first aid, pothole/accident reporting, traffic challans, &quot;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s2">&quot;navigation, and road authority escalation. &quot;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s2">&quot;Always answer concisely in the SAME language the user writes in (Hindi, Tamil, Telugu, etc.). &quot;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="s2">&quot;For life-threatening situations, always lead with 112 (universal emergency) or 102 (ambulance). &quot;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="s2">&quot;Be factual — cite MV Act sections when answering challan questions.&quot;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="how-agentic-rag-works-step-by-step">How Agentic RAG Works Step by Step</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>1. User asks: &quot;what is the fine for drunk driving in Tamil Nadu?&quot;
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>2. SafetyChecker.evaluate(message)
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>   → Block if harmful, pass if safe
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>3. IntentDetector.detect(message) → &quot;CHALLAN_QUERY&quot;
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>   Rules-based classifier using keyword matching (no separate LLM call)
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>4. ContextAssembler.assemble(intent, params)
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   Calls relevant tools based on intent:
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   For CHALLAN_QUERY:
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>   → ChallanTool: calls backend API /api/v1/challan/calculate?violation_code=MVA_185
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>   → LegalSearchTool: ChromaDB MMR search for top-5 diverse MV Act chunks
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>   For FIND_HOSPITAL:
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>   → SosTool: calls backend API /api/v1/emergency/nearby
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>5. ProviderRouter.generate(context + history + user_message)
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>   → Detects language → selects provider
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>   → Tamil text → Sarvam AI sarvam-30b
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>   → Builds final prompt with system prompt + context + history
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>   → Streams response
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>6. ConversationMemoryStore.append(session_id, turn)
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>   → Persists to Redis (24hr TTL)
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
-</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>7. Response:
-</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>   &quot;Under Section 185 of the Motor Vehicles Amendment Act 2019, drunk driving carries
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>   a fine of Rs 10,000 for a first offence with up to 6 months imprisonment.
-</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>   Tamil Nadu has not set a state-specific override, so the national amount applies.&quot;
-</span></code></pre></div>
-<h3 id="13-agent-tools">13 Agent Tools</h3>
+<h3 id="location-of-core-components">Location of Core Components</h3>
+<p>All agent logic lives under <code>chatbot_service/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat engine (graph)</td>
+<td><code>agent/chat_engine.py</code></td>
+</tr>
+<tr>
+<td>Intent detector</td>
+<td><code>agent/intent_detector.py</code></td>
+</tr>
+<tr>
+<td>Safety checker</td>
+<td><code>agent/safety_checker.py</code></td>
+</tr>
+<tr>
+<td>Context assembler</td>
+<td><code>agent/context_assembler.py</code></td>
+</tr>
+<tr>
+<td>Provider router</td>
+<td><code>providers/provider_router.py</code></td>
+</tr>
+<tr>
+<td>Conversation memory</td>
+<td><code>memory/conversation_memory.py</code></td>
+</tr>
+<tr>
+<td>Agent tools (13)</td>
+<td><code>tools/*.py</code></td>
+</tr>
+<tr>
+<td>LLM providers (9)</td>
+<td><code>providers/*.py</code></td>
+</tr>
+<tr>
+<td>Governance / audit</td>
+<td><code>agent/governance.py</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-intent-classes">9 Intent Classes</h2>
+<p>Defined in <code>chatbot_service/agent/intent_detector.py</code>. Uses keyword matching + regex — <strong>not</strong> a separate LLM call (&lt;1ms).</p>
+<table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>Triggers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emergency</code></td>
+<td>accident, ambulance, hospital, police, sos, crash, injured</td>
+</tr>
+<tr>
+<td><code>first_aid</code></td>
+<td>bleeding, burn, fracture, cpr, choking, unconscious</td>
+</tr>
+<tr>
+<td><code>challan</code></td>
+<td>challan, fine, helmet, seatbelt, drunk driving, licence</td>
+</tr>
+<tr>
+<td><code>legal</code></td>
+<td>motor vehicles act, mv act, section, legal, rights, mva</td>
+</tr>
+<tr>
+<td><code>road_weather</code></td>
+<td>weather, rain, flood, fog, visibility, storm, monsoon</td>
+</tr>
+<tr>
+<td><code>safe_route</code></td>
+<td>route, navigate, directions, safest way, safe route</td>
+</tr>
+<tr>
+<td><code>road_infrastructure</code></td>
+<td>road authority, pwd, nhai, pmgsy, contractor, maintenance</td>
+</tr>
+<tr>
+<td><code>road_issue</code></td>
+<td>pothole, road hazard, debris, bad road, damaged road</td>
+</tr>
+<tr>
+<td><code>general</code></td>
+<td>Default fallback for all other queries</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-agent-tools">13 Agent Tools</h2>
 <table>
 <thead>
 <tr>
 <th>Tool</th>
 <th>File</th>
-<th>Data Source</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>SosTool</strong></td>
+<td>SosTool</td>
 <td><code>sos_tool.py</code></td>
-<td>Backend API → PostGIS + Overpass</td>
+<td>Nearby emergency services via backend API</td>
 </tr>
 <tr>
-<td><strong>EmergencyTool</strong></td>
-<td><code>emergency_tool.py</code></td>
-<td>Backend API → PostGIS + Overpass</td>
+<td>EmergencyTool</td>
+<td><code>tools/__init__.py</code> (BackendToolClient)</td>
+<td>Emergency service lookup</td>
 </tr>
 <tr>
-<td><strong>ChallanTool</strong></td>
+<td>ChallanTool</td>
 <td><code>challan_tool.py</code></td>
-<td>Backend API → DuckDB SQL</td>
+<td>Fine calculation via backend API</td>
 </tr>
 <tr>
-<td><strong>LegalSearchTool</strong></td>
+<td>LegalSearchTool</td>
 <td><code>legal_search_tool.py</code></td>
-<td>ChromaDB vector search</td>
+<td>ChromaDB vector search (Motor Vehicles Act, MoRTH)</td>
 </tr>
 <tr>
-<td><strong>FirstAidTool</strong></td>
+<td>FirstAidTool</td>
 <td><code>first_aid_tool.py</code></td>
-<td>Static JSON data</td>
+<td>Static JSON first-aid protocols</td>
 </tr>
 <tr>
-<td><strong>WeatherTool</strong></td>
+<td>WeatherTool</td>
 <td><code>weather_tool.py</code></td>
 <td>OpenWeather API</td>
 </tr>
 <tr>
-<td><strong>OpenMeteoTool</strong></td>
+<td>OpenMeteoTool</td>
 <td><code>open_meteo.py</code></td>
-<td>Open-Meteo API (visibility, precipitation)</td>
+<td>Open-Meteo weather (visibility, precipitation)</td>
 </tr>
 <tr>
-<td><strong>RoadInfrastructureTool</strong></td>
+<td>RoadInfrastructureTool</td>
 <td><code>road_infra_tool.py</code></td>
-<td>Backend API → data.gov.in</td>
+<td>Road contractor/budget data</td>
 </tr>
 <tr>
-<td><strong>RoadIssuesTool</strong></td>
+<td>RoadIssuesTool</td>
 <td><code>road_issues_tool.py</code></td>
-<td>Backend API → PostGIS</td>
+<td>Community-reported road issues</td>
 </tr>
 <tr>
-<td><strong>SubmitReportTool</strong></td>
+<td>SubmitReportTool</td>
 <td><code>submit_report_tool.py</code></td>
-<td>Backend API → PostgreSQL</td>
+<td>Submit road damage reports</td>
 </tr>
 <tr>
-<td><strong>GeocodingTool</strong></td>
+<td>GeocodingClient</td>
 <td><code>geocoding.py</code></td>
-<td>Photon/BigDataCloud (zero-key)</td>
+<td>Photon/BigDataCloud geocoding</td>
 </tr>
 <tr>
-<td><strong>DrugInfoTool</strong></td>
+<td>DrugInfoTool</td>
 <td><code>drug_info.py</code></td>
-<td>Open FDA drug/medical info</td>
+<td>Open FDA drug/medical information</td>
 </tr>
 <tr>
-<td><strong>What3WordsTool</strong></td>
+<td>What3WordsTool</td>
 <td><code>what3words.py</code></td>
-<td>What3Words API (3m precision)</td>
+<td>What3Words location resolution</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="ai-layer-2-offline-llm-webllm-phi-3-mini-browser-side">AI Layer 2: Offline LLM — WebLLM Phi-3 Mini (Browser-Side)</h2>
-<h3 id="what-it-does_1">What It Does</h3>
-<p>Runs a complete large language model on the user's device via WebGPU. Answers questions about first aid and traffic laws when there is no internet connection.</p>
-<h3 id="why-phi-3-mini">Why Phi-3 Mini?</h3>
+<h2 id="9-llm-providers">9 LLM Providers</h2>
+<p>Located in <code>chatbot_service/providers/</code>.</p>
+<h3 id="fallback-chain-in-order">Fallback Chain (in order)</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Groq (fastest, 300+ tok/s) → Cerebras → Gemini → GitHub Models
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    → NVIDIA NIM → OpenRouter → Mistral → Together → Template (deterministic fallback)
+</span></code></pre></div>
+<p>If all 9 providers fail, <code>alert_service.py</code> (project root) sends an email with 3 diagnostic solutions (5-minute cooldown).</p>
+<h3 id="indian-language-auto-routing-separate-path-not-in-chain">Indian Language Auto-Routing (Separate Path, Not in Chain)</h3>
 <ul>
-<li><strong>Best reasoning per parameter</strong>: 3.8B params but outperforms models twice its size on legal/factual Q&amp;A</li>
-<li><strong>4-bit quantized</strong>: ~2.2GB fits in browser Cache Storage</li>
-<li><strong>Microsoft</strong>: Trained on high-quality synthetic textbook data — good for dense legal reasoning</li>
-<li><strong>WebGPU acceleration</strong>: 3-5s response on modern Android Chrome</li>
+<li><strong>Language detection:</strong> Unicode script range regex (Devnagari, Tamil, Telugu, etc.)</li>
+<li><strong>Sarvam-30B</strong> — General Indic queries</li>
+<li><strong>Sarvam-105B</strong> — Legal/challan queries in Indic languages (higher accuracy)</li>
+<li>Direct Sarvam API used if <code>SARVAM_API_KEY</code> is set</li>
+<li>Falls back to <code>HF_TOKEN</code> via HuggingFace Inference API if Sarvam key absent</li>
 </ul>
-<h3 id="model-selection-logic">Model Selection Logic</h3>
-<div class="language-typescript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// lib/offline-ai.ts</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">selectModel</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="c1">// Check if WebGPU is available</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">hasGPU</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;gpu&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">navigator</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">gpu</span><span class="o">?</span><span class="p">.</span><span class="nx">requestAdapter</span><span class="p">()</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hasGPU</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="c1">// Phi-3 Mini — best quality, requires WebGPU</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;Phi-3-mini-4k-instruct-q4f16_1-MLC&quot;</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="c1">// Gemma-2B — lighter, runs on WebAssembly CPU</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;gemma-2b-it-q4f16_1-MLC&quot;</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="offline-rag-architecture">Offline RAG Architecture</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1. At first offline chat activation:
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   - Load first-aid.json (20 WHO-based articles, pre-bundled with PWA)
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>   - Generate 384-dim embeddings for each article using Transformers.js
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>     (Xenova/LocalHashEmbeddingFunction, 25MB, runs in browser)
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>   - Build HNSWlib.js HNSW graph index in IndexedDB
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>   - This setup takes ~30 seconds on first use, milliseconds after
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>2. Each offline chat message:
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>   - Embed user query → 384-dim vector
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>   - HNSWlib.js ANN search → top-3 most similar first-aid articles
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>   - Inject article text as context into Phi-3 Mini prompt
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>   - Phi-3 Mini generates response (~3-15 seconds)
-</span></code></pre></div>
-<h3 id="key-offline-limitation">Key Offline Limitation</h3>
-<p>The offline LLM <strong>cannot</strong> search for hospitals in real-time — it only has access to the 20 pre-bundled first-aid articles and the static GeoJSON POI bundle. Make this clear to users via the <code>ConnectivityBadge</code> component.</p>
-<hr />
-<h2 id="ai-layer-3-intent-detection">AI Layer 3: Intent Detection</h2>
-<h3 id="rule-based-classification-system">Rule-Based Classification System</h3>
-<p>The IntentDetector uses keyword matching and regex patterns — <strong>not</strong> a separate LLM call. This keeps intent classification instant (&lt;1ms) with zero API cost.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># agent/intent_detector.py — ACTUAL implementation (9 intent classes)</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Uses keyword matching + regex — NOT a separate LLM call (&lt;1ms)</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">INTENT_CLASSES</span> <span class="o">=</span> <span class="p">(</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s1">&#39;emergency&#39;</span><span class="p">,</span>           <span class="c1"># accident, ambulance, hospital, police, sos, crash, injured</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s1">&#39;first_aid&#39;</span><span class="p">,</span>           <span class="c1"># bleeding, burn, fracture, cpr, choking, unconscious</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="s1">&#39;challan&#39;</span><span class="p">,</span>             <span class="c1"># challan, fine, helmet, seatbelt, drunk driving, licence</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="s1">&#39;legal&#39;</span><span class="p">,</span>               <span class="c1"># motor vehicles act, mv act, section, legal, rights, mva</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="s1">&#39;road_weather&#39;</span><span class="p">,</span>        <span class="c1"># weather, rain, flood, fog, visibility, storm, monsoon</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="s1">&#39;safe_route&#39;</span><span class="p">,</span>          <span class="c1"># route, navigate, directions, safest way, safe route</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="s1">&#39;road_infrastructure&#39;</span><span class="p">,</span> <span class="c1"># road authority, pwd, nhai, pmgsy, contractor, maintenance</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="s1">&#39;road_issue&#39;</span><span class="p">,</span>          <span class="c1"># pothole, road hazard, debris, bad road, damaged road</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="s1">&#39;general&#39;</span><span class="p">,</span>             <span class="c1"># fallback — default for all other queries</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="why-intent-first">Why Intent-First?</h3>
-<p>Without intent detection, every message would trigger a full RAG search. With intent:
-- <code>FIND_*</code> intents call PostGIS directly (faster + more accurate)
-- <code>FIRST_AID_INFO</code> searches WHO medical chunks only (not MV Act)
-- <code>LEGAL_INFO</code> searches MV Act chunks only (not medical docs)
-- <code>CHALLAN_QUERY</code> uses deterministic DuckDB SQL (no LLM hallucination for fine amounts)</p>
-<hr />
-<h2 id="ai-layer-4-in-browser-computer-vision-yolov8n">AI Layer 4: In-Browser Computer Vision — YOLOv8n</h2>
-<h3 id="what-it-does_2">What It Does</h3>
-<p>Detects potholes and road damage in uploaded photos using a 15MB ONNX model running entirely in the browser. No server, no API, works offline.</p>
-<h3 id="how-it-works">How It Works</h3>
-<div class="language-typescript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// components/PotholeDetector.tsx</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pipeline</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@huggingface/transformers&#39;</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">// Loads Xenova/yolov8n (15MB ONNX) from browser cache on first use</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">detector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">pipeline</span><span class="p">(</span><span class="s1">&#39;object-detection&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Xenova/yolov8n&#39;</span><span class="p">)</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">// Run inference on uploaded image</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">detections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">detector</span><span class="p">(</span><span class="nx">imageElement</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">threshold</span><span class="o">:</span><span class="w"> </span><span class="kt">0.3</span><span class="w"> </span><span class="p">})</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1">// detections = [</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1">//   { label: &#39;pothole&#39;, score: 0.87, box: { xmin, ymin, xmax, ymax } },</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1">//   ...</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1">// ]</span>
-</span></code></pre></div>
-<h3 id="confidence-display">Confidence Display</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&lt; 50%: &quot;Low confidence — road damage may be present&quot;
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>50-75%: &quot;Possible road damage detected (X% confidence)&quot;
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>75-90%: &quot;Road damage detected (X% confidence)&quot; [yellow badge]
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>&gt; 90%: &quot;Pothole confirmed (X% confidence)&quot; [green badge]
-</span></code></pre></div>
-<hr />
-<h2 id="ai-layer-5-rag-knowledge-base-chromadb">AI Layer 5: RAG Knowledge Base — ChromaDB</h2>
-<h3 id="whats-indexed">What's Indexed</h3>
+<h3 id="provider-files">Provider Files</h3>
 <table>
 <thead>
 <tr>
-<th>Document</th>
-<th>Source</th>
-<th>Why It's Needed</th>
+<th>Provider</th>
+<th>File</th>
+<th>Key Env Var</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Motor Vehicles Act 1988</td>
-<td>indiacode.nic.in</td>
-<td>All base traffic laws</td>
+<td>Groq</td>
+<td><code>groq_provider.py</code></td>
+<td><code>GROQ_API_KEY</code></td>
 </tr>
 <tr>
-<td>MV Amendment Act 2019</td>
-<td>morth.nic.in</td>
-<td>Updated fine amounts</td>
+<td>Cerebras</td>
+<td><code>cerebras_provider.py</code></td>
+<td><code>CEREBRAS_API_KEY</code></td>
 </tr>
 <tr>
-<td>WHO Trauma Care Guidelines</td>
-<td>who.int</td>
-<td>First-aid protocols</td>
+<td>Gemini</td>
+<td><code>gemini_provider.py</code></td>
+<td><code>GEMINI_API_KEY</code></td>
 </tr>
 <tr>
-<td>WHO Global Road Safety 2023</td>
-<td>who.int</td>
-<td>100+ country traffic laws</td>
+<td>GitHub Models</td>
+<td><code>github_provider.py</code></td>
+<td><code>GITHUB_TOKEN</code></td>
 </tr>
 <tr>
-<td>State amendment PDFs</td>
-<td>State transport dept</td>
-<td>State-level variations</td>
+<td>NVIDIA NIM</td>
+<td><code>nvidia_provider.py</code></td>
+<td><code>NVIDIA_API_KEY</code></td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td><code>openrouter_provider.py</code></td>
+<td><code>OPENROUTER_API_KEY</code></td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td><code>mistral_provider.py</code></td>
+<td><code>MISTRAL_API_KEY</code></td>
+</tr>
+<tr>
+<td>Together</td>
+<td><code>together_provider.py</code></td>
+<td><code>TOGETHER_API_KEY</code></td>
+</tr>
+<tr>
+<td>Template</td>
+<td><code>template_provider.py</code></td>
+<td>None (deterministic fallback)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="building-the-index">Building the Index</h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># data/build_vectorstore.py — run once, takes 5-10 minutes</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyPDFLoader</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Load all PDFs</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">loaders</span> <span class="o">=</span> <span class="p">[</span><span class="n">PyPDFLoader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">pdf_paths</span><span class="p">]</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span> <span class="k">for</span> <span class="n">loader</span> <span class="ow">in</span> <span class="n">loaders</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()]</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1"># Split into chunks (1000 chars, 150 overlap)</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1"># Store in ChromaDB (persists to disk)</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    <span class="n">chunks</span><span class="p">,</span>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    <span class="n">embedding_function</span><span class="p">,</span>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;data/chroma_db&quot;</span><span class="p">,</span>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>    <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;safevixai_docs&quot;</span>
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="p">)</span>
+<h3 id="auto-routing-rules">Auto-Routing Rules</h3>
+<ol>
+<li>Indian language input (Hindi, Tamil, Telugu, etc.) → <strong>Sarvam-30B</strong> (Indic specialist)</li>
+<li>Legal/challan + Indian language → <strong>Sarvam-105B</strong> (higher accuracy for law)</li>
+<li>English → Default provider (usually Groq, 300+ tok/s)</li>
+<li>Rate-limited → Cascade through fallback chain</li>
+<li>All providers fail → <code>TemplateProvider</code> (deterministic, always works)</li>
+</ol>
+<hr />
+<h2 id="system-prompt">System Prompt</h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="s2">&quot;You are SafeVixAI, an AI assistant built for Indian road safety and emergency response. &quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="s2">&quot;Help users with: emergency contacts, first aid, pothole/accident reporting, traffic challans, &quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="s2">&quot;navigation, and road authority escalation. &quot;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="s2">&quot;Always answer concisely in the SAME language the user writes in (Hindi, Tamil, Telugu, etc.). &quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="s2">&quot;For life-threatening situations, always lead with 112 (universal emergency) or 102 (ambulance). &quot;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="s2">&quot;Be factual — cite MV Act sections when answering challan questions.&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="server-side-embeddings">Server-Side Embeddings</h3>
-<p>The chatbot service uses a <strong>hash-based embedding function</strong> (<code>LocalHashEmbeddingFunction</code>) — NOT a neural model:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># rag/embeddings.py — deterministic 384-dim vectors via SHA-256 token hashing</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># Zero ML dependency, compatible with ChromaDB cosine similarity</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Config references LocalHashEmbeddingFunction for future neural upgrade</span>
-</span></code></pre></div>
+<hr />
+<h2 id="rag-system">RAG System</h2>
+<h3 id="vector-store">Vector Store</h3>
+<ul>
+<li><strong>Engine:</strong> ChromaDB</li>
+<li><strong>Embedding:</strong> <code>LocalHashEmbeddingFunction</code> (384-dim, zero ML dependency, SHA-256 hash-based)</li>
+<li><strong>Similarity:</strong> Cosine similarity</li>
+<li><strong>Parameters:</strong> <code>top_k=5</code>, <code>min_score=0.55</code></li>
+<li><strong>Documents:</strong> Motor Vehicles Act sections, MoRTH guidelines, traffic rules, WHO first-aid protocols</li>
+</ul>
+<h3 id="two-chromadb-instances">Two ChromaDB Instances</h3>
 <table>
 <thead>
 <tr>
-<th>Model</th>
-<th>Params</th>
-<th>Size</th>
-<th>Runtime</th>
-<th>Use Case</th>
+<th>Path</th>
+<th>Commit Status</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>LocalHashEmbeddingFunction</code></td>
-<td>N/A</td>
-<td>0 MB</td>
-<td>CPU</td>
-<td>Server-side embeddings for ChromaDB</td>
+<td><code>chatbot_service/data/chroma_db/</code></td>
+<td><strong>COMMITTED</strong></td>
+<td>Render needs pre-built store at cold start</td>
+</tr>
+<tr>
+<td><code>backend/data/chroma_db/</code></td>
+<td><strong>GITIGNORED</strong></td>
+<td>Built locally, ~10 min rebuild via <code>build_vectorstore.py</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="chromadb-persistence-rules">⚠ ChromaDB Persistence Rules</h3>
+<h3 id="rebuilding-the-index">Rebuilding the Index</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Add new PDFs to chatbot_service/data/ or backend/data/</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Then run:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">cd</span><span class="w"> </span>chatbot_service
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>python<span class="w"> </span>data/build_vectorstore.py
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Restart the service to reload ChromaDB from disk</span>
+</span></code></pre></div>
+<hr />
+<h2 id="safety-system">Safety System</h2>
+<h3 id="safetychecker-chatbot_serviceagentsafety_checkerpy">SafetyChecker (<code>chatbot_service/agent/safety_checker.py</code>)</h3>
 <ul>
-<li><code>chatbot_service/data/chroma_db/</code> — <strong>COMMITTED</strong> to git (Render needs it at cold start)</li>
-<li><code>backend/data/chroma_db/</code> — <strong>gitignored</strong> (build locally with <code>build_vectorstore.py</code>)</li>
-<li>Never delete either directory — rebuilding takes 5-10 minutes</li>
+<li><code>SafetyChecker.evaluate()</code> — Blocks prompt injection, hate speech, dangerous instructions</li>
+<li>12-pattern prompt injection guard</li>
+<li>All injury responses <strong>must</strong> start with "Call 112 immediately"</li>
+</ul>
+<h3 id="ai-governance-chatbot_serviceagentgovernancepy">AI Governance (<code>chatbot_service/agent/governance.py</code>)</h3>
+<ul>
+<li>Audit trail for all AI decisions</li>
+<li>Tracks: intent classification, provider used, tool calls, response safety check</li>
 </ul>
 <hr />
-<h2 id="adding-new-knowledge-to-the-rag">Adding New Knowledge to the RAG</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 1. Add new PDF to chatbot_service/data/ or backend/data/</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># 2. Run build_vectorstore.py again (incremental update)</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>python<span class="w"> </span>data/build_vectorstore.py
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># 3. Restart the service to reload ChromaDB from disk</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># The service loads chroma_db on startup via lifespan</span>
+<h2 id="speech-system">Speech System</h2>
+<h3 id="indicseamlessservice">IndicSeamlessService</h3>
+<ul>
+<li><strong>File:</strong> <code>chatbot_service/services/speech_translation.py</code></li>
+<li><strong>Model:</strong> <code>ai4bharat/indic-seamless</code> (loaded at service startup)</li>
+<li><strong>Endpoints:</strong> <code>POST /speech/translate</code>, <code>GET /speech/status</code></li>
+<li><strong>Languages:</strong> 14 Indian languages</li>
+</ul>
+<h3 id="endpoint-truth">Endpoint Truth</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>POST /speech/translate   ← Correct, NOT /api/v1/speech/translate
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>GET  /speech/status
 </span></code></pre></div>
+<hr />
+<h2 id="14-language-mapping">14-Language Mapping</h2>
+<p>Defined in <code>frontend/lib/languages.ts</code>. Each language has a 4-code mapping:</p>
+<p><code>UI code → recognitionCode → speechTargetCode → synthesisCode</code></p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Example Codes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hindi</td>
+<td><code>hi → hi → hin_Deva → hi-IN</code></td>
+</tr>
+<tr>
+<td>Tamil</td>
+<td><code>ta → ta → tam_Taml → ta-IN</code></td>
+</tr>
+<tr>
+<td>Telugu</td>
+<td><code>te → te → tel_Telu → te-IN</code></td>
+</tr>
+<tr>
+<td>Bengali</td>
+<td><code>bn → bn → ben_Beng → bn-IN</code></td>
+</tr>
+<tr>
+<td>Marathi</td>
+<td><code>mr → mr → mar_Deva → mr-IN</code></td>
+</tr>
+<tr>
+<td>Gujarati</td>
+<td><code>gu → gu → guj_Gujr → gu-IN</code></td>
+</tr>
+<tr>
+<td>Kannada</td>
+<td><code>kn → kn → kan_Knda → kn-IN</code></td>
+</tr>
+<tr>
+<td>Malayalam</td>
+<td><code>ml → ml → mal_Mlym → ml-IN</code></td>
+</tr>
+<tr>
+<td>Punjabi</td>
+<td><code>pa → pa → pan_Guru → pa-IN</code></td>
+</tr>
+<tr>
+<td>Urdu</td>
+<td><code>ur → ur → urd_Arab → ur-IN</code></td>
+</tr>
+<tr>
+<td>Odia</td>
+<td><code>or → or → ory_Orya → or-IN</code></td>
+</tr>
+<tr>
+<td>Assamese</td>
+<td><code>as → as → asm_Beng → as-IN</code></td>
+</tr>
+<tr>
+<td>English</td>
+<td><code>en → en → eng_Latn → en-IN</code></td>
+</tr>
+<tr>
+<td>Hinglish</td>
+<td><code>hi-en → hi → hin_Deva → hi-IN</code></td>
+</tr>
+</tbody>
+</table>
+<p>This mapping is correctly used in <code>VoiceInput.tsx</code> and the assistant page <code>speechSynthesis</code>.</p>
+<hr />
+<h2 id="conversation-memory">Conversation Memory</h2>
+<ul>
+<li><strong>Storage:</strong> Redis with 24h TTL (<code>config.py: session_ttl_seconds = 86400</code>)</li>
+<li><strong>Library:</strong> <code>chatbot_service/memory/conversation_memory.py</code> — <code>ConversationMemoryStore</code></li>
+<li><strong>Fallback:</strong> In-memory store if Redis is unavailable</li>
+<li><strong>Session ID:</strong> Generated per conversation and passed as <code>session_id</code> in chat requests</li>
+</ul>
+<hr />
+<h2 id="offline-ai">Offline AI</h2>
+<p>All offline AI runs client-side in the browser — no server required.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Technology</th>
+<th>Model/Size</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Offline LLM</td>
+<td><code>@mlc-ai/web-llm</code></td>
+<td>Phi-3 Mini (2.2GB, WebGPU)</td>
+<td><code>frontend/lib/offline-ai.ts</code></td>
+</tr>
+<tr>
+<td>Pothole Detection</td>
+<td><code>@huggingface/transformers</code></td>
+<td>YOLOv8n (15MB ONNX)</td>
+<td><code>frontend/components/PotholeDetector.tsx</code></td>
+</tr>
+<tr>
+<td>Offline Challans</td>
+<td><code>@duckdb/duckdb-wasm</code></td>
+<td>DuckDB-Wasm WASM</td>
+<td><code>frontend/lib/duckdb-challan.ts</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="offline-llm-details">Offline LLM Details</h3>
+<ul>
+<li>Phi-3 Mini (3.8B params, 4-bit quantized, ~2.2GB)</li>
+<li>Downloads on-demand when user clicks "Use Offline AI"</li>
+<li>Falls back to Gemma-2B if WebGPU unavailable</li>
+<li>Bundles 20 WHO-based first-aid articles for offline RAG</li>
+<li>Builds HNSW index in IndexedDB (~30s first setup)</li>
+</ul>
+<h3 id="service-worker">Service Worker</h3>
+<p>Only activates in production (<code>npm run build &amp;&amp; npm start</code>), not in dev mode.</p>
+<hr />
+<h2 id="key-design-decisions">Key Design Decisions</h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Two separate FastAPI services</td>
+<td>Chatbot has heavy ML deps (torch ~2GB); backend stays lightweight</td>
+</tr>
+<tr>
+<td>9-provider LLM fallback</td>
+<td>Zero downtime — if one API rate-limits, next takes over</td>
+</tr>
+<tr>
+<td>Sarvam AI for Indian languages</td>
+<td>Trained on 4 trillion Indic tokens; best Hindi/Tamil legal accuracy</td>
+</tr>
+<tr>
+<td>DuckDB for challans (not LLM)</td>
+<td>Deterministic SQL; LLMs hallucinate fine amounts</td>
+</tr>
+<tr>
+<td>ChromaDB committed to git</td>
+<td>Render cold-starts need pre-built vectorstore; rebuild takes 10 min</td>
+</tr>
+<tr>
+<td>LocalHashEmbeddingFunction</td>
+<td>Zero ML dependency for embeddings; hash-based 384-dim vectors</td>
+</tr>
+<tr>
+<td>Intent-first classification</td>
+<td>&lt;1ms routing avoids full RAG search on every message</td>
+</tr>
+<tr>
+<td>Redis conversation memory</td>
+<td>Fast session persistence with 24h TTL, graceful in-memory fallback</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="chatbot-testing-checklist">Chatbot Testing Checklist</h2>
 <table>
@@ -2454,7 +2663,17 @@
 </tbody>
 </table>
 <hr />
-<p><em>Document version: 2.0 | IIT Madras Road Safety Hackathon 2026</em></p>
+<h2 id="critical-rules-never-break">Critical Rules (Never Break)</h2>
+<ol>
+<li>Any AI response about injuries <strong>must</strong> start with "Call 112 immediately"</li>
+<li>Never delete <code>chatbot_service/data/chroma_db/</code> — it's committed for Render deployment</li>
+<li>Backend and chatbot have <strong>separate</strong> <code>.venv</code>, <code>.env</code>, <code>requirements.txt</code> — never mix dependencies</li>
+<li>WebLLM Phi-3 model (2.2GB) downloads on-demand only — never preload without user consent</li>
+<li>All injury responses must pass through <code>SafetyChecker.evaluate()</code></li>
+<li>Do <strong>not</strong> change the system prompt without testing all 9 intent classes</li>
+</ol>
+<hr />
+<p><em>Document version: 2.1 | IIT Madras Road Safety Hackathon 2026</em></p>
 
 
 

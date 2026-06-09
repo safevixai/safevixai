@@ -1342,7 +1342,7 @@
   <a href="#21-safevixai-emergency-response" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 SafeVixAI Emergency Response
+        2.1 SafeVixAI — Emergency Response
       
     </span>
   </a>
@@ -1353,7 +1353,7 @@
   <a href="#22-drivelegal-traffic-law-education" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 DriveLegal Traffic Law Education
+        2.2 DriveLegal — Traffic Law Education
       
     </span>
   </a>
@@ -1364,7 +1364,7 @@
   <a href="#23-roadwatch-road-infrastructure-accountability" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3 RoadWatch Road Infrastructure Accountability
+        2.3 RoadWatch — Road Infrastructure Accountability
       
     </span>
   </a>
@@ -1403,7 +1403,7 @@
   <a href="#module-1-emergency-locator" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Module 1 Emergency Locator
+        Module 1 — Emergency Locator
       
     </span>
   </a>
@@ -1414,7 +1414,7 @@
   <a href="#module-2-ai-chatbot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Module 2 AI Chatbot
+        Module 2 — AI Chatbot
       
     </span>
   </a>
@@ -1425,7 +1425,7 @@
   <a href="#module-3-challan-calculator" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Module 3 Challan Calculator
+        Module 3 — Challan Calculator
       
     </span>
   </a>
@@ -1436,7 +1436,7 @@
   <a href="#module-4-road-reporter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Module 4 Road Reporter
+        Module 4 — Road Reporter
       
     </span>
   </a>
@@ -1501,7 +1501,7 @@
   
 
 
-<h1 id="safevixai-product-requirements-document-prd">SafeVixAI  Product Requirements Document (PRD)</h1>
+<h1 id="safevixai-product-requirements-document-prd">SafeVixAI Product Requirements Document (PRD)</h1>
 <h2 id="1-product-overview">1. Product Overview</h2>
 <p><strong>SafeVixAI</strong> is an AI-powered road safety platform built for the <strong>IIT Madras Road Safety Hackathon 2026</strong>. It addresses three problem statements in one unified application:</p>
 <table>
@@ -1521,7 +1521,7 @@
 <tr>
 <td>AI Chatbot</td>
 <td>SafeVixAI + DriveLegal</td>
-<td>9-provider online fallback + Phi-3 Mini offline  legal Q&amp;A + first aid</td>
+<td>9-provider online fallback + Phi-3 Mini offline legal Q&amp;A + first aid</td>
 </tr>
 <tr>
 <td>Challan Calculator</td>
@@ -1535,15 +1535,16 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Total infrastructure cost: 0</strong>  100% free and open-source stack.</p>
+<p><strong>Total infrastructure cost: ₹0</strong> — 100% free and open-source stack.</p>
+<p><strong>Current status:</strong> All 25 features complete. 2829 unit tests passing (1365 backend + 892 chatbot + 572 frontend). 45/55 E2E tests passing.</p>
 <hr />
 <h2 id="2-problem-statements">2. Problem Statements</h2>
-<h3 id="21-safevixai-emergency-response">2.1 SafeVixAI  Emergency Response</h3>
+<h3 id="21-safevixai-emergency-response">2.1 SafeVixAI — Emergency Response</h3>
 <p>India has over 150,000 road accident deaths annually (WHO 2023). The critical window for emergency response is the first 10 minutes. Existing apps (HumSafar, Rakshak) cover limited geographies, have no AI, and fail offline. SafeVixAI solves this with instant GPS-based emergency service locator that works offline on remote highways.</p>
-<h3 id="22-drivelegal-traffic-law-education">2.2 DriveLegal  Traffic Law Education</h3>
+<h3 id="22-drivelegal-traffic-law-education">2.2 DriveLegal — Traffic Law Education</h3>
 <p>Most Indians are unaware of traffic fine amounts under the MV Amendment Act 2019. Legal information is buried in gazette notifications. SafeVixAI provides a deterministic challan calculator + RAG-powered legal assistant grounded in the actual Motor Vehicles Act text.</p>
-<h3 id="23-roadwatch-road-infrastructure-accountability">2.3 RoadWatch  Road Infrastructure Accountability</h3>
-<p>India has over 450,000 km of national and state highways with poor pothole reporting mechanisms. Citizens have no way to know which government authority is responsible for a specific road or what the maintenance budget was. SafeVixAI routes complaints to the correct executive engineer automatically.</p>
+<h3 id="23-roadwatch-road-infrastructure-accountability">2.3 RoadWatch — Road Infrastructure Accountability</h3>
+<p>India has over 4.5 lakh km of national and state highways with poor pothole reporting mechanisms. Citizens have no way to know which government authority is responsible for a specific road or what the maintenance budget was. SafeVixAI routes complaints to the correct executive engineer automatically.</p>
 <hr />
 <h2 id="3-target-users">3. Target Users</h2>
 <table>
@@ -1583,48 +1584,50 @@
 <tr>
 <td>Non-English speaker</td>
 <td>Use in native language</td>
-<td>Multilingual chatbot</td>
+<td>Multilingual chatbot (14 languages)</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="4-functional-requirements">4. Functional Requirements</h2>
-<h3 id="module-1-emergency-locator">Module 1  Emergency Locator</h3>
+<h3 id="module-1-emergency-locator">Module 1 — Emergency Locator</h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> GPS auto-detection on page load (high accuracy, 10s timeout)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Nearby services map: hospitals (red), police (blue), ambulance (red+cross), fire (orange), towing (amber)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tiered radius fallback: 500m  1km  5km  10km  25km  50km</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> SOS WhatsApp share with GPS link, blood group, vehicle number, nearest services</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Always-visible emergency numbers bar: 112, 102, 100, 1033</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Crash detection via DeviceMotion API (2.5G threshold, 10-second cancel window)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Offline emergency map for 25 Indian cities (GeoJSON + Service Worker)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> First aid guidance via AI chatbot (WHO grounded)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> GPS auto-detection on page load (high accuracy, 10s timeout)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Nearby services map: hospitals (red), police (blue), ambulance (red+cross), fire (orange), towing (amber)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Tiered radius fallback: 500m → 1km → 5km → 10km → 25km → 50km</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> SOS WhatsApp share with GPS link, blood group, vehicle number, nearest services</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Always-visible emergency numbers bar: 112, 102, 100, 1033</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Crash detection via DeviceMotion API (2.5G threshold, 10-second cancel window)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Offline emergency map for 25 Indian cities (GeoJSON + Service Worker)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> First aid guidance via AI chatbot (WHO grounded)</li>
 </ul>
-<h3 id="module-2-ai-chatbot">Module 2  AI Chatbot</h3>
+<h3 id="module-2-ai-chatbot">Module 2 — AI Chatbot</h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 9-intent detection: FIND_HOSPITAL, FIND_POLICE, FIND_AMBULANCE, FIND_TOW, FIRST_AID_INFO, CHALLAN_QUERY, ROAD_REPORT, LEGAL_INFO, OTHER</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Online RAG: ChatEngine + 9-provider Fallback + ChromaDB (MV Act + WHO Guidelines)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Offline AI: WebLLM Phi-3 Mini (3.8B, 4-bit) + HNSWlib.js + IndexedDB</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Multilingual: auto-detect and respond in Hindi, Tamil, Telugu, Kannada, Malayalam, Bengali</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Voice input via Web Speech API + voice output via Speech Synthesis</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Conversation memory: last 6 turns in Redis (24-hour TTL)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 9-intent detection: FIND_HOSPITAL, FIND_POLICE, FIND_AMBULANCE, FIND_TOW, FIRST_AID_INFO, CHALLAN_QUERY, ROAD_REPORT, LEGAL_INFO, OTHER</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Online RAG: ChatEngine + 9-provider fallback + ChromaDB (MV Act + WHO Guidelines)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Offline AI: WebLLM Phi-3 Mini (3.8B, 4-bit) + IndexedDB cache</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Multilingual: auto-detect and respond in 14 Indian languages</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Voice input via Web Speech API + voice output via Speech Synthesis</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Conversation memory: last 6 turns in Redis (24-hour TTL)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Safety checker (7-layer defense): blocks harmful queries, always prepends "Call 112 immediately" on injury queries</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 13 agent tools: SOS, Challan, LegalSearch, FirstAid, Weather, OpenMeteo, RoadInfra, RoadIssues, SubmitReport, Geocoding, DrugInfo, What3Words, Emergency</li>
 </ul>
-<h3 id="module-3-challan-calculator">Module 3  Challan Calculator</h3>
+<h3 id="module-3-challan-calculator">Module 3 — Challan Calculator</h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 22+ MVA 2019 violations with base fines and repeat offence amounts</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> State-specific overrides for TN, KA, MH, DL, AP, TS, KL, RJ</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> GPS auto-detects state for pre-selection</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Offline calculation via DuckDB-Wasm</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Every answer cites MVA section number</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 22+ MVA 2019 violations with base fines and repeat offence amounts</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> State-specific overrides for TN, KA, MH, DL, AP, TS, KL, RJ</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> GPS auto-detects state for pre-selection</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Offline calculation via DuckDB-Wasm</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Every answer cites MVA section number</li>
 </ul>
-<h3 id="module-4-road-reporter">Module 4  Road Reporter</h3>
+<h3 id="module-4-road-reporter">Module 4 — Road Reporter</h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 5-step report form: type, severity, GPS, photo, description</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> In-browser pothole detection: YOLOv8n ONNX via Transformers.js (15MB)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Automatic authority routing: NHNHAI, SHState PWD, MDRDistrict Collector</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Road infrastructure data: contractor, budget, exec engineer (PMGSY/NHAI)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Offline queue: IndexedDB + Background Sync API</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Community issues layer on emergency map</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 5-step report form: type, severity, GPS, photo, description</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> In-browser pothole detection: YOLOv8n ONNX via Transformers.js (15MB)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Automatic authority routing: NH → NHAI, SH → State PWD, MDR → District Collector</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Road infrastructure data: contractor, budget, exec engineer (PMGSY/NHAI)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Offline queue: IndexedDB + Background Sync API</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Community issues layer on emergency map</li>
 </ul>
 <hr />
 <h2 id="5-non-functional-requirements">5. Non-Functional Requirements</h2>
@@ -1633,36 +1636,44 @@
 <tr>
 <th>Category</th>
 <th>Requirement</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Performance</td>
 <td>Emergency API response &lt; 200ms (Redis cached), PostGIS query &lt; 50ms</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Offline</td>
 <td>Core emergency features work from first visit, zero extra download</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>PWA</td>
 <td>Installable on Android home screen, standalone mode</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Cost</td>
-<td>0 total infrastructure cost (all free tiers)</td>
+<td>₹0 total infrastructure cost (all free tiers)</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Accessibility</td>
 <td>WCAG AA contrast, 44px touch targets, voice input, multilingual</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Global</td>
 <td>Works in any country via OSM Overpass API</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Privacy</td>
-<td>All offline AI inference local  no data leaves device</td>
+<td>All offline AI inference local — no data leaves device</td>
+<td>✅</td>
 </tr>
 </tbody>
 </table>
@@ -1691,7 +1702,7 @@
 </tr>
 <tr>
 <td>Number of contacts fetched</td>
-<td>7 service categories, 80150 contacts per city at 5km radius</td>
+<td>7 service categories, 80-150 contacts per city at 5km radius</td>
 </tr>
 <tr>
 <td>Offline functionality</td>
@@ -1705,10 +1716,14 @@
 <td>Global applicability</td>
 <td>OSM worldwide, WHO 100+ country data in RAG</td>
 </tr>
+<tr>
+<td>Test coverage</td>
+<td>2829 unit tests, 45 E2E tests, all CI workflows passing</td>
+</tr>
 </tbody>
 </table>
 <hr />
-<p><em>Document version: 1.0 | Hackathon: IIT Madras Road Safety Hackathon 2026</em></p>
+<p><em>Document version: 2.0 | Updated: 2026-06-09 | Hackathon: IIT Madras Road Safety Hackathon 2026 | Status: All features complete</em></p>
 
 
 

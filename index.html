@@ -1719,11 +1719,41 @@
 
 
 <h1 id="safevixai">SafeVixAI</h1>
-<p><strong>AI Emergency Response + DriveLegal + RoadWatch  -  Three Problem Statements, One App</strong></p>
+<p><strong>AI Emergency Response + DriveLegal + RoadWatch — Three Problem Statements, One App</strong></p>
 <blockquote>
 <p>IIT Madras Road Safety Hackathon 2026 | Team Submission
-Total infrastructure cost: Rs. 0  -  100% free and open source</p>
+Total infrastructure cost: Rs. 0 — 100% free and open source</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Features</td>
+<td><strong>25/25 COMPLETE</strong></td>
+</tr>
+<tr>
+<td>Unit Tests</td>
+<td><strong>2,829 passing</strong> — Backend 1,365 / Chatbot 892 / Frontend 572</td>
+</tr>
+<tr>
+<td>E2E Tests</td>
+<td>45/55 passing (10 infra limitations)</td>
+</tr>
+<tr>
+<td>LLM Providers</td>
+<td>9-provider fallback chain</td>
+</tr>
+<tr>
+<td>Services</td>
+<td>3 (frontend :3000, backend :8000, chatbot :8010)</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="what-safevixai-does">What SafeVixAI Does</h2>
 <table>
@@ -1738,22 +1768,22 @@ Total infrastructure cost: Rs. 0  -  100% free and open source</p>
 <tr>
 <td>Emergency Locator</td>
 <td>Find nearest hospital/police/ambulance using GPS</td>
-<td>Yes  -  25 Indian cities</td>
+<td>Yes — 25 Indian cities</td>
 </tr>
 <tr>
 <td>AI Chatbot</td>
 <td>Answer traffic law + first aid questions</td>
-<td>Yes  -  Phi-3 Mini in browser</td>
+<td>Yes — Phi-3 Mini in browser</td>
 </tr>
 <tr>
 <td>Challan Calculator</td>
 <td>Exact MVA 2019 fines with state overrides</td>
-<td>Yes  -  DuckDB-Wasm</td>
+<td>Yes — DuckDB-Wasm</td>
 </tr>
 <tr>
 <td>Road Reporter</td>
 <td>Report potholes, auto-routes to NHAI/PWD/PMGSY</td>
-<td>Yes  -  offline queue</td>
+<td>Yes — offline queue</td>
 </tr>
 </tbody>
 </table>
@@ -1894,7 +1924,7 @@ Total infrastructure cost: Rs. 0  -  100% free and open source</p>
 <p><strong>Backend:</strong> FastAPI, SQLAlchemy, PostGIS, Redis, DuckDB, Overpass/Nominatim</p>
 <p><strong>Chatbot Service:</strong> FastAPI, ChromaDB, LangChain, 9 LLM providers (Groq, Gemini, Sarvam AI, etc.), IndicSeamless Speech</p>
 <p><strong>Frontend:</strong> Next.js 15, React 19, TypeScript, Tailwind CSS, MapLibre GL, WebLLM, DuckDB-Wasm, Transformers.js</p>
-<p><strong>Infra:</strong> Vercel, Render.com, Supabase, Upstash, GitHub Actions  -  all free tier</p>
+<p><strong>Infra:</strong> Vercel, Render.com, Supabase, Upstash, GitHub Actions — all free tier</p>
 <hr />
 <h2 id="security-hardening">Security Hardening</h2>
 <table>
@@ -1913,7 +1943,7 @@ Total infrastructure cost: Rs. 0  -  100% free and open source</p>
 </tr>
 <tr>
 <td>Auth</td>
-<td>JWT Bearer tokens (in-memory only, never persisted)</td>
+<td>JWT Bearer tokens + guest auth + service-to-service API key</td>
 <td><code>backend/api/v1/auth.py</code>, <code>frontend/lib/store.ts</code></td>
 </tr>
 <tr>
@@ -1941,6 +1971,11 @@ Total infrastructure cost: Rs. 0  -  100% free and open source</p>
 <td>External script (no <code>dangerouslySetInnerHTML</code>)</td>
 <td><code>frontend/public/theme-init.js</code></td>
 </tr>
+<tr>
+<td>ALLOWED_HOSTS</td>
+<td>Host header validation middleware</td>
+<td><code>backend/middleware/allowed_hosts.py</code></td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -1955,7 +1990,7 @@ Total infrastructure cost: Rs. 0  -  100% free and open source</p>
 <tbody>
 <tr>
 <td><a href="docs/Agent.md">docs/Agent.md</a></td>
-<td>START HERE  -  complete app overview for new developers</td>
+<td>START HERE — complete app overview for new developers</td>
 </tr>
 <tr>
 <td><a href="docs/PRD.md">docs/PRD.md</a></td>

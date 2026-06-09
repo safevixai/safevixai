@@ -901,10 +901,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#offline-frontend-technologies-browser-native" class="md-nav__link">
+  <a href="#testing-quality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Offline Frontend Technologies (Browser-Native)
+        Testing &amp; Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-browser-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline Browser APIs
       
     </span>
   </a>
@@ -925,6 +936,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Backend Stack (Port 8000)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -943,7 +971,29 @@
   <a href="#9-provider-llm-fallback-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9-provider LLM Fallback Chain
+        9-Provider LLM Fallback Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Note
       
     </span>
   </a>
@@ -1508,10 +1558,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#offline-frontend-technologies-browser-native" class="md-nav__link">
+  <a href="#testing-quality" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Offline Frontend Technologies (Browser-Native)
+        Testing &amp; Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-browser-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline Browser APIs
       
     </span>
   </a>
@@ -1532,6 +1593,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Backend Stack (Port 8000)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1550,7 +1628,29 @@
   <a href="#9-provider-llm-fallback-chain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9-provider LLM Fallback Chain
+        9-Provider LLM Fallback Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Note
       
     </span>
   </a>
@@ -1617,26 +1717,25 @@
 
 <h1 id="safevixai-tech-stack">SafeVixAI — Tech Stack</h1>
 <h2 id="overview">Overview</h2>
-<p>SafeVixAI uses a <strong>three-service architecture</strong> with in-browser AI inference as an offline fallback — the only road safety app globally with client-side LLM, SQL, and vector search running entirely in the user's browser.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Layer            Technology                          Cost
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Frontend         Next.js 15 + React 19 + Tailwind    Free (Vercel)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Backend          FastAPI + Python 3.11 + Uvicorn     Free (Render.com)
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Chatbot Service  FastAPI + 9 LLM providers + RAG    Free (Render.com)
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Online LLM       Groq / Gemini / Sarvam AI (chain)   Free (multi-provider)
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Offline LLM      WebLLM Phi-3 Mini 4-bit (WebGPU)   Free (device compute)
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Vector Store     ChromaDB (local persistent)         Free (server disk)
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Spatial DB       PostgreSQL 16 + PostGIS 3.4         Free (Supabase)
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Cache            Redis via Upstash                   Free (10K cmds/day)
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Maps             MapLibre GL (vector tiles)          Free (no API key)
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>POI Data         Overpass API (OSM)                  Free (fair use)
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Geocoding        Nominatim (OSM)                     Free (1 req/sec)
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Embeddings       LocalHashEmbeddingFunction          Free (CPU, zero ML dep)
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>Edge SQL         DuckDB-Wasm (browser)               Free (device compute)
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Edge Vector      HNSWlib.js (browser)                Free (device compute)
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>Edge Vision      Transformers.js + YOLOv8n ONNX      Free (device compute)
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>CI/CD            GitHub Actions                      Free (2000 min/mo)
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Total                                                ₹ 0
+<p>SafeVixAI uses a <strong>three-service architecture</strong> with in-browser AI inference as an offline fallback.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Layer                      Technology                              Cost
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>---                        ---                                     ---
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Frontend                   Next.js 15 + React 19 + Tailwind        Free (Vercel)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Backend                    FastAPI + Python 3.11 + Uvicorn         Free (Render.com)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Chatbot Service            FastAPI + 9 LLM providers + RAG        Free (Render.com)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Online LLM                 Groq / Gemini / Sarvam AI (chain)       Free (multi-provider)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Offline LLM                WebLLM Phi-3 Mini 4-bit (WebGPU)       Free (device compute)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Vector Store               ChromaDB (local persistent)             Free (server disk)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Spatial DB                 PostgreSQL 16 + PostGIS 3.4             Free (Supabase)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Cache                      Redis via Upstash                       Free (10K cmds/day)
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Maps                       MapLibre GL (vector tiles)              Free (no API key)
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>POI Data                   Overpass API (OSM)                      Free (fair use)
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Geocoding                  Nominatim (OSM)                         Free (1 req/sec)
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Embeddings                 LocalHashEmbeddingFunction              Free (CPU, zero ML dep)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>Edge SQL                   DuckDB-Wasm (browser)                   Free (device compute)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>Edge Vision                Transformers.js + YOLOv8n ONNX          Free (device compute)
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>CI/CD                      GitHub Actions                          Free (2000 min/mo)
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>Total                                                              ₹ 0
 </span></code></pre></div>
 <hr />
 <h2 id="frontend-stack">Frontend Stack</h2>
@@ -1651,107 +1750,189 @@
 <tbody>
 <tr>
 <td><strong>Next.js</strong></td>
-<td>15.3.1</td>
-<td>App Router, SSR, PWA, automatic code splitting</td>
+<td>15.5.18</td>
+<td>App Router, SSR, PWA, code splitting</td>
 </tr>
 <tr>
 <td><strong>React</strong></td>
-<td>19.1.0</td>
-<td>UI component framework</td>
+<td>19.2.6</td>
+<td>UI framework</td>
 </tr>
 <tr>
 <td><strong>TypeScript</strong></td>
-<td>5.5.3</td>
-<td>Type safety across entire frontend</td>
+<td>6.0.3</td>
+<td>Type safety</td>
 </tr>
 <tr>
 <td><strong>Tailwind CSS</strong></td>
-<td>3.4.10</td>
+<td>3.4.x</td>
 <td>Utility-first styling, dark navy theme</td>
+</tr>
+<tr>
+<td><strong>clsx</strong></td>
+<td>—</td>
+<td>Conditional class joining</td>
+</tr>
+<tr>
+<td><strong>tailwind-merge</strong></td>
+<td>—</td>
+<td>Tailwind class merging</td>
+</tr>
+<tr>
+<td><strong>class-variance-authority</strong></td>
+<td>—</td>
+<td>Component variants</td>
 </tr>
 <tr>
 <td><strong>MapLibre GL</strong></td>
 <td>5.22.0</td>
-<td>Vector map rendering — <code>dynamic({ssr:false})</code></td>
+<td>Vector map — <code>dynamic({ssr:false})</code></td>
+</tr>
+<tr>
+<td><strong>Zustand</strong></td>
+<td>4.5.4</td>
+<td>Global state: GPS, services, AI mode</td>
+</tr>
+<tr>
+<td><strong>SWR</strong></td>
+<td>2.4.1</td>
+<td>Data fetching with stale-while-revalidate</td>
+</tr>
+<tr>
+<td><strong>Axios</strong></td>
+<td>1.17.0</td>
+<td>HTTP client</td>
+</tr>
+<tr>
+<td><strong>GSAP</strong></td>
+<td>3.15.0</td>
+<td>Animations (<code>@gsap/react</code>)</td>
 </tr>
 <tr>
 <td><strong>@mlc-ai/web-llm</strong></td>
-<td>0.2.73</td>
-<td>Phi-3 Mini inference in browser via WebGPU/Wasm</td>
+<td>—</td>
+<td>Phi-3 Mini in-browser inference (WebGPU/Wasm)</td>
 </tr>
 <tr>
 <td><strong>@huggingface/transformers</strong></td>
 <td>4.0.1</td>
-<td>YOLOv8n ONNX pothole detection + embeddings</td>
+<td>YOLOv8n ONNX pothole detection</td>
 </tr>
 <tr>
 <td><strong>@duckdb/duckdb-wasm</strong></td>
 <td>1.29.0</td>
-<td>SQL engine in browser for offline challan calc</td>
+<td>Browser SQL engine for offline challan</td>
 </tr>
 <tr>
-<td><strong>hnswlib-wasm</strong></td>
-<td>latest</td>
-<td>ANN vector search for offline RAG pipeline</td>
+<td><strong>i18next</strong></td>
+<td>26.3.1</td>
+<td>Internationalization</td>
 </tr>
 <tr>
-<td><strong>@turf/turf</strong></td>
-<td>6.5.0</td>
-<td>Haversine distance filter on offline GeoJSON</td>
+<td><strong>react-i18next</strong></td>
+<td>17.0.8</td>
+<td>React binding for i18next</td>
+</tr>
+<tr>
+<td><strong>@supabase/supabase-js</strong></td>
+<td>2.107.0</td>
+<td>Supabase client for storage + auth</td>
 </tr>
 <tr>
 <td><strong>idb</strong></td>
-<td>8.0.0</td>
-<td>IndexedDB wrapper for offline storage</td>
-</tr>
-<tr>
-<td><strong>zustand</strong></td>
-<td>4.5.4</td>
-<td>Global state: GPS, services, AI mode, profile</td>
-</tr>
-<tr>
-<td><strong>swr</strong></td>
-<td>2.2.5</td>
-<td>Data fetching with stale-while-revalidate cache</td>
-</tr>
-<tr>
-<td><strong>axios</strong></td>
-<td>1.7.7</td>
-<td>HTTP client for backend API calls</td>
-</tr>
-<tr>
-<td><strong>motion</strong></td>
-<td>12.7.3</td>
-<td>Animations (SOS countdown, loading states)</td>
-</tr>
-<tr>
-<td><strong>react-hot-toast</strong></td>
-<td>2.4.1</td>
-<td>Toast notifications for offline queue, errors</td>
+<td>8.0.3</td>
+<td>IndexedDB wrapper</td>
 </tr>
 <tr>
 <td><strong>lucide-react</strong></td>
-<td>0.427.0</td>
+<td>—</td>
 <td>Icon set</td>
 </tr>
 <tr>
-<td><strong>shadcn</strong></td>
+<td><strong>qrcode.react</strong></td>
 <td>4.2.0</td>
-<td>Accessible UI component primitives</td>
+<td>QR code generation</td>
 </tr>
 <tr>
-<td><strong>three.js</strong></td>
-<td>0.169.0</td>
-<td>3D rendering (landing page visuals)</td>
+<td><strong>three</strong></td>
+<td>—</td>
+<td>3D rendering (landing page)</td>
 </tr>
 <tr>
 <td><strong>@react-three/fiber</strong></td>
-<td>9.1.0</td>
+<td>—</td>
 <td>React renderer for Three.js</td>
+</tr>
+<tr>
+<td><strong>@react-three/drei</strong></td>
+<td>—</td>
+<td>Three.js helpers</td>
+</tr>
+<tr>
+<td><strong>posthog-js</strong></td>
+<td>—</td>
+<td>Product analytics</td>
+</tr>
+<tr>
+<td><strong>sonner</strong></td>
+<td>—</td>
+<td>Toast notifications</td>
+</tr>
+<tr>
+<td><strong>cmdk</strong></td>
+<td>—</td>
+<td>Command palette</td>
+</tr>
+<tr>
+<td><strong>use-debounce</strong></td>
+<td>—</td>
+<td>Debounced hooks</td>
+</tr>
+<tr>
+<td><strong>lenis</strong></td>
+<td>—</td>
+<td>Smooth scrolling</td>
 </tr>
 </tbody>
 </table>
-<h3 id="offline-frontend-technologies-browser-native">Offline Frontend Technologies (Browser-Native)</h3>
+<h3 id="testing-quality">Testing &amp; Quality</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Jest</strong></td>
+<td>30.3.0</td>
+<td>Unit testing</td>
+</tr>
+<tr>
+<td><strong>Playwright</strong></td>
+<td>1.60.0</td>
+<td>E2E testing</td>
+</tr>
+<tr>
+<td><strong>@axe-core/playwright</strong></td>
+<td>—</td>
+<td>Accessibility testing</td>
+</tr>
+<tr>
+<td><strong>ESLint</strong></td>
+<td>8.57.1</td>
+<td>Linting</td>
+</tr>
+<tr>
+<td><strong>eslint-config-next</strong></td>
+<td>15.5.18</td>
+<td>Next.js lint rules</td>
+</tr>
+</tbody>
+</table>
+<h3 id="offline-browser-apis">Offline Browser APIs</h3>
 <table>
 <thead>
 <tr>
@@ -1764,7 +1945,7 @@
 <tr>
 <td><code>navigator.geolocation</code></td>
 <td>GPS location</td>
-<td>All modern browsers</td>
+<td>All modern</td>
 </tr>
 <tr>
 <td><code>DeviceMotion API</code></td>
@@ -1778,32 +1959,27 @@
 </tr>
 <tr>
 <td><code>SpeechSynthesis API</code></td>
-<td>Voice output (read answers aloud)</td>
-<td>All modern browsers</td>
+<td>Voice output</td>
+<td>All modern</td>
 </tr>
 <tr>
-<td><code>Service Worker + Workbox</code></td>
-<td>Offline caching + background sync</td>
+<td><code>Service Worker</code></td>
+<td>Offline caching</td>
 <td>Chrome, Edge, Firefox</td>
 </tr>
 <tr>
 <td><code>Cache Storage API</code></td>
-<td>Model weights + tile + GeoJSON caching</td>
-<td>All modern browsers</td>
+<td>Model weights + GeoJSON caching</td>
+<td>All modern</td>
 </tr>
 <tr>
 <td><code>IndexedDB</code></td>
-<td>Offline profile, pending reports, RAG index</td>
-<td>All modern browsers</td>
+<td>Offline profile, SOS queue, RAG index</td>
+<td>All modern</td>
 </tr>
 <tr>
 <td><code>Background Sync API</code></td>
-<td>Auto-submit offline reports when reconnected</td>
-<td>Chrome, Edge</td>
-</tr>
-<tr>
-<td><code>Notification API</code></td>
-<td>Document expiry push alerts</td>
+<td>Auto-submit offline reports</td>
 <td>Chrome, Edge</td>
 </tr>
 </tbody>
@@ -1814,135 +1990,108 @@
 <thead>
 <tr>
 <th>Technology</th>
-<th>Version</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>FastAPI</strong></td>
-<td>0.115.0</td>
 <td>Async REST API framework</td>
 </tr>
 <tr>
-<td><strong>Uvicorn</strong></td>
-<td>0.30.6</td>
-<td>ASGI server</td>
+<td><strong>Python 3.11+</strong></td>
+<td>Runtime</td>
 </tr>
 <tr>
-<td><strong>SQLAlchemy</strong></td>
-<td>2.0.35</td>
-<td>Async ORM (asyncio extras)</td>
-</tr>
-<tr>
-<td><strong>asyncpg</strong></td>
-<td>0.29.0</td>
-<td>Async PostgreSQL driver</td>
+<td><strong>SQLAlchemy 2.x</strong> (async)</td>
+<td>ORM</td>
 </tr>
 <tr>
 <td><strong>GeoAlchemy2</strong></td>
-<td>0.15.2</td>
 <td>PostGIS geometry column types</td>
 </tr>
 <tr>
+<td><strong>asyncpg</strong></td>
+<td>Async PostgreSQL driver</td>
+</tr>
+<tr>
 <td><strong>Alembic</strong></td>
-<td>1.13.2</td>
 <td>Database migrations</td>
 </tr>
 <tr>
-<td><strong>psycopg2-binary</strong></td>
-<td>2.9.9</td>
-<td>Synchronous DB adapter fallback</td>
+<td><strong>Pydantic</strong> + <strong>pydantic-settings</strong></td>
+<td>Request validation + config</td>
 </tr>
 <tr>
-<td><strong>Redis</strong></td>
-<td>5.0.8</td>
-<td>Async Redis client</td>
+<td><strong>PyJWT</strong> (HS256) + <strong>passlib</strong> (bcrypt)</td>
+<td>Authentication</td>
+</tr>
+<tr>
+<td><strong>redis</strong> + <strong>hiredis</strong></td>
+<td>Async cache (graceful fallback)</td>
+</tr>
+<tr>
+<td><strong>PostGIS 16</strong></td>
+<td>Spatial queries</td>
+</tr>
+<tr>
+<td><strong>duckdb</strong> (Python)</td>
+<td>Offline SQL computation</td>
 </tr>
 <tr>
 <td><strong>httpx</strong></td>
-<td>0.27.2</td>
 <td>Async HTTP client</td>
 </tr>
 <tr>
-<td><strong>DuckDB</strong></td>
-<td>0.10.3</td>
-<td>In-process SQL computation</td>
+<td><strong>Overpass API</strong> / <strong>Nominatim</strong> / <strong>Photon</strong> / <strong>OpenRouteService</strong></td>
+<td>Maps &amp; geocoding</td>
 </tr>
 <tr>
-<td><strong>geopandas</strong></td>
-<td>0.14.4</td>
-<td>Geospatial DataFrame processing</td>
+<td><strong>slowapi</strong></td>
+<td>Rate limiting</td>
 </tr>
 <tr>
-<td><strong>shapely</strong></td>
-<td>2.0.6</td>
-<td>Geometry operations</td>
-</tr>
-<tr>
-<td><strong>geopy</strong></td>
-<td>2.4.1</td>
-<td>Geocoding API helper</td>
-</tr>
-<tr>
-<td><strong>numpy</strong></td>
-<td>1.26.4</td>
-<td>Numerical compute</td>
-</tr>
-<tr>
-<td><strong>pandas</strong></td>
-<td>2.2.2</td>
-<td>Tabular data compute</td>
-</tr>
-<tr>
-<td><strong>Pillow</strong></td>
-<td>10.4.0</td>
-<td>Image processing validation</td>
-</tr>
-<tr>
-<td><strong>Pydantic</strong></td>
-<td>2.9.2</td>
-<td>Request validation</td>
-</tr>
-<tr>
-<td><strong>pydantic-settings</strong></td>
-<td>2.5.2</td>
-<td><code>.env</code> config loading</td>
-</tr>
-<tr>
-<td><strong>python-dotenv</strong></td>
-<td>1.0.1</td>
-<td>Environment variables</td>
+<td><strong>uvicorn</strong></td>
+<td>ASGI server</td>
 </tr>
 <tr>
 <td><strong>python-multipart</strong></td>
-<td>0.0.12</td>
-<td>Form data parsing</td>
+<td>File upload parsing</td>
 </tr>
 <tr>
-<td><strong>aiofiles</strong></td>
-<td>24.1.0</td>
-<td>Async file operations</td>
+<td><strong>Pillow</strong></td>
+<td>Image validation</td>
 </tr>
 <tr>
-<td><strong>pypdf</strong></td>
-<td>4.3.1</td>
-<td>Legacy PDF utility</td>
+<td><strong>Prometheus client</strong></td>
+<td>Metrics</td>
 </tr>
 <tr>
-<td><strong>LangChain</strong></td>
-<td>0.3.1</td>
-<td>Legacy memory format support</td>
+<td><strong>Sentry SDK</strong></td>
+<td>Error monitoring</td>
+</tr>
+</tbody>
+</table>
+<h3 id="testing">Testing</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>pytest</strong></td>
+<td><code>asyncio_mode = auto</code> — async tests run automatically</td>
 </tr>
 <tr>
-<td><strong>ChromaDB</strong></td>
-<td>0.5.3</td>
-<td>Legacy API connector</td>
+<td><strong>pytest-cov</strong></td>
+<td>Coverage reporting</td>
 </tr>
 <tr>
-<td><strong>hash-based embeddings</strong></td>
-<td>3.0.1</td>
-<td>Legacy config compatibility (runtime uses hash-based LocalHashEmbeddingFunction)</td>
+<td><strong>httpx</strong></td>
+<td>Async test client</td>
 </tr>
 </tbody>
 </table>
@@ -1953,99 +2102,49 @@
 <thead>
 <tr>
 <th>Technology</th>
-<th>Version</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>FastAPI</strong></td>
-<td>0.115.0</td>
-<td>Async REST API for AI chatbot</td>
+<td>Async REST API</td>
 </tr>
 <tr>
-<td><strong>Uvicorn</strong></td>
-<td>0.30.6</td>
-<td>ASGI Server</td>
+<td><strong>Python 3.11+</strong></td>
+<td>Runtime</td>
 </tr>
 <tr>
 <td><strong>torch / torchaudio</strong></td>
-<td>2.3.1</td>
 <td>PyTorch runtime for speech models</td>
 </tr>
 <tr>
 <td><strong>transformers</strong></td>
-<td>4.44.2</td>
 <td>Hugging Face model loading</td>
 </tr>
 <tr>
 <td><strong>datasets</strong></td>
-<td>3.0.0</td>
 <td>Dataset loaders</td>
 </tr>
 <tr>
-<td><strong>ChromaDB</strong></td>
-<td>0.5.3</td>
+<td><strong>ChromaDB 0.5.x</strong></td>
 <td>Local vector store for RAG</td>
 </tr>
 <tr>
 <td><strong>LocalHashEmbeddingFunction</strong></td>
-<td>custom</td>
 <td>Hash-based 384-dim embeddings (SHA-256, zero ML dep)</td>
 </tr>
 <tr>
-<td><strong>LangChain</strong></td>
-<td>0.3.1</td>
-<td>Document loading and tools</td>
-</tr>
-<tr>
-<td><strong>langchain-community / openai / google-genai</strong></td>
-<td>Various</td>
-<td>LLM Provider Wrappers</td>
-</tr>
-<tr>
-<td><strong>groq / openai / mistralai</strong></td>
-<td>Various</td>
-<td>Official Provider SDKs</td>
-</tr>
-<tr>
-<td><strong>google-generativeai</strong></td>
-<td>0.8.6</td>
-<td>Google Gemini Flash</td>
-</tr>
-<tr>
-<td><strong>Redis</strong></td>
-<td>5.0.8</td>
+<td><strong>redis</strong></td>
 <td>Conversation memory</td>
 </tr>
 <tr>
 <td><strong>httpx / requests</strong></td>
-<td>Various</td>
-<td>HTTP API Clients</td>
-</tr>
-<tr>
-<td><strong>pandas / numpy</strong></td>
-<td>Various</td>
-<td>Output processing</td>
-</tr>
-<tr>
-<td><strong>pdfplumber / pypdf</strong></td>
-<td>Various</td>
-<td>Advanced PDF text extraction</td>
-</tr>
-<tr>
-<td><strong>Pydantic / python-dotenv</strong></td>
-<td>Various</td>
-<td>Config and data validation</td>
-</tr>
-<tr>
-<td><strong>pytest / pytest-asyncio</strong></td>
-<td>Various</td>
-<td>Service testing suite</td>
+<td>HTTP API clients</td>
 </tr>
 </tbody>
 </table>
-<h3 id="9-provider-llm-fallback-chain">9-provider LLM Fallback Chain</h3>
+<h3 id="9-provider-llm-fallback-chain">9-Provider LLM Fallback Chain</h3>
 <table>
 <thead>
 <tr>
@@ -2075,18 +2174,6 @@
 <td>Large context (1M tokens)</td>
 </tr>
 <tr>
-<td><strong>Sarvam AI</strong></td>
-<td>sarvam-30b</td>
-<td>Varies</td>
-<td>Indian languages (Hindi, Tamil, etc.)</td>
-</tr>
-<tr>
-<td><strong>Sarvam AI</strong></td>
-<td>sarvam-105b</td>
-<td>Varies</td>
-<td>Legal queries in Indian languages</td>
-</tr>
-<tr>
 <td><strong>GitHub Models</strong></td>
 <td>Various</td>
 <td>Varies</td>
@@ -2096,13 +2183,13 @@
 <td><strong>NVIDIA NIM</strong></td>
 <td>Various</td>
 <td>Varies</td>
-<td>GPU-optimized inference</td>
+<td>GPU-optimized</td>
 </tr>
 <tr>
 <td><strong>OpenRouter</strong></td>
 <td>20+ models</td>
 <td>Varies</td>
-<td>Gateway to many providers</td>
+<td>Multi-provider gateway</td>
 </tr>
 <tr>
 <td><strong>Mistral</strong></td>
@@ -2114,7 +2201,13 @@
 <td><strong>Together</strong></td>
 <td>Various</td>
 <td>Varies</td>
-<td>$25 credit bank</td>
+<td>$25 credit</td>
+</tr>
+<tr>
+<td><strong>Sarvam AI</strong></td>
+<td>sarvam-30b / 105b</td>
+<td>Varies</td>
+<td>Indian languages (auto-routed)</td>
 </tr>
 <tr>
 <td><strong>Template</strong></td>
@@ -2124,6 +2217,25 @@
 </tr>
 </tbody>
 </table>
+<h3 id="testing_1">Testing</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>pytest</strong></td>
+<td><code>asyncio_mode = strict</code> — async tests <strong>require</strong> <code>@pytest.mark.asyncio</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="config-note">Config Note</h3>
+<ul>
+<li>Config uses <strong>dataclass + os.getenv</strong> — NOT pydantic-settings (despite pydantic-settings being in requirements.txt)</li>
+</ul>
 <hr />
 <h2 id="ai-models">AI Models</h2>
 <table>
@@ -2138,49 +2250,63 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Groq llama3-70b-8192</code></td>
+<td>Groq llama3-70b-8192</td>
 <td>70B</td>
 <td>Cloud</td>
 <td>Groq API</td>
 <td>Online chatbot — max intelligence</td>
 </tr>
 <tr>
-<td><code>Phi-3-mini-4k-instruct-q4f16_1-MLC</code></td>
+<td>Gemini 1.5 Flash</td>
+<td>—</td>
+<td>Cloud</td>
+<td>Gemini API</td>
+<td>Large context</td>
+</tr>
+<tr>
+<td>Sarvam-30B</td>
+<td>30B</td>
+<td>Cloud</td>
+<td>Sarvam API</td>
+<td>Indian languages</td>
+</tr>
+<tr>
+<td>Sarvam-105B</td>
+<td>105B</td>
+<td>Cloud</td>
+<td>Sarvam API</td>
+<td>Legal Indic queries</td>
+</tr>
+<tr>
+<td>Phi-3-mini-4k-instruct-q4f16_1-MLC</td>
 <td>3.8B</td>
 <td>~2.2GB</td>
 <td>WebGPU</td>
 <td>Offline chatbot — primary</td>
 </tr>
 <tr>
-<td><code>gemma-2b-it-q4f16_1-MLC</code></td>
+<td>gemma-2b-it-q4f16_1-MLC</td>
 <td>2B</td>
 <td>~1.4GB</td>
 <td>WebAssembly</td>
 <td>Offline chatbot — CPU fallback</td>
 </tr>
 <tr>
-<td><code>LocalHashEmbeddingFunction</code></td>
+<td>LocalHashEmbeddingFunction</td>
 <td>N/A</td>
 <td>0 MB</td>
-<td>Server CPU</td>
-<td>Hash-based 384-dim embeddings for ChromaDB</td>
+<td>CPU</td>
+<td>Hash-based 384-dim embeddings</td>
 </tr>
 <tr>
-<td><code>Xenova/LocalHashEmbeddingFunction</code></td>
-<td>22M</td>
-<td>~25MB</td>
-<td>Browser Wasm</td>
-<td>Browser-side embeddings for offline RAG</td>
-</tr>
-<tr>
-<td><code>Xenova/yolov8n</code></td>
+<td>Xenova/yolov8n</td>
 <td>~6M</td>
 <td>~15MB</td>
 <td>Browser Wasm</td>
-<td>In-browser pothole detection from photos</td>
+<td>Pothole detection</td>
 </tr>
 <tr>
-<td><code>ai4bharat/indic-seamless</code></td>
+<td>ai4bharat/indic-seamless</td>
 <td>Large</td>
 <td>~7GB</td>
 <td>Server GPU/CPU</td>
@@ -2207,7 +2333,7 @@
 <tr>
 <td><strong>Cache</strong></td>
 <td>Upstash Redis</td>
-<td>API response caching, chat history, rate limits</td>
+<td>API cache, chat history, rate limits</td>
 </tr>
 <tr>
 <td><strong>Vector Store</strong></td>
@@ -2217,7 +2343,7 @@
 <tr>
 <td><strong>Browser Store</strong></td>
 <td>IndexedDB (via <code>idb</code>)</td>
-<td>Offline profile, pending reports, HNSWlib index</td>
+<td>Offline profile, SOS queue, HNSWlib index</td>
 </tr>
 </tbody>
 </table>
@@ -2237,19 +2363,19 @@
 <td>Frontend hosting</td>
 <td>Vercel</td>
 <td>100GB/month CDN</td>
-<td>Next.js 15 PWA</td>
+<td>Next.js PWA</td>
 </tr>
 <tr>
 <td>Backend hosting</td>
 <td>Render.com</td>
-<td>750 hrs/month</td>
-<td>FastAPI (port 8000)</td>
+<td>750 hrs/month (512MB RAM)</td>
+<td>FastAPI :8000</td>
 </tr>
 <tr>
 <td>Chatbot hosting</td>
 <td>Render.com</td>
-<td>750 hrs/month</td>
-<td>FastAPI (port 8010)</td>
+<td>750 hrs/month (2GB RAM)</td>
+<td>FastAPI :8010</td>
 </tr>
 <tr>
 <td>Database</td>
@@ -2265,9 +2391,9 @@
 </tr>
 <tr>
 <td>LLM APIs</td>
-<td>Groq + 10 more</td>
+<td>Groq + 9 more</td>
 <td>Free tiers</td>
-<td>9-provider chain</td>
+<td>Provider chain</td>
 </tr>
 <tr>
 <td>Model CDN</td>
@@ -2279,7 +2405,7 @@
 <td>Maps</td>
 <td>MapLibre GL + OSM</td>
 <td>Free (open source)</td>
-<td>Vector map tiles</td>
+<td>Vector tiles</td>
 </tr>
 <tr>
 <td>Geocoding</td>
@@ -2297,12 +2423,18 @@
 <td>CI/CD</td>
 <td>GitHub Actions</td>
 <td>2,000 min/month</td>
-<td>Tests + deploy</td>
+<td>19 workflows</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Docker + docker-compose</td>
+<td>Free</td>
+<td>5 services</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<p><em>Document version: 2.0 | IIT Madras Road Safety Hackathon 2026</em></p>
+<p><em>Document version: 2.0 | IIT Madras Road Safety Hackathon 2026 | Updated: June 2026</em></p>
 
 
 

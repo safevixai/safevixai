@@ -1272,10 +1272,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tile-layer" class="md-nav__link">
+  <a href="#map-style-maplibre-gl-style-json-not-leaflet-raster-tiles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tile Layer
+        Map Style (MapLibre GL Style JSON — not Leaflet raster tiles)
       
     </span>
   </a>
@@ -1879,10 +1879,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tile-layer" class="md-nav__link">
+  <a href="#map-style-maplibre-gl-style-json-not-leaflet-raster-tiles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tile Layer
+        Map Style (MapLibre GL Style JSON — not Leaflet raster tiles)
       
     </span>
   </a>
@@ -2150,7 +2150,7 @@
 <li>Prevents glare in car/sunlight</li>
 <li>Emergency red SOS button stands out dramatically</li>
 <li>Map markers (red, blue, orange) have high contrast</li>
-<li>CartoDB Dark map tiles match perfectly</li>
+<li>CartoDB Dark base map style matches perfectly</li>
 <li>Battery-efficient on OLED screens</li>
 </ul>
 <hr />
@@ -2251,7 +2251,8 @@
 <li>Border radius: 16px</li>
 <li>Background while loading: <code>#1C2D4A</code> with pulse animation</li>
 <li>Attribution: always visible (OSM license requirement)</li>
-<li>Tile URL: CartoDB Dark <code>https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png</code></li>
+<li>Style URL (report picker &amp; command-center only): CartoDB Dark Matter <code>https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json</code></li>
+<li>Main map (<code>/locator</code>, <code>/emergency</code>) uses multiple providers via <code>buildStyleCandidates()</code> from <code>map-styles.ts</code>: <strong>Google Maps</strong> (raster, India-optimized), <strong>MapTiler</strong> (vector tiles), <strong>OpenFreeMap</strong> (Liberty style, fallback)</li>
 </ul>
 <h3 id="service-card">Service Card</h3>
 <ul>
@@ -2279,13 +2280,15 @@
 </ul>
 <hr />
 <h2 id="map-design-rules-maplibre-gl">Map Design Rules (MapLibre GL)</h2>
-<h3 id="tile-layer">Tile Layer</h3>
-<div class="language-tsx highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Always use CartoDB Dark, never default OSM blue</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">&lt;</span><span class="nt">TileLayer</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="na">url</span><span class="o">=</span><span class="s">&quot;https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png&quot;</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="na">attribution</span><span class="o">=</span><span class="s">&#39; OpenStreetMap contributors  CartoDB&#39;</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="na">maxZoom</span><span class="o">=</span><span class="p">{</span><span class="mf">19</span><span class="p">}</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">/&gt;</span>
+<h3 id="map-style-maplibre-gl-style-json-not-leaflet-raster-tiles">Map Style (MapLibre GL Style JSON — not Leaflet raster tiles)</h3>
+<div class="language-tsx highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// CartoDB Dark Matter — used in report picker and command-center dashboard</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">// Main map uses buildStyleCandidates() from map-styles.ts instead</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">maplibregl</span><span class="p">.</span><span class="nb">Map</span><span class="p">({</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nx">container</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;map&#39;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nx">style</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json&#39;</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nx">center</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">lon</span><span class="p">,</span><span class="w"> </span><span class="nx">lat</span><span class="p">],</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">zoom</span><span class="o">:</span><span class="w"> </span><span class="kt">14</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">})</span>
 </span></code></pre></div>
 <h3 id="marker-colors-by-category">Marker Colors by Category</h3>
 <div class="language-tsx highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">MARKER_COLORS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -2301,8 +2304,8 @@
 <h3 id="critical-rules">Critical Rules</h3>
 <ol>
 <li><code>import dynamic from 'next/dynamic'</code> + <code>ssr: false</code> → MapLibre needs browser</li>
-<li><code>maplibre-gl/dist/maplibre-gl.css</code> is imported globally in <code>layout.tsx</code> (not per-component)</li>
-<li>Place marker icons in <code>public/maplibre/</code></li>
+<li><code>maplibre-gl/dist/maplibre-gl.css</code> is imported per-component in <code>LocationPickerInner.tsx</code>, <code>MapLayers.tsx</code>, and <code>MapLibreDashboard.tsx</code> (not globally in <code>layout.tsx</code>)</li>
+<li>Markers use <code>new maplibregl.Marker({ color: '...' })</code> with built-in color circles — no custom icon images needed. The <code>public/leaflet/</code> directory contains legacy Leaflet icons (not used by MapLibre). The <code>public/maplibre/</code> directory does not exist</li>
 <li>Add <code>key={lat+lon}</code> to MapContainer  prevents "map already initialized" error</li>
 <li>Set explicit height on MapContainer  invisible without it</li>
 </ol>
@@ -2520,7 +2523,7 @@
 </ul>
 <h3 id="authguard-in-production-build">AuthGuard in Production Build</h3>
 <ul>
-<li><code>AuthGuard.tsx</code> wraps all pages except NO_NAV_ROUTES (<code>/login</code>, <code>/signup</code>, <code>/forgot-password</code>)</li>
+<li><code>AuthGuard.tsx</code> wraps all pages except NO_NAV_ROUTES (defined in <code>AppFrame.tsx</code>: <code>/login</code>, <code>/signup</code>, <code>/forgot-password</code>)</li>
 <li>Redirects to <code>/login</code> when <code>isAuthenticated=false</code> and no Supabase session</li>
 <li>E2E tests use <code>localStorage.__E2E_SKIP_AUTH__</code> flag for bypass</li>
 <li>Previous zustand persist approach (<code>svai-storage</code>) had race condition with <code>profileHydrated</code> (IndexedDB exceptions in EnterpriseClientAppHooks)</li>

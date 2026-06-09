@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#offline-bundle-architecture-investigation" class="md-skip">
+        <a href="#safevixai-offline-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -791,10 +791,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-state-v1-mvp" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current State (V1 MVP)
+        Overview
       
     </span>
   </a>
@@ -802,10 +802,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-problem-at-enterprise-scale" class="md-nav__link">
+  <a href="#layer-1-service-worker-production-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Problem at Enterprise Scale
+        Layer 1: Service Worker (Production Only)
       
     </span>
   </a>
@@ -813,10 +813,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#proposed-v2-enterprise-solution" class="md-nav__link">
+  <a href="#layer-2-duckdb-wasm-offline-challan-calculation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Proposed V2 Enterprise Solution
+        Layer 2: DuckDB-Wasm — Offline Challan Calculation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-3-webllm-phi-3-mini-offline-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 3: WebLLM Phi-3 Mini — Offline AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-4-indexeddb-profile-sos-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 4: IndexedDB — Profile &amp; SOS Queue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layer 4: IndexedDB — Profile &amp; SOS Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profile-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-sos-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline SOS Queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-5-offline-data-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 5: Offline Data Bundle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-6-huggingfacetransformers-yolov8-pothole-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 6: @huggingface/transformers — YOLOv8 Pothole Detection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-7-browser-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 7: Browser APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Notes
       
     </span>
   </a>
@@ -1407,10 +1512,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-state-v1-mvp" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current State (V1 MVP)
+        Overview
       
     </span>
   </a>
@@ -1418,10 +1523,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-problem-at-enterprise-scale" class="md-nav__link">
+  <a href="#layer-1-service-worker-production-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Problem at Enterprise Scale
+        Layer 1: Service Worker (Production Only)
       
     </span>
   </a>
@@ -1429,10 +1534,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#proposed-v2-enterprise-solution" class="md-nav__link">
+  <a href="#layer-2-duckdb-wasm-offline-challan-calculation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Proposed V2 Enterprise Solution
+        Layer 2: DuckDB-Wasm — Offline Challan Calculation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-3-webllm-phi-3-mini-offline-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 3: WebLLM Phi-3 Mini — Offline AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-4-indexeddb-profile-sos-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 4: IndexedDB — Profile &amp; SOS Queue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layer 4: IndexedDB — Profile &amp; SOS Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profile-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-sos-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline SOS Queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-5-offline-data-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 5: Offline Data Bundle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-6-huggingfacetransformers-yolov8-pothole-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 6: @huggingface/transformers — YOLOv8 Pothole Detection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layer-7-browser-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 7: Browser APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Notes
       
     </span>
   </a>
@@ -1459,30 +1669,122 @@
   
 
 
-<h1 id="offline-bundle-architecture-investigation">Offline Bundle Architecture Investigation</h1>
-<h2 id="current-state-v1-mvp">Current State (V1 MVP)</h2>
-<p>Currently, offline metadata (like queued SOS events and cached chat logs) is managed in the browser using IndexedDB. If a user submits a road report photo while offline, the browser caches the multipart form data using service workers (via Workbox background sync). When the connection is restored, the <code>posthog-js</code> queue and our custom <code>offline-sos-queue</code> flush their payloads to the backend.</p>
-<p>The backend is currently hosted on <strong>Render</strong> (FastAPI) and the frontend on <strong>Vercel</strong> (Next.js). When photos are uploaded, they are temporarily saved to Render's local disk space (<code>/uploads</code> volume).</p>
-<h2 id="the-problem-at-enterprise-scale">The Problem at Enterprise Scale</h2>
-<ol>
-<li><strong>Ephemeral Disks</strong>: Render's free/standard instances have ephemeral disks. If the service restarts, locally saved images from offline syncs might be lost.</li>
-<li><strong>Distributed Processing</strong>: If we scale the backend to multiple workers, a user might upload an image to Worker A, but a subsequent request to view it might hit Worker B, resulting in a 404.</li>
-</ol>
-<h2 id="proposed-v2-enterprise-solution">Proposed V2 Enterprise Solution</h2>
-<p>To achieve true enterprise scale and stateless operation, the architecture must transition to an Object Storage solution:</p>
-<ol>
-<li><strong>AWS S3 / Supabase Storage</strong>:</li>
-<li>Instead of the backend handling the raw file upload stream, the frontend will request a <strong>Pre-Signed URL</strong> from the backend.</li>
-<li>Once online, the frontend will directly upload the photo to the S3 bucket using the Pre-Signed URL.</li>
-<li>
-<p>This removes the bandwidth bottleneck from the FastAPI server and ensures files are persisted globally.</p>
-</li>
-<li>
-<p><strong>Supabase Realtime for Offline Resync</strong>:</p>
-</li>
-<li>Use Supabase Realtime/Postgres logical replication to sync offline queues when devices reconnect, rather than custom REST endpoints.</li>
-<li>This provides out-of-the-box conflict resolution for overlapping offline events.</li>
-</ol>
+<h1 id="safevixai-offline-architecture">SafeVixAI — Offline Architecture</h1>
+<blockquote>
+<p>Last updated: 2026-06-09
+Covers actual implemented offline capabilities across all 3 services.</p>
+</blockquote>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>SafeVixAI implements a <strong>multi-layer offline architecture</strong> that ensures core emergency features work from first visit without internet, progressively enhancing when connectivity is available. The architecture spans Service Worker caching, IndexedDB queues, client-side SQL/WASM databases, and browser-based ML inference.</p>
+<hr />
+<h2 id="layer-1-service-worker-production-only">Layer 1: Service Worker (Production Only)</h2>
+<p><strong>Activation:</strong> Service Worker is only active in production builds — <code>npm run build &amp;&amp; npm start</code> (not <code>npm run dev</code>).</p>
+<ul>
+<li>Precache app shell (HTML, JS, CSS, fonts) at install time via Workbox</li>
+<li>Cache-first strategy for static assets and offline data bundles</li>
+<li>Network-first strategy for API calls with cache fallback</li>
+<li>Background Sync API for offline queue auto-submit when connectivity returns</li>
+<li>PWA manifest: <code>frontend/public/manifest.json</code> — 8 icon sizes, standalone display</li>
+</ul>
+<hr />
+<h2 id="layer-2-duckdb-wasm-offline-challan-calculation">Layer 2: DuckDB-Wasm — Offline Challan Calculation</h2>
+<p><strong>Purpose:</strong> Deterministic offline challan (traffic fine) calculation without network.</p>
+<ul>
+<li>File: <code>frontend/lib/duckdb-challan.ts</code></li>
+<li>Uses <code>@duckdb/duckdb-wasm</code> (WebAssembly SQL engine)</li>
+<li>Loads <code>frontend/public/offline-data/violations.csv</code> and <code>state_overrides.csv</code></li>
+<li>3-tier fallback: DuckDB-Wasm → embedded JSON → error message</li>
+<li>Same SQL logic as server-side <code>backend/services/challan_service.py</code> but runs in-browser</li>
+</ul>
+<hr />
+<h2 id="layer-3-webllm-phi-3-mini-offline-ai">Layer 3: WebLLM Phi-3 Mini — Offline AI</h2>
+<p><strong>Purpose:</strong> On-device LLM inference for AI chat when no backend is reachable.</p>
+<ul>
+<li>File: <code>frontend/lib/offline-ai.ts</code></li>
+<li>Uses <code>@mlc-ai/web-llm</code> to load Phi-3 Mini (3.8B parameters, 4-bit quantized)</li>
+<li><strong>2.2 GB download</strong> — on-demand, only downloads when user clicks "Use Offline AI"</li>
+<li>3-tier fallback: Chrome built-in AI → Transformers.js → rule-based keyword matching</li>
+<li>Progress indicator and user consent required before download</li>
+<li>Works entirely client-side — no data leaves the device</li>
+</ul>
+<hr />
+<h2 id="layer-4-indexeddb-profile-sos-queue">Layer 4: IndexedDB — Profile &amp; SOS Queue</h2>
+<h3 id="profile-storage">Profile Storage</h3>
+<ul>
+<li><strong>Blood group, emergency contacts, vehicle number stored in IndexedDB</strong></li>
+<li>Privacy by architecture: blood group <strong>never leaves the device</strong></li>
+<li>Fields defined in <code>frontend/app/profile/page.tsx</code></li>
+</ul>
+<h3 id="offline-sos-queue">Offline SOS Queue</h3>
+<ul>
+<li>File: <code>frontend/lib/offline-sos-queue.ts</code></li>
+<li>When offline, SOS events are queued in IndexedDB with minimal data:</li>
+<li><code>{ lat, lon, timestamp, userId? }</code></li>
+<li>No PII (no authToken, no bloodGroup, no emergencyContacts)</li>
+<li>Auto-flushes to backend on <code>online</code> event</li>
+<li>Clear user feedback: toast shows "SOS queued — will send when online"</li>
+</ul>
+<hr />
+<h2 id="layer-5-offline-data-bundle">Layer 5: Offline Data Bundle</h2>
+<p><strong>Purpose:</strong> Pre-packaged GeoJSON and CSV data for map rendering and emergency lookups.</p>
+<ul>
+<li>Endpoint: <code>GET /api/v1/offline/bundle</code> (backend)</li>
+<li>Files in <code>frontend/public/offline-data/</code>:</li>
+<li><code>india-emergency.geojson</code> — hospitals, police stations, fire stations across 25 cities (pre-compressed 93%: 5.4MB → 0.4MB)</li>
+<li><code>violations.csv</code> — traffic violation seed data for DuckDB-Wasm</li>
+<li>City/state emergency bundles for granular offline coverage</li>
+<li>Service Worker precaches <code>india-emergency.geojson</code> at install time</li>
+</ul>
+<hr />
+<h2 id="layer-6-huggingfacetransformers-yolov8-pothole-detection">Layer 6: @huggingface/transformers — YOLOv8 Pothole Detection</h2>
+<p><strong>Purpose:</strong> Client-side computer vision for pothole detection in road reports.</p>
+<ul>
+<li>File: <code>frontend/lib/offline-ai.ts</code> (same module as WebLLM)</li>
+<li>Uses <code>@huggingface/transformers</code> to run YOLOv8n ONNX model (~15MB)</li>
+<li>Runs entirely in browser via WebAssembly (no server round-trip)</li>
+<li>Triggers when user uploads a photo in the Road Reporter form</li>
+<li>Returns bounding box coordinates for detected potholes/cracks</li>
+</ul>
+<hr />
+<h2 id="layer-7-browser-apis">Layer 7: Browser APIs</h2>
+<ul>
+<li><strong>Geolocation API</strong> (<code>frontend/lib/geolocation.ts</code>): one-shot + continuous watch</li>
+<li><strong>DeviceMotion API</strong> (<code>frontend/lib/crash-detection.ts</code>): crash detection (2.5G threshold, 10s cancel window, 30s cooldown, ignores below 10km/h)</li>
+<li><strong>Web Speech API</strong> (<code>frontend/components/chat/VoiceInput.tsx</code>): voice input for AI assistant (14 Indian languages via language mapping in <code>frontend/lib/languages.ts</code>)</li>
+<li><strong>Speech Synthesis API</strong> (<code>frontend/components/chat/VoiceOutput.tsx</code>): voice output (auto-read speed 0.9)</li>
+<li><strong>Cache Storage API</strong>: browser cache for offline models and static assets</li>
+</ul>
+<hr />
+<h2 id="data-flow-diagram">Data Flow Diagram</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>User Action (Offline)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    ├── SOS Button ──────────► IndexedDB Queue ──► (online event) ──► Backend API
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    ├── AI Chat ─────────────► WebLLM Phi-3 Mini ──► Local Inference
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    │                             │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    │                             └── Fallback: Chrome AI → Transformers.js → Keyword
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ├── Challan Calc ─────────► DuckDB-Wasm ──► violations.csv (cached)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ├── Road Report ──────────► IndexedDB Queue ──► (online) ──► Backend API
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    │                             │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    │                             └── YOLOv8 (photo) ──► Transformers.js
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    ├── Emergency Map ────────► Service Worker ──► Cache (india-emergency.geojson)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    │
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    └── Crash Detection ─────► DeviceMotion API ──► CrashCountdown UI
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                                  │
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                  └── (online) ──► Backend SOS Dispatch
+</span></code></pre></div>
+<hr />
+<h2 id="production-notes">Production Notes</h2>
+<ul>
+<li>Service Worker only activates in production (<code>npm run build &amp;&amp; npm start</code>), not dev mode</li>
+<li><code>copy-public.js</code> (run as part of <code>npm run build</code>) always re-copies static assets to <code>.next/standalone/</code></li>
+<li>DuckDB-Wasm and WebLLM are loaded via Next.js WASM experiments in <code>next.config.js</code></li>
+<li>All offline data files in <code>frontend/public/offline-data/</code> are versioned and cache-busted via Service Worker</li>
+</ul>
 
 
 

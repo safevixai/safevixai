@@ -928,28 +928,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
+  <a href="#response-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Endpoints
+        Response Format
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Endpoints">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#system" class="md-nav__link">
+  <a href="#get" class="md-nav__link">
     <span class="md-ellipsis">
       
-        System
+        GET /
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="System">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#get-health" class="md-nav__link">
@@ -962,28 +972,50 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
-  <a href="#emergency-apiv1emergency" class="md-nav__link">
+  <a href="#get-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Emergency (/api/v1/emergency)
+        GET /metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Emergency (/api/v1/emergency)">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1csp-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/csp-report
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-apiv1auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication (/api/v1/auth)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication (/api/v1/auth)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-apiv1emergencynearby" class="md-nav__link">
+  <a href="#post-apiv1authlogin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/emergency/nearby
+        POST /api/v1/auth/login
       
     </span>
   </a>
@@ -991,10 +1023,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1emergencysos" class="md-nav__link">
+  <a href="#post-apiv1authsignup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/emergency/sos
+        POST /api/v1/auth/signup
       
     </span>
   </a>
@@ -1002,10 +1034,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1emergencynumbers" class="md-nav__link">
+  <a href="#post-apiv1authrefresh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/emergency/numbers
+        POST /api/v1/auth/refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1authlogout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/auth/logout
       
     </span>
   </a>
@@ -1016,24 +1059,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#chat-apiv1chat" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#admin-apiv1admin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chat (/api/v1/chat)
+        Admin (/api/v1/admin)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Chat (/api/v1/chat)">
+    <nav class="md-nav" aria-label="Admin (/api/v1/admin)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#post-apiv1chatmessage" class="md-nav__link">
+  <a href="#get-apiv1adminhealth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        POST /api/v1/chat/message
+        GET /api/v1/admin/health
       
     </span>
   </a>
@@ -1041,21 +1084,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#websocket-apiv1chatstream" class="md-nav__link">
+  <a href="#get-apiv1adminstats" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WebSocket /api/v1/chat/stream
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1chathistorysession_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/chat/history/{session_id}
+        GET /api/v1/admin/stats
       
     </span>
   </a>
@@ -1066,8 +1098,97 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics-apiv1analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics (/api/v1/analytics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analytics (/api/v1/analytics)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#get-apiv1analyticsheatmaptypebbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/analytics/heatmap?type=...&amp;bbox=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1analyticssummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/analytics/summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1analyticswardward_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/analytics/ward/{ward_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authority-apiv1authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authority (/api/v1/authority)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authority (/api/v1/authority)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1authoritynearbylatlon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/authority/nearby?lat=...&amp;lon=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1authorityauthority_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/authority/{authority_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#challan-apiv1challan" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1080,10 +1201,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-apiv1challancalculate" class="md-nav__link">
+  <a href="#get-apiv1challancalculateviolation_codestatevehicle_type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/challan/calculate
+        GET /api/v1/challan/calculate?violation_code=...&amp;state=...&amp;vehicle_type=...
       
     </span>
   </a>
@@ -1102,10 +1223,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1challanstatescode" class="md-nav__link">
+  <a href="#get-apiv1challanstate-overrides" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/challan/states/{code}
+        GET /api/v1/challan/state-overrides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1challandispute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/challan/dispute
       
     </span>
   </a>
@@ -1116,24 +1248,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#roads-apiv1roads" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#chat-apiv1chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Roads (/api/v1/roads)
+        Chat (/api/v1/chat)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Roads (/api/v1/roads)">
+    <nav class="md-nav" aria-label="Chat (/api/v1/chat)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#post-apiv1roadsreport" class="md-nav__link">
+  <a href="#post-apiv1chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        POST /api/v1/roads/report
+        POST /api/v1/chat/
       
     </span>
   </a>
@@ -1141,32 +1273,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1roadsauthority" class="md-nav__link">
+  <a href="#post-apiv1chatstream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/roads/authority
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1roadsissues" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/roads/issues
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1roadsinfrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/roads/infrastructure
+        POST /api/v1/chat/stream
       
     </span>
   </a>
@@ -1177,8 +1287,358 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#circuit-breaker-apiv1circuit-breaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circuit Breaker (/api/v1/circuit-breaker)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Circuit Breaker (/api/v1/circuit-breaker)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#get-apiv1circuit-breakerstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/circuit-breaker/status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1circuit-breakerresetname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/circuit-breaker/reset/{name}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citizen-apiv1citizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citizen (/api/v1/citizen)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Citizen (/api/v1/citizen)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1citizendashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/citizen/dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1citizenreports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/citizen/reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#civic-intel-apiv1civic-intel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Civic Intel (/api/v1/civic-intel)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Civic Intel (/api/v1/civic-intel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1civic-intellgdhierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/civic-intel/lgd/hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1civic-intelmunicipalityid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/civic-intel/municipality/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1civic-intelboundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/civic-intel/boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-center-apiv1command-center" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command Center (/api/v1/command-center)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Center (/api/v1/command-center)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1command-centerdashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/command-center/dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1command-centeralerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/command-center/alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1command-centerdeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/command-center/deploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergency-apiv1emergency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency (/api/v1/emergency)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Emergency (/api/v1/emergency)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1emergencynearbylatloncategoryradius" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/emergency/nearby?lat=...&amp;lon=...&amp;category=...&amp;radius=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1emergencynumbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/emergency/numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1emergencyservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/emergency/services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1emergencysos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/emergency/sos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1emergencysosbroadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/emergency/sos/broadcast
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-workflow-apiv1field-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Workflow (/api/v1/field-workflow)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Workflow (/api/v1/field-workflow)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1field-workflowtasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/field-workflow/tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1field-workflowcheckin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/field-workflow/checkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1field-workflowcheckout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/field-workflow/checkout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#garage-apiv1garage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garage (/api/v1/garage)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Garage (/api/v1/garage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1garagevehicles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/garage/vehicles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1garagevehicles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/garage/vehicles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1garagevehiclesid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/garage/vehicles/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#geocoding-apiv1geocode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1191,10 +1651,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-apiv1geocodesearch" class="md-nav__link">
+  <a href="#get-apiv1geocodesearchqlimit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/geocode/search
+        GET /api/v1/geocode/search?q=...&amp;limit=...
       
     </span>
   </a>
@@ -1202,10 +1662,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1geocodereverse" class="md-nav__link">
+  <a href="#get-apiv1geocodereverselatlon" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/geocode/reverse
+        GET /api/v1/geocode/reverse?lat=...&amp;lon=...
       
     </span>
   </a>
@@ -1216,234 +1676,17 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#offline-data-apiv1offline" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#live-tracking-apiv1tracking" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Offline Data (/api/v1/offline)
+        Live Tracking (/api/v1/tracking)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Offline Data (/api/v1/offline)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1offlinebundlecity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/offline/bundle/{city}
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#routing-apiv1routing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Routing (/api/v1/routing)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Routing (/api/v1/routing)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1routingpreview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/routing/preview
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1routingsafe-route" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/routing/safe-route
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#auth-apiv1auth" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Auth (/api/v1/auth)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Auth (/api/v1/auth)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apiv1authlogin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/v1/auth/login
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1authverify" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/auth/verify
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#user-apiv1user" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        User (/api/v1/user)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="User (/api/v1/user)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apiv1user" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/v1/user/
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1useruser_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/user/{user_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#put-apiv1useruser_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PUT /api/v1/user/{user_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#live-tracking-apiv1live-tracking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live Tracking (/api/v1/live-tracking)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Live Tracking (/api/v1/live-tracking)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apiv1live-trackingstart" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/v1/live-tracking/start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#put-apiv1live-trackingupdate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PUT /api/v1/live-tracking/update
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1live-trackingsessionsession_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/live-tracking/session/{session_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-apiv1live-trackingsessionsession_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DELETE /api/v1/live-tracking/session/{session_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tracking-apiv1tracking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tracking (/api/v1/tracking)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Tracking (/api/v1/tracking)">
+    <nav class="md-nav" aria-label="Live Tracking (/api/v1/tracking)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1457,64 +1700,25 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
-  <a href="#waze-feed-apiv1waze-feed" class="md-nav__link">
+  <a href="#post-apiv1trackingstart" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Waze Feed (/api/v1/waze-feed)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Waze Feed (/api/v1/waze-feed)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1waze-feedwaze" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/waze-feed/waze
+        POST /api/v1/tracking/start
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
-  <a href="#emergency-safe-spaces-apiv1emergencysafe-spaces" class="md-nav__link">
+  <a href="#post-apiv1trackingstop" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Emergency Safe Spaces (/api/v1/emergency/safe-spaces)
+        POST /api/v1/tracking/stop
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Emergency Safe Spaces (/api/v1/emergency/safe-spaces)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1emergencysafe-spaces" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/emergency/safe-spaces
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1524,10 +1728,549 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#error-responses" class="md-nav__link">
+  <a href="#mcp-server-mcp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Responses
+        MCP Server (/mcp)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCP Server (/mcp)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-mcpsse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /mcp/sse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-mcpmessages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /mcp/messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#officers-apiv1officers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Officers (/api/v1/officers)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Officers (/api/v1/officers)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1officers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/officers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1officersid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/officers/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1officerscheckin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/officers/checkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offline-apiv1offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline (/api/v1/offline)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Offline (/api/v1/offline)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1offlinebundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/offline/bundle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1offlinesync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/offline/sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-apiv1public" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public (/api/v1/public)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public (/api/v1/public)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1publicemergency-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/public/emergency-numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1publichealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/public/health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadwatch-apiv1roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RoadWatch (/api/v1/roads)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RoadWatch (/api/v1/roads)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsissuesbboxstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/issues?bbox=...&amp;status=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1roadsreport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/roads/report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsreportid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/report/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsfeed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/feed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsinfrastructurelatlon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/infrastructure?lat=...&amp;lon=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-apiv1routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing (/api/v1/routing)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing (/api/v1/routing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1routingdirectionsstartendprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/routing/directions?start=...&amp;end=...&amp;profile=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1routingsafe-routestartend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/routing/safe-route?start=...&amp;end=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1routingnearby-spaceslatlontype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/routing/nearby-spaces?lat=...&amp;lon=...&amp;type=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-apiv1tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking (/api/v1/tracking)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking (/api/v1/tracking)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1trackingsessionsession_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/tracking/session/{session_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1trackinglocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/tracking/location
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-apiv1user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User (/api/v1/user)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User (/api/v1/user)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/user/profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put-apiv1userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PUT /api/v1/user/profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiv1userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /api/v1/user/profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1userexport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/user/export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1useremergency-contacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/user/emergency-contacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1useremergency-contacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/user/emergency-contacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wards-apiv1wards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wards (/api/v1/wards)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wards (/api/v1/wards)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/wards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wardsid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/wards/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wardsidstats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/wards/{id}/stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waze-feed-apiv1waze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waze Feed (/api/v1/waze)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Waze Feed (/api/v1/waze)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wazefeedbbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/waze/feed?bbox=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wazealerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/waze/alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speech-endpoints-chatbot-service-port-8010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speech Endpoints (Chatbot Service — port 8010)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speech Endpoints (Chatbot Service — port 8010)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-speechtranslate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /speech/translate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-speechstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /speech/status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chatbot-service-port-8010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chatbot Service (port 8010)
       
     </span>
   </a>
@@ -1570,6 +2313,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Responses
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2064,28 +2818,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
+  <a href="#response-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Endpoints
+        Response Format
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Endpoints">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#system" class="md-nav__link">
+  <a href="#get" class="md-nav__link">
     <span class="md-ellipsis">
       
-        System
+        GET /
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="System">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#get-health" class="md-nav__link">
@@ -2098,28 +2862,50 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
-  <a href="#emergency-apiv1emergency" class="md-nav__link">
+  <a href="#get-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Emergency (/api/v1/emergency)
+        GET /metrics
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Emergency (/api/v1/emergency)">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1csp-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/csp-report
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-apiv1auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication (/api/v1/auth)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication (/api/v1/auth)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-apiv1emergencynearby" class="md-nav__link">
+  <a href="#post-apiv1authlogin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/emergency/nearby
+        POST /api/v1/auth/login
       
     </span>
   </a>
@@ -2127,10 +2913,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1emergencysos" class="md-nav__link">
+  <a href="#post-apiv1authsignup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/emergency/sos
+        POST /api/v1/auth/signup
       
     </span>
   </a>
@@ -2138,10 +2924,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1emergencynumbers" class="md-nav__link">
+  <a href="#post-apiv1authrefresh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/emergency/numbers
+        POST /api/v1/auth/refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1authlogout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/auth/logout
       
     </span>
   </a>
@@ -2152,24 +2949,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#chat-apiv1chat" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#admin-apiv1admin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chat (/api/v1/chat)
+        Admin (/api/v1/admin)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Chat (/api/v1/chat)">
+    <nav class="md-nav" aria-label="Admin (/api/v1/admin)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#post-apiv1chatmessage" class="md-nav__link">
+  <a href="#get-apiv1adminhealth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        POST /api/v1/chat/message
+        GET /api/v1/admin/health
       
     </span>
   </a>
@@ -2177,21 +2974,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#websocket-apiv1chatstream" class="md-nav__link">
+  <a href="#get-apiv1adminstats" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WebSocket /api/v1/chat/stream
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1chathistorysession_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/chat/history/{session_id}
+        GET /api/v1/admin/stats
       
     </span>
   </a>
@@ -2202,8 +2988,97 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics-apiv1analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics (/api/v1/analytics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analytics (/api/v1/analytics)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#get-apiv1analyticsheatmaptypebbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/analytics/heatmap?type=...&amp;bbox=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1analyticssummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/analytics/summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1analyticswardward_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/analytics/ward/{ward_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authority-apiv1authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authority (/api/v1/authority)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authority (/api/v1/authority)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1authoritynearbylatlon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/authority/nearby?lat=...&amp;lon=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1authorityauthority_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/authority/{authority_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#challan-apiv1challan" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2216,10 +3091,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-apiv1challancalculate" class="md-nav__link">
+  <a href="#get-apiv1challancalculateviolation_codestatevehicle_type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/challan/calculate
+        GET /api/v1/challan/calculate?violation_code=...&amp;state=...&amp;vehicle_type=...
       
     </span>
   </a>
@@ -2238,10 +3113,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1challanstatescode" class="md-nav__link">
+  <a href="#get-apiv1challanstate-overrides" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/challan/states/{code}
+        GET /api/v1/challan/state-overrides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1challandispute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/challan/dispute
       
     </span>
   </a>
@@ -2252,24 +3138,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#roads-apiv1roads" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#chat-apiv1chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Roads (/api/v1/roads)
+        Chat (/api/v1/chat)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Roads (/api/v1/roads)">
+    <nav class="md-nav" aria-label="Chat (/api/v1/chat)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#post-apiv1roadsreport" class="md-nav__link">
+  <a href="#post-apiv1chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        POST /api/v1/roads/report
+        POST /api/v1/chat/
       
     </span>
   </a>
@@ -2277,32 +3163,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1roadsauthority" class="md-nav__link">
+  <a href="#post-apiv1chatstream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/roads/authority
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1roadsissues" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/roads/issues
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1roadsinfrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/roads/infrastructure
+        POST /api/v1/chat/stream
       
     </span>
   </a>
@@ -2313,8 +3177,358 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#circuit-breaker-apiv1circuit-breaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circuit Breaker (/api/v1/circuit-breaker)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Circuit Breaker (/api/v1/circuit-breaker)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#get-apiv1circuit-breakerstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/circuit-breaker/status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1circuit-breakerresetname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/circuit-breaker/reset/{name}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citizen-apiv1citizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citizen (/api/v1/citizen)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Citizen (/api/v1/citizen)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1citizendashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/citizen/dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1citizenreports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/citizen/reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#civic-intel-apiv1civic-intel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Civic Intel (/api/v1/civic-intel)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Civic Intel (/api/v1/civic-intel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1civic-intellgdhierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/civic-intel/lgd/hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1civic-intelmunicipalityid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/civic-intel/municipality/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1civic-intelboundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/civic-intel/boundaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-center-apiv1command-center" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command Center (/api/v1/command-center)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Center (/api/v1/command-center)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1command-centerdashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/command-center/dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1command-centeralerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/command-center/alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1command-centerdeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/command-center/deploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergency-apiv1emergency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency (/api/v1/emergency)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Emergency (/api/v1/emergency)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1emergencynearbylatloncategoryradius" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/emergency/nearby?lat=...&amp;lon=...&amp;category=...&amp;radius=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1emergencynumbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/emergency/numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1emergencyservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/emergency/services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1emergencysos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/emergency/sos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1emergencysosbroadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/emergency/sos/broadcast
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-workflow-apiv1field-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Workflow (/api/v1/field-workflow)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Workflow (/api/v1/field-workflow)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1field-workflowtasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/field-workflow/tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1field-workflowcheckin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/field-workflow/checkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1field-workflowcheckout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/field-workflow/checkout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#garage-apiv1garage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garage (/api/v1/garage)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Garage (/api/v1/garage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1garagevehicles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/garage/vehicles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1garagevehicles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/garage/vehicles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1garagevehiclesid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/garage/vehicles/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#geocoding-apiv1geocode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,10 +3541,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-apiv1geocodesearch" class="md-nav__link">
+  <a href="#get-apiv1geocodesearchqlimit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/geocode/search
+        GET /api/v1/geocode/search?q=...&amp;limit=...
       
     </span>
   </a>
@@ -2338,10 +3552,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#get-apiv1geocodereverse" class="md-nav__link">
+  <a href="#get-apiv1geocodereverselatlon" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/v1/geocode/reverse
+        GET /api/v1/geocode/reverse?lat=...&amp;lon=...
       
     </span>
   </a>
@@ -2352,234 +3566,17 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#offline-data-apiv1offline" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#live-tracking-apiv1tracking" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Offline Data (/api/v1/offline)
+        Live Tracking (/api/v1/tracking)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Offline Data (/api/v1/offline)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1offlinebundlecity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/offline/bundle/{city}
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#routing-apiv1routing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Routing (/api/v1/routing)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Routing (/api/v1/routing)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1routingpreview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/routing/preview
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1routingsafe-route" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/routing/safe-route
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#auth-apiv1auth" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Auth (/api/v1/auth)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Auth (/api/v1/auth)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apiv1authlogin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/v1/auth/login
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1authverify" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/auth/verify
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#user-apiv1user" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        User (/api/v1/user)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="User (/api/v1/user)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apiv1user" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/v1/user/
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1useruser_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/user/{user_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#put-apiv1useruser_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PUT /api/v1/user/{user_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#live-tracking-apiv1live-tracking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live Tracking (/api/v1/live-tracking)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Live Tracking (/api/v1/live-tracking)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apiv1live-trackingstart" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/v1/live-tracking/start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#put-apiv1live-trackingupdate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PUT /api/v1/live-tracking/update
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1live-trackingsessionsession_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/live-tracking/session/{session_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-apiv1live-trackingsessionsession_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DELETE /api/v1/live-tracking/session/{session_id}
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tracking-apiv1tracking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tracking (/api/v1/tracking)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Tracking (/api/v1/tracking)">
+    <nav class="md-nav" aria-label="Live Tracking (/api/v1/tracking)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2593,64 +3590,25 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
-  <a href="#waze-feed-apiv1waze-feed" class="md-nav__link">
+  <a href="#post-apiv1trackingstart" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Waze Feed (/api/v1/waze-feed)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Waze Feed (/api/v1/waze-feed)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1waze-feedwaze" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/waze-feed/waze
+        POST /api/v1/tracking/start
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
-  <a href="#emergency-safe-spaces-apiv1emergencysafe-spaces" class="md-nav__link">
+  <a href="#post-apiv1trackingstop" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Emergency Safe Spaces (/api/v1/emergency/safe-spaces)
+        POST /api/v1/tracking/stop
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Emergency Safe Spaces (/api/v1/emergency/safe-spaces)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apiv1emergencysafe-spaces" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/v1/emergency/safe-spaces
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2660,10 +3618,549 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#error-responses" class="md-nav__link">
+  <a href="#mcp-server-mcp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Responses
+        MCP Server (/mcp)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCP Server (/mcp)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-mcpsse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /mcp/sse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-mcpmessages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /mcp/messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#officers-apiv1officers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Officers (/api/v1/officers)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Officers (/api/v1/officers)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1officers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/officers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1officersid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/officers/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1officerscheckin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/officers/checkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#offline-apiv1offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline (/api/v1/offline)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Offline (/api/v1/offline)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1offlinebundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/offline/bundle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1offlinesync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/offline/sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-apiv1public" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public (/api/v1/public)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public (/api/v1/public)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1publicemergency-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/public/emergency-numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1publichealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/public/health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadwatch-apiv1roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RoadWatch (/api/v1/roads)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RoadWatch (/api/v1/roads)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsissuesbboxstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/issues?bbox=...&amp;status=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1roadsreport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/roads/report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsreportid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/report/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsfeed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/feed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1roadsinfrastructurelatlon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/roads/infrastructure?lat=...&amp;lon=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-apiv1routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing (/api/v1/routing)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing (/api/v1/routing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1routingdirectionsstartendprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/routing/directions?start=...&amp;end=...&amp;profile=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1routingsafe-routestartend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/routing/safe-route?start=...&amp;end=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1routingnearby-spaceslatlontype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/routing/nearby-spaces?lat=...&amp;lon=...&amp;type=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-apiv1tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking (/api/v1/tracking)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking (/api/v1/tracking)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1trackingsessionsession_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/tracking/session/{session_id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1trackinglocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/tracking/location
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-apiv1user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User (/api/v1/user)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User (/api/v1/user)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/user/profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#put-apiv1userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PUT /api/v1/user/profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiv1userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /api/v1/user/profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1userexport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/user/export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1useremergency-contacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/user/emergency-contacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1useremergency-contacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/v1/user/emergency-contacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wards-apiv1wards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wards (/api/v1/wards)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wards (/api/v1/wards)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/wards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wardsid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/wards/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wardsidstats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/wards/{id}/stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waze-feed-apiv1waze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waze Feed (/api/v1/waze)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Waze Feed (/api/v1/waze)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wazefeedbbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/waze/feed?bbox=...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1wazealerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/v1/waze/alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speech-endpoints-chatbot-service-port-8010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speech Endpoints (Chatbot Service — port 8010)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speech Endpoints (Chatbot Service — port 8010)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-speechtranslate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /speech/translate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-speechstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /speech/status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chatbot-service-port-8010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chatbot Service (port 8010)
       
     </span>
   </a>
@@ -2709,6 +4206,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#error-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Responses
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2729,7 +4237,7 @@
   
 
 
-<h1 id="safevixai-api-reference">SafeVixAI  API Reference</h1>
+<h1 id="safevixai-api-reference">SafeVixAI API Reference</h1>
 <h2 id="base-urls">Base URLs</h2>
 <table>
 <thead>
@@ -2742,6 +4250,10 @@
 <tr>
 <td>Development (Backend)</td>
 <td><code>http://localhost:8000</code></td>
+</tr>
+<tr>
+<td>Development (Chatbot)</td>
+<td><code>http://localhost:8010</code></td>
 </tr>
 <tr>
 <td>Development (Frontend)</td>
@@ -2757,269 +4269,446 @@
 </tr>
 </tbody>
 </table>
-<p>Auto-generated Swagger docs available at: <code>{BASE_URL}/docs</code></p>
+<p>Auto-generated Swagger docs: <code>{BASE_URL}/docs</code></p>
 <hr />
 <h2 id="authentication">Authentication</h2>
-<p>Most endpoints are public (no auth required for hackathon MVP). Road issue reporting optionally attaches a <code>reporter_id</code> from Supabase Auth.</p>
-<hr />
-<h2 id="endpoints">Endpoints</h2>
-<h3 id="system">System</h3>
-<h4 id="get-health"><code>GET /health</code></h4>
-<p>Returns server status, chatbot readiness, and environment info.</p>
-<p><strong>Response:</strong>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;chatbot_ready&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;production&quot;</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<hr />
-<h3 id="emergency-apiv1emergency">Emergency (<code>/api/v1/emergency</code>)</h3>
-<h4 id="get-apiv1emergencynearby"><code>GET /api/v1/emergency/nearby</code></h4>
-<p>Find nearest emergency services at given GPS coordinates.</p>
-<p><strong>Query Parameters:</strong>
-| Param | Type | Default | Description |
-|---|---|---|---|
-| <code>lat</code> | float | required | Latitude (e.g., 13.0827) |
-| <code>lon</code> | float | required | Longitude (e.g., 80.2707) |
-| <code>radius</code> | int | 5000 | Search radius in meters |
-| <code>categories</code> | string | all | Comma-separated: hospital,police,ambulance,fire,towing |
-| <code>limit</code> | int | 20 | Max results to return |</p>
-<p><strong>Response:</strong>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Apollo Hospital&quot;</span><span class="p">,</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hospital&quot;</span><span class="p">,</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="nt">&quot;sub_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trauma_centre&quot;</span><span class="p">,</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+91-44-28291919&quot;</span><span class="p">,</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="nt">&quot;lat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">13.0621</span><span class="p">,</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="nt">&quot;lon&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">80.2812</span><span class="p">,</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="nt">&quot;distance_meters&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2300</span><span class="p">,</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="nt">&quot;has_trauma&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">      </span><span class="nt">&quot;has_icu&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="nt">&quot;is_24hr&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;21 Greams Lane, Thousand Lights, Chennai&quot;</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="p">],</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">&quot;radius_used&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;database&quot;</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<p><strong>Redis cache key:</strong> <code>nearby:{lat:.4f}:{lon:.4f}:{radius}:{categories}</code>
-<strong>Cache TTL:</strong> 3600 seconds</p>
-<h4 id="get-apiv1emergencysos"><code>GET /api/v1/emergency/sos</code></h4>
-<p>Returns all service categories + all national emergency numbers (for SOS WhatsApp message generation).</p>
-<p><strong>Query Params:</strong> <code>lat</code>, <code>lon</code></p>
-<h4 id="get-apiv1emergencynumbers"><code>GET /api/v1/emergency/numbers</code></h4>
-<p>Returns static dict of all national emergency numbers (112, 102, 100, 1033, 108 etc.).</p>
-<hr />
-<h3 id="chat-apiv1chat">Chat (<code>/api/v1/chat</code>)</h3>
-<h4 id="post-apiv1chatmessage"><code>POST /api/v1/chat/message</code></h4>
-<p>Send a message to the AI chatbot.</p>
-<p><strong>Request Body:</strong>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nearest hospital to my location&quot;</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-v4-string&quot;</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;lat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">13.0827</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;lon&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">80.2707</span><span class="p">,</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<p><strong>Response:</strong>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The nearest trauma centre is Apollo Hospital, 2.3km away. Call +91-44-28291919. For emergency, dial 112 immediately.&quot;</span><span class="p">,</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;intent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FIND_HOSPITAL&quot;</span><span class="p">,</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;document&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;who_trauma_care_guidelines.pdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">}</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="p">],</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;model_used&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;groq-llama-3.3-70b&quot;</span><span class="p">,</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1240</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<h4 id="websocket-apiv1chatstream"><code>WebSocket /api/v1/chat/stream</code></h4>
-<p>Streaming chat response  tokens delivered as they are generated.</p>
-<p><strong>Send:</strong> <code>{"message": "...", "session_id": "...", "lat": 0.0, "lon": 0.0}</code></p>
-<p><strong>Receive:</strong> <code>{"token": "The ", "done": false}</code>  <code>{"token": "", "done": true, "intent": "LEGAL_INFO"}</code></p>
-<h4 id="get-apiv1chathistorysession_id"><code>GET /api/v1/chat/history/{session_id}</code></h4>
-<p>Returns last 20 message pairs for a session (from Redis).</p>
-<hr />
-<h3 id="challan-apiv1challan">Challan (<code>/api/v1/challan</code>)</h3>
-<h4 id="get-apiv1challancalculate"><code>GET /api/v1/challan/calculate</code></h4>
-<p>Calculate fine for a specific traffic violation.</p>
-<p><strong>Query Parameters:</strong>
-| Param | Type | Default | Description |
-|---|---|---|---|
-| <code>violation_code</code> | string | required | e.g., <code>MVA_185</code> |
-| <code>vehicle_type</code> | string | <code>all</code> | 2w, lmv, commercial, bus |
-| <code>state_code</code> | string | None | TN, KA, MH, DL, AP etc. |
-| <code>is_repeat</code> | bool | false | Whether repeat offence |</p>
-<p><strong>Response:</strong>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MVA_185&quot;</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;section&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;185&quot;</span><span class="p">,</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;description_en&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Drunk driving  first offence&quot;</span><span class="p">,</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;base_fine_inr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">&quot;state_override_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">&quot;final_fine_inr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">&quot;repeat_fine_inr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="p">,</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nt">&quot;imprisonment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6 months&quot;</span><span class="p">,</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="nt">&quot;dl_points&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="nt">&quot;effective_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-09-01&quot;</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<p><strong>Error:</strong> <code>404</code> if <code>violation_code</code> not found.</p>
-<h4 id="get-apiv1challanviolations"><code>GET /api/v1/challan/violations</code></h4>
-<p>List all violations, filterable by vehicle type or search string.</p>
-<p><strong>Query Params:</strong> <code>vehicle_type?</code>, <code>search?</code> (searches description_en)</p>
-<h4 id="get-apiv1challanstatescode"><code>GET /api/v1/challan/states/{code}</code></h4>
-<p>Get all state-specific fine overrides for a state code (e.g., <code>/states/TN</code>).</p>
-<hr />
-<h3 id="roads-apiv1roads">Roads (<code>/api/v1/roads</code>)</h3>
-<h4 id="post-apiv1roadsreport"><code>POST /api/v1/roads/report</code></h4>
-<p>Submit a new road issue report.</p>
-<p><strong>Request:</strong> Multipart form data
-| Field | Type | Required | Description |
-|---|---|---|---|
-| <code>issue_type</code> | string | Yes | pothole, flood, broken, missing_signage, no_lighting, accident_prone |
-| <code>severity</code> | int (1-5) | Yes | 1=minor, 5=impassable |
-| <code>lat</code> | float | Yes | GPS latitude of issue |
-| <code>lon</code> | float | Yes | GPS longitude of issue |
-| <code>description</code> | string | No | Optional description |
-| <code>photo</code> | file | No | Photo of road issue |</p>
-<p><strong>Response:</strong>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;uuid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rs-2026-03-tn-00847&quot;</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;authority_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NHAI&quot;</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;authority_phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1033&quot;</span><span class="p">,</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">&quot;complaint_portal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://nhai.gov.in/complaint&quot;</span><span class="p">,</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">&quot;road_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;National Highway&quot;</span><span class="p">,</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">&quot;road_number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NH-44&quot;</span><span class="p">,</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">&quot;exec_engineer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mr. Rajesh Kumar&quot;</span><span class="p">,</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">&quot;exec_engineer_phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+91-44-28263851&quot;</span><span class="p">,</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">&quot;last_relayed_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-03&quot;</span><span class="p">,</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nt">&quot;next_maintenance&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-09&quot;</span><span class="p">,</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nt">&quot;budget_sanctioned&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">452000000</span><span class="p">,</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nt">&quot;budget_spent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">387000000</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<h4 id="get-apiv1roadsauthority"><code>GET /api/v1/roads/authority</code></h4>
-<p>Look up responsible authority for given GPS coordinates without submitting a report.</p>
-<p><strong>Query Params:</strong> <code>lat</code>, <code>lon</code></p>
-<h4 id="get-apiv1roadsissues"><code>GET /api/v1/roads/issues</code></h4>
-<p>Get nearby community-reported road issues for the map layer.</p>
-<p><strong>Query Params:</strong> <code>lat</code>, <code>lon</code>, <code>radius</code> (default 5000m)</p>
-<h4 id="get-apiv1roadsinfrastructure"><code>GET /api/v1/roads/infrastructure</code></h4>
-<p>Get road infrastructure data (contractor, budget, engineer) at coordinates.</p>
-<p><strong>Query Params:</strong> <code>lat</code>, <code>lon</code></p>
-<hr />
-<h3 id="geocoding-apiv1geocode">Geocoding (<code>/api/v1/geocode</code>)</h3>
-<h4 id="get-apiv1geocodesearch"><code>GET /api/v1/geocode/search</code></h4>
-<p>Forward geocoding: text address  GPS coordinates.</p>
-<p><strong>Query Params:</strong> <code>q</code> (address string)</p>
-<h4 id="get-apiv1geocodereverse"><code>GET /api/v1/geocode/reverse</code></h4>
-<p>Reverse geocoding: GPS  address, city, state, country.</p>
-<p><strong>Query Params:</strong> <code>lat</code>, <code>lon</code></p>
-<p><strong>Response:</strong>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tambaram, Chennai, Tamil Nadu, India&quot;</span><span class="p">,</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chennai&quot;</span><span class="p">,</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tamil Nadu&quot;</span><span class="p">,</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN&quot;</span><span class="p">,</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">&quot;country_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IN&quot;</span><span class="p">,</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">&quot;postcode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;600045&quot;</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<hr />
-<h3 id="offline-data-apiv1offline">Offline Data (<code>/api/v1/offline</code>)</h3>
-<h4 id="get-apiv1offlinebundlecity"><code>GET /api/v1/offline/bundle/{city}</code></h4>
-<p>Returns GeoJSON bundle of emergency services for a specific city (for offline pre-loading).</p>
-<p><strong>Response:</strong> GeoJSON FeatureCollection</p>
-<hr />
-<h3 id="routing-apiv1routing">Routing (<code>/api/v1/routing</code>)</h3>
-<h4 id="get-apiv1routingpreview"><code>GET /api/v1/routing/preview</code></h4>
-<p>Get route preview between two points via OSRM.</p>
-<p><strong>Query Params:</strong> <code>from_lat</code>, <code>from_lon</code>, <code>to_lat</code>, <code>to_lon</code></p>
-<h4 id="get-apiv1routingsafe-route"><code>GET /api/v1/routing/safe-route</code></h4>
-<p>Get route with safety scoring (avoids accident blackspots).</p>
-<p><strong>Query Params:</strong> <code>from_lat</code>, <code>from_lon</code>, <code>to_lat</code>, <code>to_lon</code></p>
-<hr />
-<h3 id="auth-apiv1auth">Auth (<code>/api/v1/auth</code>)</h3>
-<h4 id="post-apiv1authlogin"><code>POST /api/v1/auth/login</code></h4>
-<p>Authenticate user and return JWT bearer token.</p>
-<h4 id="get-apiv1authverify"><code>GET /api/v1/auth/verify</code></h4>
-<p>Verify an existing JWT token.</p>
-<hr />
-<h3 id="user-apiv1user">User (<code>/api/v1/user</code>)</h3>
-<h4 id="post-apiv1user"><code>POST /api/v1/user/</code></h4>
-<p>Create user profile.</p>
-<h4 id="get-apiv1useruser_id"><code>GET /api/v1/user/{user_id}</code></h4>
-<p>Get user profile by ID.</p>
-<h4 id="put-apiv1useruser_id"><code>PUT /api/v1/user/{user_id}</code></h4>
-<p>Update user profile.</p>
-<hr />
-<h3 id="live-tracking-apiv1live-tracking">Live Tracking (<code>/api/v1/live-tracking</code>)</h3>
-<h4 id="post-apiv1live-trackingstart"><code>POST /api/v1/live-tracking/start</code></h4>
-<p>Start a new GPS tracking session.</p>
-<h4 id="put-apiv1live-trackingupdate"><code>PUT /api/v1/live-tracking/update</code></h4>
-<p>Update GPS position in a tracking session.</p>
-<h4 id="get-apiv1live-trackingsessionsession_id"><code>GET /api/v1/live-tracking/session/{session_id}</code></h4>
-<p>Get tracking session details.</p>
-<h4 id="delete-apiv1live-trackingsessionsession_id"><code>DELETE /api/v1/live-tracking/session/{session_id}</code></h4>
-<p>End a tracking session.</p>
-<hr />
-<h3 id="tracking-apiv1tracking">Tracking (<code>/api/v1/tracking</code>)</h3>
-<h4 id="websocket-apiv1trackinggroup_id"><code>WebSocket /api/v1/tracking/{group_id}</code></h4>
-<p>Real-time GPS position sharing via WebSocket.</p>
-<hr />
-<h3 id="waze-feed-apiv1waze-feed">Waze Feed (<code>/api/v1/waze-feed</code>)</h3>
-<h4 id="get-apiv1waze-feedwaze"><code>GET /api/v1/waze-feed/waze</code></h4>
-<p>Returns CIFS-compliant JSON feed of community-reported road hazards for Waze integration.</p>
-<hr />
-<h3 id="emergency-safe-spaces-apiv1emergencysafe-spaces">Emergency Safe Spaces (<code>/api/v1/emergency/safe-spaces</code>)</h3>
-<h4 id="get-apiv1emergencysafe-spaces"><code>GET /api/v1/emergency/safe-spaces</code></h4>
-<p>Returns nearby women's safety resources (police stations, helplines, safe spaces).</p>
-<p><strong>Query Params:</strong> <code>lat</code>, <code>lon</code>, <code>radius</code></p>
-<hr />
-<h2 id="error-responses">Error Responses</h2>
+<p>Most endpoints require <strong>JWT Bearer tokens</strong> (HS256). Supabase-compatible via <code>SUPABASE_JWT_SECRET</code>.</p>
 <table>
 <thead>
 <tr>
-<th>Status</th>
-<th>Meaning</th>
+<th>Mechanism</th>
+<th>Detail</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>200</td>
-<td>Success</td>
+<td>JWT Access Token</td>
+<td>Bearer token in <code>Authorization</code> header</td>
 </tr>
 <tr>
-<td>400</td>
-<td>Bad request (invalid params)</td>
+<td>Refresh Token</td>
+<td>30-day expiry, one-time use</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Resource not found (e.g., violation_code not in DB)</td>
+<td>Guest Auth</td>
+<td>Anonymous UUID via <code>X-Guest-ID</code> header</td>
 </tr>
 <tr>
-<td>422</td>
-<td>Validation error (e.g., lat out of range -90 to 90)</td>
+<td>Service-to-Service</td>
+<td><code>X-Internal-Api-Key</code> header for chatbot↔backend</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Rate limited (slowapi: 5/min chat, 10/min emergency, 8/min roadwatch)</td>
+<td>Public Endpoints</td>
+<td>Use <code>get_current_user_optional</code> — returns <code>None</code> if unauthenticated</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal server error</td>
+<td>Frontend AuthGuard</td>
+<td>Bypassed in E2E via <code>localStorage.__E2E_SKIP_AUTH__</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="response-format">Response Format</h2>
+<p>All API responses use an envelope format:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Error responses:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NOT_FOUND&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resource not found&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="system-endpoints">System Endpoints</h2>
+<h4 id="get"><code>GET /</code></h4>
+<p>Root info.</p>
+<h4 id="get-health"><code>GET /health</code></h4>
+<p>Returns backend health status with dependency checks (DB, Redis, chatbot).</p>
+<p><strong>Response:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;chatbot_ready&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;production&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h4 id="get-metrics"><code>GET /metrics</code></h4>
+<p>Prometheus metrics.</p>
+<h4 id="post-apiv1csp-report"><code>POST /api/v1/csp-report</code></h4>
+<p>CSP violation report collector.</p>
+<hr />
+<h2 id="authentication-apiv1auth">Authentication (<code>/api/v1/auth</code>)</h2>
+<h4 id="post-apiv1authlogin"><code>POST /api/v1/auth/login</code></h4>
+<p>Login via email/OTP. Returns JWT access + refresh tokens.</p>
+<h4 id="post-apiv1authsignup"><code>POST /api/v1/auth/signup</code></h4>
+<p>Register a new user.</p>
+<h4 id="post-apiv1authrefresh"><code>POST /api/v1/auth/refresh</code></h4>
+<p>Refresh an expired access token using a refresh token.</p>
+<h4 id="post-apiv1authlogout"><code>POST /api/v1/auth/logout</code></h4>
+<p>Invalidate the current session/token.</p>
+<hr />
+<h2 id="admin-apiv1admin">Admin (<code>/api/v1/admin</code>)</h2>
+<p>Protected by <code>ADMIN_SECRET</code>. Admin-only operations.</p>
+<h4 id="get-apiv1adminhealth"><code>GET /api/v1/admin/health</code></h4>
+<p>Full system health with per-service status.</p>
+<h4 id="get-apiv1adminstats"><code>GET /api/v1/admin/stats</code></h4>
+<p>System statistics (users, reports, sessions, etc.).</p>
+<p>Various CRUD operations for system administration.</p>
+<hr />
+<h2 id="analytics-apiv1analytics">Analytics (<code>/api/v1/analytics</code>)</h2>
+<h4 id="get-apiv1analyticsheatmaptypebbox"><code>GET /api/v1/analytics/heatmap?type=...&amp;bbox=...</code></h4>
+<p>Heatmap data for a given type and bounding box.</p>
+<h4 id="get-apiv1analyticssummary"><code>GET /api/v1/analytics/summary</code></h4>
+<p>Aggregated summary statistics.</p>
+<h4 id="get-apiv1analyticswardward_id"><code>GET /api/v1/analytics/ward/{ward_id}</code></h4>
+<p>Ward-level analytics data.</p>
+<hr />
+<h2 id="authority-apiv1authority">Authority (<code>/api/v1/authority</code>)</h2>
+<h4 id="get-apiv1authoritynearbylatlon"><code>GET /api/v1/authority/nearby?lat=...&amp;lon=...</code></h4>
+<p>Find nearby government authorities (police stations, municipal offices).</p>
+<p><strong>Query Parameters:</strong>
+| Param | Type | Default | Description |
+|---|---|---|---|
+| <code>lat</code> | float | required | Latitude |
+| <code>lon</code> | float | required | Longitude |</p>
+<h4 id="get-apiv1authorityauthority_id"><code>GET /api/v1/authority/{authority_id}</code></h4>
+<p>Get details for a specific authority.</p>
+<hr />
+<h2 id="challan-apiv1challan">Challan (<code>/api/v1/challan</code>)</h2>
+<h4 id="get-apiv1challancalculateviolation_codestatevehicle_type"><code>GET /api/v1/challan/calculate?violation_code=...&amp;state=...&amp;vehicle_type=...</code></h4>
+<p>Calculate fine for a traffic violation. DuckDB-based, deterministic (no LLM).</p>
+<p><strong>Query Parameters:</strong>
+| Param | Type | Default | Description |
+|---|---|---|---|
+| <code>violation_code</code> | string | required | e.g., <code>MVA_185</code> |
+| <code>vehicle_type</code> | string | <code>all</code> | <code>2w</code>, <code>lmv</code>, <code>commercial</code>, <code>bus</code> |
+| <code>state_code</code> | string | None | <code>TN</code>, <code>KA</code>, <code>MH</code>, <code>DL</code>, <code>AP</code> etc. |
+| <code>is_repeat</code> | bool | false | Repeat offence flag |</p>
+<p><strong>Response:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;violation_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MVA_185&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;section&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;185&quot;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;description_en&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Drunk driving — first offence&quot;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;base_fine_inr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;state_override_fine&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;final_fine_inr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">&quot;repeat_fine_inr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">&quot;imprisonment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6 months&quot;</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">&quot;dl_points&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h4 id="get-apiv1challanviolations"><code>GET /api/v1/challan/violations</code></h4>
+<p>List all violations. Filterable by <code>vehicle_type</code> or <code>search</code> (searches <code>description_en</code>).</p>
+<h4 id="get-apiv1challanstate-overrides"><code>GET /api/v1/challan/state-overrides</code></h4>
+<p>List all state-specific fine overrides.</p>
+<h4 id="post-apiv1challandispute"><code>POST /api/v1/challan/dispute</code></h4>
+<p>Draft a challan dispute (via <code>challan_dispute_service</code>).</p>
+<hr />
+<h2 id="chat-apiv1chat">Chat (<code>/api/v1/chat</code>)</h2>
+<h4 id="post-apiv1chat"><code>POST /api/v1/chat/</code></h4>
+<p>Send a message to the AI chatbot. Forwards to chatbot service at port 8010.</p>
+<p><strong>Request Body:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nearest hospital to my location&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid-v4-string&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;lat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">13.0827</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;lon&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">80.2707</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p><strong>Response:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The nearest trauma centre is Apollo Hospital, 2.3km away. Call +91-44-28291919. For emergency, dial 112 immediately.&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;intent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FIND_HOSPITAL&quot;</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;document&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;who_trauma_care_guidelines.pdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">}</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">&quot;model_used&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;groq-llama-3.3-70b&quot;</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">&quot;latency_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1240</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h4 id="post-apiv1chatstream"><code>POST /api/v1/chat/stream</code></h4>
+<p>Streaming chat response via Server-Sent Events (SSE). Tokens delivered as generated.</p>
+<p><strong>Send:</strong> <code>{"message": "...", "session_id": "...", "lat": 0.0, "lon": 0.0}</code></p>
+<p><strong>Receive:</strong> <code>{"token": "The ", "done": false}</code> → <code>{"token": "", "done": true, "intent": "LEGAL_INFO"}</code></p>
+<hr />
+<h2 id="circuit-breaker-apiv1circuit-breaker">Circuit Breaker (<code>/api/v1/circuit-breaker</code>)</h2>
+<h4 id="get-apiv1circuit-breakerstatus"><code>GET /api/v1/circuit-breaker/status</code></h4>
+<p>View current circuit breaker states for external service calls.</p>
+<h4 id="post-apiv1circuit-breakerresetname"><code>POST /api/v1/circuit-breaker/reset/{name}</code></h4>
+<p>Manually reset a tripped circuit breaker by name.</p>
+<hr />
+<h2 id="citizen-apiv1citizen">Citizen (<code>/api/v1/citizen</code>)</h2>
+<h4 id="get-apiv1citizendashboard"><code>GET /api/v1/citizen/dashboard</code></h4>
+<p>Citizen dashboard data (reports, status, notifications).</p>
+<h4 id="get-apiv1citizenreports"><code>GET /api/v1/citizen/reports</code></h4>
+<p>List the citizen's own submitted reports.</p>
+<hr />
+<h2 id="civic-intel-apiv1civic-intel">Civic Intel (<code>/api/v1/civic-intel</code>)</h2>
+<h4 id="get-apiv1civic-intellgdhierarchy"><code>GET /api/v1/civic-intel/lgd/hierarchy</code></h4>
+<p>Local Government Directory (LGD) administrative hierarchy.</p>
+<h4 id="get-apiv1civic-intelmunicipalityid"><code>GET /api/v1/civic-intel/municipality/{id}</code></h4>
+<p>Municipality details by ID.</p>
+<h4 id="get-apiv1civic-intelboundaries"><code>GET /api/v1/civic-intel/boundaries</code></h4>
+<p>Administrative boundary data.</p>
+<hr />
+<h2 id="command-center-apiv1command-center">Command Center (<code>/api/v1/command-center</code>)</h2>
+<h4 id="get-apiv1command-centerdashboard"><code>GET /api/v1/command-center/dashboard</code></h4>
+<p>Command center overview (live incidents, resource status).</p>
+<h4 id="get-apiv1command-centeralerts"><code>GET /api/v1/command-center/alerts</code></h4>
+<p>Active alerts and notifications.</p>
+<h4 id="get-apiv1command-centerdeploy"><code>GET /api/v1/command-center/deploy</code></h4>
+<p>Deploy resources to incident locations.</p>
+<hr />
+<h2 id="emergency-apiv1emergency">Emergency (<code>/api/v1/emergency</code>)</h2>
+<h4 id="get-apiv1emergencynearbylatloncategoryradius"><code>GET /api/v1/emergency/nearby?lat=...&amp;lon=...&amp;category=...&amp;radius=...</code></h4>
+<p>Find nearest emergency services. Uses radius expansion algorithm with PostGIS <code>ST_DWithin</code>.</p>
+<p><strong>Query Parameters:</strong>
+| Param | Type | Default | Description |
+|---|---|---|---|
+| <code>lat</code> | float | required | Latitude |
+| <code>lon</code> | float | required | Longitude |
+| <code>radius</code> | int | 5000 | Search radius in meters |
+| <code>category</code> | string | all | <code>hospital</code>, <code>police</code>, <code>ambulance</code>, <code>fire</code>, <code>towing</code> |
+| <code>limit</code> | int | 20 | Max results |</p>
+<p><strong>Response:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Apollo Hospital&quot;</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hospital&quot;</span><span class="p">,</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">      </span><span class="nt">&quot;sub_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trauma_centre&quot;</span><span class="p">,</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+91-44-28291919&quot;</span><span class="p">,</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">      </span><span class="nt">&quot;lat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">13.0621</span><span class="p">,</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="nt">&quot;lon&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">80.2812</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="nt">&quot;distance_meters&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2300</span><span class="p">,</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">      </span><span class="nt">&quot;has_trauma&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">      </span><span class="nt">&quot;has_icu&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">      </span><span class="nt">&quot;is_24hr&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">      </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;21 Greams Lane, Thousand Lights, Chennai&quot;</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">  </span><span class="nt">&quot;radius_used&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">  </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;database&quot;</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p><strong>Redis cache key:</strong> <code>nearby:{lat:.4f}:{lon:.4f}:{radius}:{category}</code><br />
+<strong>Cache TTL:</strong> 3600 seconds</p>
+<h4 id="get-apiv1emergencynumbers"><code>GET /api/v1/emergency/numbers</code></h4>
+<p>Returns all national emergency numbers (112, 102, 100, 1033, 108, etc.).</p>
+<h4 id="get-apiv1emergencyservices"><code>GET /api/v1/emergency/services</code></h4>
+<p>Emergency service catalog with categories and sub-categories.</p>
+<h4 id="post-apiv1emergencysos"><code>POST /api/v1/emergency/sos</code></h4>
+<p>Trigger an SOS alert. Rate limited to 3 requests/min per IP.</p>
+<h4 id="post-apiv1emergencysosbroadcast"><code>POST /api/v1/emergency/sos/broadcast</code></h4>
+<p>Broadcast SOS alert to emergency contacts.</p>
+<hr />
+<h2 id="field-workflow-apiv1field-workflow">Field Workflow (<code>/api/v1/field-workflow</code>)</h2>
+<h4 id="get-apiv1field-workflowtasks"><code>GET /api/v1/field-workflow/tasks</code></h4>
+<p>List tasks assigned to field workers.</p>
+<h4 id="post-apiv1field-workflowcheckin"><code>POST /api/v1/field-workflow/checkin</code></h4>
+<p>Check-in at a task location (with GPS coordinates).</p>
+<h4 id="post-apiv1field-workflowcheckout"><code>POST /api/v1/field-workflow/checkout</code></h4>
+<p>Check-out from a task.</p>
+<hr />
+<h2 id="garage-apiv1garage">Garage (<code>/api/v1/garage</code>)</h2>
+<h4 id="get-apiv1garagevehicles"><code>GET /api/v1/garage/vehicles</code></h4>
+<p>List the current user's registered vehicles.</p>
+<h4 id="post-apiv1garagevehicles"><code>POST /api/v1/garage/vehicles</code></h4>
+<p>Register a new vehicle.</p>
+<h4 id="get-apiv1garagevehiclesid"><code>GET /api/v1/garage/vehicles/{id}</code></h4>
+<p>Get details for a specific vehicle.</p>
+<hr />
+<h2 id="geocoding-apiv1geocode">Geocoding (<code>/api/v1/geocode</code>)</h2>
+<h4 id="get-apiv1geocodesearchqlimit"><code>GET /api/v1/geocode/search?q=...&amp;limit=...</code></h4>
+<p>Forward geocoding — text address to GPS coordinates. Uses Nominatim/Photon with Redis caching.</p>
+<p><strong>Query Parameters:</strong> <code>q</code> (address string), <code>limit</code> (max results, default 5)</p>
+<h4 id="get-apiv1geocodereverselatlon"><code>GET /api/v1/geocode/reverse?lat=...&amp;lon=...</code></h4>
+<p>Reverse geocoding — GPS coordinates to address.</p>
+<p><strong>Response:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tambaram, Chennai, Tamil Nadu, India&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chennai&quot;</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tamil Nadu&quot;</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">&quot;state_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TN&quot;</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">&quot;country_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IN&quot;</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">&quot;postcode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;600045&quot;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="live-tracking-apiv1tracking">Live Tracking (<code>/api/v1/tracking</code>)</h2>
+<h4 id="websocket-apiv1trackinggroup_id"><code>WebSocket /api/v1/tracking/{group_id}</code></h4>
+<p>Real-time location sharing via WebSocket. Connect, send location updates, receive positions of other group members.</p>
+<h4 id="post-apiv1trackingstart"><code>POST /api/v1/tracking/start</code></h4>
+<p>Start a new tracking session.</p>
+<h4 id="post-apiv1trackingstop"><code>POST /api/v1/tracking/stop</code></h4>
+<p>Stop the current tracking session.</p>
+<hr />
+<h2 id="mcp-server-mcp">MCP Server (<code>/mcp</code>)</h2>
+<p>Enabled via <code>MCP_ENABLED=true</code> setting.</p>
+<h4 id="get-mcpsse"><code>GET /mcp/sse</code></h4>
+<p>MCP Server-Sent Events endpoint for external agent integration.</p>
+<h4 id="post-mcpmessages"><code>POST /mcp/messages</code></h4>
+<p>MCP message endpoint for tool calls.</p>
+<hr />
+<h2 id="officers-apiv1officers">Officers (<code>/api/v1/officers</code>)</h2>
+<h4 id="get-apiv1officers"><code>GET /api/v1/officers</code></h4>
+<p>List traffic officers.</p>
+<h4 id="get-apiv1officersid"><code>GET /api/v1/officers/{id}</code></h4>
+<p>Officer details and assignment info.</p>
+<h4 id="post-apiv1officerscheckin"><code>POST /api/v1/officers/checkin</code></h4>
+<p>Officer check-in at duty location. Uses route optimizer for patrol planning.</p>
+<hr />
+<h2 id="offline-apiv1offline">Offline (<code>/api/v1/offline</code>)</h2>
+<h4 id="get-apiv1offlinebundle"><code>GET /api/v1/offline/bundle</code></h4>
+<p>Download offline data bundle (GeoJSON of emergency services for offline pre-loading in PWA).</p>
+<h4 id="get-apiv1offlinesync"><code>GET /api/v1/offline/sync</code></h4>
+<p>Sync queued offline actions submitted while disconnected.</p>
+<hr />
+<h2 id="public-apiv1public">Public (<code>/api/v1/public</code>)</h2>
+<p>Unauthenticated public endpoints.</p>
+<h4 id="get-apiv1publicemergency-numbers"><code>GET /api/v1/public/emergency-numbers</code></h4>
+<p>Public emergency phone numbers (no auth required).</p>
+<h4 id="get-apiv1publichealth"><code>GET /api/v1/public/health</code></h4>
+<p>Public health check endpoint.</p>
+<hr />
+<h2 id="roadwatch-apiv1roads">RoadWatch (<code>/api/v1/roads</code>)</h2>
+<h4 id="get-apiv1roadsissuesbboxstatus"><code>GET /api/v1/roads/issues?bbox=...&amp;status=...</code></h4>
+<p>Get community-reported road issues. Filterable by bounding box and status.</p>
+<p><strong>Query Parameters:</strong> <code>bbox</code> (comma-separated coordinates), <code>status</code> (<code>open</code>, <code>acknowledged</code>, <code>resolved</code>)</p>
+<h4 id="post-apiv1roadsreport"><code>POST /api/v1/roads/report</code></h4>
+<p>Submit a new road issue report. Supports anonymous submissions via <code>get_current_user_optional</code>.</p>
+<p><strong>Request:</strong> Multipart form data
+| Field | Type | Required | Description |
+|---|---|---|---|
+| <code>issue_type</code> | string | Yes | <code>pothole</code>, <code>flood</code>, <code>broken</code>, <code>missing_signage</code>, <code>no_lighting</code>, <code>accident_prone</code> |
+| <code>severity</code> | int (1-5) | Yes | 1=minor, 5=impassable |
+| <code>lat</code> | float | Yes | GPS latitude |
+| <code>lon</code> | float | Yes | GPS longitude |
+| <code>description</code> | string | No | Optional description |
+| <code>photo</code> | file | No | Photo of road issue |</p>
+<p><strong>Response:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;uuid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rs-2026-03-tn-00847&quot;</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">&quot;authority_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NHAI&quot;</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">&quot;authority_phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1033&quot;</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">&quot;complaint_portal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://nhai.gov.in/complaint&quot;</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="nt">&quot;road_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;National Highway&quot;</span><span class="p">,</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="nt">&quot;road_number&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NH-44&quot;</span><span class="p">,</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="nt">&quot;exec_engineer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mr. Rajesh Kumar&quot;</span><span class="p">,</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="nt">&quot;exec_engineer_phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+91-44-28263851&quot;</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h4 id="get-apiv1roadsreportid"><code>GET /api/v1/roads/report/{id}</code></h4>
+<p>Get details for a specific road issue report.</p>
+<h4 id="get-apiv1roadsfeed"><code>GET /api/v1/roads/feed</code></h4>
+<p>Feed of recent road issue reports.</p>
+<h4 id="get-apiv1roadsinfrastructurelatlon"><code>GET /api/v1/roads/infrastructure?lat=...&amp;lon=...</code></h4>
+<p>Road infrastructure data (contractor, budget, engineer) at given coordinates.</p>
+<hr />
+<h2 id="routing-apiv1routing">Routing (<code>/api/v1/routing</code>)</h2>
+<h4 id="get-apiv1routingdirectionsstartendprofile"><code>GET /api/v1/routing/directions?start=...&amp;end=...&amp;profile=...</code></h4>
+<p>Get route directions between two points. Uses OpenRouteService.</p>
+<p><strong>Query Parameters:</strong> <code>start</code> (<code>lat,lon</code>), <code>end</code> (<code>lat,lon</code>), <code>profile</code> (<code>driving</code>, <code>walking</code>, <code>cycling</code>)</p>
+<h4 id="get-apiv1routingsafe-routestartend"><code>GET /api/v1/routing/safe-route?start=...&amp;end=...</code></h4>
+<p>Crime-aware safe routing that avoids accident blackspots and high-crime areas.</p>
+<h4 id="get-apiv1routingnearby-spaceslatlontype"><code>GET /api/v1/routing/nearby-spaces?lat=...&amp;lon=...&amp;type=...</code></h4>
+<p>Find nearby safe spaces (well-lit areas, police presence, etc.).</p>
+<hr />
+<h2 id="tracking-apiv1tracking">Tracking (<code>/api/v1/tracking</code>)</h2>
+<h4 id="get-apiv1trackingsessionsession_id"><code>GET /api/v1/tracking/session/{session_id}</code></h4>
+<p>Get tracking session metadata and position history.</p>
+<h4 id="post-apiv1trackinglocation"><code>POST /api/v1/tracking/location</code></h4>
+<p>Update the current GPS position in an active tracking session.</p>
+<hr />
+<h2 id="user-apiv1user">User (<code>/api/v1/user</code>)</h2>
+<h4 id="get-apiv1userprofile"><code>GET /api/v1/user/profile</code></h4>
+<p>Get the authenticated user's profile.</p>
+<h4 id="put-apiv1userprofile"><code>PUT /api/v1/user/profile</code></h4>
+<p>Update user profile fields.</p>
+<h4 id="delete-apiv1userprofile"><code>DELETE /api/v1/user/profile</code></h4>
+<p>Delete user account and associated data (GDPR compliance).</p>
+<h4 id="get-apiv1userexport"><code>GET /api/v1/user/export</code></h4>
+<p>Export all user data as JSON.</p>
+<h4 id="get-apiv1useremergency-contacts"><code>GET /api/v1/user/emergency-contacts</code></h4>
+<p>List the user's emergency contacts.</p>
+<h4 id="post-apiv1useremergency-contacts"><code>POST /api/v1/user/emergency-contacts</code></h4>
+<p>Add a new emergency contact.</p>
+<hr />
+<h2 id="wards-apiv1wards">Wards (<code>/api/v1/wards</code>)</h2>
+<h4 id="get-apiv1wards"><code>GET /api/v1/wards</code></h4>
+<p>List all municipal wards.</p>
+<h4 id="get-apiv1wardsid"><code>GET /api/v1/wards/{id}</code></h4>
+<p>Get ward details.</p>
+<h4 id="get-apiv1wardsidstats"><code>GET /api/v1/wards/{id}/stats</code></h4>
+<p>Ward-level statistics (report counts, resolved rates, etc.).</p>
+<hr />
+<h2 id="waze-feed-apiv1waze">Waze Feed (<code>/api/v1/waze</code>)</h2>
+<h4 id="get-apiv1wazefeedbbox"><code>GET /api/v1/waze/feed?bbox=...</code></h4>
+<p>CIFS-compliant community hazard feed for Waze integration.</p>
+<h4 id="get-apiv1wazealerts"><code>GET /api/v1/waze/alerts</code></h4>
+<p>Waze alert data.</p>
+<hr />
+<h2 id="speech-endpoints-chatbot-service-port-8010">Speech Endpoints (Chatbot Service — port 8010)</h2>
+<h4 id="post-speechtranslate"><code>POST /speech/translate</code></h4>
+<p>Indian language ASR/TTS pipeline. Uses IndicSeamlessService.</p>
+<p><strong>Request:</strong> Audio file or text with source/target language codes.</p>
+<h4 id="get-speechstatus"><code>GET /speech/status</code></h4>
+<p>Speech service health and available language pairs.</p>
+<hr />
+<h2 id="chatbot-service-port-8010">Chatbot Service (port 8010)</h2>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/health</code></td>
+<td>GET</td>
+<td>Chatbot health check</td>
 </tr>
 <tr>
-<td>503</td>
-<td>LLM service unavailable (All 9 providers down — use offline fallback)</td>
+<td><code>/</code></td>
+<td>GET</td>
+<td>Root info</td>
+</tr>
+<tr>
+<td><code>/metrics</code></td>
+<td>GET</td>
+<td>Prometheus metrics</td>
+</tr>
+<tr>
+<td><code>/api/v1/chat/</code></td>
+<td>POST</td>
+<td>Chat message (same as backend proxy)</td>
+</tr>
+<tr>
+<td><code>/api/v1/chat/stream</code></td>
+<td>POST</td>
+<td>Streaming chat (SSE)</td>
+</tr>
+<tr>
+<td><code>/speech/translate</code></td>
+<td>POST</td>
+<td>Speech translation</td>
+</tr>
+<tr>
+<td><code>/speech/status</code></td>
+<td>GET</td>
+<td>Speech service status</td>
 </tr>
 </tbody>
 </table>
@@ -3035,16 +4724,32 @@
 </thead>
 <tbody>
 <tr>
+<td>General API</td>
+<td>100 requests/min per IP</td>
+</tr>
+<tr>
+<td>Auth endpoints</td>
+<td>5 attempts/min per IP</td>
+</tr>
+<tr>
+<td><code>POST /api/v1/emergency/sos</code></td>
+<td>3 requests/min per IP</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/challan/calculate</code></td>
+<td>60 requests/min per IP</td>
+</tr>
+<tr>
 <td><code>POST /api/v1/chat/</code></td>
-<td>5/minute</td>
+<td>30 requests/min per IP</td>
 </tr>
 <tr>
-<td><code>GET /api/v1/emergency/nearby</code></td>
-<td>10/minute</td>
+<td><code>POST /api/v1/chat/stream</code></td>
+<td>30 requests/min per IP</td>
 </tr>
 <tr>
-<td><code>POST /api/v1/roads/report</code></td>
-<td>8/minute</td>
+<td><code>GET /api/v1/geocode/*</code></td>
+<td>30 requests/min per IP</td>
 </tr>
 </tbody>
 </table>
@@ -3074,14 +4779,62 @@
 <td>Redis cache (3600s TTL) per coordinate</td>
 </tr>
 <tr>
-<td>Upstash Redis</td>
-<td>10,000 commands/day</td>
-<td>Efficient cache keys, no redundant writes</td>
+<td>OpenRouteService</td>
+<td>Varies per plan</td>
+<td>Circuit breaker + Redis cache</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<p><em>Document version: 2.0 | IIT Madras Road Safety Hackathon 2026</em></p>
+<h2 id="error-responses">Error Responses</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad request (invalid params)</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized (missing/invalid JWT)</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden (insufficient permissions)</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Resource not found</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Validation error</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Rate limited (slowapi)</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error</td>
+</tr>
+<tr>
+<td>503</td>
+<td>LLM service unavailable (all 9 providers down)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Document version: 3.0 | IIT Madras Road Safety Hackathon 2026 | 27 backend route modules + 1 chatbot service</em></p>
 
 
 

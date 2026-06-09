@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#safevixai-deployment-guide" class="md-skip">
+        <a href="#safevixai-v20-deployment-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -1315,6 +1315,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#standalone-production-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standalone Production Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e2e-test-auth-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E2E Test Auth Bypass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#test-offline-mode-pwa" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1499,6 +1521,39 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speech-translation-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speech Translation Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-analysis-stats-v20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Analysis Stats (v2.0)
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1891,6 +1946,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#standalone-production-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standalone Production Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e2e-test-auth-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E2E Test Auth Bypass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#test-offline-mode-pwa" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2079,6 +2156,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#speech-translation-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speech Translation Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-analysis-stats-v20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Analysis Stats (v2.0)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rendercom-free-tier-limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2181,7 +2291,7 @@
   
 
 
-<h1 id="safevixai-deployment-guide">SafeVixAI  Deployment Guide</h1>
+<h1 id="safevixai-v20-deployment-guide">SafeVixAI v2.0 — Deployment Guide</h1>
 <h2 id="infrastructure-overview-all-free-tier">Infrastructure Overview (All Free Tier)</h2>
 <table>
 <thead>
@@ -2225,9 +2335,9 @@
 </tr>
 <tr>
 <td>LLM APIs</td>
-<td>Groq + 10 more</td>
+<td>9-provider fallback chain (Groq, Cerebras, Gemini, GitHub Models, NVIDIA NIM, OpenRouter, Mistral, Together, Template)</td>
 <td>Various</td>
-<td>9-provider fallback chain</td>
+<td>Auto-fallback on rate limit / failure</td>
 </tr>
 <tr>
 <td>Model CDN</td>
@@ -2237,7 +2347,7 @@
 </tr>
 <tr>
 <td>CI/CD</td>
-<td>GitHub Actions</td>
+<td>GitHub Actions (19 workflows)</td>
 <td></td>
 <td>Auto-deploy on push</td>
 </tr>
@@ -2246,12 +2356,12 @@
 <hr />
 <h2 id="step-1-create-free-accounts">Step 1: Create Free Accounts</h2>
 <ol>
-<li><strong>Groq</strong>  <a href="https://console.groq.com">console.groq.com</a>  Create account  API Keys  Create Key (starts with <code>gsk_</code>)</li>
-<li><strong>Supabase</strong>  <a href="https://supabase.com">supabase.com</a>  New project  Region: Singapore (closest to India)  Save password</li>
-<li><strong>Upstash</strong>  <a href="https://upstash.com">upstash.com</a>  New Redis Database  Global  Copy <code>REDIS_URL</code></li>
-<li><strong>Vercel</strong>  <a href="https://vercel.com">vercel.com</a>  Connect GitHub account</li>
-<li><strong>Render.com</strong>  <a href="https://render.com">render.com</a>  Connect GitHub account</li>
-<li><strong>data.gov.in</strong>  <a href="https://data.gov.in">data.gov.in</a>  Register  Get API key (for NHAI data)</li>
+<li><strong>Groq</strong> — <a href="https://console.groq.com">console.groq.com</a> → Create account → API Keys → Create Key (starts with <code>gsk_</code>)</li>
+<li><strong>Supabase</strong> — <a href="https://supabase.com">supabase.com</a> → New project → Region: Singapore (closest to India) → Save password</li>
+<li><strong>Upstash</strong> — <a href="https://upstash.com">upstash.com</a> → New Redis Database → Global → Copy <code>REDIS_URL</code></li>
+<li><strong>Vercel</strong> — <a href="https://vercel.com">vercel.com</a> → Connect GitHub account</li>
+<li><strong>Render.com</strong> — <a href="https://render.com">render.com</a> → Connect GitHub account</li>
+<li><strong>data.gov.in</strong> — <a href="https://data.gov.in">data.gov.in</a> → Register → Get API key (for NHAI data)</li>
 </ol>
 <hr />
 <h2 id="step-2-database-setup-supabase">Step 2: Database Setup (Supabase)</h2>
@@ -2261,7 +2371,7 @@
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">PostGIS_version</span><span class="p">();</span><span class="w"> </span><span class="c1">-- verify: should return version string</span>
 </span></code></pre></div>
 <h3 id="get-connection-string">Get Connection String</h3>
-<p>Supabase  Settings  Database  Connection string  URI</p>
+<p>Supabase → Settings → Database → Connection string → URI</p>
 <p>Change <code>postgresql://</code> to <code>postgresql+asyncpg://</code> for async driver.</p>
 <hr />
 <h2 id="step-3-backend-setup-local-dev">Step 3: Backend Setup (Local Dev)</h2>
@@ -2286,25 +2396,27 @@
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
 </span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
 </span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1"># 6. Verify tables were created</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># Check Supabase Table Editor  should see 6 tables</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># Check Supabase Table Editor — should see 6 tables</span>
 </span></code></pre></div>
 <h3 id="download-required-pdfs-for-rag">Download Required PDFs (for RAG)</h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Download to backend/data/:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Download to chatbot_service/data/legal/:
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>- motor_vehicles_act_1988.pdf     indiacode.nic.in
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>- mv_amendment_act_2019.pdf       morth.nic.in
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>- who_trauma_care_guidelines.pdf  who.int
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Medical PDFs (who_trauma_care_guidelines.pdf, etc.):
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Place in chatbot_service/data/medical/ (create dir if absent)
 </span></code></pre></div>
 <h3 id="seed-the-database">Seed the Database</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Seed traffic violations and state overrides (~2 seconds)</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>data/seed_violations.py
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>backend/scripts/data/seed_violations.py
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Seed emergency services for 25 Indian cities (~4 minutes via Overpass API)</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Also creates: frontend/public/offline-data/india-emergency.geojson</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>python<span class="w"> </span>data/seed_emergency.py
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>python<span class="w"> </span>backend/scripts/app/seed_emergency.py
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Build ChromaDB vector store from PDFs  RUN ONCE, takes 5-10 minutes</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Creates: data/chroma_db/ directory (never delete this!)</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>python<span class="w"> </span>data/build_vectorstore.py
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Build ChromaDB vector store from PDFs — RUN ONCE, takes 5-10 minutes</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Creates: chatbot_service/data/chroma_db/ directory (committed to git)</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>python<span class="w"> </span>chatbot_service/data/build_vectorstore.py
 </span></code></pre></div>
 <h3 id="start-backend-dev-server">Start Backend Dev Server</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
@@ -2331,23 +2443,38 @@
 </span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
 </span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># Opens at: http://localhost:3000</span>
 </span></code></pre></div>
+<h3 id="standalone-production-build">Standalone Production Build</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># npm run build runs: next build &amp;&amp; node scripts/copy-public.js</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># copy-public.js removes stale .next/standalone/public/ and</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># .next/standalone/.next/static/ directories, then re-copies</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># all public assets and static chunks so the standalone server</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># never serves 404s on JS/CSS/public files.</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>npm<span class="w"> </span>run<span class="w"> </span>build
+</span></code></pre></div>
+<h3 id="e2e-test-auth-bypass">E2E Test Auth Bypass</h3>
+<p>When running Playwright E2E tests, set the following localStorage flag before navigating to any guarded route:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">addInitScript</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;__E2E_SKIP_AUTH__&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>This bypasses AuthGuard at the component level, preventing redirect loops while allowing tests to interact with authenticated pages. The backend still requires valid JWTs for API calls.</p>
 <h3 id="test-offline-mode-pwa">Test Offline Mode (PWA)</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Note: Service Worker only registers in production build</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Build and start production server locally</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>start
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># Then in Chrome:</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># 1. DevTools  Application  Service Workers  verify registered</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># 2. DevTools  Network  check &quot;Offline&quot;</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># 3. Navigate to /emergency  hospitals should still show</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Note: Service Worker only registers in production build</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># Build and start production server locally</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>start
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Then in Chrome:</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># 1. DevTools → Application → Service Workers — verify registered</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># 2. DevTools → Network — check &quot;Offline&quot;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># 3. Navigate to /emergency — hospitals should still show</span>
 </span></code></pre></div>
 <hr />
 <h2 id="step-5-deploy-backend-to-rendercom">Step 5: Deploy Backend to Render.com</h2>
 <h3 id="via-renderyaml-recommended">Via render.yaml (Recommended)</h3>
 <p>The <code>render.yaml</code> at the project root configures automatic deployment.</p>
 <ol>
-<li>Go to Render.com  New  Blueprint</li>
+<li>Go to Render.com → New → Blueprint</li>
 <li>Connect GitHub repository</li>
 <li>Render detects <code>render.yaml</code> automatically</li>
 <li>Set environment variables (from Render dashboard):</li>
@@ -2364,7 +2491,7 @@
 <li><code>OPENWEATHER_API_KEY</code> (optional, for weather)</li>
 </ol>
 <h3 id="manual-setup-alternative">Manual Setup (Alternative)</h3>
-<p>Render.com  New  Web Service:
+<p>Render.com → New → Web Service:
 - <strong>Name:</strong> <code>safevixai-api</code>
 - <strong>Root Directory:</strong> <code>backend</code>
 - <strong>Runtime:</strong> Python 3.11
@@ -2373,10 +2500,10 @@
 - <strong>Health Check Path:</strong> <code>/health</code></p>
 <h3 id="run-migrations-on-render">Run Migrations on Render</h3>
 <p>After first deploy, open Render Shell:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>python<span class="w"> </span>data/seed_violations.py
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>python<span class="w"> </span>data/seed_emergency.py<span class="w">  </span><span class="c1"># 4 minutes</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>python<span class="w"> </span>data/build_vectorstore.py<span class="w">  </span><span class="c1"># 10 minutes</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>python<span class="w"> </span>backend/scripts/data/seed_violations.py
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>python<span class="w"> </span>backend/scripts/app/seed_emergency.py<span class="w">  </span><span class="c1"># 4 minutes</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>python<span class="w"> </span>chatbot_service/data/build_vectorstore.py<span class="w">  </span><span class="c1"># 10 minutes</span>
 </span></code></pre></div></p>
 <hr />
 <h2 id="step-5b-deploy-chatbot-service-to-rendercom">Step 5b: Deploy Chatbot Service to Render.com</h2>
@@ -2406,9 +2533,9 @@
 <hr />
 <h2 id="step-6-deploy-frontend-to-vercel">Step 6: Deploy Frontend to Vercel</h2>
 <h3 id="via-github-actions-automated-cicd-pipeline">Via GitHub Actions (Automated CI/CD Pipeline)</h3>
-<p>The repository is configured with a fully automated CI/CD pipeline using the <code>amondnet/vercel-action</code>. The frontend is automatically deployed to Vercel when changes are pushed to the <code>main</code> branch, <em>only</em> if the E2E and Unit test suites pass successfully.</p>
+<p>The repository is configured with a fully automated CI/CD pipeline. The frontend is automatically deployed to Vercel when changes are pushed to the <code>main</code> branch, <em>only</em> if the E2E and unit test suites pass successfully.</p>
 <ol>
-<li>Add the following secrets to your GitHub repository (<code>Settings</code> &gt; <code>Secrets and variables</code> &gt; <code>Actions</code>):</li>
+<li>Add the following secrets to your GitHub repository (<code>Settings</code> → <code>Secrets and variables</code> → <code>Actions</code>):</li>
 <li><code>VERCEL_TOKEN</code>: Generate this at <a href="https://vercel.com/account/tokens">vercel.com/account/tokens</a></li>
 <li><code>VERCEL_ORG_ID</code>: Found in your Vercel project settings or <code>.vercel/project.json</code> after linking locally.</li>
 <li>
@@ -2417,121 +2544,341 @@
 <li>
 <p>The <code>.github/workflows/e2e.yml</code> workflow will automatically trigger on pushes to <code>main</code>. It will:</p>
 </li>
-<li>Run Vitest unit tests.</li>
-<li>Run Playwright E2E tests against a built version of the app.</li>
-<li>If (and only if) all tests pass, deploy the application to Vercel production.</li>
+<li>Run Jest unit tests</li>
+<li>Run Playwright E2E tests against a production build</li>
+<li>If (and only if) all tests pass, deploy the application to Vercel production</li>
 </ol>
 <h3 id="via-cli-manuallocal-testing">Via CLI (Manual/Local Testing)</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>frontend
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># Link the project to Vercel (required first time)</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>npx<span class="w"> </span>vercel<span class="w"> </span>link
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Deploy to production</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>npx<span class="w"> </span>vercel<span class="w"> </span>--prod
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>frontend
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># Link the project to Vercel (required first time)</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>npx<span class="w"> </span>vercel<span class="w"> </span>link
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># Deploy to production</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>npx<span class="w"> </span>vercel<span class="w"> </span>--prod
 </span></code></pre></div>
 <hr />
 <h2 id="step-7-verify-production-deployment">Step 7: Verify Production Deployment</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Backend health check</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>curl<span class="w"> </span>https://safevixai-api.onrender.com/health
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Expected: {&quot;status&quot;:&quot;ok&quot;,&quot;chatbot_ready&quot;:true}</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Emergency API test</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>curl<span class="w"> </span><span class="s2">&quot;https://safevixai-api.onrender.com/api/v1/emergency/nearby?lat=13.0827&amp;lon=80.2707&quot;</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Expected: {&quot;services&quot;:[...],&quot;count&quot;:N}</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># Challan API test</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>curl<span class="w"> </span><span class="s2">&quot;https://safevixai-api.onrender.com/api/v1/challan/calculate?violation_code=MVA_185&quot;</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># Expected: {&quot;final_fine_inr&quot;:10000,&quot;section&quot;:&quot;185&quot;}</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># Frontend PWA check</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="c1"># Chrome  visit safevixai.vercel.app  check &quot;Add to Home Screen&quot; prompt</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Backend health check</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>curl<span class="w"> </span>https://safevixai-api.onrender.com/health
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># Expected: {&quot;status&quot;:&quot;ok&quot;,&quot;chatbot_ready&quot;:true}</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># Emergency API test</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>curl<span class="w"> </span><span class="s2">&quot;https://safevixai-api.onrender.com/api/v1/emergency/nearby?lat=13.0827&amp;lon=80.2707&quot;</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Expected: {&quot;services&quot;:[...],&quot;count&quot;:N}</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># Challan API test</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>curl<span class="w"> </span><span class="s2">&quot;https://safevixai-api.onrender.com/api/v1/challan/calculate?violation_code=MVA_185&quot;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># Expected: {&quot;final_fine_inr&quot;:10000,&quot;section&quot;:&quot;185&quot;}</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="c1"># Frontend PWA check</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="c1"># Chrome → visit safevixai.vercel.app → check &quot;Add to Home Screen&quot; prompt</span>
 </span></code></pre></div>
 <hr />
 <h2 id="cicd-github-actions">CI/CD (GitHub Actions)</h2>
-<p>Configured in <code>.github/workflows/</code> (separate workflow files per service):</p>
-<ul>
-<li><strong>Triggers:</strong> Push to <code>main</code>, any Pull Request to <code>main</code> (path-filtered per service)</li>
-<li><strong><code>backend.yml</code>:</strong> Runs <code>pytest tests/ -v</code> with Python 3.11</li>
-<li><strong><code>chatbot.yml</code>:</strong> Runs <code>pytest tests/ -v</code> with Python 3.11</li>
-<li><strong><code>frontend.yml</code>:</strong> Runs <code>pnpm run lint</code> + <code>npx tsc --noEmit</code> with Node 20</li>
-<li><strong>Auto-deploy:</strong> Vercel and Render both watch the <code>main</code> branch</li>
-</ul>
+<p>Configured in <code>.github/workflows/</code> — 19 workflow files:</p>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Trigger</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backend.yml</code></td>
+<td><code>backend/**</code> changes</td>
+<td><code>pytest tests/ -v</code> with Python 3.11</td>
+</tr>
+<tr>
+<td><code>chatbot.yml</code></td>
+<td><code>chatbot_service/**</code> changes</td>
+<td><code>pytest tests/ -v</code> with Python 3.11</td>
+</tr>
+<tr>
+<td><code>frontend.yml</code></td>
+<td><code>frontend/**</code> changes</td>
+<td><code>pnpm run lint</code> + <code>npx tsc --noEmit</code> with Node 20</td>
+</tr>
+<tr>
+<td><code>e2e.yml</code></td>
+<td>Push to <code>main</code>, PR</td>
+<td>Full-stack Playwright E2E tests + Vercel deploy</td>
+</tr>
+<tr>
+<td><code>security.yml</code></td>
+<td>Push, PR</td>
+<td>Dependency auditing + security scanning</td>
+</tr>
+<tr>
+<td><code>system.yml</code></td>
+<td>Push to <code>main</code></td>
+<td>Cross-service system validation</td>
+</tr>
+<tr>
+<td><code>docker-build.yml</code></td>
+<td>Push, PR</td>
+<td>Docker Compose build verification</td>
+</tr>
+<tr>
+<td><code>smoke-tests.yml</code></td>
+<td>Push to <code>main</code></td>
+<td>API smoke tests after deploy</td>
+</tr>
+<tr>
+<td><code>load-testing.yml</code></td>
+<td>Scheduled</td>
+<td>Load/performance testing</td>
+</tr>
+<tr>
+<td><code>contract-tests.yml</code></td>
+<td>PR to <code>main</code></td>
+<td>Provider-driven contract tests</td>
+</tr>
+<tr>
+<td><code>chaos-tests.yml</code></td>
+<td>Scheduled</td>
+<td>Chaos engineering resilience tests</td>
+</tr>
+<tr>
+<td><code>i18n-cron.yml</code></td>
+<td>Scheduled (daily)</td>
+<td>i18n translation sync</td>
+</tr>
+<tr>
+<td><code>db-backup.yml</code></td>
+<td>Scheduled (daily)</td>
+<td>Supabase database backup</td>
+</tr>
+<tr>
+<td><code>blue-green-deploy.yml</code></td>
+<td>Push to <code>main</code></td>
+<td>Zero-downtime frontend deploy</td>
+</tr>
+<tr>
+<td><code>branch-protection.yml</code></td>
+<td>PR</td>
+<td>Branch protection policy checks</td>
+</tr>
+<tr>
+<td><code>codacy.yml</code></td>
+<td>PR</td>
+<td>Codacy code quality analysis</td>
+</tr>
+<tr>
+<td><code>sync-wiki.yml</code></td>
+<td><code>backend/**</code>, <code>chatbot_service/**</code></td>
+<td>LLM wiki generation</td>
+</tr>
+<tr>
+<td><code>update-master-doc.yml</code></td>
+<td><code>docs/**</code>, root <code>.md</code> changes</td>
+<td>Auto-generate DOCX master document</td>
+</tr>
+<tr>
+<td><code>deploy-docs.yml</code></td>
+<td><code>docs/**</code> changes</td>
+<td>Deploy documentation site</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="environment-variables-reference">Environment Variables Reference</h2>
 <h3 id="backend-backendenv">Backend (<code>backend/.env</code>)</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Database</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql+asyncpg://postgres:<span class="o">[</span>PASSWORD<span class="o">]</span>@db.<span class="o">[</span>PROJECT<span class="o">]</span>.supabase.co:5432/postgres
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Cache</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nv">REDIS_URL</span><span class="o">=</span>rediss://default:<span class="o">[</span>TOKEN<span class="o">]</span>@<span class="o">[</span>HOST<span class="o">]</span>.upstash.io:6379
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Chatbot</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nv">CHATBOT_SERVICE_URL</span><span class="o">=</span>http://localhost:8010
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># App</span>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nv">ENVIRONMENT</span><span class="o">=</span>production
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="nv">DEFAULT_RADIUS</span><span class="o">=</span><span class="m">5000</span>
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="nv">MAX_RADIUS</span><span class="o">=</span><span class="m">50000</span>
-</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="nv">CACHE_TTL</span><span class="o">=</span><span class="m">3600</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Database</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql+asyncpg://postgres:<span class="o">[</span>PASSWORD<span class="o">]</span>@db.<span class="o">[</span>PROJECT<span class="o">]</span>.supabase.co:5432/postgres
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Cache</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nv">REDIS_URL</span><span class="o">=</span>rediss://default:<span class="o">[</span>TOKEN<span class="o">]</span>@<span class="o">[</span>HOST<span class="o">]</span>.upstash.io:6379
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Chatbot</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nv">CHATBOT_SERVICE_URL</span><span class="o">=</span>http://localhost:8010
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># App</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nv">ENVIRONMENT</span><span class="o">=</span>production
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="nv">DEFAULT_RADIUS</span><span class="o">=</span><span class="m">5000</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="nv">MAX_RADIUS</span><span class="o">=</span><span class="m">50000</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="nv">CACHE_TTL</span><span class="o">=</span><span class="m">3600</span>
 </span></code></pre></div>
 <h3 id="chatbot-service-chatbot_serviceenv">Chatbot Service (<code>chatbot_service/.env</code>)</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># LLM</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">DEFAULT_LLM_PROVIDER</span><span class="o">=</span>groq
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nv">DEFAULT_LLM_MODEL</span><span class="o">=</span>llama3-70b-8192
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nv">GROQ_API_KEY</span><span class="o">=</span>gsk_...
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nv">CEREBRAS_API_KEY</span><span class="o">=</span>...
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nv">GEMINI_API_KEY</span><span class="o">=</span>...
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nv">SARVAM_API_KEY</span><span class="o">=</span>...
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># Backend connection</span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nv">MAIN_BACKEND_BASE_URL</span><span class="o">=</span>http://localhost:8000
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1"># RAG</span>
-</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="nv">CHROMA_PERSIST_DIR</span><span class="o">=</span>./data/chroma_db
-</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="nv">EMBEDDING_MODEL</span><span class="o">=</span>LocalHashEmbeddingFunction<span class="w"> </span><span class="o">(</span>zero-dependency<span class="o">)</span><span class="w">  </span><span class="c1"># Config hint — actual runtime uses LocalHashEmbeddingFunction (hash-based, zero ML dep)</span>
-</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
-</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="c1"># Cache</span>
-</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="nv">REDIS_URL</span><span class="o">=</span>rediss://default:<span class="o">[</span>TOKEN<span class="o">]</span>@<span class="o">[</span>HOST<span class="o">]</span>.upstash.io:6379
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># LLM</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">DEFAULT_LLM_PROVIDER</span><span class="o">=</span>groq
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">DEFAULT_LLM_MODEL</span><span class="o">=</span>llama-3.1-8b-instant
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nv">GROQ_API_KEY</span><span class="o">=</span>gsk_...
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nv">CEREBRAS_API_KEY</span><span class="o">=</span>...
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nv">GEMINI_API_KEY</span><span class="o">=</span>...
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nv">SARVAM_API_KEY</span><span class="o">=</span>...
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nv">GITHUB_TOKEN</span><span class="o">=</span>ghp_...<span class="w">           </span><span class="c1"># For GitHub Models provider</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nv">NVIDIA_NIM_API_KEY</span><span class="o">=</span>...
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="nv">OPENROUTER_API_KEY</span><span class="o">=</span>...
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="nv">MISTRAL_API_KEY</span><span class="o">=</span>...
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="nv">TOGETHER_API_KEY</span><span class="o">=</span>...
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="c1"># Backend connection</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="nv">MAIN_BACKEND_BASE_URL</span><span class="o">=</span>http://localhost:8000
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="c1"># RAG</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="nv">CHROMA_PERSIST_DIR</span><span class="o">=</span>./data/chroma_db
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="nv">EMBEDDING_MODEL</span><span class="o">=</span>sentence-transformers/all-MiniLM-L6-v2<span class="w">  </span><span class="c1"># Config hint — runtime uses LocalHashEmbeddingFunction</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="c1"># Cache</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="nv">REDIS_URL</span><span class="o">=</span>rediss://default:<span class="o">[</span>TOKEN<span class="o">]</span>@<span class="o">[</span>HOST<span class="o">]</span>.upstash.io:6379
 </span></code></pre></div>
 <h3 id="frontend-frontendenvlocal">Frontend (<code>frontend/.env.local</code>)</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nv">NEXT_PUBLIC_BACKEND_URL</span><span class="o">=</span>https://safevixai-api.onrender.com
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">NEXT_PUBLIC_CHATBOT_URL</span><span class="o">=</span>https://safevixai-chatbot.onrender.com
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">NEXT_PUBLIC_BACKEND_URL</span><span class="o">=</span>https://safevixai-api.onrender.com
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nv">NEXT_PUBLIC_CHATBOT_URL</span><span class="o">=</span>https://safevixai-chatbot.onrender.com
 </span></code></pre></div>
+<hr />
+<h2 id="speech-translation-endpoints">Speech Translation Endpoints</h2>
+<p>Available in the chatbot service (no API key required beyond CORS):</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Rate Limit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/speech/translate</code></td>
+<td>20/min</td>
+<td>Upload audio, returns translated text + language detection</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/speech/status</code></td>
+<td>30/min</td>
+<td>Service status, supported languages, model health</td>
+</tr>
+</tbody>
+</table>
+<p>Audio formats: WAV, MP3, OGG, WebM, FLAC. Max upload: 10 MB.
+Backed by IndicSeamlessService (SeamlessM4T for ASR + translation).</p>
+<hr />
+<h2 id="rate-limiting">Rate Limiting</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Limit</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General</td>
+<td>100 requests/min</td>
+<td>slowapi with Redis backend (in-memory fallback)</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>5 requests/min</td>
+<td>Login/signup/password-reset endpoints</td>
+</tr>
+<tr>
+<td>SOS / Emergency</td>
+<td>3 requests/min</td>
+<td>SOS activation and emergency reports</td>
+</tr>
+<tr>
+<td>Challan</td>
+<td>60 requests/min</td>
+<td>Fine calculation queries</td>
+</tr>
+<tr>
+<td>Chat</td>
+<td>30 requests/min</td>
+<td>Chat and streaming endpoints</td>
+</tr>
+<tr>
+<td>Geocoding</td>
+<td>30 requests/min</td>
+<td>Reverse and forward geocoding</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="static-analysis-stats-v20">Static Analysis Stats (v2.0)</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend Python Tests</td>
+<td>1365</td>
+</tr>
+<tr>
+<td>Chatbot Python Tests</td>
+<td>892</td>
+</tr>
+<tr>
+<td>Frontend Jest Tests</td>
+<td>572</td>
+</tr>
+<tr>
+<td><strong>Total Unit Tests</strong></td>
+<td><strong>2829</strong></td>
+</tr>
+<tr>
+<td>Frontend Components</td>
+<td>91</td>
+</tr>
+<tr>
+<td>Frontend Routes</td>
+<td>28</td>
+</tr>
+<tr>
+<td>API Route Modules</td>
+<td>27</td>
+</tr>
+<tr>
+<td>CI/CD Workflows</td>
+<td>19</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="rendercom-free-tier-limitations">Render.com Free Tier Limitations</h2>
 <ul>
-<li><strong>512MB RAM</strong>  sufficient for FastAPI + ChromaDB reads (build vectorstore before deploy)</li>
-<li><strong>750 hrs/month</strong>  one service runs 24/7 for a month</li>
-<li><strong>Cold starts</strong>  first request after inactivity takes ~30s (free tier sleeps after 15min)</li>
+<li><strong>512MB RAM</strong> — sufficient for FastAPI + ChromaDB reads (build vectorstore before deploy)</li>
+<li><strong>750 hrs/month</strong> — one service runs 24/7 for a month</li>
+<li><strong>Cold starts</strong> — first request after inactivity takes ~30s (free tier sleeps after 15min)</li>
 <li>Mitigation: Set up a <code>/health</code> ping every 14 minutes via UptimeRobot (free)</li>
 </ul>
 <hr />
 <h2 id="daily-development-commands">Daily Development Commands</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Backend (in backend/ with venv active)</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Frontend (in frontend/)</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Run all backend tests</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nb">cd</span><span class="w"> </span>backend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c1"># Run specific test</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>pytest<span class="w"> </span>tests/test_challan.py::test_drunk_driving_first_offence<span class="w"> </span>-v
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
-</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="c1"># Create new DB migration after model changes</span>
-</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>alembic<span class="w"> </span>revision<span class="w"> </span>--autogenerate<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add_crash_events_table&quot;</span>
-</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
-</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
-</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="c1"># Rollback last migration</span>
-</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>alembic<span class="w"> </span>downgrade<span class="w"> </span>-1
-</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>
-</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="c1"># Rebuild ChromaDB (after adding PDFs)</span>
-</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>python<span class="w"> </span>data/build_vectorstore.py
-</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>
-</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="c1"># Test API manually</span>
-</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/emergency/nearby?lat=13.0827&amp;lon=80.2707&quot;</span>
-</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/challan/calculate?violation_code=MVA_185&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Backend (in backend/ with venv active)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Frontend (in frontend/)</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># Run all backend tests</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="nb">cd</span><span class="w"> </span>backend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1"># Run specific test</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>pytest<span class="w"> </span>tests/test_challan.py::test_drunk_driving_first_offence<span class="w"> </span>-v
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="c1"># Create new DB migration after model changes</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>alembic<span class="w"> </span>revision<span class="w"> </span>--autogenerate<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add_crash_events_table&quot;</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="c1"># Rollback last migration</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>alembic<span class="w"> </span>downgrade<span class="w"> </span>-1
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="c1"># Rebuild ChromaDB (after adding PDFs)</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>python<span class="w"> </span>chatbot_service/data/build_vectorstore.py
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="c1"># Test API manually</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/emergency/nearby?lat=13.0827&amp;lon=80.2707&quot;</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/challan/calculate?violation_code=MVA_185&quot;</span>
 </span></code></pre></div>
 <hr />
 <h2 id="free-tier-cold-start-mitigation">Free Tier Cold Start Mitigation</h2>
@@ -2612,7 +2959,7 @@
 <p><strong>Note:</strong> On free tier, the combined idle+startup time per month is ~750 hours per service. With 10-min keep-alive, expect ~744 hours/month uptime (99.9%).</p>
 </blockquote>
 <hr />
-<p><em>Document version: 1.2 | IIT Madras Road Safety Hackathon 2026 | Updated: May 2026</em></p>
+<p><em>Document version: 2.0 | IIT Madras Road Safety Hackathon 2026 | Updated: June 2026</em></p>
 
 
 
