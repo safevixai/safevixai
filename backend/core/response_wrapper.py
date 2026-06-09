@@ -48,6 +48,8 @@ class ApiResponseMiddleware(BaseHTTPMiddleware):
                 error=None,
                 timestamp=datetime.now(timezone.utc).isoformat(),
             )
+            new_headers.pop("content-length", None)
+            new_headers.pop("Content-Length", None)
             return JSONResponse(
                 status_code=response.status_code,
                 content=wrapped.model_dump(mode="json"),
