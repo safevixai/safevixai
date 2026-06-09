@@ -5,7 +5,6 @@ import json
 import time
 from dataclasses import replace
 from types import SimpleNamespace
-from typing import AsyncIterator
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import httpx

@@ -1,13 +1,10 @@
 from __future__ import annotations
 
-import json
-from unittest.mock import ANY
 
 import pytest
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
-from starlette.middleware.base import BaseHTTPMiddleware
 
 from core.response_wrapper import ApiResponseMiddleware
 

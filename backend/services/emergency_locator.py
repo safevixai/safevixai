@@ -24,7 +24,6 @@ from services.exceptions import ExternalServiceError
 from services.exceptions import ServiceValidationError
 from services.local_emergency_catalog import LocalEmergencyEntry, load_local_emergency_catalog
 from services.overpass_service import OverpassService
-from core.redis_client import STALE_CACHE_MAX_AGE_SECONDS
 
 logger = logging.getLogger('uvicorn.emergency_locator')
 

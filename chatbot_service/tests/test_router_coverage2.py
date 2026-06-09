@@ -1,20 +1,15 @@
 """Coverage tests for providers/router.py — uncovered lines: 245, 300-301, 312-317, 379, 440-445, 470, 472, 519-522, 544-551."""
 from __future__ import annotations
 
-import json
 import time
 from dataclasses import replace
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock, patch
 
-import httpx
-import asyncio
 import pytest
 
-from cache.llm_cache import CacheEntry, LLMResponseCache
+from cache.llm_cache import LLMResponseCache
 from providers.base import (
-    InvalidProviderKeyError,
-    ModelUnavailableError,
     ProviderRequest,
     ProviderResult,
     ProviderUnavailableError,
@@ -22,12 +17,7 @@ from providers.base import (
     RateLimitError,
     TemplateProvider,
 )
-from providers.router import ProviderRouter, detect_lang
-from providers.sarvam_provider import (
-    INDIAN_LANGUAGE_CODES,
-    Sarvam105BProvider,
-    SarvamProvider,
-)
+from providers.router import ProviderRouter
 
 
 _REQUEST = ProviderRequest(

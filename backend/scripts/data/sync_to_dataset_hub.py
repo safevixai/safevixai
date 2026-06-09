@@ -129,16 +129,16 @@ def main():
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding='utf-8')
 
     print(f'\n{"=" * 60}')
-    print(f'  SYNC COMPLETE')
+    print('  SYNC COMPLETE')
     print(f'{"=" * 60}')
     print(f'  Files: {total_files}')
     print(f'  Size: {_human_size(total_bytes)}')
     print(f'  Destination: {HUB_ROOT}')
-    print(f'\n  Next steps:')
+    print('\n  Next steps:')
     print(f'    cd {HUB_ROOT}')
-    print(f'    git add .')
-    print(f'    git commit -m "feat: add civic intelligence data"')
-    print(f'    git push')
+    print('    git add .')
+    print('    git commit -m "feat: add civic intelligence data"')
+    print('    git push')
     print()
 
 

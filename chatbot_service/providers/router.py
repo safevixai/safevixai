@@ -48,7 +48,7 @@ from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent.parent.parent))
 from alert_service import get_alert_service
 
-from core.metrics import chatbot_circuit_breaker_state, chatbot_circuit_breaker_trips_total, update_circuit_breaker_gauges
+from core.metrics import chatbot_circuit_breaker_trips_total, update_circuit_breaker_gauges
 
 
 logger = logging.getLogger("safevixai.chatbot.providers")

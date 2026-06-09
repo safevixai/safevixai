@@ -1,7 +1,7 @@
 """Coverage tests for tools/what3words.py — error and edge case paths."""
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import httpx
 import pytest

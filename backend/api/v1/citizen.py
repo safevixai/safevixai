@@ -10,9 +10,8 @@ Public-facing endpoints for citizens to:
 from __future__ import annotations
 
 import logging
-import uuid
 from datetime import datetime, timezone
-from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -145,7 +144,7 @@ async def confirm_resolution(
         )
 
     try:
-        result = await ComplaintStateMachine.transition(
+        await ComplaintStateMachine.transition(
             db,
             complaint_uuid=issue.uuid,
             target_status="citizen_confirmed",
@@ -218,12 +217,12 @@ async def reject_resolution(
 
     # Auto-reopen: citizen_rejected → reopened (auto-escalates severity)
     try:
-        result = await ComplaintStateMachine.transition(
+        await ComplaintStateMachine.transition(
             db,
             complaint_uuid=issue.uuid,
             target_status="reopened",
             actor_role="system",
-            notes=f"Auto-reopened after citizen rejection. Severity escalated.",
+            notes="Auto-reopened after citizen rejection. Severity escalated.",
             metadata={"previous_resolution": "citizen_rejected"},
         )
     except (InvalidTransitionError, Exception) as e:

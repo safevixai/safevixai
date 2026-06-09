@@ -1,6 +1,5 @@
 import pytest
 from unittest.mock import AsyncMock, patch
-from fastapi.testclient import TestClient
 
 # We will test the direct endpoints created by the FastMCP SSE app
 # to ensure it mounts properly into our FastAPI instance.

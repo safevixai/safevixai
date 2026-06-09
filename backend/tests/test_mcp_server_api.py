@@ -24,7 +24,6 @@ def mock_test_env():
 def test_client(mock_test_env):
     """Create a test client for the MCP router."""
     from fastapi import FastAPI
-    from core.security import get_current_user
     
     app = FastAPI()
     
@@ -495,8 +494,6 @@ class TestUtilityFunctions:
 
     def test_rate_limit_logic(self):
         """Test rate limiting logic."""
-        from starlette.testclient import TestClient as StarletteTestClient
-        from starlette.requests import Request
         
         # Reset rate store
         mcp_server._rate_store.clear()

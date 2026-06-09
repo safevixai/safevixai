@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 
 import pytest
 from redis.exceptions import RedisError
@@ -85,7 +84,7 @@ class TestInMemoryOnly:
         for i in range(_MAX_IN_MEMORY_SESSIONS + 10):
             await store.append_message(f"s{i}", "user", f"msg{i}")
         assert len(store._memory) <= _MAX_IN_MEMORY_SESSIONS
-        assert f"s0" not in store._memory
+        assert "s0" not in store._memory
 
 
 class TestRedisHealthy:

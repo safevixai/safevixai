@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from unittest.mock import MagicMock, PropertyMock, call, patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -11,7 +11,6 @@ from rag.document_loader import (
     LoadedDocument,
     MAX_CSV_ROWS,
     MAX_TEXT_CHARS,
-    _LOADER_BY_SUFFIX,
     _read_csv,
     _read_json,
     _read_pdf,

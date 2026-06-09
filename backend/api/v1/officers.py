@@ -11,7 +11,6 @@ from geoalchemy2 import WKTElement
 from core.config import get_settings
 from core.database import get_db
 from core.limiter import limiter
-from core.rbac import require_role, Role
 from core.security import get_current_user
 from models.officer import Officer
 from models.road_issue import RoadIssue

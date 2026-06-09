@@ -4,12 +4,10 @@ import math
 from datetime import time
 from unittest.mock import AsyncMock, MagicMock, patch
 
-import pytest
 
 from services.officer_route_optimizer import (
     OfficerRouteOptimizer,
     OfficerShift,
-    OptimizedRoute,
     _haversine_km,
     _nearest_neighbor_tsp,
 )

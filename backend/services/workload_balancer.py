@@ -101,7 +101,7 @@ class WorkloadBalancer:
     ) -> list[OfficerScore]:
         """Score all available officers and rank them."""
         # Fetch active officers
-        stmt = select(Officer).where(Officer.is_active == True)
+        stmt = select(Officer).where(Officer.is_active)
         if department:
             stmt = stmt.where(Officer.department == department)
         

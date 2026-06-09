@@ -1,12 +1,11 @@
 """Coverage tests for tools/weather_tool.py — OWM fallback error paths (lines 68-74)."""
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import httpx
 import pytest
 
-from config import Settings
 from tools.weather_tool import WeatherTool
 
 

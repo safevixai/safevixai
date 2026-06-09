@@ -1,8 +1,6 @@
 """Waze Feed API tests for SafeVixAI backend."""
 from __future__ import annotations
 
-import pytest
-from unittest.mock import MagicMock
 from datetime import datetime, timezone, timedelta
 
 from api.v1 import waze_feed

@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-from unittest.mock import ANY, AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-from sqlalchemy import select
 
 from core.config import Settings
 from core.redis_client import CacheHelper

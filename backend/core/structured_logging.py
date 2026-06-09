@@ -14,7 +14,6 @@ import uuid
 import time
 import logging
 import contextvars
-from typing import Any
 
 # Context variable for correlation ID
 correlation_id_var: contextvars.ContextVar[str] = contextvars.ContextVar("correlation_id", default="")

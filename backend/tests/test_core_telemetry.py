@@ -16,7 +16,6 @@ def _mock_all_telemetry_deps():
     sys.modules["opentelemetry.exporter.otlp.proto.grpc.trace_exporter"] = grpc_mod
     sys.modules["opentelemetry.exporter.otlp.proto.http.trace_exporter"] = http_mod
     sys.modules["opentelemetry.instrumentation.fastapi"] = instr_mod
-    import core.telemetry  # safe — all deps mocked
 
     yield
     sys.modules.update(orig)

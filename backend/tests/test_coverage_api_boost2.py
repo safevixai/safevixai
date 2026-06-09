@@ -4,13 +4,12 @@ officers, user, roadwatch, command_center, tracking edge cases.
 from __future__ import annotations
 
 import asyncio
-import json
 import jwt
 import uuid
 import pytest
-from unittest.mock import AsyncMock, MagicMock, patch, PropertyMock
+from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime, timedelta, timezone
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -25,9 +24,6 @@ from core.circuit_breaker import CircuitBreakerRegistry
 from models.schemas import (
     AuthorityPreviewResponse, RoadInfrastructureResponse,
     RoadIssuesResponse, RoadReportResponse,
-    OfficerResponse, OfficerCheckinResponse,
-    UserProfileResponse, UserDataExport, UserDeleteResponse,
-    ComplaintTimelineResponse, ComplaintEventItem,
 )
 from models.road_issue import RoadIssue
 from models.officer import Officer
@@ -309,7 +305,6 @@ class TestAuthCoverage:
 
     def test_register_success(self):
         from api.v1.auth import router
-        from models.user import OperatorUser
 
         result = MagicMock()
         result.scalar_one_or_none.return_value = None
@@ -363,7 +358,6 @@ class TestAuthCoverage:
         }, SECRET_KEY, algorithm=ALGORITHM)
 
         from api.v1.auth import router
-        from core.limiter import limiter
         # Do NOT override get_current_user — let the real dependency run
         _revoked_token_jtis.add(jti)
         try:
@@ -576,7 +570,7 @@ class TestCitizenCoverage:
         app = self._app()
         app.dependency_overrides[get_db] = lambda: db
         r = TestClient(app).post(
-            f"/api/v1/citizen/complaints/RS-NOTFOUND/confirm",
+            "/api/v1/citizen/complaints/RS-NOTFOUND/confirm",
             json={"citizen_phone": "9999999999"})
         assert r.status_code == 404
 
@@ -614,7 +608,7 @@ class TestCitizenCoverage:
         app = self._app()
         app.dependency_overrides[get_db] = lambda: db
         r = TestClient(app).post(
-            f"/api/v1/citizen/complaints/RS-NOTFOUND/reject",
+            "/api/v1/citizen/complaints/RS-NOTFOUND/reject",
             json={"reason": "Work was not done properly"})
         assert r.status_code == 404
 
@@ -631,7 +625,7 @@ class TestCitizenCoverage:
 
     def test_reject_short_reason(self):
         r = TestClient(self._app()).post(
-            f"/api/v1/citizen/complaints/RS-TEST/reject",
+            "/api/v1/citizen/complaints/RS-TEST/reject",
             json={"reason": "bad"})
         assert r.status_code == 422
 
@@ -657,7 +651,7 @@ class TestCitizenCoverage:
         app = self._app()
         app.dependency_overrides[get_db] = lambda: db
         r = TestClient(app).post(
-            f"/api/v1/citizen/complaints/RS-NOTFOUND/rate",
+            "/api/v1/citizen/complaints/RS-NOTFOUND/rate",
             json={"rating": 4})
         assert r.status_code == 404
 
@@ -674,7 +668,7 @@ class TestCitizenCoverage:
 
     def test_rate_bad_value(self):
         r = TestClient(self._app()).post(
-            f"/api/v1/citizen/complaints/RS-TEST/rate",
+            "/api/v1/citizen/complaints/RS-TEST/rate",
             json={"rating": 6})
         assert r.status_code == 422
 
@@ -1067,7 +1061,6 @@ class TestFieldWorkflowCoverage:
         assert d2 > 0
 
     def test_get_issue_coords_no_location(self):
-        import pytest
         from api.v1.field_workflow import _get_issue_coords
         issue = _mock_issue()
         issue.location = None
@@ -1189,7 +1182,7 @@ class TestUserCoverage:
 
     def test_create_success(self):
         from models.user import UserProfile as UPModel
-        real_profile = UPModel(
+        UPModel(
             user_id=_USER_ID,
             name="Test User",
             blood_group="O+",
@@ -1198,15 +1191,12 @@ class TestUserCoverage:
         db = _mock_db()
         db.add = MagicMock()
         db.commit = AsyncMock()
-        orig_refresh = db.refresh
         async def _set_id_and_refresh(obj):
             obj.id = uuid.uuid4()
             obj.created_at = datetime.now(timezone.utc)
             obj.updated_at = datetime.now(timezone.utc)
         db.refresh = AsyncMock(side_effect=_set_id_and_refresh)
 
-        from sqlalchemy import select as sa_select
-        orig_exec = db.execute
         async def _mock_exec(q):
             r = MagicMock()
             r.scalar_one_or_none.return_value = None
@@ -1486,7 +1476,6 @@ class TestRoadwatchCoverage:
 
     def _operator_app(self):
         from api.v1.roadwatch import router
-        from services.exceptions import ServiceValidationError
         svc = MagicMock()
         svc.find_nearby_issues = AsyncMock(return_value=RoadIssuesResponse(issues=[], count=0, radius_used=5000))
         svc.get_authority = AsyncMock(return_value=AuthorityPreviewResponse(

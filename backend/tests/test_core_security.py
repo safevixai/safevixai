@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import time
 import uuid
 from datetime import timedelta, datetime, timezone
 from unittest.mock import AsyncMock, MagicMock, patch, PropertyMock

@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import csv
-import io
 import tempfile
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
@@ -14,10 +12,6 @@ from core.config import Settings
 from models.schemas import ChallanQuery
 from services.challan_service import (
     ChallanService,
-    DEFAULT_RULES,
-    INDIAN_STATE_CODE_ALIASES,
-    VEHICLE_CLASS_ALIASES,
-    ChallanRule,
 )
 from services.exceptions import ExternalServiceError, ServiceValidationError
 

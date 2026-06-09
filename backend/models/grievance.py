@@ -4,7 +4,6 @@ from datetime import datetime
 
 from geoalchemy2 import Geometry
 from sqlalchemy import DateTime, String, Text
-from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
 from core.database import Base

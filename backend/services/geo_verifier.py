@@ -8,7 +8,6 @@ from __future__ import annotations
 import logging
 import math
 from datetime import datetime
-from typing import Any
 
 logger = logging.getLogger("safevixai.geo_verifier")
 
@@ -93,7 +92,7 @@ class GeoVerifier:
                 "EXIF verification warning: photo coordinates are %.1fm away from complaint",
                 distance
             )
-            return False, f"Photo metadata coordinates are too far (%.1fm) from the complaint location"
+            return False, "Photo metadata coordinates are too far (%.1fm) from the complaint location"
 
         logger.info("EXIF verification passed: photo coordinates are within %.1fm", distance)
         return True, "Photo metadata coordinates verified"

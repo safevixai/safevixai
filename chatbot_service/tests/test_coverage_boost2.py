@@ -1,9 +1,6 @@
 """Coverage boost tests: limiter, pothole_validator, speech, speech_translation, chat, ai, drug_info."""
 from __future__ import annotations
 
-import json
-import sys
-from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -11,7 +8,6 @@ from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
 import main
-from agent.state import ChatResponse
 from api.chat import get_engine as chat_get_engine
 from api.chat import verify_internal_auth
 
@@ -272,7 +268,7 @@ class TestPotholeValidator:
 
     def test_get_model_found_at_first_path(self):
         """get_model finds model at MODEL_PATH."""
-        from services.pothole_validator import PotholeValidator, MODEL_PATH
+        from services.pothole_validator import PotholeValidator
         PotholeValidator._model = None
         fake_yolo = MagicMock()
         with patch("os.path.exists", return_value=True):

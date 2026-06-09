@@ -4,7 +4,6 @@ from __future__ import annotations
 import json
 import time
 import logging
-import pytest
 from core.structured_logging import (
     CorrelationIdFilter,
     StructuredFormatter,

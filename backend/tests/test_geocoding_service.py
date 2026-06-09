@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import time
-from unittest.mock import AsyncMock, MagicMock, call, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import httpx
 import pytest
@@ -94,7 +94,7 @@ class TestConstructor:
 class TestAclose:
     async def test_acloses_http_client(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_client_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             svc._client.aclose = AsyncMock()
             await svc.aclose()
@@ -497,7 +497,7 @@ class TestNormalizeNominatim:
 
 class TestGet:
     async def _make_service_and_mock_get(self, settings):
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_response = MagicMock()
             mock_response.json.return_value = {"features": [{"id": "1"}]}
@@ -510,7 +510,7 @@ class TestGet:
 
     async def test_success_returns_json(self):
         settings = Settings()
-        svc = MagicMock()  # We only need _get, so stub the whole service
+        MagicMock()  # We only need _get, so stub the whole service
         mock_response = MagicMock()
         mock_response.json.return_value = {"features": [{"id": "1"}]}
         mock_response.raise_for_status.return_value = None
@@ -519,7 +519,7 @@ class TestGet:
             return mock_response
         mock_client.get = fake_get
 
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             real_svc = GeocodingService(settings=settings)
             real_svc._client = mock_client
             result = await real_svc._get("https://photon.komoot.io", "/api", {"q": "test"})
@@ -527,7 +527,7 @@ class TestGet:
 
     async def test_http_error_raises_geocoding_error(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_client = MagicMock()
             async def fake_get(*args, **kwargs):
@@ -539,7 +539,7 @@ class TestGet:
 
     async def test_timeout_raises_geocoding_error(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_client = MagicMock()
             async def fake_get(*args, **kwargs):
@@ -555,7 +555,7 @@ class TestGet:
 class TestGetNominatim:
     async def test_success_respects_rate_limit_first_call(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             assert svc._last_nominatim_request_at == 0.0
             mock_response = MagicMock()
@@ -572,7 +572,7 @@ class TestGetNominatim:
 
     async def test_rate_limited_waits_between_requests(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             svc._last_nominatim_request_at = time.monotonic() - 0.3
             mock_response = MagicMock()
@@ -592,7 +592,7 @@ class TestGetNominatim:
 
     async def test_no_sleep_when_sufficient_time_elapsed(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             svc._last_nominatim_request_at = time.monotonic() - 5.0
             mock_response = MagicMock()
@@ -610,7 +610,7 @@ class TestGetNominatim:
 
     async def test_http_error_raises_geocoding_error(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_client = MagicMock()
             async def fake_get(*args, **kwargs):
@@ -622,7 +622,7 @@ class TestGetNominatim:
 
     async def test_http_status_error_raises_geocoding_error(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_client = MagicMock()
             async def fake_get(*args, **kwargs):
@@ -641,7 +641,7 @@ class TestGetNominatim:
 class TestSearchPhoton:
     async def test_returns_results(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_resp = MagicMock()
             mock_resp.json.return_value = {
@@ -660,7 +660,7 @@ class TestSearchPhoton:
 
     async def test_no_features_raises(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_resp = MagicMock()
             mock_resp.json.return_value = {}
@@ -676,7 +676,7 @@ class TestSearchPhoton:
 class TestReversePhoton:
     async def test_returns_result(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_resp = MagicMock()
             mock_resp.json.return_value = {
@@ -694,7 +694,7 @@ class TestReversePhoton:
 
     async def test_no_features_raises(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_resp = MagicMock()
             mock_resp.json.return_value = {}
@@ -710,7 +710,7 @@ class TestReversePhoton:
 class TestSearchNominatim:
     async def test_returns_results(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_resp = MagicMock()
             mock_resp.json.return_value = [
@@ -729,7 +729,7 @@ class TestSearchNominatim:
 
     async def test_empty_response(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_resp = MagicMock()
             mock_resp.json.return_value = []
@@ -747,7 +747,7 @@ class TestSearchNominatim:
 class TestReverseNominatim:
     async def test_returns_result(self):
         settings = Settings()
-        with patch('services.geocoding_service.httpx.AsyncClient') as mock_cls:
+        with patch('services.geocoding_service.httpx.AsyncClient'):
             svc = GeocodingService(settings=settings)
             mock_resp = MagicMock()
             mock_resp.json.return_value = {

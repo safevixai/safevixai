@@ -295,7 +295,6 @@ class TestGetSession:
         """Test session retrieval with Bearer token in header."""
         session_id = uuid.uuid4()
         
-        from core.security import create_access_token
         from datetime import timedelta
         from core.security import SECRET_KEY, ALGORITHM
         import jwt

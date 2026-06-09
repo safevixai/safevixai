@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from fastapi.testclient import TestClient
 
-from main import create_app
 
 
 def _get_openapi(app):

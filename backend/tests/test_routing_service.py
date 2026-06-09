@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, call, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import httpx
 import pytest
@@ -11,7 +11,6 @@ from core.config import Settings
 from core.redis_client import CacheHelper
 from models.schemas import (
     RouteBounds,
-    RouteInstruction,
     RouteOption,
     RoutePoint,
     RoutePreviewResponse,

@@ -92,11 +92,11 @@ def validate_municipalities(filepath: Path) -> list[str]:
 def main():
     parser = argparse.ArgumentParser(description='Validate SafeVixAI civic data')
     parser.add_argument('--check-urls', action='store_true', help='Check if URLs are reachable')
-    args = parser.parse_args()
+    parser.parse_args()
 
-    print(f'\n╔══════════════════════════════════════════╗')
-    print(f'║  SafeVixAI Civic Data Validator           ║')
-    print(f'╚══════════════════════════════════════════╝')
+    print('\n╔══════════════════════════════════════════╗')
+    print('║  SafeVixAI Civic Data Validator           ║')
+    print('╚══════════════════════════════════════════╝')
     print(f'  Data dir: {DATA_DIR}')
     print()
 
@@ -140,7 +140,7 @@ def main():
     # Special validation for municipalities
     muni_file = DATA_DIR / 'municipalities_seed.json'
     if muni_file.exists():
-        print(f'\n  Municipality Quality Check:')
+        print('\n  Municipality Quality Check:')
         issues = validate_municipalities(muni_file)
         if issues:
             for issue in issues[:20]:
@@ -148,11 +148,11 @@ def main():
             if len(issues) > 20:
                 print(f'    ... and {len(issues) - 20} more issues')
         else:
-            print(f'    ✓ All municipalities pass quality checks')
+            print('    ✓ All municipalities pass quality checks')
 
     # Summary
     print(f'\n{"═" * 55}')
-    print(f'  VALIDATION SUMMARY')
+    print('  VALIDATION SUMMARY')
     print(f'{"═" * 55}')
     print(f'  Total files:    {total_files}')
     print(f'  Valid files:    {valid_files}')
@@ -162,7 +162,7 @@ def main():
     print(f'  Total size:     {total_size_str}')
 
     if valid_files == total_files:
-        print(f'\n  ✅ ALL FILES VALID')
+        print('\n  ✅ ALL FILES VALID')
     else:
         print(f'\n  ⚠ {total_files - valid_files} INVALID FILE(S)')
         sys.exit(1)

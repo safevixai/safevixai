@@ -132,7 +132,6 @@ class OverpassService:
 
     async def _execute_query(self, query: str) -> dict:
         cb = CircuitBreakerRegistry.get("overpass", failure_threshold=3, recovery_timeout=60.0)
-        last_error: Exception | None = None
         try:
             return await cb.call(self._do_execute_query, query)
         except CircuitBreakerOpenError:

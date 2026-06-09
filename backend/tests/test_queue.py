@@ -1,8 +1,7 @@
 import pytest
 import json
-import asyncio
-from unittest.mock import AsyncMock, MagicMock
-from core.queue import TaskQueue, BackgroundWorker, task, Job
+from unittest.mock import AsyncMock
+from core.queue import TaskQueue, BackgroundWorker, task
 
 @task("test_job_task")
 async def dummy_job_task_func(x):

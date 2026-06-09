@@ -10,7 +10,6 @@ import hashlib
 import json
 import logging
 from dataclasses import asdict, dataclass
-from typing import Any
 
 from redis.asyncio import Redis
 from redis.exceptions import RedisError

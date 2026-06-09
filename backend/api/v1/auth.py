@@ -17,7 +17,6 @@ from core.security import (
     SECRET_KEY,
     create_access_token,
     create_secure_cookie_response,
-    create_refresh_token,
     get_current_user,
     is_token_revoked,
     revoke_token,
@@ -195,7 +194,7 @@ async def login(
     email = body.email.strip().lower()
     
     # 1. Try database-backed operator authentication
-    stmt = select(OperatorUser).where(OperatorUser.email == email, OperatorUser.is_active == True)
+    stmt = select(OperatorUser).where(OperatorUser.email == email, OperatorUser.is_active)
     result = await db.execute(stmt)
     db_operator = result.scalar_one_or_none()
     

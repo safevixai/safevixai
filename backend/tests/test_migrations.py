@@ -50,7 +50,7 @@ def test_migration_chain_is_linear():
     for f in sorted(MIGRATIONS_DIR.glob("*.py")):
         content = f.read_text(encoding="utf-8")
         rev_line = [l for l in content.split("\n") if l.strip().startswith("revision") or "revision" in l and "=" in l]
-        down_line = [l for l in content.split("\n") if l.strip().startswith("down_revision") or "down_revision" in l and "=" in l]
+        [l for l in content.split("\n") if l.strip().startswith("down_revision") or "down_revision" in l and "=" in l]
         if rev_line:
             rev = rev_line[0].split("=")[1].strip().strip("'\"")
             migrations[rev] = {"file": f.name, "content": content}

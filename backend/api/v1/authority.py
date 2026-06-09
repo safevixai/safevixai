@@ -17,7 +17,6 @@ from core.database import get_db
 from core.limiter import limiter
 from core.rbac import require_role, Role
 from models.road_issue import RoadIssue
-from models.officer import Officer
 from services.complaint_state_machine import ComplaintStateMachine, InvalidTransitionError
 
 router = APIRouter(prefix='/api/v1/authority', tags=['Authority Workflow'])
@@ -125,7 +124,6 @@ async def reject_complaint(
     if result.issue:
         try:
             from services.workload_balancer import WorkloadBalancer
-            from sqlalchemy import func as sqlfunc
             lat = float((await db.execute(
                 select(func.ST_Y(result.issue.location))
             )).scalar() or 0)

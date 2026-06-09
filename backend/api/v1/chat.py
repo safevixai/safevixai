@@ -1,6 +1,6 @@
 import asyncio
 import json
-from fastapi import APIRouter, Depends, Request, HTTPException
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
 import httpx
 

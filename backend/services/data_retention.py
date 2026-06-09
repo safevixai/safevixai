@@ -60,7 +60,7 @@ class DataRetentionScheduler:
         async with self.session_factory() as db:
             try:
                 # Call the cleanup function defined in Alembic migrations
-                result = await db.execute("SELECT safevixai_cleanup_expired_data()")
+                await db.execute("SELECT safevixai_cleanup_expired_data()")
                 await db.commit()
                 logger.info(
                     "Data retention cleanup executed successfully at %s",

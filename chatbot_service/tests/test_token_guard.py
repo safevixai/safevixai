@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pytest
 from utils.token_guard import (
     estimate_tokens,
     estimate_messages_tokens,
@@ -8,7 +7,6 @@ from utils.token_guard import (
     should_skip_groq,
     sanitize_output,
     MAX_SAFE_INPUT_TOKENS,
-    MAX_HISTORY_TOKENS,
     SYSTEM_PROMPT_FINGERPRINT,
 )
 

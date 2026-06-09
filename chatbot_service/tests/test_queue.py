@@ -1,8 +1,7 @@
 import pytest
 import json
-import asyncio
-from unittest.mock import AsyncMock, MagicMock, patch
-from core.queue import TaskQueue, BackgroundWorker, task, Job, set_global_chat_engine
+from unittest.mock import AsyncMock
+from core.queue import TaskQueue, BackgroundWorker, task
 
 @task("test_chatbot_task")
 async def dummy_chatbot_task_func(q, job_id, x):

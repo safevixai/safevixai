@@ -168,7 +168,7 @@ def test_filter_by_tenant_with_tenant():
     mock_stmt.where.return_value = mock_stmt
     
     query = TenantAwareQuery(mock_session, 'org_456')
-    result = query.filter_by_tenant(mock_stmt)
+    query.filter_by_tenant(mock_stmt)
     
     # Verify where clause was called with org_id filter
     mock_stmt.where.assert_called_once()
@@ -190,7 +190,7 @@ def test_filter_by_tenant_non_tenant_aware_table():
     ]
     
     query = TenantAwareQuery(mock_session, 'org_456')
-    result = query.filter_by_tenant(mock_stmt)
+    query.filter_by_tenant(mock_stmt)
     
     # Verify where clause was NOT called
     mock_stmt.where.assert_not_called()
@@ -211,7 +211,7 @@ def test_filter_by_tenant_entity_without_org_id():
     ]
     
     query = TenantAwareQuery(mock_session, 'org_456')
-    result = query.filter_by_tenant(mock_stmt)
+    query.filter_by_tenant(mock_stmt)
     
     # Verify where clause was NOT called
     mock_stmt.where.assert_not_called()
@@ -232,7 +232,7 @@ def test_filter_by_tenant_entity_without_tablename():
     ]
     
     query = TenantAwareQuery(mock_session, 'org_456')
-    result = query.filter_by_tenant(mock_stmt)
+    query.filter_by_tenant(mock_stmt)
     
     # Verify where clause was NOT called
     mock_stmt.where.assert_not_called()
@@ -246,7 +246,7 @@ def test_filter_by_tenant_empty_column_descriptions():
     mock_stmt.column_descriptions = []
     
     query = TenantAwareQuery(mock_session, 'org_456')
-    result = query.filter_by_tenant(mock_stmt)
+    query.filter_by_tenant(mock_stmt)
     
     # Verify where clause was NOT called
     mock_stmt.where.assert_not_called()
@@ -262,7 +262,7 @@ def test_filter_by_tenant_entity_is_none():
     ]
     
     query = TenantAwareQuery(mock_session, 'org_456')
-    result = query.filter_by_tenant(mock_stmt)
+    query.filter_by_tenant(mock_stmt)
     
     # Verify where clause was NOT called
     mock_stmt.where.assert_not_called()
@@ -337,7 +337,7 @@ def test_tenant_aware_query_with_multiple_entities():
     mock_stmt.where.return_value = mock_stmt
     
     query = TenantAwareQuery(mock_session, 'org_456')
-    result = query.filter_by_tenant(mock_stmt)
+    query.filter_by_tenant(mock_stmt)
     
     # Verify where clause was called once (for users table only)
     assert mock_stmt.where.call_count == 1

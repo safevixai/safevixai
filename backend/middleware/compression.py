@@ -7,7 +7,7 @@ from typing import Any
 
 from fastapi import FastAPI, Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.types import ASGIApp, Receive, Scope, Send
+from starlette.types import ASGIApp
 
 logger = logging.getLogger("safevixai.compression")
 

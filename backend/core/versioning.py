@@ -8,11 +8,9 @@ Phase 0.4: Prevents breaking changes from affecting all clients simultaneously.
 from __future__ import annotations
 
 import logging
-from datetime import datetime, timezone
 
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.responses import Response
 
 logger = logging.getLogger(__name__)
 

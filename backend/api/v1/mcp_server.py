@@ -6,8 +6,7 @@ from collections import defaultdict
 from typing import Any
 
 import httpx
-from fastapi import APIRouter, Depends, HTTPException, Request, status
-from fastapi.security import APIKeyHeader
+from fastapi import APIRouter, Depends, Request
 from mcp.server.fastmcp import FastMCP
 from mcp.server.sse import SseServerTransport
 from starlette.applications import Starlette
@@ -16,7 +15,6 @@ from starlette.responses import Response
 from starlette.routing import Mount, Route
 
 from core.rbac import require_role, Role
-from core.security import get_current_user
 
 logger = logging.getLogger("safevixai.mcp")
 

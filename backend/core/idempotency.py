@@ -11,12 +11,10 @@ Phase 0.5: Prevents duplicate side effects from network retries.
 """
 from __future__ import annotations
 
-import hashlib
 import json
 import logging
-import time
 
-from fastapi import Request, Response
+from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
@@ -84,7 +82,7 @@ class IdempotencyMiddleware(BaseHTTPMiddleware):
 
             return response
 
-        except Exception as e:
+        except Exception:
             logger.exception("Idempotency middleware error")
             return await call_next(request)
         finally:

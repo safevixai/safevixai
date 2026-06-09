@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-import os
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 from pydantic import ValidationError

@@ -3,10 +3,7 @@ from __future__ import annotations
 
 import uuid
 import pytest
-from unittest.mock import MagicMock, AsyncMock
-from fastapi.testclient import TestClient
 
-from api.v1 import user
 from models.schemas import UserProfileCreate, UserProfileUpdate, EmergencyContact
 
 

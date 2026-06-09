@@ -5,10 +5,8 @@ import json
 import logging
 import time
 from redis.asyncio import Redis
-import jwt
 
 from core.config import get_settings
-from core.security import ALGORITHM, SECRET_KEY
 
 logger = logging.getLogger(__name__)
 

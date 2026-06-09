@@ -130,7 +130,6 @@ class GroqProvider(HttpProvider):
         )
 
         from providers.base import (
-            MAX_RESPONSE_TOKENS,
             build_messages,
             raise_for_provider_status,
             check_prompt_injection,

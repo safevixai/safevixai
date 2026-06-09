@@ -1,5 +1,4 @@
-import pytest
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from api.v1.tracking import router, _is_valid_location, _is_valid_tracking_payload
 from core.security import create_access_token

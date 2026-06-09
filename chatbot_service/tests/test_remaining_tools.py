@@ -699,7 +699,7 @@ async def test_submitreport_severity_string_normalized():
     mock_client.post = AsyncMock(return_value=mock_response)
 
     with patch.object(tool, '_get_client', return_value=mock_client):
-        result = await tool.submit(issue_type="pothole", severity="high")
+        await tool.submit(issue_type="pothole", severity="high")
 
     call_kwargs = mock_client.post.call_args.kwargs
     assert call_kwargs["data"]["severity"] == "4"
@@ -715,7 +715,7 @@ async def test_submitreport_severity_int_clamped():
     mock_client.post = AsyncMock(return_value=mock_response)
 
     with patch.object(tool, '_get_client', return_value=mock_client):
-        result = await tool.submit(issue_type="pothole", severity=10)
+        await tool.submit(issue_type="pothole", severity=10)
 
     call_kwargs = mock_client.post.call_args.kwargs
     assert call_kwargs["data"]["severity"] == "5"
@@ -760,7 +760,7 @@ async def test_submitreport_with_lat_lon_includes_coords():
     mock_client.post = AsyncMock(return_value=mock_response)
 
     with patch.object(tool, '_get_client', return_value=mock_client):
-        result = await tool.submit(issue_type="pothole", lat=13.0827, lon=80.2707)
+        await tool.submit(issue_type="pothole", lat=13.0827, lon=80.2707)
 
     call_kwargs = mock_client.post.call_args.kwargs
     assert call_kwargs["data"]["lat"] == "13.0827"
@@ -777,7 +777,7 @@ async def test_submitreport_without_lat_lon_no_coords():
     mock_client.post = AsyncMock(return_value=mock_response)
 
     with patch.object(tool, '_get_client', return_value=mock_client):
-        result = await tool.submit(issue_type="pothole")
+        await tool.submit(issue_type="pothole")
 
     call_kwargs = mock_client.post.call_args.kwargs
     assert "lat" not in call_kwargs["data"]
@@ -795,7 +795,7 @@ async def test_submitreport_long_description_truncated():
     long_desc = "x" * 70000
 
     with patch.object(tool, '_get_client', return_value=mock_client):
-        result = await tool.submit(issue_type="pothole", description=long_desc)
+        await tool.submit(issue_type="pothole", description=long_desc)
 
     call_kwargs = mock_client.post.call_args.kwargs
     assert len(call_kwargs["data"]["description"]) == 65536

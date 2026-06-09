@@ -9,7 +9,7 @@ from __future__ import annotations
 import logging
 import math
 from dataclasses import dataclass, field
-from datetime import datetime, time, timezone
+from datetime import datetime, time
 from typing import Any
 
 from sqlalchemy import func, select

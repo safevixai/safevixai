@@ -17,7 +17,6 @@ from __future__ import annotations
 
 from alembic import op
 import sqlalchemy as sa
-from geoalchemy2 import Geometry
 
 
 revision = '10008_index_optimizations'

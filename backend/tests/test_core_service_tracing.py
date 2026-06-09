@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-from unittest.mock import MagicMock, patch, AsyncMock
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -32,13 +32,11 @@ class TestTraceOperation:
         span.set_attribute.assert_any_call("key", "value")
 
     def test_with_custom_service(self, reset_tracer):
-        mock_tracer = reset_tracer
         with trace_operation("custom-op", service="my-service") as span:
             pass
         span.set_attribute.assert_any_call("service", "my-service")
 
     def test_with_attributes(self, reset_tracer):
-        mock_tracer = reset_tracer
         attrs = {"user_id": "123", "action": "login"}
         with trace_operation("attr-op", attributes=attrs) as span:
             pass
@@ -53,7 +51,6 @@ class TestTraceOperation:
             assert span is mock_span
 
     def test_empty_attributes(self, reset_tracer):
-        mock_tracer = reset_tracer
         with trace_operation("no-attrs", attributes=None) as span:
             pass
         assert span.set_attribute.call_count >= 1
@@ -83,7 +80,6 @@ class TestTracedDecorator:
         mock_tracer.start_as_current_span.assert_called_once_with("custom-name")
 
     def test_sync_function_failure(self, reset_tracer):
-        mock_tracer = reset_tracer
 
         @traced()
         def failing_func():
@@ -104,7 +100,6 @@ class TestTracedDecorator:
         mock_tracer.start_as_current_span.assert_called_once()
 
     def test_async_function_failure(self, reset_tracer):
-        mock_tracer = reset_tracer
 
         @traced()
         async def failing_async():

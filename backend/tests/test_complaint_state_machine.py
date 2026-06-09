@@ -7,7 +7,6 @@ import pytest
 from services.complaint_state_machine import (
     ComplaintStateMachine,
     InvalidTransitionError,
-    TransitionResult,
 )
 
 
@@ -242,7 +241,7 @@ class TestEscalate:
         result.scalar_one_or_none.return_value = issue
         db.execute.return_value = result
 
-        res = await ComplaintStateMachine.escalate(
+        await ComplaintStateMachine.escalate(
             db, complaint_uuid=issue.uuid, reason="Already max severity",
         )
         assert issue.severity == 5

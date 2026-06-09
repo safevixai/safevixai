@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import time
-from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from core.circuit_breaker import (
@@ -190,7 +189,7 @@ class TestCoreCircuitBreakerCall:
         async def ok():
             return "ok"
 
-        result = await cb.call(ok)
+        await cb.call(ok)
         assert cb.state == CircuitState.HALF_OPEN
 
         with pytest.raises(ValueError):

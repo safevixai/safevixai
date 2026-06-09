@@ -122,9 +122,9 @@ def main():
     parser.add_argument('--states-only', action='store_true', help='Only fetch state outlines')
     args = parser.parse_args()
 
-    print(f'\n╔══════════════════════════════════════════╗')
-    print(f'║  SafeVixAI Boundary GeoJSON Fetcher      ║')
-    print(f'╚══════════════════════════════════════════╝')
+    print('\n╔══════════════════════════════════════════╗')
+    print('║  SafeVixAI Boundary GeoJSON Fetcher      ║')
+    print('╚══════════════════════════════════════════╝')
     print(f'  Output: {OUTPUT_DIR}')
     print()
 
@@ -152,7 +152,7 @@ def main():
 
         # 2. Download state-level district boundaries
         if not args.states_only:
-            print(f'\n  Downloading state-level district boundaries...')
+            print('\n  Downloading state-level district boundaries...')
             for state_code, source in STATE_DISTRICT_SOURCES.items():
                 output_path = OUTPUT_DIR / source['filename']
                 result = download_geojson(client, source['url'], output_path)
@@ -173,7 +173,7 @@ def main():
 
     # Print summary
     print(f'\n{"═" * 50}')
-    print(f'  BOUNDARY DOWNLOAD SUMMARY')
+    print('  BOUNDARY DOWNLOAD SUMMARY')
     print(f'{"═" * 50}')
     total_features = 0
     total_kb = 0

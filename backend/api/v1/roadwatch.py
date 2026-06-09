@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.audit import AuditLog, AuditEvent
 from core.database import get_db
 from core.rbac import require_role, Role
-from core.security import get_current_user, get_current_user_optional
+from core.security import get_current_user_optional
 from models.schemas import (
     AuthorityPreviewResponse,
     RoadInfrastructureResponse,
@@ -302,7 +302,6 @@ async def get_complaint_timeline(
 
     events = await ComplaintLifecycle.get_timeline(db, report_uuid)
     
-    from models.schemas import ComplaintEventItem
     timeline_items = [
         ComplaintEventItem(
             id=e.id,

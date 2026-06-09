@@ -1,4 +1,3 @@
-import pytest
 from agent.safety_checker import SafetyChecker, _normalize_text
 
 def test_normalize_text():

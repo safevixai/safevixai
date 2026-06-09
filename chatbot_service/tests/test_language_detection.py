@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pytest
 
 from providers.router import detect_lang
 

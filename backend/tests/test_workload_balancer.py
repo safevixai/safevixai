@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 import math
-from datetime import datetime, time, timedelta, timezone
-from unittest.mock import AsyncMock, MagicMock, patch
+from datetime import datetime, timedelta, timezone
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
 from models.officer import Officer
-from models.road_issue import RoadIssue
 from services.workload_balancer import (
     OfficerScore,
     WorkloadBalancer,

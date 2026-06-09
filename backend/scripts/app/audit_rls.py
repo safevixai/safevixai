@@ -123,7 +123,7 @@ def run_audit():
     for (t,) in disabled:
         print(f"  [X] {t}")
 
-    print(f"\nPolicy counts:")
+    print("\nPolicy counts:")
     counts = {t: 0 for t in TABLES}
     for t, c in policy_counts:
         counts[t] = c
@@ -132,7 +132,7 @@ def run_audit():
         mark = "[OK]" if counts[t] else "[X]"
         print(f"  {mark} {t}: {status}")
 
-    print(f"\nPolicy details:")
+    print("\nPolicy details:")
     for t, name, permissive, cmd, qual, wc in policy_details:
         print(f"  [{t}] {name} ({cmd})")
         if qual:

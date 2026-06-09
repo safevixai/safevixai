@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pytest
 import math
 import time
 from uuid import uuid4
@@ -62,7 +61,6 @@ class TestCoordinateProperties:
 
 class TestSessionIdProperties:
     def test_session_id_uniqueness(self):
-        from uuid import uuid4
 
         session_ids = [str(uuid4()) for _ in range(1000)]
 
@@ -71,8 +69,6 @@ class TestSessionIdProperties:
 
 class TestTimestampProperties:
     def test_timestamp_ordering(self):
-        from datetime import datetime, timezone
-        import time
 
         timestamps = []
         for _ in range(100):

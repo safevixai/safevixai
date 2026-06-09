@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import pytest
 import time
-from unittest.mock import MagicMock, AsyncMock, patch
+from unittest.mock import MagicMock, patch
 from core.jwks import JWKSManager, ROTATION_INTERVAL_SECONDS, ROTATION_WINDOW_SECONDS, JWKS_CACHE_TTL_SECONDS
 
 

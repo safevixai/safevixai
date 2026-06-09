@@ -2,8 +2,7 @@
 from __future__ import annotations
 
 import time
-import pytest
-from core.response_cache import ResponseCache, generate_cache_key, response_cache, cache_response, invalidate_cache_pattern
+from core.response_cache import ResponseCache, generate_cache_key, response_cache, invalidate_cache_pattern
 
 
 # ── Response Cache Tests ────────────────────────────────────────────────────

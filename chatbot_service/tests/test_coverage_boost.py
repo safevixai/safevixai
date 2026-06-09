@@ -1,8 +1,6 @@
 """Coverage boost tests for low-coverage modules: admin, ai, chat, speech, pothole_validator, limiter."""
 from __future__ import annotations
 
-import json
-import sys
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -481,7 +479,6 @@ class TestSpeechCoverage:
     def test_translate_value_error(self, monkeypatch):
         """POST /speech/translate: ValueError → 400."""
         app = _build_app(monkeypatch)
-        from services.speech_translation import SpeechTranslationResult
         svc = MagicMock()
         svc.translate_audio_bytes = MagicMock(side_effect=ValueError("bad audio"))
         with TestClient(app) as client:

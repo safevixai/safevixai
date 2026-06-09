@@ -1,21 +1,17 @@
 from __future__ import annotations
 
 import math
-from pathlib import Path
-from unittest.mock import ANY, AsyncMock, MagicMock, PropertyMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import httpx
 
 import pytest
-from geoalchemy2 import Geography
-from sqlalchemy import func, select
 
 from core.config import Settings
 from core.redis_client import CacheHelper
 from models.emergency import EmergencyService
 from models.schemas import (
     EmergencyNumber,
-    EmergencyNumbersResponse,
     EmergencyResponse,
     EmergencyServiceItem,
     SosResponse,
@@ -1072,7 +1068,7 @@ class TestGetNearbyFacilities:
         ]
         with (
             patch.object(service, "_search_local_catalog", return_value=[]),
-            patch.object(service, "_query_healthsites", return_value=[]) as mock_hs,
+            patch.object(service, "_query_healthsites", return_value=[]),
         ):
             result = await service.get_nearby_facilities(lat=13.08, lon=80.27)
         assert len(result) >= 5

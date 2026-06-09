@@ -222,11 +222,11 @@ MIT License. See individual data source licenses for attribution requirements.
     for d, stats in sorted(dirs.items()):
         print(f'  {d:25s}  {stats["files"]:>3} files  {stats["records"]:>8,} records  {_human_size(stats["size"]):>10s}')
 
-    print(f'\n  Generated:')
+    print('\n  Generated:')
     print(f'    {manifest_file}')
     print(f'    {readme_file}')
-    print(f'\n  Upload to HuggingFace:')
-    print(f'    huggingface-cli upload SafeVixHub/civic-intel-india \\')
+    print('\n  Upload to HuggingFace:')
+    print('    huggingface-cli upload SafeVixHub/civic-intel-india \\')
     print(f'      {DATA_DIR} .')
     print()
 

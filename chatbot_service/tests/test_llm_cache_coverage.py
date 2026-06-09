@@ -6,7 +6,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from redis.exceptions import RedisError
 
-from cache.llm_cache import CacheEntry, LLMResponseCache
+from cache.llm_cache import LLMResponseCache
 
 
 class TestLLMResponseCacheProviderUnavailable:

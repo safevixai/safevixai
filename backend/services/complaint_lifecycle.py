@@ -188,7 +188,7 @@ class ComplaintLifecycle:
         await db.commit()
 
         # Transition to citizen_confirmed (which automatically leads to closed state transition next, or acts as closed)
-        result = await ComplaintStateMachine.transition(
+        await ComplaintStateMachine.transition(
             db,
             complaint_uuid=complaint_uuid,
             target_status='citizen_confirmed',
@@ -228,7 +228,7 @@ class ComplaintLifecycle:
         await db.commit()
 
         # 1. Transition to citizen_rejected
-        rejected_result = await ComplaintStateMachine.transition(
+        await ComplaintStateMachine.transition(
             db,
             complaint_uuid=complaint_uuid,
             target_status='citizen_rejected',

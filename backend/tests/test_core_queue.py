@@ -2,7 +2,7 @@ import json
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from core.queue import TaskQueue, BackgroundWorker, task, Job, _TASK_REGISTRY
+from core.queue import TaskQueue, BackgroundWorker, _TASK_REGISTRY
 
 
 @pytest.fixture(autouse=True)

@@ -135,7 +135,7 @@ class TestTranslateAudioBytes:
         mock_tokenizer.decode.return_value = " Hello world "
 
         with patch.object(IndicSeamlessService, "_import_dependencies", return_value=(mock_torch, mock_torchaudio, mock_feature_extractor, mock_tokenizer, mock_model)):
-            with patch.object(service, "_ensure_model_loaded") as mock_ensure:
+            with patch.object(service, "_ensure_model_loaded"):
                 service._model = mock_model
                 service._processor = mock_processor
                 service._tokenizer = mock_tokenizer

@@ -9,7 +9,6 @@ import pytest
 from providers.base import (
     HttpProvider,
     ProviderRequest,
-    ProviderResult,
     _count_tokens,
     _enforce_token_budget,
     _sanitize_rag_snippet,

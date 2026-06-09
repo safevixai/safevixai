@@ -1,7 +1,7 @@
 """Core i18n middleware tests — locale detection, error localization."""
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 from fastapi import FastAPI, HTTPException, Request

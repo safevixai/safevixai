@@ -8,7 +8,7 @@ import asyncio
 from datetime import datetime, timedelta, timezone
 from typing import Any
 from models.schemas import VehicleGarageItem, GarageSyncResponse
-from services.exceptions import ServiceValidationError, ExternalServiceError
+from services.exceptions import ServiceValidationError
 
 logger = logging.getLogger("safevixai.garage_service")
 

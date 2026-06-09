@@ -27,7 +27,6 @@ from core.limiter import limiter
 from core.rbac import require_role, Role
 from models.road_issue import RoadIssue
 from models.officer import Officer
-from models.ward import Ward
 from services.event_bus import get_event_bus
 
 logger = logging.getLogger("safevixai.command_center")
@@ -111,7 +110,7 @@ async def get_officer_locations(
             )).label("workload"),
         )
         .outerjoin(RoadIssue, RoadIssue.assigned_officer_id == Officer.id)
-        .where(Officer.is_active == True)
+        .where(Officer.is_active)
         .group_by(Officer.id)
     )
     rows = (await db.execute(stmt)).all()

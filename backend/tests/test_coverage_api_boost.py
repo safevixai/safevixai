@@ -19,7 +19,7 @@ from models.schemas import (
     ChallanResponse, AuthorityPreviewResponse,
     RoadInfrastructureResponse, RoadIssuesResponse,
     RoadReportResponse,
-    RoutePreviewResponse, RoutePoint, RouteBounds, RouteOption,
+    RoutePreviewResponse, RoutePoint, RouteBounds,
 )
 
 
@@ -463,7 +463,6 @@ class TestWazeFeed:
 
     def test_feed_with_rows(self):
         from api.v1.waze_feed import router
-        from datetime import datetime, timezone
         recent = datetime.now(timezone.utc).isoformat()
         row = MagicMock()
         row._mapping = {

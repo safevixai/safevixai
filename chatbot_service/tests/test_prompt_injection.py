@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pytest
 
 from providers.base import check_prompt_injection, _sanitize_rag_snippet, build_messages, ProviderRequest
 

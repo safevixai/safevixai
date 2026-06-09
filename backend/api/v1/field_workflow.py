@@ -14,7 +14,7 @@ import logging
 import math
 import uuid
 from datetime import datetime, timezone
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -23,7 +23,6 @@ from core.database import get_db
 from core.limiter import limiter
 from core.security import get_current_user
 from models.road_issue import RoadIssue
-from models.officer import Officer
 from services.complaint_state_machine import ComplaintStateMachine, InvalidTransitionError
 
 logger = logging.getLogger("safevixai.field_workflow")

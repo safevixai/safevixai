@@ -526,7 +526,7 @@ class RoadWatchService:
                 db,
                 complaint_uuid=issue_uuid,
                 event_type="assigned",
-                notes=f"Auto-assigned to ward officer.",
+                notes="Auto-assigned to ward officer.",
                 metadata={"officer_id": str(assigned_officer_id)}
             )
 
@@ -993,7 +993,7 @@ async def process_road_report_task(
                 db,
                 complaint_uuid=issue_uuid,
                 event_type="assigned",
-                notes=f"Auto-assigned to ward officer.",
+                notes="Auto-assigned to ward officer.",
                 metadata={"officer_id": str(assigned_officer_id)}
             )
 

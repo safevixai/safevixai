@@ -7,9 +7,9 @@ from datetime import datetime, timedelta, timezone
 import uuid
 from typing import Any
 
-from fastapi import HTTPException, Security, Request, Response
+from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi.security import HTTPBearer
 import jwt
 
 import re

@@ -8,7 +8,6 @@ from __future__ import annotations
 import logging
 import re
 from datetime import datetime, timedelta, timezone
-from typing import Any
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession

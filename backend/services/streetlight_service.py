@@ -6,13 +6,11 @@ and simple predictive maintenance scoring.
 
 from __future__ import annotations
 
-import hashlib
 import logging
-import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from sqlalchemy import cast, func, select, update
+from sqlalchemy import cast, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from geoalchemy2 import Geography
 
@@ -155,7 +153,7 @@ class StreetlightService:
         
         Returns top_n poles most likely to need maintenance.
         """
-        stmt = select(StreetlightPole).where(StreetlightPole.is_operational == True)
+        stmt = select(StreetlightPole).where(StreetlightPole.is_operational)
         if city:
             stmt = stmt.where(StreetlightPole.city == city)
 
@@ -231,7 +229,7 @@ class StreetlightService:
         
         total = (await db.execute(base)).scalar() or 0
         operational = (await db.execute(
-            base.where(StreetlightPole.is_operational == True)
+            base.where(StreetlightPole.is_operational)
         )).scalar() or 0
         non_operational = total - operational
 

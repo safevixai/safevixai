@@ -190,7 +190,7 @@ async def get_public_stats(
 
     # Active officers
     officers_active = (await db.execute(
-        select(func.count(Officer.id)).where(Officer.is_active == True)
+        select(func.count(Officer.id)).where(Officer.is_active)
     )).scalar() or 0
 
     resolution_rate = round((resolved / total * 100) if total > 0 else 0.0, 1)

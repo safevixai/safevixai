@@ -4,10 +4,8 @@ from __future__ import annotations
 
 import json
 import logging
-import re
 from typing import Any
 
-from geoalchemy2 import WKTElement
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 

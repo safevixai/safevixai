@@ -26,7 +26,6 @@ from core.idempotency import IdempotencyMiddleware
 from core.versioning import APIVersioningMiddleware
 from core.jwks import JWKSManager
 from core.response_wrapper import ApiResponseMiddleware
-from core.tenant import apply_tenant_filter
 from core.i18n_middleware import setup_backend_i18n
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -420,7 +419,6 @@ def create_app() -> FastAPI:
 
     # Phase 0.6: Tenant isolation middleware
     # Automatically filters database queries by org_id for multi-tenant data isolation
-    from core.database import AsyncSessionLocal
 
     @app.middleware("http")
     async def _tenant_isolation_middleware(request: Request, call_next):

@@ -185,7 +185,7 @@ def update_circuit_breaker_metrics():
     from core.circuit_breaker import CircuitBreakerRegistry
     state_map = {"closed": 0, "open": 1, "half_open": 2}
     stats = CircuitBreakerRegistry.all_stats()
-    seen = {name for name in stats}
+    {name for name in stats}
 
     for name, data in stats.items():
         circuit_breaker_state.labels(name=name).set(state_map.get(data["state"], 0))

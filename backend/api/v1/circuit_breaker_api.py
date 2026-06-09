@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 
-from core.circuit_breaker import CircuitBreakerOpenError, CircuitBreakerRegistry
+from core.circuit_breaker import CircuitBreakerRegistry
 from core.limiter import limiter
 from core.rbac import require_role, Role
 from core.security import get_current_user

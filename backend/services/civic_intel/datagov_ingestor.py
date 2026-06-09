@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.config import get_settings

@@ -18,9 +18,9 @@ import pytest
 
 from services.event_bus import DomainEvent, EventBus
 from services.geocoding_service import GeocodingError, GeocodingService
-from services.safe_spaces import close_safe_spaces_client, get_safe_spaces
+from services.safe_spaces import get_safe_spaces
 from services.streetlight_service import StreetlightService
-from services.workload_balancer import WorkloadBalancer, _haversine_km
+from services.workload_balancer import WorkloadBalancer
 
 # ---------------------------------------------------------------------------
 # 1. roadwatch_service — background task coverage (785-1002, 1007-1017, 425)

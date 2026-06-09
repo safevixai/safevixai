@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import math
-from datetime import datetime, timezone
+from datetime import datetime
 
 from services.geo_verifier import _haversine_m, GeoVerifier
 

@@ -170,9 +170,9 @@ def main():
 
     feature_types = [f.strip() for f in args.features.split(',')] if args.features else None
 
-    print(f'\n╔══════════════════════════════════════════╗')
-    print(f'║  SafeVixAI OSM Civic Feature Fetcher     ║')
-    print(f'╚══════════════════════════════════════════╝')
+    print('\n╔══════════════════════════════════════════╗')
+    print('║  SafeVixAI OSM Civic Feature Fetcher     ║')
+    print('╚══════════════════════════════════════════╝')
     print(f'  Cities: {len(city_names)}')
     print(f'  Features: {", ".join(feature_types) if feature_types else "all"}')
     print(f'  Output: {OUTPUT_DIR}')
@@ -205,7 +205,7 @@ def main():
 
     # Print summary
     print(f'\n{"═" * 55}')
-    print(f'  SUMMARY')
+    print('  SUMMARY')
     print(f'{"═" * 55}')
     total_all = 0
     for city, counts in summary.items():

@@ -3,7 +3,6 @@ from __future__ import annotations
 import pytest
 
 from services.speech_translation import IndicSeamlessService
-from config import Settings
 
 
 class FakeSettings:

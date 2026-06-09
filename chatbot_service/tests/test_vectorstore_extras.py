@@ -8,7 +8,6 @@ import pytest
 
 from rag.document_loader import LoadedDocument
 from rag.vectorstore import (
-    EXCLUDED_INDEX_CATEGORIES,
     DocumentChunk,
     LocalVectorStore,
 )

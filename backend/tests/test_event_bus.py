@@ -101,7 +101,8 @@ async def test_unsubscribe_handler_not_in_list():
         pass
 
     bus.subscribe("complaint.created", handler)
-    other_handler = lambda e: None
+    def other_handler(e):
+        return None
     other_handler.__name__ = "other_handler"
     bus.unsubscribe("complaint.created", other_handler)  # no error
 
@@ -231,7 +232,7 @@ async def test_handler_timeout():
     await asyncio.sleep(0.1)
 
     metrics = bus.get_metrics()
-    dead = bus.get_dead_letters()
+    bus.get_dead_letters()
     assert metrics["handler_failures"] >= 0  # timeout may or may not fire in 0.1s
 
 

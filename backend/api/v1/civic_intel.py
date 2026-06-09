@@ -13,7 +13,6 @@ from core.limiter import limiter
 from core.config import get_settings
 from core.database import get_async_session
 from core.rbac import require_role, Role
-from core.security import get_current_user
 from models.admin_boundary import AdminBoundary
 from models.etl_run_log import ETLRunLog
 from models.gov_dataset import GovDataset
@@ -366,7 +365,6 @@ async def get_civic_stats(request: Request,
     db: AsyncSession = Depends(get_async_session),
 ) -> dict[str, Any]:
     """Get aggregated civic intelligence statistics."""
-    filters = []
     if state_code:
         sc = state_code.upper()
 
@@ -663,7 +661,7 @@ async def trigger_ingest(request: Request,
     current_user: dict = Depends(require_role(Role.OPERATOR)),
 ) -> dict[str, Any]:
     """Manually trigger an ETL pipeline (admin only)."""
-    settings = get_settings()
+    get_settings()
 
     scheduler = getattr(request.app.state, 'etl_scheduler', None)
     if not scheduler:

@@ -1,13 +1,11 @@
 from __future__ import annotations
 
-import math
 from unittest.mock import AsyncMock, MagicMock, call, patch
 
 import httpx
 import pytest
 
 from core.config import Settings
-from models.schemas import EmergencyServiceItem
 from services.exceptions import ExternalServiceError
 from services.overpass_service import OverpassService, RoadContext
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 import pytest
 import time
 import json
-from unittest.mock import MagicMock, AsyncMock, patch
+from unittest.mock import MagicMock
 from core.redis_client import CacheHelper, create_cache
 
 

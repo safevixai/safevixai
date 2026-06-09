@@ -5,7 +5,6 @@ from types import SimpleNamespace
 import pytest
 
 from agent.context_assembler import ContextAssembler
-from agent.state import ConversationContext
 
 
 class FakeRetriever:

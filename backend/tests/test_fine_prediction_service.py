@@ -2,7 +2,6 @@ import re
 import pathlib
 from unittest.mock import patch, mock_open
 
-import pytest
 from models.schemas import FinePredictionRequest, TelemetryDataPoint
 from services.fine_prediction_service import FinePredictionService, DEFAULT_FINES
 import services.fine_prediction_service as _fps

@@ -10,7 +10,6 @@ Usage:
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -135,9 +134,9 @@ def main():
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(DISTRICTS_DATA, f, indent=2, ensure_ascii=False)
 
-    print(f'\n╔══════════════════════════════════════════╗')
-    print(f'║  SafeVixAI LGD Hierarchy Generator       ║')
-    print(f'╚══════════════════════════════════════════╝')
+    print('\n╔══════════════════════════════════════════╗')
+    print('║  SafeVixAI LGD Hierarchy Generator       ║')
+    print('╚══════════════════════════════════════════╝')
     print(f'  Districts: {len(DISTRICTS_DATA)}')
 
     # Group by state

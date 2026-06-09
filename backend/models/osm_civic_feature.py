@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 
 from geoalchemy2 import Geometry
-from sqlalchemy import BigInteger, DateTime, String, Text
+from sqlalchemy import BigInteger, DateTime, String
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 

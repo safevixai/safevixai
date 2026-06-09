@@ -251,7 +251,7 @@ class TestCreateSOSIncident:
 
     def test_create_sos_incident_success(self, test_client, mock_emergency_service, mock_db_session):
         """Test successful SOS incident creation."""
-        from models.schemas import SosResponse, EmergencyServiceItem, EmergencyNumber
+        from models.schemas import SosResponse, EmergencyNumber
         
         mock_result = SosResponse(
             services=[],

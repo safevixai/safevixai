@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pytest
 
 from providers.sarvam_provider import SarvamProvider, Sarvam105BProvider, INDIAN_LANGUAGE_CODES, HIGH_STAKES_INTENTS
 from providers.router import detect_lang

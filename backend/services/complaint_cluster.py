@@ -8,15 +8,12 @@ from __future__ import annotations
 
 import logging
 import math
-import uuid
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import Any
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from geoalchemy2 import Geography
-from sqlalchemy import cast
 
 from models.road_issue import RoadIssue
 

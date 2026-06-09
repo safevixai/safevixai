@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.database import get_db
 from core.limiter import limiter
-from models.schemas import WardResponse, WardStatsResponse, RoadIssuesResponse
+from models.schemas import WardResponse, WardStatsResponse
 from services.ward_service import WardService
 
 router = APIRouter(prefix='/api/v1/wards', tags=['Wards'])

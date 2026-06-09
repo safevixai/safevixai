@@ -1,7 +1,6 @@
 """Hypothesis property-based API fuzz tests for SafeVixAI backend."""
 from __future__ import annotations
 
-import pytest
 from hypothesis import given, settings, strategies as st
 
 # ── Coordinate Strategies ─────────────────────────────────────────────────────

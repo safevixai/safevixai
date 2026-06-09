@@ -6,7 +6,6 @@ Integrates with the existing SLAMonitor background loop.
 
 from __future__ import annotations
 
-import json
 import logging
 import os
 import smtplib

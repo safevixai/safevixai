@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-import os
 import csv
 import logging
 from pathlib import Path
-from typing import Any
 from models.schemas import FinePredictionRequest, FinePredictionResponse
 
 logger = logging.getLogger("safevixai.fine_prediction_service")

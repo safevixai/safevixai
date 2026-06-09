@@ -8,7 +8,6 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from sqlalchemy import select, desc
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from core.config import get_settings
 from models.etl_run_log import ETLRunLog
