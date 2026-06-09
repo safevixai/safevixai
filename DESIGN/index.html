@@ -1077,15 +1077,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-uiux-status-2026-05-26-final-audit-score-100100" class="md-nav__link">
+  <a href="#current-uiux-status-2026-06-09-e2e-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current UI/UX Status - 2026-05-26 (Final Audit: Score 100/100)
+        Current UI/UX Status - 2026-06-09 (E2E Hardening)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Current UI/UX Status - 2026-05-26 (Final Audit: Score 100/100)">
+    <nav class="md-nav" aria-label="Current UI/UX Status - 2026-06-09 (E2E Hardening)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1866,15 +1866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-uiux-status-2026-05-26-final-audit-score-100100" class="md-nav__link">
+  <a href="#current-uiux-status-2026-06-09-e2e-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current UI/UX Status - 2026-05-26 (Final Audit: Score 100/100)
+        Current UI/UX Status - 2026-06-09 (E2E Hardening)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Current UI/UX Status - 2026-05-26 (Final Audit: Score 100/100)">
+    <nav class="md-nav" aria-label="Current UI/UX Status - 2026-06-09 (E2E Hardening)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2378,8 +2378,9 @@
 
 
 <h1 id="safevixai-complete-design-system">SafeVixAI — Complete Design System</h1>
-<h2 id="current-uiux-status-2026-05-26-final-audit-score-100100">Current UI/UX Status - 2026-05-26 (Final Audit: Score 100/100)</h2>
+<h2 id="current-uiux-status-2026-06-09-e2e-hardening">Current UI/UX Status - 2026-06-09 (E2E Hardening)</h2>
 <p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. All route entries use unified <code>usePageEntry</code> GSAP stagger animation. No Framer Motion in package.json or source code. GSAP 3.15.0 used everywhere with GPU-composited properties, strict <code>will-change</code> management, and robust unmount timelines to prevent memory leaks.</p>
+<p><strong>E2E Production Note:</strong> GSAP animations silently fail in <code>node .next/standalone/server.js</code> production build. The <code>usePageEntry</code> hook applies <code>opacity: 0</code> inline styles via <code>gsap.fromTo</code> but the animation never transitions to <code>opacity: 1</code>. All E2E <code>waitForMount</code> helpers removed the opacity check and now wait for <code>[aria-busy="true"]</code> loading skeleton to disappear.</p>
 <p><strong>UX Audit Score: 100/100 (Enterprise Gold Standard)</strong></p>
 <table>
 <thead>
@@ -2797,8 +2798,8 @@ Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nt">Contains</span><span class="o">:</span>
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">SafeVixAI</span><span class="w"> </span><span class="nt">logo</span><span class="w"> </span><span class="o">(</span><span class="nt">centered</span><span class="o">,</span><span class="w"> </span><span class="nt">48px</span><span class="o">)</span>
 </span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="s2">&quot;Sign In&quot;</span><span class="w"> </span><span class="nt">overline</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Email</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s2">&quot;REQUEST OTP&quot;</span><span class="w"> </span><span class="o">(</span><span class="nt">brand</span><span class="w"> </span><span class="nt">green</span><span class="o">)</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">OTP</span><span class="w"> </span><span class="nt">6-digit</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="o">(</span><span class="nt">monospace</span><span class="o">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s2">&quot;VERIFY &amp; ENTER&quot;</span><span class="w"> </span><span class="o">(</span><span class="nt">brand</span><span class="w"> </span><span class="nt">green</span><span class="o">)</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Email</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">Password</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="nt">with</span><span class="w"> </span><span class="s2">&quot;Show&quot;</span><span class="w"> </span><span class="nt">toggle</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="s2">&quot;Sign In&quot;</span><span class="w"> </span><span class="o">(</span><span class="nt">brand</span><span class="w"> </span><span class="nt">green</span><span class="o">)</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="s2">&quot;Forgot password?&quot;</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span><span class="o">(</span><span class="nt">below</span><span class="w"> </span><span class="nt">form</span><span class="o">)</span>
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Divider</span><span class="w"> </span><span class="s2">&quot;OR&quot;</span>
 </span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="s2">&quot;CONTINUE AS GUEST&quot;</span><span class="w"> </span><span class="nt">ghost</span><span class="w"> </span><span class="nt">button</span>
 </span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">  </span><span class="nt">-</span><span class="w"> </span><span class="nt">Privacy</span><span class="w"> </span><span class="nt">note</span><span class="o">:</span><span class="w"> </span><span class="nt">12px</span><span class="o">/</span><span class="nt">400</span><span class="o">/</span><span class="p">#</span><span class="nn">6B7A8D</span>
@@ -3018,11 +3019,12 @@ Section gaps: 32px. Page top padding: 24px. Between major sections: 48px.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>Full-screen: bg #0A0E14, centered card 400px max-width
 </span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>SafeVixAI logo + &quot;SafeVixAI&quot; wordmark (centered)
 </span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>&quot;OPERATOR AUTHENTICATION&quot; overline
-</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>Email input → &quot;REQUEST OTP&quot; green button
-</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>6-digit OTP input (monospace) → &quot;VERIFY &amp; ENTER&quot; green button
-</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>Divider line + &quot;OR&quot;
-</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>&quot;CONTINUE AS GUEST&quot; ghost button
-</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>&quot;Your data stays on your device&quot; privacy note (12px/#6B7A8D)
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>Email input + Password input (with Show/Hide toggle)
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>&quot;Sign In&quot; branded green button
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>&quot;Forgot password?&quot; link
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>Divider line + &quot;OR&quot;
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>&quot;CONTINUE AS GUEST&quot; ghost button
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>&quot;Your data stays on your device&quot; privacy note (12px/#6B7A8D)
 </span></code></pre></div>
 <h3 id="emergency-card-emergency-carduserid">Emergency Card (<code>/emergency-card/[userId]</code>)</h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>Public page — no login required. Accessible via QR scan.
