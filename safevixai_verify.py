@@ -41,7 +41,7 @@ from urllib.request import Request, urlopen
 
 REPO_ROOT = Path(__file__).resolve().parent
 BACKEND_URL = os.getenv("BACKEND_URL", "https://safevixai-api.onrender.com").rstrip("/")
-CHATBOT_URL = os.getenv("CHATBOT_URL", "https://safevixai-chatbot-service.onrender.com").rstrip("/")
+CHATBOT_URL = os.getenv("CHATBOT_URL", "https://safevixai-chatbot.onrender.com").rstrip("/")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "https://safevixai.vercel.app").rstrip("/")
 TIMEOUT = int(os.getenv("SAFEVIX_VERIFY_TIMEOUT", "20"))
 

@@ -54,7 +54,7 @@ SERVICES = {
     "Backend API": os.environ.get("BACKEND_HEALTH_URL", "https://safevixai-api.onrender.com/health"),
     "Chatbot Service": os.environ.get(
         "CHATBOT_HEALTH_URL",
-        "https://safevixai-chatbot-service.onrender.com/health",
+        "https://safevixai-chatbot.onrender.com/health",
     ),
     "Frontend (Vercel)": os.environ.get("FRONTEND_URL", "https://safevixai.vercel.app"),
 }

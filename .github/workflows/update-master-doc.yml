@@ -38,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           BACKEND_HEALTH_URL: https://safevixai-api.onrender.com/health
-          CHATBOT_HEALTH_URL: https://safevixai-chatbot-service.onrender.com/health
+          CHATBOT_HEALTH_URL: https://safevixai-chatbot.onrender.com/health
           FRONTEND_URL: https://safevixai.vercel.app
           ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
           ALERT_EMAIL_PASSWORD: ${{ secrets.ALERT_EMAIL_PASSWORD }}
