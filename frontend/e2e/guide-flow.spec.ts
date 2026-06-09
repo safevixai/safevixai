@@ -1,14 +1,25 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = process.env.E2E_BASE_URL ?? 'http://127.0.0.1:3100';
-
 test.describe('Municipality guide flow', () => {
-  test('renders guide page with search and filters', async ({ page }) => {
-    await page.goto(`${BASE_URL}/guide`);
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('svai-storage', JSON.stringify({
+        state: { isAuthenticated: true, operatorName: 'E2E Test User' },
+        version: 0,
+      }));
+    });
+  });
 
-    await expect(
-      page.getByText(/Municipality Guide|Civic Hub/i).first()
-    ).toBeVisible({ timeout: 15000 });
+  async function waitForMount(page: any) {
+    await page.waitForFunction(() => {
+      const h1 = document.querySelector('h1');
+      return h1 && (h1.textContent?.includes('Municipality') || h1.textContent?.includes('Civic'));
+    }, { timeout: 15000 });
+  }
+
+  test('renders guide page with search and filters', async ({ page }) => {
+    await page.goto('/guide');
+    await waitForMount(page);
 
     await expect(page.getByPlaceholder(/Search municipality/i)).toBeVisible();
     await expect(page.getByText(/Find Nearby/i)).toBeVisible();
@@ -16,11 +27,8 @@ test.describe('Municipality guide flow', () => {
   });
 
   test('search input accepts text', async ({ page }) => {
-    await page.goto(`${BASE_URL}/guide`);
-
-    await expect(
-      page.getByText(/Municipality Guide|Civic Hub/i).first()
-    ).toBeVisible({ timeout: 15000 });
+    await page.goto('/guide');
+    await waitForMount(page);
 
     const searchInput = page.getByPlaceholder(/Search municipality/i);
     await searchInput.fill('Chennai');
@@ -28,11 +36,8 @@ test.describe('Municipality guide flow', () => {
   });
 
   test('filter toggle shows state chips and type pills', async ({ page }) => {
-    await page.goto(`${BASE_URL}/guide`);
-
-    await expect(
-      page.getByText(/Municipality Guide|Civic Hub/i).first()
-    ).toBeVisible({ timeout: 15000 });
+    await page.goto('/guide');
+    await waitForMount(page);
 
     await page.getByText(/Filter/i).first().click();
 
@@ -41,11 +46,8 @@ test.describe('Municipality guide flow', () => {
   });
 
   test('guide information section renders', async ({ page }) => {
-    await page.goto(`${BASE_URL}/guide`);
-
-    await expect(
-      page.getByText(/Municipality Guide|Civic Hub/i).first()
-    ).toBeVisible({ timeout: 15000 });
+    await page.goto('/guide');
+    await waitForMount(page);
 
     await expect(page.getByText(/How to Use This Guide/i)).toBeVisible();
     await expect(page.getByText(/Search|Find Nearby|View Details/i).first()).toBeVisible();

@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-async function waitForMount(page: any) {
-  await page.waitForFunction(() => {
+async function waitForMount(page: any, text?: string) {
+  await page.waitForFunction((t: string | undefined) => {
     const h1 = document.querySelector('h1');
-    return h1 && h1.textContent?.includes('SafeVixAI') && window.getComputedStyle(h1).opacity !== '0';
-  }, { timeout: 15000 });
+    return h1 && h1.textContent?.includes(t ?? 'SafeVixAI');
+  }, text ?? 'SafeVixAI', { timeout: 15000 });
 }
 
 test.describe('Authentication Flow', () => {

@@ -3,12 +3,18 @@ import { test, expect } from '@playwright/test';
 async function waitForMount(page: any) {
   await page.waitForFunction(() => {
     const el = document.querySelector('h1');
-    return el && el.textContent?.includes('Report Hazard') && window.getComputedStyle(el).opacity !== '0';
+    return el && el.textContent?.includes('Road Hazard');
   }, { timeout: 15000 });
 }
 
 test.describe('Road Report Flow', () => {
   test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('svai-storage', JSON.stringify({
+        state: { isAuthenticated: true, operatorName: 'E2E Test User' },
+        version: 0,
+      }));
+    });
     await page.goto('/report');
     await page.waitForLoadState('networkidle');
     await waitForMount(page);

@@ -3,7 +3,7 @@ import { test, expect, type Page } from '@playwright/test';
 async function waitForMount(page: Page) {
   await page.waitForFunction(() => {
     const h1 = document.querySelector('h1');
-    return h1 && h1.textContent?.includes('SafeVixAI') && window.getComputedStyle(h1).opacity !== '0';
+    return h1 && h1.textContent?.includes('SafeVixAI');
   }, { timeout: 15000 });
 }
 

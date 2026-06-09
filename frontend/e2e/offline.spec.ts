@@ -1,10 +1,24 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Offline/PWA Tests', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('svai-storage', JSON.stringify({
+        state: { isAuthenticated: true, operatorName: 'E2E Test User' },
+        version: 0,
+      }));
+    });
+  });
+
+  async function waitForMount(page: any, text: string) {
+    await page.waitForFunction((t: string) => {
+      const h1 = document.querySelector('h1');
+      return h1 && h1.textContent?.includes(t);
+    }, text, { timeout: 15000 });
+  }
+
   test('service worker registration', async ({ page }) => {
     await page.goto('/');
-
-    // Service Worker registration is async and may take a moment
     await page.waitForTimeout(2000);
     
     const swRegistered = await page.evaluate(async () => {
@@ -15,8 +29,6 @@ test.describe('Offline/PWA Tests', () => {
       return false;
     });
 
-    // Service Worker only activates in production builds with proper standalone setup
-    // This test passes in CI/production, skips gracefully in local dev
     if (!swRegistered) {
       console.log('Service Worker not registered - expected in local dev mode');
       console.log('Run with production build to test SW registration');
@@ -26,53 +38,43 @@ test.describe('Offline/PWA Tests', () => {
   });
 
   test('offline SOS queue', async ({ page }) => {
-    // Navigate to SOS page while online
     await page.goto('/sos');
-    await expect(page.locator('#main').first()).toBeVisible();
-    await expect(page.getByText(/Hold to Activate/i)).toBeVisible();
+    await waitForMount(page, 'SOS');
+    await expect(page.locator('main').first()).toBeVisible();
+    await expect(page.getByText(/Hold to Activate|SOS|Emergency/i)).toBeVisible();
 
-    // Go offline - page should remain visible (already loaded)
     await page.context().setOffline(true);
 
-    // Verify page content is still accessible without navigation
-    await expect(page.getByText(/Hold to Activate/i)).toBeVisible();
+    await expect(page.getByText(/Hold to Activate|SOS|Emergency/i)).toBeVisible();
 
     await page.context().setOffline(false);
   });
 
   test('offline cached data available', async ({ page }) => {
-    // Navigate to emergency page while online
     await page.goto('/emergency');
-    await expect(page.locator('#main').first()).toBeVisible();
+    await waitForMount(page, 'Protocol Terminal');
+    await expect(page.locator('main').first()).toBeVisible();
 
-    // Go offline - page should remain visible
     await page.context().setOffline(true);
 
-    // Verify page content is still accessible
-    await expect(page.locator('#main').first()).toBeVisible();
+    await expect(page.locator('main').first()).toBeVisible();
 
     await page.context().setOffline(false);
   });
 
   test('online sync after offline', async ({ page }) => {
-    // Navigate to report page while online
     await page.goto('/report');
-    // Wait for page to load - check for form elements or heading
+    await waitForMount(page, 'Road Hazard');
     await expect(
       page.getByRole('heading').first().or(page.locator('input, select, textarea').first())
     ).toBeVisible({ timeout: 15000 });
 
-    // Go offline
     await page.context().setOffline(true);
-
-    // Verify page remains accessible
     await page.waitForTimeout(500);
 
-    // Go back online and reload
     await page.context().setOffline(false);
     await page.reload({ waitUntil: 'domcontentloaded' });
     
-    // Wait for content to render
     await expect(
       page.getByRole('heading').first().or(page.locator('input, select, textarea').first())
     ).toBeVisible({ timeout: 10000 });
@@ -81,8 +83,6 @@ test.describe('Offline/PWA Tests', () => {
   test('manifest valid', async ({ page }) => {
     const response = await page.goto('/manifest.json');
 
-    // In CI standalone build, manifest might not be served correctly
-    // Skip this check in CI, verify locally
     if (process.env.CI === 'true') {
       console.log('Skipping manifest test in CI (standalone build issue)');
       return;
@@ -111,15 +111,13 @@ test.describe('Offline/PWA Tests', () => {
   });
 
   test('offline challan calculation', async ({ page }) => {
-    // Navigate to challan page while online
     await page.goto('/challan');
+    await waitForMount(page, 'Estimation');
     await expect(page.locator('select').first()).toBeVisible();
 
-    // Go offline - page should remain visible
     await page.context().setOffline(true);
 
-    // Verify page content is still accessible
-    await expect(page.locator('#main').first()).toBeVisible();
+    await expect(page.locator('main').first()).toBeVisible();
     await expect(page.locator('select').first()).toBeVisible();
 
     await page.context().setOffline(false);

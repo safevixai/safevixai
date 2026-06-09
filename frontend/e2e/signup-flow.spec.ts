@@ -6,7 +6,7 @@ test.describe('Signup Flow', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForFunction(() => {
       const h1 = document.querySelector('h1');
-      return h1 && h1.textContent?.includes('SafeVixAI') && window.getComputedStyle(h1).opacity !== '0';
+      return h1 && h1.textContent?.includes('SafeVixAI');
     }, { timeout: 15000 });
   });
 

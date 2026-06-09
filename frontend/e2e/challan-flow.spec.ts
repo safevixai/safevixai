@@ -1,31 +1,44 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = process.env.E2E_BASE_URL ?? 'http://127.0.0.1:3100';
-
 test.describe('Challan calculator flow', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('svai-storage', JSON.stringify({
+        state: { isAuthenticated: true, operatorName: 'E2E Test User' },
+        version: 0,
+      }));
+    });
+  });
+
+  async function waitForMount(page: any) {
+    await page.waitForFunction(() => {
+      const h1 = document.querySelector('h1');
+      return h1 && (h1.textContent?.includes('Estimation') || h1.textContent?.includes('Challan'));
+    }, { timeout: 15000 });
+  }
+
   test('renders challan calculator with key UI elements', async ({ page }) => {
-    await page.goto(`${BASE_URL}/challan`);
+    await page.goto('/challan');
+    await waitForMount(page);
 
-    await expect(
-      page.getByText(/Challan Calculator|Estimation Terminal|Calculator Active/i).first()
-    ).toBeVisible({ timeout: 15000 });
-
-    await expect(page.locator('select[aria-label="Select violation type"]')).toBeVisible();
+    await expect(page.locator('select[aria-label="Select violation type"]')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('select[aria-label="Select jurisdiction state"]')).toBeVisible();
     await expect(page.getByText(/2-Wheeler|Car\/LMV/i).first()).toBeVisible();
     await expect(page.getByText(/Repeat Offender/i)).toBeVisible();
   });
 
   test('shows loading state when calculating', async ({ page }) => {
-    await page.goto(`${BASE_URL}/challan`);
+    await page.goto('/challan');
+    await waitForMount(page);
 
     await expect(
-      page.getByText(/Loading|Estimation Terminal|Calculator Active/i).first()
+      page.getByText(/Estimation Terminal|Calculator Active/i).first()
     ).toBeVisible({ timeout: 15000 });
   });
 
   test('violation select contains options', async ({ page }) => {
-    await page.goto(`${BASE_URL}/challan`);
+    await page.goto('/challan');
+    await waitForMount(page);
 
     await expect(page.locator('select[aria-label="Select violation type"]')).toBeVisible();
 
@@ -35,7 +48,8 @@ test.describe('Challan calculator flow', () => {
   });
 
   test('jurisdiction select contains options', async ({ page }) => {
-    await page.goto(`${BASE_URL}/challan`);
+    await page.goto('/challan');
+    await waitForMount(page);
 
     await expect(page.locator('select[aria-label="Select jurisdiction state"]')).toBeVisible();
 
@@ -45,11 +59,8 @@ test.describe('Challan calculator flow', () => {
   });
 
   test('vehicle class buttons are interactive', async ({ page }) => {
-    await page.goto(`${BASE_URL}/challan`);
-
-    await expect(
-      page.getByText(/Challan Calculator|Estimation Terminal/i).first()
-    ).toBeVisible({ timeout: 15000 });
+    await page.goto('/challan');
+    await waitForMount(page);
 
     const vehicleBtn = page.getByText(/2-Wheeler|Car\/LMV/i).first();
     await expect(vehicleBtn).toBeVisible();

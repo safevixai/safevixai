@@ -1,17 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = process.env.E2E_BASE_URL ?? 'http://127.0.0.1:3100';
-
 async function waitForMount(page: any) {
   await page.waitForFunction(() => {
     const el = document.querySelector('h1');
-    return el && el.textContent?.includes('First Aid') && window.getComputedStyle(el).opacity !== '0';
+    return el && el.textContent?.includes('First Aid');
   }, { timeout: 15000 });
 }
 
 test.describe('First aid page flow', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE_URL}/first-aid`);
+    await page.addInitScript(() => {
+      localStorage.setItem('svai-storage', JSON.stringify({
+        state: { isAuthenticated: true, operatorName: 'E2E Test User' },
+        version: 0,
+      }));
+    });
+    await page.goto('/first-aid');
     await waitForMount(page);
   });
 
