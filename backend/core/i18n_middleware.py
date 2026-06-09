@@ -33,7 +33,7 @@ def get_locale_from_request(request: Request) -> str:
     # 2. Header check
     accept_lang = request.headers.get("accept-language")
     if accept_lang:
-        matched = accept_lang.split(",")[0].split(";")[0].trim().substring(0, 2) if hasattr("", "trim") else accept_lang.split(",")[0].split(";")[0].strip()[:2]
+        matched = accept_lang.split(",")[0].split(";")[0].strip()[:2]
         if matched in SUPPORTED_LOCALES:
             return matched
             

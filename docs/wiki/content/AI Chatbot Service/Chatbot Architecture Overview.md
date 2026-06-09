@@ -314,7 +314,7 @@ AddGen --> BuildCtx
 
 ### Provider Routing and Language-Aware Selection
 - Detects Indian language scripts and routes to specialized providers for legal and general queries.
-- Implements a strict fallback chain across 11 providers with deterministic template fallback.
+- Implements a strict fallback chain across 9 providers with deterministic template fallback.
 - Attaches routing metadata to results.
 
 ```mermaid

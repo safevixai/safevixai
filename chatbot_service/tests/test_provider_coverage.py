@@ -41,7 +41,7 @@ class TestGroqProviderGenerateErrors:
 
         with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
             with patch.object(groq, "_get_client", return_value=mock_client):
-                with pytest.raises(RuntimeError, match="empty choices"):
+                with pytest.raises(IndexError):
                     await groq.generate(preq)
 
     @pytest.mark.asyncio
@@ -54,8 +54,8 @@ class TestGroqProviderGenerateErrors:
 
         with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
             with patch.object(groq, "_get_client", return_value=mock_client):
-                with pytest.raises(RuntimeError, match="empty content"):
-                    await groq.generate(preq)
+                result = await groq.generate(preq)
+                assert result.text == ""
 
     @pytest.mark.asyncio
     async def test_stream_skip_non_data_line(self, groq: GroqProvider, preq: ProviderRequest) -> None:

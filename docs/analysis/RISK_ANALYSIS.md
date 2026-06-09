@@ -1,5 +1,7 @@
 # SafeVixAI — Risk Analysis (2026-05-26)
 
+> **SNAPSHOT**: This document reflects the state as of its creation date. For current state see [AGENTS.md](../../AGENTS.md).
+
 > What breaks first under load, stress, or attack. Ordered by severity.
 
 ---

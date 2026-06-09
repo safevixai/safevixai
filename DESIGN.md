@@ -16,7 +16,7 @@ SafeVixAI's frontend has achieved **100% Enterprise-grade GSAP migration**. All 
 
 **E2E Production Note:** GSAP animations silently fail in `node .next/standalone/server.js` production build. The `usePageEntry` hook applies `opacity: 0` inline styles via `gsap.fromTo` but the animation never transitions to `opacity: 1`. All E2E `waitForMount` helpers removed the opacity check and now wait for `[aria-busy="true"]` loading skeleton to disappear.
 
-**UX Audit Score: 100/100 (Enterprise Gold Standard)**
+**UX Audit Score: 100/100 (Enterprise Gold Standard — aspirational target; see [docs/UX_95_PLAN.md](docs/UX_95_PLAN.md) for current measured baseline)**
 
 | Category | Score | Key Strengths | Key Gaps |
 |----------|-------|---------------|----------|

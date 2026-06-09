@@ -259,7 +259,14 @@ async def websocket_endpoint(
     if not _origin_allowed(websocket.headers.get("origin")):
         await websocket.close(code=1008, reason="Origin not allowed")
         return
-    if not _is_valid_ws_token(websocket.query_params.get("token")):
+    # SECURITY: JWT passed in WebSocket query params gets logged by
+    # proxies, load balancers, and in server access logs. This should be
+    # replaced with a short-lived one-time token or WebSocket sub-protocol
+    # auth before production deployment.
+    ws_token = websocket.query_params.get("token")
+    if ws_token:
+        logger.debug("WebSocket auth via query param token (group=%s)", group_id)
+    if not _is_valid_ws_token(ws_token):
         await websocket.close(code=1008, reason="Authentication required")
         return
 

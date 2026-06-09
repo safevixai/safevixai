@@ -50,3 +50,27 @@ jobs:
           name: safevixai-db-backup
           path: backups/
           retention-days: 7
+
+  backup-production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Backup Production Database
+        env:
+          PROD_DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+        run: |
+          if [ -z "$PROD_DATABASE_URL" ]; then
+            echo "PROD_DATABASE_URL not set — skipping production backup"
+            exit 0
+          fi
+          pg_dump "$PROD_DATABASE_URL" \
+            --no-owner --no-acl \
+            --file=production_backup.sql
+      - name: Upload Production Backup
+        if: env.PROD_DATABASE_URL != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: production-db-backup
+          path: production_backup.sql
+          retention-days: 30

@@ -20,6 +20,7 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 
+import jwt
 import httpx
 try:
     import sentry_sdk
@@ -332,21 +333,19 @@ def create_app() -> FastAPI:
         response = await call_next(request)
         duration_ms = round((time.monotonic() - start) * 1000, 1)
         response.headers["X-Request-ID"] = request_id
-        # Extract user_id from JWT payload without verification (fast path for logging)
+        # Extract user_id from JWT payload WITHOUT signature verification.
+        # This is safe because we only read the 'sub' claim for logging correlation.
+        # We do NOT trust any claims from an unverified token.
         user_id = "anonymous"
         auth_header = request.headers.get("Authorization", "")
         if auth_header.startswith("Bearer "):
             token = auth_header.removeprefix("Bearer ")
-            # Decode JWT payload without verification for logging
-            import json as _json
-            import base64 as _b64
             try:
-                parts = token.split(".")
-                if len(parts) >= 2:
-                    padded = parts[1] + "=" * (4 - len(parts[1]) % 4)
-                    decoded = _b64.urlsafe_b64decode(padded)
-                    payload = _json.loads(decoded)
-                    user_id = payload.get("sub") or payload.get("user_id") or "authenticated"
+                payload = jwt.decode(
+                    token,
+                    options={"verify_signature": False},
+                )
+                user_id = payload.get("sub") or payload.get("user_id") or "authenticated"
             except Exception:
                 user_id = "authenticated"
         logger.info(
@@ -447,6 +446,18 @@ def create_app() -> FastAPI:
         request.state.tenant_id = tenant_id
         
         response = await call_next(request)
+        return response
+
+    # Phase 0.7: API deprecation middleware — adds Sunset/Deprecation headers
+    from api.deprecation import get_deprecation_headers
+
+    @app.middleware("http")
+    async def _deprecation_middleware(request: Request, call_next):
+        response = await call_next(request)
+        path = request.url.path
+        headers = get_deprecation_headers(path)
+        for key, value in headers.items():
+            response.headers[key] = value
         return response
 
     # Phase 3.3: Allowed hosts middleware — blocks Host header injection

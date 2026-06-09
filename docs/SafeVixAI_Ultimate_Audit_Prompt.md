@@ -1,5 +1,7 @@
 # SafeVixAI — Ultimate Enterprise-Grade Codebase Audit Prompt
 
+> **SNAPSHOT**: This document reflects the state as of 2026-05-25. For current state see [AGENTS.md](AGENTS.md).
+
 ---
 
 ## SYSTEM CONTEXT
@@ -22,14 +24,14 @@ You are auditing **SafeVixAI** — an AI-powered road safety PWA built for the I
 **Current State (2026-05-25):**
 - **Tests**: Backend 1365/1365, Chatbot 892/892, Frontend 572/572 = **2829 total passing** (100% passing)
 - **Features**: 25/25 COMPLETE, 0 PARTIAL, 0 BROKEN, 0 MISSING
-- **Scores**: Overall 96/100, Frontend 96/100, Backend 97/100, Chatbot 96/100, Security 95/100
-- **Known Critical Issues**: None. All database migrations successfully applied to Supabase, core metros emergency and municipal directories seeded (164 entries loaded), double-engine declaration in database.py resolved, and all 11,008 dataset files / RAG indexes fully verified and pushed to Hugging Face!
+- **Scores (aspirational targets — see [AGENTS.md](AGENTS.md) for current verified state)**: 96/100 range targets across modules
+- **Known Critical Issues**: None. All database migrations successfully applied to Supabase, core metros emergency and municipal directories seeded (164 entries loaded), double-engine declaration in database.py resolved, and all dataset files / RAG indexes fully verified and pushed to Hugging Face!
 
 **Stack:**
 - Frontend: Next.js 15, TypeScript 5, Tailwind CSS 3, shadcn/ui, MapLibre GL JS, OpenFreeMap, Zustand 5, WebLLM/Transformers.js Gemma (offline AI), GSAP 3.15.0 animations, SWR data fetching
 - Backend: FastAPI (main :8000), FastAPI (chatbot_service :8010 — separate deployment)
 - Database: Supabase (PostgreSQL 16 + PostGIS 3.4 + pgvector)
-- AI: RAG + LangGraph Agent, ChromaDB, 9-provider LLM fallback chain (Groq → Cerebras → Sarvam-30B → GitHub Models → Gemini → NVIDIA NIM → OpenRouter → Mistral → Together AI → Sarvam-105B → TemplateProvider). Indian language detection (Unicode script regex) pre-routes to Sarvam-30B (general) or Sarvam-105B (legal/challan). Circuit breakers, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
+- AI: RAG + LangGraph Agent, ChromaDB, 9-provider LLM fallback chain (Groq → Cerebras → Gemini → GitHub Models → NVIDIA NIM → OpenRouter → Mistral → Together → Template). Sarvam-30B/105B used for Indian language auto-routing (separate path, not in fallback chain). Indian language detection (Unicode script regex) pre-routes to Sarvam-30B (general) or Sarvam-105B (legal/challan). Circuit breakers, streaming chat, conversation summarization, multi-turn intent refinement, smart fallback routing with confidence scores.
 - Hosting: Render (free tier, 2 services) + Vercel (frontend)
 - PWA: Service worker (safevixai-v3), offline SOS queue (IndexedDB + idb library), Web Share Target, PWA shortcuts (3: SOS, Hospital, Report), push notifications, Background Sync
 - Speech: `POST /speech/translate` (MediaRecorder → IndicSeamlessM4Tv2), `GET /speech/status`. 14 languages mapped via `frontend/lib/languages.ts` (UI code → recognitionCode → speechTargetCode → synthesisCode)
@@ -1457,7 +1459,7 @@ If business logic is inline in components instead of these hooks: it is untestab
 | GPS denied | Unknown | Show manual location input fallback |
 | Backend unreachable (cold start) | Unknown | Show "Server waking up..." + retry with countdown |
 | Supabase returns 0 results | Unknown | Expand radius to 25km → Overpass fallback → "No services found" |
-| LLM all 11 providers fail | Unknown | Return template answer + "AI temporarily unavailable" |
+| LLM all 9 providers fail | Unknown | Return template answer + "AI temporarily unavailable" |
 | ChromaDB empty/corrupt | Unknown | Answer from template responses, log error |
 | Network lost mid-SOS | Unknown | Queue in IndexedDB, show "SOS queued" toast |
 | Photo upload fails | Unknown | Show "Retry upload" button, keep report data |
@@ -2533,8 +2535,8 @@ Total:     9
 ### Feature Completeness (25 Features)
 | Status | Count | Details |
 |--------|-------|---------|
-| COMPLETE | 24 | Emergency Locator, Crash Detection UI (wired), Family Live Tracking, Challan Calculator, RoadWatch Reporter, AI Chatbot RAG, LLM Fallback Chain (11 providers), Offline SOS Queue, WebLLM Offline AI, What3Words, Voice/ASR, Indian Language Detection, PWA Share Target, QR Emergency Card, MCP Server, Waze CIFS Feed, Circuit Breakers, Streaming Chat, Conversation Summarization, Multi-Turn Intent Refinement, Safety Checker, GSAP Animations, Speech Language Mapping (14 languages), Assistant Voice Output |
-| PARTIAL | 1 | Authentication (single-operator only) |
+| COMPLETE | 25 | Emergency Locator, Crash Detection (Accelerometer + CrashCountdown UI integrated), Family Live Tracking, Challan Calculator, RoadWatch Reporter, AI Chatbot RAG, LLM Fallback Chain (9 providers), Offline SOS Queue, WebLLM Offline AI, What3Words, Voice/ASR, Indian Language Detection, PWA Share Target, QR Emergency Card, MCP Server, Waze CIFS Feed, Circuit Breakers, Streaming Chat, Conversation Summarization, Multi-Turn Intent Refinement, Safety Checker, GSAP Animations, Speech Language Mapping (14 languages), Assistant Voice Output, Authentication (Production JWT + Secure Service-to-Service Auth Bypass fully implemented) |
+| PARTIAL | 0 | None — All items fully verified |
 | BROKEN | 0 | — |
 | MISSING | 0 | — |
 

@@ -1,5 +1,7 @@
 # SafeVixAI — Security Audit Report
 
+> **SNAPSHOT**: This document reflects the state as of its creation date. For current state see [AGENTS.md](../../AGENTS.md).
+
 **Date:** 2026-05-26 | **Auditor:** Deep codebase review
 
 ---

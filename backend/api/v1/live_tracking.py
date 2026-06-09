@@ -114,7 +114,13 @@ async def start_tracking(
     )
     tracking_url = f"{frontend_url}/track/{session_id}#token={view_token}"
 
-    logger.info("Live tracking session started: %s", session_id)
+    logger.warning(
+        "SECURITY: Tracking URL contains JWT in fragment (#token=). "
+        "Fragments are not sent to servers but CAN leak via Referer header, "
+        "browser history sync, and screenshot sharing. "
+        "Replace with a short-lived one-time viewing token or session-based auth "
+        "before production deployment. Session: %s", session_id
+    )
     return StartTrackingResponse(
         session_id=session_id,
         tracking_url=tracking_url,

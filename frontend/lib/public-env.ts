@@ -1,7 +1,10 @@
-function requiredPublicUrl(name: string, value: string | undefined): string {
+function requiredPublicUrl(name: string, value: string | undefined, fallback: string): string {
   const normalized = value?.trim().replace(/\/+$/, '');
   if (!normalized) {
-    throw new Error(`${name} is required. Set it in frontend .env.local and in Vercel environment variables.`);
+    if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'test') {
+      console.warn(`SafeVixAI: ${name} is not set. Using fallback: ${fallback}`);
+    }
+    return fallback;
   }
   return normalized;
 }
@@ -9,11 +12,13 @@ function requiredPublicUrl(name: string, value: string | undefined): string {
 export const PUBLIC_API_BASE_URL = requiredPublicUrl(
   'NEXT_PUBLIC_API_URL or NEXT_PUBLIC_BACKEND_URL',
   process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_BACKEND_URL,
+  'http://localhost:8000',
 );
 
 export const PUBLIC_CHATBOT_BASE_URL = requiredPublicUrl(
   'NEXT_PUBLIC_CHATBOT_URL',
   process.env.NEXT_PUBLIC_CHATBOT_URL,
+  'http://localhost:8010',
 );
 
 export function publicApiWebSocketUrl(path: string): string {

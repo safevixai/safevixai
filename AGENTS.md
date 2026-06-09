@@ -3,6 +3,53 @@
 > Compact instruction file for AI coding agents (OpenCode, Copilot, Cursor, etc.).
 > Every section answers: "Would an agent likely get this wrong without help?"
 
+**Last Updated: 2026-06-09**
+
+---
+
+## Enterprise Hardening Log
+
+### 2026-06-09 — Batch 1: P0/P1 Fixes (All Areas)
+
+**Frontend:**
+- Added 24 route-level SEO metadata layouts (title, description, OG, Twitter tags)
+- Added 28 route-level error.tsx boundaries (was 4 missing)
+- Fixed XSS vulnerability in `useSplitTextEntry.ts` — replaced `innerHTML` with safe DOM API
+- Fixed profile data loss on refresh — IndexedDB rehydration in Zustand persist
+- PostHog analytics now waits for user opt-in consent (GDPR)
+- `public-env.ts` degrades gracefully instead of crashing at module import
+
+**Backend:**
+- Fixed `REFESH` → `REFRESH` typo in `security.py`
+- Removed JS-ism methods (`.trim()`, `.substring()`) from `i18n_middleware.py`
+- Added security logging for JWT-in-URL pattern in tracking/live_tracking endpoints
+- Fixed Redis connection leak in idempotency middleware — in-memory fallback
+- Replaced manual base64 JWT decode with `jwt.decode()` in logging middleware
+
+**Chatbot Service:**
+- Moved provider validation from module-import-time to lifespan (app no longer crashes on import)
+- Fixed shared mutable `httpx.AsyncClient` — class var → instance var
+- Fixed Sarvam 30B→2B model mapping bug — now correctly routes to `sarvam-30b`
+- Removed ~150 lines of code duplication in `GroqProvider` (delegates to `super()`)
+- Removed ~130 lines of dead code in `ContextAssembler` (3 unused methods)
+- Added `asyncio.wait_for()` timeout handling on chat/stream endpoints
+
+**Infrastructure:**
+- Created `frontend/.dockerignore` (excludes node_modules, .next, coverage, etc.)
+- Created `k8s/namespace.yaml` (safevixai) and `k8s/ingress.yaml` (NGINX ingress)
+- Created `.pre-commit-config.yaml` (ruff, black, eslint hooks)
+- Created `Makefile` (14 targets: setup, test, lint, build, docker, deploy, etc.)
+- Fixed `db-backup.yml` — added production database backup job
+- Removed `continue-on-error: true` from gitleaks (now fails on secret detection)
+- Added `--cov` to chatbot CI pytest run
+- Docker build now uses Buildx + GHCR caching (layer caching)
+
+**Documentation:**
+- Updated 5 stale analysis docs with SNAPSHOT banners + 11→9 providers
+- Updated 5 wiki files with corrected 9-provider chain
+- Fixed DESIGN.md UX 100/100 → aspirational target
+- Added `Last Updated` timestamp to AGENTS.md
+
 ---
 
 ## Current Agent Brief - 2026-06-09 (E2E Hardening)

@@ -185,39 +185,6 @@ class ContextAssembler:
 
         return context
 
-    async def _add_emergency_context(self, context: ConversationContext) -> None:
-        if context.lat is not None and context.lon is not None:
-            sos_payload = await self.sos_tool.get_payload(lat=context.lat, lon=context.lon)
-            if sos_payload:
-                numbers = sos_payload.get('numbers') or {}
-                services = sos_payload.get('services') or []
-                nearest_names = ', '.join(item.get('name', 'Unknown') for item in services[:3]) or 'No nearby services listed'
-                number_text = ', '.join(f'{key}:{value.get("service")}' for key, value in numbers.items())
-                
-                # Format What3Words if present
-                w3w_text = ""
-                if 'what3words' in sos_payload:
-                    w3w_text = f" What3Words: {sos_payload['what3words'].get('formatted')}."
-                    
-                context.tools.append(
-                    ToolContext(
-                        name='sos',
-                        summary=f'Nearby emergency services: {nearest_names}. Emergency numbers: {number_text}.{w3w_text}',
-                        payload=sos_payload,
-                        sources=['tool:sos', 'backend:/api/v1/emergency/sos'],
-                    )
-                )
-            weather = await self.weather_tool.lookup(lat=context.lat, lon=context.lon)
-            if weather:
-                context.tools.append(
-                    ToolContext(
-                        name='weather',
-                        summary=f'Local weather: {weather.get("summary")} at {weather.get("temperature")} degrees.',
-                        payload=weather,
-                        sources=['tool:weather'],
-                    )
-                )
-
     async def _add_first_aid_context(self, context: ConversationContext) -> None:
         guide = self.first_aid_tool.lookup(context.message)
         if guide:
@@ -264,47 +231,6 @@ class ContextAssembler:
                 )
             )
 
-    async def _add_road_context(self, context: ConversationContext) -> None:
-        if context.lat is not None and context.lon is not None:
-            infrastructure = await self.road_infra_tool.lookup(lat=context.lat, lon=context.lon)
-            if infrastructure:
-                context.tools.append(
-                    ToolContext(
-                        name='road_infrastructure',
-                        summary=(
-                            f'Road authority: {infrastructure.get("exec_engineer") or infrastructure.get("contractor_name") or infrastructure.get("road_type")}. '
-                            f'Road type: {infrastructure.get("road_type")} ({infrastructure.get("road_type_code")}).'
-                        ),
-                        payload=infrastructure,
-                        sources=['tool:road_infrastructure', 'backend:/api/v1/roads/infrastructure'],
-                    )
-                )
-            issues = await self.road_issues_tool.lookup(lat=context.lat, lon=context.lon)
-            if issues and (issues.get('issues') or []):
-                count = issues.get('count') or len(issues.get('issues') or [])
-                context.tools.append(
-                    ToolContext(
-                        name='road_issues',
-                        summary=f'{count} nearby road issues are already reported in the selected radius.',
-                        payload=issues,
-                        sources=['tool:road_issues', 'backend:/api/v1/roads/issues'],
-                    )
-                )
-        if 'report' in context.message.lower():
-            guidance = self.submit_report_tool.build_guidance(
-                issue_type='road hazard',
-                lat=context.lat,
-                lon=context.lon,
-            )
-            context.tools.append(
-                ToolContext(
-                    name='submit_report',
-                    summary=guidance['summary'],
-                    payload=guidance,
-                    sources=['tool:submit_report'],
-                )
-            )
-
     async def _add_weather_context(self, context: ConversationContext) -> None:
         if context.lat is None or context.lon is None:
             context.tools.append(
@@ -327,41 +253,6 @@ class ContextAssembler:
                     sources=['tool:weather'],
                 )
             )
-
-    async def _add_route_context(self, context: ConversationContext) -> None:
-        context.tools.append(
-            ToolContext(
-                name='safe_route',
-                summary=(
-                    'For safest routing, collect origin, destination, current GPS, and avoid roads with severe reports, '
-                    'poor visibility, flooding, or active incidents.'
-                ),
-                payload={'requires_origin_destination': True},
-                sources=['tool:safe_route'],
-            )
-        )
-        if context.lat is not None and context.lon is not None:
-            issues = await self.road_issues_tool.lookup(lat=context.lat, lon=context.lon)
-            if issues and (issues.get('issues') or []):
-                count = issues.get('count') or len(issues.get('issues') or [])
-                context.tools.append(
-                    ToolContext(
-                        name='route_risk',
-                        summary=f'{count} reported road issues may affect route safety near the current location.',
-                        payload=issues,
-                        sources=['tool:road_issues', 'backend:/api/v1/roads/issues'],
-                    )
-                )
-            weather = await self.weather_tool.lookup(lat=context.lat, lon=context.lon)
-            if weather:
-                context.tools.append(
-                    ToolContext(
-                        name='route_weather',
-                        summary=f'Weather risk near current location: {weather.get("summary")}.',
-                        payload=weather,
-                        sources=['tool:weather'],
-                    )
-                )
 
     async def _add_infrastructure_context(self, context: ConversationContext) -> None:
         if context.lat is None or context.lon is None:

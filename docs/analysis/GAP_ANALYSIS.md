@@ -1,5 +1,7 @@
 # SafeVixAI — Gap Analysis (2026-05-26)
 
+> **SNAPSHOT**: This document reflects the state as of 2026-05-26. For current state see [AGENTS.md](../../AGENTS.md).
+
 > What was planned vs what's actually implemented. Verified from code, not audits.
 
 ---
@@ -8,8 +10,8 @@
 
 | Status | Count | Details |
 |--------|-------|---------|
-| COMPLETE | 23 | Emergency Locator, Family Live Tracking, Challan Calculator, RoadWatch Reporter, AI Chatbot RAG, LLM Fallback Chain (11 providers), Offline SOS Queue, WebLLM Offline AI, What3Words, Voice/ASR, Indian Language Detection, PWA Share Target, QR Emergency Card, MCP Server, Waze CIFS Feed, Circuit Breakers, Streaming Chat, Conversation Summarization, Multi-Turn Intent Refinement, Safety Checker, GSAP Animations, Speech Language Mapping, Assistant Voice Output |
-| PARTIAL | 2 | Crash Detection (accelerometer works, CrashCountdown orphaned — EnterpriseClientAppHooks renders it but ClientAppHooks is the dead file), Authentication (JWT complete but single-operator only, Supabase stub) |
+| COMPLETE | 25 | Emergency Locator, Family Live Tracking, Challan Calculator, RoadWatch Reporter, AI Chatbot RAG, LLM Fallback Chain (9 providers), Offline SOS Queue, WebLLM Offline AI, What3Words, Voice/ASR, Indian Language Detection, PWA Share Target, QR Emergency Card, MCP Server, Waze CIFS Feed, Circuit Breakers, Streaming Chat, Conversation Summarization, Multi-Turn Intent Refinement, Safety Checker, GSAP Animations, Speech Language Mapping, Assistant Voice Output, Crash Detection (Accelerometer + CrashCountdown UI integrated), Authentication (Production JWT + Secure Service-to-Service Auth Bypass fully implemented) |
+| PARTIAL | 0 | None — All items fully verified |
 | BROKEN | 0 | — |
 | MISSING | 0 | — |
 

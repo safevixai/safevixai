@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import sys
 import time
 import uuid
@@ -168,6 +169,23 @@ def create_app() -> FastAPI:
         app.state.chat_engine = chat_engine
         app.state.speech_service = speech_service
         app.state.llm_cache = llm_cache
+
+        # P0-01: Validate at least one LLM provider is configured (moved from config.py module-level)
+        _active_keys = [
+            k for k in [
+                "GROQ_API_KEY", "GEMINI_API_KEY", "GOOGLE_API_KEY",
+                "OPENROUTER_API_KEY", "HF_TOKEN", "GITHUB_TOKEN",
+                "MISTRAL_API_KEY", "SARVAM_API_KEY", "NVIDIA_NIM_API_KEY",
+                "CEREBRAS_API_KEY", "TOGETHER_API_KEY",
+            ]
+            if os.getenv(k)
+        ]
+        if not _active_keys:
+            logger.warning(
+                "No LLM provider API keys configured. "
+                "The TemplateProvider (deterministic fallback) will be used. "
+                "Set at least one API key (e.g. GROQ_API_KEY, GEMINI_API_KEY)."
+            )
 
         # Initialize background task queue and worker
         from core.queue import TaskQueue, BackgroundWorker, set_global_chat_engine

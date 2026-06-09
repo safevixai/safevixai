@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { saveUserProfileToIndexedDB } from './profile-storage';
+import { saveUserProfileToIndexedDB, loadUserProfileFromIndexedDB } from './profile-storage';
 import { markHydrated } from './use-hydrated';
 
 export interface GpsLocation {
@@ -388,7 +388,19 @@ export const useAppStore = create<AppState>()(
         }
         return { ...currentState, ...state };
       },
-      onRehydrateStorage: () => () => { markHydrated(); },
+      onRehydrateStorage: () => {
+        return (state, error) => {
+          markHydrated();
+          if (!error) {
+            loadUserProfileFromIndexedDB().then((profile) => {
+              if (profile) {
+                useAppStore.getState().setUserProfile(profile);
+              }
+              useAppStore.getState().setProfileHydrated(true);
+            });
+          }
+        };
+      },
       partialize: (state) => ({
         aiMode: state.aiMode,
         serviceCategory: state.serviceCategory,

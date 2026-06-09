@@ -590,7 +590,7 @@ class TestSarvamIdentity:
     def test_105b_model_size(self):
         assert Sarvam105BProvider().model_size == "105b"
     def test_default_model_30b(self):
-        assert SarvamProvider("30b").default_model() == "sarvamai/sarvam-2b"
+        assert SarvamProvider("30b").default_model() == "sarvamai/sarvam-30b"
     def test_default_model_105b(self):
         assert Sarvam105BProvider().default_model() == "sarvamai/sarvam-105b"
 
@@ -668,7 +668,7 @@ class TestSarvamGenerate:
         res = await p.generate(_REQUEST)
         assert res.text == "Mocked response"
         assert res.provider == "sarvam"
-        assert res.model == "sarvamai/sarvam-2b"
+        assert res.model == "sarvamai/sarvam-30b"
         assert res.india_badge is True
 
     @pytest.mark.asyncio

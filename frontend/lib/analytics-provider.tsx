@@ -1,24 +1,46 @@
 'use client'
 
-import posthog from 'posthog-js'
-import { PostHogProvider } from 'posthog-js/react'
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { useAppStore } from './store'
 import { logClientWarning } from './client-logger'
+import { initAnalyticsClient } from './analytics'
 
 export const ANALYTICS_CONSENT_KEY = 'safevixai:analytics-consent'
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
-    const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com'
-    const consent = window.localStorage.getItem(ANALYTICS_CONSENT_KEY)
+  const analyticsOptIn = useAppStore((s) => s.analyticsOptIn)
+  const [posthogReady, setPosthogReady] = useState(false)
+  const [PostHogProvider, setPostHogProvider] = useState<React.ComponentType<{ client: any; children: React.ReactNode }> | null>(null)
+  const [posthogClient, setPosthogClient] = useState<any>(null)
+  const initRef = useRef(false)
 
-    if (consent !== 'granted') {
-      posthog.opt_out_capturing()
+  useEffect(() => {
+    if (initRef.current) return
+
+    const consent = window.localStorage.getItem(ANALYTICS_CONSENT_KEY)
+    const optedIn = consent === 'granted' || analyticsOptIn
+
+    if (!optedIn) {
+      setPosthogReady(true)
       return
     }
 
-    if (posthogKey) {
+    const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
+    const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com'
+
+    if (!posthogKey) {
+      logClientWarning('PostHog is not initialized (NEXT_PUBLIC_POSTHOG_KEY missing)')
+      setPosthogReady(true)
+      return
+    }
+
+    initRef.current = true
+
+    Promise.all([
+      import('posthog-js'),
+      import('posthog-js/react'),
+    ]).then(([ph, react]) => {
+      const posthog = ph.default
       posthog.init(posthogKey, {
         api_host: posthogHost,
         capture_pageview: false,
@@ -26,11 +48,14 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
         autocapture: false,
         disable_session_recording: true,
       })
-      return
-    }
+      initAnalyticsClient(posthog)
+      setPosthogClient(posthog)
+      setPostHogProvider(() => react.PostHogProvider)
+      setPosthogReady(true)
+    })
+  }, [analyticsOptIn])
 
-    logClientWarning('PostHog is not initialized (NEXT_PUBLIC_POSTHOG_KEY missing)')
-  }, [])
-
-  return <PostHogProvider client={posthog}>{children}</PostHogProvider>
+  if (!posthogReady) return <>{children}</>
+  if (!PostHogProvider || !posthogClient) return <>{children}</>
+  return <PostHogProvider client={posthogClient}>{children}</PostHogProvider>
 }

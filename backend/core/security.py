@@ -58,7 +58,7 @@ SUPABASE_JWT_AUDIENCE = os.environ.get("SUPABASE_JWT_AUDIENCE", "authenticated")
 
 # Token revocation set (in-memory fallback, persisted to Redis when available)
 _revoked_token_jtis: set[str] = set()
-REFESH_TOKEN_EXPIRE_DAYS = int(os.environ.get("REFESH_TOKEN_EXPIRE_DAYS", "30"))
+REFRESH_TOKEN_EXPIRE_DAYS = int(os.environ.get("REFRESH_TOKEN_EXPIRE_DAYS", "30"))
 
 def _get_revocation_cache_key(jti: str) -> str:
     return f"revoked_token:{jti}"
@@ -116,7 +116,7 @@ def create_refresh_token(
 ) -> str:
     to_encode = data.copy()
     now = datetime.now(timezone.utc)
-    expire = now + (expires_delta if expires_delta else timedelta(days=REFESH_TOKEN_EXPIRE_DAYS))
+    expire = now + (expires_delta if expires_delta else timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS))
     to_encode.update({
         "jti": str(uuid.uuid4()),
         "exp": expire,

@@ -100,7 +100,7 @@ CB_APP --> CB_ENGINE
 - Emergency Locator (SafeVixAI Core)
   - GPS auto-detection, tiered radius search, SOS sharing, crash detection, offline map for 25 cities, and first aid guidance.
 - AI Chatbot (SafeVixAI + DriveLegal)
-  - Intent detection, online RAG with 11 providers, offline WebLLM Phi-3 Mini, multilingual support, voice I/O, and conversation memory.
+  - Intent detection, online RAG with 9 providers, offline WebLLM Phi-3 Mini, multilingual support, voice I/O, and conversation memory.
 - Challan Calculator (DriveLegal)
   - Deterministic MVA 2019 fine calculation with state overrides, offline via DuckDB-Wasm, and legal citations.
 - Road Reporter (RoadWatch)

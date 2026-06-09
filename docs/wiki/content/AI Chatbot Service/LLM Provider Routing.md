@@ -31,7 +31,7 @@
 10. [Appendices](#appendices)
 
 ## Introduction
-This document explains the multi-provider LLM routing system that powers the SafeVixAI chatbot service. It covers the provider abstraction layer, standardized API handling, intelligent routing and fallback logic, configuration and credentials, provider-specific features, and operational guidance for performance and cost optimization. The system routes user queries across 11 providers, prioritizing Indian language support, speed, and reliability, while ensuring safety and compliance with the project’s domain focus.
+This document explains the multi-provider LLM routing system that powers the SafeVixAI chatbot service. It covers the provider abstraction layer, standardized API handling, intelligent routing and fallback logic, configuration and credentials, provider-specific features, and operational guidance for performance and cost optimization. The system routes user queries across 9 providers, prioritizing Indian language support, speed, and reliability, while ensuring safety and compliance with the project’s domain focus.
 
 ## Project Structure
 The routing system resides in the chatbot service and integrates with FastAPI application lifecycle. Providers are organized under a dedicated module with a shared base and individual implementations. Configuration is centralized and environment-driven.
@@ -75,7 +75,7 @@ A --> N["Settings & Env Config<br/>chatbot_service/config.py"]
 
 ## Core Components
 - Provider abstraction layer: A shared HTTP-based interface for OpenAI-compatible providers and a specialized Gemini handler for non-OpenAI endpoints. Includes prompt building, safety filtering, and deterministic fallback.
-- ProviderRouter: Implements intelligent selection and fallback logic across 11 providers, with language-aware routing and intent-based specialization.
+- ProviderRouter: Implements intelligent selection and fallback logic across 9 providers, with language-aware routing and intent-based specialization.
 - Configuration: Centralized settings loaded from environment variables, including default provider/model and HTTP behavior.
 
 Key abstractions and roles:

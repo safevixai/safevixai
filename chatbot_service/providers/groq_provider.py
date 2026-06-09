@@ -8,7 +8,6 @@ Fix: Cap MAX_RESPONSE_TOKENS at 400 for Groq, skip if estimated context > 4,000 
 """
 from __future__ import annotations
 
-import json
 import logging
 
 from providers.base import HttpProvider, ProviderRequest, ProviderResult, build_messages
@@ -35,12 +34,15 @@ def _estimate_request_tokens(request: ProviderRequest) -> int:
 class GroqProvider(HttpProvider):
     """Primary provider — fastest for English queries.
 
-    Overrides generate() to:
+    Overrides generate()/stream() to:
     1. Skip if estimated context > _GROQ_TPM_GUARD tokens (C5 fix)
-    2. Use reduced MAX_RESPONSE_TOKENS to stay within 6000 TPM free tier
+    2. Use reduced max_tokens to stay within 6000 TPM free tier
     """
 
     name = "groq"
+
+    def __init__(self) -> None:
+        super().__init__(max_tokens=_GROQ_MAX_RESPONSE_TOKENS)
 
     def api_key_env(self) -> str:
         return "GROQ_API_KEY"
@@ -59,55 +61,10 @@ class GroqProvider(HttpProvider):
                 estimated, _GROQ_TPM_GUARD,
             )
             return
-
-        import os
-        api_key = self._get_api_key()
-        model = os.getenv("GROQ_MODEL", "").strip() or self.default_model()
-
-        from providers.base import build_messages, check_prompt_injection, raise_for_provider_status
-
-        if check_prompt_injection(request.message):
-            logger.warning("Groq stream: prompt injection blocked. Message: %.50s...", request.message)
-            return
-
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        }
-        payload = {
-            "model": model,
-            "messages": build_messages(request),
-            "max_tokens": _GROQ_MAX_RESPONSE_TOKENS,
-            "temperature": 0.5,
-            "stream": True,
-        }
-
-        async with self._get_client().stream("POST", self.base_url(), headers=headers, json=payload) as resp:
-            raise_for_provider_status(resp, provider=self.name, model=model)
-            buffer = ""
-            async for chunk in resp.aiter_text():
-                buffer += chunk
-                while "\n" in buffer:
-                    line, buffer = buffer.split("\n", 1)
-                    line = line.strip()
-                    if not line or not line.startswith("data: "):
-                        continue
-                    data_str = line[6:].strip()
-                    if data_str == "[DONE]":
-                        return
-                    try:
-                        data = json.loads(data_str)
-                        choices = data.get("choices", [])
-                        if choices:
-                            delta = choices[0].get("delta", {})
-                            content = delta.get("content", "")
-                            if content:
-                                yield content
-                    except json.JSONDecodeError:
-                        logger.debug("Skipping malformed SSE chunk in Groq stream: %.100s", data_str, exc_info=True)
+        async for token in super().stream(request):
+            yield token
 
     async def generate(self, request: ProviderRequest) -> ProviderResult:
-        # P0-05: Skip Groq if estimated tokens would exceed TPM guard
         estimated = _estimate_request_tokens(request)
         if estimated > _GROQ_TPM_GUARD:
             logger.info(
@@ -121,62 +78,4 @@ class GroqProvider(HttpProvider):
                 f"groq: context too large (~{estimated} tokens). "
                 "Skipping to preserve free-tier TPM budget."
             )
-
-        # Use Groq-specific reduced response token limit
-        import os
-        api_key = self._get_api_key()
-        model = (
-            os.getenv("GROQ_MODEL", "").strip() or self.default_model()
-        )
-
-        from providers.base import (
-            build_messages,
-            raise_for_provider_status,
-            check_prompt_injection,
-            ProviderResult,
-        )
-
-        if check_prompt_injection(request.message):
-            logger.warning("Groq: prompt injection blocked. Message: %.50s...", request.message)
-            return ProviderResult(
-                text=(
-                    "I cannot fulfill this request. I am SafeVixAI, an AI assistant "
-                    "focused strictly on Indian road safety and emergency response."
-                ),
-                provider=self.name,
-                model="safety-filter",
-            )
-
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        }
-        payload = {
-            "model": model,
-            "messages": build_messages(request),
-            # P0-05: Use reduced token limit for Groq free tier
-            "max_tokens": _GROQ_MAX_RESPONSE_TOKENS,
-            "temperature": 0.5,
-        }
-
-        resp = await self._get_client().post(self.base_url(), headers=headers, json=payload)
-        raise_for_provider_status(resp, provider=self.name, model=model)
-        data = resp.json()
-        try:
-            choices = data.get("choices", [])
-            if not choices:
-                raise KeyError("empty choices")
-            text = choices[0].get("message", {}).get("content", "")
-            if not text:
-                raise KeyError("empty content")
-        except (KeyError, IndexError, TypeError) as exc:
-            raise RuntimeError(
-                f"GroqProvider: unexpected response structure: {exc}. "
-                f"Response keys: {list(data.keys())}"
-            ) from exc
-
-        usage = data.get("usage", {})
-        total_tokens = usage.get("total_tokens", 0)
-        logger.debug("Groq used %d tokens (limit guard: %d)", total_tokens, _GROQ_TPM_GUARD)
-
-        return ProviderResult(text=text, provider=self.name, model=model)
+        return await super().generate(request)

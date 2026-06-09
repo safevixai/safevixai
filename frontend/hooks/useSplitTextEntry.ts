@@ -63,17 +63,19 @@ export function useSplitTextEntry() {
           }
         );
       } else {
-        // High-performance pure DOM/CSS fallback for standard GSAP SplitText
+        // High-performance pure DOM/CSS fallback — safe DOM manipulation (no innerHTML from unsanitized input)
         const text = headingRef.current.textContent || '';
-        headingRef.current.innerHTML = text
-          .split('')
-          .map(
-            (char) =>
-              `<span class="split-char inline-block" style="opacity: 0; will-change: transform, opacity;">${
-                char === ' ' ? '&nbsp;' : char
-              }</span>`
-          )
-          .join('');
+        const fragment = document.createDocumentFragment();
+        for (const char of text) {
+          const span = document.createElement('span');
+          span.className = 'split-char inline-block';
+          span.style.opacity = '0';
+          span.style.willChange = 'transform, opacity';
+          span.textContent = char === ' ' ? '\u00A0' : char;
+          fragment.appendChild(span);
+        }
+        headingRef.current.textContent = '';
+        headingRef.current.appendChild(fragment);
 
         const chars = headingRef.current.querySelectorAll('.split-char');
         gsap.fromTo(

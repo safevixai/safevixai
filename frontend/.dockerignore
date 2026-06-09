@@ -1,0 +1,11 @@
+node_modules/
+.next/
+coverage/
+test-results/
+.env
+.env.local
+.env*.local
+.git
+*.md
+pnpm-lock.yaml
+playwright-report/

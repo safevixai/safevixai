@@ -23,12 +23,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Hardening: gitleaks must fail the build if secrets are detected
       - name: Run gitleaks
         uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
-        continue-on-error: true
 
   dependency-audit:
     name: Dependency Audit

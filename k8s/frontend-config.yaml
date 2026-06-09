@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: safevixai
+data:
+  NEXT_PUBLIC_BACKEND_URL: "https://api.safevixai.com"
+  NEXT_PUBLIC_CHATBOT_URL: "https://chat.safevixai.com"

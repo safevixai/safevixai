@@ -114,7 +114,7 @@ C --> T10
 ## Core Components
 - Intent Detection: Classifies incoming messages into 9 classes to drive context assembly and tool selection.
 - Context Assembly: Builds a ConversationContext enriched with tool payloads and retrieved knowledge.
-- Provider Router: Routes requests across 11 providers with intelligent fallback and Indian language routing.
+- Provider Router: Routes requests across 9 providers with intelligent fallback and Indian language routing.
 - Memory Store: Persists conversation history with Redis-backed persistence and in-memory fallback.
 - Vector Store: Loads and indexes documents locally; supports retrieval with category scoping.
 - Tools: Integrations for SOS, challan, legal search, first aid, road infrastructure, weather, and reporting.
@@ -405,7 +405,7 @@ High-level dependencies:
 - FastAPI app depends on ChatEngine, MemoryStore, VectorStore, ProviderRouter, and ContextAssembler
 - ChatEngine depends on IntentDetector, ContextAssembler, MemoryStore, VectorStore, and ProviderRouter
 - ContextAssembler depends on Retriever and multiple tools
-- ProviderRouter composes 11 providers and a deterministic fallback
+- ProviderRouter composes 9 providers and a deterministic fallback
 - MemoryStore depends on Redis client
 - VectorStore depends on document loader and embeddings utilities
 

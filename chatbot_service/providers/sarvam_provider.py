@@ -50,10 +50,10 @@ class SarvamProvider(HttpProvider):
     """
 
     name = "sarvam"
-    _client: httpx.AsyncClient | None = None
 
     def __init__(self, model_size: str = "30b") -> None:
         self.model_size = model_size
+        super().__init__()
 
     def _use_direct_api(self) -> bool:
         key = os.environ.get("SARVAM_API_KEY", "").strip()
@@ -68,7 +68,11 @@ class SarvamProvider(HttpProvider):
         return token
 
     def default_model(self) -> str:
-        return "sarvamai/sarvam-105b" if self.model_size == "105b" else "sarvamai/sarvam-2b"
+        model_map = {"105b": "sarvamai/sarvam-105b", "30b": "sarvamai/sarvam-30b", "2b": "sarvamai/sarvam-2b"}
+        result = model_map.get(self.model_size, "sarvamai/sarvam-30b")
+        if result == "sarvamai/sarvam-2b":
+            logger.warning("Using Sarvam-2B model. Consider upgrading to 30B for better accuracy.")
+        return result
 
     def base_url(self) -> str:
         if self._use_direct_api():

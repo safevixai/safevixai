@@ -79,7 +79,7 @@ E --> F
 - ChatEngine: Orchestrates safety checks, intent detection, context assembly, provider routing, and memory persistence.
 - ConversationMemoryStore: Persists and retrieves conversation history with Redis-backed storage and in-memory fallback.
 - LocalVectorStore: Manages a simple persisted index of document chunks for retrieval-augmented generation.
-- ProviderRouter: Routes requests across 11 providers with intelligent fallback and Indian language specialization.
+- ProviderRouter: Routes requests across 9 providers with intelligent fallback and Indian language specialization.
 
 **Section sources**
 - [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)

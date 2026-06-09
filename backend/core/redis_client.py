@@ -186,7 +186,7 @@ class CacheHelper:
             return
 
 
-def create_cache(redis_url: str | None) -> CacheHelper:
+def create_cache(redis_url: str | None = None) -> CacheHelper:
     if not redis_url:
         return CacheHelper()
     return CacheHelper(Redis.from_url(redis_url, encoding='utf-8', decode_responses=True))

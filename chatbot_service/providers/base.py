@@ -322,7 +322,10 @@ class HttpProvider:
     """
 
     name: str = "http"
-    _client: httpx.AsyncClient | None = None
+
+    def __init__(self, max_tokens: int = MAX_RESPONSE_TOKENS) -> None:
+        self._client: httpx.AsyncClient | None = None
+        self._max_tokens = max_tokens
 
     def api_key_env(self) -> str:
         """Return the env-var name that holds the API key."""
@@ -379,7 +382,7 @@ class HttpProvider:
         payload = {
             "model": model,
             "messages": build_messages(request),
-            "max_tokens": MAX_RESPONSE_TOKENS,
+            "max_tokens": self._max_tokens,
             "temperature": 0.5,
             "stream": True,
         }
@@ -431,7 +434,7 @@ class HttpProvider:
         payload = {
             "model": model,
             "messages": build_messages(request),
-            "max_tokens": MAX_RESPONSE_TOKENS,
+            "max_tokens": self._max_tokens,
             "temperature": 0.5,
         }
 

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chatbot-config
+  namespace: safevixai
+data:
+  ENVIRONMENT: "production"
+  MAIN_BACKEND_BASE_URL: "http://backend:8000"
+  REDIS_URL: "redis://redis:6379/0"
+  DEFAULT_LLM_PROVIDER: "groq"
+  CHROMA_PERSIST_DIR: "/app/data/chroma_db"

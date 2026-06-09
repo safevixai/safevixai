@@ -16,7 +16,10 @@ import { EnterpriseClientAppHooks } from '@/components/EnterpriseClientAppHooks'
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_VERCEL_URL || 'https://safevixai.com';
 
 export const metadata: Metadata = {
-  title: 'SafeVixAI - AI-Powered Road Safety',
+  title: {
+    template: '%s | SafeVixAI',
+    default: 'SafeVixAI - AI-Powered Road Safety',
+  },
   description:
     'Find nearest hospitals, police stations and ambulances instantly. AI chatbot for road laws and first aid. Works offline. IIT Madras Road Safety Hackathon 2026.',
   keywords: ['road safety', 'emergency', 'hospital finder', 'traffic laws', 'first aid', 'accident help', 'India'],
@@ -30,6 +33,16 @@ export const metadata: Metadata = {
     title: 'SafeVixAI - AI-Powered Road Safety',
     description: 'Emergency help, AI legal assistant and road reporter. Works offline.',
     type: 'website',
+    siteName: 'SafeVixAI',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SafeVixAI - AI-Powered Road Safety',
+    description: 'Emergency help, AI legal assistant and road reporter. Works offline.',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
