@@ -16,7 +16,14 @@ test.describe('Offline/PWA Tests', () => {
 
   test('service worker registration', async ({ page }) => {
     await page.goto('/');
-    await page.waitForTimeout(2000);
+    await page.waitForFunction(
+      async () => {
+        if (!('serviceWorker' in navigator)) return false;
+        const registration = await navigator.serviceWorker.getRegistration();
+        return !!registration;
+      },
+      { timeout: 15000 }
+    ).catch(() => null);
     
     const swRegistered = await page.evaluate(async () => {
       if ('serviceWorker' in navigator) {
@@ -67,7 +74,15 @@ test.describe('Offline/PWA Tests', () => {
     ).toBeVisible({ timeout: 15000 });
 
     await page.context().setOffline(true);
-    await page.waitForTimeout(500);
+    const isOffline = await page.evaluate(async () => {
+      try {
+        await fetch('/manifest.json', { cache: 'no-store' });
+        return false;
+      } catch {
+        return true;
+      }
+    });
+    expect(isOffline).toBe(true);
 
     await page.context().setOffline(false);
     await page.reload({ waitUntil: 'domcontentloaded' });

@@ -16,7 +16,7 @@ SafeVixAI is an emergency app. Every design decision must prioritize:
 
 | Token | Hex | Usage |
 |---|---|---|
-| `bg-primary` | `#0A1628` | Main background  deep navy |
+| `bg-primary` | `#0A1628` | Main background — deep navy |
 | `bg-secondary` | `#132035` | Card backgrounds |
 | `bg-tertiary` | `#1C2D4A` | Input backgrounds, borders |
 | `accent-green` | `#00C896` | Primary CTA, success states |
@@ -69,7 +69,7 @@ SafeVixAI is an emergency app. Every design decision must prioritize:
 ## Components
 
 ### SOS Button
-- Size: 64 - 64px, position: fixed bottom-right, z-index: 50
+- Size: 64×64px, position: fixed bottom-right, z-index: 50
 - Color: `#E53E3E` (accent-red) with glow shadow
 - Animation: pulse ring on idle (draws attention without being annoying)
 - Long-press alternative for accessibility: 2-second halo fill animation
@@ -95,7 +95,7 @@ SafeVixAI is an emergency app. Every design decision must prioritize:
 - Border radius: 16px
 - Background while loading: `#1C2D4A` with pulse animation
 - Attribution: always visible (OSM license requirement)
-- Tile URL: CartoDB Dark `cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png`
+- Tile URL: CartoDB Dark `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png`
 
 ### Service Card
 - Background: `#132035`, border-radius: 12px, padding: 16px
@@ -226,7 +226,7 @@ const MARKER_COLORS = {
 
 | Requirement | Implementation |
 |---|---|
-| Minimum touch target | 44 - 44px for all interactive elements |
+| Minimum touch target | 44×44px for all interactive elements |
 | Contrast ratio | WCAG AA  all text > 4.5:1 against background |
 | Font scaling | All sizes in `rem`  scales with browser font-size preference |
 | Screen reader | `aria-label` on all icon buttons, `role="status"` on connectivity badge |
