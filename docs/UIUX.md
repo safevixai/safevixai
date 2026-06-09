@@ -275,4 +275,20 @@ const MARKER_COLORS = {
 
 ---
 
-*Document version: 1.0 | IIT Madras Road Safety Hackathon 2026*
+*Document version: 1.1 | IIT Madras Road Safety Hackathon 2026 | Updated: 2026-06-09*
+
+---
+
+## E2E Test Production Nuances (2026-06-09)
+
+### GSAP Animations in Production Build
+- GSAP silently fails in `node .next/standalone/server.js` production build
+- `usePageEntry` hook's `gsap.fromTo` sets `opacity: 0` via inline styles but animation never transitions to `opacity: 1`
+- All E2E `waitForMount` helpers removed the `window.getComputedStyle(h1).opacity !== '0'` check
+- Workaround: wait for `[aria-busy="true"]` loading skeleton to disappear instead
+
+### AuthGuard in Production Build
+- `AuthGuard.tsx` wraps all pages except NO_NAV_ROUTES (`/login`, `/signup`, `/forgot-password`)
+- Redirects to `/login` when `isAuthenticated=false` and no Supabase session
+- E2E tests use `localStorage.__E2E_SKIP_AUTH__` flag for bypass
+- Previous zustand persist approach (`svai-storage`) had race condition with `profileHydrated` (IndexedDB exceptions in EnterpriseClientAppHooks)

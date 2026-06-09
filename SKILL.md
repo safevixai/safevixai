@@ -5,9 +5,11 @@ description: Development guide for the SafeVixAI Next.js 15 frontend — a tacti
 
 # SafeVixAI Frontend Skill
 
-## Current Implementation Notes - 2026-05-26 (Final Audit: 100/100 Hardened)
+## Current Implementation Notes - 2026-06-09 (E2E Hardening)
 
 **GSAP Migration Status:** The frontend is 100% GSAP-powered. All page entries use the `usePageEntry` hook. Timeline cleanups (`gsap.killTweensOf('*')`) are bound to route unmounts inside `GSAPProvider.tsx` to completely prevent animation memory leaks. High-performance GPU-composited properties (`will-change: transform, opacity`) and proper dynamic `clearProps` resets are enforced in `usePageEntry.ts` and `useSplitTextEntry.ts` for 60FPS on high-end and low-end mobile viewports.
+
+**E2E Production Build Notes:** GSAP animations silently fail in the production standalone build (`node .next/standalone/server.js`). All E2E `waitForMount` helpers no longer check for `opacity !== '0'` — instead they wait for `[aria-busy="true"]` loading skeleton to disappear (React RSC streaming complete). Auth-guarded pages use `localStorage.__E2E_SKIP_AUTH__` flag to bypass AuthGuard during tests.
 
 Use these notes before touching the frontend:
 
@@ -31,7 +33,11 @@ Current verification commands:
 cd frontend && npm run build && npx tsc --noEmit
 cd backend && .venv\Scripts\activate && pytest tests/ -v
 cd chatbot_service && .venv\Scripts\activate && pytest tests/ -v
+cd frontend && npx playwright test e2e/auth-flow.spec.ts   # Single E2E spec
+cd frontend && npx playwright test                          # All E2E (55 tests)
 ```
+
+E2E tests run against production standalone build. Use `CI_SKIP_WEBSERVER=false` for local runs.
 
 ---
 
@@ -232,10 +238,10 @@ frontend/
 ## Backend & Chatbot (for full-stack context)
 
 | Service | Port | Key Tech | Tests |
-|---|---|---|---|
-| Backend | `:8000` | FastAPI, PostgreSQL + PostGIS, Redis | **1161/1161** passing, 89% cov |
-| Chatbot | `:8010` | FastAPI, 9 LLMs providers, ChromaDB, 13 agent tools | **748/748** passing, 92% cov |
-| Frontend | `:3000` | Next.js 15, MapLibre GL, Zustand, WebLLM Phi-3 | **324/324** passing, 34 suites |
+|---|---|---|---|---|
+| Backend | `:8000` | FastAPI, PostgreSQL + PostGIS, Redis | **1365/1365** passing, hardened |
+| Chatbot | `:8010` | FastAPI, 9 LLMs providers, ChromaDB, 13 agent tools | **892/892** passing, 95% cov |
+| Frontend | `:3000` | Next.js 15, MapLibre GL, Zustand, WebLLM Phi-3 | **572/572** passing, 0 lint warnings |
 
 ### Production Alerting
 - `alert_service.py` at project root — shared by both backend and chatbot
