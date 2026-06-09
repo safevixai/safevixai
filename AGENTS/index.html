@@ -679,6 +679,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#enterprise-hardening-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enterprise Hardening Log
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enterprise Hardening Log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2026-06-09-batch-1-p0p1-fixes-all-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-09 — Batch 1: P0/P1 Fixes (All Areas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#current-agent-brief-2026-06-09-e2e-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1928,6 +1956,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#enterprise-hardening-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enterprise Hardening Log
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enterprise Hardening Log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2026-06-09-batch-1-p0p1-fixes-all-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-09 — Batch 1: P0/P1 Fixes (All Areas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#current-agent-brief-2026-06-09-e2e-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2506,6 +2562,44 @@
 <p>Compact instruction file for AI coding agents (OpenCode, Copilot, Cursor, etc.).
 Every section answers: "Would an agent likely get this wrong without help?"</p>
 </blockquote>
+<p><strong>Last Updated: 2026-06-09</strong></p>
+<hr />
+<h2 id="enterprise-hardening-log">Enterprise Hardening Log</h2>
+<h3 id="2026-06-09-batch-1-p0p1-fixes-all-areas">2026-06-09 — Batch 1: P0/P1 Fixes (All Areas)</h3>
+<p><strong>Frontend:</strong>
+- Added 24 route-level SEO metadata layouts (title, description, OG, Twitter tags)
+- Added 28 route-level error.tsx boundaries (was 4 missing)
+- Fixed XSS vulnerability in <code>useSplitTextEntry.ts</code> — replaced <code>innerHTML</code> with safe DOM API
+- Fixed profile data loss on refresh — IndexedDB rehydration in Zustand persist
+- PostHog analytics now waits for user opt-in consent (GDPR)
+- <code>public-env.ts</code> degrades gracefully instead of crashing at module import</p>
+<p><strong>Backend:</strong>
+- Fixed <code>REFESH</code> → <code>REFRESH</code> typo in <code>security.py</code>
+- Removed JS-ism methods (<code>.trim()</code>, <code>.substring()</code>) from <code>i18n_middleware.py</code>
+- Added security logging for JWT-in-URL pattern in tracking/live_tracking endpoints
+- Fixed Redis connection leak in idempotency middleware — in-memory fallback
+- Replaced manual base64 JWT decode with <code>jwt.decode()</code> in logging middleware</p>
+<p><strong>Chatbot Service:</strong>
+- Moved provider validation from module-import-time to lifespan (app no longer crashes on import)
+- Fixed shared mutable <code>httpx.AsyncClient</code> — class var → instance var
+- Fixed Sarvam 30B→2B model mapping bug — now correctly routes to <code>sarvam-30b</code>
+- Removed ~150 lines of code duplication in <code>GroqProvider</code> (delegates to <code>super()</code>)
+- Removed ~130 lines of dead code in <code>ContextAssembler</code> (3 unused methods)
+- Added <code>asyncio.wait_for()</code> timeout handling on chat/stream endpoints</p>
+<p><strong>Infrastructure:</strong>
+- Created <code>frontend/.dockerignore</code> (excludes node_modules, .next, coverage, etc.)
+- Created <code>k8s/namespace.yaml</code> (safevixai) and <code>k8s/ingress.yaml</code> (NGINX ingress)
+- Created <code>.pre-commit-config.yaml</code> (ruff, black, eslint hooks)
+- Created <code>Makefile</code> (14 targets: setup, test, lint, build, docker, deploy, etc.)
+- Fixed <code>db-backup.yml</code> — added production database backup job
+- Removed <code>continue-on-error: true</code> from gitleaks (now fails on secret detection)
+- Added <code>--cov</code> to chatbot CI pytest run
+- Docker build now uses Buildx + GHCR caching (layer caching)</p>
+<p><strong>Documentation:</strong>
+- Updated 5 stale analysis docs with SNAPSHOT banners + 11→9 providers
+- Updated 5 wiki files with corrected 9-provider chain
+- Fixed DESIGN.md UX 100/100 → aspirational target
+- Added <code>Last Updated</code> timestamp to AGENTS.md</p>
 <hr />
 <h2 id="current-agent-brief-2026-06-09-e2e-hardening">Current Agent Brief - 2026-06-09 (E2E Hardening)</h2>
 <p>Treat this section as the operational truth before changing code.</p>

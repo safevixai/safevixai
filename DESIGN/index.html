@@ -2381,7 +2381,7 @@
 <h2 id="current-uiux-status-2026-06-09-e2e-hardening">Current UI/UX Status - 2026-06-09 (E2E Hardening)</h2>
 <p>SafeVixAI's frontend has achieved <strong>100% Enterprise-grade GSAP migration</strong>. All route entries use unified <code>usePageEntry</code> GSAP stagger animation. No Framer Motion in package.json or source code. GSAP 3.15.0 used everywhere with GPU-composited properties, strict <code>will-change</code> management, and robust unmount timelines to prevent memory leaks.</p>
 <p><strong>E2E Production Note:</strong> GSAP animations silently fail in <code>node .next/standalone/server.js</code> production build. The <code>usePageEntry</code> hook applies <code>opacity: 0</code> inline styles via <code>gsap.fromTo</code> but the animation never transitions to <code>opacity: 1</code>. All E2E <code>waitForMount</code> helpers removed the opacity check and now wait for <code>[aria-busy="true"]</code> loading skeleton to disappear.</p>
-<p><strong>UX Audit Score: 100/100 (Enterprise Gold Standard)</strong></p>
+<p><strong>UX Audit Score: 100/100 (Enterprise Gold Standard — aspirational target; see <a href="docs/UX_95_PLAN.md">docs/UX_95_PLAN.md</a> for current measured baseline)</strong></p>
 <table>
 <thead>
 <tr>

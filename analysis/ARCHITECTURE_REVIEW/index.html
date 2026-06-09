@@ -1481,6 +1481,7 @@
 
 <h1 id="safevixai-architecture-review-updated-2026-05-26">SafeVixAI — Architecture Review (Updated 2026-05-26)</h1>
 <blockquote>
+<p><strong>SNAPSHOT</strong>: This document reflects the state as of 2026-05-26. For current state see <a href="../../AGENTS.md">AGENTS.md</a>.</p>
 <p>Verified against actual codebase. Corrections to prior audit noted.</p>
 </blockquote>
 <hr />
@@ -1495,7 +1496,7 @@
 </ul>
 <h3 id="resilience">Resilience</h3>
 <ul>
-<li><strong>11-provider LLM fallback chain</strong>: Groq → Cerebras → Sarvam → GitHub → Gemini → NVIDIA → OpenRouter → Mistral → Together → Template (deterministic)</li>
+<li><strong>9-provider LLM fallback chain</strong>: Groq → Cerebras → Gemini → GitHub Models → NVIDIA NIM → OpenRouter → Mistral → Together → Template (deterministic)</li>
 <li><strong>3-tier emergency data</strong>: PostGIS DB (~50k facilities) → Local CSV → Overpass API</li>
 <li><strong>3-tier offline challan</strong>: DuckDB-Wasm → CSV parser → Dict in-memory fallback</li>
 <li><strong>Circuit breakers</strong>: Per-provider graduated cooldowns (60s for timeout → 24h for quota exhaustion)</li>

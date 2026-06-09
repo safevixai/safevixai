@@ -1380,6 +1380,9 @@
 
 
 <h1 id="safevixai-production-readiness-report">SafeVixAI — Production Readiness Report</h1>
+<blockquote>
+<p><strong>SNAPSHOT</strong>: This document reflects the state as of 2026-05-26. For current state see <a href="../../AGENTS.md">AGENTS.md</a>.</p>
+</blockquote>
 <p><strong>Date:</strong> 2026-05-26<br />
 <strong>Auditor:</strong> Enterprise codebase review<br />
 <strong>Decision:</strong> CONDITIONAL GO (hackathon) | NO-GO (production without fixes)</p>
@@ -1491,7 +1494,7 @@
 </tr>
 <tr>
 <td>AI Chatbot</td>
-<td>11-provider LLM, ChromaDB RAG, 13 tools</td>
+<td>9-provider LLM, ChromaDB RAG, 13 tools</td>
 <td>✅</td>
 </tr>
 <tr>
@@ -1609,7 +1612,7 @@
 - Accept credential-in-git risk (private repo + rotate after event)
 - All 25 features are demonstrable
 - Core safety features (SOS, crash detection, offline queue) fully functional
-- Chatbot works with any of 11 providers</p>
+- Chatbot works with any of 9 providers</p>
 <p><strong>For Real Production:</strong> ❌ NO-GO until:
 1. All .env credentials rotated and git-cleaned
 2. RBAC enforced on all admin/operator endpoints

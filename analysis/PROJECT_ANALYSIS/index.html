@@ -1420,6 +1420,7 @@
 
 <h1 id="safevixai-complete-project-analysis-updated-2026-05-26">SafeVixAI — Complete Project Analysis (Updated 2026-05-26)</h1>
 <blockquote>
+<p><strong>SNAPSHOT</strong>: This document reflects the state as of 2026-05-26. For current state see <a href="../../AGENTS.md">AGENTS.md</a>.</p>
 <p>Deep codebase exploration complete. Contains verified ground truth (not audit tool assumptions).</p>
 </blockquote>
 <hr />
@@ -1440,7 +1441,7 @@ Total infra cost: ₹0.</p>
 </tr>
 <tr>
 <td>AI Chatbot</td>
-<td>11-provider LLM fallback chain, ChromaDB RAG (Motor Vehicles Act + first-aid + accident data), 13 agent tools</td>
+<td>9-provider LLM fallback chain, ChromaDB RAG (Motor Vehicles Act + first-aid + accident data), 13 agent tools</td>
 </tr>
 <tr>
 <td>Challan Calculator</td>
@@ -1657,7 +1658,7 @@ Total infra cost: ₹0.</p>
 <h2 id="6-operationally-critical-workflows">6. Operationally Critical Workflows</h2>
 <ol>
 <li><strong>Emergency SOS Dispatch</strong> — Must work with POST, offline via IndexedDB queue, auto-flush on reconnect</li>
-<li><strong>Chatbot LLM Generation</strong> — 11 providers in chain, TemplateProvider as final deterministic fallback</li>
+<li><strong>Chatbot LLM Generation</strong> — 9 providers in chain, TemplateProvider as final deterministic fallback</li>
 <li><strong>Crash Detection</strong> — Accelerometer + 20s countdown → auto-dispatch; false positives acceptable, false negatives not</li>
 <li><strong>Database Migration</strong> — 18 Alembic versions, PostgreSQL+PostGIS required, RLS policies applied</li>
 <li><strong>Offline Data Sync</strong> — SOS + road report queues in IndexedDB v2, per-item atomic delete-after-send</li>
