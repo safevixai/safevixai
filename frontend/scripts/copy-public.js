@@ -33,6 +33,25 @@ if (fs.existsSync(duckdbDist)) {
   console.warn('⚠ @duckdb/duckdb-wasm dist not found, skipping DuckDB asset copy');
 }
 
+const copyRecursive = (src, dest) => {
+  const stats = fs.statSync(src);
+  if (stats.isDirectory()) {
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest, { recursive: true });
+    }
+    const entries = fs.readdirSync(src);
+    for (const entry of entries) {
+      copyRecursive(path.join(src, entry), path.join(dest, entry));
+    }
+  } else {
+    try {
+      fs.copyFileSync(src, dest);
+    } catch (err) {
+      console.error(`  Failed to copy ${path.basename(src)}: ${err.code}`);
+    }
+  }
+};
+
 if (fs.existsSync(publicDir)) {
   const standalonePublicDir = path.join(frontendRoot, '.next', 'standalone', 'public');
 
@@ -43,26 +62,6 @@ if (fs.existsSync(publicDir)) {
     if (!fs.existsSync(path.dirname(standalonePublicDir))) {
       fs.mkdirSync(path.dirname(standalonePublicDir), { recursive: true });
     }
-
-    // Copy all files and directories from public to standalone/public
-    const copyRecursive = (src, dest) => {
-      const stats = fs.statSync(src);
-      if (stats.isDirectory()) {
-        if (!fs.existsSync(dest)) {
-          fs.mkdirSync(dest, { recursive: true });
-        }
-        const entries = fs.readdirSync(src);
-        for (const entry of entries) {
-          copyRecursive(path.join(src, entry), path.join(dest, entry));
-        }
-      } else {
-        try {
-          fs.copyFileSync(src, dest);
-        } catch (err) {
-          console.error(`  Failed to copy ${path.basename(src)}: ${err.code}`);
-        }
-      }
-    };
 
     const entries = fs.readdirSync(publicDir);
     for (const entry of entries) {
@@ -77,4 +76,22 @@ if (fs.existsSync(publicDir)) {
   }
 } else {
   console.warn('⚠ public/ directory not found, skipping copy');
+}
+
+// Copy .next/static to standalone build directory
+const staticDir = path.join(frontendRoot, '.next', 'static');
+if (fs.existsSync(staticDir)) {
+  const standaloneStaticDir = path.join(frontendRoot, '.next', 'standalone', '.next', 'static');
+  if (fs.existsSync(standaloneStaticDir)) {
+    console.log('✓ Standalone static/ already exists (skipped)');
+  } else {
+    try {
+      copyRecursive(staticDir, standaloneStaticDir);
+      console.log('✓ Copied static/ to .next/standalone/.next/static/');
+    } catch (err) {
+      console.error(`  Failed to copy static/ to standalone: ${err.code}`);
+    }
+  }
+} else {
+  console.warn('⚠ .next/static directory not found, skipping copy');
 }

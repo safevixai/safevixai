@@ -15,7 +15,8 @@ export function SystemStatusBar() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const dismissed = sessionStorage.getItem('svai-status-dismissed') === 'true';
+      const dismissed = sessionStorage.getItem('svai-status-dismissed') === 'true' ||
+                        localStorage.getItem('__E2E_SKIP_AUTH__') === 'true';
       setIsDismissed(dismissed);
     }
 

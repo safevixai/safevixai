@@ -43,11 +43,11 @@ test.describe('Offline/PWA Tests', () => {
     await page.goto('/sos');
     await waitForMount(page, 'SOS');
     await expect(page.locator('main').first()).toBeVisible();
-    await expect(page.getByText(/Hold to Activate|SOS|Emergency/i)).toBeVisible();
+    await expect(page.getByText(/Hold to Activate|SOS|Emergency/i).first()).toBeVisible();
 
     await page.context().setOffline(true);
 
-    await expect(page.getByText(/Hold to Activate|SOS|Emergency/i)).toBeVisible();
+    await expect(page.getByText(/Hold to Activate|SOS|Emergency/i).first()).toBeVisible();
 
     await page.context().setOffline(false);
   });
