@@ -735,10 +735,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-implementation-notes-2026-05-26-final-audit-100100-hardened" class="md-nav__link">
+  <a href="#current-implementation-notes-2026-06-09-e2e-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Implementation Notes - 2026-05-26 (Final Audit: 100/100 Hardened)
+        Current Implementation Notes - 2026-06-09 (E2E Hardening)
       
     </span>
   </a>
@@ -1573,10 +1573,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-implementation-notes-2026-05-26-final-audit-100100-hardened" class="md-nav__link">
+  <a href="#current-implementation-notes-2026-06-09-e2e-hardening" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Implementation Notes - 2026-05-26 (Final Audit: 100/100 Hardened)
+        Current Implementation Notes - 2026-06-09 (E2E Hardening)
       
     </span>
   </a>
@@ -1792,8 +1792,9 @@
 
 
 <h1 id="safevixai-frontend-skill">SafeVixAI Frontend Skill</h1>
-<h2 id="current-implementation-notes-2026-05-26-final-audit-100100-hardened">Current Implementation Notes - 2026-05-26 (Final Audit: 100/100 Hardened)</h2>
+<h2 id="current-implementation-notes-2026-06-09-e2e-hardening">Current Implementation Notes - 2026-06-09 (E2E Hardening)</h2>
 <p><strong>GSAP Migration Status:</strong> The frontend is 100% GSAP-powered. All page entries use the <code>usePageEntry</code> hook. Timeline cleanups (<code>gsap.killTweensOf('*')</code>) are bound to route unmounts inside <code>GSAPProvider.tsx</code> to completely prevent animation memory leaks. High-performance GPU-composited properties (<code>will-change: transform, opacity</code>) and proper dynamic <code>clearProps</code> resets are enforced in <code>usePageEntry.ts</code> and <code>useSplitTextEntry.ts</code> for 60FPS on high-end and low-end mobile viewports.</p>
+<p><strong>E2E Production Build Notes:</strong> GSAP animations silently fail in the production standalone build (<code>node .next/standalone/server.js</code>). All E2E <code>waitForMount</code> helpers no longer check for <code>opacity !== '0'</code> — instead they wait for <code>[aria-busy="true"]</code> loading skeleton to disappear (React RSC streaming complete). Auth-guarded pages use <code>localStorage.__E2E_SKIP_AUTH__</code> flag to bypass AuthGuard during tests.</p>
 <p>Use these notes before touching the frontend:</p>
 <ul>
 <li>Source of truth for public URLs is <code>frontend/lib/public-env.ts</code>.</li>
@@ -1814,7 +1815,10 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npx<span class="w"> </span>tsc<span class="w"> </span>--noEmit
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>backend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>chatbot_service<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">cd</span><span class="w"> </span>frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>e2e/auth-flow.spec.ts<span class="w">   </span><span class="c1"># Single E2E spec</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">cd</span><span class="w"> </span>frontend<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w">                          </span><span class="c1"># All E2E (55 tests)</span>
 </span></code></pre></div>
+<p>E2E tests run against production standalone build. Use <code>CI_SKIP_WEBSERVER=false</code> for local runs.</p>
 <hr />
 <h2 id="what-it-is">What it is</h2>
 <p>A <strong>Next.js 15</strong> (App Router) + <strong>React 19</strong> + <strong>TypeScript</strong> + <strong>Tailwind CSS</strong> frontend for an AI-powered road safety platform. The design system is called <strong>"Tactical Safety Command Terminal"</strong> — a dark-mode-first interface with emerald-green brand accents and red emergency signals, influenced by Linear (sidebar precision) and VoltAgent (terminal energy).</p>
@@ -2072,36 +2076,11 @@
 <li><strong>Never use <code>tracking-[0.3em]</code></strong> — use <code>tracking-widest</code> (0.1em) for overlines</li>
 </ol>
 <h2 id="backend-chatbot-for-full-stack-context">Backend &amp; Chatbot (for full-stack context)</h2>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Port</th>
-<th>Key Tech</th>
-<th>Tests</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Backend</td>
-<td><code>:8000</code></td>
-<td>FastAPI, PostgreSQL + PostGIS, Redis</td>
-<td><strong>1161/1161</strong> passing, 89% cov</td>
-</tr>
-<tr>
-<td>Chatbot</td>
-<td><code>:8010</code></td>
-<td>FastAPI, 9 LLMs providers, ChromaDB, 13 agent tools</td>
-<td><strong>748/748</strong> passing, 92% cov</td>
-</tr>
-<tr>
-<td>Frontend</td>
-<td><code>:3000</code></td>
-<td>Next.js 15, MapLibre GL, Zustand, WebLLM Phi-3</td>
-<td><strong>324/324</strong> passing, 34 suites</td>
-</tr>
-</tbody>
-</table>
+<p>| Service | Port | Key Tech | Tests |
+|---|---|---|---|---|
+| Backend | <code>:8000</code> | FastAPI, PostgreSQL + PostGIS, Redis | <strong>1365/1365</strong> passing, hardened |
+| Chatbot | <code>:8010</code> | FastAPI, 9 LLMs providers, ChromaDB, 13 agent tools | <strong>892/892</strong> passing, 95% cov |
+| Frontend | <code>:3000</code> | Next.js 15, MapLibre GL, Zustand, WebLLM Phi-3 | <strong>572/572</strong> passing, 0 lint warnings |</p>
 <h3 id="production-alerting">Production Alerting</h3>
 <ul>
 <li><code>alert_service.py</code> at project root — shared by both backend and chatbot</li>

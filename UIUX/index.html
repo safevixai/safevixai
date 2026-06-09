@@ -1403,6 +1403,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#e2e-test-production-nuances-2026-06-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E2E Test Production Nuances (2026-06-09)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E2E Test Production Nuances (2026-06-09)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gsap-animations-in-production-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GSAP Animations in Production Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authguard-in-production-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AuthGuard in Production Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1971,6 +2010,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#e2e-test-production-nuances-2026-06-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E2E Test Production Nuances (2026-06-09)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E2E Test Production Nuances (2026-06-09)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gsap-animations-in-production-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GSAP Animations in Production Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authguard-in-production-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AuthGuard in Production Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2430,7 +2508,23 @@
 </tbody>
 </table>
 <hr />
-<p><em>Document version: 1.0 | IIT Madras Road Safety Hackathon 2026</em></p>
+<p><em>Document version: 1.1 | IIT Madras Road Safety Hackathon 2026 | Updated: 2026-06-09</em></p>
+<hr />
+<h2 id="e2e-test-production-nuances-2026-06-09">E2E Test Production Nuances (2026-06-09)</h2>
+<h3 id="gsap-animations-in-production-build">GSAP Animations in Production Build</h3>
+<ul>
+<li>GSAP silently fails in <code>node .next/standalone/server.js</code> production build</li>
+<li><code>usePageEntry</code> hook's <code>gsap.fromTo</code> sets <code>opacity: 0</code> via inline styles but animation never transitions to <code>opacity: 1</code></li>
+<li>All E2E <code>waitForMount</code> helpers removed the <code>window.getComputedStyle(h1).opacity !== '0'</code> check</li>
+<li>Workaround: wait for <code>[aria-busy="true"]</code> loading skeleton to disappear instead</li>
+</ul>
+<h3 id="authguard-in-production-build">AuthGuard in Production Build</h3>
+<ul>
+<li><code>AuthGuard.tsx</code> wraps all pages except NO_NAV_ROUTES (<code>/login</code>, <code>/signup</code>, <code>/forgot-password</code>)</li>
+<li>Redirects to <code>/login</code> when <code>isAuthenticated=false</code> and no Supabase session</li>
+<li>E2E tests use <code>localStorage.__E2E_SKIP_AUTH__</code> flag for bypass</li>
+<li>Previous zustand persist approach (<code>svai-storage</code>) had race condition with <code>profileHydrated</code> (IndexedDB exceptions in EnterpriseClientAppHooks)</li>
+</ul>
 
 
 
