@@ -80,9 +80,13 @@ const contentSecurityPolicy = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // D5: Enable standalone output so the Dockerfile can use .next/standalone
-  // (copies only production-required node_modules into the final image).
   output: 'standalone',
+  outputFileTracingExcludes: {
+    '*': [
+      'node_modules/onnxruntime-node/**/*',
+      'node_modules/@huggingface/transformers/**/*',
+    ],
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
@@ -161,8 +165,16 @@ const nextConfig = {
       },
     ];
   },
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.resolve.fallback = { fs: false, path: false };
+
+    if (isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'onnxruntime-node': false,
+        '@huggingface/transformers': false,
+      };
+    }
 
     // Transformers.js runs models via WebAssembly and offloads to Web Workers.
     // Without this, Next.js blocks both and the offline AI will not load.
