@@ -1690,10 +1690,11 @@ class TestCommandCenterCoverage:
 class TestTrackingCoverage:
 
     def test_origin_allowed_production_blocked(self, monkeypatch):
-        from api.v1.tracking import _origin_allowed
         monkeypatch.setenv("ENVIRONMENT", "production")
+        monkeypatch.setenv("CORS_ORIGINS", "https://example.com")
         from core.config import get_settings
         get_settings.cache_clear()
+        from api.v1.tracking import _origin_allowed
         assert not _origin_allowed(None)
         get_settings.cache_clear()
 

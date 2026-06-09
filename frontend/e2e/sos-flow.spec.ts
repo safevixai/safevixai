@@ -8,10 +8,9 @@ test.describe('SOS and family tracking flow', () => {
     await context.grantPermissions(['geolocation']);
     await context.setGeolocation({ latitude: 13.0827, longitude: 80.2707 });
     await page.addInitScript(() => {
+      localStorage.setItem('__E2E_SKIP_AUTH__', 'true');
       localStorage.setItem('svai-storage', JSON.stringify({
         state: {
-          isAuthenticated: true,
-          operatorName: 'E2E SafeVix User',
           userProfile: {
             name: 'E2E SafeVix User',
             bloodGroup: 'O+',

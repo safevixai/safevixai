@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAppStore } from '@/lib/store';
 
 let _hydrated = false;
 const _listeners = new Set<(v: boolean) => void>();

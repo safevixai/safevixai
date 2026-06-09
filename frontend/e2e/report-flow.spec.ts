@@ -10,10 +10,7 @@ async function waitForMount(page: any) {
 test.describe('Road Report Flow', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('svai-storage', JSON.stringify({
-        state: { isAuthenticated: true, operatorName: 'E2E Test User' },
-        version: 0,
-      }));
+      localStorage.setItem('__E2E_SKIP_AUTH__', 'true');
     });
     await page.goto('/report');
     await page.waitForLoadState('networkidle');

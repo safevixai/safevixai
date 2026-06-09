@@ -3,10 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Offline/PWA Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('svai-storage', JSON.stringify({
-        state: { isAuthenticated: true, operatorName: 'E2E Test User' },
-        version: 0,
-      }));
+      localStorage.setItem('__E2E_SKIP_AUTH__', 'true');
     });
   });
 

@@ -21,7 +21,11 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   );
   const [checking, setChecking] = useState(true);
 
+  // E2E test bypass: when __E2E_SKIP_AUTH__ is set in localStorage, skip auth checks
+  const skipAuth = typeof window !== 'undefined' && window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true';
+
   useEffect(() => {
+    if (skipAuth) return;
     if (!hydrated || !profileHydrated) return;
 
     async function checkSession() {
@@ -51,7 +55,11 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     }
 
     checkSession();
-  }, [isAuthenticated, hydrated, profileHydrated, router, setAuth, setUserProfile, setAuthToken]);
+  }, [isAuthenticated, hydrated, profileHydrated, router, setAuth, setUserProfile, setAuthToken, skipAuth]);
+
+  if (skipAuth) {
+    return <>{children}</>;
+  }
 
   if (checking && !isAuthenticated) {
     return (
