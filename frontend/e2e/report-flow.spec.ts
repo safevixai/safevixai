@@ -15,7 +15,7 @@ test.describe('Road Report Flow', () => {
       localStorage.setItem('__E2E_SKIP_AUTH__', 'true');
     });
     await page.goto('/report');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     await waitForMount(page);
   });
 

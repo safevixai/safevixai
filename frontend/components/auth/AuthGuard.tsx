@@ -78,7 +78,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
         }
       }
 
-      router.replace('/login');
+      router.replace('/landing');
     }
 
     checkSession();
