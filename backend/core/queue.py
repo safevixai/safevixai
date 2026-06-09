@@ -8,6 +8,14 @@ import time
 from typing import Any, Callable, Optional
 
 from redis.asyncio import Redis
+
+import sys
+from pathlib import Path
+for parent in Path(__file__).resolve().parents:
+    if (parent / 'alert_service.py').exists():
+        if str(parent) not in sys.path:
+            sys.path.insert(0, str(parent))
+        break
 from alert_service import get_alert_service
 
 logger = logging.getLogger("safevixai.queue")
