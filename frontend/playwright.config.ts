@@ -23,7 +23,7 @@ const webServerCommand = useStandalone
 
 export default defineConfig({
   testDir: '.',
-  testMatch: ['e2e/**/*.spec.ts', 'tests/a11y/**/*.spec.ts'],
+  testMatch: ['e2e/**/*.spec.ts', 'tests/a11y/**/*.spec.ts', 'tests/api-contract.spec.ts'],
   timeout: 60_000,
   expect: {
     timeout: 30_000,
