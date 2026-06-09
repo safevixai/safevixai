@@ -50,6 +50,8 @@ numpy==2.4.6
 # --- Document loading ---
 pypdf==6.13.0
 pdfplumber==0.11.9
+Pillow==12.2.0
+
 
 # --- Testing ---
 pytest==9.0.3
