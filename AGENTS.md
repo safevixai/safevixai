@@ -137,9 +137,9 @@ SafeVixAI/
 ├── alert_service.py         📧 Production email alerting (LLM/API/Supabase failures → 3 solutions)
 ├── backend/                 FastAPI :8000
 │   ├── main.py              App factory (create_app → lifespan → services)
-│   ├── api/v1/              13 route modules (auth, challan, chat, emergency, geocode, live_tracking, mcp_server, offline, roadwatch, routing, tracking, user, waze_feed)
+│   ├── api/v1/              25 route modules (admin, analytics, auth, authority, challan, chat, circuit_breaker_api, citizen, civic_intel, command_center, emergency, field_workflow, garage, geocode, live_tracking, mcp_server, offline, officers, public, roadwatch, routing, tracking, user, wards, waze_feed)
 │   ├── core/                config.py (pydantic-settings), database.py (async SQLAlchemy), redis_client.py, security.py (JWT), limiter.py (slowapi rate limiting)
-│   ├── services/            14 service modules (authority_router, challan_service, emergency_locator, exceptions, geocoding_service, llm_service, local_emergency_catalog, osm_contributor, overpass_service, roadwatch_service, routing_service, safe_routing, safe_spaces)
+│   ├── services/            14 service modules (authority_router, challan_service, emergency_locator, exceptions, geocoding_service, llm_service, local_emergency_catalog, notification_service, osm_contributor, overpass_service, roadwatch_service, routing_service, safe_routing, safe_spaces)
 │   ├── models/              SQLAlchemy ORM + Pydantic schemas (schemas.py has ALL request/response types)
 │   ├── migrations/          Alembic (001_initial_schema.py — creates 6 tables with PostGIS)
 │   ├── scripts/app/         DB seeders (need live Postgres)
@@ -157,9 +157,9 @@ SafeVixAI/
 │   └── data/                chroma_db/ (pre-built vectorstore — COMMITTED, never delete)
 │
 ├── frontend/                Next.js 15 PWA
-│   ├── app/                 17 routes + error.tsx (global error boundary)
-│   │                        /, /assistant, /bystander, /challan, /emergency, /emergency-card/[userId], /first-aid, /locator, /login, /profile, /report, /settings, /share-receive, /sos, /track, /tracking
-│   ├── components/          44 components across 6 subdirs: AppSidebar, ChatInterface, ClientAppHooks, GlobalSOS, SOSButton, PotholeDetector, EnterpriseClientAppHooks, + chat/, dashboard/, maps/, profile/, report/, ui/
+│   ├── app/                 28 routes + error.tsx (global error boundary)
+│   │                        /, /assistant, /bystander, /challan, /command-center, /emergency, /emergency-card/[userId], /first-aid, /forgot-password, /guide, /guide/[slug], /landing, /locator, /login, /offline, /officer, /privacy, /profile, /report, /report/track, /reset-password, /settings, /share-receive, /signup, /sos, /terms, /track/[session_id], /tracking
+│   ├── components/          91 components across 13 subdirs: AppSidebar, ChatInterface, ClientAppHooks, GlobalSOS, SOSButton, PotholeDetector, EnterpriseClientAppHooks, VoiceInput, + auth/, chat/, command-center/, crash/, dashboard/, first-aid/, guide/, maps/, profile/, providers/, report/, search/, ui/
 │   ├── lib/                 28+ modules: api.ts, store.ts, public-env.ts, safety-constants.ts, offline-ai.ts, duckdb-challan.ts, geolocation.ts, offline-sos-queue.ts, crash-detection.ts, live-tracking.ts, client-logger.ts, etc.
 │   └── public/              manifest.json, theme-init.js, icons/ (8 PWA sizes), offline-data/ (GeoJSON, CSV for DuckDB-Wasm)
 │

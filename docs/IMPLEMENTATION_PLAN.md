@@ -285,7 +285,7 @@
 ### 6.3 Add Accessibility Thresholds
 - **Files:** `frontend/tests/a11y/accessibility.spec.ts`
 - **What:**
-  - axe-core scans on all 17 routes
+   - axe-core scans on all 28 routes
   - Maximum violation thresholds (0 critical, 0 serious, <5 moderate)
 
 ### 6.4 Add Lighthouse Performance Budget

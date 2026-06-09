@@ -10,9 +10,11 @@ influenced_by: Linear (sidebar precision + dark depth) + VoltAgent (terminal ene
 
 # SafeVixAI — Complete Design System
 
-## Current UI/UX Status - 2026-05-26 (Final Audit: Score 100/100)
+## Current UI/UX Status - 2026-06-09 (E2E Hardening)
 
 SafeVixAI's frontend has achieved **100% Enterprise-grade GSAP migration**. All route entries use unified `usePageEntry` GSAP stagger animation. No Framer Motion in package.json or source code. GSAP 3.15.0 used everywhere with GPU-composited properties, strict `will-change` management, and robust unmount timelines to prevent memory leaks.
+
+**E2E Production Note:** GSAP animations silently fail in `node .next/standalone/server.js` production build. The `usePageEntry` hook applies `opacity: 0` inline styles via `gsap.fromTo` but the animation never transitions to `opacity: 1`. All E2E `waitForMount` helpers removed the opacity check and now wait for `[aria-busy="true"]` loading skeleton to disappear.
 
 **UX Audit Score: 100/100 (Enterprise Gold Standard)**
 
@@ -343,8 +345,8 @@ padding: 32px; max-width: 400px; margin: 0 auto;
 Contains:
   - SafeVixAI logo (centered, 48px)
   - "Sign In" overline
-  - Email input → "REQUEST OTP" (brand green)
-  - OTP 6-digit input (monospace) → "VERIFY & ENTER" (brand green)
+  - Email input + Password input with "Show" toggle → "Sign In" (brand green)
+  - "Forgot password?" link (below form)
   - Divider "OR"
   - "CONTINUE AS GUEST" ghost button
   - Privacy note: 12px/400/#6B7A8D
@@ -606,8 +608,9 @@ Section 7 — SIGN OUT (conditional, only when authenticated):
 Full-screen: bg #0A0E14, centered card 400px max-width
 SafeVixAI logo + "SafeVixAI" wordmark (centered)
 "OPERATOR AUTHENTICATION" overline
-Email input → "REQUEST OTP" green button
-6-digit OTP input (monospace) → "VERIFY & ENTER" green button
+Email input + Password input (with Show/Hide toggle)
+"Sign In" branded green button
+"Forgot password?" link
 Divider line + "OR"
 "CONTINUE AS GUEST" ghost button
 "Your data stays on your device" privacy note (12px/#6B7A8D)

@@ -111,9 +111,9 @@ All script folders follow the same `app/` vs `data/` split:
 
 | Folder | `app/` | `data/` |
 |---|---|---|
-| `scripts/` | 3 files (DB seeders) | 15 files (fetchers, extractors, verifiers) |
-| `backend/scripts/` | 10 files (DB/Redis/PostGIS loaders) | 7 files (pure data transforms) |
-| `chatbot_service/scripts/` | 1 file (DB wrapper) | 6 files (Pro Overpass fetchers) |
+| `scripts/` | 5 files (DB seeders) | 16 files (fetchers, extractors, verifiers) |
+| `backend/scripts/` | 12 files (DB/Redis/PostGIS loaders) | 22 files (pure data transforms) |
+| `chatbot_service/scripts/` | 2 files (DB wrapper) | 7 files (Pro Overpass fetchers) |
 
 > **`data/`** scripts run standalone with no database. **`app/`** scripts require a live backend stack.
 
