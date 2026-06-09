@@ -1875,7 +1875,7 @@ Sources: <code>docs/analysis/*.md</code> (10 documents)</p>
 <hr />
 <h2 id="system-summary">System Summary</h2>
 <h3 id="architecture">Architecture</h3>
-<p><strong>3 services</strong> — Frontend (Next.js 15 + React 19 PWA, Vercel), Backend (FastAPI + PostGIS, Render), Chatbot (FastAPI + 9 LLM providers, Render). Cost: ₹0 (all free tiers).</p>
+<p><strong>3 services</strong> — Frontend (Next.js 15 + React 19 PWA, Vercel), Backend (FastAPI + PostGIS, Render), Chatbot (FastAPI + 9 LLM providers, Render). Current target cost: ₹0 using free tiers, subject to provider limits (for example, Render monthly free-hour caps under sustained production usage).</p>
 <h3 id="critical-production-systems">Critical Production Systems</h3>
 <ol>
 <li><strong>SOS/Emergency</strong> — Multi-layered: button → double-tap → API → nearby services → family tracking → offline queue</li>
@@ -1964,7 +1964,7 @@ Sources: <code>docs/analysis/*.md</code> (10 documents)</p>
 <li><strong>Files:</strong> <code>backend/core/security.py</code>, <code>backend/core/rbac.py</code>, all <code>api/v1/*.py</code></li>
 <li><strong>What:</strong></li>
 <li>Create <code>require_role(Role)</code> dependency that checks JWT <code>role</code> claim</li>
-<li>Apply to: <code>PATCH /roads/report/{id}/verify</code>, <code>POST /chat/</code>, <code>POST /chat/stream</code></li>
+<li>Apply to: <code>PATCH /roads/report/{id}/verify</code>, <code>POST /api/v1/chat/</code>, <code>POST /api/v1/chat/stream</code></li>
 <li>Apply to: user profile CRUD, live-tracking admin, MCP endpoints</li>
 <li><strong>Verify:</strong> Test 403 on wrong-role token for each secured endpoint</li>
 </ul>
@@ -1981,7 +1981,7 @@ Sources: <code>docs/analysis/*.md</code> (10 documents)</p>
 <ul>
 <li><strong>Files:</strong> <code>frontend/lib/offline-sos-queue.ts</code></li>
 <li><strong>What:</strong></li>
-<li>Remove <code>authToken</code> from queue (use short-lived refresh token if needed)</li>
+<li>Remove <code>authToken</code> from queue; do <strong>not</strong> store access tokens or refresh tokens in IndexedDB/offline queue data. Replay queued SOS only after reconnect using active session auth (or require re-authentication).</li>
 <li>Remove <code>bloodGroup</code>, <code>emergencyContacts</code> from queue (these should stay client-only)</li>
 <li>Store only: <code>{ lat, lon, timestamp, userId? }</code></li>
 <li><strong>Verify:</strong> Check IndexedDB contents → no PII</li>
@@ -2017,7 +2017,7 @@ Sources: <code>docs/analysis/*.md</code> (10 documents)</p>
 <li><strong>What:</strong>
   <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Content</span><span class="o">-</span><span class="n">Security</span><span class="o">-</span><span class="n">Policy</span><span class="p">:</span> <span class="o">&gt;</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="n">default</span><span class="o">-</span><span class="n">src</span> <span class="s1">&#39;self&#39;</span><span class="p">;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="n">script</span><span class="o">-</span><span class="n">src</span> <span class="s1">&#39;self&#39;</span> <span class="s1">&#39;unsafe-inline&#39;</span> <span class="s1">&#39;unsafe-eval&#39;</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="n">script</span><span class="o">-</span><span class="n">src</span> <span class="s1">&#39;self&#39;</span> <span class="s1">&#39;unsafe-inline&#39;</span><span class="p">;</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  <span class="n">style</span><span class="o">-</span><span class="n">src</span> <span class="s1">&#39;self&#39;</span> <span class="s1">&#39;unsafe-inline&#39;</span><span class="p">;</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  <span class="n">img</span><span class="o">-</span><span class="n">src</span> <span class="s1">&#39;self&#39;</span> <span class="n">data</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//*.</span><span class="n">tile</span><span class="o">.</span><span class="n">openstreetmap</span><span class="o">.</span><span class="n">org</span> <span class="n">https</span><span class="p">:</span><span class="o">//*.</span><span class="n">googleapis</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  <span class="n">connect</span><span class="o">-</span><span class="n">src</span> <span class="s1">&#39;self&#39;</span> <span class="n">https</span><span class="p">:</span><span class="o">//*.</span><span class="n">tile</span><span class="o">.</span><span class="n">openstreetmap</span><span class="o">.</span><span class="n">org</span> <span class="n">wss</span><span class="p">:</span><span class="o">//*.</span><span class="n">upstash</span><span class="o">.</span><span class="n">io</span> <span class="n">https</span><span class="p">:</span><span class="o">//*.</span><span class="n">googleapis</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
@@ -2266,7 +2266,7 @@ Sources: <code>docs/analysis/*.md</code> (10 documents)</p>
 </span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>Phase 4 (Infra) ────────────────────────────────────────────────┤
 </span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>  ├── 4.1 SOS retention ── depends on: nothing                   │
 </span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>  ├── 4.2 Versioned Docker ── depends on: nothing                │
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>  ├── 4.3 Migration tests ── depends on: 3.1? optional           │
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>  ├── 4.3 Migration tests ── depends on: nothing           │
 </span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>  ├── 4.4 Security headers ── depends on: nothing                │
 </span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>  └── 4.5 Data deletion API ── depends on: 1.1                   │
 </span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>                                                                │
