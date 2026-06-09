@@ -20,8 +20,7 @@ from models.schemas import (
     EmergencyServiceItem,
     SosResponse,
 )
-from services.exceptions import ExternalServiceError
-from services.exceptions import ServiceValidationError
+from services.exceptions import ExternalServiceError, ServiceValidationError
 from services.local_emergency_catalog import LocalEmergencyEntry, load_local_emergency_catalog
 from services.overpass_service import OverpassService
 

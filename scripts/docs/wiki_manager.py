@@ -21,6 +21,7 @@ Env:
   ALERT_EMAIL_PASSWORD — Gmail App Password for SMTP (optional)
 """
 
+import logging
 import os
 import re
 import sys
@@ -36,9 +37,13 @@ from urllib.error import HTTPError
 
 # Inject project root to sys.path to access alert_service singleton
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+logger = logging.getLogger(__name__)
+
 try:
     from alert_service import get_alert_service
 except Exception:
+    logger.debug("alert_service not available, alerting disabled", exc_info=True)
     get_alert_service = None
 
 # ── Paths ────────────────────────────────────────────────────────────────────
@@ -353,7 +358,7 @@ def discover_wiki_topics():
             for m in re.findall(r'`(\w+(?:[_-]\w+)+)`', text):
                 topics.add(m.replace("-", "_"))
         except Exception:
-            pass
+            logger.debug("Failed to read wiki topic file %s", f, exc_info=True)
     return topics
 
 
@@ -453,7 +458,7 @@ def generate_ast_stub(info):
                         if not node.name.startswith("_"):
                             functions.append(node.name)
             except SyntaxError:
-                pass
+                logger.debug("SyntaxError parsing %s for AST stub", info.get('path', 'unknown'), exc_info=True)
             for m in re.finditer(r'^(?:from|import)\s+(\w+)', text, re.MULTILINE):
                 imp = m.group(1)
                 if imp not in ("os", "sys", "re", "json", "typing", "datetime", "pathlib"):
@@ -469,7 +474,7 @@ def generate_ast_stub(info):
                 if not m.group(1).startswith("."):
                     imports.append(m.group(1))
     except Exception:
-        pass
+        logger.debug("Failed to read source file for AST stub generation", exc_info=True)
 
     desc = docstring.split("\n")[0] if docstring else f"{title} module for the {info['section']} subsystem."
     sections = [f"# {title}\n", f"> Source: `{source}` | Generated: {now}\n", f"## Overview\n\n{desc}\n"]
@@ -547,7 +552,7 @@ def review_generated_doc(content, info, source_code, llm):
                 if hallucinated and len(hallucinated) > 3:
                     issues.append(f"Possibly hallucinated refs: {', '.join(sorted(hallucinated)[:5])}")
             except SyntaxError:
-                pass  # Can't parse — skip name check
+                logger.debug("SyntaxError parsing source for review name check", exc_info=True)
 
     # ── Minimal quality check ───────────────────────────────────────────
     if content.count("#") < 2:
@@ -610,7 +615,7 @@ def check_staleness():
             if issues:
                 stale_files.append((f.relative_to(ROOT), issues))
         except Exception:
-            pass
+            logger.debug("Failed to read wiki file %s for staleness check", f, exc_info=True)
     return stale_files
 
 
@@ -712,7 +717,7 @@ def run_fix():
                 files_fixed += 1
                 print(f"  Fixed: docs/{f.name} ({count} lines)")
         except Exception:
-            pass
+            logger.debug("Failed to fix stale refs in docs/%s", f.name, exc_info=True)
 
     # Fix root MD files
     for name in ["AGENTS.md", "README.md", "DESIGN.md", "SETUP.md", "SKILL.md"]:
@@ -739,7 +744,7 @@ def run_fix():
                 files_fixed += 1
                 print(f"  Fixed: {name} ({count} lines)")
         except Exception:
-            pass
+            logger.debug("Failed to fix stale refs in %s", name, exc_info=True)
 
     print(f"\n  Total: {total_fixes} fixes across {files_fixed} files")
     return total_fixes
@@ -858,7 +863,7 @@ def run_update():
                                     error_msg=f"Updated {updated} files before failure. Chain: {', '.join(llm._providers)}"
                                 )
                             except Exception:
-                                pass
+                                logger.debug("Failed to send wiki generation alert", exc_info=True)
                         break
 
     print(f"\n  Total: {updated} updated, {failed} failed")

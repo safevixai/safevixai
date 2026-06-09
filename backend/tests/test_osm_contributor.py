@@ -17,8 +17,8 @@ def osm_contributor():
             import asyncio
             try:
                 asyncio.get_event_loop().run_until_complete(contributor.close())
-            except:
-                pass
+            except Exception:
+                pass  # Best-effort cleanup: event loop may already be closed during fixture teardown
 
 
 @pytest.fixture

@@ -55,25 +55,25 @@ const copyRecursive = (src, dest) => {
 if (fs.existsSync(publicDir)) {
   const standalonePublicDir = path.join(frontendRoot, '.next', 'standalone', 'public');
 
-  // Skip if standalone public already exists (cached from previous build)
+  // Always re-copy: fresh checkout or rebuild should replace standalone dir
   if (fs.existsSync(standalonePublicDir)) {
-    console.log('✓ Standalone public/ already exists (skipped)');
-  } else {
-    if (!fs.existsSync(path.dirname(standalonePublicDir))) {
-      fs.mkdirSync(path.dirname(standalonePublicDir), { recursive: true });
-    }
-
-    const entries = fs.readdirSync(publicDir);
-    for (const entry of entries) {
-      try {
-        copyRecursive(path.join(publicDir, entry), path.join(standalonePublicDir, entry));
-      } catch (err) {
-        console.error(`  Failed to copy ${entry} to standalone: ${err.code}`);
-      }
-    }
-
-    console.log('✓ Copied public/ to .next/standalone/public/');
+    fs.rmSync(standalonePublicDir, { recursive: true, force: true });
+    console.log('✓ Removed stale standalone public/');
   }
+  if (!fs.existsSync(path.dirname(standalonePublicDir))) {
+    fs.mkdirSync(path.dirname(standalonePublicDir), { recursive: true });
+  }
+
+  const entries = fs.readdirSync(publicDir);
+  for (const entry of entries) {
+    try {
+      copyRecursive(path.join(publicDir, entry), path.join(standalonePublicDir, entry));
+    } catch (err) {
+      console.error(`  Failed to copy ${entry} to standalone: ${err.code}`);
+    }
+  }
+
+  console.log('✓ Copied public/ to .next/standalone/public/');
 } else {
   console.warn('⚠ public/ directory not found, skipping copy');
 }
@@ -83,14 +83,14 @@ const staticDir = path.join(frontendRoot, '.next', 'static');
 if (fs.existsSync(staticDir)) {
   const standaloneStaticDir = path.join(frontendRoot, '.next', 'standalone', '.next', 'static');
   if (fs.existsSync(standaloneStaticDir)) {
-    console.log('✓ Standalone static/ already exists (skipped)');
-  } else {
-    try {
-      copyRecursive(staticDir, standaloneStaticDir);
-      console.log('✓ Copied static/ to .next/standalone/.next/static/');
-    } catch (err) {
-      console.error(`  Failed to copy static/ to standalone: ${err.code}`);
-    }
+    fs.rmSync(standaloneStaticDir, { recursive: true, force: true });
+    console.log('✓ Removed stale standalone static/');
+  }
+  try {
+    copyRecursive(staticDir, standaloneStaticDir);
+    console.log('✓ Copied static/ to .next/standalone/.next/static/');
+  } catch (err) {
+    console.error(`  Failed to copy static/ to standalone: ${err.code}`);
   }
 } else {
   console.warn('⚠ .next/static directory not found, skipping copy');

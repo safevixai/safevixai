@@ -157,8 +157,8 @@ class EscalationPredictor:
                     density_score = 0.5
                 elif nearby_count >= 2:
                     density_score = 0.2
-            except Exception:
-                pass  # Skip density if PostGIS unavailable
+            except Exception as exc:
+                logger.debug("Skip density check: %s", exc)
         score += density_score * 0.10
 
         # Clamp

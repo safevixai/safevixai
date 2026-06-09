@@ -1,226 +1,357 @@
-# SafeVixAI  Database Design
+# SafeVixAI — Database Design
 
 ## Database: PostgreSQL 16 + PostGIS 3.4 (via Supabase)
 
-**Why PostGIS?** The `ST_DWithin` function with GIST index finds all emergency services within a radius in **< 50ms** regardless of table size. Always cast to `::geography` (not `::geometry`)  geography uses meters, geometry uses degrees.
+**Why PostGIS?** `ST_DWithin` with GIST index finds records within a radius in **< 50ms** regardless of table size.
 
->  **Critical**: `ST_MakePoint` takes **longitude FIRST, latitude SECOND**. This is opposite to the common lat,lon convention.
+> **Critical Gotchas**
+> - `ST_MakePoint` takes **longitude FIRST, latitude second** — opposite to `[lat, lon]` convention
+> - Always use `::geography` (meters), never `::geometry` (degrees) in `ST_DWithin`
+> - GIST index on all geometry columns for spatial performance
+> - PostGIS extension must exist before Alembic migrations: `CREATE EXTENSION IF NOT EXISTS postgis;`
 
 ---
 
-## Enable PostGIS (Run Once in Supabase SQL Editor)
+## Enable PostGIS (Run Once)
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
-SELECT PostGIS_version(); -- verify
+SELECT PostGIS_version();
 ```
 
 ---
 
-## Tables
+## ORM Models (17 Python files in `backend/models/`)
 
-### 1. `emergency_services`
-
-| Column | Type | Constraints | Purpose |
-|---|---|---|---|
-| id | BIGSERIAL | PRIMARY KEY | Auto-increment internal ID |
-| osm_id | BIGINT | UNIQUE, NULLABLE | OSM element ID  prevents duplicate inserts |
-| osm_type | TEXT |  | node, way, or relation |
-| name | TEXT | NOT NULL | Service name in English |
-| name_local | TEXT |  | Local language name (Tamil, Hindi, etc.) |
-| category | TEXT | NOT NULL, INDEX | hospital, police, ambulance, fire, towing, puncture, showroom |
-| sub_category | TEXT |  | trauma_centre, icu, district_hospital, etc. |
-| address | TEXT |  | Full address from OSM addr:* tags |
-| phone | TEXT |  | General contact number |
-| phone_emergency | TEXT |  | Dedicated emergency line |
-| website | TEXT |  | Website URL |
-| **location** | GEOMETRY(Point,4326) | NOT NULL, **GIST INDEX** | PostGIS geographic point |
-| city | TEXT |  | City name for display |
-| district | TEXT |  | Administrative district |
-| state | TEXT |  | Full state name |
-| state_code | CHAR(2) | INDEX | TN, KA, MH, DL etc. |
-| country_code | CHAR(2) | DEFAULT 'IN', INDEX | Global applicability  ISO 3166 |
-| is_24hr | BOOLEAN | DEFAULT TRUE | Round-the-clock filtering |
-| has_trauma | BOOLEAN | DEFAULT FALSE | Trauma centre  priority sort |
-| has_icu | BOOLEAN | DEFAULT FALSE | ICU availability |
-| bed_count | INTEGER |  | Total bed capacity |
-| rating | FLOAT | CHECK 0-5 | User rating |
-| source | TEXT | DEFAULT 'overpass' | overpass, govt_dataset, manual, user_verified |
-| raw_tags | JSONB |  | Complete OSM tag set |
-| verified | BOOLEAN | DEFAULT FALSE | Manually verified flag |
-| last_updated | TIMESTAMP | DEFAULT NOW() | For re-seeding identification |
-| created_at | TIMESTAMP | DEFAULT NOW() | Record creation |
-
-### 2. `traffic_violations`
-
-| Column | Type | Constraints | Purpose |
-|---|---|---|---|
-| violation_code | TEXT | UNIQUE PRIMARY KEY | MVA_177, MVA_185 etc. |
-| section | TEXT | NOT NULL | Section number (e.g., '185') |
-| description_en | TEXT | NOT NULL | Plain English violation description |
-| description_hi | TEXT |  | Hindi translation |
-| description_ta | TEXT |  | Tamil translation |
-| base_fine_inr | INTEGER | NOT NULL | First offence fine in  |
-| repeat_fine_inr | INTEGER |  | Subsequent offence fine |
-| vehicle_type | TEXT | DEFAULT 'all' | all, 2w, lmv, 4w, commercial, bus |
-| imprisonment | TEXT | NULLABLE | '3 months', '6 months', NULL if none |
-| dl_points | INTEGER | DEFAULT 0 | DL penalty points |
-| is_compoundable | BOOLEAN | DEFAULT TRUE | Can settle out of court |
-| effective_date | DATE | NOT NULL, DEFAULT 2019-09-01 | MV Amendment Act 2019 date |
-
-### 3. `state_fine_overrides`
-
-| Column | Type | Constraints | Purpose |
-|---|---|---|---|
-| id | SERIAL | PRIMARY KEY |  |
-| violation_code | TEXT | FK  traffic_violations | National violation reference |
-| state_code | CHAR(2) | NOT NULL | TN, KA, MH, DL, etc. |
-| override_fine | INTEGER | NOT NULL | State-specific fine in  |
-| authority | TEXT |  | State Traffic Police etc. |
-| source_url | TEXT |  | Source URL for verification |
-| effective_date | DATE | NOT NULL | When state override took effect |
-|  | UNIQUE | (violation_code, state_code) | Prevents duplicates |
-
-### 4. `road_issues`
-
-| Column | Type | Constraints | Purpose |
-|---|---|---|---|
-| id | BIGSERIAL | PRIMARY KEY |  |
-| uuid | UUID | UNIQUE, DEFAULT gen_random_uuid() | Public complaint reference |
-| issue_type | TEXT | NOT NULL | pothole, flood, accident_prone, broken, missing_signage, no_lighting |
-| severity | INTEGER | CHECK 1-5 | 1=minor, 5=impassable |
-| description | TEXT |  | Optional user description |
-| **location** | GEOMETRY(Point,4326) | NOT NULL, **GIST INDEX** | GPS of issue |
-| location_address | TEXT |  | Reverse-geocoded address |
-| road_name | TEXT |  | Road name from OSM or user |
-| road_type | TEXT |  | NH, SH, MDR, village_road, urban |
-| road_number | TEXT |  | NH-44, SH-12 etc. |
-| photo_url | TEXT |  | Supabase Storage URL |
-| ai_detection | JSONB |  | {detected, confidence, severity, bounding_boxes} |
-| reporter_id | UUID | NULLABLE | Anonymous or logged-in user |
-| authority_name | TEXT |  | NHAI, Tamil Nadu PWD etc. |
-| authority_phone | TEXT |  | Auto-assigned helpline |
-| authority_email | TEXT |  | Auto-assigned email |
-| complaint_ref | TEXT |  | Government portal reference |
-| status | TEXT | DEFAULT 'open' | open, acknowledged, in_progress, resolved, rejected |
-| status_updated | TIMESTAMP |  | Last status change timestamp |
-| created_at | TIMESTAMP | DEFAULT NOW() | Report submission time |
-
-### 5. `road_infrastructure`
-
-| Column | Type | Purpose |
-|---|---|---|
-| road_id | TEXT UNIQUE | PMGSY or NHAI project ID |
-| road_name | TEXT | Road name |
-| road_type | TEXT | NH, SH, MDR, village_road |
-| road_number | TEXT | NH-44, SH-12 etc. |
-| length_km | FLOAT | Road segment length |
-| geometry | GEOMETRY(LineString,4326) | Road path  GIST indexed |
-| state_code | CHAR(2) | State for filtering |
-| contractor_name | TEXT | Assigned contractor |
-| exec_engineer | TEXT | Responsible Executive Engineer |
-| exec_engineer_phone | TEXT | EE contact number |
-| budget_sanctioned | BIGINT | Sanctioned budget in  |
-| budget_spent | BIGINT | Amount spent to date in  |
-| construction_date | DATE | When road was built |
-| last_relayed_date | DATE | Last resurfacing date |
-| next_maintenance | DATE | Scheduled next maintenance |
-| project_source | TEXT | PMGSY, NHAI, State, Municipal |
-| data_source_url | TEXT | URL where data was obtained |
-
-### 6. `first_aid_articles`
-
-| Column | Type | Purpose |
-|---|---|---|
-| id | SERIAL | Primary key |
-| title | TEXT | e.g., "Controlling severe bleeding" |
-| body_md | TEXT | Article content in Markdown |
-| tags | TEXT[] | {bleeding, fracture, unconscious, burn, choking, cardiac} |
-| source | TEXT | WHO, MoRTH, Red Cross, AIIMS |
-| source_url | TEXT | Source URL for attribution |
-| language | TEXT | en, hi, ta etc. Default en |
-
-### 7. `chat_logs`
-
-| Column | Type | Purpose |
-|---|---|---|
-| id | BIGSERIAL | Primary key |
-| session_id | UUID | Links messages in one conversation |
-| user_message | TEXT | What the user typed |
-| bot_response | TEXT | What AI responded |
-| intent | TEXT | Detected intent label |
-| lat / lon | DOUBLE PRECISION | User location at query time |
-| model_used | TEXT | groq-llama3, phi3-mini, gemma-2b |
-| latency_ms | INTEGER | Response time in milliseconds |
-| created_at | TIMESTAMP | Message timestamp |
+All 17 models are defined under `backend/models/` using SQLAlchemy ORM + GeoAlchemy2. The Alembic migration (`backend/migrations/001_initial_schema.py`) creates 6 core tables; remaining tables are created by subsequent migrations or auto-migration.
 
 ---
 
-## Critical Spatial Queries
+### 1. `users` (`user.py`) — User profiles & auth
 
-### Find Nearest Emergency Services (Core Query)
+| Column | Type | Constraints |
+|---|---|---|
+| id | UUID | PK, default `gen_random_uuid()` |
+| email | VARCHAR | UNIQUE, NOT NULL |
+| phone | VARCHAR | UNIQUE |
+| password_hash | VARCHAR | NOT NULL |
+| display_name | VARCHAR | |
+| avatar_url | TEXT | |
+| role | VARCHAR | DEFAULT 'citizen' |
+| is_active | BOOLEAN | DEFAULT true |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| updated_at | TIMESTAMP | DEFAULT NOW() |
 
-```sql
-SELECT
-    name, name_local, category, sub_category,
-    phone, phone_emergency, address,
-    has_trauma, has_icu, is_24hr, rating,
-    ST_Y(location) AS lat,
-    ST_X(location) AS lon,
-    ST_Distance(
-        location::geography,
-        ST_MakePoint(:lon, :lat)::geography  -- lon FIRST!
-    ) AS distance_meters
-FROM emergency_services
-WHERE
-    ST_DWithin(
-        location::geography,
-        ST_MakePoint(:lon, :lat)::geography,
-        :radius_meters
-    )
-    AND category = ANY(:categories)
-    AND country_code = :country_code
-ORDER BY
-    has_trauma DESC,
-    is_24hr DESC,
-    distance_meters ASC
-LIMIT :limit;
-```
+Emergency contacts are stored in a JSONB column or a separate relation — see `user.py` for details.
 
-### Road Type Detection (Authority Routing)
+---
 
-```sql
-SELECT
-    road_type, road_number, contractor_name,
-    exec_engineer, exec_engineer_phone,
-    budget_sanctioned, budget_spent, last_relayed_date
-FROM road_infrastructure
-WHERE ST_DWithin(
-    geometry::geography,
-    ST_MakePoint(:lon, :lat)::geography,
-    100  -- within 100m of road centreline
-)
-ORDER BY ST_Distance(
-    geometry::geography,
-    ST_MakePoint(:lon, :lat)::geography
-) LIMIT 1;
-```
+### 2. `emergency_services` (`emergency.py`) — Emergency service locations
 
-### Accident Heatmap Clusters
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| name | TEXT | NOT NULL |
+| category | TEXT | NOT NULL, INDEX (hospital, police, ambulance, fire, towing, puncture, showroom) |
+| sub_category | TEXT | |
+| location | GEOMETRY(Point,4326) | NOT NULL, **GIST INDEX** |
+| phone | TEXT | |
+| address | TEXT | |
+| city | TEXT | |
+| district | TEXT | |
+| state | TEXT | |
+| state_code | CHAR(2) | INDEX |
+| country_code | CHAR(2) | DEFAULT 'IN' |
+| is_24hr | BOOLEAN | DEFAULT true |
+| has_trauma | BOOLEAN | DEFAULT false |
+| has_icu | BOOLEAN | DEFAULT false |
+| bed_count | INTEGER | |
+| rating | FLOAT | CHECK 0–5 |
+| source | TEXT | DEFAULT 'overpass' |
+| raw_tags | JSONB | |
+| verified | BOOLEAN | DEFAULT false |
+| osm_id | BIGINT | UNIQUE |
+| osm_type | TEXT | |
+| last_updated | TIMESTAMP | DEFAULT NOW() |
+| created_at | TIMESTAMP | DEFAULT NOW() |
 
-```sql
-SELECT
-    ROUND(lat::numeric, 3) AS grid_lat,
-    ROUND(lon::numeric, 3) AS grid_lon,
-    COUNT(*) AS event_count,
-    MAX(created_at) AS last_event
-FROM crash_events
-WHERE created_at > NOW() - INTERVAL '90 days'
-GROUP BY grid_lat, grid_lon
-HAVING COUNT(*) >= 3
-ORDER BY event_count DESC;
-```
+---
+
+### 3. `road_issues` (`road_issue.py`) — Community road issue reports
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| user_id | UUID | FK → users.id |
+| issue_type | TEXT | NOT NULL (pothole, flood, accident_prone, broken, missing_signage, no_lighting) |
+| severity | INTEGER | CHECK 1–5 |
+| description | TEXT | |
+| location | GEOMETRY(Point,4326) | NOT NULL, **GIST INDEX** |
+| location_address | TEXT | |
+| road_name | TEXT | |
+| road_type | TEXT | (NH, SH, MDR, village_road, urban) |
+| road_number | TEXT | |
+| photo_url | TEXT | |
+| ai_detection | JSONB | |
+| reporter_id | UUID | |
+| authority_name | TEXT | |
+| authority_phone | TEXT | |
+| authority_email | TEXT | |
+| complaint_ref | TEXT | |
+| status | TEXT | DEFAULT 'open' |
+| status_updated | TIMESTAMP | |
+| uuid | UUID | UNIQUE, DEFAULT `gen_random_uuid()` |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| updated_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 4. `challan_records` (`challan.py`) — Challan / fine records
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| user_id | UUID | FK → users.id |
+| violation_code | VARCHAR | NOT NULL |
+| vehicle_type | VARCHAR | |
+| state | CHAR(2) | |
+| fine_amount | INTEGER | NOT NULL |
+| paid | BOOLEAN | DEFAULT false |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+Violation code definitions and state overrides are sourced from CSV files:
+- `backend/data/violations_seed.csv` — Motor Vehicle Act violation codes, base fines, imprisonment
+- `backend/data/state_overrides.csv` — State-specific fine overrides
+
+---
+
+### 5. `sos_incidents` (`sos_incident.py`) — SOS emergency incidents
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| user_id | UUID | FK → users.id |
+| location | GEOMETRY(Point,4326) | NOT NULL, **GIST INDEX** |
+| status | VARCHAR | DEFAULT 'active' (active, resolved, cancelled) |
+| notes | TEXT | |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| resolved_at | TIMESTAMP | |
+
+---
+
+### 6. `officers` (`officer.py`) — Law enforcement officers
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| user_id | UUID | FK → users.id, UNIQUE |
+| badge_number | VARCHAR | NOT NULL, UNIQUE |
+| jurisdiction | GEOMETRY(Polygon,4326) | **GIST INDEX** |
+| department | VARCHAR | |
+| rank | VARCHAR | |
+| status | VARCHAR | DEFAULT 'active' |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 7. `wards` (`ward.py`) — Administrative ward boundaries
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| ward_number | INTEGER | NOT NULL |
+| ward_name | VARCHAR | |
+| boundary | GEOMETRY(Polygon,4326) | **GIST INDEX** |
+| municipality_id | INTEGER | FK → municipality.id |
+| councilor_name | VARCHAR | |
+| councilor_phone | VARCHAR | |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 8. `municipalities` (`municipality.py`) — Municipality / ULB details
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| name | VARCHAR | NOT NULL |
+| ulb_type | VARCHAR | (municipal_corporation, municipality, town_panchayat) |
+| state | VARCHAR | |
+| district | VARCHAR | |
+| contact_email | VARCHAR | |
+| contact_phone | VARCHAR | |
+| website | VARCHAR | |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 9. `municipal_features` (`municipal_feature.py`) — Municipal assets
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| municipality_id | INTEGER | FK → municipality.id |
+| feature_type | VARCHAR | NOT NULL |
+| location | GEOMETRY(Point,4326) | **GIST INDEX** |
+| properties | JSONB | |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 10. `streetlight_poles` (`streetlight_pole.py`) — Streetlight inventory
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| pole_id | VARCHAR | |
+| location | GEOMETRY(Point,4326) | **GIST INDEX** |
+| ward_id | INTEGER | FK → wards.id |
+| status | VARCHAR | DEFAULT 'operational' |
+| light_type | VARCHAR | (LED, sodium, halogen) |
+| pole_height_m | FLOAT | |
+| installed_date | DATE | |
+| last_maintenance | DATE | |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 11. `admin_boundaries` (`admin_boundary.py`) — Administrative polygons
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| level | VARCHAR | (state, district, taluk, block, village, ward) |
+| name | VARCHAR | NOT NULL |
+| code | VARCHAR | (e.g., state code, LGD code) |
+| boundary | GEOMETRY(Polygon,4326) | **GIST INDEX** |
+| parent_id | INTEGER | FK → admin_boundaries.id |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 12. `complaint_events` (`complaint_event.py`) — Grievance lifecycle events
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| grievance_id | INTEGER | FK → grievance.id |
+| event_type | VARCHAR | NOT NULL (submitted, acknowledged, escalated, resolved, rejected) |
+| notes | TEXT | |
+| actor_id | UUID | FK → users.id |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 13. `grievances` (`grievance.py`) — Citizen grievances
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| user_id | UUID | FK → users.id |
+| title | VARCHAR | NOT NULL |
+| description | TEXT | |
+| category | VARCHAR | |
+| location | GEOMETRY(Point,4326) | **GIST INDEX** |
+| ward_id | INTEGER | FK → wards.id |
+| status | VARCHAR | DEFAULT 'open' |
+| assigned_to | UUID | FK → users.id |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| updated_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 14. `lgd_entities` (`lgd_entity.py`) — Local Government Directory
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| lgd_code | VARCHAR | NOT NULL, UNIQUE |
+| name | VARCHAR | NOT NULL |
+| entity_type | VARCHAR | (state, district, block, village, town, ward) |
+| parent_lgd_code | VARCHAR | |
+| state_code | CHAR(2) | |
+| is_active | BOOLEAN | DEFAULT true |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 15. `osm_civic_features` (`osm_civic_feature.py`) — OSM civic features
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| osm_id | BIGINT | UNIQUE |
+| feature_type | VARCHAR | NOT NULL |
+| name | TEXT | |
+| location | GEOMETRY(Point,4326) | **GIST INDEX** |
+| tags | JSONB | |
+| source | VARCHAR | DEFAULT 'overpass' |
+| created_at | TIMESTAMP | DEFAULT NOW() |
+| updated_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 16. `gov_datasets` (`gov_dataset.py`) — Government data records
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| dataset_name | VARCHAR | NOT NULL |
+| source_url | TEXT | |
+| record_data | JSONB | NOT NULL |
+| ingested_at | TIMESTAMP | DEFAULT NOW() |
+
+---
+
+### 17. `etl_run_logs` (`etl_run_log.py`) — ETL pipeline logs
+
+| Column | Type | Constraints |
+|---|---|---|
+| id | BIGSERIAL | PK |
+| pipeline_name | VARCHAR | NOT NULL |
+| status | VARCHAR | (running, success, failed) |
+| records_processed | INTEGER | |
+| error_message | TEXT | |
+| started_at | TIMESTAMP | DEFAULT NOW() |
+| completed_at | TIMESTAMP | |
+
+---
+
+## Alembic Migration: `001_initial_schema.py`
+
+Creates 6 core tables with PostGIS support:
+
+| Table | Key Spatial Column | Notes |
+|---|---|---|
+| `users` | — | Auth, no spatial data |
+| `emergency_services` | location (Point,4326) GIST | Core lookup table |
+| `road_issues` | location (Point,4326) GIST | Community reports |
+| `challan_records` | — | Fine/payment records |
+| `sos_incidents` | location (Point,4326) GIST | SOS events |
+| `officers` | jurisdiction (Polygon,4326) GIST | Patrol boundaries |
+
+All other tables are created via auto-migration or subsequent migration files.
+
+---
+
+## Violation Data (CSV — not in DB)
+
+These files are consumed at runtime by DuckDB (server) and DuckDB-Wasm (client):
+
+| File | Source | Contents |
+|---|---|---|
+| `backend/data/violations_seed.csv` | Motor Vehicles Act | 50+ violation codes, base fines, imprisonment, DL points |
+| `backend/data/state_overrides.csv` | State transport depts. | State-specific fine overrides per violation code |
+
+---
+
+## ChromaDB Vectorstores
+
+| Path | Git | Purpose |
+|---|---|---|
+| `chatbot_service/data/chroma_db/` | Committed | Pre-built for Render cold-start — never delete |
+| `backend/data/chroma_db/` | Gitignored | Built locally (~10 min) — rebuild on PDF changes |
 
 ---
 
@@ -228,12 +359,69 @@ ORDER BY event_count DESC;
 
 | Key Pattern | TTL | Purpose |
 |---|---|---|
-| `nearby:{lat:.4f}:{lon:.4f}:{radius}:{cats}` | 3600s | Emergency services query results |
-| `geocode:reverse:{lat:.4f}:{lon:.4f}` | 86400s | City/state name from GPS |
-| `challan:{code}:{type}:{state}` | 604800s | Fine calculation results |
-| `roads:authority:{lat:.3f}:{lon:.3f}` | 3600s | Authority routing results |
-| `chat:history:{session_id}` | 86400s | Conversation memory |
+| `emergency:category:{cat}:lat:{lat}:lon:{lon}:radius:{r}` | 3600s | Emergency service query results |
+| `geocode:search:{query}` | 86400s | Forward geocoding results |
+| `geocode:reverse:{lat}:{lon}` | 86400s | Reverse geocode (city/state from GPS) |
+| `authority:lat:{lat}:lon:{lon}` | 3600s | Authority routing results |
+| `route:{start}:{end}:{profile}` | 900s | Route calculation results |
+| `ward:{ward_id}` | 3600s | Ward data cache |
+| `tracking:{group_id}` | — | WebSocket live tracking groups (no TTL) |
+| `circuit_breaker:{name}` | — | Circuit breaker state |
+| `revoked_token:{jti}` | — | JWT token revocation set |
+| `rate_limit:{ip}:{endpoint}` | — | Rate limit counters (sliding window) |
+| `chat_session:{session_id}` | 86400s | Conversation memory |
+| `sos_broadcast:{incident_id}` | — | SOS broadcast subscribers |
 
 ---
 
-*Document version: 1.0 | IIT Madras Road Safety Hackathon 2026*
+## Key Performance Queries
+
+### Nearby Emergency Services
+
+```sql
+SELECT id, name, category, phone, address,
+  ST_Distance(location::geography, ST_SetSRID(ST_MakePoint(:lon, :lat), 4326)::geography) AS distance
+FROM emergency_services
+WHERE ST_DWithin(location::geography, ST_SetSRID(ST_MakePoint(:lon, :lat), 4326)::geography, :radius)
+ORDER BY distance
+LIMIT :limit;
+```
+
+**Radius Expansion Algorithm:**
+Steps: 500m → 1000m → 5000m → 10000m → 25000m → 50000m
+Min results: 3
+If fewer than 3 found, expand to next radius step.
+
+### Road Issues in Bounding Box
+
+```sql
+SELECT id, category, description, status, ST_AsGeoJSON(location) as geom, created_at
+FROM road_issues
+WHERE location && ST_MakeEnvelope(:min_lon, :min_lat, :max_lon, :max_lat, 4326)
+ORDER BY created_at DESC;
+```
+
+### SOS Incidents by User
+
+```sql
+SELECT id, ST_AsGeoJSON(location) as geom, status, created_at, resolved_at
+FROM sos_incidents
+WHERE user_id = :user_id
+ORDER BY created_at DESC;
+```
+
+### Road Authority Lookup (within 100m of road)
+
+```sql
+SELECT road_type, road_number, contractor_name,
+  exec_engineer, exec_engineer_phone,
+  budget_sanctioned, budget_spent
+FROM road_infrastructure
+WHERE ST_DWithin(geometry::geography, ST_MakePoint(:lon, :lat)::geography, 100)
+ORDER BY ST_Distance(geometry::geography, ST_MakePoint(:lon, :lat)::geography)
+LIMIT 1;
+```
+
+---
+
+*Document version: 3.0 | IIT Madras Road Safety Hackathon 2026*

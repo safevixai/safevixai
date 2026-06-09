@@ -108,13 +108,15 @@ class OpenMeteoClient:
                 visibility = visibilities[0] if visibilities else None
 
                 summary = _WMO_CODES.get(weather_code, "Unknown")
-                risk = _RISK_MULTIPLIERS.get(weather_code, 1.0)
+                base_risk = _RISK_MULTIPLIERS.get(weather_code, 1.0)
 
                 # Increase risk for low visibility
                 if visibility is not None and visibility < 1000:
-                    risk = max(risk, 2.0)
+                    risk = max(base_risk, 2.0)
                 elif visibility is not None and visibility < 5000:
-                    risk = max(risk, 1.5)
+                    risk = max(base_risk, 1.5)
+                else:
+                    risk = base_risk
 
                 return {
                     "summary": summary,

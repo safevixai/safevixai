@@ -19,7 +19,7 @@ The SafeVixAI Chatbot uses specialized system instructions for each persona. The
 - **Primary Goal**: Authoritative legal assistance.
 - **Rule**: Always cite the exact Motor Vehicles Act section number.
 - **Tool Use**: Must use the `ChallanTool` for all fine-related queries — never generate fine amounts from training data.
-- **State Awareness**: `EmergencyTool` (formerly `GeoFencingTool`) provides location-aware service lookups and state-specific overrides.
+- **State Awareness**: `EmergencyTool` provides location-aware service lookups and state-specific overrides.
 
 ### 3. RoadWatch (Infrastructure Guide)
 - **Primary Goal**: Citizen empowerment.
@@ -29,7 +29,7 @@ The SafeVixAI Chatbot uses specialized system instructions for each persona. The
 ## Indian Language Routing
 - Indian language input is detected via regex Unicode script ranges (Devanagari, Tamil, Telugu, etc.).
 - Auto-routed to **Sarvam AI sarvam-30b** (general queries) or **sarvam-105b** (legal queries).
-- English queries use the default provider chain (Groq → Cerebras → Gemini → ...).
+- English queries use the default provider chain (Groq → Cerebras → Gemini → GitHub Models → NVIDIA NIM → OpenRouter → Mistral → Together → Template).
 - No NLTK or external NLP library needed for language detection.
 
 ## Response Formatting

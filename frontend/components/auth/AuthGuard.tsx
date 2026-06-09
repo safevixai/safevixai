@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAppStore } from '@/lib/store';
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth';
 import { useShallow } from 'zustand/react/shallow';
@@ -9,6 +9,7 @@ import { useHydrated } from '@/lib/use-hydrated';
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const nextPathname = usePathname();
   const hydrated = useHydrated();
   const { isAuthenticated, profileHydrated, setAuth, setUserProfile, setAuthToken } = useAppStore(
     useShallow((s) => ({
@@ -24,8 +25,34 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   // E2E test bypass: when __E2E_SKIP_AUTH__ is set in localStorage, skip auth checks
   const skipAuth = typeof window !== 'undefined' && window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true';
 
+  const [isPublicRoute, setIsPublicRoute] = useState(false);
+
   useEffect(() => {
-    if (skipAuth) return;
+    if (!nextPathname) return;
+    const PUBLIC_ROUTES = [
+      '/login',
+      '/signup',
+      '/forgot-password',
+      '/reset-password',
+      '/landing',
+      '/privacy',
+      '/terms'
+    ];
+    const pathParts = nextPathname.split('/');
+    const SUPPORTED_LOCALES = [
+      'en', 'hi', 'ta', 'te', 'kn', 'ml', 'mr', 'gu', 'bn', 'pa', 'ur',
+      'ar', 'fr', 'es'
+    ];
+    const firstSegment = pathParts[1];
+    const cleanPathname = SUPPORTED_LOCALES.includes(firstSegment)
+      ? '/' + pathParts.slice(2).join('/')
+      : nextPathname;
+
+    setIsPublicRoute(PUBLIC_ROUTES.includes(cleanPathname));
+  }, [nextPathname]);
+
+  useEffect(() => {
+    if (skipAuth || isPublicRoute) return;
     if (!hydrated || !profileHydrated) return;
 
     async function checkSession() {
@@ -55,9 +82,9 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     }
 
     checkSession();
-  }, [isAuthenticated, hydrated, profileHydrated, router, setAuth, setUserProfile, setAuthToken, skipAuth]);
+  }, [isAuthenticated, hydrated, profileHydrated, router, setAuth, setUserProfile, setAuthToken, skipAuth, isPublicRoute]);
 
-  if (skipAuth) {
+  if ((skipAuth && hydrated) || isPublicRoute) {
     return <>{children}</>;
   }
 

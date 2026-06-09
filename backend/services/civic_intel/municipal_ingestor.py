@@ -98,8 +98,8 @@ class MunicipalIngestor(BaseIngestor):
             overrides = json.loads(settings.municipal_gis_registry_env)
             if overrides:
                 registry.update(overrides)
-        except (json.JSONDecodeError, AttributeError):
-            pass
+        except (json.JSONDecodeError, AttributeError) as exc:
+            logger.debug("Failed to parse municipal gis registry env: %s", exc)
         return registry
 
     async def fetch(self) -> list[dict[str, Any]]:

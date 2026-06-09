@@ -70,10 +70,7 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: http://localhost:8000
           NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010
-        run: |
-          npm run build
-          cp -r public .next/standalone/public
-          cp -r .next/static .next/standalone/.next/static
+        run: npm run build
 
       - name: Start standalone server (background)
         working-directory: ./frontend

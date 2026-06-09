@@ -10,7 +10,6 @@ from __future__ import annotations
 import sqlalchemy as sa
 from alembic import op
 from geoalchemy2 import Geometry
-from sqlalchemy import text
 
 
 revision = '10010_enterprise_roads'
@@ -22,7 +21,7 @@ depends_on = None
 def _table_exists(conn, table_name: str) -> bool:
     """Check if a table exists in the public schema."""
     result = conn.execute(
-        text("""
+        sa.text("""
             SELECT 1 FROM information_schema.tables 
             WHERE table_schema = 'public' AND table_name = :table_name
         """),
@@ -34,7 +33,7 @@ def _table_exists(conn, table_name: str) -> bool:
 def _column_exists(conn, table_name: str, column_name: str) -> bool:
     """Check if a column exists in a table."""
     result = conn.execute(
-        text("""
+        sa.text("""
             SELECT 1 FROM information_schema.columns 
             WHERE table_schema = 'public' AND table_name = :table_name AND column_name = :column_name
         """),

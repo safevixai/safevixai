@@ -36,9 +36,10 @@ def upgrade() -> None:
         if result.fetchone():
             conn.execute(text('CREATE EXTENSION IF NOT EXISTS vector'))
             has_vector = True
-    except Exception:
+    except Exception as exc:
         # pgvector not available — tables will use BYTEA fallback for embeddings
-        pass
+        import sys
+        print(f"pgvector check failed (falling back to BYTEA): {exc}", file=sys.stderr)
 
     # Choose embedding column type based on pgvector availability
     embedding_col = 'vector(384)' if has_vector else 'BYTEA'

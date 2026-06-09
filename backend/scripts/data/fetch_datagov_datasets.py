@@ -20,6 +20,8 @@ from pathlib import Path
 
 try:
     import httpx
+import logging
+logger = logging.getLogger(__name__)
 except ImportError:
     print("ERROR: httpx required. Run: pip install httpx")
     sys.exit(1)
@@ -262,7 +264,7 @@ def fetch_from_api(resource_id: str, api_key: str, limit: int = 500) -> list[dic
                 data = r.json()
                 return data.get('records', [])
     except Exception:
-        pass
+        logger.debug("Suppressed exception", exc_info=True)
     return None
 
 

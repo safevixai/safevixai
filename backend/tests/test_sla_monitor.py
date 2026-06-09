@@ -164,7 +164,7 @@ class TestSLAMonitor:
             try:
                 await asyncio.wait_for(monitor.start_loop(interval_seconds=0), timeout=0.2)
             except (asyncio.TimeoutError, asyncio.CancelledError):
-                pass
+                pass  # Expected: SLA loop intentionally timed out after verifying check_slas was called
             mock_check.assert_awaited()
 
     @pytest.mark.asyncio
@@ -180,7 +180,7 @@ class TestSLAMonitor:
             try:
                 await asyncio.wait_for(monitor.start_loop(interval_seconds=0), timeout=0.2)
             except (asyncio.TimeoutError, asyncio.CancelledError):
-                pass
+                pass  # Expected: SLA loop intentionally timed out to verify exception handling
 
     @pytest.mark.asyncio
     async def test_start_loop_logs_escalated(self):
@@ -195,7 +195,7 @@ class TestSLAMonitor:
             try:
                 await asyncio.wait_for(monitor.start_loop(interval_seconds=0), timeout=0.2)
             except (asyncio.TimeoutError, asyncio.CancelledError):
-                pass
+                pass  # Expected: SLA loop intentionally timed out after verifying escalation logging
 
     def test_stop(self):
         monitor = SLAMonitor()

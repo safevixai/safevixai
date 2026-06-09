@@ -172,10 +172,9 @@ const nextConfig = {
       layers: true,
     };
 
-    config.module.rules.push({
-      test: /\.worker\.js$/,
-      use: { loader: 'worker-loader', options: { inline: 'no-fallback' } },
-    });
+    // Next.js 15 + Webpack 5 handle web workers natively via
+    // new Worker(new URL('./worker.js', import.meta.url))
+    // No worker-loader needed.
 
     return config;
   },

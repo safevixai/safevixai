@@ -130,8 +130,8 @@ class GrievanceIngestor(BaseIngestor):
             overrides = json.loads(settings.grievance_portals_env)
             if overrides:
                 portals.update(overrides)
-        except (json.JSONDecodeError, AttributeError):
-            pass
+        except (json.JSONDecodeError, AttributeError) as exc:
+            logger.debug("Failed to parse grievance portals env: %s", exc)
         return portals
 
     async def fetch(self) -> list[dict[str, Any]]:

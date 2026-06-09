@@ -8,21 +8,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Parallel tool execution in ContextAssembler using `asyncio.gather`
-- Focus trap in crash countdown dialog for WCAG 2.1 AA compliance
-- Token counting across all LLM providers with usage tracking
-- LLM response caching with Redis backend (TTL 1 hour)
-- Circuit breaker alerts via email when provider failure threshold exceeded
-- Provider health dashboard UI at `/admin/providers/health`
-- Staging environment configuration for Render deployment
-- Centralized logging configuration for Grafana Loki
-- Public status page template at `/status`
+- 25/25 features completed (Emergency Locator, Family Live Tracking, Challan Calculator, RoadWatch Reporter, AI Chatbot RAG, 9-provider LLM Fallback Chain, Offline SOS Queue, WebLLM Offline AI, What3Words, Voice/ASR, Indian Language Detection, PWA Share Target, QR Emergency Card, MCP Server, Waze CIFS Feed, Circuit Breakers, Streaming Chat, Conversation Summarization, Multi-Turn Intent Refinement, Safety Checker, GSAP Animations, Speech Language Mapping, Assistant Voice Output, Crash Detection with Accelerometer + CrashCountdown UI, Authentication with JWT + guest auth + service-to-service auth)
+- 2,829 unit tests passing (Backend 1,365 + Chatbot 892 + Frontend 572)
+- 45/55 E2E tests passing with E2E hardening
+- Speech/ASR integration with IndicSeamlessService (Indian language ASR/TTS)
+- Crash detection module with accelerometer-based detection
+- Family live tracking via WebSocket at `/api/v1/tracking/{group_id}`
+- Auth system: JWT Bearer tokens, guest auth (anonymous UUID), service-to-service `X-Internal-Api-Key` header
+- MCP server endpoint at `backend/api/v1/mcp_server.py` (24KB, external agent integration)
+- Waze CIFS feed for community traffic/hazard data
+- Circuit breakers with email alerts when provider failure threshold exceeded
+- ALLOWED_HOSTS middleware for Host header validation
+- Progressive guest auth (`frontend/lib/guest-auth.ts`)
+- SWR data fetching layer with 7 cached hooks
+- dvh CSS variables (`--map-h`, `--chat-h`, `--card-min-h`) for iOS Safari viewport
+- CSP tightening (no `'unsafe-eval'` in production)
+- `__E2E_SKIP_AUTH__` localStorage flag for AuthGuard bypass in E2E tests
+- `copy-public.js` script for automated asset copying in standalone build
+- 32 new tests across 5 suites (SOS, auth security, guest auth, SWR, crash detection)
 
 ### Changed
 - ContextAssembler now runs independent tools in parallel (emergency + weather + infra)
-- Crash dialog now traps focus and restores it on dismissal
+- `copy-public.js` now always removes stale dirs and re-copies assets (fixes skip-if-exists bug)
+- E2E tests use `<main>` element locator instead of `#main`, `{ exact: true }` for text matching, `[aria-busy="true"]` hydration waits
+- SystemStatusBar auto-dismisses when `__E2E_SKIP_AUTH__` is set
+- Frontend build: `npm run build` = `next build && node scripts/copy-public.js`
+- Stable Mock Token rejection enforced in security middleware
 
 ### Fixed
+- GSAP opacity timeout in `waitForMount` — removed `window.getComputedStyle(el).opacity` check, added try-catch in `usePageEntry.ts` to prevent GSAP errors from blocking hydration
+- CI nested dir `cp` bug — removed manual `cp -r` commands from `e2e.yml` and `frontend.yml` that created nested directories (e.g., `public/public/theme-init.js`)
 - Service Worker SOS flush now includes Authorization headers
 - Frontend API client now retries on 5xx errors with exponential backoff
 - In-memory session store now uses LRU eviction (500 session cap)

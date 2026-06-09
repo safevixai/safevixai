@@ -406,7 +406,7 @@ class HttpProvider:
                             if content:
                                 yield content
                     except json.JSONDecodeError:
-                        pass
+                        logger.debug("Skipping malformed SSE chunk in stream: %.100s", data_str, exc_info=True)
 
     async def generate(self, request: ProviderRequest) -> ProviderResult:
         request = _enforce_token_budget(request)

@@ -6,10 +6,14 @@ How the team works together on this project.
 
 ## Before You Start
 
-1. Read `docs/Agent.md` - complete app overview
-2. Read `docs/Architecture.md` - understand the system design
-3. Read `SETUP.md` - get your local environment running
-4. Check `docs/Roadmap.md` - see what phase we are in and what is left
+1. Read `AGENTS.md` - agent quick-reference
+2. Read `docs/Agent.md` - complete app overview
+3. Read `docs/Architecture.md` - understand the system design
+4. Read `docs/API.md` - all endpoints with request/response examples
+5. Read `docs/Database.md` - all 7 tables with PostGIS column definitions
+6. Read `docs/AI_Instructions.md` - how each AI layer works
+7. Read `SETUP.md` - step-by-step local setup with exact commands
+8. Read `docs/Deployment.md` - deploy to Vercel/Render/Supabase
 
 ---
 
@@ -93,7 +97,7 @@ Assign yourself to a module to avoid conflicts:
 | Module | Backend file | Frontend file |
 |---|---|---|
 | Emergency Locator | api/v1/emergency.py | app/emergency/page.tsx |
-| AI Chatbot | api/v1/chat.py | app/chat/page.tsx |
+| AI Chatbot | api/v1/chat.py | app/assistant/page.tsx |
 | Challan Calculator | api/v1/challan.py | app/challan/page.tsx |
 | Road Reporter | api/v1/roadwatch.py | app/report/page.tsx |
 
@@ -161,13 +165,13 @@ useEffect(() => { fetch(...).then(setData) }, [])
 
 ```bash
 # Backend
-cd backend
-pytest tests/ -v
+cd backend && .venv\Scripts\activate && pytest tests/ -q
+
+# Chatbot Service
+cd chatbot_service && .venv\Scripts\activate && pytest tests/ -q
 
 # Frontend
-cd frontend
-npm test
-npm run lint
+cd frontend && npm test && npm run lint
 ```
 
 Do not open a PR if tests are failing.

@@ -13,6 +13,7 @@ export default function CookieConsent() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true') return;
     const consent = window.localStorage.getItem(ANALYTICS_CONSENT_KEY);
     if (!consent) {
       // Show banner if no consent choice has been recorded yet

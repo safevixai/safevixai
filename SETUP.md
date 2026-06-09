@@ -33,12 +33,12 @@ cd SafeVixAI
 After cloning, verify the structure:
 ```bash
 ls -la
-# You should see: backend/, frontend/, docs/, README.md, SETUP.md, SKILL.md
+# You should see: backend/, chatbot_service/, frontend/, docs/, README.md, SETUP.md
 ```
 
 ---
 
-# 🔧 BACKEND SETUP
+# BACKEND SETUP
 
 ---
 
@@ -61,7 +61,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
- You should see `(.venv)` at the start of your terminal line.
+You should see `(.venv)` at the start of your terminal line.
 
 ---
 
@@ -83,7 +83,7 @@ pip install -r requirements.txt
 - **httpx** — async HTTP for Overpass/Nominatim
 - **Pydantic** — request/response validation
 
->  First install takes 3-5 minutes (torch/torchaudio are large).
+> First install takes 3-5 minutes (torch/torchaudio are large).
 
 Verify:
 ```bash
@@ -108,13 +108,13 @@ Edit `backend/.env` and fill in all required values (GROQ_API_KEY, database URLs
 uvicorn main:app --reload --port 8000
 ```
 
- **Verify:**
+**Verify:**
 - Health check: [http://localhost:8000/health](http://localhost:8000/health)
 - Swagger API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-# 🤖 CHATBOT SERVICE SETUP
+# CHATBOT SERVICE SETUP
 
 ---
 
@@ -146,7 +146,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Edit `chatbot_service/.env` with your API keys (Gemini, Groq, Twilio if needed).
+Edit `chatbot_service/.env` with your API keys (Gemini, Groq, etc.).
 
 **Optional but recommended — Email alerts for production failures:**
 ```bash
@@ -155,7 +155,7 @@ ALERT_EMAIL=your-gmail@gmail.com
 ALERT_EMAIL_PASSWORD=abcd efgh ijkl mnop   # Gmail App Password, NOT your regular password
 ALERT_EMAIL_TO=team-lead@gmail.com         # Recipient (defaults to ALERT_EMAIL)
 ```
-> 💡 **Get a Gmail App Password:** Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) → Select "Mail" → "Other" → Name it "SafeVixAI" → Copy the 16-char code.
+> **Get a Gmail App Password:** Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) → Select "Mail" → "Other" → Name it "SafeVixAI" → Copy the 16-char code.
 
 ---
 
@@ -165,13 +165,13 @@ ALERT_EMAIL_TO=team-lead@gmail.com         # Recipient (defaults to ALERT_EMAIL)
 uvicorn main:app --reload --port 8010
 ```
 
- **Verify:**
+**Verify:**
 - Health check: [http://localhost:8010/health](http://localhost:8010/health)
 - Swagger API docs: [http://localhost:8010/docs](http://localhost:8010/docs)
 
 ---
 
-# 🖥️ FRONTEND SETUP
+# FRONTEND SETUP
 
 ---
 
@@ -196,7 +196,7 @@ npm install
 - **@mlc-ai/web-llm** — offline AI (browser-based LLM)
 - **@turf/turf** — geospatial analysis utilities
 
-> ⏱️ First install takes 2–4 minutes.
+> First install takes 2–4 minutes.
 
 Verify:
 ```bash
@@ -214,6 +214,7 @@ cp .env.example .env
 
 Edit `frontend/.env` and set:
 - `NEXT_PUBLIC_BACKEND_URL` — backend API URL (default: `http://localhost:8000`)
+- `NEXT_PUBLIC_CHATBOT_URL` — chatbot service URL (default: `http://localhost:8010`)
 - Any map tile API keys if using premium tiles
 
 ---
@@ -224,7 +225,7 @@ Edit `frontend/.env` and set:
 npm run dev
 ```
 
- App opens at: [http://localhost:3000](http://localhost:3000)
+App opens at: [http://localhost:3000](http://localhost:3000)
 
 You should see the SafeVixAI tactical dashboard with the map, search bar, and bottom navigation.
 
@@ -246,7 +247,7 @@ npm start
 
 ---
 
-#  Daily Quick-Start
+# Daily Quick-Start
 
 Once installed, you only need:
 
@@ -275,7 +276,7 @@ npm run dev
 
 ---
 
-# 📋 All Useful Commands
+# All Useful Commands
 
 ## Backend Commands
 
@@ -284,9 +285,9 @@ npm run dev
 uvicorn main:app --reload --port 8000
 
 # Testing
-pytest tests/ -v                                         # Run all tests
-pytest tests/test_challan.py -v                          # Run one test file
-pytest tests/test_challan.py::test_drunk_driving_fine -v # Run single test
+pytest tests/ -q                                         # Run all tests (quiet mode)
+pytest tests/test_challan.py -q                          # Run one test file
+pytest tests/test_challan.py::test_drunk_driving_fine -v # Run single test (verbose)
 
 # Test API endpoints
 curl "http://localhost:8000/api/v1/emergency/nearby?lat=13.0827&lon=80.2707"
@@ -297,6 +298,21 @@ curl "http://localhost:8000/health"
 .venv\Scripts\activate                                   # Activate (Windows)
 source .venv/bin/activate                                # Activate (Linux/Mac)
 deactivate                                               # Deactivate
+```
+
+## Chatbot Service Commands
+
+```bash
+# Run server
+uvicorn main:app --reload --port 8010
+
+# Testing
+pytest tests/ -q                                         # Run all tests (quiet mode)
+pytest tests/test_safety_checker.py -q                   # Run one test file
+
+# Test API endpoints
+curl "http://localhost:8010/health"
+curl "http://localhost:8010/api/v1/chat/" -X POST -H "Content-Type: application/json" -d '{"message":"Hello"}'
 ```
 
 ## Frontend Commands
@@ -311,8 +327,7 @@ npm start                                                # Run production build
 npm run lint                                             # Run ESLint
 
 # Testing
-npm test                                                 # Run tests
-npm run test:watch                                       # Run tests in watch mode
+npm test                                                 # Run tests (572 total)
 
 # Packages
 npm install                                              # Install all dependencies
@@ -320,9 +335,18 @@ npm install [package-name]                               # Add a new package
 npm uninstall [package-name]                             # Remove a package
 ```
 
+## E2E Testing
+
+```bash
+# From frontend/ directory
+npx playwright test e2e/                                 # Run all E2E tests
+npx playwright test e2e/ --grep-invert="Visual"          # Run excluding visual tests
+npx playwright show-report                               # View last test report
+```
+
 ---
 
-# 🔍 Troubleshooting
+# Troubleshooting
 
 ### `ModuleNotFoundError` in backend
 ```bash

@@ -12,7 +12,7 @@ The chatbot service doesn't have its own primary database but interacts with thr
 ## Redis (for Session Memory)
 - **Functions**: Stores the conversation history for every user session.
 - **Configuration**:
-  - `TTL`: Conversations are stored for 24 hours.
+  - `TTL`: Conversations are stored for 24 hours (86400s).
   - `Memory`: Each session tracks the last 6 turns of the conversation.
 - **Provider Health Cache**: Tracks the current health status and rate limits of each LLM provider.
 
@@ -20,6 +20,9 @@ The chatbot service doesn't have its own primary database but interacts with thr
 - **Functions**: Serves as the indexed knowledge base for RAG (Retrieval-Augmented Generation).
 - **Setup**:
   - `Documents`: Motor Vehicles Act (1988, 2019), WHO Guidelines, state amendments.
-  - `Embeddings`: Using `sentence-transformers/all-MiniLM-L6-v2` for vectorized indexing.
-  - `Storage`: Stored on disk in the `data/chroma_db` folder — **committed to git** (Render needs it).
+  - `Embeddings`: Using `LocalHashEmbeddingFunction` — zero-dep hash-based 384-dim vectors. No ML libraries needed.
+  - `Storage`: Stored on disk in `chatbot_service/data/chroma_db/` — **committed to git** (Render needs it).
 - **Management**: Rebuilt locally via `python data/build_vectorstore.py` when new PDFs are added. Commit the updated `chroma_db/` directory.
+- **RAG config**: `top_k=5`, `min_score=0.55`
+- **Legal PDFs**: `chatbot_service/data/legal/`
+- **Medical PDFs**: `chatbot_service/data/medical/`

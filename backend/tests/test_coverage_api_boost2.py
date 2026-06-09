@@ -1802,7 +1802,7 @@ class TestTrackingCoverage:
         try:
             await task
         except asyncio.CancelledError:
-            pass
+            pass  # Expected: task was intentionally cancelled after test assertion
 
     @pytest.mark.asyncio
     async def test_stale_cleanup_loop(self):
@@ -1816,7 +1816,7 @@ class TestTrackingCoverage:
         try:
             await task
         except asyncio.CancelledError:
-            pass
+            pass  # Expected: task was intentionally cancelled after test assertion
 
     def test_is_valid_tracking_payload_latitude_longitude(self):
         from api.v1.tracking import _is_valid_tracking_payload

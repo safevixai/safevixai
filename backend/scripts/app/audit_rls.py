@@ -71,6 +71,8 @@ def run_audit():
     from pathlib import Path
     try:
         import dotenv
+import logging
+logger = logging.getLogger(__name__)
         env_paths = [
             Path(__file__).resolve().parents[2] / ".env",
             Path.cwd() / "backend" / ".env",
@@ -81,7 +83,7 @@ def run_audit():
                 dotenv.load_dotenv(p)
                 break
     except ImportError:
-        pass
+        logger.debug("Suppressed exception", exc_info=True)
 
     url = os.getenv("DATABASE_URL", "")
     if not url:

@@ -27,7 +27,10 @@ function SystemBanners() {
   const [localWarming, setLocalWarming] = useState(false)
   const setServerWarming = useAppStore(state => state.setServerWarming)
 
+  const skipAuth = typeof window !== 'undefined' && window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true';
+
   useEffect(() => {
+    if (skipAuth) return;
     const checkHealth = async () => {
       try {
         const controller = new AbortController();

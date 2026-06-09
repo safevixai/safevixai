@@ -10,11 +10,11 @@ All data sources used in SafeVixAI are free and open. This document lists every 
 
 | Document | Source URL | Save As | Purpose |
 |---|---|---|---|
-| Motor Vehicles Act 1988 | [indiacode.nic.in](https://www.indiacode.nic.in)  search "Motor Vehicles Act 1988" | `backend/data/motor_vehicles_act_1988.pdf` | All base traffic law provisions + section numbers |
-| MV Amendment Act 2019 | [morth.nic.in](https://morth.nic.in/motor-vehicles-amendment-act-2019) | `backend/data/mv_amendment_act_2019.pdf` | Updated 2019 fine amounts (10x increase) |
-| WHO Trauma Care Guidelines | [who.int](https://www.who.int)  search "emergency care systems for universal health coverage" | `backend/data/who_trauma_care_guidelines.pdf` | First-aid protocols: bleeding, fractures, burns, CPR |
-| WHO Global Road Safety Report 2023 | [who.int](https://www.who.int/publications/i/item/9789240086517) | `backend/data/who_road_safety_2023.pdf` | Traffic laws for 100+ countries (speed limits, BAC limits, helmet laws) |
-| State Amendment PDFs | Each state transport department website | `backend/data/state_amendments/[state].pdf` | State-level fine overrides and additional rules |
+ | Motor Vehicles Act 1988 | [indiacode.nic.in](https://www.indiacode.nic.in)  search "Motor Vehicles Act 1988" | `chatbot_service/data/legal/motor_vehicles_act_1988.pdf` | All base traffic law provisions + section numbers |
+| MV Amendment Act 2019 | [morth.nic.in](https://morth.nic.in/motor-vehicles-amendment-act-2019) | `chatbot_service/data/legal/mv_amendment_act_2019.pdf` | Updated 2019 fine amounts (10x increase) |
+| WHO Trauma Care Guidelines | [who.int](https://www.who.int)  search "emergency care systems for universal health coverage" | `chatbot_service/data/medical/who_trauma_care_guidelines.pdf` | First-aid protocols: bleeding, fractures, burns, CPR |
+| WHO Global Road Safety Report 2023 | [who.int](https://www.who.int/publications/i/item/9789240086517) | `chatbot_service/data/legal/who_road_safety_2023.pdf` | Traffic laws for 100+ countries (speed limits, BAC limits, helmet laws) |
+| State Amendment PDFs | Each state transport department website | `chatbot_service/data/legal/state_amendments/[state].pdf` | State-level fine overrides and additional rules |
 
 ---
 
@@ -53,7 +53,7 @@ out body center;
 - **URL**: `https://api.groq.com/openai/v1`
 - **Authentication**: API key (gsk_...) from [console.groq.com](https://console.groq.com)
 - **Rate limit**: 6,000 tokens/minute free tier
-- **Use in SafeVixAI**: Online AI chatbot — llama3-70b-8192 model
+- **Use in SafeVixAI**: Online AI chatbot — llama-3.1-8b-instant model
 
 ### Overpass Turbo (Testing Only)
 - **URL**: [overpass-turbo.eu](https://overpass-turbo.eu)

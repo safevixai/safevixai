@@ -33,8 +33,7 @@ async def test_mcp_server_mounted(app):
                     async for _line in response.aiter_lines():
                         break  # Got data — SSE is streaming, test passes
         except TimeoutError:
-            # SSE stream was open and streaming until timeout — this is correct behavior
-            pass
+            pass  # SSE stream was open and streaming until timeout — this is correct behavior
 
 
 @pytest.mark.asyncio

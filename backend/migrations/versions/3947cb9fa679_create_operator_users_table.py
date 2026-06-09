@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy import text
 
 
 # revision identifiers, used by Alembic.
@@ -22,7 +21,7 @@ depends_on = None
 def _table_exists(conn, table_name: str) -> bool:
     """Check if a table exists in the public schema."""
     result = conn.execute(
-        text("""
+        sa.text("""
             SELECT 1 FROM information_schema.tables
             WHERE table_schema = 'public' AND table_name = :table_name
         """),
@@ -51,7 +50,7 @@ def upgrade() -> None:
 
     # Enable RLS policies on the table
     result = conn.execute(
-        text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
+        sa.text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
     )
     if result.fetchone():
         op.execute(

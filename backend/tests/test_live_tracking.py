@@ -63,7 +63,7 @@ def test_ws_reject_oversized_message(app):
                 data = ws.receive_json()
                 assert data["type"] == "error"
             except Exception:
-                pass
+                pass  # Connection may close on oversized message; either error JSON or disconnect is valid
 
 
 def test_ws_invalid_json(app):

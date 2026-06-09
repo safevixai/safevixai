@@ -9,3 +9,14 @@ CVE-2026-8376
 
 # Tar drive-relative symlink traversal (OS-level library in base python slim image)
 CVE-2026-31802
+
+# Node-tar vulnerabilities (nested build dependencies in frontend)
+CVE-2026-23745
+CVE-2026-24842
+CVE-2026-23950
+
+# Minimatch catastrophic backtracking/ReDoS vulnerabilities (nested build dependencies in frontend)
+CVE-2022-3517
+CVE-2026-27904
+CVE-2026-27903
+CVE-2026-26996

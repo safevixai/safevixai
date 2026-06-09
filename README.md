@@ -1,9 +1,17 @@
 # SafeVixAI
 
-**AI Emergency Response + DriveLegal + RoadWatch  -  Three Problem Statements, One App**
+**AI Emergency Response + DriveLegal + RoadWatch — Three Problem Statements, One App**
 
 > IIT Madras Road Safety Hackathon 2026 | Team Submission
-> Total infrastructure cost: Rs. 0  -  100% free and open source
+> Total infrastructure cost: Rs. 0 — 100% free and open source
+
+| Metric | Value |
+|--------|-------|
+| Features | **25/25 COMPLETE** |
+| Unit Tests | **2,829 passing** — Backend 1,365 / Chatbot 892 / Frontend 572 |
+| E2E Tests | 45/55 passing (10 infra limitations) |
+| LLM Providers | 9-provider fallback chain |
+| Services | 3 (frontend :3000, backend :8000, chatbot :8010) |
 
 ---
 
@@ -11,13 +19,12 @@
 
 | Module | What it does | Works Offline? |
 |---|---|---|
-| Emergency Locator | Find nearest hospital/police/ambulance using GPS | Yes  -  25 Indian cities |
-| AI Chatbot | Answer traffic law + first aid questions | Yes  -  Phi-3 Mini in browser |
-| Challan Calculator | Exact MVA 2019 fines with state overrides | Yes  -  DuckDB-Wasm |
-| Road Reporter | Report potholes, auto-routes to NHAI/PWD/PMGSY | Yes  -  offline queue |
+| Emergency Locator | Find nearest hospital/police/ambulance using GPS | Yes — 25 Indian cities |
+| AI Chatbot | Answer traffic law + first aid questions | Yes — Phi-3 Mini in browser |
+| Challan Calculator | Exact MVA 2019 fines with state overrides | Yes — DuckDB-Wasm |
+| Road Reporter | Report potholes, auto-routes to NHAI/PWD/PMGSY | Yes — offline queue |
 
 ---
-
 
 ## Quick Start
 
@@ -131,7 +138,7 @@ Read `docs/Agent.md` first — it gives a complete overview of the entire applic
 
 **Frontend:** Next.js 15, React 19, TypeScript, Tailwind CSS, MapLibre GL, WebLLM, DuckDB-Wasm, Transformers.js
 
-**Infra:** Vercel, Render.com, Supabase, Upstash, GitHub Actions  -  all free tier
+**Infra:** Vercel, Render.com, Supabase, Upstash, GitHub Actions — all free tier
 
 ---
 
@@ -140,12 +147,13 @@ Read `docs/Agent.md` first — it gives a complete overview of the entire applic
 | Layer | Protection | File |
 |---|---|---|
 | CORS | Fail-fast `RuntimeError` if wildcard `*` in production | `backend/core/config.py`, `chatbot_service/config.py` |
-| Auth | JWT Bearer tokens (in-memory only, never persisted) | `backend/api/v1/auth.py`, `frontend/lib/store.ts` |
+| Auth | JWT Bearer tokens + guest auth + service-to-service API key | `backend/api/v1/auth.py`, `frontend/lib/store.ts` |
 | LLM Safety | 12-pattern prompt injection guard + SafetyChecker | `chatbot_service/providers/base.py`, `agent/safety_checker.py` |
 | LLM Timeout | `asyncio.wait_for()` on every provider call | `chatbot_service/providers/router.py` |
 | Error Boundary | Global React error boundary prevents white-screen crashes | `frontend/app/error.tsx` |
 | Env Validation | Frontend throws at import if any `NEXT_PUBLIC_*` URL is missing | `frontend/lib/public-env.ts` |
 | Theme | External script (no `dangerouslySetInnerHTML`) | `frontend/public/theme-init.js` |
+| ALLOWED_HOSTS | Host header validation middleware | `backend/middleware/allowed_hosts.py` |
 
 ---
 
@@ -153,7 +161,7 @@ Read `docs/Agent.md` first — it gives a complete overview of the entire applic
 
 | File | Contents |
 |---|---|
-| [docs/Agent.md](docs/Agent.md) | START HERE  -  complete app overview for new developers |
+| [docs/Agent.md](docs/Agent.md) | START HERE — complete app overview for new developers |
 | [docs/PRD.md](docs/PRD.md) | Product requirements and evaluation criteria |
 | [docs/Features.md](docs/Features.md) | Every feature with technical details |
 | [docs/Architecture.md](docs/Architecture.md) | System diagrams and data flows |

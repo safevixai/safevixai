@@ -11,28 +11,31 @@ export function usePageEntry() {
   useGSAP(
     () => {
       if (!containerRef.current) return;
+      try {
+        // P0-08: Accessibility — Respect user's motion preferences
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // P0-08: Accessibility — Respect user's motion preferences
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (prefersReducedMotion) {
-        gsap.set(containerRef.current.children, { opacity: 1, y: 0 });
-        return;
-      }
-
-      // Stagger children in from bottom - fast, professional
-      gsap.fromTo(
-        containerRef.current.children,
-        { opacity: 0, y: 16, willChange: 'transform, opacity' },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-          stagger: 0.06,
-          ease: 'power2.out',
-          clearProps: 'willChange',
+        if (prefersReducedMotion) {
+          gsap.set(containerRef.current.children, { opacity: 1, y: 0 });
+          return;
         }
-      );
+
+        // Stagger children in from bottom - fast, professional
+        gsap.fromTo(
+          containerRef.current.children,
+          { opacity: 0, y: 16, willChange: 'transform, opacity' },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.35,
+            stagger: 0.06,
+            ease: 'power2.out',
+            clearProps: 'willChange',
+          }
+        );
+      } catch {
+        // GSAP silently fails in production standalone build — non-critical
+      }
     },
     { scope: containerRef }
   );

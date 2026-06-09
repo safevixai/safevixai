@@ -3,9 +3,10 @@ import pathlib
 from unittest.mock import patch, mock_open
 
 from models.schemas import FinePredictionRequest, TelemetryDataPoint
-from services.fine_prediction_service import FinePredictionService, DEFAULT_FINES
 import services.fine_prediction_service as _fps
 
+FinePredictionService = _fps.FinePredictionService
+DEFAULT_FINES = _fps.DEFAULT_FINES
 
 _fps.re = re
 

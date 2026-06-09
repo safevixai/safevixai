@@ -8,10 +8,10 @@
 
 | Service | Test Files | Tests Passing | Coverage % | Framework | CI Integration |
 |---------|-----------|---------------|-----------|-----------|---------------|
-| Backend | 32+ | Unknown (recent) | ~85% core, unknown services | pytest (asyncio_mode=auto) | ✅ backend.yml |
-| Chatbot | 20+ | 244/244 | Unknown | pytest (asyncio_mode=strict) | ✅ chatbot.yml |
+| Backend | 32+ | 1365/1365 | ~85% core, unknown services | pytest (asyncio_mode=auto) | ✅ backend.yml |
+| Chatbot | 20+ | 892/892 | Unknown | pytest (asyncio_mode=strict) | ✅ chatbot.yml |
 | Frontend | 12+ | Unknown | Unknown | Jest + Playwright | ✅ frontend.yml |
-| End-to-End | 6+ e2e files | Unknown | N/A | Playwright | ✅ e2e.yml |
+| End-to-End | 6+ e2e files | 45/55 | N/A | Playwright | ✅ e2e.yml |
 
 ---
 

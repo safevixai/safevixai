@@ -240,7 +240,7 @@ def _decode_bearer_token(token: str) -> dict[str, Any]:
                 # For now, fall back to static secret
                 logger.debug("JWT verification failed; JWKS not available in this context")
             except ImportError:
-                pass
+                logger.debug("Suppressed exception", exc_info=True)
             logger.info("Bearer token rejected by app, Supabase, and JWKS validators")
             raise _unauthorized() from app_error
 

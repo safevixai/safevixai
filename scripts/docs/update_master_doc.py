@@ -13,6 +13,7 @@ Environment:
     GITHUB_TOKEN  — GitHub Personal Access Token (auto-provided by Actions)
 """
 
+import logging
 import os
 import sys
 import requests
@@ -23,16 +24,20 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 
 # Inject project root to sys.path to access alert_service singleton
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+logger = logging.getLogger(__name__)
+
 try:
     from alert_service import get_alert_service
 except Exception:
+    logger.debug("alert_service not available, alerting disabled", exc_info=True)
     get_alert_service = None
 
 # Fix Windows cp1252 encoding crashes with emoji print statements
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
-    pass
+    logger.debug("Could not reconfigure stdout encoding", exc_info=True)
 
 # ─── Configuration ──────────────────────────────────────────────────────────
 
@@ -122,7 +127,7 @@ def fetch_service_health():
                 try:
                     version = r.json().get("version", "?")
                 except Exception:
-                    pass
+                    logger.debug("Failed to parse version from health response", exc_info=True)
             results[name] = {
                 "status": "UP",
                 "ms": ms,
@@ -145,7 +150,7 @@ def fetch_service_health():
                     error_msg=results[name]["error"],
                 )
             except Exception:
-                pass
+                logger.debug("Failed to dispatch alert for service %s", name, exc_info=True)
     return results
 
 
@@ -496,7 +501,7 @@ def update_part_c(doc_path: str):
                         text = open(os.path.join(root_d, f), encoding="utf-8").read()
                         mermaid_count += text.count("```mermaid")
                     except Exception:
-                        pass
+                        logger.debug("Failed to read wiki file %s for mermaid count", f, exc_info=True)
     add_status_table(
         doc,
         ["Metric", "Value"],

@@ -54,9 +54,7 @@ def translate_text(text: str, target_lang: str) -> str:
         except (IndexError, ValueError):
             return match.group(0)
     
-    restored_text = re.sub(r'__PH_(\d+)__', restore_ph, translated_text)
-    # Fix potential spacing issues created by translation engines around placeholders
-    restored_text = restored_text.replace("{ {", "{{").replace("} }", "}}")
+    restored_text = re.sub(r'__PH_(\d+)__', restore_ph, translated_text).replace("{ {", "{{").replace("} }", "}}")
     return restored_text.strip()
 
 def translate_dict(d, target_lang: str):
@@ -72,10 +70,10 @@ def translate_dict(d, target_lang: str):
         # Standard safety rule never remove
         if "112" in d and target_lang == 'ar':
             # Preserve immediate safety rules
-            t = translate_text(d, target_lang)
-            if "112" not in t:
-                t = "إتصل بـ 112 فوراً! " + t
-            return t
+            translated_arabic = translate_text(d, target_lang)
+            if "112" not in translated_arabic:
+                translated_arabic = "إتصل بـ 112 فوراً! " + translated_arabic
+            return translated_arabic
         return translate_text(d, target_lang)
     else:
         return d

@@ -32,7 +32,7 @@ SafeVixAI is an emergency app. Every design decision must prioritize:
 - Prevents glare in car/sunlight
 - Emergency red SOS button stands out dramatically
 - Map markers (red, blue, orange) have high contrast
-- CartoDB Dark map tiles match perfectly
+- CartoDB Dark base map style matches perfectly
 - Battery-efficient on OLED screens
 
 ---
@@ -95,7 +95,8 @@ SafeVixAI is an emergency app. Every design decision must prioritize:
 - Border radius: 16px
 - Background while loading: `#1C2D4A` with pulse animation
 - Attribution: always visible (OSM license requirement)
-- Tile URL: CartoDB Dark `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png`
+- Style URL (report picker & command-center only): CartoDB Dark Matter `https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json`
+- Main map (`/locator`, `/emergency`) uses multiple providers via `buildStyleCandidates()` from `map-styles.ts`: **Google Maps** (raster, India-optimized), **MapTiler** (vector tiles), **OpenFreeMap** (Liberty style, fallback)
 
 ### Service Card
 - Background: `#132035`, border-radius: 12px, padding: 16px
@@ -122,14 +123,16 @@ SafeVixAI is an emergency app. Every design decision must prioritize:
 
 ## Map Design Rules (MapLibre GL)
 
-### Tile Layer
+### Map Style (MapLibre GL Style JSON — not Leaflet raster tiles)
 ```tsx
-// Always use CartoDB Dark, never default OSM blue
-<TileLayer
-  url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-  attribution=' OpenStreetMap contributors  CartoDB'
-  maxZoom={19}
-/>
+// CartoDB Dark Matter — used in report picker and command-center dashboard
+// Main map uses buildStyleCandidates() from map-styles.ts instead
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+  center: [lon, lat],
+  zoom: 14,
+})
 ```
 
 ### Marker Colors by Category
@@ -147,8 +150,8 @@ const MARKER_COLORS = {
 
 ### Critical Rules
 1. `import dynamic from 'next/dynamic'` + `ssr: false` → MapLibre needs browser
-2. `maplibre-gl/dist/maplibre-gl.css` is imported globally in `layout.tsx` (not per-component)
-3. Place marker icons in `public/maplibre/`
+2. `maplibre-gl/dist/maplibre-gl.css` is imported per-component in `LocationPickerInner.tsx`, `MapLayers.tsx`, and `MapLibreDashboard.tsx` (not globally in `layout.tsx`)
+3. Markers use `new maplibregl.Marker({ color: '...' })` with built-in color circles — no custom icon images needed. The `public/leaflet/` directory contains legacy Leaflet icons (not used by MapLibre). The `public/maplibre/` directory does not exist
 4. Add `key={lat+lon}` to MapContainer  prevents "map already initialized" error
 5. Set explicit height on MapContainer  invisible without it
 
@@ -288,7 +291,7 @@ const MARKER_COLORS = {
 - Workaround: wait for `[aria-busy="true"]` loading skeleton to disappear instead
 
 ### AuthGuard in Production Build
-- `AuthGuard.tsx` wraps all pages except NO_NAV_ROUTES (`/login`, `/signup`, `/forgot-password`)
+- `AuthGuard.tsx` wraps all pages except NO_NAV_ROUTES (defined in `AppFrame.tsx`: `/login`, `/signup`, `/forgot-password`)
 - Redirects to `/login` when `isAuthenticated=false` and no Supabase session
 - E2E tests use `localStorage.__E2E_SKIP_AUTH__` flag for bypass
 - Previous zustand persist approach (`svai-storage`) had race condition with `profileHydrated` (IndexedDB exceptions in EnterpriseClientAppHooks)

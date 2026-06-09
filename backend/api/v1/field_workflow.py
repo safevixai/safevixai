@@ -285,5 +285,5 @@ async def _get_issue_coords(db: AsyncSession, issue: RoadIssue) -> tuple[float |
         if row:
             return float(row[0]), float(row[1])
     except Exception:
-        pass
+        logger.debug("Suppressed exception", exc_info=True)
     return None, None

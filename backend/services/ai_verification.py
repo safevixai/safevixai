@@ -345,8 +345,8 @@ class AIVerificationPipeline:
                     message=f"Citizen filed {count} complaints in the last hour",
                     score_impact=0.2,
                 ))
-        except Exception:
-            pass  # Non-blocking
+        except Exception as exc:
+            logger.warning("Rate limit check failed: %s", exc)
         return flags
 
     def _check_description_quality(self, text: str) -> list[VerificationFlag]:

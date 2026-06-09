@@ -2,54 +2,55 @@
 
 > **Auto-synced** from `.qoder/repowiki/en/` via GitHub Actions
 
-This folder contains the complete repository wiki â€” 104 documentation files organized by module, covering every aspect of the SafeVixAI platform.
+This folder contains the complete repository wiki — 104 documentation files organized by module, covering every aspect of the SafeVixAI platform.
 
 ## Structure
 
 ```
 docs/wiki/
-â”œâ”€â”€ content/                          # 104 markdown documentation files
-â”‚   â”œâ”€â”€ AI Chatbot Service/           # Agentic RAG chatbot (9 files)
-â”‚   â”œâ”€â”€ API Reference/                # REST API endpoints (8 files)
-â”‚   â”œâ”€â”€ Data Management/              # Vector store, data pipelines (6 files)
-â”‚   â”œâ”€â”€ Database Schema/              # PostgreSQL + PostGIS models (8 files)
-â”‚   â”œâ”€â”€ Emergency Locator Module/     # GPS, SOS, emergency services (7 files)
-â”‚   â”œâ”€â”€ Frontend Application/         # Next.js PWA + components (13 files)
-â”‚   â”œâ”€â”€ Performance Optimization/     # Caching, AI inference (6 files)
-â”‚   â”œâ”€â”€ Project Overview/             # Architecture, tech stack (29 files)
-â”‚   â”œâ”€â”€ Road Reporter (RoadWatch)/    # Community road reporting (6 files)
-â”‚   â”œâ”€â”€ System Architecture/          # Microservices, data flow (5 files)
-â”‚   â”œâ”€â”€ Contributing Guidelines.md
-â”‚   â”œâ”€â”€ Deployment and CI_CD.md
-â”‚   â”œâ”€â”€ Getting Started.md
-â”‚   â”œâ”€â”€ Offline Architecture.md
-â”‚   â”œâ”€â”€ Performance Optimization.md
-â”‚   â”œâ”€â”€ Security and Authentication.md
-â”‚   â””â”€â”€ Testing Strategy.md
-â”œâ”€â”€ meta/
-â”‚   â””â”€â”€ repowiki-metadata.json        # Catalog with prompts + dependencies
-â””â”€â”€ README.md                         # This file
+├── content/                          # 104 markdown documentation files
+│   ├── AI Chatbot Service/           # Agentic RAG chatbot (9 files)
+│   ├── API Reference/                # REST API endpoints (8 files)
+│   ├── Data Management/              # Vector store, data pipelines (6 files)
+│   ├── Database Schema/              # PostgreSQL + PostGIS models (8 files)
+│   ├── Emergency Locator Module/     # GPS, SOS, emergency services (7 files)
+│   ├── Frontend Application/         # Next.js PWA + components (13 files)
+│   ├── Performance Optimization/     # Caching, AI inference (6 files)
+│   ├── Project Overview/             # Architecture, tech stack (29 files)
+│   ├── Road Reporter (RoadWatch)/    # Community road reporting (6 files)
+│   ├── System Architecture/          # Microservices, data flow (5 files)
+│   ├── Contributing Guidelines.md
+│   ├── Deployment and CI_CD.md
+│   ├── Getting Started.md
+│   ├── Offline Architecture.md
+│   ├── Performance Optimization.md
+│   ├── Security and Authentication.md
+│   └── Testing Strategy.md
+├── meta/
+│   └── repowiki-metadata.json        # Catalog with prompts + dependencies
+└── README.md                         # This file
 ```
 
 ## How It Works
 
 1. **Source of truth**: `.qoder/repowiki/en/` (generated + manually refined)
-2. **Sync**: GitHub Actions workflow runs on push â†’ copies to `docs/wiki/`
+2. **Sync**: GitHub Actions workflow runs on push → copies to `docs/wiki/`
 3. **Staleness detection**: Workflow compares codebase against wiki, flags undocumented files
 
 ## Key Facts (Ground Truth)
 
 | Metric | Value |
 |---|---|
-| LLM Providers | 9 (Groq, Gemini, Cerebras, Mistral, NVIDIA NIM, Sarvam AI, Together AI, GitHub Models, OpenRouter) |
+| LLM Providers | 9 real + Template (deterministic fallback) — Groq, Gemini, Cerebras, Mistral, NVIDIA NIM, Sarvam AI, Together AI, GitHub Models, OpenRouter |
 | Chatbot Tools | 13 |
 | Intent Classes | 9 |
 | Embedding Model | LocalHashEmbeddingFunction (zero-dependency) |
-| Frontend Components | 45 |
-| Frontend Pages | 16 |
-| API Endpoints | 28 |
-| Rate Limiting | slowapi (5/10/8 req/min) |
+| Features | 25/25 COMPLETE |
+| Unit Tests | 2829 total (1365 backend + 892 chatbot + 572 frontend) |
+| Frontend Components | 91 components across 13 subdirs |
+| Frontend Routes | 28 routes (app router) |
+| API Route Modules | 27 (backend + chatbot) |
+| Rate Limiting | slowapi — General 100/min, Auth 5/min, SOS 3/min, Challan 60/min, Chat 30/min, Geocode 30/min |
 | Auth | Supabase Auth (HS256 JWT) |
-| GH Actions Workflows | 7 |
+| GH Actions Workflows | 19 CI/CD workflows |
 | HuggingFace Dataset Hub | [SafeVixAI/SafeVixAI-Dataset-Hub](https://huggingface.co/datasets/SafeVixAI/SafeVixAI-Dataset-Hub) |
-

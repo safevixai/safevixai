@@ -10,7 +10,9 @@ import jwt
 
 import core.security as security_module
 from api.v1.user import get_user_profile
-from core.security import ALGORITHM, create_access_token
+
+ALGORITHM = security_module.ALGORITHM
+create_access_token = security_module.create_access_token
 
 
 def test_verify_rejects_missing_token(app):

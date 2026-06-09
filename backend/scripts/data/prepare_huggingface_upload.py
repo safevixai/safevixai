@@ -42,7 +42,7 @@ def count_records(filepath: Path) -> int:
             data = json.loads(filepath.read_text(encoding='utf-8'))
             return len(data.get('features', []))
     except Exception:
-        pass
+        logger.debug("Suppressed exception", exc_info=True)
     return 0
 
 
@@ -181,6 +181,8 @@ with open('road_categories.json') as f:
 
 # Load OSM features
 import csv
+import logging
+logger = logging.getLogger(__name__)
 with open('osm_features/chennai_streetlight.csv') as f:
     lights = list(csv.DictReader(f))
 ```

@@ -8,8 +8,8 @@ from fastapi.testclient import TestClient
 
 import main
 from agent.state import ChatResponse
-from api.chat import get_engine as chat_get_engine
-from api.chat import verify_internal_auth
+from api.chat import get_engine as chat_get_engine, verify_internal_auth
+
 
 
 # ============================================================ #

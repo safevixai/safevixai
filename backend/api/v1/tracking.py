@@ -1,6 +1,6 @@
 import asyncio
 from fastapi import APIRouter, Path, WebSocket, WebSocketDisconnect
-from typing import Dict, Set
+from typing import Any, Dict, Set
 import json
 import logging
 import time
@@ -20,8 +20,8 @@ STALE_CONNECTION_TIMEOUT_SECONDS = 60
 STALE_CLEANUP_INTERVAL_SECONDS = 30
 
 
+
 from pydantic import BaseModel, Field, model_validator, ValidationError
-from typing import Any
 
 class WSLocationUpdate(BaseModel):
     lat: float = Field(..., ge=-90.0, le=90.0)
@@ -137,7 +137,7 @@ class RedisConnectionManager:
             from core.metrics import ws_connections_total
             ws_connections_total.labels(group=group_id).inc()
         except ImportError:
-            pass
+            logger.debug("Suppressed exception", exc_info=True)
 
     def disconnect(self, websocket: WebSocket, group_id: str):
         connection_health.remove(websocket)
@@ -156,7 +156,7 @@ class RedisConnectionManager:
                 from core.metrics import ws_connections_total
                 ws_connections_total.labels(group=group_id).dec()
             except ImportError:
-                pass
+                logger.debug("Suppressed exception", exc_info=True)
 
     async def broadcast(self, message: dict, group_id: str):
         if self.redis:
@@ -195,7 +195,7 @@ class RedisConnectionManager:
                 for ws in stale:
                     self.disconnect(ws, group_id)
         except asyncio.CancelledError:
-            pass
+            logger.debug("Suppressed exception", exc_info=True)
 
     async def _stale_cleanup_loop(self):
         """Periodically close connections that haven't sent data recently."""
@@ -209,10 +209,10 @@ class RedisConnectionManager:
                         try:
                             await ws.close(code=1001, reason="Connection timeout")
                         except Exception:
-                            pass
+                            logger.debug("Suppressed exception", exc_info=True)
                         self.disconnect(ws, group_id)
         except asyncio.CancelledError:
-            pass
+            logger.debug("Suppressed exception", exc_info=True)
 
     def start_cleanup(self):
         if self.cleanup_task is None or self.cleanup_task.done():

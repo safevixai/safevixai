@@ -12,6 +12,7 @@ export default function GpsConsent() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true') return;
     const consent = window.localStorage.getItem(GPS_CONSENT_KEY);
     if (!consent) {
       // Show GPS consent banner after a short delay (separated from cookie banner)

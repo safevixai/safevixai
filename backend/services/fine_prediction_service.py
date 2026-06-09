@@ -80,7 +80,7 @@ class FinePredictionService:
                                     elif "181" in norm_v_code:
                                         fines["181"] = fine_val
                                 except ValueError:
-                                    pass
+                                    logger.debug("Suppressed exception", exc_info=True)
             except Exception as e:
                 logger.error(f"Error parsing state fine overrides: {str(e)}")
                 

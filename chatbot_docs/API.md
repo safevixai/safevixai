@@ -27,10 +27,15 @@ Auto-generated Swagger docs: `http://localhost:8010/docs`
 - **Description**: Returns conversation history for a session from Redis memory.
 - **Response**: Array of message pairs (user + assistant).
 
-## Endpoint: `POST /api/v1/speech/transcribe`
-- **Description**: Transcribes audio input using IndicSeamless speech model.
+## Endpoint: `POST /speech/translate`
+- **Description**: Transcribes and translates audio input using IndicSeamless speech model (ai4bharat/indic-seamless).
+- **Note**: This endpoint is at `/speech/translate`, NOT `/api/v1/speech/translate`.
 - **Request**: Multipart form data with audio file.
 - **Response**: `{"text": "transcribed text", "language": "hi"}`
+
+## Endpoint: `GET /speech/status`
+- **Description**: Returns the current status of the speech translation service.
+- **Response**: `{"available": true, "model": "ai4bharat/indic-seamless", "languages": 14}`
 
 ## Endpoint: `GET /api/v1/admin/provider-health`
 - **Description**: Returns the current health status of all configured LLM providers.

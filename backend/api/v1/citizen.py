@@ -69,7 +69,7 @@ async def track_complaint(
             if row:
                 lat, lon = float(row[0]), float(row[1])
         except Exception:
-            pass
+            logger.debug("Suppressed exception", exc_info=True)
 
     # Calculate SLA status
     sla_status = "on_track"
@@ -164,8 +164,8 @@ async def confirm_resolution(
             actor_role="system",
             notes="Auto-closed after citizen confirmation",
         )
-    except (InvalidTransitionError, Exception):
-        pass  # Closing is best-effort
+    except (InvalidTransitionError, Exception) as exc:
+        logger.warning("Auto-close of complaint %s failed: %s", complaint_ref, exc)
 
     return {
         "status": "citizen_confirmed",

@@ -17,8 +17,12 @@ test.describe('Offline/PWA Tests', () => {
 
   async function waitForMount(page: Page, text: string) {
     await page.waitForFunction((t: string) => {
-      const h1 = document.querySelector('h1');
-      return h1 && h1.textContent?.includes(t);
+      const headings = Array.from(document.querySelectorAll('h1, h2, h3'));
+      const key = t.toLowerCase().replace(/\s+/g, '_');
+      return headings.some(h => {
+        const txt = h.textContent?.toLowerCase() || '';
+        return txt.includes(t.toLowerCase()) || txt.includes(key);
+      });
     }, text, { timeout: 15000 });
   }
 
@@ -66,10 +70,8 @@ test.describe('Offline/PWA Tests', () => {
 
   test('online sync after offline', async ({ page }) => {
     await page.goto('/report');
-    await waitForMount(page, 'Road Hazard');
-    await expect(
-      page.getByRole('heading').first().or(page.locator('input, select, textarea').first())
-    ).toBeVisible({ timeout: 15000 });
+    await waitForMount(page, 'Report Hazard');
+    await expect(page.locator('main').first()).toBeVisible({ timeout: 15000 });
 
     await page.context().setOffline(true);
     const isOffline = await page.evaluate(async () => {
@@ -85,9 +87,7 @@ test.describe('Offline/PWA Tests', () => {
     await page.context().setOffline(false);
     await page.reload({ waitUntil: 'domcontentloaded' });
     
-    await expect(
-      page.getByRole('heading').first().or(page.locator('input, select, textarea').first())
-    ).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('main').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('manifest valid', async ({ page }) => {

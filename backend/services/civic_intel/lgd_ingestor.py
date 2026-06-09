@@ -145,8 +145,8 @@ class LGDIngestor(BaseIngestor):
                                 'state_code': state_code,
                                 'census_code_2011': sd.get('censusCode2011'),
                             })
-                except Exception:
-                    pass  # Non-critical: log and continue
+                except Exception as exc:
+                    logger.debug('[LGD:NAPIX] Subdistrict fetch for state %s failed: %s', state_code, exc)
 
             # 4. Fetch blocks per state
             for state_code in INDIAN_STATE_CODES:
@@ -169,7 +169,7 @@ class LGDIngestor(BaseIngestor):
                                 'state_code': state_code,
                             })
                 except Exception:
-                    pass
+                    logger.debug("Suppressed exception", exc_info=True)
 
             # 5. Fetch local bodies (ULBs) per state
             for state_code in INDIAN_STATE_CODES:
@@ -193,7 +193,7 @@ class LGDIngestor(BaseIngestor):
                                 'census_code_2011': ulb.get('censusCode2011'),
                             })
                 except Exception:
-                    pass
+                    logger.debug("Suppressed exception", exc_info=True)
 
         logger.info('[LGD:NAPIX] Total fetched: %d entities', len(all_records))
         return all_records

@@ -4,8 +4,8 @@ To maintain high architectural standards and prevent merge conflicts in the `cha
 
 ## Team Assignments
 Assign ownership of specific modules before writing code.
-- **Member A**: Providers, Memory, API endpoints.
-- **Member B**: RAG, Agent (ChatEngine), Tools.
+- **Member A**: Providers (13 provider files), Memory, API endpoints.
+- **Member B**: RAG, Agent (ChatEngine — 8 agent modules), Tools.
 - **Member C**: Frontend Voice UI, Voice Output, and Multi-language setup.
 
 ## Workflow Rules
@@ -19,3 +19,8 @@ Assign ownership of specific modules before writing code.
 - **Typing**: Use TypeHints for function signatures.
 - **Environment**: Keep all keys in `.env` and never commit it to Git.
 - **Testing**: Add a corresponding test in the `/tests` folder for every new feature.
+
+## Test State
+- **892/892 tests passing**, **95% coverage**
+- **pytest config**: `asyncio_mode = strict` — async tests **require** `@pytest.mark.asyncio` decorator
+- Run: `pytest tests/ -q` from `chatbot_service/`

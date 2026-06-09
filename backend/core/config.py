@@ -6,6 +6,10 @@ from typing import Any
 
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 
 class Settings(BaseSettings):
@@ -217,5 +221,5 @@ def get_settings() -> Settings:
         settings.upload_dir.mkdir(parents=True, exist_ok=True)
         (settings.upload_dir / 'temp_pending').mkdir(parents=True, exist_ok=True)
     except OSError:
-        pass
+        logger.debug("Suppressed exception", exc_info=True)
     return settings

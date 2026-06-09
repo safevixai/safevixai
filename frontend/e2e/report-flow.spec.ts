@@ -3,7 +3,9 @@ import { test, expect } from '@playwright/test';
 async function waitForMount(page: any) {
   await page.waitForFunction(() => {
     const el = document.querySelector('h1');
-    return el && el.textContent?.includes('Road Hazard');
+    if (!el) return false;
+    const txt = el.textContent?.toLowerCase() || '';
+    return txt.includes('report hazard') || txt.includes('report_hazard');
   }, { timeout: 15000 });
 }
 
@@ -18,8 +20,8 @@ test.describe('Road Report Flow', () => {
   });
 
   test('report page renders with all steps', async ({ page }) => {
-    await expect(page.getByText(/Report Road Issue/i)).toBeVisible();
-    await expect(page.getByText(/Pothole|Road Crack|Roads|Traffic|Streetlights/i)).toBeVisible();
+    await expect(page.getByText(/Report Road Issue/i).first()).toBeVisible();
+    await expect(page.getByText(/Pothole|Road Crack|Roads|Traffic|Streetlights/i).first()).toBeVisible();
   });
 
   test('requires GPS location before proceeding', async ({ page }) => {

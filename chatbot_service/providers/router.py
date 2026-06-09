@@ -548,7 +548,7 @@ class ProviderRouter:
                             self.cache.set_provider_unavailable_until(provider_name, until_time, int(duration))
                         )
                 except RuntimeError:
-                    pass
+                    logger.debug("No running event loop for Redis circuit-breaker sync of %s", provider_name, exc_info=True)
             logger.warning(
                 "Provider %s disabled for %ss after %s",
                 provider_name,

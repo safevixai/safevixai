@@ -11,10 +11,13 @@ to prevent key exposure in server access logs, proxy logs, and browser history.
 from __future__ import annotations
 
 import json
+import logging
 import os
 
 import httpx
 from providers.base import HttpProvider, ProviderRequest, ProviderResult, build_messages, raise_for_provider_status
+
+logger = logging.getLogger(__name__)
 
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
@@ -92,7 +95,7 @@ class GeminiProvider(HttpProvider):
                                 if text:
                                     yield text
                     except json.JSONDecodeError:
-                        pass
+                        logger.debug("Skipping malformed SSE chunk in Gemini stream: %.100s", data_str, exc_info=True)
 
     async def generate(self, request: ProviderRequest) -> ProviderResult:
         api_key = (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip()

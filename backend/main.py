@@ -255,8 +255,9 @@ def create_app() -> FastAPI:
     try:
         from core.tracing import setup_tracing
         setup_tracing(app)
-    except ImportError:
-        pass  # opentelemetry not installed (dev-only dependency)
+    except ImportError as exc:
+        # opentelemetry not installed (dev-only dependency)
+        logger.debug("OpenTelemetry not installed, tracing disabled: %s", exc)
     
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
@@ -593,7 +594,7 @@ def create_app() -> FastAPI:
             cb_stats = CircuitBreakerRegistry.all_stats()
             circuit_breakers = {name: stats["state"] for name, stats in cb_stats.items()}
         except ImportError:
-            pass
+            logger.debug("Suppressed exception", exc_info=True)
 
         overall_status = 'ok'
         if not database_available:

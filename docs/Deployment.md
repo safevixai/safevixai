@@ -1,4 +1,4 @@
-# SafeVixAI  Deployment Guide
+# SafeVixAI v2.0 — Deployment Guide
 
 ## Infrastructure Overview (All Free Tier)
 
@@ -9,20 +9,20 @@
 | Chatbot Service | Render.com | `safevixai-chatbot.onrender.com` | FastAPI :8010, Agentic RAG AI |
 | Database | Supabase | `[project].supabase.co` | PostgreSQL + PostGIS |
 | Cache | Upstash | `[host].upstash.io` | Redis, 10K commands/day |
-| LLM APIs | Groq + 10 more | Various | 9-provider fallback chain |
+| LLM APIs | 9-provider fallback chain (Groq, Cerebras, Gemini, GitHub Models, NVIDIA NIM, OpenRouter, Mistral, Together, Template) | Various | Auto-fallback on rate limit / failure |
 | Model CDN | Hugging Face | `huggingface.co` | WebLLM weights |
-| CI/CD | GitHub Actions | | Auto-deploy on push |
+| CI/CD | GitHub Actions (19 workflows) | | Auto-deploy on push |
 
 ---
 
 ## Step 1: Create Free Accounts
 
-1. **Groq**  [console.groq.com](https://console.groq.com)  Create account  API Keys  Create Key (starts with `gsk_`)
-2. **Supabase**  [supabase.com](https://supabase.com)  New project  Region: Singapore (closest to India)  Save password
-3. **Upstash**  [upstash.com](https://upstash.com)  New Redis Database  Global  Copy `REDIS_URL`
-4. **Vercel**  [vercel.com](https://vercel.com)  Connect GitHub account
-5. **Render.com**  [render.com](https://render.com)  Connect GitHub account
-6. **data.gov.in**  [data.gov.in](https://data.gov.in)  Register  Get API key (for NHAI data)
+1. **Groq** — [console.groq.com](https://console.groq.com) → Create account → API Keys → Create Key (starts with `gsk_`)
+2. **Supabase** — [supabase.com](https://supabase.com) → New project → Region: Singapore (closest to India) → Save password
+3. **Upstash** — [upstash.com](https://upstash.com) → New Redis Database → Global → Copy `REDIS_URL`
+4. **Vercel** — [vercel.com](https://vercel.com) → Connect GitHub account
+5. **Render.com** — [render.com](https://render.com) → Connect GitHub account
+6. **data.gov.in** — [data.gov.in](https://data.gov.in) → Register → Get API key (for NHAI data)
 
 ---
 
@@ -37,7 +37,7 @@ SELECT PostGIS_version(); -- verify: should return version string
 ```
 
 ### Get Connection String
-Supabase  Settings  Database  Connection string  URI
+Supabase → Settings → Database → Connection string → URI
 
 Change `postgresql://` to `postgresql+asyncpg://` for async driver.
 
@@ -67,31 +67,33 @@ cp .env.example .env
 alembic upgrade head
 
 # 6. Verify tables were created
-# Check Supabase Table Editor  should see 6 tables
+# Check Supabase Table Editor — should see 6 tables
 ```
 
 ### Download Required PDFs (for RAG)
 
 ```
-Download to backend/data/:
+Download to chatbot_service/data/legal/:
 - motor_vehicles_act_1988.pdf     indiacode.nic.in
 - mv_amendment_act_2019.pdf       morth.nic.in
-- who_trauma_care_guidelines.pdf  who.int
+
+Medical PDFs (who_trauma_care_guidelines.pdf, etc.):
+Place in chatbot_service/data/medical/ (create dir if absent)
 ```
 
 ### Seed the Database
 
 ```bash
 # Seed traffic violations and state overrides (~2 seconds)
-python data/seed_violations.py
+python backend/scripts/data/seed_violations.py
 
 # Seed emergency services for 25 Indian cities (~4 minutes via Overpass API)
 # Also creates: frontend/public/offline-data/india-emergency.geojson
-python data/seed_emergency.py
+python backend/scripts/app/seed_emergency.py
 
-# Build ChromaDB vector store from PDFs  RUN ONCE, takes 5-10 minutes
-# Creates: data/chroma_db/ directory (never delete this!)
-python data/build_vectorstore.py
+# Build ChromaDB vector store from PDFs — RUN ONCE, takes 5-10 minutes
+# Creates: chatbot_service/data/chroma_db/ directory (committed to git)
+python chatbot_service/data/build_vectorstore.py
 ```
 
 ### Start Backend Dev Server
@@ -126,6 +128,29 @@ npm run dev
 # Opens at: http://localhost:3000
 ```
 
+### Standalone Production Build
+
+```bash
+# npm run build runs: next build && node scripts/copy-public.js
+# copy-public.js removes stale .next/standalone/public/ and
+# .next/standalone/.next/static/ directories, then re-copies
+# all public assets and static chunks so the standalone server
+# never serves 404s on JS/CSS/public files.
+npm run build
+```
+
+### E2E Test Auth Bypass
+
+When running Playwright E2E tests, set the following localStorage flag before navigating to any guarded route:
+
+```js
+await page.addInitScript(() => {
+  localStorage.setItem('__E2E_SKIP_AUTH__', 'true');
+});
+```
+
+This bypasses AuthGuard at the component level, preventing redirect loops while allowing tests to interact with authenticated pages. The backend still requires valid JWTs for API calls.
+
 ### Test Offline Mode (PWA)
 
 ```bash
@@ -135,9 +160,9 @@ npm run dev
 npm run build && npm start
 
 # Then in Chrome:
-# 1. DevTools  Application  Service Workers  verify registered
-# 2. DevTools  Network  check "Offline"
-# 3. Navigate to /emergency  hospitals should still show
+# 1. DevTools → Application → Service Workers — verify registered
+# 2. DevTools → Network — check "Offline"
+# 3. Navigate to /emergency — hospitals should still show
 ```
 
 ---
@@ -148,7 +173,7 @@ npm run build && npm start
 
 The `render.yaml` at the project root configures automatic deployment.
 
-1. Go to Render.com  New  Blueprint
+1. Go to Render.com → New → Blueprint
 2. Connect GitHub repository
 3. Render detects `render.yaml` automatically
 4. Set environment variables (from Render dashboard):
@@ -166,7 +191,7 @@ The `render.yaml` at the project root configures automatic deployment.
 
 ### Manual Setup (Alternative)
 
-Render.com  New  Web Service:
+Render.com → New → Web Service:
 - **Name:** `safevixai-api`
 - **Root Directory:** `backend`
 - **Runtime:** Python 3.11
@@ -179,9 +204,9 @@ Render.com  New  Web Service:
 After first deploy, open Render Shell:
 ```bash
 alembic upgrade head
-python data/seed_violations.py
-python data/seed_emergency.py  # 4 minutes
-python data/build_vectorstore.py  # 10 minutes
+python backend/scripts/data/seed_violations.py
+python backend/scripts/app/seed_emergency.py  # 4 minutes
+python chatbot_service/data/build_vectorstore.py  # 10 minutes
 ```
 
 ---
@@ -219,17 +244,17 @@ Set environment variables:
 
 ### Via GitHub Actions (Automated CI/CD Pipeline)
 
-The repository is configured with a fully automated CI/CD pipeline using the `amondnet/vercel-action`. The frontend is automatically deployed to Vercel when changes are pushed to the `main` branch, *only* if the E2E and Unit test suites pass successfully.
+The repository is configured with a fully automated CI/CD pipeline. The frontend is automatically deployed to Vercel when changes are pushed to the `main` branch, *only* if the E2E and unit test suites pass successfully.
 
-1. Add the following secrets to your GitHub repository (`Settings` > `Secrets and variables` > `Actions`):
+1. Add the following secrets to your GitHub repository (`Settings` → `Secrets and variables` → `Actions`):
    - `VERCEL_TOKEN`: Generate this at [vercel.com/account/tokens](https://vercel.com/account/tokens)
    - `VERCEL_ORG_ID`: Found in your Vercel project settings or `.vercel/project.json` after linking locally.
    - `VERCEL_PROJECT_ID`: Found in your Vercel project settings or `.vercel/project.json`.
 
 2. The `.github/workflows/e2e.yml` workflow will automatically trigger on pushes to `main`. It will:
-   - Run Vitest unit tests.
-   - Run Playwright E2E tests against a built version of the app.
-   - If (and only if) all tests pass, deploy the application to Vercel production.
+   - Run Jest unit tests
+   - Run Playwright E2E tests against a production build
+   - If (and only if) all tests pass, deploy the application to Vercel production
 
 ### Via CLI (Manual/Local Testing)
 
@@ -260,20 +285,36 @@ curl "https://safevixai-api.onrender.com/api/v1/challan/calculate?violation_code
 # Expected: {"final_fine_inr":10000,"section":"185"}
 
 # Frontend PWA check
-# Chrome  visit safevixai.vercel.app  check "Add to Home Screen" prompt
+# Chrome → visit safevixai.vercel.app → check "Add to Home Screen" prompt
 ```
 
 ---
 
 ## CI/CD (GitHub Actions)
 
-Configured in `.github/workflows/` (separate workflow files per service):
+Configured in `.github/workflows/` — 19 workflow files:
 
-- **Triggers:** Push to `main`, any Pull Request to `main` (path-filtered per service)
-- **`backend.yml`:** Runs `pytest tests/ -v` with Python 3.11
-- **`chatbot.yml`:** Runs `pytest tests/ -v` with Python 3.11
-- **`frontend.yml`:** Runs `pnpm run lint` + `npx tsc --noEmit` with Node 20
-- **Auto-deploy:** Vercel and Render both watch the `main` branch
+| Workflow | Trigger | Purpose |
+|---|---|---|
+| `backend.yml` | `backend/**` changes | `pytest tests/ -v` with Python 3.11 |
+| `chatbot.yml` | `chatbot_service/**` changes | `pytest tests/ -v` with Python 3.11 |
+| `frontend.yml` | `frontend/**` changes | `pnpm run lint` + `npx tsc --noEmit` with Node 20 |
+| `e2e.yml` | Push to `main`, PR | Full-stack Playwright E2E tests + Vercel deploy |
+| `security.yml` | Push, PR | Dependency auditing + security scanning |
+| `system.yml` | Push to `main` | Cross-service system validation |
+| `docker-build.yml` | Push, PR | Docker Compose build verification |
+| `smoke-tests.yml` | Push to `main` | API smoke tests after deploy |
+| `load-testing.yml` | Scheduled | Load/performance testing |
+| `contract-tests.yml` | PR to `main` | Provider-driven contract tests |
+| `chaos-tests.yml` | Scheduled | Chaos engineering resilience tests |
+| `i18n-cron.yml` | Scheduled (daily) | i18n translation sync |
+| `db-backup.yml` | Scheduled (daily) | Supabase database backup |
+| `blue-green-deploy.yml` | Push to `main` | Zero-downtime frontend deploy |
+| `branch-protection.yml` | PR | Branch protection policy checks |
+| `codacy.yml` | PR | Codacy code quality analysis |
+| `sync-wiki.yml` | `backend/**`, `chatbot_service/**` | LLM wiki generation |
+| `update-master-doc.yml` | `docs/**`, root `.md` changes | Auto-generate DOCX master document |
+| `deploy-docs.yml` | `docs/**` changes | Deploy documentation site |
 
 ---
 
@@ -303,18 +344,23 @@ CACHE_TTL=3600
 ```bash
 # LLM
 DEFAULT_LLM_PROVIDER=groq
-DEFAULT_LLM_MODEL=llama3-70b-8192
+DEFAULT_LLM_MODEL=llama-3.1-8b-instant
 GROQ_API_KEY=gsk_...
 CEREBRAS_API_KEY=...
 GEMINI_API_KEY=...
 SARVAM_API_KEY=...
+GITHUB_TOKEN=ghp_...           # For GitHub Models provider
+NVIDIA_NIM_API_KEY=...
+OPENROUTER_API_KEY=...
+MISTRAL_API_KEY=...
+TOGETHER_API_KEY=...
 
 # Backend connection
 MAIN_BACKEND_BASE_URL=http://localhost:8000
 
 # RAG
 CHROMA_PERSIST_DIR=./data/chroma_db
-EMBEDDING_MODEL=LocalHashEmbeddingFunction (zero-dependency)  # Config hint — actual runtime uses LocalHashEmbeddingFunction (hash-based, zero ML dep)
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2  # Config hint — runtime uses LocalHashEmbeddingFunction
 
 # Cache
 REDIS_URL=rediss://default:[TOKEN]@[HOST].upstash.io:6379
@@ -329,11 +375,53 @@ NEXT_PUBLIC_CHATBOT_URL=https://safevixai-chatbot.onrender.com
 
 ---
 
+## Speech Translation Endpoints
+
+Available in the chatbot service (no API key required beyond CORS):
+
+| Method | Endpoint | Rate Limit | Description |
+|--------|----------|------------|-------------|
+| `POST` | `/speech/translate` | 20/min | Upload audio, returns translated text + language detection |
+| `GET` | `/speech/status` | 30/min | Service status, supported languages, model health |
+
+Audio formats: WAV, MP3, OGG, WebM, FLAC. Max upload: 10 MB.
+Backed by IndicSeamlessService (SeamlessM4T for ASR + translation).
+
+---
+
+## Rate Limiting
+
+| Category | Limit | Implementation |
+|----------|-------|----------------|
+| General | 100 requests/min | slowapi with Redis backend (in-memory fallback) |
+| Auth | 5 requests/min | Login/signup/password-reset endpoints |
+| SOS / Emergency | 3 requests/min | SOS activation and emergency reports |
+| Challan | 60 requests/min | Fine calculation queries |
+| Chat | 30 requests/min | Chat and streaming endpoints |
+| Geocoding | 30 requests/min | Reverse and forward geocoding |
+
+---
+
+## Static Analysis Stats (v2.0)
+
+| Metric | Count |
+|--------|-------|
+| Backend Python Tests | 1365 |
+| Chatbot Python Tests | 892 |
+| Frontend Jest Tests | 572 |
+| **Total Unit Tests** | **2829** |
+| Frontend Components | 91 |
+| Frontend Routes | 28 |
+| API Route Modules | 27 |
+| CI/CD Workflows | 19 |
+
+---
+
 ## Render.com Free Tier Limitations
 
-- **512MB RAM**  sufficient for FastAPI + ChromaDB reads (build vectorstore before deploy)
-- **750 hrs/month**  one service runs 24/7 for a month
-- **Cold starts**  first request after inactivity takes ~30s (free tier sleeps after 15min)
+- **512MB RAM** — sufficient for FastAPI + ChromaDB reads (build vectorstore before deploy)
+- **750 hrs/month** — one service runs 24/7 for a month
+- **Cold starts** — first request after inactivity takes ~30s (free tier sleeps after 15min)
   - Mitigation: Set up a `/health` ping every 14 minutes via UptimeRobot (free)
 
 ---
@@ -361,7 +449,7 @@ alembic upgrade head
 alembic downgrade -1
 
 # Rebuild ChromaDB (after adding PDFs)
-python data/build_vectorstore.py
+python chatbot_service/data/build_vectorstore.py
 
 # Test API manually
 curl "http://localhost:8000/api/v1/emergency/nearby?lat=13.0827&lon=80.2707"
@@ -416,4 +504,4 @@ When a request takes >5 seconds (cold start signal), a "Connecting..." banner ap
 
 ---
 
-*Document version: 1.2 | IIT Madras Road Safety Hackathon 2026 | Updated: May 2026*
+*Document version: 2.0 | IIT Madras Road Safety Hackathon 2026 | Updated: June 2026*

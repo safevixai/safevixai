@@ -142,8 +142,8 @@ class DataGovIngestor(BaseIngestor):
             if val:
                 try:
                     return int(str(val)[:4])
-                except (ValueError, TypeError):
-                    pass
+                except (ValueError, TypeError) as exc:
+                    logger.debug("Failed to parse year value: %s", exc)
         return None
 
     def _extract_metric_name(self, item: dict) -> str | None:
@@ -160,8 +160,8 @@ class DataGovIngestor(BaseIngestor):
             if val is not None:
                 try:
                     return float(val)
-                except (ValueError, TypeError):
-                    pass
+                except (ValueError, TypeError) as exc:
+                    logger.debug("Failed to parse float value: %s", exc)
         return None
 
     async def transform(self, raw: list[dict[str, Any]]) -> list[dict[str, Any]]:

@@ -101,7 +101,7 @@
 
 | Area | Current | Target | Gap |
 |------|---------|--------|-----|
-| Frontend unit tests | 540 passing | 500+ | MET |
+| Frontend unit tests | 572 passing | 500+ | MET |
 | Backend pytest | 1365 passing | 1300+ | MET |
 | Chatbot pytest | 892 passing | 800+ | MET |
 | Backend coverage | 59% | 70% | **11% GAP** |

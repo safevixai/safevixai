@@ -186,7 +186,7 @@ class WorkloadBalancer:
                     elif distance_km < 5:
                         reasons.append(f"Nearby ({distance_km:.1f}km)")
                 except Exception:
-                    pass
+                    logger.debug("Suppressed exception", exc_info=True)
 
             # Factor 5: Severity urgency — 10% weight
             if severity >= 4 and workload < 3:

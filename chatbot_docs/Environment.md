@@ -6,8 +6,8 @@ Create a `.env` file in the `chatbot_service/` root based on `.env.example`. Thi
 
 | Variable | Provider | Notes |
 |----------|----------|-------|
-| `DEFAULT_LLM_PROVIDER` | — | Default provider name: `groq`, `gemini`, `cerebras`, etc. |
-| `DEFAULT_LLM_MODEL` | — | Model ID for the chosen provider |
+| `DEFAULT_LLM_PROVIDER` | — | Default provider name: `groq` (default), `gemini`, `cerebras`, etc. |
+| `DEFAULT_LLM_MODEL` | — | Model ID (default: `llama-3.1-8b-instant`) |
 | `GROQ_API_KEY` | Groq | Primary English provider (300+ tok/s) |
 | `CEREBRAS_API_KEY` | Cerebras | Speed overflow (2000+ tok/s) |
 | `GEMINI_API_KEY` | Google | Gemini 1.5 Flash (1M context) |
@@ -25,11 +25,18 @@ Create a `.env` file in the `chatbot_service/` root based on `.env.example`. Thi
 
 ## RAG Configuration
 - `CHROMA_PERSIST_DIR`: Path to ChromaDB vectorstore (default: `./data/chroma_db`).
-- `EMBEDDING_MODEL`: Sentence-transformers model (default: `sentence-transformers/all-MiniLM-L6-v2`).
+- `EMBEDDING_MODEL`: Config hint — runtime uses `LocalHashEmbeddingFunction` (hash-based, 384-dim, zero ML dependency).
+- ChromaDB RAG: `top_k=5`, `min_score=0.55`
 
 ## Other Services
-- `REDIS_URL`: Redis connection string for session memory (optional — falls back to in-memory).
+- `REDIS_URL`: Redis connection string for session memory (optional — falls back to in-memory). Session TTL: 86400s (24h).
 - `OPENWEATHER_API_KEY`: Required for the `WeatherTool`.
+- `W3W_API_KEY`: Required for the `What3WordsTool`.
+- `OPENCAGE_API_KEY`: Required for OpenCage geocoding fallback.
+- `HF_TOKEN`: HuggingFace token — used as Sarvam fallback + Shuka/BharatGen/Whisper via HF Inference API. Not needed for core chatbot flow.
+- `ADMIN_SECRET`: Protects admin-only endpoints.
+- `ALERT_EMAIL` / `ALERT_EMAIL_PASSWORD`: Email alert config when all 9 LLM providers fail (5-min cooldown).
+- `SENTRY_DSN`: Optional Sentry error tracking.
 
 ## Local Development vs. Production
 - **Local**: Point `MAIN_BACKEND_BASE_URL` to `http://localhost:8000`.

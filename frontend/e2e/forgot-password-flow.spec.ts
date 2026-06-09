@@ -21,6 +21,9 @@ test.describe('Forgot Password Flow', () => {
       if (msg.type() === 'error') consoleErrors.push(msg.text());
     });
     page.on('pageerror', err => pageErrors.push(err.message));
+    await page.addInitScript(() => {
+      localStorage.setItem('__E2E_SKIP_AUTH__', 'true');
+    });
     await page.goto('/forgot-password');
     await page.waitForLoadState('networkidle');
     await waitForMount(page);

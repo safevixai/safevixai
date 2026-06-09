@@ -23,11 +23,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
 import re
 import subprocess
 import sys
 import time
+
+logger = logging.getLogger(__name__)
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -976,7 +979,7 @@ def run_live_checks() -> None:
         try:
             manifest_json = json.loads(manifest.get("text", "{}"))
         except json.JSONDecodeError:
-            pass
+            logger.debug("Failed to parse manifest.json response", exc_info=True)
     check("Live PWA manifest is served", "LIVE",
           manifest["status"] == 200 and "share_target" in manifest_json,
           f"status={manifest['status']}",

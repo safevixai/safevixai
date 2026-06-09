@@ -62,7 +62,7 @@ test.describe('Responsive Design', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/emergency');
 
-    await expect(page.getByText(/Protocol Terminal|Emergency/i).first()).toBeVisible();
+    await expect(page.getByText('Filter by Category').first()).toBeVisible();
   });
 
   test('chat page responsive', async ({ page }) => {

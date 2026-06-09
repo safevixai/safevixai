@@ -7,7 +7,6 @@ Create Date: 2026-05-06 00:00:00.000000
 
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy import text
 
 
 revision = '10001_profiles_sos'
@@ -20,7 +19,7 @@ def upgrade() -> None:
     # Check if user_id column exists before adding
     conn = op.get_bind()
     result = conn.execute(
-        text("""
+        sa.text("""
             SELECT column_name FROM information_schema.columns 
             WHERE table_schema = 'public' AND table_name = 'user_profiles' AND column_name = 'user_id'
         """)
@@ -31,7 +30,7 @@ def upgrade() -> None:
         op.add_column('user_profiles', sa.Column('user_id', sa.String(length=255), nullable=True))
     
     # Update user_id from id if NULL (UUID to string conversion)
-    op.execute(text("UPDATE user_profiles SET user_id = id::text WHERE user_id IS NULL"))
+    op.execute(sa.text("UPDATE user_profiles SET user_id = id::text WHERE user_id IS NULL"))
     
     # Make column NOT NULL after populating
     op.alter_column('user_profiles', 'user_id', nullable=False)

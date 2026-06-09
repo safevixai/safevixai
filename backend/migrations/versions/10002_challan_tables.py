@@ -7,7 +7,6 @@ Create Date: 2026-05-06 00:10:00.000000
 
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy import text
 
 
 revision = '10002_challan_tables'
@@ -82,7 +81,7 @@ def upgrade() -> None:
     # Skip RLS policies if role doesn't exist (e.g., in CI/test environments)
     conn = op.get_bind()
     result = conn.execute(
-        text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
+        sa.text("SELECT 1 FROM pg_roles WHERE rolname = 'authenticated'")
     )
     if result.fetchone():
         op.execute("ALTER TABLE traffic_violations ENABLE ROW LEVEL SECURITY;")

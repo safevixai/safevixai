@@ -16,9 +16,8 @@ from models.schemas import (
     ComplaintTimelineResponse,
     ComplaintEventItem,
 )
-from services.roadwatch_service import RoadWatchService
+from services.roadwatch_service import RoadWatchService, ALL_ROAD_ISSUE_STATUSES
 from services.exceptions import ServiceValidationError
-from services.roadwatch_service import ALL_ROAD_ISSUE_STATUSES
 from core.limiter import limiter
 
 

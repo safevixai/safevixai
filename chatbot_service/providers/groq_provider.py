@@ -104,7 +104,7 @@ class GroqProvider(HttpProvider):
                             if content:
                                 yield content
                     except json.JSONDecodeError:
-                        pass
+                        logger.debug("Skipping malformed SSE chunk in Groq stream: %.100s", data_str, exc_info=True)
 
     async def generate(self, request: ProviderRequest) -> ProviderResult:
         # P0-05: Skip Groq if estimated tokens would exceed TPM guard

@@ -17,7 +17,7 @@ from typing import Any
 
 import httpx
 import jwt
-from jwt import PyJWK, PyJWKClient
+
 
 logger = logging.getLogger(__name__)
 
@@ -44,13 +44,13 @@ class JWKSManager:
         self._jwks_cache_time = 0.0
         self._current_key_id: str | None = None
         self._key_history: list[tuple[str, float]] = []  # (kid, expiry_time)
-        self._jwks_client: PyJWKClient | None = None
+        self._jwks_client: jwt.PyJWKClient | None = None
         self._rotation_task: asyncio.Task | None = None
 
     async def start(self) -> None:
         """Start the JWKS manager and key rotation."""
         if self._jwks_url:
-            self._jwks_client = PyJWKClient(self._jwks_url, cache_keys=True)
+            self._jwks_client = jwt.PyJWKClient(self._jwks_url, cache_keys=True)
             await self._fetch_jwks()
             self._rotation_task = asyncio.create_task(self._rotation_loop())
             logger.info("JWKS manager started with URL: %s", self._jwks_url)
@@ -64,7 +64,7 @@ class JWKSManager:
             try:
                 await self._rotation_task
             except asyncio.CancelledError:
-                pass
+                logger.debug("Suppressed exception", exc_info=True)
         logger.info("JWKS manager stopped")
 
     async def get_signing_key(self) -> tuple[str, str]:
@@ -78,7 +78,7 @@ class JWKSManager:
             if jwks.get("keys"):
                 key_data = jwks["keys"][0]
                 kid = key_data.get("kid")
-                key = PyJWK(key_data)
+                key = jwt.PyJWK(key_data)
                 return key.key, kid or "default"
         
         # Fallback to static secret

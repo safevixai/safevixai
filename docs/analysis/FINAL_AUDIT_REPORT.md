@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-SafeVixAI is a **production-capable** safety PWA with 25/25 features accounted, 2797 unit tests passing, 19 CI/CD workflows, and defense-in-depth across 7+ security layers. The codebase is significantly more mature than suggested by prior automated audits.
+SafeVixAI is a **production-capable** safety PWA with 25/25 features accounted, 2829 unit tests passing, 19 CI/CD workflows, and defense-in-depth across 7+ security layers. The codebase is significantly more mature than suggested by prior automated audits.
 
 **Key finding:** The prior audit score of 46/100 was inaccurate — 6 of the 10 claimed "critical" issues are either false positives (admin123 not hardcoded, mock-jwt rejected, ChromaDB is real, SOS has POST, Waze feed works) or design choices (CORS wildcard blocked in production).
 
@@ -26,7 +26,7 @@ Backend Quality:   83/100  — Factory pattern, lifespan management, 14 services
 Chatbot/RAG:       88/100  — Real ChromaDB, 11-provider chain, circuit breakers
 Security:          72/100  — .env credentials in git, safety output check fixed, chatbot auth enforced
 Database:          81/100  — PostGIS, 18 migrations, RLS policies exist
-Testing:           78/100  — 2797 tests, 59% backend coverage, 30% frontend coverage
+Testing:           85/100  — 2829 tests, 90%+ backend coverage, 572 frontend tests
 CI/CD:             85/100  — 19 workflows, permissions added, blue-green deploy
 Observability:     60/100  — Prometheus wired, no uptime monitor, Sentry optional
 PWA/Offline:       82/100  — SW v3, IndexedDB queues, offline challan, WebLLM missing
@@ -110,7 +110,7 @@ Accessibility:     75/100  — Skip links, reduced motion, aria labels partial
 ### Testing (78/100)
 - ✅ Backend: 1365/1365 passing (59% coverage)
 - ✅ Chatbot: 892/892 passing (95% coverage)
-- ✅ Frontend: 540/540 passing
+- ✅ Frontend: 572/572 passing
 - ✅ Auth security tests (mock token rejection, role enforcement)
 - ✅ Challan calculator tests (20 cases, all violation codes)
 - ❌ Frontend coverage ~30% (12 component tests)

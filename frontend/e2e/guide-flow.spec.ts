@@ -12,6 +12,9 @@ test.describe('Municipality guide flow', () => {
       const h1 = document.querySelector('h1');
       return h1 && (h1.textContent?.includes('Municipality') || h1.textContent?.includes('Civic'));
     }, { timeout: 15000 });
+    await page.waitForFunction(() => {
+      return !document.querySelector('.animate-spin') && !document.body.textContent?.includes('Loading municipalities');
+    }, { timeout: 15000 });
   }
 
   test('renders guide page with search and filters', async ({ page }) => {
@@ -19,7 +22,7 @@ test.describe('Municipality guide flow', () => {
     await waitForMount(page);
 
     await expect(page.getByPlaceholder(/Search municipality/i)).toBeVisible();
-    await expect(page.getByText(/Find Nearby/i)).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Find Nearby' })).toBeVisible();
     await expect(page.getByText(/Filter/i).first()).toBeVisible();
   });
 

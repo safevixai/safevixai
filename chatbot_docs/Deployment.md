@@ -27,7 +27,7 @@ The ChromaDB vectorstore is **committed to git** at `chatbot_service/data/chroma
 
 ## CI/CD Pipeline
 - **Production**: Merges to `main` trigger a deployment to the production environment.
-- **Testing**: Deployment only occurs if all `pytest` suites in `chatbot_service/tests/` pass.
+- **Testing**: Deployment only occurs if all `pytest` suites in `chatbot_service/tests/` pass (892/892 tests, 95% coverage).
 
 ## Port Configuration
 The chatbot service runs on **port 8010** locally. On Render, it uses `$PORT` (automatically assigned). The main backend connects to it via the `CHATBOT_SERVICE_URL` environment variable.

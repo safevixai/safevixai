@@ -37,7 +37,7 @@ class TestSpeechStatus:
         settings = FakeSettings()
         settings.speech_device = "auto"
         service = IndicSeamlessService(settings)
-        status = status = service.status()
+        status = service.status()
 
         assert status["device"] in ("cpu", "cuda")
 
