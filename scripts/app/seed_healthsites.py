@@ -132,7 +132,7 @@ def main() -> None:
 
     print("🏥 Healthsites.io Hospital Seeder")
     print("=" * 50)
-    print(f"Fetching facilities for India...")
+    print("Fetching facilities for India...")
 
     facilities = fetch_all_facilities(token)
     print(f"\n✅ Fetched {len(facilities)} facilities from Healthsites.io")

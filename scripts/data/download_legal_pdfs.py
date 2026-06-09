@@ -119,7 +119,7 @@ def main() -> None:
             print(f"  Already present: {sizes} — skipping")
             continue
 
-        print(f"  Placeholder detected — downloading real PDF...")
+        print("  Placeholder detected — downloading real PDF...")
         success = download_first_working(sources, destinations[0])
 
         if success and len(destinations) > 1:

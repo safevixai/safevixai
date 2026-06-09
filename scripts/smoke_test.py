@@ -12,7 +12,6 @@ Usage:
 
 import argparse
 import sys
-import time
 
 try:
     import httpx
@@ -47,7 +46,7 @@ def main():
     client = httpx.Client(timeout=15.0, follow_redirects=True)
 
     print(f"\n{'='*60}")
-    print(f"  SafeVixAI Smoke Test")
+    print("  SafeVixAI Smoke Test")
     print(f"  Backend:  {backend}")
     print(f"  Chatbot:  {chatbot}")
     print(f"{'='*60}\n")

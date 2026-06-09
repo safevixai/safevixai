@@ -1,5 +1,6 @@
 from pathlib import Path
-import json, csv
+import json
+import csv
 
 ROOT = Path(".")
 DATA = ROOT / "chatbot_service/data"

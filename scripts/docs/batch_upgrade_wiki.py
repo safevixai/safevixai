@@ -3,7 +3,12 @@
 Batch upgrade AST stubs to LLM docs with email alerts on failure.
 Usage: python scripts/batch_upgrade_wiki.py [--limit N] [--delay SECS]
 """
-import os, sys, re, json, time, smtplib
+import os
+import sys
+import re
+import json
+import time
+import smtplib
 from pathlib import Path
 from email.mime.text import MIMEText
 from urllib.request import Request, urlopen
@@ -228,7 +233,7 @@ def main():
             print(f"FAILED {errors}", flush=True)
 
             if consecutive_fails >= 5:
-                print(f"\n5 consecutive failures — stopping early.", flush=True)
+                print("\n5 consecutive failures — stopping early.", flush=True)
                 send_alert_email(
                     "Wiki generation stopped — 5 consecutive LLM failures",
                     f"Failed at file #{i+1}: {name}{ext}\n{success} succeeded before failure.",

@@ -6,11 +6,9 @@ with Part A (static docs), Part B (semi-static config), and Part C marker.
 
 import os
 import re
-import glob
 from docx import Document
-from docx.shared import Pt, RGBColor, Inches, Cm
+from docx.shared import Pt, RGBColor, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.enum.table import WD_TABLE_ALIGNMENT
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DOCS_DIR = os.path.join(ROOT, "docs")
@@ -398,9 +396,9 @@ def build_master_doc():
     file_size_kb = os.path.getsize(OUTPUT) // 1024
     print(f"✅ Master document created: {OUTPUT}")
     print(f"   Size: {file_size_kb} KB")
-    print(f"   Parts: A (21 sections) + B (3 sections) + C (marker)")
-    print(f"   Source: 18 docs/ files + 5 root files = 23 total")
-    print(f"   Next: Run 'python scripts/update_master_doc.py' to populate Part C")
+    print("   Parts: A (21 sections) + B (3 sections) + C (marker)")
+    print("   Source: 18 docs/ files + 5 root files = 23 total")
+    print("   Next: Run 'python scripts/update_master_doc.py' to populate Part C")
 
 
 if __name__ == "__main__":

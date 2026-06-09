@@ -28,12 +28,11 @@ import json
 import ast
 import time
 import smtplib
-import textwrap
 from pathlib import Path
 from datetime import datetime
 from email.mime.text import MIMEText
 from urllib.request import Request, urlopen
-from urllib.error import URLError, HTTPError
+from urllib.error import HTTPError
 
 # Inject project root to sys.path to access alert_service singleton
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -435,7 +434,6 @@ def generate_ast_stub(info):
     name = info["name"]
     title = name.replace("_", " ").replace("-", " ").title()
     ext = info["ext"]
-    lang = "python" if ext == ".py" else "typescript"
     now = datetime.now().strftime("%Y-%m-%d")
     source = info["path"]
     full_path = ROOT / source
@@ -713,7 +711,7 @@ def run_fix():
                 total_fixes += count
                 files_fixed += 1
                 print(f"  Fixed: docs/{f.name} ({count} lines)")
-        except Exception as e:
+        except Exception:
             pass
 
     # Fix root MD files
@@ -740,7 +738,7 @@ def run_fix():
                 total_fixes += count
                 files_fixed += 1
                 print(f"  Fixed: {name} ({count} lines)")
-        except Exception as e:
+        except Exception:
             pass
 
     print(f"\n  Total: {total_fixes} fixes across {files_fixed} files")
@@ -918,7 +916,7 @@ def run_review():
                 print(f"  Warning: {f.name}: {'; '.join(issues[:2])}")
 
     print(f"\n  {'=' * 50}")
-    print(f"  REVIEW SUMMARY")
+    print("  REVIEW SUMMARY")
     print(f"  Total docs reviewed: {total_docs}")
     print(f"  Docs with issues: {total_issues}")
     print(f"    Mermaid syntax: {mermaid_errors}")

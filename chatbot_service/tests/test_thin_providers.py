@@ -487,6 +487,3 @@ def clear_env_api_keys():
         os.environ.pop(k, None)
 
 
-@pytest.fixture
-def mock_client() -> MagicMock:
-    return _mock_httpx_client_factory()

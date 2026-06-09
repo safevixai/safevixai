@@ -15,12 +15,10 @@ Environment:
 
 import os
 import sys
-import json
 import requests
 from datetime import datetime, timezone, timedelta
 from docx import Document
-from docx.shared import Pt, RGBColor, Inches
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Pt, RGBColor
 from docx.enum.table import WD_TABLE_ALIGNMENT
 
 # Inject project root to sys.path to access alert_service singleton

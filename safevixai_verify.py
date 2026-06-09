@@ -287,7 +287,7 @@ def run_code_checks() -> None:
           "Move secrets to environment variables and rotate any exposed key.")
 
     manifest = read_json("frontend/public/manifest.json") or {}
-    icons = manifest.get("icons", [])
+    manifest.get("icons", [])
     check("PWA manifest is valid and has share_target", "CODE",
           bool(manifest.get("name")) and "share_target" in manifest,
           f"name={manifest.get('name', 'missing')}",
