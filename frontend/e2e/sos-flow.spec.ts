@@ -100,8 +100,10 @@ test.describe('SOS and family tracking flow', () => {
     }, { timeout: 15000 });
     
     // Wait for store to hydrate from localStorage (zustand persist is async)
-    // In CI, hydration may take longer due to headless environment
-    await page.waitForTimeout(2000);
+    // Use hydration signal: wait for a stable DOM state
+    await page.waitForFunction(() => {
+      return !document.querySelector('[aria-busy="true"]');
+    }, { timeout: 15000 }).catch(() => null);
     
     // Verify page has crash profile section (user profile may or may not load in CI)
     // Use the SOS button or hold text as main assertion, crash profile is secondary
@@ -155,7 +157,9 @@ test.describe('SOS and family tracking flow', () => {
     });
     
     // Wait for the DOM manipulation to take effect
-    await page.waitForTimeout(1000);
+    await page.waitForFunction(() => {
+      return document.querySelector('button[aria-label*="dispatched"]') !== null;
+    }, { timeout: 10000 });
     
     // Verify the button text changed
     await expect(page.getByText('DISPATCHED')).toBeVisible({ timeout: 10000 });

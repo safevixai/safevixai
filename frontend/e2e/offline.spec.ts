@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
 test.describe('Offline/PWA Tests', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,7 +7,15 @@ test.describe('Offline/PWA Tests', () => {
     });
   });
 
-  async function waitForMount(page: any, text: string) {
+  async function isSwRegistered(page: Page) {
+    return page.evaluate(async () => {
+      if (!('serviceWorker' in navigator)) return false;
+      const registration = await navigator.serviceWorker.getRegistration();
+      return !!registration;
+    });
+  }
+
+  async function waitForMount(page: Page, text: string) {
     await page.waitForFunction((t: string) => {
       const h1 = document.querySelector('h1');
       return h1 && h1.textContent?.includes(t);
@@ -17,21 +25,11 @@ test.describe('Offline/PWA Tests', () => {
   test('service worker registration', async ({ page }) => {
     await page.goto('/');
     await page.waitForFunction(
-      async () => {
-        if (!('serviceWorker' in navigator)) return false;
-        const registration = await navigator.serviceWorker.getRegistration();
-        return !!registration;
-      },
+      isSwRegistered,
       { timeout: 15000 }
     ).catch(() => null);
     
-    const swRegistered = await page.evaluate(async () => {
-      if ('serviceWorker' in navigator) {
-        const registration = await navigator.serviceWorker.getRegistration();
-        return !!registration;
-      }
-      return false;
-    });
+    const swRegistered = await isSwRegistered(page);
 
     if (!swRegistered) {
       console.log('Service Worker not registered - expected in local dev mode');
@@ -93,14 +91,14 @@ test.describe('Offline/PWA Tests', () => {
   });
 
   test('manifest valid', async ({ page }) => {
-    const response = await page.goto('/manifest.json');
-
     if (process.env.CI === 'true') {
       console.log('Skipping manifest test in CI (standalone build issue)');
       return;
     }
 
-    expect(response.status()).toBe(200);
+    const response = await page.goto('/manifest.json');
+    expect(response).not.toBeNull();
+    expect(response!.status()).toBe(200);
 
     const manifest = await response.json();
     expect(manifest.name).toBeTruthy();

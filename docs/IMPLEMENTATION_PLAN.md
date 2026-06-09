@@ -8,7 +8,7 @@
 ## System Summary
 
 ### Architecture
-**3 services** — Frontend (Next.js 15 + React 19 PWA, Vercel), Backend (FastAPI + PostGIS, Render), Chatbot (FastAPI + 9 LLM providers, Render). Cost: ₹0 (all free tiers).
+**3 services** — Frontend (Next.js 15 + React 19 PWA, Vercel), Backend (FastAPI + PostGIS, Render), Chatbot (FastAPI + 9 LLM providers, Render). Current target cost: ₹0 using free tiers, subject to provider limits (for example, Render monthly free-hour caps under sustained production usage).
 
 ### Critical Production Systems
 1. **SOS/Emergency** — Multi-layered: button → double-tap → API → nearby services → family tracking → offline queue
@@ -39,7 +39,7 @@
 - **Files:** `backend/core/security.py`, `backend/core/rbac.py`, all `api/v1/*.py`
 - **What:**
   - Create `require_role(Role)` dependency that checks JWT `role` claim
-  - Apply to: `PATCH /roads/report/{id}/verify`, `POST /chat/`, `POST /chat/stream`
+  - Apply to: `PATCH /roads/report/{id}/verify`, `POST /api/v1/chat/`, `POST /api/v1/chat/stream`
   - Apply to: user profile CRUD, live-tracking admin, MCP endpoints
 - **Verify:** Test 403 on wrong-role token for each secured endpoint
 
@@ -54,7 +54,7 @@
 ### 1.3 Secure Offline SOS Queue
 - **Files:** `frontend/lib/offline-sos-queue.ts`
 - **What:**
-  - Remove `authToken` from queue (use short-lived refresh token if needed)
+  - Remove `authToken` from queue; do **not** store access tokens or refresh tokens in IndexedDB/offline queue data. Replay queued SOS only after reconnect using active session auth (or require re-authentication).
   - Remove `bloodGroup`, `emergencyContacts` from queue (these should stay client-only)
   - Store only: `{ lat, lon, timestamp, userId? }`
 - **Verify:** Check IndexedDB contents → no PII
@@ -86,7 +86,7 @@
   ```python
   Content-Security-Policy: >
     default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval';
+    script-src 'self' 'unsafe-inline';
     style-src 'self' 'unsafe-inline';
     img-src 'self' data: https://*.tile.openstreetmap.org https://*.googleapis.com;
     connect-src 'self' https://*.tile.openstreetmap.org wss://*.upstash.io https://*.googleapis.com;
@@ -326,7 +326,7 @@ Phase 3 (Testing) ────────────────────�
 Phase 4 (Infra) ────────────────────────────────────────────────┤
   ├── 4.1 SOS retention ── depends on: nothing                   │
   ├── 4.2 Versioned Docker ── depends on: nothing                │
-  ├── 4.3 Migration tests ── depends on: 3.1? optional           │
+  ├── 4.3 Migration tests ── depends on: nothing           │
   ├── 4.4 Security headers ── depends on: nothing                │
   └── 4.5 Data deletion API ── depends on: 1.1                   │
                                                                 │

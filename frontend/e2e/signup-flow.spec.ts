@@ -1,19 +1,19 @@
 import { test, expect } from '@playwright/test';
 
-let consoleErrors: string[] = [];
-let pageErrors: string[] = [];
-
-async function waitForMount(page: any) {
-  await page.waitForFunction(() => {
-    const h1 = document.querySelector('h1');
-    return h1 && h1.textContent?.includes('SafeVixAI');
-  }, { timeout: 15000 });
-  await page.waitForFunction(() => {
-    return !document.querySelector('[aria-busy="true"]');
-  }, { timeout: 15000 });
-}
-
 test.describe('Signup Flow', () => {
+  let consoleErrors: string[] = [];
+  let pageErrors: string[] = [];
+
+  async function waitForMount(page: any) {
+    await page.waitForFunction(() => {
+      const h1 = document.querySelector('h1');
+      return h1 && h1.textContent?.includes('SafeVixAI');
+    }, { timeout: 15000 });
+    await page.waitForFunction(() => {
+      return !document.querySelector('[aria-busy="true"]');
+    }, { timeout: 15000 });
+  }
+
   test.beforeEach(async ({ page }) => {
     consoleErrors = [];
     pageErrors = [];
@@ -68,11 +68,11 @@ test.describe('Signup Flow', () => {
     await expect(passwordInput).toHaveValue('secret123');
 
     await page.getByLabel('Show password').first().click();
-    await expect(page.locator('input[type="text"]')).toBeVisible({ timeout: 5000 });
+    await expect(passwordInput).toHaveAttribute('type', 'text', { timeout: 5000 });
     await expect(passwordInput).toHaveValue('secret123');
 
     await page.getByLabel('Hide password').first().click();
-    await expect(page.locator('input[type="password"]')).toBeVisible();
+    await expect(passwordInput).toHaveAttribute('type', 'password');
     await expect(passwordInput).toHaveValue('secret123');
   });
 
