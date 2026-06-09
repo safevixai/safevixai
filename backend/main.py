@@ -1,15 +1,24 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Add project root (containing alert_service.py) to sys.path
+for parent in Path(__file__).resolve().parents:
+    if (parent / 'alert_service.py').exists():
+        sys.path.insert(0, str(parent))
+        break
+
+from alert_service import get_alert_service
+
 import json
 import logging
 import re
 from datetime import datetime, timezone
 import logging.config
-import sys
 import time
 import uuid
 from contextlib import asynccontextmanager
-from pathlib import Path
 
 import httpx
 try:
@@ -43,9 +52,7 @@ from services.overpass_service import OverpassService
 from services.roadwatch_service import RoadWatchService
 from services.routing_service import RoutingService
 
-# alert_service.py is at project root
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from alert_service import get_alert_service
+# alert_service imported at top level
 
 
 # P2-01: Structured JSON logging (audit H35)

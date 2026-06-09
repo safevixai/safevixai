@@ -6,7 +6,11 @@ import sys
 from pathlib import Path
 from collections import defaultdict
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+for parent in Path(__file__).resolve().parents:
+    if (parent / 'alert_service.py').exists():
+        if str(parent) not in sys.path:
+            sys.path.insert(0, str(parent))
+        break
 from alert_service import get_alert_service
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse

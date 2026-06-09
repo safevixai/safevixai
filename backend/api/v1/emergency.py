@@ -4,7 +4,11 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent.parent))
+for parent in Path(__file__).resolve().parents:
+    if (parent / 'alert_service.py').exists():
+        if str(parent) not in sys.path:
+            sys.path.insert(0, str(parent))
+        break
 from alert_service import get_alert_service
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request

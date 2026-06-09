@@ -10,7 +10,11 @@ from pathlib import Path
 from typing import Any, Callable, Optional
 
 # Make sure project root is in path for alert_service
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+for parent in Path(__file__).resolve().parents:
+    if (parent / 'alert_service.py').exists():
+        if str(parent) not in sys.path:
+            sys.path.insert(0, str(parent))
+        break
 from alert_service import get_alert_service
 
 from redis.asyncio import Redis

@@ -16,7 +16,11 @@ from models.schemas import GeocodeResult
 from services.exceptions import ExternalServiceError
 
 # alert_service.py at project root
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+for parent in Path(__file__).resolve().parents:
+    if (parent / 'alert_service.py').exists():
+        if str(parent) not in sys.path:
+            sys.path.insert(0, str(parent))
+        break
 from alert_service import get_alert_service
 
 logger = logging.getLogger("safevixai.backend.geocoding")
