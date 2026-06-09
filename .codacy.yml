@@ -19,6 +19,11 @@ exclude-paths:
   - "frontend/node_modules/**"
   - "backend/venv/**"
   - ".venv/**"
+  - ".next/**"
+  - "frontend/.next/**"
+  - "build/**"
+  - "dist/**"
+  - "out/**"
 tools:
   pylintpython3:
     enabled: true

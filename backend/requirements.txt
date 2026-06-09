@@ -10,7 +10,7 @@ langchain==1.2.15
 langchain-groq==1.1.2
 langchain-community==0.4.1
 langchain-huggingface==1.2.2
-chromadb==1.5.8
+chromadb==1.5.9
 sentence-transformers==5.4.1
 mcp==1.27.2
 
