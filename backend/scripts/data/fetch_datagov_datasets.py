@@ -15,13 +15,14 @@ import csv
 import json
 import os
 import sys
+import logging
 import time
 from pathlib import Path
 
+logger = logging.getLogger(__name__)
+
 try:
     import httpx
-import logging
-logger = logging.getLogger(__name__)
 except ImportError:
     print("ERROR: httpx required. Run: pip install httpx")
     sys.exit(1)

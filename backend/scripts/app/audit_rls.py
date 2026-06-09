@@ -5,8 +5,11 @@ Usage:
 
 Requires a live database connection via DATABASE_URL in backend/.env.
 """
+import logging
 import os
 import sys
+
+logger = logging.getLogger(__name__)
 
 TABLES = [
     'user_profiles',
@@ -71,8 +74,6 @@ def run_audit():
     from pathlib import Path
     try:
         import dotenv
-import logging
-logger = logging.getLogger(__name__)
         env_paths = [
             Path(__file__).resolve().parents[2] / ".env",
             Path.cwd() / "backend" / ".env",

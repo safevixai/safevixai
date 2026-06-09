@@ -12,7 +12,10 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 import httpx
-import sentry_sdk
+try:
+    import sentry_sdk
+except ImportError:
+    sentry_sdk = None
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -98,7 +101,7 @@ def create_app() -> FastAPI:
     _configure_logging(settings.environment)
 
     # OBSERVABILITY#1: Sentry error tracking (free tier: 5K errors/month)
-    if settings.sentry_dsn:
+    if settings.sentry_dsn and sentry_sdk is not None:
         sentry_sdk.init(
             dsn=settings.sentry_dsn,
             environment=settings.environment,
