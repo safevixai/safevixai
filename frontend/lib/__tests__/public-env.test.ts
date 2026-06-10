@@ -43,18 +43,19 @@ describe('public-env', () => {
     });
   });
 
-  describe('error handling', () => {
-    it('throws when required env vars are missing at module load', () => {
+  describe('fallback behavior', () => {
+    it('uses fallback defaults when env vars are missing', () => {
       const OLD_API = process.env.NEXT_PUBLIC_API_URL;
       const OLD_CHAT = process.env.NEXT_PUBLIC_CHATBOT_URL;
       delete process.env.NEXT_PUBLIC_API_URL;
       delete process.env.NEXT_PUBLIC_CHATBOT_URL;
 
-      expect(() => {
-        jest.isolateModules(() => {
-          require('../public-env');
-        });
-      }).toThrow(/required/i);
+      const mod = jest.isolateModules(() => {
+        return require('../public-env');
+      });
+
+      expect(mod.PUBLIC_API_BASE_URL).toBe('http://localhost:8000');
+      expect(mod.PUBLIC_CHATBOT_BASE_URL).toBe('http://localhost:8010');
 
       process.env.NEXT_PUBLIC_API_URL = OLD_API;
       process.env.NEXT_PUBLIC_CHATBOT_URL = OLD_CHAT;
