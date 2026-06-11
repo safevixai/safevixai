@@ -51,21 +51,25 @@ class SarvamProvider(HttpProvider):
 
     name = "sarvam"
 
-    def __init__(self, model_size: str = "30b") -> None:
+    def __init__(self, model_size: str = "30b", api_key: str = "", model: str = "") -> None:
         self.model_size = model_size
-        super().__init__()
+        self._sarvam_key = os.environ.get("SARVAM_API_KEY", "").strip()
+        self._hf_key = os.environ.get("HF_TOKEN", "").strip()
+        if api_key:
+            actual_key = api_key
+        elif self._sarvam_key and not self._sarvam_key.startswith("YOUR_"):
+            actual_key = self._sarvam_key
+        else:
+            actual_key = self._hf_key
+        super().__init__(api_key=actual_key, model=model or self.default_model())
 
     def _use_direct_api(self) -> bool:
-        key = os.environ.get("SARVAM_API_KEY", "").strip()
-        return bool(key and not key.startswith("YOUR_"))
+        return bool(self._sarvam_key and not self._sarvam_key.startswith("YOUR_"))
 
     def _get_api_key(self) -> str:  # type: ignore[override]
-        if self._use_direct_api():
-            return os.environ.get("SARVAM_API_KEY", "").strip()
-        token = os.environ.get("HF_TOKEN", "").strip()
-        if not token:
-            raise RuntimeError("SarvamProvider: Neither SARVAM_API_KEY nor HF_TOKEN is set")
-        return token
+        if not self._api_key:
+            raise RuntimeError("Neither SARVAM_API_KEY nor HF_TOKEN")
+        return self._api_key
 
     def default_model(self) -> str:
         model_map = {"105b": "sarvamai/sarvam-105b", "30b": "sarvamai/sarvam-30b", "2b": "sarvamai/sarvam-2b"}

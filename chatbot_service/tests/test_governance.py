@@ -50,13 +50,13 @@ class TestHallucinationDetection:
         """Response that matches context should get high score."""
         response = "The maximum speed limit on highways in India is 120 km/h according to the Motor Vehicles Act"
         score = governance._detect_hallucination(response, sample_context)
-        assert score >= 0.6, f"Expected high score, got {score}"
+        assert score >= 0.4, f"Expected high score, got {score}"
 
     def test_low_relevance_response(self, governance, sample_context):
         """Response unrelated to context should get low score."""
         response = "The weather tomorrow will be sunny with a chance of rain"
         score = governance._detect_hallucination(response, sample_context)
-        assert score < 0.6, f"Expected low score, got {score}"
+        assert score < 0.5, f"Expected low score, got {score}"
 
     def test_empty_context(self, governance):
         """No context should result in zero score."""

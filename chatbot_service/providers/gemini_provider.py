@@ -28,17 +28,26 @@ class GeminiProvider(HttpProvider):
     name = "gemini"
     _client: httpx.AsyncClient | None = None
 
+    def __init__(self, api_key: str = "", model: str = "") -> None:
+        super().__init__(
+            api_key=api_key or (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip(),
+            model=model or os.getenv("GEMINI_MODEL", "gemini-1.5-flash").strip(),
+        )
+
+    def api_key_env(self) -> str:
+        return "GEMINI_API_KEY"
+
     def _get_client(self) -> httpx.AsyncClient:
         if self._client is None or self._client.is_closed:
             self._client = httpx.AsyncClient(timeout=40.0)
         return self._client
 
     async def stream(self, request: ProviderRequest):
-        api_key = (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip()
+        api_key = self._api_key
         if not api_key:
             return
 
-        model = os.getenv("GEMINI_MODEL", "gemini-1.5-flash").strip()
+        model = self._model
 
         oai_messages = build_messages(request)
         contents = []
@@ -98,11 +107,11 @@ class GeminiProvider(HttpProvider):
                         logger.debug("Skipping malformed SSE chunk in Gemini stream: %.100s", data_str, exc_info=True)
 
     async def generate(self, request: ProviderRequest) -> ProviderResult:
-        api_key = (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip()
+        api_key = self._api_key
         if not api_key:
             raise RuntimeError("GeminiProvider: Missing env var 'GEMINI_API_KEY' or 'GOOGLE_API_KEY'")
 
-        model = os.getenv("GEMINI_MODEL", "gemini-1.5-flash").strip()
+        model = self._model
 
         # Convert OpenAI-style messages → Gemini contents format
         oai_messages = build_messages(request)

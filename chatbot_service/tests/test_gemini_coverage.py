@@ -169,18 +169,20 @@ class TestGeminiGenerateErrors:
                     await gemini.generate(_REQUEST)
 
     @pytest.mark.asyncio
-    async def test_no_api_key_returns_empty_stream(self, gemini: GeminiProvider):
+    async def test_no_api_key_returns_empty_stream(self):
         """Stream with no API key returns empty."""
         with patch.dict("os.environ", {}, clear=True):
-            chunks = [c async for c in gemini.stream(_REQUEST)]
+            gemini_clean = GeminiProvider()
+            chunks = [c async for c in gemini_clean.stream(_REQUEST)]
         assert chunks == []
 
     @pytest.mark.asyncio
-    async def test_no_api_key_raises_in_generate(self, gemini: GeminiProvider):
+    async def test_no_api_key_raises_in_generate(self):
         """Generate with no API key raises RuntimeError."""
         with patch.dict("os.environ", {}, clear=True):
+            gemini_clean = GeminiProvider()
             with pytest.raises(RuntimeError, match="Missing env var"):
-                await gemini.generate(_REQUEST)
+                await gemini_clean.generate(_REQUEST)
 
 
 def _async_text_iter(text: str):

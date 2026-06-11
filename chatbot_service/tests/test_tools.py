@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import replace
+
 from pathlib import Path
 
 from config import get_settings
@@ -29,7 +29,7 @@ def test_first_aid_tool_supports_article_array_format(tmp_path: Path):
         }
     ]
     (tmp_path / 'first_aid.json').write_text(json.dumps(payload), encoding='utf-8')
-    settings = replace(get_settings(), rag_data_dir=tmp_path)
+    settings = get_settings().model_copy(update={"rag_data_dir": tmp_path})
 
     tool = FirstAidTool(settings)
     guide = tool.lookup('How do I help someone with chemical burns?')

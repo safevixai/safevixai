@@ -41,7 +41,7 @@ class TestSarvamProviderRouting:
             environment="test",
             service_name="test",
             service_port=8010,
-            cors_origins=["http://localhost:3000"],
+            cors_origins="http://localhost:3000",
             main_backend_base_url="http://localhost:8000",
             main_backend_timeout_seconds=20.0,
             redis_url=None,

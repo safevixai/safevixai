@@ -7,6 +7,8 @@ import re
 import unicodedata
 from dataclasses import dataclass, field
 
+import os
+
 import httpx
 
 logger = logging.getLogger(__name__)
@@ -323,9 +325,11 @@ class HttpProvider:
 
     name: str = "http"
 
-    def __init__(self, max_tokens: int = MAX_RESPONSE_TOKENS) -> None:
+    def __init__(self, max_tokens: int = MAX_RESPONSE_TOKENS, api_key: str = "", model: str = "") -> None:
         self._client: httpx.AsyncClient | None = None
         self._max_tokens = max_tokens
+        self._api_key = api_key or os.getenv(self.api_key_env(), "").strip()
+        self._model = model or os.getenv(f"{self.api_key_env().replace('_API_KEY', '_MODEL')}", "").strip() or self.default_model()
 
     def api_key_env(self) -> str:
         """Return the env-var name that holds the API key."""
@@ -344,13 +348,11 @@ class HttpProvider:
         return {}
 
     def _get_api_key(self) -> str:
-        import os
-        key = os.getenv(self.api_key_env(), "").strip()
-        if not key:
+        if not self._api_key:
             raise RuntimeError(
                 f"{self.__class__.__name__}: Missing env var '{self.api_key_env()}'"
             )
-        return key
+        return self._api_key
 
     def _get_client(self) -> httpx.AsyncClient:
         if self._client is None or self._client.is_closed:
@@ -369,9 +371,8 @@ class HttpProvider:
             logger.warning(f"Prompt injection blocked in HttpProvider.stream. Message: {request.message[:50]}...")
             return
 
-        import os
         api_key = self._get_api_key()
-        model = os.getenv(f"{self.api_key_env().replace('_API_KEY', '_MODEL')}", "").strip() or self.default_model()
+        model = self._model
 
         headers = {
             "Authorization": f"Bearer {api_key}",
@@ -421,9 +422,8 @@ class HttpProvider:
                 model="safety-filter"
             )
 
-        import os
         api_key = self._get_api_key()
-        model = os.getenv(f"{self.api_key_env().replace('_API_KEY', '_MODEL')}", "").strip() or self.default_model()
+        model = self._model
 
         headers = {
             "Authorization": f"Bearer {api_key}",

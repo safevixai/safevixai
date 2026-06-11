@@ -60,8 +60,8 @@ class SubmitReportTool:
             'description': description or f'Reported via chat assistant: {issue_type}',
         }
         if lat is not None and lon is not None:
-            payload['lat'] = str(lat)
-            payload['lon'] = str(lon)
+            payload['lat'] = lat
+            payload['lon'] = lon
 
         # Guard: truncate description if it somehow contains an oversized encoded blob
         if len(payload.get('description', '')) > _MAX_B64_PHOTO_LEN:
@@ -76,7 +76,7 @@ class SubmitReportTool:
 
             resp = await self._get_client().post(
                 f'{self._base_url}/api/v1/roads/report',
-                data=payload,
+                json=payload,
                 headers=headers,
             )
             resp.raise_for_status()

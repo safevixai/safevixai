@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import replace
+
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
@@ -74,7 +74,7 @@ class TestFirstAidToolCoverage:
 
     def test_fallback_when_file_missing(self, tmp_path: Path):
         """Missing first_aid.json returns FALLBACK_GUIDES."""
-        settings = replace(get_settings(), rag_data_dir=tmp_path)
+        settings = get_settings().model_copy(update={"rag_data_dir": tmp_path})
         tool = FirstAidTool(settings)
         guide = tool.lookup("bleeding")
         assert guide is not None
@@ -83,7 +83,7 @@ class TestFirstAidToolCoverage:
     def test_fallback_on_corrupt_json(self, tmp_path: Path):
         """Corrupt JSON returns FALLBACK_GUIDES."""
         (tmp_path / "first_aid.json").write_text("this is not json", encoding="utf-8")
-        settings = replace(get_settings(), rag_data_dir=tmp_path)
+        settings = get_settings().model_copy(update={"rag_data_dir": tmp_path})
         tool = FirstAidTool(settings)
         guide = tool.lookup("burn")
         assert guide is not None
@@ -93,7 +93,7 @@ class TestFirstAidToolCoverage:
     def test_fallback_on_empty_list_payload(self, tmp_path: Path):
         """Empty list payload returns FALLBACK_GUIDES."""
         (tmp_path / "first_aid.json").write_text("[]", encoding="utf-8")
-        settings = replace(get_settings(), rag_data_dir=tmp_path)
+        settings = get_settings().model_copy(update={"rag_data_dir": tmp_path})
         tool = FirstAidTool(settings)
         guide = tool.lookup("burn")
         assert guide is not None
@@ -105,7 +105,7 @@ class TestFirstAidToolCoverage:
             json.dumps([{"id": "", "title": "", "steps": []}]),
             encoding="utf-8",
         )
-        settings = replace(get_settings(), rag_data_dir=tmp_path)
+        settings = get_settings().model_copy(update={"rag_data_dir": tmp_path})
         tool = FirstAidTool(settings)
         guide = tool.lookup("cpr")
         assert guide is not None

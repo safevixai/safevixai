@@ -99,6 +99,13 @@
       "type": "image/png",
       "form_factor": "wide",
       "label": "SafeVixAI Tactical Dashboard"
+    },
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "SafeVixAI Mobile Emergency View"
     }
   ],
   "related_applications": [],

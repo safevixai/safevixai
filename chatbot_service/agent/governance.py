@@ -83,23 +83,67 @@ class AIGovernance:
 
     def _detect_hallucination(self, response: str, context: list[dict]) -> float:
         """Detect hallucination by checking if response is supported by context.
-        
+
         Returns a score between 0 and 1, where 1 means fully supported.
+
+        Scoring factors:
+        1. Word overlap ratio (intersection / union instead of set size ratio)
+        2. Named entity consistency (entities in response checked against context)
+        3. Penalty for unsupported numeric claims or proper nouns
+
+        Limitation: This is a heuristic — it measures surface-form overlap, not
+        semantic correctness. False positives can occur for short responses with
+        common words. False negatives can occur for paraphrased but correct content.
         """
         if not context:
             return 0.0
-        
-        # Simple keyword overlap heuristic
-        response_words = set(response.lower().split())
-        context_words = set()
-        for item in context:
-            context_words.update(item.get("content", "").lower().split())
-        
+
+        response_lower = response.lower()
+        response_words = set(response_lower.split())
+
+        # Collect all context text
+        context_texts = [item.get("content", "") for item in context]
+        combined_context = " ".join(context_texts).lower()
+        context_words = set(combined_context.split())
+
         if not response_words:
             return 0.0
-        
-        overlap = len(response_words & context_words) / len(response_words)
-        return min(1.0, overlap * 1.5)  # Scale up slightly
+
+        # 1. Word overlap ratio (intersection over union — more robust than set size ratio)
+        intersection = response_words & context_words
+        union = response_words | context_words
+        overlap_ratio = len(intersection) / len(union)
+
+        # 2. Named entity consistency — extract capitalized phrases (likely named entities)
+        import re
+        response_entities = set(
+            m.group(0).lower()
+            for m in re.finditer(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', response)
+        )
+        context_entities = set(
+            m.group(0).lower()
+            for m in re.finditer(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', combined_context)
+        )
+        if response_entities:
+            entity_overlap = len(response_entities & context_entities) / len(response_entities)
+        else:
+            entity_overlap = 1.0  # No entities to check
+
+        # 3. Penalize if response has numeric values not found in context
+        response_numbers = set(
+            m.group(0) for m in re.finditer(r'\b\d+(?:\.\d+)?\b', response_lower)
+        )
+        context_numbers = set(
+            m.group(0) for m in re.finditer(r'\b\d+(?:\.\d+)?\b', combined_context)
+        )
+        if response_numbers:
+            number_support = len(response_numbers & context_numbers) / len(response_numbers)
+        else:
+            number_support = 1.0
+
+        # Combine: overlap ratio (50%), entity consistency (30%), number support (20%)
+        score = overlap_ratio * 0.5 + entity_overlap * 0.3 + number_support * 0.2
+        return min(1.0, max(0.0, score))
 
     def _score_factuality(self, response: str, tools: list[dict]) -> float:
         """Score factuality based on tool result alignment.

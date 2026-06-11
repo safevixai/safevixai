@@ -172,10 +172,7 @@ class TestHttpProviderBase:
     """Every test here uses CerebrasProvider as the representative."""
 
     def _make_provider(self) -> CerebrasProvider:
-        p = CerebrasProvider.__new__(CerebrasProvider)
-        p._client = None
-        p._max_tokens = 800
-        return p
+        return CerebrasProvider()
 
     # ── _get_api_key ─────────────────────────────────────────────────────────
 
@@ -423,9 +420,7 @@ class TestExtraHeaders:
     @pytest.mark.asyncio
     async def test_github_user_agent_header(self, monkeypatch):
         monkeypatch.setenv("GITHUB_TOKEN", "ghp_test")
-        p = GitHubModelsProvider.__new__(GitHubModelsProvider)
-        p._client = None
-        p._max_tokens = 800
+        p = GitHubModelsProvider()
         client = _mock_httpx_client_factory()
         p._client = client
 
@@ -437,9 +432,7 @@ class TestExtraHeaders:
     @pytest.mark.asyncio
     async def test_nvidia_user_agent_header(self, monkeypatch):
         monkeypatch.setenv("NVIDIA_NIM_API_KEY", "nv_test")
-        p = NvidiaNimProvider.__new__(NvidiaNimProvider)
-        p._max_tokens = 800
-        p._client = None
+        p = NvidiaNimProvider()
         client = _mock_httpx_client_factory()
         p._client = client
 
@@ -451,9 +444,7 @@ class TestExtraHeaders:
     @pytest.mark.asyncio
     async def test_openrouter_referer_and_title_headers(self, monkeypatch):
         monkeypatch.setenv("OPENROUTER_API_KEY", "or_test")
-        p = OpenRouterProvider.__new__(OpenRouterProvider)
-        p._max_tokens = 800
-        p._client = None
+        p = OpenRouterProvider()
         client = _mock_httpx_client_factory()
         p._client = client
 
@@ -479,9 +470,7 @@ class TestExtraHeaders:
 
     @staticmethod
     def _make_cerebras() -> CerebrasProvider:
-        p = CerebrasProvider.__new__(CerebrasProvider)
-        p._max_tokens = 800
-        return p
+        return CerebrasProvider()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

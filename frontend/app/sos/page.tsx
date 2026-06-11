@@ -239,19 +239,19 @@ export default function EmergencyPage() {
  />
  )}
  
- <AlertTriangle className="w-16 h-16 mb-2 relative z-10 text-white" />
- <span className="text-3xl font-black tracking-tighter relative z-10">
+ <AlertTriangle className="w-16 h-16 mb-2 relative z-10 text-white" aria-hidden="true" focusable="false" />
+  <span className="text-3xl font-black tracking-tighter relative z-10">
  {activated ? 'DISPATCHED' : 'SOS'}
  </span>
  </button>
  </div>
  
- <div className="text-center min-h-[80px]">
- {activated ? (
- <div>
- {dispatchState === 'dispatching' && (
- <span className="text-yellow-500 font-black tracking-[0.1em] uppercase text-xs flex items-center justify-center gap-2">
- <Loader2 size={14} className="animate-spin" /> Contacting Emergency Services...
+  <div aria-live="polite" className="text-center min-h-[80px]">
+  {activated ? (
+  <div>
+  {dispatchState === 'dispatching' && (
+  <span className="text-yellow-500 font-black tracking-[0.1em] uppercase text-xs flex items-center justify-center gap-2">
+  <Loader2 size={14} className="animate-spin" aria-hidden="true" focusable="false" /> Contacting Emergency Services...
  </span>
  )}
  {dispatchState === 'dispatched' && (
@@ -300,30 +300,30 @@ export default function EmergencyPage() {
 
  {/* -- MIDDLE: QUICK DIAL CARDS -- */}
  <section className="grid grid-cols-3 gap-3 stagger-entrance">
- <a href="tel:112" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-red-500/30">
- <div className="w-12 h-12 rounded-lg bg-red-100 dark:bg-emergency/15 flex items-center justify-center text-red-600 dark:text-emergency">
- <Activity className="w-6 h-6" />
- </div>
+  <a href="tel:112" aria-label="Call 112 for all emergencies" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-red-500/30">
+  <div className="w-12 h-12 rounded-lg bg-red-100 dark:bg-emergency/15 flex items-center justify-center text-red-600 dark:text-emergency">
+  <Activity className="w-6 h-6" aria-hidden="true" focusable="false" />
+  </div>
  <div className="text-center">
  <p className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">112</p>
  <p className="text-[10px] font-bold uppercase text-red-600 dark:text-[#ffb4aa]">Emergency</p>
  </div>
  </a>
  
- <a href="tel:100" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-sky-500/30">
- <div className="w-12 h-12 rounded-lg bg-sky-100 dark:bg-sky-500/15 flex items-center justify-center text-sky-600 dark:text-sky-400">
- <Shield className="w-6 h-6" />
- </div>
+  <a href="tel:100" aria-label="Call 100 for police" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-sky-500/30">
+  <div className="w-12 h-12 rounded-lg bg-sky-100 dark:bg-sky-500/15 flex items-center justify-center text-sky-600 dark:text-sky-400">
+  <Shield className="w-6 h-6" aria-hidden="true" focusable="false" />
+  </div>
  <div className="text-center">
  <p className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">100</p>
  <p className="text-[10px] font-bold uppercase text-sky-600 dark:text-sky-400">Police</p>
  </div>
  </a>
 
- <a href="tel:102" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-brand-light/30">
- <div className="w-12 h-12 rounded-lg bg-brand-light/15 dark:bg-[#05b046]/15 flex items-center justify-center text-brand dark:text-[#05b046]">
- <Heart className="w-6 h-6" />
- </div>
+  <a href="tel:102" aria-label="Call 102 for ambulance" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-brand-light/30">
+  <div className="w-12 h-12 rounded-lg bg-brand-light/15 dark:bg-[#05b046]/15 flex items-center justify-center text-brand dark:text-[#05b046]">
+  <Heart className="w-6 h-6" aria-hidden="true" focusable="false" />
+  </div>
  <div className="text-center">
  <p className="text-[10px] font-semibold tracking-widest text-text-2 uppercase">102</p>
  <p className="text-[10px] font-bold uppercase text-brand dark:text-brand-light">Ambulance</p>
@@ -344,14 +344,14 @@ export default function EmergencyPage() {
  <div className="flex items-start gap-4">
  <div className="flex-1 space-y-1">
  <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest">GPS Coordinates Preview</p>
- <div className="text-lg font-mono font-bold tracking-tight text-text-1 dark:text-text-1">
- {geoError ? (
- <span className="text-red-500 dark:text-red-400 text-sm">{geoError}</span>
- ) : coords ? (
- `Lat: ${coords.lat.toFixed(4)}, Long: ${coords.lng.toFixed(4)}`
- ) : (
- <span className="flex items-center gap-2 text-text-2">
- <Loader2 size={16} className="animate-spin" /> Resolving GPS...
+  <div aria-live="polite" className="text-lg font-mono font-bold tracking-tight text-text-1 dark:text-text-1">
+  {geoError ? (
+  <span className="text-red-500 dark:text-red-400 text-sm">{geoError}</span>
+  ) : coords ? (
+  `Lat: ${coords.lat.toFixed(4)}, Long: ${coords.lng.toFixed(4)}`
+  ) : (
+  <span className="flex items-center gap-2 text-text-2">
+  <Loader2 size={16} className="animate-spin" aria-hidden="true" focusable="false" /> Resolving GPS...
  </span>
  )}
  </div>
@@ -359,7 +359,7 @@ export default function EmergencyPage() {
  <div className="w-16 h-16 rounded-lg overflow-hidden bg-surface-3 dark:bg-[#2a3548] flex-shrink-0 relative">
  <Image 
  className="object-cover grayscale opacity-50" 
- alt="Map" 
+ alt="Map showing your current GPS location for emergency sharing" 
  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxWfyjGCG1gokyFVyuNR3r3F3sIyjrxuOfSXC3e_I_RTY919UFsdJPbMzQ7GKb38btRBgMPfq7ZCNBEOYu1kN7MrpUfudNwoY_G_lSV8SWbmWGsqAYRVuCpG4aFFbWJqDnimCDoj5CZF5VHdB07tke6yTdrZFtbQb6NiEGlKFHNyHjVjhOBXGtoBl9SwNT_izOAE-ijZ0pJsbmTMg7hkyfUB7yKre1vWVPByMzreduHY6ZjER15dALHvqGJtucwXewQU_gLTiiuoqg"
  fill
  priority
@@ -370,18 +370,18 @@ export default function EmergencyPage() {
 
  <div className="grid grid-cols-2 gap-4">
               {waLink ? (
-              <a href={waLink} target="_blank" rel="noopener noreferrer" onClick={() => track.trackingShared('whatsapp')} className="flex items-center justify-center gap-2 bg-[#05b046] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all shadow-md shadow-[#05b046]/20">
-                <Share2 className="w-4 h-4" />
-                WhatsApp
-              </a>
-              ) : (
-              <button disabled className="flex items-center justify-center gap-2 bg-[#05b046]/50 text-white/50 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest cursor-not-allowed">
-                <Share2 className="w-4 h-4" />
-                WhatsApp
-              </button>
-               )}
-              <a href={smsLink} onClick={() => track.trackingShared('sms')} className="flex items-center justify-center gap-2 bg-surface-2 dark:bg-white/5 text-text-1 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-border-md dark:border-white/10 shadow-sm">
- <MessageSquare className="w-4 h-4" />
+               <a href={waLink} target="_blank" rel="noopener noreferrer" aria-label="Share location via WhatsApp" onClick={() => track.trackingShared('whatsapp')} className="flex items-center justify-center gap-2 bg-[#05b046] text-white py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all shadow-md shadow-[#05b046]/20">
+                 <Share2 className="w-4 h-4" aria-hidden="true" focusable="false" />
+                 WhatsApp
+               </a>
+               ) : (
+               <button disabled aria-label="Share location via WhatsApp (unavailable)" className="flex items-center justify-center gap-2 bg-[#05b046]/50 text-white/50 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest cursor-not-allowed">
+                 <Share2 className="w-4 h-4" aria-hidden="true" focusable="false" />
+                 WhatsApp
+               </button>
+                )}
+               <a href={smsLink} aria-label="Share location via SMS" onClick={() => track.trackingShared('sms')} className="flex items-center justify-center gap-2 bg-surface-2 dark:bg-white/5 text-text-1 dark:text-text-1 py-4 rounded-lg font-black uppercase text-[10px] tracking-widest active:scale-95 transition-all border border-border-md dark:border-white/10 shadow-sm">
+  <MessageSquare className="w-4 h-4" aria-hidden="true" focusable="false" />
  SMS Backup
  </a>
  </div>
@@ -394,7 +394,7 @@ export default function EmergencyPage() {
  <div className="scan-line-overlay bg-white/80 dark:bg-white/5 backdrop-blur-md rounded-xl p-6 border border-border-md dark:border-white/10 shadow-sm relative overflow-hidden">
  {/* Decorative background elements */}
  <div className="absolute -bottom-4 -right-4 opacity-[0.03] dark:opacity-5 rotate-12">
- <UserCheck className="w-32 h-32 text-text-3" />
+ <UserCheck className="w-32 h-32 text-text-3" aria-hidden="true" focusable="false" />
  </div>
  
  <div className="grid grid-cols-2 gap-y-6 gap-x-4 relative z-10">
@@ -431,7 +431,7 @@ export default function EmergencyPage() {
  {/* Prompt to fill profile if empty */}
  {!userProfile.name && !userProfile.bloodGroup && (
  <a href="/profile" className="mt-5 flex items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-brand dark:text-brand-light hover:underline">
- <Edit className="w-3.5 h-3.5" />
+ <Edit className="w-3.5 h-3.5" aria-hidden="true" focusable="false" />
  Complete your profile for accurate SOS dispatch
  </a>
  )}

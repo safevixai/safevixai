@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from unittest.mock import patch
 
@@ -120,13 +121,38 @@ def _clear_settings_cache():
 
 @pytest.fixture
 def mock_env():
-    env = {}
+    """Provide a dict that mirrors changes to os.environ for pydantic-settings."""
+    env: dict[str, str] = {}
 
-    def _getenv(key, default=None):
-        return env.get(key, default)
+    class _EnvProxy(dict):
+        def __setitem__(self, key, value):
+            super().__setitem__(key, value)
+            os.environ[key] = value
 
-    with patch('config.os.getenv', side_effect=_getenv):
-        yield env
+    proxy = _EnvProxy()
+    yield proxy
+
+    for key in list(proxy.keys()):
+        os.environ.pop(key, None)
+
+
+@pytest.fixture(autouse=True)
+def _clean_env():
+    """Save and restore all env vars that Settings might read."""
+    settings_env_keys = [
+        'ENVIRONMENT', 'CHATBOT_SERVICE_NAME', 'CHATBOT_SERVICE_PORT',
+        'CORS_ORIGINS', 'MAIN_BACKEND_BASE_URL', 'MAIN_BACKEND_TIMEOUT_SECONDS',
+        'REDIS_URL', 'CHATBOT_INTERNAL_API_KEY', 'CHROMA_PERSIST_DIR',
+        'RAG_DATA_DIR', 'EMBEDDING_MODEL', 'RAG_MIN_SCORE', 'TOP_K_RETRIEVAL',
+        'DEFAULT_LLM_PROVIDER', 'DEFAULT_LLM_MODEL', 'SPEECH_MODEL_ID',
+        'SPEECH_MODEL_DIR', 'SPEECH_DEVICE', 'SPEECH_DEFAULT_TARGET_LANG',
+        'OPENWEATHER_API_KEY', 'OPENWEATHER_BASE_URL', 'OPENWEATHER_UNITS',
+        'W3W_API_KEY', 'OPENCAGE_API_KEY', 'HTTP_TIMEOUT_SECONDS',
+        'HTTP_USER_AGENT', 'SESSION_TTL_SECONDS', 'ADMIN_SECRET', 'SENTRY_DSN',
+    ]
+    saved = {k: os.environ.pop(k, None) for k in settings_env_keys if k in os.environ}
+    yield
+    os.environ.update({k: v for k, v in saved.items() if v is not None})
 
 
 @pytest.fixture(autouse=True)
@@ -141,7 +167,7 @@ class TestSettings:
             environment='testing',
             service_name='Test',
             service_port=9999,
-            cors_origins=['http://localhost'],
+            cors_origins='http://localhost',
             main_backend_base_url='http://localhost:8000',
             main_backend_timeout_seconds=30.0,
             redis_url='redis://localhost',
@@ -177,7 +203,7 @@ class TestSettings:
         assert s.environment == 'development'
         assert s.service_name == 'SafeVixAI Chatbot Service'
         assert s.service_port == 8010
-        assert s.cors_origins == ['http://localhost:3000', 'http://127.0.0.1:3000']
+        assert s.cors_origins_list == ['http://localhost:3000', 'http://127.0.0.1:3000']
         assert s.main_backend_base_url == 'http://localhost:8000'
         assert s.redis_url is None
         assert s.chroma_persist_dir == ROOT_DIR / 'data' / 'chroma_db'
@@ -202,7 +228,7 @@ class TestSettings:
         assert str(s.chroma_persist_dir).replace('\\', '/').endswith('/custom/chroma')
         assert str(s.rag_data_dir).replace('\\', '/').endswith('/custom/rag')
         assert s.default_llm_provider == 'gemini'
-        assert s.cors_origins == ['https://app.example.com', 'https://api.example.com']
+        assert s.cors_origins_list == ['https://app.example.com', 'https://api.example.com']
 
     def test_cors_guard_production_wildcard_raises(self, mock_env):
         mock_env['ENVIRONMENT'] = 'production'
@@ -214,14 +240,14 @@ class TestSettings:
         mock_env['ENVIRONMENT'] = 'production'
         mock_env['CORS_ORIGINS'] = 'https://app.example.com'
         s = get_settings()
-        assert s.cors_origins == ['https://app.example.com']
+        assert s.cors_origins_list == ['https://app.example.com']
         assert s.environment == 'production'
 
     def test_cors_guard_development_wildcard_ok(self, mock_env):
         mock_env['ENVIRONMENT'] = 'development'
         mock_env['CORS_ORIGINS'] = '*'
         s = get_settings()
-        assert '*' in s.cors_origins
+        assert '*' in s.cors_origins_list
 
     def test_creates_chroma_persist_dir_and_rag_data_dir(self, mock_env, _mock_mkdir):
         s = get_settings()
@@ -253,9 +279,9 @@ class TestSettings:
         assert s.speech_default_target_lang == 'eng'
         assert s.speech_model_dir is None
 
-    def test_frozen_dataclass(self, mock_env):
+    def test_frozen_model(self, mock_env):
         s = get_settings()
-        with pytest.raises(AttributeError):
+        with pytest.raises((AttributeError, TypeError, ValidationError)):
             s.environment = 'changed'
 
     def test_all_optional_fields_none_by_default(self, mock_env):

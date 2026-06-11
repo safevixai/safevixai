@@ -240,7 +240,7 @@ def create_app() -> FastAPI:
     )
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.cors_origins,
+        allow_origins=settings.cors_origins_list,
         allow_credentials=True,
         # P0-04: Restrict methods and headers (audit issue H2)
         allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
@@ -309,7 +309,7 @@ def create_app() -> FastAPI:
         from urllib.parse import urlparse
         import os as _os
         settings = get_settings()
-        cors_hosts = {urlparse(u).hostname for u in settings.cors_origins if u} - {None}
+        cors_hosts = {urlparse(u).hostname for u in settings.cors_origins_list if u} - {None}
         extra_allowed = {h.strip().lower() for h in _os.getenv("ALLOWED_HOSTS", "").split(",") if h.strip()}
         allowed = cors_hosts | extra_allowed
         host = request.headers.get("host", "").split(":")[0].strip().lower()

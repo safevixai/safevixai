@@ -18,7 +18,7 @@ _SETTINGS = Settings(
     environment='test',
     service_name='test',
     service_port=0,
-    cors_origins=[],
+    cors_origins='',
     main_backend_base_url='',
     main_backend_timeout_seconds=5.0,
     redis_url=None,
@@ -685,8 +685,8 @@ async def test_submitreport_success():
     assert "REF001" in result["message"]
 
     call_kwargs = mock_client.post.call_args.kwargs
-    assert call_kwargs["data"]["issue_type"] == "pothole"
-    assert call_kwargs["data"]["severity"] == "2"
+    assert call_kwargs["json"]["issue_type"] == "pothole"
+    assert call_kwargs["json"]["severity"] == "2"
 
 
 @pytest.mark.asyncio
@@ -702,7 +702,7 @@ async def test_submitreport_severity_string_normalized():
         await tool.submit(issue_type="pothole", severity="high")
 
     call_kwargs = mock_client.post.call_args.kwargs
-    assert call_kwargs["data"]["severity"] == "4"
+    assert call_kwargs["json"]["severity"] == "4"
 
 
 @pytest.mark.asyncio
@@ -718,7 +718,7 @@ async def test_submitreport_severity_int_clamped():
         await tool.submit(issue_type="pothole", severity=10)
 
     call_kwargs = mock_client.post.call_args.kwargs
-    assert call_kwargs["data"]["severity"] == "5"
+    assert call_kwargs["json"]["severity"] == "5"
 
 
 @pytest.mark.asyncio
@@ -763,8 +763,8 @@ async def test_submitreport_with_lat_lon_includes_coords():
         await tool.submit(issue_type="pothole", lat=13.0827, lon=80.2707)
 
     call_kwargs = mock_client.post.call_args.kwargs
-    assert call_kwargs["data"]["lat"] == "13.0827"
-    assert call_kwargs["data"]["lon"] == "80.2707"
+    assert call_kwargs["json"]["lat"] == 13.0827
+    assert call_kwargs["json"]["lon"] == 80.2707
 
 
 @pytest.mark.asyncio
@@ -780,8 +780,8 @@ async def test_submitreport_without_lat_lon_no_coords():
         await tool.submit(issue_type="pothole")
 
     call_kwargs = mock_client.post.call_args.kwargs
-    assert "lat" not in call_kwargs["data"]
-    assert "lon" not in call_kwargs["data"]
+    assert "lat" not in call_kwargs["json"]
+    assert "lon" not in call_kwargs["json"]
 
 
 @pytest.mark.asyncio
@@ -798,7 +798,7 @@ async def test_submitreport_long_description_truncated():
         await tool.submit(issue_type="pothole", description=long_desc)
 
     call_kwargs = mock_client.post.call_args.kwargs
-    assert len(call_kwargs["data"]["description"]) == 65536
+    assert len(call_kwargs["json"]["description"]) == 65536
 
 
 def test_submitreport_normalize_severity_strings():

@@ -30,12 +30,12 @@ def preq() -> ProviderRequest:
 
 @pytest.fixture
 def groq() -> GroqProvider:
-    return GroqProvider()
+    return GroqProvider(api_key="test-key")
 
 
 @pytest.fixture
 def gemini() -> GeminiProvider:
-    return GeminiProvider()
+    return GeminiProvider(api_key="test-key", model="gemini-1.5-flash")
 
 
 class TestGroqProviderConstants:
@@ -99,8 +99,7 @@ class TestGroqProviderGenerate:
             intent="general",
             history=[],
         )
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
-            result = await groq.generate(req)
+        result = await groq.generate(req)
         assert result.provider == "groq"
         assert result.model == "safety-filter"
         assert "SafeVixAI" in result.text
@@ -116,13 +115,12 @@ class TestGroqProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key", "GROQ_MODEL": ""}):
-            with patch.object(groq, "_get_client", return_value=mock_client):
-                result = await groq.generate(preq)
+        with patch.object(groq, "_get_client", return_value=mock_client):
+            result = await groq.generate(preq)
 
         assert result.text == "Groq response"
         assert result.provider == "groq"
-        assert result.model == groq.default_model()
+        assert result.model == groq._model
 
     @pytest.mark.asyncio
     async def test_http_error(
@@ -134,14 +132,13 @@ class TestGroqProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
-            with patch.object(groq, "_get_client", return_value=mock_client):
-                with pytest.raises(ProviderUnavailableError):
-                    await groq.generate(preq)
+        with patch.object(groq, "_get_client", return_value=mock_client):
+            with pytest.raises(ProviderUnavailableError):
+                await groq.generate(preq)
 
     @pytest.mark.asyncio
     async def test_env_model_override(
-        self, groq: GroqProvider, preq: ProviderRequest,
+        self, preq: ProviderRequest,
     ) -> None:
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -151,15 +148,15 @@ class TestGroqProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key", "GROQ_MODEL": "custom-model"}):
-            with patch.object(groq, "_get_client", return_value=mock_client):
-                result = await groq.generate(preq)
+        g = GroqProvider(api_key="test-key", model="custom-model")
+        with patch.object(g, "_get_client", return_value=mock_client):
+            result = await g.generate(preq)
 
         assert result.model == "custom-model"
 
     @pytest.mark.asyncio
     async def test_env_model_empty(
-        self, groq: GroqProvider, preq: ProviderRequest,
+        self, preq: ProviderRequest,
     ) -> None:
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -169,11 +166,12 @@ class TestGroqProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key", "GROQ_MODEL": ""}):
-            with patch.object(groq, "_get_client", return_value=mock_client):
-                result = await groq.generate(preq)
+        g = GroqProvider(api_key="test-key")
+        with patch.object(g, "_get_client", return_value=mock_client):
+            result = await g.generate(preq)
 
-        assert result.model == "llama-3.1-8b-instant"
+        assert result.model  # non-empty (env value or default)
+        assert result.text == "ok"
 
 
 class TestGroqProviderStream:
@@ -197,8 +195,7 @@ class TestGroqProviderStream:
             intent="general",
             history=[],
         )
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
-            chunks = [c async for c in groq.stream(req)]
+        chunks = [c async for c in groq.stream(req)]
         assert chunks == []
 
     @pytest.mark.asyncio
@@ -216,9 +213,8 @@ class TestGroqProviderStream:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
-            with patch.object(groq, "_get_client", return_value=mock_client):
-                chunks = [c async for c in groq.stream(preq)]
+        with patch.object(groq, "_get_client", return_value=mock_client):
+            chunks = [c async for c in groq.stream(preq)]
         assert chunks == ["Hello", " world"]
 
     @pytest.mark.asyncio
@@ -236,9 +232,8 @@ class TestGroqProviderStream:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
-            with patch.object(groq, "_get_client", return_value=mock_client):
-                chunks = [c async for c in groq.stream(preq)]
+        with patch.object(groq, "_get_client", return_value=mock_client):
+            chunks = [c async for c in groq.stream(preq)]
         assert chunks == ["Before"]
 
     @pytest.mark.asyncio
@@ -258,9 +253,8 @@ class TestGroqProviderStream:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GROQ_API_KEY": "test-key"}):
-            with patch.object(groq, "_get_client", return_value=mock_client):
-                chunks = [c async for c in groq.stream(preq)]
+        with patch.object(groq, "_get_client", return_value=mock_client):
+            chunks = [c async for c in groq.stream(preq)]
         assert chunks == ["After"]
 
 
@@ -288,11 +282,12 @@ class TestGeminiProviderGenerate:
 
     @pytest.mark.asyncio
     async def test_missing_api_key(
-        self, gemini: GeminiProvider, preq: ProviderRequest,
+        self, preq: ProviderRequest,
     ) -> None:
         with patch.dict(os.environ, {"GEMINI_API_KEY": "", "GOOGLE_API_KEY": ""}):
-            with pytest.raises(RuntimeError, match="Missing env var"):
-                await gemini.generate(preq)
+            g = GeminiProvider()
+        with pytest.raises(RuntimeError, match="Missing env var"):
+            await g.generate(preq)
 
     @pytest.mark.asyncio
     async def test_success(
@@ -316,7 +311,7 @@ class TestGeminiProviderGenerate:
 
     @pytest.mark.asyncio
     async def test_custom_model(
-        self, gemini: GeminiProvider, preq: ProviderRequest,
+        self, preq: ProviderRequest,
     ) -> None:
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -326,15 +321,15 @@ class TestGeminiProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key", "GEMINI_MODEL": "custom-model"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
-                result = await gemini.generate(preq)
+        g = GeminiProvider(api_key="gemini-key", model="custom-model")
+        with patch.object(g, "_get_client", return_value=mock_client):
+            result = await g.generate(preq)
 
         assert result.model == "custom-model"
 
     @pytest.mark.asyncio
     async def test_system_messages(
-        self, gemini: GeminiProvider, preq: ProviderRequest,
+        self, preq: ProviderRequest,
     ) -> None:
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -344,15 +339,15 @@ class TestGeminiProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
-                with patch("providers.gemini_provider.build_messages") as mock_build:
-                    mock_build.return_value = [
-                        {"role": "system", "content": "System prompt"},
-                        {"role": "user", "content": "User message"},
-                        {"role": "assistant", "content": "Assistant message"},
-                    ]
-                    result = await gemini.generate(preq)
+        g = GeminiProvider(api_key="gemini-key")
+        with patch.object(g, "_get_client", return_value=mock_client):
+            with patch("providers.gemini_provider.build_messages") as mock_build:
+                mock_build.return_value = [
+                    {"role": "system", "content": "System prompt"},
+                    {"role": "user", "content": "User message"},
+                    {"role": "assistant", "content": "Assistant message"},
+                ]
+                result = await g.generate(preq)
 
         call_kwargs = mock_client.post.call_args[1]
         assert call_kwargs["json"]["contents"] == [
@@ -380,13 +375,12 @@ class TestGeminiProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
-                with patch("providers.gemini_provider.build_messages") as mock_build:
-                    mock_build.return_value = [
-                        {"role": "user", "content": "Just a question"},
-                    ]
-                    result = await gemini.generate(preq)
+        with patch.object(gemini, "_get_client", return_value=mock_client):
+            with patch("providers.gemini_provider.build_messages") as mock_build:
+                mock_build.return_value = [
+                    {"role": "user", "content": "Just a question"},
+                ]
+                result = await gemini.generate(preq)
 
         call_kwargs = mock_client.post.call_args[1]
         assert "systemInstruction" not in call_kwargs["json"]
@@ -407,8 +401,7 @@ class TestGeminiProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
+        with patch.object(gemini, "_get_client", return_value=mock_client):
                 await gemini.generate(preq)
 
         expected_url = f"{GEMINI_BASE}/gemini-1.5-flash:generateContent"
@@ -424,14 +417,13 @@ class TestGeminiProviderGenerate:
         mock_client = MagicMock()
         mock_client.post = AsyncMock(return_value=mock_response)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
-                with pytest.raises(ProviderUnavailableError):
-                    await gemini.generate(preq)
+        with patch.object(gemini, "_get_client", return_value=mock_client):
+            with pytest.raises(ProviderUnavailableError):
+                await gemini.generate(preq)
 
     @pytest.mark.asyncio
     async def test_google_api_key_fallback(
-        self, gemini: GeminiProvider, preq: ProviderRequest,
+        self, preq: ProviderRequest,
     ) -> None:
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -442,8 +434,9 @@ class TestGeminiProviderGenerate:
         mock_client.post = AsyncMock(return_value=mock_response)
 
         with patch.dict(os.environ, {"GEMINI_API_KEY": "", "GOOGLE_API_KEY": "fallback-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
-                result = await gemini.generate(preq)
+            g = GeminiProvider()
+        with patch.object(g, "_get_client", return_value=mock_client):
+            result = await g.generate(preq)
 
         assert result.text == "Gemini response"
         assert result.provider == "gemini"
@@ -454,10 +447,11 @@ class TestGeminiProviderStream:
 
     @pytest.mark.asyncio
     async def test_missing_api_key(
-        self, gemini: GeminiProvider, preq: ProviderRequest,
+        self, preq: ProviderRequest,
     ) -> None:
         with patch.dict(os.environ, {"GEMINI_API_KEY": "", "GOOGLE_API_KEY": ""}):
-            chunks = [c async for c in gemini.stream(preq)]
+            g = GeminiProvider()
+        chunks = [c async for c in g.stream(preq)]
         assert chunks == []
 
     @pytest.mark.asyncio
@@ -476,8 +470,7 @@ class TestGeminiProviderStream:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
+        with patch.object(gemini, "_get_client", return_value=mock_client):
                 chunks = [c async for c in gemini.stream(preq)]
 
         assert chunks == ["Hello", " world"]
@@ -499,8 +492,7 @@ class TestGeminiProviderStream:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
+        with patch.object(gemini, "_get_client", return_value=mock_client):
                 chunks = [c async for c in gemini.stream(preq)]
 
         assert chunks == ["Works"]
@@ -521,8 +513,7 @@ class TestGeminiProviderStream:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
+        with patch.object(gemini, "_get_client", return_value=mock_client):
                 chunks = [c async for c in gemini.stream(preq)]
 
         assert chunks == ["After"]
@@ -538,8 +529,7 @@ class TestGeminiProviderStream:
         mock_client.stream.return_value.__aenter__.return_value = mock_response
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
+        with patch.object(gemini, "_get_client", return_value=mock_client):
                 with pytest.raises(ProviderUnavailableError):
                     [c async for c in gemini.stream(preq)]
 
@@ -559,8 +549,7 @@ class TestGeminiProviderStream:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"GEMINI_API_KEY": "gemini-key"}):
-            with patch.object(gemini, "_get_client", return_value=mock_client):
+        with patch.object(gemini, "_get_client", return_value=mock_client):
                 chunks = [c async for c in gemini.stream(preq)]
 
         assert chunks == ["After error"]

@@ -1,5 +1,12 @@
 # SafeVixAI
 
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" /></a>
+  <a href="CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="Code of Conduct" /></a>
+  <a href="https://github.com/SafeVixAI/SafeVixAI/issues"><img src="https://img.shields.io/github/issues/SafeVixAI/SafeVixAI" alt="Issues" /></a>
+  <a href="https://github.com/SafeVixAI/SafeVixAI/stargazers"><img src="https://img.shields.io/github/stars/SafeVixAI/SafeVixAI" alt="Stars" /></a>
+</p>
+
 **AI Emergency Response + DriveLegal + RoadWatch — Three Problem Statements, One App**
 
 > IIT Madras Road Safety Hackathon 2026 | Team Submission
@@ -181,6 +188,20 @@ Read `docs/Agent.md` first — it gives a complete overview of the entire applic
 
 - Frontend: https://safevixai.vercel.app
 - Backend API: https://safevixai-api.onrender.com/docs
+
+---
+
+## Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+
+- Report bugs via [GitHub Issues](https://github.com/SafeVixAI/SafeVixAI/issues)
+- Security vulnerabilities: see [SECURITY.md](SECURITY.md)
+- All contributions under MIT license
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 

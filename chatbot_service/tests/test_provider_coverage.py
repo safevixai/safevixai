@@ -181,7 +181,7 @@ class TestHttpProviderStreamMalformedJson:
             def base_url(self): return "http://test"
             def default_model(self): return "test-model"
 
-        provider = TestProvider()
+        provider = TestProvider(api_key="key")
         req = ProviderRequest(message="hi", intent="general", history=[])
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -196,7 +196,6 @@ class TestHttpProviderStreamMalformedJson:
         mock_client.stream.return_value.__aenter__ = AsyncMock(return_value=mock_response)
         mock_client.stream.return_value.__aexit__ = AsyncMock(return_value=False)
 
-        with patch.dict(os.environ, {"TEST_API_KEY": "key", "TEST_MODEL": ""}):
-            with patch.object(provider, "_get_client", return_value=mock_client):
-                chunks = [c async for c in provider.stream(req)]
+        with patch.object(provider, "_get_client", return_value=mock_client):
+            chunks = [c async for c in provider.stream(req)]
         assert chunks == ["After error"]

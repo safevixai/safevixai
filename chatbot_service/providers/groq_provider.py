@@ -41,8 +41,8 @@ class GroqProvider(HttpProvider):
 
     name = "groq"
 
-    def __init__(self) -> None:
-        super().__init__(max_tokens=_GROQ_MAX_RESPONSE_TOKENS)
+    def __init__(self, api_key: str = "", model: str = "") -> None:
+        super().__init__(max_tokens=_GROQ_MAX_RESPONSE_TOKENS, api_key=api_key, model=model)
 
     def api_key_env(self) -> str:
         return "GROQ_API_KEY"

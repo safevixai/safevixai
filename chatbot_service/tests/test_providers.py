@@ -3,21 +3,22 @@ from __future__ import annotations
 import asyncio
 from types import SimpleNamespace
 
+import pytest
+
 from providers.base import ProviderRequest, ProviderResult, TemplateProvider
 from providers.router import ProviderRouter
 
 
-def test_template_provider_returns_grounded_response():
+@pytest.mark.asyncio
+async def test_template_provider_returns_grounded_response():
     provider = TemplateProvider()
-    result = asyncio.run(
-        provider.generate(
-            ProviderRequest(
-                message='Help with Section 185',
-                intent='challan',
-                history=[],
-                tool_summaries=['Applicable section: Section 185. Base fine: INR 10000.'],
-                document_snippets=['Motor Vehicles Act: Drunk driving is punishable.'],
-            )
+    result = await provider.generate(
+        ProviderRequest(
+            message='Help with Section 185',
+            intent='challan',
+            history=[],
+            tool_summaries=['Applicable section: Section 185. Base fine: INR 10000.'],
+            document_snippets=['Motor Vehicles Act: Drunk driving is punishable.'],
         )
     )
 
@@ -40,7 +41,8 @@ class FastProvider:
         return ProviderResult(text='fallback ok', provider=self.name, model='fast-model')
 
 
-def test_provider_router_times_out_primary_and_uses_fallback():
+@pytest.mark.asyncio
+async def test_provider_router_times_out_primary_and_uses_fallback():
     settings = SimpleNamespace(default_llm_provider='slow', http_timeout_seconds=0.01)
     router = ProviderRouter(settings)  # type: ignore[arg-type]
     router.providers = {
@@ -50,13 +52,11 @@ def test_provider_router_times_out_primary_and_uses_fallback():
     }
     router._fallback_chain = ['slow', 'fast', 'template']
 
-    result = asyncio.run(
-        router.generate(
-            ProviderRequest(
-                message='Need road safety help',
-                intent='general',
-                history=[],
-            )
+    result = await router.generate(
+        ProviderRequest(
+            message='Need road safety help',
+            intent='general',
+            history=[],
         )
     )
 
