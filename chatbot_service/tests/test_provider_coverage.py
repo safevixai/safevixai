@@ -25,7 +25,7 @@ class TestGroqProviderGenerateErrors:
 
     @pytest.fixture
     def groq(self) -> GroqProvider:
-        return GroqProvider()
+        return GroqProvider(api_key="test-key")
 
     @pytest.fixture
     def preq(self) -> ProviderRequest:
@@ -83,7 +83,7 @@ class TestSarvamProviderGenerateErrors:
 
     @pytest.fixture
     def sarvam(self) -> SarvamProvider:
-        return SarvamProvider()
+        return SarvamProvider(api_key="test-token")
 
     @pytest.fixture
     def preq(self) -> ProviderRequest:

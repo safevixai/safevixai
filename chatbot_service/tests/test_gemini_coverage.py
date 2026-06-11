@@ -61,7 +61,7 @@ class TestGeminiStream:
     @pytest.mark.asyncio
     async def test_stream_assistant_role_mapping(self):
         """Line 51-52: assistant role maps to 'model'."""
-        provider = GeminiProvider()
+        provider = GeminiProvider(api_key="test-key")
         req = ProviderRequest(
             message="ping",
             intent="general",
@@ -82,15 +82,14 @@ class TestGeminiStream:
         cm.__aexit__ = AsyncMock(return_value=False)
         client.stream = MagicMock(return_value=cm)
 
-        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key", "GEMINI_MODEL": "gemini-1.5-flash"}):
-            with patch.object(provider, "_get_client", return_value=client):
-                chunks = [c async for c in provider.stream(req)]
+        with patch.object(provider, "_get_client", return_value=client):
+            chunks = [c async for c in provider.stream(req)]
         assert chunks == ["hello"]
 
     @pytest.mark.asyncio
     async def test_stream_empty_data_str_skipped(self):
         """Line 84: empty data_str after stripping is skipped."""
-        provider = GeminiProvider()
+        provider = GeminiProvider(api_key="test-key")
         stream_data = (
             'data: \n\n'
             'data: {"candidates":[{"content":{"parts":[{"text":"world"}]}}]}\n\n'
@@ -107,9 +106,8 @@ class TestGeminiStream:
         cm.__aexit__ = AsyncMock(return_value=False)
         client.stream = MagicMock(return_value=cm)
 
-        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}):
-            with patch.object(provider, "_get_client", return_value=client):
-                chunks = [c async for c in provider.stream(_REQUEST)]
+        with patch.object(provider, "_get_client", return_value=client):
+            chunks = [c async for c in provider.stream(_REQUEST)]
         assert chunks == ["world"]
 
 
@@ -118,7 +116,7 @@ class TestGeminiGenerateErrors:
 
     @pytest.fixture
     def gemini(self) -> GeminiProvider:
-        return GeminiProvider()
+        return GeminiProvider(api_key="test-key")
 
     @pytest.mark.asyncio
     async def test_empty_candidates_raises(self, gemini: GeminiProvider):
