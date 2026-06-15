@@ -3,7 +3,7 @@ pytest==9.0.3
 pytest-asyncio==1.4.0
 pytest-cov==7.1.0
 kaggle==2.2.0
-kagglehub==0.3.8
+kagglehub==1.0.2
 hypothesis==6.155.2
 prometheus-client>=0.25.0
 
