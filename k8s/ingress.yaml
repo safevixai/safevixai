@@ -4,38 +4,52 @@ metadata:
   name: safevixai-ingress
   namespace: safevixai
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    nginx.ingress.kubernetes.io/limit-burst-multiplier: "3"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - app.safevixai.com
+        - api.safevixai.com
+        - chat.safevixai.com
+      secretName: safevixai-tls
   rules:
-  - host: app.safevixai.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: safevixai-frontend-service
-            port:
-              number: 80
-  - host: api.safevixai.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: safevixai-backend-service
-            port:
-              number: 8000
-  - host: chat.safevixai.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: safevixai-chatbot-service
-            port:
-              number: 8010
+    - host: app.safevixai.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: safevixai-frontend-service
+                port:
+                  number: 80
+    - host: api.safevixai.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: safevixai-backend-service
+                port:
+                  number: 8000
+    - host: chat.safevixai.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: safevixai-chatbot-service
+                port:
+                  number: 8010
