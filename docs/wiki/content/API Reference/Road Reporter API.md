@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [authority_router.py](file://backend/services/authority_router.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [config.py](file://backend/core/config.py)
-- [main.py](file://backend/main.py)
-- [test_roadwatch.py](file://backend/tests/test_roadwatch.py)
-- [ReportForm.tsx](file://frontend/components/ReportForm.tsx)
-- [api.ts](file://frontend/lib/api.ts)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [authority_router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [test_roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py)
+- [ReportForm.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
 </cite>
 
 ## Table of Contents
@@ -64,17 +64,17 @@ SC --> RM
 ```
 
 **Diagram sources**
-- [main.py:24-128](file://backend/main.py#L24-L128)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [schemas.py:83-161](file://backend/models/schemas.py#L83-L161)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
+- [main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [schemas.py:83-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L161)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
 
 **Section sources**
-- [main.py:24-128](file://backend/main.py#L24-L128)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
+- [main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
 
 ## Core Components
 - RoadWatch API router: Exposes endpoints for reporting, nearby issues discovery, authority preview, and infrastructure lookup
@@ -90,12 +90,12 @@ Key responsibilities:
 - Serve uploaded images via static files
 
 **Section sources**
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [schemas.py:83-161](file://backend/models/schemas.py#L83-L161)
-- [config.py:55-116](file://backend/core/config.py#L55-L116)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [schemas.py:83-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L161)
+- [config.py:55-116](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L55-L116)
 
 ## Architecture Overview
 The Road Reporter API follows a layered architecture:
@@ -129,10 +129,10 @@ API-->>Client : 200 OK with report summary
 ```
 
 **Diagram sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [authority_router.py:48-79](file://backend/services/authority_router.py#L48-L79)
-- [road_issue.py:22-25](file://backend/models/road_issue.py#L22-L25)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [authority_router.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L79)
+- [road_issue.py:22-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L22-L25)
 
 ## Detailed Component Analysis
 
@@ -159,9 +159,9 @@ Response shape:
 - radius_used: integer
 
 **Section sources**
-- [roadwatch.py:26-50](file://backend/api/v1/roadwatch.py#L26-L50)
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [schemas.py:119-140](file://backend/models/schemas.py#L119-L140)
+- [roadwatch.py:26-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L50)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [schemas.py:119-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L119-L140)
 
 #### GET /api/v1/roads/authority
 - Purpose: Get authority preview for a coordinate
@@ -171,9 +171,9 @@ Response shape:
 - Response: AuthorityPreviewResponse (road classification, authority contact, complaint portal, engineering info, source)
 
 **Section sources**
-- [roadwatch.py:53-60](file://backend/api/v1/roadwatch.py#L53-L60)
-- [roadwatch_service.py:70-77](file://backend/services/roadwatch_service.py#L70-L77)
-- [schemas.py:83-101](file://backend/models/schemas.py#L83-L101)
+- [roadwatch.py:53-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L53-L60)
+- [roadwatch_service.py:70-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L77)
+- [schemas.py:83-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L101)
 
 #### GET /api/v1/roads/infrastructure
 - Purpose: Get infrastructure details near a coordinate
@@ -183,9 +183,9 @@ Response shape:
 - Response: RoadInfrastructureResponse (road attributes, contractor/executive engineer info, budget and maintenance dates, source)
 
 **Section sources**
-- [roadwatch.py:63-70](file://backend/api/v1/roadwatch.py#L63-L70)
-- [roadwatch_service.py:79-125](file://backend/services/roadwatch_service.py#L79-L125)
-- [schemas.py:103-117](file://backend/models/schemas.py#L103-L117)
+- [roadwatch.py:63-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L63-L70)
+- [roadwatch_service.py:79-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L79-L125)
+- [schemas.py:103-117](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L103-L117)
 
 #### POST /api/v1/roads/report
 - Purpose: Submit a road issue report with optional image
@@ -210,12 +210,12 @@ Integration highlights:
 - Image upload served via static files under /uploads
 
 **Section sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [roadwatch_service.py:275-325](file://backend/services/roadwatch_service.py#L275-L325)
-- [authority_router.py:48-79](file://backend/services/authority_router.py#L48-L79)
-- [config.py:55-63](file://backend/core/config.py#L55-L63)
-- [main.py:73-73](file://backend/main.py#L73-L73)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [roadwatch_service.py:275-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L325)
+- [authority_router.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L79)
+- [config.py:55-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L55-L63)
+- [main.py:73-73](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L73-L73)
 
 ### Request Validation Rules
 - Spatial coordinates:
@@ -230,10 +230,10 @@ Integration highlights:
   - Magic bytes checked for authenticity
 
 **Section sources**
-- [roadwatch.py:28-80](file://backend/api/v1/roadwatch.py#L28-L80)
-- [roadwatch_service.py:197-200](file://backend/services/roadwatch_service.py#L197-L200)
-- [roadwatch_service.py:281-313](file://backend/services/roadwatch_service.py#L281-L313)
-- [config.py:59-63](file://backend/core/config.py#L59-L63)
+- [roadwatch.py:28-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L28-L80)
+- [roadwatch_service.py:197-200](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L197-L200)
+- [roadwatch_service.py:281-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L281-L313)
+- [config.py:59-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L59-L63)
 
 ### File Upload Handling
 - Content-Type validation against configured allowed types
@@ -245,9 +245,9 @@ Integration highlights:
 - Static file serving mounted at /uploads
 
 **Section sources**
-- [roadwatch_service.py:275-325](file://backend/services/roadwatch_service.py#L275-L325)
-- [config.py:55-63](file://backend/core/config.py#L55-L63)
-- [main.py:73-73](file://backend/main.py#L73-L73)
+- [roadwatch_service.py:275-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L325)
+- [config.py:55-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L55-L63)
+- [main.py:73-73](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L73-L73)
 
 ### Spatial Data Requirements
 - Issues stored as POINT geometries in SRID 4326
@@ -256,9 +256,9 @@ Integration highlights:
 - Queries support ST_DWithin and ST_Distance for proximity searches
 
 **Section sources**
-- [road_issue.py:22-25](file://backend/models/road_issue.py#L22-L25)
-- [roadwatch_service.py:147-150](file://backend/services/roadwatch_service.py#L147-L150)
-- [roadwatch_service.py:263-266](file://backend/services/roadwatch_service.py#L263-L266)
+- [road_issue.py:22-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L22-L25)
+- [roadwatch_service.py:147-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L147-L150)
+- [roadwatch_service.py:263-266](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L263-L266)
 
 ### Authority Routing and Integration
 - Authority resolution prioritizes database-backed infrastructure; falls back to Overpass service when unavailable
@@ -266,16 +266,16 @@ Integration highlights:
 - Response includes authority name, helpline, complaint portal, escalation path, and engineering details
 
 **Section sources**
-- [authority_router.py:48-79](file://backend/services/authority_router.py#L48-L79)
-- [authority_router.py:128-140](file://backend/services/authority_router.py#L128-L140)
+- [authority_router.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L79)
+- [authority_router.py:128-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L128-L140)
 
 ### AI Detection Integration
 - The system references AI models for offline and online capabilities, including YOLOv8 for in-browser pothole detection from photos
 - While the Road Reporter API does not directly invoke AI models, the reported photo can be used by downstream systems or integrated AI services for automated analysis
 
 **Section sources**
-- [docs/API.md:175-188](file://docs/API.md#L175-L188)
-- [docs/TechStack.md:144-158](file://docs/TechStack.md#L144-L158)
+- [docs/API.md:175-188](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/API.md#L175-L188)
+- [docs/TechStack.md:144-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L144-L158)
 
 ### Response Formats
 
@@ -355,7 +355,7 @@ Integration highlights:
 - status: one of open, acknowledged, in_progress, resolved, rejected
 
 **Section sources**
-- [schemas.py:119-161](file://backend/models/schemas.py#L119-L161)
+- [schemas.py:119-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L119-L161)
 
 ### Examples
 
@@ -372,9 +372,9 @@ Integration highlights:
   - Response includes authority_name, complaint_ref, status, and photo_url if uploaded
 
 **Section sources**
-- [test_roadwatch.py:123-142](file://backend/tests/test_roadwatch.py#L123-L142)
-- [ReportForm.tsx:19-65](file://frontend/components/ReportForm.tsx#L19-L65)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [test_roadwatch.py:123-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py#L123-L142)
+- [ReportForm.tsx:19-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L19-L65)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 #### Example: Road Obstruction Alert
 - Endpoint: POST /api/v1/roads/report
@@ -388,8 +388,8 @@ Integration highlights:
   - Authority routing determines responsible body; response includes complaint portal and helpline
 
 **Section sources**
-- [ReportForm.tsx:114-128](file://frontend/components/ReportForm.tsx#L114-L128)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [ReportForm.tsx:114-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L114-L128)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 #### Example: Community Issue Tracking
 - Endpoint: GET /api/v1/roads/issues
@@ -402,8 +402,8 @@ Integration highlights:
   - Paginated list of recent issues near the location with distances and statuses
 
 **Section sources**
-- [roadwatch.py:26-50](file://backend/api/v1/roadwatch.py#L26-L50)
-- [test_roadwatch.py:112-121](file://backend/tests/test_roadwatch.py#L112-L121)
+- [roadwatch.py:26-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L50)
+- [test_roadwatch.py:112-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py#L112-L121)
 
 ## Dependency Analysis
 ```mermaid
@@ -421,20 +421,20 @@ API --> MW
 ```
 
 **Diagram sources**
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [schemas.py:83-161](file://backend/models/schemas.py#L83-L161)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [main.py:24-128](file://backend/main.py#L24-L128)
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [schemas.py:83-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L161)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 **Section sources**
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [main.py:24-128](file://backend/main.py#L24-L128)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
 
 ## Performance Considerations
 - Spatial queries use Geography types and indexed POINT/LINESTRING geometries for efficient ST_DWithin and ST_Distance computations
@@ -460,10 +460,10 @@ Common issues and resolutions:
   - Resolution: Overpass unavailable; system assigns default urban authority
 
 **Section sources**
-- [roadwatch.py:36-42](file://backend/api/v1/roadwatch.py#L36-L42)
-- [roadwatch_service.py:281-313](file://backend/services/roadwatch_service.py#L281-L313)
-- [test_roadwatch.py:144-150](file://backend/tests/test_roadwatch.py#L144-L150)
-- [test_roadwatch.py:197-214](file://backend/tests/test_roadwatch.py#L197-L214)
+- [roadwatch.py:36-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L36-L42)
+- [roadwatch_service.py:281-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L281-L313)
+- [test_roadwatch.py:144-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py#L144-L150)
+- [test_roadwatch.py:197-214](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py#L197-L214)
 
 ## Conclusion
 The Road Reporter API provides a robust, spatially aware mechanism for community road issue reporting. It enforces strict validation, integrates authority routing, and supports secure image uploads. Responses clearly indicate enforcement authority and status, enabling effective community engagement and timely remediation.
@@ -491,8 +491,8 @@ The Road Reporter API provides a robust, spatially aware mechanism for community
   - Response: RoadReportResponse
 
 **Section sources**
-- [roadwatch.py:26-70](file://backend/api/v1/roadwatch.py#L26-L70)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch.py:26-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L70)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
 
 ### Frontend Integration Notes
 - The frontend composes multipart/form-data and posts to /api/v1/roads/report
@@ -500,5 +500,5 @@ The Road Reporter API provides a robust, spatially aware mechanism for community
 - It supports offline queuing and later synchronization
 
 **Section sources**
-- [ReportForm.tsx:9-38](file://frontend/components/ReportForm.tsx#L9-L38)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [ReportForm.tsx:9-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L9-L38)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)

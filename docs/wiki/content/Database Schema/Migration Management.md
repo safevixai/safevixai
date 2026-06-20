@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [alembic.ini](file://backend/alembic.ini)
-- [env.py](file://backend/migrations/env.py)
-- [script.py.mako](file://backend/migrations/script.py.mako)
-- [001_initial_schema.py](file://backend/migrations/versions/001_initial_schema.py)
-- [46c1f12f346e_add_userprofile_model.py](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py)
-- [database.py](file://backend/core/database.py)
-- [config.py](file://backend/core/config.py)
-- [models/__init__.py](file://backend/models/__init__.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [user.py](file://backend/models/user.py)
-- [check_db.py](file://backend/scripts/app/check_db.py)
-- [backend.yml](file://.github/workflows/backend.yml)
+- [alembic.ini](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini)
+- [env.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py)
+- [script.py.mako](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/script.py.mako)
+- [001_initial_schema.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py)
+- [46c1f12f346e_add_userprofile_model.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py)
+- [database.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [models/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [check_db.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py)
+- [backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
 </cite>
 
 ## Table of Contents
@@ -69,25 +69,25 @@ R2 --> A
 ```
 
 **Diagram sources**
-- [alembic.ini:1-37](file://backend/alembic.ini#L1-L37)
-- [env.py:1-64](file://backend/migrations/env.py#L1-L64)
-- [script.py.mako:1-25](file://backend/migrations/script.py.mako#L1-L25)
-- [001_initial_schema.py:1-140](file://backend/migrations/versions/001_initial_schema.py#L1-L140)
-- [46c1f12f346e_add_userprofile_model.py:1-40](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
-- [models/__init__.py:1-7](file://backend/models/__init__.py#L1-L7)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [road_issue.py:1-66](file://backend/models/road_issue.py#L1-L66)
-- [user.py:1-25](file://backend/models/user.py#L1-L25)
+- [alembic.ini:1-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L1-L37)
+- [env.py:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L1-L64)
+- [script.py.mako:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/script.py.mako#L1-L25)
+- [001_initial_schema.py:1-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L1-L140)
+- [46c1f12f346e_add_userprofile_model.py:1-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [models/__init__.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py#L1-L7)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [road_issue.py:1-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L1-L66)
+- [user.py:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L1-L25)
 
 **Section sources**
-- [alembic.ini:1-37](file://backend/alembic.ini#L1-L37)
-- [env.py:1-64](file://backend/migrations/env.py#L1-L64)
-- [script.py.mako:1-25](file://backend/migrations/script.py.mako#L1-L25)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
-- [models/__init__.py:1-7](file://backend/models/__init__.py#L1-L7)
+- [alembic.ini:1-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L1-L37)
+- [env.py:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L1-L64)
+- [script.py.mako:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/script.py.mako#L1-L25)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [models/__init__.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py#L1-L7)
 
 ## Core Components
 - Alembic configuration: Defines script location and SQLAlchemy URL. The ini file sets the database URL and logging levels.
@@ -106,12 +106,12 @@ Key responsibilities:
 - Models: Define table structures and indexes used by Alembic.
 
 **Section sources**
-- [alembic.ini:1-37](file://backend/alembic.ini#L1-L37)
-- [env.py:1-64](file://backend/migrations/env.py#L1-L64)
-- [script.py.mako:1-25](file://backend/migrations/script.py.mako#L1-L25)
-- [001_initial_schema.py:1-140](file://backend/migrations/versions/001_initial_schema.py#L1-L140)
-- [46c1f12f346e_add_userprofile_model.py:1-40](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
-- [models/__init__.py:1-7](file://backend/models/__init__.py#L1-L7)
+- [alembic.ini:1-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L1-L37)
+- [env.py:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L1-L64)
+- [script.py.mako:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/script.py.mako#L1-L25)
+- [001_initial_schema.py:1-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L1-L140)
+- [46c1f12f346e_add_userprofile_model.py:1-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
+- [models/__init__.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py#L1-L7)
 
 ## Architecture Overview
 The migration pipeline integrates Alembic with the application runtime:
@@ -136,8 +136,8 @@ Env-->>CLI : Complete
 ```
 
 **Diagram sources**
-- [alembic.ini:1-37](file://backend/alembic.ini#L1-L37)
-- [env.py:1-64](file://backend/migrations/env.py#L1-L64)
+- [alembic.ini:1-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L1-L37)
+- [env.py:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L1-L64)
 
 ## Detailed Component Analysis
 
@@ -158,14 +158,14 @@ Commit --> End(["Ready for CI/Deployment"])
 ```
 
 **Diagram sources**
-- [script.py.mako:1-25](file://backend/migrations/script.py.mako#L1-L25)
-- [001_initial_schema.py:1-140](file://backend/migrations/versions/001_initial_schema.py#L1-L140)
-- [46c1f12f346e_add_userprofile_model.py:1-40](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
+- [script.py.mako:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/script.py.mako#L1-L25)
+- [001_initial_schema.py:1-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L1-L140)
+- [46c1f12f346e_add_userprofile_model.py:1-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
 
 **Section sources**
-- [script.py.mako:1-25](file://backend/migrations/script.py.mako#L1-L25)
-- [001_initial_schema.py:1-140](file://backend/migrations/versions/001_initial_schema.py#L1-L140)
-- [46c1f12f346e_add_userprofile_model.py:1-40](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
+- [script.py.mako:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/script.py.mako#L1-L25)
+- [001_initial_schema.py:1-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L1-L140)
+- [46c1f12f346e_add_userprofile_model.py:1-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
 
 ### Initial Schema Creation (001_initial_schema)
 - Purpose: Creates foundational tables and spatial indexes for emergency services, road infrastructure, and road issues.
@@ -187,10 +187,10 @@ DES --> DEnd(["Complete"])
 ```
 
 **Diagram sources**
-- [001_initial_schema.py:22-140](file://backend/migrations/versions/001_initial_schema.py#L22-L140)
+- [001_initial_schema.py:22-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L22-L140)
 
 **Section sources**
-- [001_initial_schema.py:1-140](file://backend/migrations/versions/001_initial_schema.py#L1-L140)
+- [001_initial_schema.py:1-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L1-L140)
 
 ### Subsequent Model Changes (Add UserProfile)
 - Purpose: Adds a user profiles table to support user-specific data.
@@ -205,10 +205,10 @@ DropUP --> DEnd(["Complete"])
 ```
 
 **Diagram sources**
-- [46c1f12f346e_add_userprofile_model.py:19-40](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L40)
+- [46c1f12f346e_add_userprofile_model.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L40)
 
 **Section sources**
-- [46c1f12f346e_add_userprofile_model.py:1-40](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
+- [46c1f12f346e_add_userprofile_model.py:1-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
 
 ### Migration Dependencies and Branching
 - Dependencies: Each migration declares its parent revision. The initial schema has no parent; subsequent migrations specify their parent.
@@ -222,12 +222,12 @@ B --> C["Future migrations"]
 ```
 
 **Diagram sources**
-- [001_initial_schema.py:16-19](file://backend/migrations/versions/001_initial_schema.py#L16-L19)
-- [46c1f12f346e_add_userprofile_model.py:12-16](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L12-L16)
+- [001_initial_schema.py:16-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L16-L19)
+- [46c1f12f346e_add_userprofile_model.py:12-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L12-L16)
 
 **Section sources**
-- [001_initial_schema.py:16-19](file://backend/migrations/versions/001_initial_schema.py#L16-L19)
-- [46c1f12f346e_add_userprofile_model.py:12-16](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L12-L16)
+- [001_initial_schema.py:16-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L16-L19)
+- [46c1f12f346e_add_userprofile_model.py:12-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L12-L16)
 
 ### Upgrade and Rollback Procedures
 - Upgrade to head:
@@ -256,11 +256,11 @@ Env-->>Alembic : Done
 ```
 
 **Diagram sources**
-- [env.py:45-63](file://backend/migrations/env.py#L45-L63)
+- [env.py:45-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L45-L63)
 
 **Section sources**
-- [env.py:45-63](file://backend/migrations/env.py#L45-L63)
-- [check_db.py:1-31](file://backend/scripts/app/check_db.py#L1-L31)
+- [env.py:45-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L45-L63)
+- [check_db.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L1-L31)
 
 ## Dependency Analysis
 - Alembic configuration depends on application settings for the database URL.
@@ -280,20 +280,20 @@ Models --> Env
 ```
 
 **Diagram sources**
-- [alembic.ini:1-37](file://backend/alembic.ini#L1-L37)
-- [env.py:1-64](file://backend/migrations/env.py#L1-L64)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [001_initial_schema.py:1-140](file://backend/migrations/versions/001_initial_schema.py#L1-L140)
-- [46c1f12f346e_add_userprofile_model.py:1-40](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
-- [models/__init__.py:1-7](file://backend/models/__init__.py#L1-L7)
+- [alembic.ini:1-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L1-L37)
+- [env.py:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L1-L64)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [001_initial_schema.py:1-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L1-L140)
+- [46c1f12f346e_add_userprofile_model.py:1-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L1-L40)
+- [models/__init__.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py#L1-L7)
 
 **Section sources**
-- [alembic.ini:1-37](file://backend/alembic.ini#L1-L37)
-- [env.py:1-64](file://backend/migrations/env.py#L1-L64)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [models/__init__.py:1-7](file://backend/models/__init__.py#L1-L7)
+- [alembic.ini:1-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L1-L37)
+- [env.py:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L1-L64)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [models/__init__.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py#L1-L7)
 
 ## Performance Considerations
 - Asynchronous migrations: The online runner uses an async engine to improve connection handling.
@@ -314,9 +314,9 @@ Models --> Env
   - After downgrading, confirm tables and indexes are removed as expected.
 
 **Section sources**
-- [config.py:19-96](file://backend/core/config.py#L19-L96)
-- [alembic.ini:4](file://backend/alembic.ini#L4)
-- [check_db.py:1-31](file://backend/scripts/app/check_db.py#L1-L31)
+- [config.py:19-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L96)
+- [alembic.ini:4](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L4)
+- [check_db.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L1-L31)
 
 ## Conclusion
 SafeVixAI’s Alembic-based migration system cleanly integrates with the application’s async SQLAlchemy setup and settings. The current migration set establishes a robust spatial schema and adds user profile support. By following the documented procedures, best practices, and branching strategies, teams can safely evolve the schema while maintaining backward compatibility and enabling production deployments with minimal downtime.
@@ -338,9 +338,9 @@ SafeVixAI’s Alembic-based migration system cleanly integrates with the applica
   - Run the database inspection script to list tables and row counts.
 
 **Section sources**
-- [alembic.ini:1-37](file://backend/alembic.ini#L1-L37)
-- [env.py:45-63](file://backend/migrations/env.py#L45-L63)
-- [check_db.py:1-31](file://backend/scripts/app/check_db.py#L1-L31)
+- [alembic.ini:1-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/alembic.ini#L1-L37)
+- [env.py:45-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L45-L63)
+- [check_db.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L1-L31)
 
 ### Best Practices for Writing New Migrations
 - Keep migrations reversible: Every change should have a corresponding downgrade operation.
@@ -361,4 +361,4 @@ SafeVixAI’s Alembic-based migration system cleanly integrates with the applica
   - Plan maintenance windows for operations that require table rebuilds.
 
 **Section sources**
-- [backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
+- [backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)

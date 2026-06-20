@@ -2,13 +2,13 @@
 
 <cite>
 **Referenced Files in This Document**
-- [user.py](file://backend/models/user.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [user.py](file://backend/api/v1/user.py)
-- [46c1f12f346e_add_userprofile_model.py](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py)
-- [database.py](file://backend/core/database.py)
-- [user-profile.ts](file://frontend/lib/user-profile.ts)
-- [sos-share.ts](file://frontend/lib/sos-share.ts)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [46c1f12f346e_add_userprofile_model.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py)
+- [database.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py)
+- [user-profile.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/user-profile.ts)
+- [sos-share.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts)
 </cite>
 
 ## Table of Contents
@@ -50,22 +50,22 @@ A --> FSOS
 ```
 
 **Diagram sources**
-- [user.py:13-24](file://backend/models/user.py#L13-L24)
-- [schemas.py:259-286](file://backend/models/schemas.py#L259-L286)
-- [user.py:16-82](file://backend/api/v1/user.py#L16-L82)
-- [database.py:21-35](file://backend/core/database.py#L21-L35)
-- [46c1f12f346e_add_userprofile_model.py:19-33](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
-- [user-profile.ts:6-18](file://frontend/lib/user-profile.ts#L6-L18)
-- [sos-share.ts:41-68](file://frontend/lib/sos-share.ts#L41-L68)
+- [user.py:13-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L24)
+- [schemas.py:259-286](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L286)
+- [user.py:16-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L82)
+- [database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
+- [46c1f12f346e_add_userprofile_model.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
+- [user-profile.ts:6-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/user-profile.ts#L6-L18)
+- [sos-share.ts:41-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L41-L68)
 
 **Section sources**
-- [user.py:13-24](file://backend/models/user.py#L13-L24)
-- [schemas.py:259-286](file://backend/models/schemas.py#L259-L286)
-- [user.py:16-82](file://backend/api/v1/user.py#L16-L82)
-- [46c1f12f346e_add_userprofile_model.py:19-33](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
-- [database.py:21-35](file://backend/core/database.py#L21-L35)
-- [user-profile.ts:6-18](file://frontend/lib/user-profile.ts#L6-L18)
-- [sos-share.ts:41-68](file://frontend/lib/sos-share.ts#L41-L68)
+- [user.py:13-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L24)
+- [schemas.py:259-286](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L286)
+- [user.py:16-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L82)
+- [46c1f12f346e_add_userprofile_model.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
+- [database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
+- [user-profile.ts:6-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/user-profile.ts#L6-L18)
+- [sos-share.ts:41-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L41-L68)
 
 ## Core Components
 - UserProfile ORM model defines the table schema and column types.
@@ -86,10 +86,10 @@ Key attributes and types:
 - updated_at: DateTime with automatic update on modification
 
 **Section sources**
-- [user.py:16-24](file://backend/models/user.py#L16-L24)
-- [schemas.py:259-286](file://backend/models/schemas.py#L259-L286)
-- [46c1f12f346e_add_userprofile_model.py:21-31](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L21-L31)
-- [user.py:16-36](file://backend/api/v1/user.py#L16-L36)
+- [user.py:16-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L16-L24)
+- [schemas.py:259-286](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L286)
+- [46c1f12f346e_add_userprofile_model.py:21-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L21-L31)
+- [user.py:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L36)
 
 ## Architecture Overview
 The User Profile entity follows a layered architecture:
@@ -116,10 +116,10 @@ API-->>Client : 201 Created with UserProfileResponse
 ```
 
 **Diagram sources**
-- [user.py:16-36](file://backend/api/v1/user.py#L16-L36)
-- [schemas.py:259-271](file://backend/models/schemas.py#L259-L271)
-- [user.py:13-24](file://backend/models/user.py#L13-L24)
-- [46c1f12f346e_add_userprofile_model.py:19-33](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
+- [user.py:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L36)
+- [schemas.py:259-271](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L271)
+- [user.py:13-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L24)
+- [46c1f12f346e_add_userprofile_model.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
 
 ## Detailed Component Analysis
 
@@ -142,7 +142,7 @@ class UserProfile {
 ```
 
 **Diagram sources**
-- [user.py:13-24](file://backend/models/user.py#L13-L24)
+- [user.py:13-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L24)
 
 Implementation highlights:
 - UUID primary key with default generation
@@ -152,7 +152,7 @@ Implementation highlights:
 - Timestamps with defaults and automatic updates
 
 **Section sources**
-- [user.py:13-24](file://backend/models/user.py#L13-L24)
+- [user.py:13-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L24)
 
 ### Pydantic Schemas and Validation
 The Pydantic models define validation rules and serialization for user profile operations.
@@ -203,7 +203,7 @@ Validation rules observed:
 - No explicit string length validations are defined in the Pydantic models; enforcement occurs at the database level via column definitions
 
 **Section sources**
-- [schemas.py:259-286](file://backend/models/schemas.py#L259-L286)
+- [schemas.py:259-286](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L286)
 
 ### API Endpoints and Data Flow
 The API endpoints manage user profile lifecycle operations.
@@ -224,16 +224,16 @@ API-->>Client : 200 OK with UserProfileResponse
 ```
 
 **Diagram sources**
-- [user.py:39-53](file://backend/api/v1/user.py#L39-L53)
-- [user.py:56-82](file://backend/api/v1/user.py#L56-L82)
+- [user.py:39-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L39-L53)
+- [user.py:56-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L56-L82)
 
 Operational notes:
 - Emergency contacts are converted from Pydantic models to dictionaries before insertion into the JSON column
 - Update endpoint excludes unset fields and handles emergency_contacts replacement when provided
 
 **Section sources**
-- [user.py:16-36](file://backend/api/v1/user.py#L16-L36)
-- [user.py:56-82](file://backend/api/v1/user.py#L56-L82)
+- [user.py:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L36)
+- [user.py:56-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L56-L82)
 
 ### Emergency Contact JSON Structure
 The emergency_contacts JSON column stores an array of contact dictionaries. The schema for each contact is:
@@ -250,10 +250,10 @@ Notes:
 - The frontend consumes the profile for emergency displays and SOS sharing
 
 **Section sources**
-- [user.py:22-32](file://backend/api/v1/user.py#L22-L32)
-- [schemas.py:259-263](file://backend/models/schemas.py#L259-L263)
-- [user-profile.ts:6-18](file://frontend/lib/user-profile.ts#L6-L18)
-- [sos-share.ts:41-68](file://frontend/lib/sos-share.ts#L41-L68)
+- [user.py:22-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L22-L32)
+- [schemas.py:259-263](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L263)
+- [user-profile.ts:6-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/user-profile.ts#L6-L18)
+- [sos-share.ts:41-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L41-L68)
 
 ### Medical Information Storage Patterns
 Medical information fields are stored as Text columns:
@@ -264,8 +264,8 @@ Medical information fields are stored as Text columns:
 These fields are suitable for unstructured text and can accommodate varied formats. Consider adding controlled vocabularies or structured JSON for standardized medical data if requirements evolve.
 
 **Section sources**
-- [user.py:19-22](file://backend/models/user.py#L19-L22)
-- [schemas.py:265-280](file://backend/models/schemas.py#L265-L280)
+- [user.py:19-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L19-L22)
+- [schemas.py:265-280](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L265-L280)
 
 ### Timestamp Tracking
 Timestamp fields:
@@ -275,8 +275,8 @@ Timestamp fields:
 This enables audit trails and efficient sorting/filtering by recency.
 
 **Section sources**
-- [user.py:23-24](file://backend/models/user.py#L23-L24)
-- [46c1f12f346e_add_userprofile_model.py:29-30](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L29-L30)
+- [user.py:23-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L23-L24)
+- [46c1f12f346e_add_userprofile_model.py:29-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L29-L30)
 
 ## Dependency Analysis
 The User Profile entity depends on:
@@ -294,17 +294,17 @@ DB --> MIG["Alembic Migration"]
 ```
 
 **Diagram sources**
-- [schemas.py:259-286](file://backend/models/schemas.py#L259-L286)
-- [user.py:16-82](file://backend/api/v1/user.py#L16-L82)
-- [user.py:13-24](file://backend/models/user.py#L13-L24)
-- [46c1f12f346e_add_userprofile_model.py:19-33](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
+- [schemas.py:259-286](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L286)
+- [user.py:16-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L82)
+- [user.py:13-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L24)
+- [46c1f12f346e_add_userprofile_model.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
 
 **Section sources**
-- [database.py:21-35](file://backend/core/database.py#L21-L35)
-- [user.py:13-24](file://backend/models/user.py#L13-L24)
-- [schemas.py:259-286](file://backend/models/schemas.py#L259-L286)
-- [user.py:16-82](file://backend/api/v1/user.py#L16-L82)
-- [46c1f12f346e_add_userprofile_model.py:19-33](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
+- [database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
+- [user.py:13-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L24)
+- [schemas.py:259-286](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L286)
+- [user.py:16-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L82)
+- [46c1f12f346e_add_userprofile_model.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L33)
 
 ## Performance Considerations
 - JSON field operations: PostgreSQL JSON/JSONB columns support indexing and querying, but complex JSON filtering can be slower than normalized relational columns. Consider extracting frequently queried JSON fields into dedicated scalar columns if performance becomes a concern.
@@ -322,9 +322,9 @@ Common issues and resolutions:
 - Timestamp discrepancies: Verify server time zone settings and client expectations for created_at and updated_at values.
 
 **Section sources**
-- [user.py:16-36](file://backend/api/v1/user.py#L16-L36)
-- [schemas.py:259-286](file://backend/models/schemas.py#L259-L286)
-- [user.py:19-24](file://backend/models/user.py#L19-L24)
+- [user.py:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L36)
+- [schemas.py:259-286](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L286)
+- [user.py:19-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L19-L24)
 
 ## Conclusion
 The User Profile entity provides a robust foundation for storing personal and emergency-related information. Its design balances flexibility with strong typing and validation, while leveraging PostgreSQL’s JSON capabilities for dynamic contact management. For production deployments, consider monitoring JSON query performance and evaluating normalization strategies for frequently accessed JSON fields to enhance scalability and maintainability.

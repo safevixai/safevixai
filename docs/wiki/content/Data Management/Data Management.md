@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [prepare_road_sources.py](file://backend/scripts/data/prepare_road_sources.py)
-- [build_vectorstore.py](file://backend/scripts/app/build_vectorstore.py)
-- [seed_db.py](file://backend/scripts/app/seed_db.py)
-- [seed_emergency.py](file://backend/scripts/app/seed_emergency.py)
-- [_overpass_utils.py](file://scripts/data/_overpass_utils.py)
-- [fetch_hospitals.py](file://scripts/data/fetch_hospitals.py)
-- [fetch_police.py](file://scripts/data/fetch_police.py)
-- [fetch_ambulance.py](file://scripts/data/fetch_ambulance.py)
-- [document_loader.py](file://chatbot_service/rag/document_loader.py)
-- [embeddings.py](file://chatbot_service/rag/embeddings.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [database.py](file://backend/core/database.py)
-- [config.py](file://backend/core/config.py)
-- [violations_seed.csv](file://chatbot_service/data/violations_seed.csv)
+- [prepare_road_sources.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py)
+- [build_vectorstore.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py)
+- [seed_db.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py)
+- [seed_emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py)
+- [_overpass_utils.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py)
+- [fetch_hospitals.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_hospitals.py)
+- [fetch_police.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_police.py)
+- [fetch_ambulance.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_ambulance.py)
+- [document_loader.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py)
+- [embeddings.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [database.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [violations_seed.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv)
 </cite>
 
 ## Table of Contents
@@ -88,33 +88,33 @@ BuildVS --> VS
 ```
 
 **Diagram sources**
-- [fetch_hospitals.py:1-39](file://scripts/data/fetch_hospitals.py#L1-L39)
-- [fetch_police.py:1-39](file://scripts/data/fetch_police.py#L1-L39)
-- [fetch_ambulance.py:1-45](file://scripts/data/fetch_ambulance.py#L1-L45)
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
-- [_overpass_utils.py:1-161](file://scripts/data/_overpass_utils.py#L1-L161)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [seed_db.py:1-198](file://backend/scripts/app/seed_db.py#L1-L198)
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
+- [fetch_hospitals.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_hospitals.py#L1-L39)
+- [fetch_police.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_police.py#L1-L39)
+- [fetch_ambulance.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_ambulance.py#L1-L45)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [_overpass_utils.py:1-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L1-L161)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [seed_db.py:1-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L198)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
 
 **Section sources**
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
-- [seed_db.py:1-198](file://backend/scripts/app/seed_db.py#L1-L198)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [_overpass_utils.py:1-161](file://scripts/data/_overpass_utils.py#L1-L161)
-- [fetch_hospitals.py:1-39](file://scripts/data/fetch_hospitals.py#L1-L39)
-- [fetch_police.py:1-39](file://scripts/data/fetch_police.py#L1-L39)
-- [fetch_ambulance.py:1-45](file://scripts/data/fetch_ambulance.py#L1-L45)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
+- [seed_db.py:1-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L198)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [_overpass_utils.py:1-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L1-L161)
+- [fetch_hospitals.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_hospitals.py#L1-L39)
+- [fetch_police.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_police.py#L1-L39)
+- [fetch_ambulance.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_ambulance.py#L1-L45)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
 
 ## Core Components
 - Emergency data ingestion from Overpass:
@@ -130,19 +130,19 @@ BuildVS --> VS
   - Centralized settings define database URLs, Overpass endpoints, timeouts, and caching parameters.
 
 **Section sources**
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [fetch_hospitals.py:1-39](file://scripts/data/fetch_hospitals.py#L1-L39)
-- [fetch_police.py:1-39](file://scripts/data/fetch_police.py#L1-L39)
-- [fetch_ambulance.py:1-45](file://scripts/data/fetch_ambulance.py#L1-L45)
-- [_overpass_utils.py:1-161](file://scripts/data/_overpass_utils.py#L1-L161)
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
-- [seed_db.py:1-198](file://backend/scripts/app/seed_db.py#L1-L198)
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [fetch_hospitals.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_hospitals.py#L1-L39)
+- [fetch_police.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_police.py#L1-L39)
+- [fetch_ambulance.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_ambulance.py#L1-L45)
+- [_overpass_utils.py:1-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L1-L161)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
+- [seed_db.py:1-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L198)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
 
 ## Architecture Overview
 The data pipeline integrates external APIs and repositories, transforms and validates data, persists it, and exposes it for downstream consumers.
@@ -169,15 +169,15 @@ Build->>VS : Load docs, chunk, write JSON index
 ```
 
 **Diagram sources**
-- [fetch_hospitals.py:1-39](file://scripts/data/fetch_hospitals.py#L1-L39)
-- [fetch_police.py:1-39](file://scripts/data/fetch_police.py#L1-L39)
-- [fetch_ambulance.py:1-45](file://scripts/data/fetch_ambulance.py#L1-L45)
-- [_overpass_utils.py:1-161](file://scripts/data/_overpass_utils.py#L1-L161)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
+- [fetch_hospitals.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_hospitals.py#L1-L39)
+- [fetch_police.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_police.py#L1-L39)
+- [fetch_ambulance.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_ambulance.py#L1-L45)
+- [_overpass_utils.py:1-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L1-L161)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
 
 ## Detailed Component Analysis
 
@@ -209,18 +209,18 @@ Script->>FS : Write combined GeoJSON for frontend
 ```
 
 **Diagram sources**
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
 
 **Section sources**
-- [fetch_hospitals.py:1-39](file://scripts/data/fetch_hospitals.py#L1-L39)
-- [fetch_police.py:1-39](file://scripts/data/fetch_police.py#L1-L39)
-- [fetch_ambulance.py:1-45](file://scripts/data/fetch_ambulance.py#L1-L45)
-- [_overpass_utils.py:1-161](file://scripts/data/_overpass_utils.py#L1-L161)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
+- [fetch_hospitals.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_hospitals.py#L1-L39)
+- [fetch_police.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_police.py#L1-L39)
+- [fetch_ambulance.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_ambulance.py#L1-L45)
+- [_overpass_utils.py:1-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L1-L161)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
 
 ### Vector Store Building with Lightweight JSON Index
 - Purpose: Construct a searchable index from legal and medical documents for retrieval-augmented generation.
@@ -246,14 +246,14 @@ Manifest --> Done
 ```
 
 **Diagram sources**
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
 
 **Section sources**
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
 
 ### Database Population for Emergency Services
 - Purpose: Persist emergency facility records with spatial and categorical metadata.
@@ -296,14 +296,14 @@ class EmergencyService {
 ```
 
 **Diagram sources**
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
 
 **Section sources**
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [seed_db.py:1-198](file://backend/scripts/app/seed_db.py#L1-L198)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [seed_db.py:1-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L198)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
 
 ### Road Infrastructure Preparation
 - Purpose: Convert point-based road data into LineString GeoJSON suitable for importing into the road infrastructure table.
@@ -320,10 +320,10 @@ D --> E["Write import manifest"]
 ```
 
 **Diagram sources**
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
 
 **Section sources**
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
 
 ### Government Dataset Integration and Validation
 - Purpose: Integrate government datasets (e.g., MoRTH blackspots, NHAI toll plazas) into the road infrastructure pipeline.
@@ -333,7 +333,7 @@ D --> E["Write import manifest"]
   - Default metadata for project source and data URLs.
 
 **Section sources**
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
 
 ### Legal Repository Processing
 - Purpose: Prepare legal and medical documents for RAG.
@@ -344,8 +344,8 @@ D --> E["Write import manifest"]
   - Traffic violation codes and penalties are included as a CSV seed.
 
 **Section sources**
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [violations_seed.csv:1-30](file://chatbot_service/data/violations_seed.csv#L1-L30)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [violations_seed.csv:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv#L1-L30)
 
 ## Dependency Analysis
 - External dependencies:
@@ -370,29 +370,29 @@ Build --> Emb["embeddings.py"]
 ```
 
 **Diagram sources**
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
-- [fetch_hospitals.py:1-39](file://scripts/data/fetch_hospitals.py#L1-L39)
-- [fetch_police.py:1-39](file://scripts/data/fetch_police.py#L1-L39)
-- [fetch_ambulance.py:1-45](file://scripts/data/fetch_ambulance.py#L1-L45)
-- [_overpass_utils.py:1-161](file://scripts/data/_overpass_utils.py#L1-L161)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
+- [fetch_hospitals.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_hospitals.py#L1-L39)
+- [fetch_police.py:1-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_police.py#L1-L39)
+- [fetch_ambulance.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/fetch_ambulance.py#L1-L45)
+- [_overpass_utils.py:1-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L1-L161)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
 
 **Section sources**
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
-- [database.py:1-50](file://backend/core/database.py#L1-L50)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
-- [_overpass_utils.py:1-161](file://scripts/data/_overpass_utils.py#L1-L161)
-- [document_loader.py:1-103](file://chatbot_service/rag/document_loader.py#L1-L103)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [build_vectorstore.py:1-178](file://backend/scripts/app/build_vectorstore.py#L1-L178)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [database.py:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L1-L50)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
+- [_overpass_utils.py:1-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L1-L161)
+- [document_loader.py:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L1-L103)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [build_vectorstore.py:1-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_vectorstore.py#L1-L178)
 
 ## Performance Considerations
 - Overpass queries:
@@ -423,10 +423,10 @@ Build --> Emb["embeddings.py"]
   - Install optional PDF dependencies if PDFs are part of the legal repository.
 
 **Section sources**
-- [_overpass_utils.py:70-87](file://scripts/data/_overpass_utils.py#L70-L87)
-- [config.py:86-96](file://backend/core/config.py#L86-L96)
-- [database.py:21-29](file://backend/core/database.py#L21-L29)
-- [document_loader.py:84-93](file://chatbot_service/rag/document_loader.py#L84-L93)
+- [_overpass_utils.py:70-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/_overpass_utils.py#L70-L87)
+- [config.py:86-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L86-L96)
+- [database.py:21-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L29)
+- [document_loader.py:84-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L84-L93)
 
 ## Conclusion
 SafeVixAI’s data management system combines robust ingestion from OpenStreetMap, validated processing of government datasets, and efficient vector store construction. The pipeline emphasizes reliability, scalability, and maintainability through centralized configuration, modular scripts, and clear separation of concerns. Operators can seed emergency services, build local indices, and populate databases with confidence, while maintaining strong quality and governance practices.

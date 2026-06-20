@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [schemas.py](file://backend/models/schemas.py)
-- [user.py](file://backend/models/user.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
-- [exceptions.py](file://backend/services/exceptions.py)
-- [main.py](file://backend/main.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [exceptions.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
 </cite>
 
 ## Table of Contents
@@ -68,28 +68,28 @@ MS --> AE
 ```
 
 **Diagram sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [user.py](file://backend/models/user.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
-- [exceptions.py](file://backend/services/exceptions.py)
-- [main.py](file://backend/main.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [exceptions.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
 
 **Section sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [user.py](file://backend/models/user.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
-- [exceptions.py](file://backend/services/exceptions.py)
-- [main.py](file://backend/main.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [exceptions.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
 
 ## Core Components
 This section documents the primary Pydantic models used across the application, including their fields, types, defaults, and constraints.
@@ -203,7 +203,7 @@ This section documents the primary Pydantic models used across the application, 
   - Inheritance: extends UserProfileCreate
 
 **Section sources**
-- [schemas.py](file://backend/models/schemas.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
 
 ## Architecture Overview
 The data schemas define the canonical request/response contracts for the backend APIs. They are consumed by FastAPI routers to validate inputs and serialize outputs. Services orchestrate domain logic and may convert between Pydantic models and SQLAlchemy ORM models. Exceptions propagate validation and external service errors to clients.
@@ -227,14 +227,14 @@ API-->>C : "HTTP Response"
 ```
 
 **Diagram sources**
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [user.py](file://backend/models/user.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [road_issue.py](file://backend/models/road_issue.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
 
 ## Detailed Component Analysis
 
@@ -283,11 +283,11 @@ SosResponse --> EmergencyNumber : "contains"
 ```
 
 **Diagram sources**
-- [schemas.py](file://backend/models/schemas.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
 
 **Section sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
 
 ### Road Issue Models
 These models represent road infrastructure, reported issues, and related responses.
@@ -373,13 +373,13 @@ RoadIssuesResponse --> RoadIssueItem : "contains"
 ```
 
 **Diagram sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [road_issue.py](file://backend/models/road_issue.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
 
 **Section sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [road_issue.py](file://backend/models/road_issue.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
 
 ### Routing Models
 These models define route points, bounds, instructions, and route options.
@@ -437,11 +437,11 @@ RoutePreviewResponse --> RouteInstruction : "contains"
 ```
 
 **Diagram sources**
-- [schemas.py](file://backend/models/schemas.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
 
 **Section sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [routing.py](file://backend/api/v1/routing.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
 
 ### User Profile Models
 These models handle user profile creation, updates, and responses.
@@ -478,12 +478,12 @@ UserProfileResponse <|-- UserProfileCreate : "extends"
 ```
 
 **Diagram sources**
-- [schemas.py](file://backend/models/schemas.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
 
 **Section sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [user.py](file://backend/api/v1/user.py)
-- [user.py](file://backend/models/user.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
 
 ### Example Payloads
 Below are example payloads for representative endpoints. Replace values with valid ones per schema constraints.
@@ -524,10 +524,10 @@ Below are example payloads for representative endpoints. Replace values with val
   - Example keys: id, name, emergency_contacts[], created_at, updated_at
 
 **Section sources**
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
 
 ### Validation Rules and Constraints
 - Numeric ranges:
@@ -543,10 +543,10 @@ Below are example payloads for representative endpoints. Replace values with val
 - Statuses: comma-separated subset of supported statuses validated server-side
 
 **Section sources**
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [schemas.py](file://backend/models/schemas.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
 
 ### Serialization and Deserialization Patterns
 - Pydantic model dumping:
@@ -558,17 +558,17 @@ Below are example payloads for representative endpoints. Replace values with val
   - User profile emergency_contacts stored as JSON; serialized via model_dump before persistence
 
 **Section sources**
-- [user.py](file://backend/api/v1/user.py)
-- [schemas.py](file://backend/models/schemas.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
 
 ### JSON Schema Generation
 - Pydantic models can be used to generate JSON schemas for documentation and validation. While not explicitly invoked in the referenced files, FastAPI integrates with Pydantic to expose OpenAPI schemas automatically. The presence of response_model annotations ensures schema generation for endpoints.
 
 **Section sources**
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
 
 ## Dependency Analysis
 The following diagram shows how schemas are consumed by routers and services, and how exceptions influence error handling.
@@ -589,28 +589,28 @@ MS["main.py"] --> AE
 ```
 
 **Diagram sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
-- [exceptions.py](file://backend/services/exceptions.py)
-- [user.py](file://backend/models/user.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [main.py](file://backend/main.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [exceptions.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
 
 **Section sources**
-- [schemas.py](file://backend/models/schemas.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [user.py](file://backend/api/v1/user.py)
-- [exceptions.py](file://backend/services/exceptions.py)
-- [user.py](file://backend/models/user.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [main.py](file://backend/main.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [exceptions.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
 
 ## Performance Considerations
 - Prefer streaming or pagination for large lists (e.g., services[], issues[]) to reduce payload sizes.
@@ -634,11 +634,11 @@ Resolution steps:
 - Inspect service logs for upstream dependency errors.
 
 **Section sources**
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [routing.py](file://backend/api/v1/routing.py)
-- [exceptions.py](file://backend/services/exceptions.py)
-- [main.py](file://backend/main.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [exceptions.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
 
 ## Conclusion
 The Pydantic schemas in SafeVixAI provide strong typing, validation, and serialization guarantees across the backend. They align closely with FastAPI routers and services, ensuring predictable request/response contracts. By leveraging literals for constrained values, strict field constraints, and consistent serialization patterns, the system maintains reliability and clarity. Adhering to the documented constraints and error handling paths will help maintain robust integrations and predictable behavior.

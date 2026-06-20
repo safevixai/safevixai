@@ -2,22 +2,22 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/models/__init__.py](file://backend/models/__init__.py)
-- [backend/models/emergency.py](file://backend/models/emergency.py)
-- [backend/models/road_issue.py](file://backend/models/road_issue.py)
-- [backend/models/user.py](file://backend/models/user.py)
-- [backend/models/challan.py](file://backend/models/challan.py)
-- [backend/models/schemas.py](file://backend/models/schemas.py)
-- [backend/core/database.py](file://backend/core/database.py)
-- [backend/core/redis_client.py](file://backend/core/redis_client.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [backend/migrations/versions/001_initial_schema.py](file://backend/migrations/versions/001_initial_schema.py)
-- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py)
-- [backend/services/emergency_locator.py](file://backend/services/emergency_locator.py)
-- [backend/services/roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [backend/api/v1/emergency.py](file://backend/api/v1/emergency.py)
-- [backend/api/v1/roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [backend/scripts/app/seed_db.py](file://backend/scripts/app/seed_db.py)
+- [backend/models/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py)
+- [backend/models/emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [backend/models/road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [backend/models/user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [backend/models/challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py)
+- [backend/models/schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [backend/core/database.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py)
+- [backend/core/redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [backend/migrations/versions/001_initial_schema.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py)
+- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py)
+- [backend/services/emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [backend/services/roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [backend/api/v1/emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [backend/api/v1/roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [backend/scripts/app/seed_db.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py)
 </cite>
 
 ## Table of Contents
@@ -79,23 +79,23 @@ AR --- RW
 ```
 
 **Diagram sources**
-- [backend/models/emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [backend/models/road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
-- [backend/migrations/versions/001_initial_schema.py:22-140](file://backend/migrations/versions/001_initial_schema.py#L22-L140)
-- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py:19-39](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L39)
-- [backend/services/emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [backend/services/roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [backend/core/database.py:21-50](file://backend/core/database.py#L21-L50)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
-- [backend/core/config.py:19-100](file://backend/core/config.py#L19-L100)
-- [backend/api/v1/emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [backend/api/v1/roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
+- [backend/models/emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [backend/models/road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
+- [backend/migrations/versions/001_initial_schema.py:22-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L22-L140)
+- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L39)
+- [backend/services/emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [backend/services/roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [backend/core/database.py:21-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L50)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
+- [backend/core/config.py:19-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L100)
+- [backend/api/v1/emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [backend/api/v1/roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
 
 **Section sources**
-- [backend/models/__init__.py:1-7](file://backend/models/__init__.py#L1-L7)
-- [backend/core/database.py:12-50](file://backend/core/database.py#L12-L50)
-- [backend/core/config.py:19-100](file://backend/core/config.py#L19-L100)
+- [backend/models/__init__.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py#L1-L7)
+- [backend/core/database.py:12-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L12-L50)
+- [backend/core/config.py:19-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L100)
 
 ## Core Components
 This section documents the seven core tables and their fields, data types, constraints, and indexes.
@@ -146,12 +146,12 @@ This section documents the seven core tables and their fields, data types, const
   - Notes: Not a physical table; used by services to resolve authority details and road attributes during reporting.
 
 **Section sources**
-- [backend/migrations/versions/001_initial_schema.py:25-123](file://backend/migrations/versions/001_initial_schema.py#L25-L123)
-- [backend/models/emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [backend/models/road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
-- [backend/models/challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [backend/api/v1/emergency.py:51-67](file://backend/api/v1/emergency.py#L51-L67)
+- [backend/migrations/versions/001_initial_schema.py:25-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L25-L123)
+- [backend/models/emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [backend/models/road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
+- [backend/models/challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [backend/api/v1/emergency.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L51-L67)
 
 ## Architecture Overview
 SafeVixAI’s database architecture centers on PostgreSQL with PostGIS for geospatial capabilities, Alembic for migrations, and Redis for caching. Services encapsulate business logic and perform geospatial queries using Geography types and ST_Distance/ST_DWithin. APIs expose endpoints that trigger caching and persistence.
@@ -180,15 +180,15 @@ end
 ```
 
 **Diagram sources**
-- [backend/api/v1/emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
-- [backend/services/emergency_locator.py:187-217](file://backend/services/emergency_locator.py#L187-L217)
-- [backend/core/redis_client.py:43-71](file://backend/core/redis_client.py#L43-L71)
-- [backend/core/database.py:21-50](file://backend/core/database.py#L21-L50)
+- [backend/api/v1/emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
+- [backend/services/emergency_locator.py:187-217](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L217)
+- [backend/core/redis_client.py:43-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L71)
+- [backend/core/database.py:21-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L50)
 
 **Section sources**
-- [backend/services/emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [backend/services/roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
+- [backend/services/emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [backend/services/roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
 
 ## Detailed Component Analysis
 
@@ -246,13 +246,13 @@ class EmergencyService {
 ```
 
 **Diagram sources**
-- [backend/models/emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [backend/models/emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 **Section sources**
-- [backend/models/emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [backend/migrations/versions/001_initial_schema.py:25-54](file://backend/migrations/versions/001_initial_schema.py#L25-L54)
-- [backend/services/emergency_locator.py:187-217](file://backend/services/emergency_locator.py#L187-L217)
-- [backend/api/v1/emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
+- [backend/models/emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [backend/migrations/versions/001_initial_schema.py:25-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L25-L54)
+- [backend/services/emergency_locator.py:187-217](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L217)
+- [backend/api/v1/emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
 
 ### Road Infrastructure Entity
 - Purpose: Store road network geometry and maintenance/admin metadata.
@@ -292,12 +292,12 @@ class RoadInfrastructure {
 ```
 
 **Diagram sources**
-- [backend/models/road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
+- [backend/models/road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
 
 **Section sources**
-- [backend/models/road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
-- [backend/migrations/versions/001_initial_schema.py:65-85](file://backend/migrations/versions/001_initial_schema.py#L65-L85)
-- [backend/services/roadwatch_service.py:255-274](file://backend/services/roadwatch_service.py#L255-L274)
+- [backend/models/road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
+- [backend/migrations/versions/001_initial_schema.py:65-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L65-L85)
+- [backend/services/roadwatch_service.py:255-274](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L255-L274)
 
 ### Road Issues Entity
 - Purpose: Track reported road issues with status, geolocation, and authority linkage.
@@ -345,13 +345,13 @@ class RoadIssue {
 ```
 
 **Diagram sources**
-- [backend/models/road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [backend/models/road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 **Section sources**
-- [backend/models/road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
-- [backend/migrations/versions/001_initial_schema.py:94-123](file://backend/migrations/versions/001_initial_schema.py#L94-L123)
-- [backend/services/roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [backend/api/v1/roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
+- [backend/models/road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
+- [backend/migrations/versions/001_initial_schema.py:94-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L94-L123)
+- [backend/services/roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [backend/api/v1/roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
 
 ### User Profiles Entity
 - Purpose: Store user medical and emergency contact information.
@@ -382,12 +382,12 @@ class UserProfile {
 ```
 
 **Diagram sources**
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
 
 **Section sources**
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
-- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py:21-32](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L21-L32)
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
+- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py:21-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L21-L32)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)
 
 ### Challan Rules and Overrides
 - Purpose: Define fine calculation rules and state-specific adjustments.
@@ -425,11 +425,11 @@ class StateChallanOverride {
 ```
 
 **Diagram sources**
-- [backend/models/challan.py:6-53](file://backend/models/challan.py#L6-L53)
+- [backend/models/challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
 
 **Section sources**
-- [backend/models/challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [backend/models/schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
+- [backend/models/challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [backend/models/schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
 
 ### SOS Incidents Table
 - Purpose: Persist SOS incident events for analytics.
@@ -437,7 +437,7 @@ class StateChallanOverride {
 - Notes: Created dynamically by API endpoint and inserted upon SOS requests.
 
 **Section sources**
-- [backend/api/v1/emergency.py:51-67](file://backend/api/v1/emergency.py#L51-L67)
+- [backend/api/v1/emergency.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L51-L67)
 
 ## Dependency Analysis
 - Models depend on SQLAlchemy ORM and GeoAlchemy2 for spatial types.
@@ -459,19 +459,19 @@ Config --> DB
 ```
 
 **Diagram sources**
-- [backend/models/emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [backend/models/road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
-- [backend/services/emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [backend/services/roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
-- [backend/core/database.py:21-50](file://backend/core/database.py#L21-L50)
-- [backend/migrations/versions/001_initial_schema.py:22-140](file://backend/migrations/versions/001_initial_schema.py#L22-L140)
-- [backend/core/config.py:19-100](file://backend/core/config.py#L19-L100)
+- [backend/models/emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [backend/models/road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
+- [backend/services/emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [backend/services/roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
+- [backend/core/database.py:21-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L50)
+- [backend/migrations/versions/001_initial_schema.py:22-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L22-L140)
+- [backend/core/config.py:19-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L100)
 
 **Section sources**
-- [backend/models/__init__.py:1-7](file://backend/models/__init__.py#L1-L7)
-- [backend/core/config.py:19-100](file://backend/core/config.py#L19-L100)
+- [backend/models/__init__.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/__init__.py#L1-L7)
+- [backend/core/config.py:19-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L100)
 
 ## Performance Considerations
 - Geospatial indexing:
@@ -488,13 +488,13 @@ Config --> DB
   - Magic-byte checks and size limits prevent invalid or oversized images.
 
 **Section sources**
-- [backend/migrations/versions/001_initial_schema.py:55-63](file://backend/migrations/versions/001_initial_schema.py#L55-L63)
-- [backend/migrations/versions/001_initial_schema.py:86-92](file://backend/migrations/versions/001_initial_schema.py#L86-L92)
-- [backend/services/emergency_locator.py:375-421](file://backend/services/emergency_locator.py#L375-L421)
-- [backend/services/roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [backend/core/redis_client.py:43-114](file://backend/core/redis_client.py#L43-L114)
-- [backend/core/database.py:21-35](file://backend/core/database.py#L21-L35)
-- [backend/core/config.py:19-36](file://backend/core/config.py#L19-L36)
+- [backend/migrations/versions/001_initial_schema.py:55-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L55-L63)
+- [backend/migrations/versions/001_initial_schema.py:86-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L86-L92)
+- [backend/services/emergency_locator.py:375-421](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L375-L421)
+- [backend/services/roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [backend/core/redis_client.py:43-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L114)
+- [backend/core/database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
+- [backend/core/config.py:19-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L36)
 
 ## Troubleshooting Guide
 - Database connectivity:
@@ -508,10 +508,10 @@ Config --> DB
   - Run upgrade/downgrade to reconcile schema changes; initial migration creates PostGIS extension and indexes.
 
 **Section sources**
-- [backend/core/database.py:43-50](file://backend/core/database.py#L43-L50)
-- [backend/core/redis_client.py:115-125](file://backend/core/redis_client.py#L115-L125)
-- [backend/api/v1/roadwatch.py:95-97](file://backend/api/v1/roadwatch.py#L95-L97)
-- [backend/migrations/versions/001_initial_schema.py:126-140](file://backend/migrations/versions/001_initial_schema.py#L126-L140)
+- [backend/core/database.py:43-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L43-L50)
+- [backend/core/redis_client.py:115-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L125)
+- [backend/api/v1/roadwatch.py:95-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L95-L97)
+- [backend/migrations/versions/001_initial_schema.py:126-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L126-L140)
 
 ## Conclusion
 SafeVixAI’s database schema leverages PostgreSQL with PostGIS for robust geospatial operations, structured migrations via Alembic, and Redis for efficient caching. The seven core entities—emergency services, road infrastructure, road issues, user profiles, and challan rules—support emergency response, road reporting, and user safety workflows. Clear indexes, validation rules, and caching strategies optimize performance and reliability.
@@ -539,13 +539,13 @@ InvalidateCache --> End(["Return RoadReportResponse"])
 ```
 
 **Diagram sources**
-- [backend/services/roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [backend/scripts/app/seed_db.py:147-182](file://backend/scripts/app/seed_db.py#L147-L182)
+- [backend/services/roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [backend/scripts/app/seed_db.py:147-182](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L147-L182)
 
 **Section sources**
-- [backend/services/emergency_locator.py:187-217](file://backend/services/emergency_locator.py#L187-L217)
-- [backend/services/roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [backend/scripts/app/seed_db.py:147-182](file://backend/scripts/app/seed_db.py#L147-L182)
+- [backend/services/emergency_locator.py:187-217](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L217)
+- [backend/services/roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [backend/scripts/app/seed_db.py:147-182](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L147-L182)
 
 ### Data Lifecycle, Retention, and Archival
 - Retention:
@@ -567,8 +567,8 @@ InvalidateCache --> End(["Return RoadReportResponse"])
   - Removes indexes and tables in reverse order.
 
 **Section sources**
-- [backend/migrations/versions/001_initial_schema.py:22-140](file://backend/migrations/versions/001_initial_schema.py#L22-L140)
-- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py:19-39](file://backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L39)
+- [backend/migrations/versions/001_initial_schema.py:22-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L22-L140)
+- [backend/migrations/versions/46c1f12f346e_add_userprofile_model.py:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/46c1f12f346e_add_userprofile_model.py#L19-L39)
 
 ### Security and Access Control
 - Authentication:
@@ -579,5 +579,5 @@ InvalidateCache --> End(["Return RoadReportResponse"])
   - Consider encrypting sensitive user data at rest and applying row-level security or masking for PII.
 
 **Section sources**
-- [backend/api/v1/roadwatch.py:83-84](file://backend/api/v1/roadwatch.py#L83-L84)
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
+- [backend/api/v1/roadwatch.py:83-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L83-L84)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)

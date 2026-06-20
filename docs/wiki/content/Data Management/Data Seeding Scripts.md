@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [seed_db.py](file://backend/scripts/app/seed_db.py)
-- [seed_emergency.py](file://backend/scripts/app/seed_emergency.py)
-- [check_db.py](file://backend/scripts/app/check_db.py)
-- [generate_bundles.py](file://backend/scripts/app/generate_bundles.py)
-- [build_offline_bundle.py](file://backend/scripts/app/build_offline_bundle.py)
-- [import_official_road_sources.py](file://backend/scripts/app/import_official_road_sources.py)
-- [check_redis.py](file://backend/scripts/app/check_redis.py)
-- [config.py](file://backend/core/config.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [road_sources.example.json](file://backend/data/road_sources.example.json)
-- [bootstrap_local_data.py](file://scripts/data/bootstrap_local_data.py)
-- [seed_blackspots.py](file://scripts/data/seed_blackspots.py)
+- [seed_db.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py)
+- [seed_emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py)
+- [check_db.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py)
+- [generate_bundles.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py)
+- [build_offline_bundle.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py)
+- [import_official_road_sources.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py)
+- [check_redis.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [road_sources.example.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json)
+- [bootstrap_local_data.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/bootstrap_local_data.py)
+- [seed_blackspots.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/seed_blackspots.py)
 </cite>
 
 ## Table of Contents
@@ -83,26 +83,26 @@ EL --> GEO
 ```
 
 **Diagram sources**
-- [seed_db.py:1-198](file://backend/scripts/app/seed_db.py#L1-L198)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [check_db.py:1-31](file://backend/scripts/app/check_db.py#L1-L31)
-- [generate_bundles.py:1-84](file://backend/scripts/app/generate_bundles.py#L1-L84)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
-- [import_official_road_sources.py:1-152](file://backend/scripts/app/import_official_road_sources.py#L1-L152)
-- [check_redis.py:1-38](file://backend/scripts/app/check_redis.py#L1-L38)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
+- [seed_db.py:1-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L198)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [check_db.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L1-L31)
+- [generate_bundles.py:1-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L1-L84)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [import_official_road_sources.py:1-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py#L1-L152)
+- [check_redis.py:1-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py#L1-L38)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
 
 **Section sources**
-- [seed_db.py:1-198](file://backend/scripts/app/seed_db.py#L1-L198)
-- [seed_emergency.py:1-197](file://backend/scripts/app/seed_emergency.py#L1-L197)
-- [generate_bundles.py:1-84](file://backend/scripts/app/generate_bundles.py#L1-L84)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
-- [overpass_service.py:1-249](file://backend/services/overpass_service.py#L1-L249)
-- [config.py:1-181](file://backend/core/config.py#L1-L181)
+- [seed_db.py:1-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L198)
+- [seed_emergency.py:1-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L197)
+- [generate_bundles.py:1-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L1-L84)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
+- [overpass_service.py:1-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L1-L249)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
 
 ## Core Components
 - Seed database script: Inserts curated emergency services into the database with upsert semantics and structured metadata.
@@ -113,13 +113,13 @@ EL --> GEO
 - Configuration: Centralized settings for database, caching, timeouts, and offline bundle directories.
 
 **Section sources**
-- [seed_db.py:147-198](file://backend/scripts/app/seed_db.py#L147-L198)
-- [seed_emergency.py:70-197](file://backend/scripts/app/seed_emergency.py#L70-L197)
-- [generate_bundles.py:16-84](file://backend/scripts/app/generate_bundles.py#L16-L84)
-- [check_db.py:8-31](file://backend/scripts/app/check_db.py#L8-L31)
-- [check_redis.py:7-38](file://backend/scripts/app/check_redis.py#L7-L38)
-- [import_official_road_sources.py:120-152](file://backend/scripts/app/import_official_road_sources.py#L120-L152)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
+- [seed_db.py:147-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L147-L198)
+- [seed_emergency.py:70-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L70-L197)
+- [generate_bundles.py:16-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L16-L84)
+- [check_db.py:8-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L8-L31)
+- [check_redis.py:7-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py#L7-L38)
+- [import_official_road_sources.py:120-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py#L120-L152)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 ## Architecture Overview
 The seeding workflow integrates three primary paths:
@@ -146,9 +146,9 @@ Bundler-->>Dev : {city}.json offline bundle
 ```
 
 **Diagram sources**
-- [seed_emergency.py:70-150](file://backend/scripts/app/seed_emergency.py#L70-L150)
-- [overpass_service.py:35-79](file://backend/services/overpass_service.py#L35-L79)
-- [generate_bundles.py:16-69](file://backend/scripts/app/generate_bundles.py#L16-L69)
+- [seed_emergency.py:70-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L70-L150)
+- [overpass_service.py:35-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L79)
+- [generate_bundles.py:16-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L16-L69)
 
 ## Detailed Component Analysis
 
@@ -173,11 +173,11 @@ Commit --> Done(["Return row count"])
 ```
 
 **Diagram sources**
-- [seed_db.py:88-182](file://backend/scripts/app/seed_db.py#L88-L182)
+- [seed_db.py:88-182](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L88-L182)
 
 **Section sources**
-- [seed_db.py:34-182](file://backend/scripts/app/seed_db.py#L34-L182)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [seed_db.py:34-182](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L34-L182)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 ### Live Emergency Seeding (seed_emergency.py)
 Purpose:
@@ -204,12 +204,12 @@ Script-->>CLI : Printed stats and optional offline exports
 ```
 
 **Diagram sources**
-- [seed_emergency.py:152-197](file://backend/scripts/app/seed_emergency.py#L152-L197)
-- [overpass_service.py:35-79](file://backend/services/overpass_service.py#L35-L79)
+- [seed_emergency.py:152-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L152-L197)
+- [overpass_service.py:35-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L79)
 
 **Section sources**
-- [seed_emergency.py:19-197](file://backend/scripts/app/seed_emergency.py#L19-L197)
-- [overpass_service.py:24-135](file://backend/services/overpass_service.py#L24-L135)
+- [seed_emergency.py:19-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L19-L197)
+- [overpass_service.py:24-135](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L135)
 
 ### Offline Bundle Generation (generate_bundles.py)
 Purpose:
@@ -235,12 +235,12 @@ Close --> End(["Log summary"])
 ```
 
 **Diagram sources**
-- [generate_bundles.py:16-84](file://backend/scripts/app/generate_bundles.py#L16-L84)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [generate_bundles.py:16-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L16-L84)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 **Section sources**
-- [generate_bundles.py:16-84](file://backend/scripts/app/generate_bundles.py#L16-L84)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [generate_bundles.py:16-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L16-L84)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 ### Offline Bundle Builder (build_offline_bundle.py)
 Purpose:
@@ -251,8 +251,8 @@ Key behaviors:
 - Delegates to EmergencyLocatorService to assemble and persist bundles
 
 **Section sources**
-- [build_offline_bundle.py:14-47](file://backend/scripts/app/build_offline_bundle.py#L14-L47)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [build_offline_bundle.py:14-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L14-L47)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 ### Database and Redis Validation (check_db.py, check_redis.py)
 Purpose:
@@ -265,8 +265,8 @@ Key behaviors:
 - Ping/set/get operations and memory info retrieval
 
 **Section sources**
-- [check_db.py:8-31](file://backend/scripts/app/check_db.py#L8-L31)
-- [check_redis.py:7-38](file://backend/scripts/app/check_redis.py#L7-L38)
+- [check_db.py:8-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L8-L31)
+- [check_redis.py:7-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py#L7-L38)
 
 ### Official Road Data Import (import_official_road_sources.py)
 Purpose:
@@ -279,8 +279,8 @@ Key behaviors:
 - Normalizes records with defaults and prefixes road IDs for uniqueness
 
 **Section sources**
-- [import_official_road_sources.py:21-152](file://backend/scripts/app/import_official_road_sources.py#L21-L152)
-- [road_sources.example.json:1-69](file://backend/data/road_sources.example.json#L1-L69)
+- [import_official_road_sources.py:21-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py#L21-L152)
+- [road_sources.example.json:1-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json#L1-L69)
 
 ### Configuration (config.py)
 Purpose:
@@ -292,7 +292,7 @@ Key behaviors:
 - Exposes lists for Overpass URLs and emergency radius steps
 
 **Section sources**
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 ### Emergency Locator and Overpass Integration
 Purpose:
@@ -305,10 +305,10 @@ Key behaviors:
 - Merge logic to avoid duplicates across sources
 
 **Section sources**
-- [emergency_locator.py:39-115](file://backend/services/emergency_locator.py#L39-L115)
-- [emergency_locator.py:187-374](file://backend/services/emergency_locator.py#L187-L374)
-- [emergency_locator.py:375-422](file://backend/services/emergency_locator.py#L375-L422)
-- [overpass_service.py:136-249](file://backend/services/overpass_service.py#L136-L249)
+- [emergency_locator.py:39-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L39-L115)
+- [emergency_locator.py:187-374](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L374)
+- [emergency_locator.py:375-422](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L375-L422)
+- [overpass_service.py:136-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L136-L249)
 
 ### Local Data Bootstrap (scripts/data/bootstrap_local_data.py)
 Purpose:
@@ -325,7 +325,7 @@ Key behaviors:
 - Writes CSVs to both backend and frontend offline directories
 
 **Section sources**
-- [bootstrap_local_data.py:1-557](file://scripts/data/bootstrap_local_data.py#L1-L557)
+- [bootstrap_local_data.py:1-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/bootstrap_local_data.py#L1-L557)
 
 ### Blackspot Seeding (scripts/data/seed_blackspots.py)
 Purpose:
@@ -336,7 +336,7 @@ Key behaviors:
 - Write CSV and GeoJSON outputs with consistent structure
 
 **Section sources**
-- [seed_blackspots.py:160-190](file://scripts/data/seed_blackspots.py#L160-L190)
+- [seed_blackspots.py:160-190](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/data/seed_blackspots.py#L160-L190)
 
 ## Dependency Analysis
 High-level dependencies among key components:
@@ -360,30 +360,30 @@ CDB["check_db.py"] --> CFG
 ```
 
 **Diagram sources**
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [seed_db.py:1-30](file://backend/scripts/app/seed_db.py#L1-L30)
-- [seed_emergency.py:1-20](file://backend/scripts/app/seed_emergency.py#L1-L20)
-- [generate_bundles.py:4-8](file://backend/scripts/app/generate_bundles.py#L4-L8)
-- [build_offline_bundle.py:6-11](file://backend/scripts/app/build_offline_bundle.py#L6-L11)
-- [import_official_road_sources.py:13-18](file://backend/scripts/app/import_official_road_sources.py#L13-L18)
-- [emergency.py:1-10](file://backend/models/emergency.py#L1-L10)
-- [overpass_service.py:9-11](file://backend/services/overpass_service.py#L9-L11)
-- [emergency_locator.py:12-25](file://backend/services/emergency_locator.py#L12-L25)
-- [check_redis.py:7-16](file://backend/scripts/app/check_redis.py#L7-L16)
-- [check_db.py:8-10](file://backend/scripts/app/check_db.py#L8-L10)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [seed_db.py:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L30)
+- [seed_emergency.py:1-20](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L20)
+- [generate_bundles.py:4-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L4-L8)
+- [build_offline_bundle.py:6-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L6-L11)
+- [import_official_road_sources.py:13-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py#L13-L18)
+- [emergency.py:1-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L10)
+- [overpass_service.py:9-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L9-L11)
+- [emergency_locator.py:12-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L12-L25)
+- [check_redis.py:7-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py#L7-L16)
+- [check_db.py:8-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L8-L10)
 
 **Section sources**
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [seed_db.py:1-30](file://backend/scripts/app/seed_db.py#L1-L30)
-- [seed_emergency.py:1-20](file://backend/scripts/app/seed_emergency.py#L1-L20)
-- [generate_bundles.py:4-8](file://backend/scripts/app/generate_bundles.py#L4-L8)
-- [build_offline_bundle.py:6-11](file://backend/scripts/app/build_offline_bundle.py#L6-L11)
-- [import_official_road_sources.py:13-18](file://backend/scripts/app/import_official_road_sources.py#L13-L18)
-- [emergency.py:1-10](file://backend/models/emergency.py#L1-L10)
-- [overpass_service.py:9-11](file://backend/services/overpass_service.py#L9-L11)
-- [emergency_locator.py:12-25](file://backend/services/emergency_locator.py#L12-L25)
-- [check_redis.py:7-16](file://backend/scripts/app/check_redis.py#L7-L16)
-- [check_db.py:8-10](file://backend/scripts/app/check_db.py#L8-L10)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [seed_db.py:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_db.py#L1-L30)
+- [seed_emergency.py:1-20](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L1-L20)
+- [generate_bundles.py:4-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L4-L8)
+- [build_offline_bundle.py:6-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L6-L11)
+- [import_official_road_sources.py:13-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py#L13-L18)
+- [emergency.py:1-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L10)
+- [overpass_service.py:9-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L9-L11)
+- [emergency_locator.py:12-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L12-L25)
+- [check_redis.py:7-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py#L7-L16)
+- [check_db.py:8-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L8-L10)
 
 ## Performance Considerations
 - Database pooling and timeouts: Tune pool size and timeouts for concurrent operations during bulk inserts and bundle generation.
@@ -413,12 +413,12 @@ Common issues and remedies:
   - Inspect extracted members and record normalization logs
 
 **Section sources**
-- [check_db.py:8-31](file://backend/scripts/app/check_db.py#L8-L31)
-- [check_redis.py:7-38](file://backend/scripts/app/check_redis.py#L7-L38)
-- [config.py:86-108](file://backend/core/config.py#L86-L108)
-- [overpass_service.py:123-135](file://backend/services/overpass_service.py#L123-L135)
-- [generate_bundles.py:16-84](file://backend/scripts/app/generate_bundles.py#L16-L84)
-- [import_official_road_sources.py:120-152](file://backend/scripts/app/import_official_road_sources.py#L120-L152)
+- [check_db.py:8-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L8-L31)
+- [check_redis.py:7-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py#L7-L38)
+- [config.py:86-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L86-L108)
+- [overpass_service.py:123-135](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L123-L135)
+- [generate_bundles.py:16-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L16-L84)
+- [import_official_road_sources.py:120-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py#L120-L152)
 
 ## Conclusion
 The SafeVixAI data seeding pipeline combines curated baseline data, dynamic Overpass ingestion, and offline bundle generation to deliver a robust, production-ready system. Scripts are designed for idempotency, resilience, and easy automation across environments. Extending data sources and customizing seed data is straightforward through the provided manifests and argument-driven workflows.
@@ -438,8 +438,8 @@ The SafeVixAI data seeding pipeline combines curated baseline data, dynamic Over
 - OFFLINE_BUNDLE_DIR: Directory for generated offline bundles
 
 **Section sources**
-- [config.py:19-108](file://backend/core/config.py#L19-L108)
-- [config.py:143-169](file://backend/core/config.py#L143-L169)
+- [config.py:19-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L108)
+- [config.py:143-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L143-L169)
 
 ### Example Workflows
 
@@ -458,8 +458,8 @@ The SafeVixAI data seeding pipeline combines curated baseline data, dynamic Over
   - Prepare a manifest file and run the importer with optional API keys
 
 **Section sources**
-- [seed_emergency.py:152-197](file://backend/scripts/app/seed_emergency.py#L152-L197)
-- [generate_bundles.py:70-84](file://backend/scripts/app/generate_bundles.py#L70-L84)
-- [check_db.py:8-31](file://backend/scripts/app/check_db.py#L8-L31)
-- [check_redis.py:7-38](file://backend/scripts/app/check_redis.py#L7-L38)
-- [import_official_road_sources.py:120-152](file://backend/scripts/app/import_official_road_sources.py#L120-L152)
+- [seed_emergency.py:152-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_emergency.py#L152-L197)
+- [generate_bundles.py:70-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/generate_bundles.py#L70-L84)
+- [check_db.py:8-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_db.py#L8-L31)
+- [check_redis.py:7-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/check_redis.py#L7-L38)
+- [import_official_road_sources.py:120-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_official_road_sources.py#L120-L152)

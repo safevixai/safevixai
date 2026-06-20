@@ -2,14 +2,14 @@
 
 <cite>
 **Referenced Files in This Document**
-- [routing.py](file://backend/api/v1/routing.py)
-- [routing_service.py](file://backend/services/routing_service.py)
-- [safe_routing.py](file://backend/services/safe_routing.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [config.py](file://backend/core/config.py)
-- [main.py](file://backend/main.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [API.md](file://docs/API.md)
+- [routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [routing_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py)
+- [safe_routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [API.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/API.md)
 </cite>
 
 ## Table of Contents
@@ -53,19 +53,19 @@ OSRM --> Models
 ```
 
 **Diagram sources**
-- [routing.py:11-63](file://backend/api/v1/routing.py#L11-L63)
-- [routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
-- [safe_routing.py:16-90](file://backend/services/safe_routing.py#L16-L90)
-- [schemas.py:163-210](file://backend/models/schemas.py#L163-L210)
-- [config.py:42-47](file://backend/core/config.py#L42-L47)
+- [routing.py:11-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L11-L63)
+- [routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
+- [safe_routing.py:16-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L16-L90)
+- [schemas.py:163-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L163-L210)
+- [config.py:42-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L42-L47)
 
 **Section sources**
-- [routing.py:11-63](file://backend/api/v1/routing.py#L11-L63)
-- [routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
-- [safe_routing.py:16-90](file://backend/services/safe_routing.py#L16-L90)
-- [schemas.py:163-210](file://backend/models/schemas.py#L163-L210)
-- [config.py:42-47](file://backend/core/config.py#L42-L47)
-- [main.py:24-64](file://backend/main.py#L24-L64)
+- [routing.py:11-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L11-L63)
+- [routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
+- [safe_routing.py:16-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L16-L90)
+- [schemas.py:163-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L163-L210)
+- [config.py:42-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L42-L47)
+- [main.py:24-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L64)
 
 ## Core Components
 - Routing API endpoints:
@@ -82,10 +82,10 @@ OSRM --> Models
   - RoutePreviewResponse, RouteOption, RouteInstruction, RoutePoint, RouteBounds
 
 **Section sources**
-- [routing.py:18-63](file://backend/api/v1/routing.py#L18-L63)
-- [routing_service.py:35-142](file://backend/services/routing_service.py#L35-L142)
-- [safe_routing.py:16-90](file://backend/services/safe_routing.py#L16-L90)
-- [schemas.py:163-210](file://backend/models/schemas.py#L163-L210)
+- [routing.py:18-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L63)
+- [routing_service.py:35-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L35-L142)
+- [safe_routing.py:16-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L16-L90)
+- [schemas.py:163-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L163-L210)
 
 ## Architecture Overview
 The routing subsystem supports two primary flows:
@@ -122,9 +122,9 @@ R-->>C : RoutePreviewResponse
 ```
 
 **Diagram sources**
-- [routing.py:18-41](file://backend/api/v1/routing.py#L18-L41)
-- [routing_service.py:35-142](file://backend/services/routing_service.py#L35-L142)
-- [config.py:42-47](file://backend/core/config.py#L42-L47)
+- [routing.py:18-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L41)
+- [routing_service.py:35-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L35-L142)
+- [config.py:42-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L42-L47)
 
 ## Detailed Component Analysis
 
@@ -179,10 +179,10 @@ Integration Notes:
 - Caches results with route_cache_ttl_seconds.
 
 **Section sources**
-- [routing.py:18-41](file://backend/api/v1/routing.py#L18-L41)
-- [routing_service.py:35-142](file://backend/services/routing_service.py#L35-L142)
-- [schemas.py:163-210](file://backend/models/schemas.py#L163-L210)
-- [config.py:42-47](file://backend/core/config.py#L42-L47)
+- [routing.py:18-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L41)
+- [routing_service.py:35-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L35-L142)
+- [schemas.py:163-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L163-L210)
+- [config.py:42-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L42-L47)
 
 ### Endpoint: GET /api/v1/routing/safe-route
 Purpose:
@@ -212,8 +212,8 @@ Notes:
 - Distance and duration are derived from the first route summary.
 
 **Section sources**
-- [routing.py:43-63](file://backend/api/v1/routing.py#L43-L63)
-- [safe_routing.py:16-90](file://backend/services/safe_routing.py#L16-L90)
+- [routing.py:43-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L43-L63)
+- [safe_routing.py:16-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L16-L90)
 
 ### RoutingService Implementation Details
 Key Responsibilities:
@@ -236,8 +236,8 @@ Error Handling:
 - Provides user-friendly messages for rate limits and generic failures.
 
 **Section sources**
-- [routing_service.py:35-142](file://backend/services/routing_service.py#L35-L142)
-- [routing_service.py:242-344](file://backend/services/routing_service.py#L242-L344)
+- [routing_service.py:35-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L35-L142)
+- [routing_service.py:242-344](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L242-L344)
 
 ### Safe Routing Logic
 Key Responsibilities:
@@ -253,8 +253,8 @@ Processing Logic:
 - Falls back to OSRM with full geometry and steps disabled.
 
 **Section sources**
-- [safe_routing.py:10-14](file://backend/services/safe_routing.py#L10-L14)
-- [safe_routing.py:16-90](file://backend/services/safe_routing.py#L16-L90)
+- [safe_routing.py:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L10-L14)
+- [safe_routing.py:16-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L16-L90)
 
 ### Spatial Data Handling and Geometry
 - Route geometry normalization:
@@ -267,8 +267,8 @@ Processing Logic:
   - Calculates bounding box from path coordinates.
 
 **Section sources**
-- [routing_service.py:242-344](file://backend/services/routing_service.py#L242-L344)
-- [schemas.py:163-210](file://backend/models/schemas.py#L163-L210)
+- [routing_service.py:242-344](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L242-L344)
+- [schemas.py:163-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L163-L210)
 
 ### Integration with OpenRouteService and Overpass API
 - OpenRouteService:
@@ -280,17 +280,17 @@ Processing Logic:
   - Not directly called by routing endpoints but relevant for complementary features.
 
 **Section sources**
-- [config.py:42-47](file://backend/core/config.py#L42-L47)
-- [overpass_service.py:24-134](file://backend/services/overpass_service.py#L24-L134)
+- [config.py:42-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L42-L47)
+- [overpass_service.py:24-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L134)
 
 ### Offline Routing Capabilities
 - The routing endpoints rely on external providers (ORS/OSRM) and do not implement pure offline routing within the documented endpoints.
 - The system includes offline data bundling for emergency services and other features, but routing itself remains network-dependent.
 
 **Section sources**
-- [routing.py:18-63](file://backend/api/v1/routing.py#L18-L63)
-- [safe_routing.py:16-90](file://backend/services/safe_routing.py#L16-L90)
-- [API.md:251-258](file://docs/API.md#L251-L258)
+- [routing.py:18-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L63)
+- [safe_routing.py:16-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L16-L90)
+- [API.md:251-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/API.md#L251-L258)
 
 ## Dependency Analysis
 Routing depends on configuration, caching, and external providers. The application wires services during startup.
@@ -306,14 +306,14 @@ RSvc --> Models["Route Models"]
 ```
 
 **Diagram sources**
-- [main.py:24-64](file://backend/main.py#L24-L64)
-- [routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
+- [main.py:24-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L64)
+- [routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 **Section sources**
-- [main.py:24-64](file://backend/main.py#L24-L64)
-- [routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
+- [main.py:24-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L64)
+- [routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 ## Performance Considerations
 - Caching:
@@ -339,9 +339,9 @@ Common Issues and Resolutions:
   - Alternatives are capped at 2; ensure alternatives parameter is within [0, 2].
 
 **Section sources**
-- [routing.py:37-40](file://backend/api/v1/routing.py#L37-L40)
-- [routing_service.py:108-114](file://backend/services/routing_service.py#L108-L114)
-- [routing_service.py:154-168](file://backend/services/routing_service.py#L154-L168)
+- [routing.py:37-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L37-L40)
+- [routing_service.py:108-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L108-L114)
+- [routing_service.py:154-168](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L154-L168)
 
 ## Conclusion
 The routing and navigation API provides robust point-to-point routing with optional alternatives and turn-by-turn directions, alongside a safe-route endpoint optimized for nighttime driving. It integrates seamlessly with OpenRouteService and Project OSRM, normalizes spatial data, and leverages caching for performance. While routing relies on external providers, the system’s modular design and clear schemas enable straightforward extension and integration.
@@ -359,8 +359,8 @@ The routing and navigation API provides robust point-to-point routing with optio
   - Response: JSON with provider, safety_mode, note, distance_meters, duration_seconds, geometry
 
 **Section sources**
-- [routing.py:18-63](file://backend/api/v1/routing.py#L18-L63)
-- [API.md:251-258](file://docs/API.md#L251-L258)
+- [routing.py:18-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L63)
+- [API.md:251-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/API.md#L251-L258)
 
 ### Example Scenarios
 - Point-to-point navigation:
@@ -371,5 +371,5 @@ The routing and navigation API provides robust point-to-point routing with optio
   - Use GET /api/v1/routing/safe-route with prefer_safety=true or during nighttime to avoid tracks and fords.
 
 **Section sources**
-- [safe_routing.py:16-90](file://backend/services/safe_routing.py#L16-L90)
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
+- [safe_routing.py:16-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/safe_routing.py#L16-L90)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)

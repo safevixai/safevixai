@@ -2,18 +2,18 @@
 
 <cite>
 **Referenced Files in This Document**
-- [challan.py](file://backend/models/challan.py)
-- [challan_service.py](file://backend/services/challan_service.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [challan.py](file://backend/api/v1/challan.py)
-- [main.py](file://backend/main.py)
-- [test_challan.py](file://backend/tests/test_challan.py)
-- [seed_violations.py](file://backend/scripts/data/seed_violations.py)
-- [state_overrides.csv](file://chatbot_service/data/state_overrides.csv)
-- [violations_seed.csv](file://chatbot_service/data/violations_seed.csv)
-- [challan_tool.py](file://chatbot_service/tools/challan_tool.py)
-- [ChallanCalculator.tsx](file://frontend/components/ChallanCalculator.tsx)
-- [page.tsx](file://frontend/app/challan/page.tsx)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [test_challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py)
+- [seed_violations.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv)
+- [violations_seed.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv)
+- [challan_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py)
+- [ChallanCalculator.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx)
 </cite>
 
 ## Table of Contents
@@ -65,28 +65,28 @@ J --> C
 ```
 
 **Diagram sources**
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [main.py:24-64](file://backend/main.py#L24-L64)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-L482)
-- [violations_seed.csv:1-30](file://chatbot_service/data/violations_seed.csv#L1-L30)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [page.tsx:1-320](file://frontend/app/challan/page.tsx#L1-L320)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [main.py:24-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L64)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-L482)
+- [violations_seed.csv:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv#L1-L30)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [page.tsx:1-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L1-L320)
 
 **Section sources**
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [main.py:24-64](file://backend/main.py#L24-L64)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-L482)
-- [violations_seed.csv:1-30](file://chatbot_service/data/violations_seed.csv#L1-L30)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [page.tsx:1-320](file://frontend/app/challan/page.tsx#L1-L320)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [main.py:24-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L64)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-L482)
+- [violations_seed.csv:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv#L1-L30)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [page.tsx:1-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L1-L320)
 
 ## Core Components
 - ChallanRule: Defines a traffic violation rule with violation_code, section, description, base_fines, repeat_fines, and aliases. Provides matching and fine lookup helpers.
@@ -103,10 +103,10 @@ Key responsibilities:
 - Return structured response with legal citations.
 
 **Section sources**
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [challan_service.py:96-149](file://backend/services/challan_service.py#L96-L149)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [challan_service.py:96-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L149)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
 
 ## Architecture Overview
 The challan calculation pipeline integrates frontend input, API routing, service logic, and optional data sources.
@@ -129,14 +129,14 @@ API-->>FE : JSON response
 ```
 
 **Diagram sources**
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [seed_violations.py:158-174](file://backend/scripts/data/seed_violations.py#L158-L174)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [seed_violations.py:158-174](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L158-L174)
 
 **Section sources**
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [main.py:35-50](file://backend/main.py#L35-L50)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [main.py:35-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L35-L50)
 
 ## Detailed Component Analysis
 
@@ -180,11 +180,11 @@ class StateChallanOverride {
   - Repeat offenses use repeat_fine when present; otherwise base_fine.
 
 **Diagram sources**
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
 
 **Section sources**
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [challan_service.py:290-314](file://backend/services/challan_service.py#L290-L314)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [challan_service.py:290-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L290-L314)
 
 ### Fine Calculation Algorithm
 The calculation algorithm resolves the appropriate rule, applies state overrides, and computes the payable amount.
@@ -217,12 +217,12 @@ Return --> End
   - repeat_fine is preferred when is_repeat is true and available; otherwise base_fine is used.
 
 **Diagram sources**
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan_service.py:168-238](file://backend/services/challan_service.py#L168-L238)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan_service.py:168-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L168-L238)
 
 **Section sources**
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan_service.py:168-238](file://backend/services/challan_service.py#L168-L238)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan_service.py:168-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L168-L238)
 
 ### API Workflow: POST /api/v1/challan/calculate
 The API endpoint validates inputs, delegates to ChallanService, and handles validation errors.
@@ -245,12 +245,12 @@ Router-->>Client : 200 OK JSON
   - Unsupported violation codes trigger a 422 error with guidance.
 
 **Diagram sources**
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [test_challan.py:45-59](file://backend/tests/test_challan.py#L45-L59)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [test_challan.py:45-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L45-L59)
 
 **Section sources**
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [test_challan.py:45-59](file://backend/tests/test_challan.py#L45-L59)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [test_challan.py:45-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L45-L59)
 
 ### Frontend Integration
 Frontend components collect user inputs and call the backend endpoint, displaying results with repeat-offense indicators.
@@ -264,8 +264,8 @@ Frontend components collect user inputs and call the backend endpoint, displayin
   - Uses SWR for efficient fetching and displays repeat-offense effects.
 
 **Section sources**
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
-- [page.tsx:71-80](file://frontend/app/challan/page.tsx#L71-L80)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)
+- [page.tsx:71-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L80)
 
 ### Data Seeding and Regional Overrides
 Data seeding normalizes external sources into backend-ready CSVs and loads them at runtime.
@@ -280,10 +280,10 @@ Data seeding normalizes external sources into backend-ready CSVs and loads them 
   - state_overrides.csv: State-specific overrides with authority, effective dates, and notes.
 
 **Section sources**
-- [seed_violations.py:177-234](file://backend/scripts/data/seed_violations.py#L177-L234)
-- [seed_violations.py:252-301](file://backend/scripts/data/seed_violations.py#L252-L301)
-- [violations_seed.csv:1-30](file://chatbot_service/data/violations_seed.csv#L1-L30)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
+- [seed_violations.py:177-234](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L177-L234)
+- [seed_violations.py:252-301](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L252-L301)
+- [violations_seed.csv:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv#L1-L30)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
 
 ### Legal Database Integration
 The system integrates with legal databases via:
@@ -292,9 +292,9 @@ The system integrates with legal databases via:
 - Tool-level inference of state and violation codes from natural language queries.
 
 **Section sources**
-- [challan_service.py:30-93](file://backend/services/challan_service.py#L30-L93)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [challan_tool.py:31-69](file://chatbot_service/tools/challan_tool.py#L31-L69)
+- [challan_service.py:30-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L30-L93)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [challan_tool.py:31-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L31-L69)
 
 ## Dependency Analysis
 The challan system exhibits clear separation of concerns with low coupling between modules.
@@ -328,24 +328,24 @@ External dependencies:
 - Pydantic for request/response validation.
 
 **Diagram sources**
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [main.py:35-50](file://backend/main.py#L35-L50)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-L482)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [page.tsx:1-320](file://frontend/app/challan/page.tsx#L1-L320)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [main.py:35-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L35-L50)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-L482)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [page.tsx:1-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L1-L320)
 
 **Section sources**
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [main.py:35-50](file://backend/main.py#L35-L50)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-L482)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [page.tsx:1-320](file://frontend/app/challan/page.tsx#L1-L320)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [main.py:35-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L35-L50)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-L482)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [page.tsx:1-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L1-L320)
 
 ## Performance Considerations
 - Data loading:
@@ -386,9 +386,9 @@ Common issues and resolutions:
   - The current models and API do not include ChallanPayment records or payment status tracking. Extend models and services to support payment lifecycle.
 
 **Section sources**
-- [test_challan.py:45-59](file://backend/tests/test_challan.py#L45-L59)
-- [challan_service.py:109-113](file://backend/services/challan_service.py#L109-L113)
-- [challan_service.py:246-260](file://backend/services/challan_service.py#L246-L260)
+- [test_challan.py:45-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L45-L59)
+- [challan_service.py:109-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L109-L113)
+- [challan_service.py:246-260](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L246-L260)
 
 ## Conclusion
 The challan system provides a robust foundation for traffic violation fine calculation with strong support for state-specific overrides and legal citations. The modular design enables easy extension for ChallanPayment entities and payment status tracking. By leveraging CSV-based data seeding and frontend integration, the system scales to diverse regional enforcement needs while maintaining clarity and performance.
@@ -422,8 +422,8 @@ The challan system provides a robust foundation for traffic violation fine calcu
   - violation_code, vehicle_class, state_code, base_fine, repeat_fine, amount_due, section, description, state_override.
 
 **Section sources**
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
 
 ### Appendix B: Examples and State-Specific Violations
 - Known violation codes include 183, 185, 181, 194D, 194B, and 179.
@@ -431,5 +431,5 @@ The challan system provides a robust foundation for traffic violation fine calcu
 - Legal citations align with the Central Motor Vehicles Act and state notifications.
 
 **Section sources**
-- [challan_service.py:30-93](file://backend/services/challan_service.py#L30-L93)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
+- [challan_service.py:30-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L30-L93)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)

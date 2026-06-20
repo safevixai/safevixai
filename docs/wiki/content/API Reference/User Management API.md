@@ -2,14 +2,14 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/api/v1/user.py](file://backend/api/v1/user.py)
-- [backend/models/user.py](file://backend/models/user.py)
-- [backend/models/schemas.py](file://backend/models/schemas.py)
-- [backend/api/v1/__init__.py](file://backend/api/v1/__init__.py)
-- [backend/main.py](file://backend/main.py)
-- [backend/core/security.py](file://backend/core/security.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [backend/api/v1/auth.py](file://backend/api/v1/auth.py)
+- [backend/api/v1/user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [backend/models/user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [backend/models/schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [backend/api/v1/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/core/security.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [backend/api/v1/auth.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py)
 </cite>
 
 ## Table of Contents
@@ -51,16 +51,16 @@ V1 --> Config
 ```
 
 **Diagram sources**
-- [backend/api/v1/__init__.py:17-28](file://backend/api/v1/__init__.py#L17-L28)
-- [backend/api/v1/user.py:13](file://backend/api/v1/user.py#L13)
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [backend/core/config.py:15](file://backend/core/config.py#L15)
+- [backend/api/v1/__init__.py:17-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L28)
+- [backend/api/v1/user.py:13](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L13)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [backend/core/config.py:15](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L15)
 
 **Section sources**
-- [backend/api/v1/__init__.py:17-28](file://backend/api/v1/__init__.py#L17-L28)
-- [backend/main.py:127](file://backend/main.py#L127)
+- [backend/api/v1/__init__.py:17-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L28)
+- [backend/main.py:127](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L127)
 
 ## Core Components
 - User Profile Resource: Manages emergency user profiles with personal details, allergies, vehicle info, and emergency contacts stored as JSON.
@@ -75,9 +75,9 @@ Key capabilities:
 - Strong typing and validation via Pydantic models
 
 **Section sources**
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
-- [backend/api/v1/user.py:16-82](file://backend/api/v1/user.py#L16-L82)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)
+- [backend/api/v1/user.py:16-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L82)
 
 ## Architecture Overview
 The user management endpoints are mounted under the `/api/v1` prefix and routed through the main application. Authentication is enforced via a JWT bearer security dependency.
@@ -100,10 +100,10 @@ Note over Client,Model : "Similar flow for GET and PUT with user_id"
 ```
 
 **Diagram sources**
-- [backend/api/v1/user.py:16-36](file://backend/api/v1/user.py#L16-L36)
-- [backend/api/v1/user.py:39-53](file://backend/api/v1/user.py#L39-L53)
-- [backend/api/v1/user.py:56-82](file://backend/api/v1/user.py#L56-L82)
-- [backend/core/database.py:38-41](file://backend/core/database.py#L38-L41)
+- [backend/api/v1/user.py:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L36)
+- [backend/api/v1/user.py:39-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L39-L53)
+- [backend/api/v1/user.py:56-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L56-L82)
+- [backend/core/database.py:38-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L38-L41)
 
 ## Detailed Component Analysis
 
@@ -118,8 +118,8 @@ Notes:
 - The current implementation does not expose `/api/v1/user/profile`, `/api/v1/user/settings`, or `/api/v1/user/preferences` as separate endpoints. The user profile resource is served under `/api/v1/users`.
 
 **Section sources**
-- [backend/api/v1/user.py:13](file://backend/api/v1/user.py#L13)
-- [backend/api/v1/user.py:16-82](file://backend/api/v1/user.py#L16-L82)
+- [backend/api/v1/user.py:13](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L13)
+- [backend/api/v1/user.py:16-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L82)
 
 ### Authentication and Authorization
 - Authentication scheme: HTTP Bearer JWT
@@ -133,9 +133,9 @@ Operational details:
 - Login endpoint: `/api/v1/auth/login` returns an access token
 
 **Section sources**
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/api/v1/auth.py:40-43](file://backend/api/v1/auth.py#L40-L43)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/api/v1/auth.py:40-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L40-L43)
 
 ### Request and Response Schemas
 
@@ -177,8 +177,8 @@ Validation highlights:
 - Emergency contacts are stored as JSON; updates accept arrays of contact objects
 
 **Section sources**
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
-- [backend/models/schemas.py:259-263](file://backend/models/schemas.py#L259-L263)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)
+- [backend/models/schemas.py:259-263](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L263)
 
 ### Data Model
 
@@ -198,10 +198,10 @@ class UserProfile {
 ```
 
 **Diagram sources**
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
 
 **Section sources**
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
 
 ### End-to-End Workflows
 
@@ -227,10 +227,10 @@ U-->>C : "201 + UserProfileResponse"
 ```
 
 **Diagram sources**
-- [backend/api/v1/user.py:16-36](file://backend/api/v1/user.py#L16-L36)
+- [backend/api/v1/user.py:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L36)
 
 **Section sources**
-- [backend/api/v1/user.py:16-36](file://backend/api/v1/user.py#L16-L36)
+- [backend/api/v1/user.py:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L36)
 
 #### Get User Profile
 - Method: GET
@@ -255,10 +255,10 @@ end
 ```
 
 **Diagram sources**
-- [backend/api/v1/user.py:39-53](file://backend/api/v1/user.py#L39-L53)
+- [backend/api/v1/user.py:39-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L39-L53)
 
 **Section sources**
-- [backend/api/v1/user.py:39-53](file://backend/api/v1/user.py#L39-L53)
+- [backend/api/v1/user.py:39-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L39-L53)
 
 #### Update User Profile
 - Method: PUT
@@ -286,10 +286,10 @@ end
 ```
 
 **Diagram sources**
-- [backend/api/v1/user.py:56-82](file://backend/api/v1/user.py#L56-L82)
+- [backend/api/v1/user.py:56-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L56-L82)
 
 **Section sources**
-- [backend/api/v1/user.py:56-82](file://backend/api/v1/user.py#L56-L82)
+- [backend/api/v1/user.py:56-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L56-L82)
 
 ### Examples
 
@@ -312,8 +312,8 @@ Notes:
 - The current codebase does not define endpoints for `/api/v1/user/profile`, `/api/v1/user/settings`, or `/api/v1/user/preferences`. Use `/api/v1/users` for profile management.
 
 **Section sources**
-- [backend/api/v1/user.py:16-82](file://backend/api/v1/user.py#L16-L82)
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
+- [backend/api/v1/user.py:16-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L82)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
 
 ## Dependency Analysis
 - User router depends on:
@@ -342,17 +342,17 @@ User --> Sec
 ```
 
 **Diagram sources**
-- [backend/main.py:127](file://backend/main.py#L127)
-- [backend/api/v1/__init__.py:17-28](file://backend/api/v1/__init__.py#L17-L28)
-- [backend/api/v1/user.py:8-10](file://backend/api/v1/user.py#L8-L10)
-- [backend/core/database.py:38-41](file://backend/core/database.py#L38-L41)
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
+- [backend/main.py:127](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L127)
+- [backend/api/v1/__init__.py:17-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L28)
+- [backend/api/v1/user.py:8-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L8-L10)
+- [backend/core/database.py:38-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L38-L41)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
 
 **Section sources**
-- [backend/main.py:127](file://backend/main.py#L127)
-- [backend/api/v1/__init__.py:17-28](file://backend/api/v1/__init__.py#L17-L28)
+- [backend/main.py:127](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L127)
+- [backend/api/v1/__init__.py:17-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L28)
 
 ## Performance Considerations
 - Asynchronous database operations: Uses SQLAlchemy async sessions to minimize blocking
@@ -377,9 +377,9 @@ Common issues and resolutions:
   - Health check: GET `/health` to verify database availability
 
 **Section sources**
-- [backend/api/v1/user.py:48-52](file://backend/api/v1/user.py#L48-L52)
-- [backend/api/v1/user.py:66-70](file://backend/api/v1/user.py#L66-L70)
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
+- [backend/api/v1/user.py:48-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L48-L52)
+- [backend/api/v1/user.py:66-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L66-L70)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
 
 ## Conclusion
 The user management API provides essential CRUD operations for emergency user profiles under `/api/v1/users`. It leverages JWT authentication, robust Pydantic validation, and asynchronous database access. While `/api/v1/user/profile`, `/api/v1/user/settings`, and `/api/v1/user/preferences` are not present in the current codebase, the `/api/v1/users` endpoints fulfill profile management needs. For production deployments, consider adding per-record ownership checks, stricter validation for emergency contacts, and rate limiting for sensitive endpoints.

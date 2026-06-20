@@ -2,12 +2,12 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/api/v1/auth.py](file://backend/api/v1/auth.py)
-- [backend/core/security.py](file://backend/core/security.py)
-- [backend/api/v1/__init__.py](file://backend/api/v1/__init__.py)
-- [backend/main.py](file://backend/main.py)
-- [frontend/app/login/page.tsx](file://frontend/app/login/page.tsx)
-- [frontend/lib/api.ts](file://frontend/lib/api.ts)
+- [backend/api/v1/auth.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py)
+- [backend/core/security.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py)
+- [backend/api/v1/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [frontend/app/login/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx)
+- [frontend/lib/api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
 </cite>
 
 ## Table of Contents
@@ -46,20 +46,20 @@ C --> D
 ```
 
 **Diagram sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [backend/api/v1/__init__.py:17-28](file://backend/api/v1/__init__.py#L17-L28)
-- [backend/api/v1/auth.py:1-44](file://backend/api/v1/auth.py#L1-L44)
-- [backend/core/security.py:1-41](file://backend/core/security.py#L1-L41)
-- [frontend/app/login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [frontend/lib/api.ts:14-47](file://frontend/lib/api.ts#L14-L47)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [backend/api/v1/__init__.py:17-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L28)
+- [backend/api/v1/auth.py:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L1-L44)
+- [backend/core/security.py:1-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L1-L41)
+- [frontend/app/login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [frontend/lib/api.ts:14-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L14-L47)
 
 **Section sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [backend/api/v1/__init__.py:17-28](file://backend/api/v1/__init__.py#L17-L28)
-- [backend/api/v1/auth.py:1-44](file://backend/api/v1/auth.py#L1-L44)
-- [backend/core/security.py:1-41](file://backend/core/security.py#L1-L41)
-- [frontend/app/login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [frontend/lib/api.ts:14-47](file://frontend/lib/api.ts#L14-L47)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [backend/api/v1/__init__.py:17-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L28)
+- [backend/api/v1/auth.py:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L1-L44)
+- [backend/core/security.py:1-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L1-L41)
+- [frontend/app/login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [frontend/lib/api.ts:14-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L14-L47)
 
 ## Core Components
 - Authentication Router: Exposes login endpoint and a verification endpoint for health checks.
@@ -73,10 +73,10 @@ Key capabilities:
 - Automatic Authorization header injection for authenticated requests.
 
 **Section sources**
-- [backend/api/v1/auth.py:24-43](file://backend/api/v1/auth.py#L24-L43)
-- [backend/core/security.py:13-41](file://backend/core/security.py#L13-L41)
-- [frontend/app/login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [frontend/lib/api.ts:19-47](file://frontend/lib/api.ts#L19-L47)
+- [backend/api/v1/auth.py:24-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L43)
+- [backend/core/security.py:13-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L41)
+- [frontend/app/login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [frontend/lib/api.ts:19-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L47)
 
 ## Architecture Overview
 The authentication flow connects the frontend login page to the backend login endpoint, which validates credentials and issues a JWT. Subsequent requests from the frontend client automatically include the Authorization header, enabling server-side validation via the JWT middleware.
@@ -95,10 +95,10 @@ Note over FE,SEC : "Subsequent requests include Authorization : Bearer <token>"
 ```
 
 **Diagram sources**
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/core/security.py:13-21](file://backend/core/security.py#L13-L21)
-- [frontend/app/login/page.tsx:60-72](file://frontend/app/login/page.tsx#L60-L72)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/core/security.py:13-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L21)
+- [frontend/app/login/page.tsx:60-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L60-L72)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 ## Detailed Component Analysis
 
@@ -145,10 +145,10 @@ Security Notes:
 - Frontend automatically attaches Authorization: Bearer <token> to subsequent requests.
 
 **Section sources**
-- [backend/api/v1/auth.py:8-38](file://backend/api/v1/auth.py#L8-L38)
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [frontend/app/login/page.tsx:60-72](file://frontend/app/login/page.tsx#L60-L72)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [backend/api/v1/auth.py:8-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L8-L38)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [frontend/app/login/page.tsx:60-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L60-L72)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 #### GET /verify
 - Purpose: Health check endpoint for the authentication service.
@@ -161,7 +161,7 @@ Example response:
 }
 
 **Section sources**
-- [backend/api/v1/auth.py:40-43](file://backend/api/v1/auth.py#L40-L43)
+- [backend/api/v1/auth.py:40-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L40-L43)
 
 ### JWT Token Handling and Validation
 
@@ -191,13 +191,13 @@ Valid --> |Yes| Allow["Proceed to Handler"]
 ```
 
 **Diagram sources**
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 **Section sources**
-- [backend/core/security.py:13-21](file://backend/core/security.py#L13-L21)
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [backend/core/security.py:13-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L21)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 ### Frontend Integration Patterns
 
@@ -223,13 +223,13 @@ HTTP->>HTTP : "Attach Authorization header on requests"
 ```
 
 **Diagram sources**
-- [frontend/app/login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
+- [frontend/app/login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
 
 **Section sources**
-- [frontend/app/login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [frontend/app/login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 ## Dependency Analysis
 - The main application mounts the v1 API router, which includes the auth router.
@@ -246,20 +246,20 @@ FE_CLIENT["frontend/lib/api.ts"] --> SEC
 ```
 
 **Diagram sources**
-- [backend/main.py:127-128](file://backend/main.py#L127-L128)
-- [backend/api/v1/__init__.py:14-27](file://backend/api/v1/__init__.py#L14-L27)
-- [backend/api/v1/auth.py:1-6](file://backend/api/v1/auth.py#L1-L6)
-- [backend/core/security.py:1-11](file://backend/core/security.py#L1-L11)
-- [frontend/app/login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [backend/main.py:127-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L127-L128)
+- [backend/api/v1/__init__.py:14-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L14-L27)
+- [backend/api/v1/auth.py:1-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L1-L6)
+- [backend/core/security.py:1-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L1-L11)
+- [frontend/app/login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 **Section sources**
-- [backend/main.py:127-128](file://backend/main.py#L127-L128)
-- [backend/api/v1/__init__.py:14-27](file://backend/api/v1/__init__.py#L14-L27)
-- [backend/api/v1/auth.py:1-6](file://backend/api/v1/auth.py#L1-L6)
-- [backend/core/security.py:1-11](file://backend/core/security.py#L1-L11)
-- [frontend/app/login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [backend/main.py:127-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L127-L128)
+- [backend/api/v1/__init__.py:14-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L14-L27)
+- [backend/api/v1/auth.py:1-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L1-L6)
+- [backend/core/security.py:1-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L1-L11)
+- [frontend/app/login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 ## Performance Considerations
 - Token validation occurs per request; keep payloads minimal to reduce overhead.
@@ -278,9 +278,9 @@ Common issues and resolutions:
   - Frontend uses Supabase Auth JWT tokens; ensure the interceptor is functioning.
 
 **Section sources**
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [frontend/lib/api.ts:19-30](file://frontend/lib/api.ts#L19-L30)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [frontend/lib/api.ts:19-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L30)
 
 ## Conclusion
 The authentication system provides a streamlined login flow with JWT-based session management, suitable for the hackathon demo. It integrates cleanly with the frontend via explicit login handling and automatic Authorization header injection. For production, consider implementing secure password hashing, refresh token rotation, and robust user registration flows.

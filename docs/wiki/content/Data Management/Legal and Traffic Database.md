@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [challan_service.py](file://backend/services/challan_service.py)
-- [challan.py](file://backend/models/challan.py)
-- [seed_violations.py](file://backend/scripts/data/seed_violations.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [challan.py](file://backend/api/v1/challan.py)
-- [test_challan.py](file://backend/tests/test_challan.py)
-- [prepare_road_sources.py](file://backend/scripts/data/prepare_road_sources.py)
-- [road_sources.json](file://backend/scripts/data/road_sources.json)
-- [toll_plazas.json](file://backend/data/toll_plazas.json)
-- [state_overrides.csv](file://chatbot_service/data/state_overrides.csv)
-- [violations_seed.csv](file://chatbot_service/data/violations_seed.csv)
-- [motor_vehicles_act_1988_summary.txt](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [Database.md](file://docs/Database.md)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py)
+- [seed_violations.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [test_challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py)
+- [prepare_road_sources.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py)
+- [road_sources.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/road_sources.json)
+- [toll_plazas.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/toll_plazas.json)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv)
+- [violations_seed.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv)
+- [motor_vehicles_act_1988_summary.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [Database.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md)
 </cite>
 
 ## Table of Contents
@@ -81,21 +81,21 @@ OFFLINE --> API
 ```
 
 **Diagram sources**
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-L482)
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [test_challan.py:1-59](file://backend/tests/test_challan.py#L1-L59)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-L482)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [test_challan.py:1-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L1-L59)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 **Section sources**
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-L482)
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [test_challan.py:1-59](file://backend/tests/test_challan.py#L1-L59)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-L482)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [test_challan.py:1-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L1-L59)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 ## Core Components
 - ChallanService: Implements the rule engine, normalization, and state override logic. Loads default rules and optional CSV overrides.
@@ -111,12 +111,12 @@ Key capabilities:
 - State override matching by state_code, violation_code, and vehicle_class.
 
 **Section sources**
-- [challan_service.py:96-149](file://backend/services/challan_service.py#L96-L149)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [seed_violations.py:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [test_challan.py:6-59](file://backend/tests/test_challan.py#L6-L59)
+- [challan_service.py:96-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L149)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [seed_violations.py:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [test_challan.py:6-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L6-L59)
 
 ## Architecture Overview
 The system integrates CSV-based legal data with a FastAPI service and optional state overrides. The flow:
@@ -152,13 +152,13 @@ API-->>Client : JSON response
 ```
 
 **Diagram sources**
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
 
 **Section sources**
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [challan_service.py:96-149](file://backend/services/challan_service.py#L96-L149)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [challan_service.py:96-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L149)
 
 ## Detailed Component Analysis
 
@@ -210,13 +210,13 @@ ChallanService --> StateChallanOverride : "loads and applies"
 ```
 
 **Diagram sources**
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [challan_service.py:96-314](file://backend/services/challan_service.py#L96-L314)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [challan_service.py:96-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L314)
 
 **Section sources**
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [challan_service.py:30-93](file://backend/services/challan_service.py#L30-L93)
-- [challan_service.py:240-260](file://backend/services/challan_service.py#L240-L260)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [challan_service.py:30-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L30-L93)
+- [challan_service.py:240-260](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L240-L260)
 
 ### State-Specific Fine Calculation and Overrides
 State overrides allow regional adjustments:
@@ -242,13 +242,13 @@ DecideFine --> Return["Return ChallanResponse"]
 ```
 
 **Diagram sources**
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan_service.py:209-238](file://backend/services/challan_service.py#L209-L238)
-- [challan.py:34-53](file://backend/models/challan.py#L34-L53)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan_service.py:209-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L209-L238)
+- [challan.py:34-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L34-L53)
 
 **Section sources**
-- [challan_service.py:119-137](file://backend/services/challan_service.py#L119-L137)
-- [challan.py:45-52](file://backend/models/challan.py#L45-L52)
+- [challan_service.py:119-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L119-L137)
+- [challan.py:45-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L45-L52)
 
 ### Seed Violations Script and Normalization
 The seed script transforms raw CSVs into canonical datasets:
@@ -272,14 +272,14 @@ WriteOverrides --> Done
 ```
 
 **Diagram sources**
-- [seed_violations.py:419-478](file://backend/scripts/data/seed_violations.py#L419-L478)
-- [seed_violations.py:237-249](file://backend/scripts/data/seed_violations.py#L237-L249)
-- [seed_violations.py:398-408](file://backend/scripts/data/seed_violations.py#L398-L408)
+- [seed_violations.py:419-478](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L419-L478)
+- [seed_violations.py:237-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L237-L249)
+- [seed_violations.py:398-408](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L398-L408)
 
 **Section sources**
-- [seed_violations.py:177-234](file://backend/scripts/data/seed_violations.py#L177-L234)
-- [seed_violations.py:252-301](file://backend/scripts/data/seed_violations.py#L252-L301)
-- [seed_violations.py:419-478](file://backend/scripts/data/seed_violations.py#L419-L478)
+- [seed_violations.py:177-234](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L177-L234)
+- [seed_violations.py:252-301](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L252-L301)
+- [seed_violations.py:419-478](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L419-L478)
 
 ### PMGSY Road Data Integration and Toll Plaza Management
 PMGSY and toll plaza data are prepared and imported:
@@ -304,13 +304,13 @@ Manifest --> Import["Run import_official_road_sources.py with manifest"]
 ```
 
 **Diagram sources**
-- [prepare_road_sources.py:145-195](file://backend/scripts/data/prepare_road_sources.py#L145-L195)
-- [road_sources.json:1-18](file://backend/scripts/data/road_sources.json#L1-L18)
-- [toll_plazas.json:1-800](file://backend/data/toll_plazas.json#L1-L800)
+- [prepare_road_sources.py:145-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L145-L195)
+- [road_sources.json:1-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/road_sources.json#L1-L18)
+- [toll_plazas.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/toll_plazas.json#L1-L800)
 
 **Section sources**
-- [prepare_road_sources.py:142-195](file://backend/scripts/data/prepare_road_sources.py#L142-L195)
-- [road_sources.json:1-18](file://backend/scripts/data/road_sources.json#L1-L18)
+- [prepare_road_sources.py:142-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L142-L195)
+- [road_sources.json:1-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/road_sources.json#L1-L18)
 
 ### API Workflow and Validation
 The API endpoint validates inputs and delegates to the service:
@@ -337,14 +337,14 @@ end
 ```
 
 **Diagram sources**
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [test_challan.py:45-59](file://backend/tests/test_challan.py#L45-L59)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [test_challan.py:45-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L45-L59)
 
 **Section sources**
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [test_challan.py:6-59](file://backend/tests/test_challan.py#L6-L59)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [test_challan.py:6-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L6-L59)
 
 ## Dependency Analysis
 - ChallanService depends on:
@@ -369,15 +369,15 @@ Front["duckdb-challan.ts"] --> API
 ```
 
 **Diagram sources**
-- [seed_violations.py:419-478](file://backend/scripts/data/seed_violations.py#L419-L478)
-- [challan_service.py:151-159](file://backend/services/challan_service.py#L151-L159)
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [test_challan.py:1-59](file://backend/tests/test_challan.py#L1-L59)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [seed_violations.py:419-478](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L419-L478)
+- [challan_service.py:151-159](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-L159)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [test_challan.py:1-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L1-L59)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 **Section sources**
-- [challan_service.py:151-159](file://backend/services/challan_service.py#L151-L159)
-- [seed_violations.py:419-478](file://backend/scripts/data/seed_violations.py#L419-L478)
+- [challan_service.py:151-159](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-L159)
+- [seed_violations.py:419-478](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L419-L478)
 
 ## Performance Considerations
 - Rule lookup is O(n) over loaded rules; keep the number of rules manageable.
@@ -404,8 +404,8 @@ Validation references:
 - Service validation errors and normalization behavior are covered by unit tests.
 
 **Section sources**
-- [challan_service.py:109-113](file://backend/services/challan_service.py#L109-L113)
-- [test_challan.py:45-59](file://backend/tests/test_challan.py#L45-L59)
+- [challan_service.py:109-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L109-L113)
+- [test_challan.py:45-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_challan.py#L45-L59)
 
 ## Conclusion
 The legal and traffic database system provides a robust, extensible foundation for traffic violation processing:
@@ -421,15 +421,15 @@ The legal and traffic database system provides a robust, extensible foundation f
 - Database schema documentation outlines columns for traffic_violations and state_fine_overrides.
 
 **Section sources**
-- [Database.md:55-83](file://docs/Database.md#L55-L83)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
+- [Database.md:55-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md#L55-L83)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
 
 ### Legal References and Compliance
 - The Motor Vehicles Act 1988 summary provides authoritative sections and penalties referenced by the system.
 - Use this reference to align new rules and updates with central law.
 
 **Section sources**
-- [motor_vehicles_act_1988_summary.txt:1-391](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
+- [motor_vehicles_act_1988_summary.txt:1-391](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
 
 ### Examples Index
 - Default rules and aliases for violations (183, 185, 181, 194D, 194B, 179).
@@ -437,6 +437,6 @@ The legal and traffic database system provides a robust, extensible foundation f
 - Seed CSVs for violations and state overrides.
 
 **Section sources**
-- [challan_service.py:30-93](file://backend/services/challan_service.py#L30-L93)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [violations_seed.csv:1-30](file://chatbot_service/data/violations_seed.csv#L1-L30)
+- [challan_service.py:30-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L30-L93)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [violations_seed.csv:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv#L1-L30)

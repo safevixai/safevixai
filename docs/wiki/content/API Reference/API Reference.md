@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/main.py](file://backend/main.py)
-- [backend/api/v1/__init__.py](file://backend/api/v1/__init__.py)
-- [backend/api/v1/auth.py](file://backend/api/v1/auth.py)
-- [backend/api/v1/emergency.py](file://backend/api/v1/emergency.py)
-- [backend/api/v1/roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [backend/api/v1/routing.py](file://backend/api/v1/routing.py)
-- [backend/api/v1/user.py](file://backend/api/v1/user.py)
-- [backend/api/v1/challan.py](file://backend/api/v1/challan.py)
-- [backend/api/v1/chat.py](file://backend/api/v1/chat.py)
-- [backend/api/v1/geocode.py](file://backend/api/v1/geocode.py)
-- [backend/api/v1/offline.py](file://backend/api/v1/offline.py)
-- [backend/models/schemas.py](file://backend/models/schemas.py)
-- [backend/core/security.py](file://backend/core/security.py)
-- [backend/services/exceptions.py](file://backend/services/exceptions.py)
-- [backend/core/config.py](file://backend/core/config.py)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/api/v1/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py)
+- [backend/api/v1/auth.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py)
+- [backend/api/v1/emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [backend/api/v1/roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [backend/api/v1/routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [backend/api/v1/user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [backend/api/v1/challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [backend/api/v1/chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py)
+- [backend/api/v1/geocode.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/geocode.py)
+- [backend/api/v1/offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [backend/models/schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [backend/core/security.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py)
+- [backend/services/exceptions.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
 </cite>
 
 ## Table of Contents
@@ -53,12 +53,12 @@ A --> L["Static Uploads<br/>/uploads"]
 ```
 
 **Diagram sources**
-- [backend/main.py:127](file://backend/main.py#L127)
-- [backend/api/v1/__init__.py:17-27](file://backend/api/v1/__init__.py#L17-L27)
+- [backend/main.py:127](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L127)
+- [backend/api/v1/__init__.py:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L27)
 
 **Section sources**
-- [backend/main.py:65-128](file://backend/main.py#L65-L128)
-- [backend/api/v1/__init__.py:1-28](file://backend/api/v1/__init__.py#L1-L28)
+- [backend/main.py:65-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L65-L128)
+- [backend/api/v1/__init__.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L1-L28)
 
 ## Core Components
 - Authentication: Bearer JWT tokens via Authorization header. Credentials managed via Supabase Auth.
@@ -71,9 +71,9 @@ Security highlights:
 - JWT validation using HS256 with environment-sourced secret keys.
 
 **Section sources**
-- [backend/core/security.py:13-41](file://backend/core/security.py#L13-L41)
-- [backend/services/exceptions.py:1-7](file://backend/services/exceptions.py#L1-L7)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
+- [backend/core/security.py:13-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L41)
+- [backend/services/exceptions.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py#L1-L7)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 ## Architecture Overview
 The API orchestrates domain services behind feature routers. Services depend on async database sessions, Redis cache, and external providers. Health checks expose runtime status and environment metadata.
@@ -128,8 +128,8 @@ S3 --> U
 ```
 
 **Diagram sources**
-- [backend/api/v1/__init__.py:17-27](file://backend/api/v1/__init__.py#L17-L27)
-- [backend/main.py:24-63](file://backend/main.py#L24-L63)
+- [backend/api/v1/__init__.py:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L27)
+- [backend/main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
 
 ## Detailed Component Analysis
 
@@ -160,12 +160,12 @@ A-->>C : {access_token, token_type, operator_name}
 ```
 
 **Diagram sources**
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/core/security.py:13-21](file://backend/core/security.py#L13-L21)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/core/security.py:13-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L21)
 
 **Section sources**
-- [backend/api/v1/auth.py:1-44](file://backend/api/v1/auth.py#L1-L44)
-- [backend/core/security.py:13-41](file://backend/core/security.py#L13-L41)
+- [backend/api/v1/auth.py:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L1-L44)
+- [backend/core/security.py:13-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L41)
 
 ### Emergency Services
 - GET /api/v1/emergency/nearby
@@ -199,11 +199,11 @@ E-->>C : 200 OK
 ```
 
 **Diagram sources**
-- [backend/api/v1/emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
+- [backend/api/v1/emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
 
 **Section sources**
-- [backend/api/v1/emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [backend/models/schemas.py:32-66](file://backend/models/schemas.py#L32-L66)
+- [backend/api/v1/emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [backend/models/schemas.py:32-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L32-L66)
 
 ### Road Reporting
 - GET /api/v1/roads/issues
@@ -234,11 +234,11 @@ Err422 --> Done
 ```
 
 **Diagram sources**
-- [backend/api/v1/roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
+- [backend/api/v1/roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
 
 **Section sources**
-- [backend/api/v1/roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [backend/models/schemas.py:103-161](file://backend/models/schemas.py#L103-L161)
+- [backend/api/v1/roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [backend/models/schemas.py:103-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L103-L161)
 
 ### Routing
 - GET /api/v1/routing/preview
@@ -263,11 +263,11 @@ R-->>C : 200 OK
 ```
 
 **Diagram sources**
-- [backend/api/v1/routing.py:18-41](file://backend/api/v1/routing.py#L18-L41)
+- [backend/api/v1/routing.py:18-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L41)
 
 **Section sources**
-- [backend/api/v1/routing.py:1-64](file://backend/api/v1/routing.py#L1-L64)
-- [backend/models/schemas.py:163-210](file://backend/models/schemas.py#L163-L210)
+- [backend/api/v1/routing.py:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L1-L64)
+- [backend/models/schemas.py:163-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L163-L210)
 
 ### User Management
 - POST /users/
@@ -309,11 +309,11 @@ UserProfileResponse <|-- UserProfileUpdate
 ```
 
 **Diagram sources**
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)
 
 **Section sources**
-- [backend/api/v1/user.py:1-83](file://backend/api/v1/user.py#L1-L83)
-- [backend/models/schemas.py:259-287](file://backend/models/schemas.py#L259-L287)
+- [backend/api/v1/user.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L1-L83)
+- [backend/models/schemas.py:259-287](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L259-L287)
 
 ### Challan Calculation
 - POST /api/v1/challan/calculate
@@ -332,11 +332,11 @@ Ch-->>C : 200 OK
 ```
 
 **Diagram sources**
-- [backend/api/v1/challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
+- [backend/api/v1/challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
 
 **Section sources**
-- [backend/api/v1/challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [backend/models/schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
+- [backend/api/v1/challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [backend/models/schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
 
 ### Chatbot Integration
 - POST /api/v1/chat/
@@ -356,11 +356,11 @@ CH-->>C : 200 OK
 ```
 
 **Diagram sources**
-- [backend/api/v1/chat.py:17-23](file://backend/api/v1/chat.py#L17-L23)
+- [backend/api/v1/chat.py:17-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L17-L23)
 
 **Section sources**
-- [backend/api/v1/chat.py:1-24](file://backend/api/v1/chat.py#L1-L24)
-- [backend/models/schemas.py:226-238](file://backend/models/schemas.py#L226-L238)
+- [backend/api/v1/chat.py:1-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L1-L24)
+- [backend/models/schemas.py:226-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L226-L238)
 
 ### Geocoding
 - GET /api/v1/geocode/search
@@ -371,8 +371,8 @@ CH-->>C : 200 OK
   - Response: Array of geocoding results
 
 **Section sources**
-- [backend/api/v1/geocode.py:1-38](file://backend/api/v1/geocode.py#L1-L38)
-- [backend/models/schemas.py:68-81](file://backend/models/schemas.py#L68-L81)
+- [backend/api/v1/geocode.py:1-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/geocode.py#L1-L38)
+- [backend/models/schemas.py:68-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L68-L81)
 
 ### Offline Bundles
 - GET /api/v1/offline/bundle/{city}
@@ -380,7 +380,7 @@ CH-->>C : 200 OK
   - Response: City-specific emergency bundle
 
 **Section sources**
-- [backend/api/v1/offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
+- [backend/api/v1/offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
 
 ## Dependency Analysis
 - Router composition: v1 router aggregates all feature routers.
@@ -403,12 +403,12 @@ V1 --> OF["offline.py"]
 ```
 
 **Diagram sources**
-- [backend/main.py:127](file://backend/main.py#L127)
-- [backend/api/v1/__init__.py:17-27](file://backend/api/v1/__init__.py#L17-L27)
+- [backend/main.py:127](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L127)
+- [backend/api/v1/__init__.py:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L27)
 
 **Section sources**
-- [backend/main.py:24-63](file://backend/main.py#L24-L63)
-- [backend/api/v1/__init__.py:1-28](file://backend/api/v1/__init__.py#L1-L28)
+- [backend/main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
+- [backend/api/v1/__init__.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L1-L28)
 
 ## Performance Considerations
 - Caching: Redis TTLs configured per domain (e.g., geocode, authority, route, general cache).
@@ -418,8 +418,8 @@ V1 --> OF["offline.py"]
 - Radius defaults: Use conservative defaults for nearby queries to bound result sets.
 
 **Section sources**
-- [backend/core/config.py:26-63](file://backend/core/config.py#L26-L63)
-- [backend/api/v1/roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
+- [backend/core/config.py:26-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L63)
+- [backend/api/v1/roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
 
 ## Troubleshooting Guide
 Common HTTP errors:
@@ -436,14 +436,14 @@ Rate limiting:
 - No explicit rate limiter is present in the codebase. Apply at gateway/proxy level if needed.
 
 **Section sources**
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/api/v1/user.py:39-53](file://backend/api/v1/user.py#L39-L53)
-- [backend/api/v1/roadwatch.py:95-97](file://backend/api/v1/roadwatch.py#L95-L97)
-- [backend/api/v1/challan.py:22-25](file://backend/api/v1/challan.py#L22-L25)
-- [backend/api/v1/emergency.py:38-40](file://backend/api/v1/emergency.py#L38-L40)
-- [backend/api/v1/routing.py:37-40](file://backend/api/v1/routing.py#L37-L40)
-- [backend/api/v1/geocode.py:22-26](file://backend/api/v1/geocode.py#L22-L26)
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/api/v1/user.py:39-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L39-L53)
+- [backend/api/v1/roadwatch.py:95-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L95-L97)
+- [backend/api/v1/challan.py:22-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L22-L25)
+- [backend/api/v1/emergency.py:38-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L38-L40)
+- [backend/api/v1/routing.py:37-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L37-L40)
+- [backend/api/v1/geocode.py:22-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/geocode.py#L22-L26)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
 
 ## Conclusion
 SafeVixAI’s API provides a cohesive set of endpoints for emergency services, road reporting, routing, user profiles, challan calculation, and chat. It leverages async services, caching, and external providers while exposing a clean schema-driven interface. Clients should implement robust error handling, respect validation constraints, and apply appropriate caching and rate limiting strategies.
@@ -455,20 +455,20 @@ SafeVixAI’s API provides a cohesive set of endpoints for emergency services, r
 - JWT tokens are validated with strict HS256 signature verification using environment-sourced keys for demo/testing.
 
 **Section sources**
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
 
 ### Request/Response Examples (paths)
-- Login: [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- Nearby emergency: [backend/api/v1/emergency.py:19-38](file://backend/api/v1/emergency.py#L19-L38)
-- SOS payload: [backend/api/v1/emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- Road report submission: [backend/api/v1/roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- Route preview: [backend/api/v1/routing.py:18-41](file://backend/api/v1/routing.py#L18-L41)
-- Safe route: [backend/api/v1/routing.py:43-64](file://backend/api/v1/routing.py#L43-L64)
-- User profile CRUD: [backend/api/v1/user.py:16-83](file://backend/api/v1/user.py#L16-L83)
-- Challan calculation: [backend/api/v1/challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- Chat: [backend/api/v1/chat.py:17-23](file://backend/api/v1/chat.py#L17-L23)
-- Geocoding search: [backend/api/v1/geocode.py:28-37](file://backend/api/v1/geocode.py#L28-L37)
-- Offline bundle: [backend/api/v1/offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- Login: [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- Nearby emergency: [backend/api/v1/emergency.py:19-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L38)
+- SOS payload: [backend/api/v1/emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- Road report submission: [backend/api/v1/roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- Route preview: [backend/api/v1/routing.py:18-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L41)
+- Safe route: [backend/api/v1/routing.py:43-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L43-L64)
+- User profile CRUD: [backend/api/v1/user.py:16-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L83)
+- Challan calculation: [backend/api/v1/challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- Chat: [backend/api/v1/chat.py:17-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L17-L23)
+- Geocoding search: [backend/api/v1/geocode.py:28-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/geocode.py#L28-L37)
+- Offline bundle: [backend/api/v1/offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 ### Error Handling Strategy
 - Validation errors: HTTP 422 with service-provided detail.
@@ -477,13 +477,13 @@ SafeVixAI’s API provides a cohesive set of endpoints for emergency services, r
 - Resource not found: HTTP 404 for user profiles and offline bundles.
 
 **Section sources**
-- [backend/services/exceptions.py:1-7](file://backend/services/exceptions.py#L1-L7)
-- [backend/api/v1/roadwatch.py:95-97](file://backend/api/v1/roadwatch.py#L95-L97)
-- [backend/api/v1/emergency.py:38-40](file://backend/api/v1/emergency.py#L38-L40)
-- [backend/api/v1/routing.py:37-40](file://backend/api/v1/routing.py#L37-L40)
-- [backend/api/v1/geocode.py:22-26](file://backend/api/v1/geocode.py#L22-L26)
-- [backend/api/v1/user.py:48-52](file://backend/api/v1/user.py#L48-L52)
-- [backend/api/v1/offline.py:24-27](file://backend/api/v1/offline.py#L24-L27)
+- [backend/services/exceptions.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py#L1-L7)
+- [backend/api/v1/roadwatch.py:95-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L95-L97)
+- [backend/api/v1/emergency.py:38-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L38-L40)
+- [backend/api/v1/routing.py:37-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L37-L40)
+- [backend/api/v1/geocode.py:22-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/geocode.py#L22-L26)
+- [backend/api/v1/user.py:48-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L48-L52)
+- [backend/api/v1/offline.py:24-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L24-L27)
 
 ### Rate Limiting
 - Not implemented in code. Recommended to enforce per-client quotas at ingress.
@@ -493,9 +493,9 @@ SafeVixAI’s API provides a cohesive set of endpoints for emergency services, r
 - Application version: exposed in health and root endpoints.
 
 **Section sources**
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
-- [backend/main.py:75-101](file://backend/main.py#L75-L101)
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [backend/main.py:75-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L75-L101)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
 
 ### Security Considerations
 - Use HTTPS in production.
@@ -504,9 +504,9 @@ SafeVixAI’s API provides a cohesive set of endpoints for emergency services, r
 - Enforce CORS origins appropriately for production environments.
 
 **Section sources**
-- [backend/core/security.py:7-9](file://backend/core/security.py#L7-L9)
-- [backend/core/config.py:59-63](file://backend/core/config.py#L59-L63)
-- [backend/core/config.py:72-84](file://backend/core/config.py#L72-L84)
+- [backend/core/security.py:7-9](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L7-L9)
+- [backend/core/config.py:59-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L59-L63)
+- [backend/core/config.py:72-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L72-L84)
 
 ### Client Implementation Guidelines
 - Always attach Authorization: Bearer <token> for protected endpoints.
@@ -518,4 +518,4 @@ SafeVixAI’s API provides a cohesive set of endpoints for emergency services, r
 - No WebSocket endpoints are defined in the backend codebase. Real-time chat interactions are handled via synchronous chat endpoints.
 
 **Section sources**
-- [backend/api/v1/chat.py:17-23](file://backend/api/v1/chat.py#L17-L23)
+- [backend/api/v1/chat.py:17-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L17-L23)

@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [road_issue.py](file://backend/models/road_issue.py)
-- [001_initial_schema.py](file://backend/migrations/versions/001_initial_schema.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [authority_router.py](file://backend/services/authority_router.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [seed_roadwatch_sample.py](file://backend/scripts/app/seed_roadwatch_sample.py)
-- [test_roadwatch.py](file://backend/tests/test_roadwatch.py)
-- [road_issues_tool.py](file://chatbot_service/tools/road_issues_tool.py)
-- [PotholeDetector.tsx](file://frontend/components/PotholeDetector.tsx)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [001_initial_schema.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [authority_router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [seed_roadwatch_sample.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_roadwatch_sample.py)
+- [test_roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py)
+- [road_issues_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_issues_tool.py)
+- [PotholeDetector.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx)
 </cite>
 
 ## Table of Contents
@@ -66,16 +66,16 @@ MI --> PG
 ```
 
 **Diagram sources**
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
 
 **Section sources**
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
 
 ## Core Components
 - RoadIssue: Persistent entity representing a reported road issue with spatial coordinates, metadata, and status.
@@ -91,10 +91,10 @@ Key data model highlights:
 - Image attachments: Stored on disk with validated content types and magic bytes; URL returned in reports.
 
 **Section sources**
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [roadwatch_service.py:28-325](file://backend/services/roadwatch_service.py#L28-L325)
-- [authority_router.py:25-143](file://backend/services/authority_router.py#L25-L143)
-- [schemas.py:11-161](file://backend/models/schemas.py#L11-L161)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [roadwatch_service.py:28-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L28-L325)
+- [authority_router.py:25-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L25-L143)
+- [schemas.py:11-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L11-L161)
 
 ## Architecture Overview
 The RoadWatch workflow integrates user reporting, spatial indexing, authority routing, and caching.
@@ -122,9 +122,9 @@ API-->>Client : {uuid, complaint_ref, authority info, status}
 ```
 
 **Diagram sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [authority_router.py:48-79](file://backend/services/authority_router.py#L48-L79)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [authority_router.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L79)
 
 ## Detailed Component Analysis
 
@@ -180,12 +180,12 @@ text data_source_url
 ```
 
 **Diagram sources**
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [001_initial_schema.py:94-124](file://backend/migrations/versions/001_initial_schema.py#L94-L124)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [001_initial_schema.py:94-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L94-L124)
 
 **Section sources**
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [001_initial_schema.py:94-124](file://backend/migrations/versions/001_initial_schema.py#L94-L124)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [001_initial_schema.py:94-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L94-L124)
 
 ### API Endpoints and Workflows
 - GET /api/v1/roads/issues: Returns nearby issues filtered by status, radius, and limit; supports caching.
@@ -208,12 +208,12 @@ API-->>Client : Issues list
 ```
 
 **Diagram sources**
-- [roadwatch.py:26-50](file://backend/api/v1/roadwatch.py#L26-L50)
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
+- [roadwatch.py:26-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L50)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
 
 ### Authority Routing and Road Type Normalization
 - AuthorityRouter resolves issuing authority using:
@@ -237,11 +237,11 @@ Fallback --> End
 ```
 
 **Diagram sources**
-- [authority_router.py:48-79](file://backend/services/authority_router.py#L48-L79)
-- [authority_router.py:128-143](file://backend/services/authority_router.py#L128-L143)
+- [authority_router.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L79)
+- [authority_router.py:128-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L128-L143)
 
 **Section sources**
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
 
 ### Spatial Queries and Indexing
 - Spatial indexing uses GIST on POINT for road_issues and on LINESTRING for road_infrastructure.
@@ -259,12 +259,12 @@ F --> G["Return RoadIssuesResponse"]
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:147-160](file://backend/services/roadwatch_service.py#L147-L160)
-- [001_initial_schema.py:117-123](file://backend/migrations/versions/001_initial_schema.py#L117-L123)
+- [roadwatch_service.py:147-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L147-L160)
+- [001_initial_schema.py:117-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L117-L123)
 
 **Section sources**
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [001_initial_schema.py:117-123](file://backend/migrations/versions/001_initial_schema.py#L117-L123)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [001_initial_schema.py:117-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/versions/001_initial_schema.py#L117-L123)
 
 ### Reporting Workflow States and Data Structures
 - Issue types observed in the codebase include pothole and waterlogging.
@@ -283,11 +283,11 @@ Rejected --> [*]
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:28-29](file://backend/services/roadwatch_service.py#L28-L29)
+- [roadwatch_service.py:28-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L28-L29)
 
 **Section sources**
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [test_roadwatch.py:50-87](file://backend/tests/test_roadwatch.py#L50-L87)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [test_roadwatch.py:50-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py#L50-L87)
 
 ### Image Attachment Handling
 - Supported content types and inferred extensions are validated.
@@ -308,11 +308,11 @@ Size --> Done(["Return photo URL"])
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:275-324](file://backend/services/roadwatch_service.py#L275-L324)
+- [roadwatch_service.py:275-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L324)
 
 **Section sources**
-- [roadwatch_service.py:31-54](file://backend/services/roadwatch_service.py#L31-L54)
-- [roadwatch_service.py:275-324](file://backend/services/roadwatch_service.py#L275-L324)
+- [roadwatch_service.py:31-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L31-L54)
+- [roadwatch_service.py:275-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L324)
 
 ### Community Verification Processes
 - The codebase does not implement explicit community voting or peer verification for road issues.
@@ -345,30 +345,30 @@ API-->>Client : {uuid, complaint_ref, status, ai_detection}
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:43-54](file://frontend/components/PotholeDetector.tsx#L43-L54)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:212-227](file://backend/services/roadwatch_service.py#L212-L227)
-- [road_issue.py:31](file://backend/models/road_issue.py#L31)
+- [PotholeDetector.tsx:43-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L43-L54)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:212-227](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L212-L227)
+- [road_issue.py:31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L31)
 
 **Section sources**
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
-- [road_issue.py:31](file://backend/models/road_issue.py#L31)
-- [roadwatch_service.py:212-227](file://backend/services/roadwatch_service.py#L212-L227)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
+- [road_issue.py:31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L31)
+- [roadwatch_service.py:212-227](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L212-L227)
 
 ### Example Reporting Data Structures
 - RoadReportResponse includes identifiers, authority info, road metadata, engineer details, budget info, photo URL, and status.
 - RoadIssueItem includes issue metadata, spatial coordinates, address, authority, status, and computed distance.
 
 **Section sources**
-- [schemas.py:142-161](file://backend/models/schemas.py#L142-L161)
-- [schemas.py:119-140](file://backend/models/schemas.py#L119-L140)
+- [schemas.py:142-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L142-L161)
+- [schemas.py:119-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L119-L140)
 
 ### Sample Data and Seeding
 - Seed script inserts sample road infrastructure segments and issues with realistic geometries and statuses.
 - Demonstrates typical values for issue_type (e.g., pothole, waterlogging) and status transitions.
 
 **Section sources**
-- [seed_roadwatch_sample.py:48-79](file://backend/scripts/app/seed_roadwatch_sample.py#L48-L79)
+- [seed_roadwatch_sample.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/seed_roadwatch_sample.py#L48-L79)
 
 ## Dependency Analysis
 - RoadWatchService depends on Settings, CacheHelper, GeocodingService, and AuthorityRouter.
@@ -386,14 +386,14 @@ OR --> DB
 ```
 
 **Diagram sources**
-- [roadwatch.py:13](file://backend/api/v1/roadwatch.py#L13)
-- [roadwatch_service.py:56-68](file://backend/services/roadwatch_service.py#L56-L68)
-- [authority_router.py:42-46](file://backend/services/authority_router.py#L42-L46)
+- [roadwatch.py:13](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L13)
+- [roadwatch_service.py:56-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L68)
+- [authority_router.py:42-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L46)
 
 **Section sources**
-- [roadwatch.py:13](file://backend/api/v1/roadwatch.py#L13)
-- [roadwatch_service.py:56-68](file://backend/services/roadwatch_service.py#L56-L68)
-- [authority_router.py:42-46](file://backend/services/authority_router.py#L42-L46)
+- [roadwatch.py:13](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L13)
+- [roadwatch_service.py:56-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L68)
+- [authority_router.py:42-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L46)
 
 ## Performance Considerations
 - Spatial indexing: GIST indexes on road_issues.location and road_infrastructure.geometry enable efficient ST_DWithin and distance computations.
@@ -421,10 +421,10 @@ OR --> DB
   - When Overpass is unavailable or no infrastructure found, a default urban authority is returned.
 
 **Section sources**
-- [roadwatch.py:36-42](file://backend/api/v1/roadwatch.py#L36-L42)
-- [roadwatch_service.py:282-313](file://backend/services/roadwatch_service.py#L282-L313)
-- [test_roadwatch.py:145-151](file://backend/tests/test_roadwatch.py#L145-L151)
-- [test_roadwatch.py:218-240](file://backend/tests/test_roadwatch.py#L218-L240)
+- [roadwatch.py:36-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L36-L42)
+- [roadwatch_service.py:282-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L282-L313)
+- [test_roadwatch.py:145-151](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py#L145-L151)
+- [test_roadwatch.py:218-240](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_roadwatch.py#L218-L240)
 
 ## Conclusion
 The RoadWatch subsystem provides a robust foundation for geotagged road issue reporting, spatial discovery, and automated authority assignment. The data model leverages PostGIS for precise spatial operations, while services implement caching, validation, and fallbacks for reliability. Current workflows support manual issue classification; future integrations can leverage AI outputs stored in ai_detection for automatic categorization and enhanced triage.
@@ -446,10 +446,10 @@ The RoadWatch subsystem provides a robust foundation for geotagged road issue re
   - Response: RoadReportResponse
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
 
 ### Integration with Chatbot
 - The chatbot tool can query nearby issues via a backend client, enabling conversational discovery of road conditions.
 
 **Section sources**
-- [road_issues_tool.py:10-14](file://chatbot_service/tools/road_issues_tool.py#L10-L14)
+- [road_issues_tool.py:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_issues_tool.py#L10-L14)
