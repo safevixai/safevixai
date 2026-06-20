@@ -1,0 +1,49 @@
+# Large dependency directories
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Git
+.git/
+.gitattributes
+
+# Build outputs
+.next/
+dist/
+build/
+*.egg
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Large data / model files
+*.pt
+*.pth
+*.bin
+*.onnx
+*.h5
+*.whl
+*.tar.gz
+*.zip
+*.xz
+*.bz2
+
+# Docker
+.Trash*/

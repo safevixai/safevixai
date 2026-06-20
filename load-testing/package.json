@@ -1,0 +1,12 @@
+{
+  "name": "safevixai-load-testing",
+  "version": "1.0.0",
+  "description": "k6 load testing suite for SafeVixAI critical paths",
+  "scripts": {
+    "smoke": "k6 run k6/smoke.test.js",
+    "load": "k6 run k6/main.test.js",
+    "sustained": "k6 run k6/sustained-load.test.js",
+    "spike": "k6 run k6/emergency-spike.test.js",
+    "ci": "k6 run --quiet --summary-export=results.json k6/smoke.test.js"
+  }
+}
