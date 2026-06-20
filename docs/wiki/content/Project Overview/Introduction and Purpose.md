@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [README.md](file://README.md)
-- [DESIGN.md](file://DESIGN.md)
-- [docs/PRD.md](file://docs/PRD.md)
-- [docs/Features.md](file://docs/Features.md)
-- [docs/Architecture.md](file://docs/Architecture.md)
-- [docs/Database.md](file://docs/Database.md)
-- [docs/Deployment.md](file://docs/Deployment.md)
-- [docs/Contributing.md](file://docs/Contributing.md)
-- [SETUP.md](file://SETUP.md)
-- [backend/main.py](file://backend/main.py)
-- [backend/api/v1/emergency.py](file://backend/api/v1/emergency.py)
-- [backend/api/v1/challan.py](file://backend/api/v1/challan.py)
-- [backend/api/v1/roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [frontend/app/page.tsx](file://frontend/app/page.tsx)
+- [README.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md)
+- [DESIGN.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md)
+- [docs/PRD.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/PRD.md)
+- [docs/Features.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md)
+- [docs/Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md)
+- [docs/Database.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
+- [docs/Contributing.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md)
+- [SETUP.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/SETUP.md)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/api/v1/emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [backend/api/v1/challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [backend/api/v1/roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [frontend/app/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx)
 </cite>
 
 ## Table of Contents
@@ -51,9 +51,9 @@ Scalability:
 - Community-driven governance and documentation accelerate adoption and contributions.
 
 **Section sources**
-- [README.md:1-152](file://README.md#L1-L152)
-- [docs/PRD.md:1-118](file://docs/PRD.md#L1-L118)
-- [DESIGN.md:13-31](file://DESIGN.md#L13-L31)
+- [README.md:1-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L1-L152)
+- [docs/PRD.md:1-118](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/PRD.md#L1-L118)
+- [DESIGN.md:13-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md#L13-L31)
 
 ## Project Structure
 SafeVixAI is organized as a three-service monorepo:
@@ -87,12 +87,12 @@ FE --> CDN
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:5-46](file://docs/Architecture.md#L5-L46)
-- [docs/Architecture.md:49-60](file://docs/Architecture.md#L49-L60)
+- [docs/Architecture.md:5-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L5-L46)
+- [docs/Architecture.md:49-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L49-L60)
 
 **Section sources**
-- [docs/Architecture.md:208-224](file://docs/Architecture.md#L208-L224)
-- [docs/Deployment.md:3-16](file://docs/Deployment.md#L3-L16)
+- [docs/Architecture.md:208-224](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L208-L224)
+- [docs/Deployment.md:3-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md#L3-L16)
 
 ## Core Components
 SafeVixAI’s modules are engineered to deliver immediate value in high-stakes scenarios:
@@ -112,11 +112,11 @@ SafeVixAI’s modules are engineered to deliver immediate value in high-stakes s
   - Geotagged reporting with severity, in-browser YOLOv8 pothole detection, automatic authority routing, and offline queue with background sync.
 
 **Section sources**
-- [docs/Features.md:3-54](file://docs/Features.md#L3-L54)
-- [docs/Features.md:57-104](file://docs/Features.md#L57-L104)
-- [docs/Features.md:106-122](file://docs/Features.md#L106-L122)
-- [docs/Features.md:125-155](file://docs/Features.md#L125-L155)
-- [docs/PRD.md:7-14](file://docs/PRD.md#L7-L14)
+- [docs/Features.md:3-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L3-L54)
+- [docs/Features.md:57-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L57-L104)
+- [docs/Features.md:106-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L106-L122)
+- [docs/Features.md:125-155](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L125-L155)
+- [docs/PRD.md:7-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/PRD.md#L7-L14)
 
 ## Architecture Overview
 SafeVixAI employs a dual-layer AI architecture: online RAG with multi-provider fallback and a five-layer offline stack. The system is intentionally modular to maximize resilience and scalability.
@@ -143,12 +143,12 @@ E --> E5["Service Worker + Background Sync"]
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:67-91](file://docs/Architecture.md#L67-L91)
-- [docs/Architecture.md:128-137](file://docs/Architecture.md#L128-L137)
+- [docs/Architecture.md:67-91](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L67-L91)
+- [docs/Architecture.md:128-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L128-L137)
 
 **Section sources**
-- [docs/Architecture.md:63-102](file://docs/Architecture.md#L63-L102)
-- [docs/Architecture.md:128-137](file://docs/Architecture.md#L128-L137)
+- [docs/Architecture.md:63-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L63-L102)
+- [docs/Architecture.md:128-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L128-L137)
 
 ## Detailed Component Analysis
 
@@ -185,13 +185,13 @@ Practical example:
 - Outcome: The app’s crash detection triggers an SOS with pre-filled GPS and emergency contacts, while the offline emergency map displays the nearest hospital and police station using cached GeoJSON and Turf.js.
 
 **Diagram sources**
-- [docs/Architecture.md:141-165](file://docs/Architecture.md#L141-L165)
-- [backend/api/v1/emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
+- [docs/Architecture.md:141-165](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L141-L165)
+- [backend/api/v1/emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
 
 **Section sources**
-- [docs/Features.md:3-54](file://docs/Features.md#L3-L54)
-- [backend/api/v1/emergency.py:19-76](file://backend/api/v1/emergency.py#L19-L76)
-- [frontend/app/page.tsx:77-228](file://frontend/app/page.tsx#L77-L228)
+- [docs/Features.md:3-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L3-L54)
+- [backend/api/v1/emergency.py:19-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L76)
+- [frontend/app/page.tsx:77-228](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L77-L228)
 
 ### AI Chatbot: Legal Grounding and Multilingual Assistance
 The chatbot combines intent detection, RAG, and a 9-provider fallback chain to deliver accurate, contextual responses.
@@ -230,12 +230,12 @@ Practical example:
 - Outcome: The chatbot calculates the exact fine using DuckDB SQL and cites the relevant MVA section, enabling informed legal action.
 
 **Diagram sources**
-- [docs/Architecture.md:169-204](file://docs/Architecture.md#L169-L204)
-- [chatbot_service/main.py:106-142](file://chatbot_service/main.py#L106-L142)
+- [docs/Architecture.md:169-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L169-L204)
+- [chatbot_service/main.py:106-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L142)
 
 **Section sources**
-- [docs/Features.md:57-104](file://docs/Features.md#L57-L104)
-- [chatbot_service/main.py:41-93](file://chatbot_service/main.py#L41-L93)
+- [docs/Features.md:57-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L57-L104)
+- [chatbot_service/main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
 
 ### Challan Calculator: Deterministic Legal Compliance
 Deterministic calculations grounded in the Motor Vehicles Act ensure clarity and fairness.
@@ -256,12 +256,12 @@ Practical example:
 - Outcome: The calculator returns the exact fine amount, the legal section cited, and state-specific adjustments.
 
 **Diagram sources**
-- [docs/Architecture.md:93-102](file://docs/Architecture.md#L93-L102)
-- [backend/api/v1/challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
+- [docs/Architecture.md:93-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L93-L102)
+- [backend/api/v1/challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
 
 **Section sources**
-- [docs/Features.md:106-122](file://docs/Features.md#L106-L122)
-- [backend/api/v1/challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
+- [docs/Features.md:106-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L106-L122)
+- [backend/api/v1/challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
 
 ### Road Reporter: Transparent Infrastructure Accountability
 The Road Reporter module enables citizens to report road issues with automatic authority routing and transparency into maintenance records.
@@ -281,12 +281,12 @@ Practical example:
 - Outcome: The report is routed to the appropriate PWD office with transparency into budget and maintenance history, and nearby users receive warnings.
 
 **Diagram sources**
-- [docs/Architecture.md:128-137](file://docs/Architecture.md#L128-L137)
-- [backend/api/v1/roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
+- [docs/Architecture.md:128-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L128-L137)
+- [backend/api/v1/roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
 
 **Section sources**
-- [docs/Features.md:125-155](file://docs/Features.md#L125-L155)
-- [backend/api/v1/roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
+- [docs/Features.md:125-155](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L125-L155)
+- [backend/api/v1/roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
 
 ### Conceptual Overview
 SafeVixAI’s conceptual design emphasizes a “life-safety command terminal” with two operational modes: Tactical Emergency (seconds count) and Operational Normal (research, compliance, reporting). The UI’s dark tactical palette, terminal aesthetics, and high-contrast typography reinforce urgency and clarity.
@@ -305,8 +305,8 @@ E --> H["Road Reporter + Authority Routing"]
 [No sources needed since this diagram shows conceptual workflow, not actual code structure]
 
 **Section sources**
-- [DESIGN.md:13-31](file://DESIGN.md#L13-L31)
-- [DESIGN.md:367-555](file://DESIGN.md#L367-L555)
+- [DESIGN.md:13-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md#L13-L31)
+- [DESIGN.md:367-555](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md#L367-L555)
 
 ## Dependency Analysis
 SafeVixAI’s backend, chatbot, and frontend services depend on shared infrastructure and external datasets. The backend relies on PostGIS for spatial queries, Redis for caching, and Overpass/Nominatim for POI enrichment. The chatbot leverages ChromaDB for RAG and a 9-provider LLM fallback chain. The frontend consumes these services via HTTPS and operates offline through browser-based AI and cached assets.
@@ -324,12 +324,12 @@ FE --> HF["local model files (WebLLM)"]
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:49-60](file://docs/Architecture.md#L49-L60)
-- [docs/Architecture.md:40-45](file://docs/Architecture.md#L40-L45)
+- [docs/Architecture.md:49-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L49-L60)
+- [docs/Architecture.md:40-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L40-L45)
 
 **Section sources**
-- [docs/Architecture.md:49-60](file://docs/Architecture.md#L49-L60)
-- [docs/Database.md:1-18](file://docs/Database.md#L1-L18)
+- [docs/Architecture.md:49-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L49-L60)
+- [docs/Database.md:1-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md#L1-L18)
 
 ## Performance Considerations
 - Backend performance: PostGIS spatial queries (< 50 ms) with GIST indexing and Redis caching minimize latency for emergency services discovery.
@@ -346,9 +346,9 @@ FE --> HF["local model files (WebLLM)"]
 - Offline verification: Build and start the frontend in production mode, then simulate offline mode to confirm cached features.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [docs/Deployment.md:230-248](file://docs/Deployment.md#L230-L248)
-- [SETUP.md:316-343](file://SETUP.md#L316-L343)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [docs/Deployment.md:230-248](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md#L230-L248)
+- [SETUP.md:316-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/SETUP.md#L316-L343)
 
 ## Conclusion
 SafeVixAI advances road safety in India by combining tactical UX, AI-driven legal assistance, and transparent infrastructure reporting—without any infrastructure cost. Its modular architecture, offline-first design, and open-source philosophy enable rapid deployment, community-driven improvements, and scalable impact across diverse geographies and languages.
@@ -362,8 +362,8 @@ SafeVixAI advances road safety in India by combining tactical UX, AI-driven lega
 - Total infrastructure cost: Rs. 0 using free-tier services and open-source stacks.
 
 **Section sources**
-- [README.md:5-6](file://README.md#L5-L6)
-- [docs/PRD.md:14](file://docs/PRD.md#L14)
+- [README.md:5-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L5-L6)
+- [docs/PRD.md:14](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/PRD.md#L14)
 
 ### Open-Source Philosophy and Community Approach
 - Free-tier deployment model demonstrates replicability and sustainability.
@@ -371,6 +371,6 @@ SafeVixAI advances road safety in India by combining tactical UX, AI-driven lega
 - Modular services and standardized tooling lower barriers to entry for contributors.
 
 **Section sources**
-- [docs/Deployment.md:3-16](file://docs/Deployment.md#L3-L16)
-- [docs/Contributing.md:1-208](file://docs/Contributing.md#L1-L208)
-- [docs/Architecture.md:49-60](file://docs/Architecture.md#L49-L60)
+- [docs/Deployment.md:3-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md#L3-L16)
+- [docs/Contributing.md:1-208](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L1-L208)
+- [docs/Architecture.md:49-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L49-L60)

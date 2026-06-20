@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [challan.py](file://backend/api/v1/challan.py)
-- [challan_service.py](file://backend/services/challan_service.py)
-- [challan.py](file://backend/models/challan.py)
-- [seed_violations.py](file://backend/scripts/data/seed_violations.py)
-- [violations_seed.csv](file://chatbot_service/data/violations_seed.csv)
-- [state_overrides.csv](file://chatbot_service/data/state_overrides.csv)
-- [motor_vehicles_act_1988_summary.txt](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [page.tsx](file://frontend/app/challan/page.tsx)
-- [challan_tool.py](file://chatbot_service/tools/challan_tool.py)
-- [legal_search_tool.py](file://chatbot_service/tools/legal_search_tool.py)
-- [emergency_numbers.json](file://chatbot_service/data/emergency_numbers.json)
-- [emergency_tool.py](file://chatbot_service/tools/emergency_tool.py)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [Database.md](file://docs/Database.md)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py)
+- [seed_violations.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py)
+- [violations_seed.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv)
+- [motor_vehicles_act_1988_summary.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx)
+- [challan_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py)
+- [legal_search_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py)
+- [emergency_numbers.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json)
+- [emergency_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [Database.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md)
 </cite>
 
 ## Table of Contents
@@ -75,32 +75,32 @@ EMERGENCY_TOOL --> EMERGENCY_NUMBERS
 ```
 
 **Diagram sources**
-- [challan.py:10-26](file://backend/api/v1/challan.py#L10-L26)
-- [challan_service.py:96-150](file://backend/services/challan_service.py#L96-L150)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [seed_violations.py:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-- [violations_seed.csv:1-30](file://chatbot_service/data/violations_seed.csv#L1-L30)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [motor_vehicles_act_1988_summary.txt:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [page.tsx:301-319](file://frontend/app/challan/page.tsx#L301-L319)
-- [emergency_tool.py:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
-- [offline-rag.ts:6-34](file://frontend/lib/offline-rag.ts#L6-L34)
+- [challan.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L26)
+- [challan_service.py:96-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L150)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [seed_violations.py:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+- [violations_seed.csv:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv#L1-L30)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [motor_vehicles_act_1988_summary.txt:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [page.tsx:301-319](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L319)
+- [emergency_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
+- [offline-rag.ts:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L6-L34)
 
 **Section sources**
-- [challan.py:10-26](file://backend/api/v1/challan.py#L10-L26)
-- [challan_service.py:96-150](file://backend/services/challan_service.py#L96-L150)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [seed_violations.py:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-- [violations_seed.csv:1-30](file://chatbot_service/data/violations_seed.csv#L1-L30)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [motor_vehicles_act_1988_summary.txt:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [page.tsx:301-319](file://frontend/app/challan/page.tsx#L301-L319)
-- [emergency_tool.py:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
-- [offline-rag.ts:6-34](file://frontend/lib/offline-rag.ts#L6-L34)
+- [challan.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L26)
+- [challan_service.py:96-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L150)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [seed_violations.py:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+- [violations_seed.csv:1-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/violations_seed.csv#L1-L30)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [motor_vehicles_act_1988_summary.txt:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [page.tsx:301-319](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L319)
+- [emergency_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
+- [offline-rag.ts:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L6-L34)
 
 ## Core Components
 - Violation database model: Centralized representation of violation codes, legal sections, descriptions, and base/repeat fines.
@@ -111,28 +111,28 @@ EMERGENCY_TOOL --> EMERGENCY_NUMBERS
 
 Key implementation references:
 - Data models for rules and overrides
-  - [ChallanRule:6-32](file://backend/models/challan.py#L6-L32)
-  - [StateChallanOverride:34-53](file://backend/models/challan.py#L34-L53)
+  - [ChallanRule:6-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L32)
+  - [StateChallanOverride:34-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L34-L53)
 - Service logic for calculation and overrides
-  - [ChallanService.calculate:103-149](file://backend/services/challan_service.py#L103-L149)
-  - [ChallanService._find_override:246-260](file://backend/services/challan_service.py#L246-L260)
+  - [ChallanService.calculate:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+  - [ChallanService._find_override:246-260](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L246-L260)
 - Seed and normalization of violations
-  - [DEFAULT_RULES:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-  - [State overrides mapping:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
+  - [DEFAULT_RULES:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+  - [State overrides mapping:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
 - Legal citations and summaries
-  - [MVA 1988 summary:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+  - [MVA 1988 summary:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
 - Frontend offline calculator and AI insight
-  - [Offline lookup:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-  - [AI Insight footer:301-312](file://frontend/app/challan/page.tsx#L301-L312)
+  - [Offline lookup:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+  - [AI Insight footer:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
 
 **Section sources**
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [challan_service.py:96-150](file://backend/services/challan_service.py#L96-L150)
-- [seed_violations.py:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [motor_vehicles_act_1988_summary.txt:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [page.tsx:301-312](file://frontend/app/challan/page.tsx#L301-L312)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [challan_service.py:96-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L150)
+- [seed_violations.py:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [motor_vehicles_act_1988_summary.txt:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [page.tsx:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
 
 ## Architecture Overview
 The system integrates legal compliance verification with state-specific enforcement and deterministic penalty calculation. Inputs include violation code, vehicle class, repeat status, and state. Outputs include base/repeat fines, legal section, description, and state override notes.
@@ -158,12 +158,12 @@ FE-->>User : Display fine, section, and AI Insight
 ```
 
 **Diagram sources**
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [seed_violations.py:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [page.tsx:301-312](file://frontend/app/challan/page.tsx#L301-L312)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [seed_violations.py:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [page.tsx:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
 
 ## Detailed Component Analysis
 
@@ -180,12 +180,12 @@ Legal descriptions and penalties are derived from:
 - State-specific overrides (e.g., Tamil Nadu, Delhi, Karnataka, Kerala, Maharashtra, Gujarat, Andhra Pradesh, Telangana, West Bengal, Uttar Pradesh)
 
 Representative mappings:
-- [MVA summary sections:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
-- [State overrides:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
+- [MVA summary sections:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+- [State overrides:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
 
 **Section sources**
-- [motor_vehicles_act_1988_summary.txt:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
+- [motor_vehicles_act_1988_summary.txt:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
 
 ### State-Specific Legal Variations
 State overrides enable localized enforcement by modifying base/repeat fines and adding legal section/description notes. The system supports:
@@ -194,14 +194,14 @@ State overrides enable localized enforcement by modifying base/repeat fines and 
 - Notes linking to authoritative sources and effective dates
 
 Key references:
-- [State overrides loader:209-238](file://backend/services/challan_service.py#L209-L238)
-- [State overrides CSV schema:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [Normalization helpers:300-313](file://backend/services/challan_service.py#L300-L313)
+- [State overrides loader:209-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L209-L238)
+- [State overrides CSV schema:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [Normalization helpers:300-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L300-L313)
 
 **Section sources**
-- [challan_service.py:209-238](file://backend/services/challan_service.py#L209-L238)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [challan_service.py:300-313](file://backend/services/challan_service.py#L300-L313)
+- [challan_service.py:209-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L209-L238)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [challan_service.py:300-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L300-L313)
 
 ### Penalty Calculation Algorithms
 The penalty calculation is deterministic and considers:
@@ -232,18 +232,18 @@ Output --> End
 ```
 
 **Diagram sources**
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
 
 Implementation highlights:
-- [Default rules and aliases:30-93](file://backend/services/challan_service.py#L30-L93)
-- [Override resolution:119-136](file://backend/services/challan_service.py#L119-L136)
-- [Vehicle class normalization:294-298](file://backend/services/challan_service.py#L294-L298)
-- [State code normalization:300-313](file://backend/services/challan_service.py#L300-L313)
+- [Default rules and aliases:30-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L30-L93)
+- [Override resolution:119-136](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L119-L136)
+- [Vehicle class normalization:294-298](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L294-L298)
+- [State code normalization:300-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L300-L313)
 
 **Section sources**
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
 
 ### Legal Compliance Verification Process
 To ensure adherence to current MVA regulations:
@@ -252,30 +252,30 @@ To ensure adherence to current MVA regulations:
 - Seed scripts merge default rules with state overrides and write normalized CSVs consumed by the service.
 
 Verification references:
-- [Legal summary indexing:1-391](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
-- [State overrides schema:72-83](file://docs/Database.md#L72-L83)
-- [Seed normalization:419-482](file://backend/scripts/data/seed_violations.py#L419-L482)
+- [Legal summary indexing:1-391](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
+- [State overrides schema:72-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md#L72-L83)
+- [Seed normalization:419-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L419-L482)
 
 **Section sources**
-- [motor_vehicles_act_1988_summary.txt:1-391](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
-- [Database.md:72-83](file://docs/Database.md#L72-L83)
-- [seed_violations.py:419-482](file://backend/scripts/data/seed_violations.py#L419-L482)
+- [motor_vehicles_act_1988_summary.txt:1-391](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
+- [Database.md:72-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md#L72-L83)
+- [seed_violations.py:419-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L419-L482)
 
 ### Integration with Emergency Services and AI Tactical Insights
 - Emergency services integration provides unified access to national and state-specific emergency numbers and nearby service discovery.
 - AI tactical insights are surfaced in the frontend to guide users on high-risk offences and disqualification protocols.
 
 References:
-- [Emergency numbers catalog:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
-- [Emergency locator tool:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
-- [AI Insight footer:301-312](file://frontend/app/challan/page.tsx#L301-L312)
-- [Offline legal index:6-34](file://frontend/lib/offline-rag.ts#L6-L34)
+- [Emergency numbers catalog:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
+- [Emergency locator tool:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
+- [AI Insight footer:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
+- [Offline legal index:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L6-L34)
 
 **Section sources**
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
-- [emergency_tool.py:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
-- [page.tsx:301-312](file://frontend/app/challan/page.tsx#L301-L312)
-- [offline-rag.ts:6-34](file://frontend/lib/offline-rag.ts#L6-L34)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
+- [emergency_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
+- [page.tsx:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
+- [offline-rag.ts:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L6-L34)
 
 ## Dependency Analysis
 The legal framework relies on:
@@ -299,30 +299,30 @@ EMERGENCY["Emergency Numbers<br/>emergency_numbers.json"] --> EM_TOOL["Emergency
 ```
 
 **Diagram sources**
-- [challan_service.py:96-150](file://backend/services/challan_service.py#L96-L150)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [seed_violations.py:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [challan.py:10-26](file://backend/api/v1/challan.py#L10-L26)
-- [page.tsx:301-312](file://frontend/app/challan/page.tsx#L301-L312)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [motor_vehicles_act_1988_summary.txt:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
-- [offline-rag.ts:6-34](file://frontend/lib/offline-rag.ts#L6-L34)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
-- [emergency_tool.py:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
+- [challan_service.py:96-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L150)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [seed_violations.py:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [challan.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L26)
+- [page.tsx:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [motor_vehicles_act_1988_summary.txt:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+- [offline-rag.ts:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L6-L34)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
+- [emergency_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
 
 **Section sources**
-- [challan_service.py:96-150](file://backend/services/challan_service.py#L96-L150)
-- [challan.py:6-53](file://backend/models/challan.py#L6-L53)
-- [seed_violations.py:43-106](file://backend/scripts/data/seed_violations.py#L43-L106)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [challan.py:10-26](file://backend/api/v1/challan.py#L10-L26)
-- [page.tsx:301-312](file://frontend/app/challan/page.tsx#L301-L312)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [motor_vehicles_act_1988_summary.txt:224-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
-- [offline-rag.ts:6-34](file://frontend/lib/offline-rag.ts#L6-L34)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
-- [emergency_tool.py:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
+- [challan_service.py:96-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L150)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L53)
+- [seed_violations.py:43-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L43-L106)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [challan.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L26)
+- [page.tsx:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [motor_vehicles_act_1988_summary.txt:224-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L224-L390)
+- [offline-rag.ts:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L6-L34)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
+- [emergency_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
 
 ## Performance Considerations
 - Deterministic calculations avoid LLM overhead and ensure reproducible outcomes.
@@ -334,18 +334,18 @@ EMERGENCY["Emergency Numbers<br/>emergency_numbers.json"] --> EM_TOOL["Emergency
 
 ## Troubleshooting Guide
 Common issues and resolutions:
-- Unsupported violation code: Ensure the code matches defaults or aliases; see [DEFAULT_RULES:30-93](file://backend/services/challan_service.py#L30-L93).
-- Missing vehicle class: Validation raises errors for empty values; see [vehicle normalization:294-298](file://backend/services/challan_service.py#L294-L298).
-- Invalid state code: Normalize state codes to two-letter codes; see [state normalization:300-313](file://backend/services/challan_service.py#L300-L313).
-- Missing state override: Overrides are optional; defaults apply when not found; see [override loading:209-238](file://backend/services/challan_service.py#L209-L238).
-- Legal citation retrieval: Verify legal summary indexing and RAG scope; see [legal summary:1-391](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391).
+- Unsupported violation code: Ensure the code matches defaults or aliases; see [DEFAULT_RULES:30-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L30-L93).
+- Missing vehicle class: Validation raises errors for empty values; see [vehicle normalization:294-298](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L294-L298).
+- Invalid state code: Normalize state codes to two-letter codes; see [state normalization:300-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L300-L313).
+- Missing state override: Overrides are optional; defaults apply when not found; see [override loading:209-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L209-L238).
+- Legal citation retrieval: Verify legal summary indexing and RAG scope; see [legal summary:1-391](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391).
 
 **Section sources**
-- [challan_service.py:30-93](file://backend/services/challan_service.py#L30-L93)
-- [challan_service.py:294-298](file://backend/services/challan_service.py#L294-L298)
-- [challan_service.py:300-313](file://backend/services/challan_service.py#L300-L313)
-- [challan_service.py:209-238](file://backend/services/challan_service.py#L209-L238)
-- [motor_vehicles_act_1988_summary.txt:1-391](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
+- [challan_service.py:30-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L30-L93)
+- [challan_service.py:294-298](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L294-L298)
+- [challan_service.py:300-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L300-L313)
+- [challan_service.py:209-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L209-L238)
+- [motor_vehicles_act_1988_summary.txt:1-391](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
 
 ## Conclusion
 The legal framework integration ensures MVA 2019 compliance by combining deterministic penalty calculations, state-specific overrides, and legal citations. Emergency services integration and AI tactical insights further enhance user safety and informed decision-making. The modular architecture supports scalability, traceability, and offline resilience.

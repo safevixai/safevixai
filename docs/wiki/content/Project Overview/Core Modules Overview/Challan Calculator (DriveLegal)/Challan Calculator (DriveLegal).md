@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [challan.py](file://backend/api/v1/challan.py)
-- [challan_service.py](file://backend/services/challan_service.py)
-- [challan.py](file://backend/models/challan.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [page.tsx](file://frontend/app/challan/page.tsx)
-- [ChallanCalculator.tsx](file://frontend/components/ChallanCalculator.tsx)
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [api.ts](file://frontend/lib/api.ts)
-- [state_overrides.csv](file://chatbot_service/data/state_overrides.csv)
-- [violations.csv](file://frontend/public/offline-data/violations.csv)
-- [state_overrides.csv](file://frontend/public/offline-data/state_overrides.csv)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [motor_vehicles_act_1988_summary.txt](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx)
+- [ChallanCalculator.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv)
+- [violations.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [motor_vehicles_act_1988_summary.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
 </cite>
 
 ## Table of Contents
@@ -68,28 +68,28 @@ BE_EMERG --> FE_LIB
 ```
 
 **Diagram sources**
-- [challan.py:10-26](file://backend/api/v1/challan.py#L10-L26)
-- [challan_service.py:96-101](file://backend/services/challan_service.py#L96-L101)
-- [page.tsx:45-80](file://frontend/app/challan/page.tsx#L45-L80)
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [api.ts:1-50](file://frontend/lib/api.ts#L1-L50)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [emergency.py:12-17](file://backend/api/v1/emergency.py#L12-L17)
+- [challan.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L26)
+- [challan_service.py:96-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L101)
+- [page.tsx:45-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L80)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [api.ts:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L50)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [emergency.py:12-17](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L17)
 
 **Section sources**
-- [challan.py:10-26](file://backend/api/v1/challan.py#L10-L26)
-- [challan_service.py:96-101](file://backend/services/challan_service.py#L96-L101)
-- [page.tsx:45-80](file://frontend/app/challan/page.tsx#L45-L80)
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [api.ts:1-50](file://frontend/lib/api.ts#L1-L50)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
-- [emergency.py:12-17](file://backend/api/v1/emergency.py#L12-L17)
+- [challan.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L26)
+- [challan_service.py:96-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L101)
+- [page.tsx:45-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L80)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [api.ts:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L50)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
+- [emergency.py:12-17](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L17)
 
 ## Core Components
 - Backend API: Exposes a single endpoint to calculate challans based on violation, vehicle class, state, and repeat status.
@@ -100,14 +100,14 @@ BE_EMERG --> FE_LIB
 - Emergency Services Integration: Provides nearby emergency services and SOS payload for immediate assistance.
 
 **Section sources**
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [challan_service.py:96-150](file://backend/services/challan_service.py#L96-L150)
-- [challan.py:6-32](file://backend/models/challan.py#L6-L32)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [page.tsx:45-80](file://frontend/app/challan/page.tsx#L45-L80)
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [emergency.py:19-76](file://backend/api/v1/emergency.py#L19-L76)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [challan_service.py:96-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L150)
+- [challan.py:6-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L32)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [page.tsx:45-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L80)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [emergency.py:19-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L76)
 
 ## Architecture Overview
 The system follows a clean separation of concerns:
@@ -134,11 +134,11 @@ API-->>UI : Render total liability and details
 ```
 
 **Diagram sources**
-- [page.tsx:71-80](file://frontend/app/challan/page.tsx#L71-L80)
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan.py:6-32](file://backend/models/challan.py#L6-L32)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
+- [page.tsx:71-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L80)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan.py:6-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L32)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
 
 ## Detailed Component Analysis
 
@@ -148,7 +148,7 @@ API-->>UI : Render total liability and details
 - Returns structured response or raises validation errors.
 
 **Section sources**
-- [challan.py:10-26](file://backend/api/v1/challan.py#L10-L26)
+- [challan.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L26)
 
 ### ChallanService: Rule Resolution and Overrides
 - Maintains national default rules and loads optional CSV datasets.
@@ -194,14 +194,14 @@ ChallanService --> StateChallanOverride : "applies"
 ```
 
 **Diagram sources**
-- [challan_service.py:96-101](file://backend/services/challan_service.py#L96-L101)
-- [challan.py:6-32](file://backend/models/challan.py#L6-L32)
-- [challan.py:34-52](file://backend/models/challan.py#L34-L52)
+- [challan_service.py:96-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L101)
+- [challan.py:6-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L32)
+- [challan.py:34-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L34-L52)
 
 **Section sources**
-- [challan_service.py:96-150](file://backend/services/challan_service.py#L96-L150)
-- [challan.py:6-32](file://backend/models/challan.py#L6-L32)
-- [challan.py:34-52](file://backend/models/challan.py#L34-L52)
+- [challan_service.py:96-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L150)
+- [challan.py:6-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-L32)
+- [challan.py:34-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L34-L52)
 
 ### Frontend UI: Real-Time Challan Calculator
 - Provides a grid of common violations and a configuration panel for vehicle class, state/UT, and repeat status.
@@ -221,27 +221,27 @@ Render --> Action["Take Action (Legal Advice / Pay Now)"]
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
-- [page.tsx:71-80](file://frontend/app/challan/page.tsx#L71-L80)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)
+- [page.tsx:71-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L80)
 
 **Section sources**
-- [ChallanCalculator.tsx:13-62](file://frontend/components/ChallanCalculator.tsx#L13-L62)
-- [page.tsx:45-80](file://frontend/app/challan/page.tsx#L45-L80)
+- [ChallanCalculator.tsx:13-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L13-L62)
+- [page.tsx:45-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L80)
 
 ### DuckDB Offline Engine
 - Initializes offline capability and performs simulated lookups against bundled datasets.
 - Returns base and repeat fines along with section and description.
 
 **Section sources**
-- [duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 ### Emergency Services Integration
 - Provides nearby emergency services and SOS payload for immediate assistance.
 - Supports categories like hospital, police, ambulance, fire, and others.
 
 **Section sources**
-- [emergency.py:19-76](file://backend/api/v1/emergency.py#L19-L76)
+- [emergency.py:19-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L76)
 
 ## Dependency Analysis
 - Frontend depends on FastAPI backend for online calculations and DuckDB for offline.
@@ -262,18 +262,18 @@ API --> EMERG["Emergency API"]
 ```
 
 **Diagram sources**
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [challan_service.py:151-158](file://backend/services/challan_service.py#L151-L158)
-- [page.tsx:71-80](file://frontend/app/challan/page.tsx#L71-L80)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [emergency.py:19-76](file://backend/api/v1/emergency.py#L19-L76)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [challan_service.py:151-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-L158)
+- [page.tsx:71-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L80)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [emergency.py:19-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L76)
 
 **Section sources**
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
-- [challan_service.py:151-158](file://backend/services/challan_service.py#L151-L158)
-- [page.tsx:71-80](file://frontend/app/challan/page.tsx#L71-L80)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [emergency.py:19-76](file://backend/api/v1/emergency.py#L19-L76)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
+- [challan_service.py:151-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-L158)
+- [page.tsx:71-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L80)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [emergency.py:19-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L76)
 
 ## Performance Considerations
 - Online calculation: Minimal latency due to lightweight rule matching and CSV loading.
@@ -288,9 +288,9 @@ API --> EMERG["Emergency API"]
 - Offline mode: DuckDB initialization is environment-dependent; verify browser context and asset availability.
 
 **Section sources**
-- [challan_service.py:109-113](file://backend/services/challan_service.py#L109-L113)
-- [challan_service.py:294-313](file://backend/services/challan_service.py#L294-L313)
-- [duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
+- [challan_service.py:109-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L109-L113)
+- [challan_service.py:294-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L294-L313)
+- [duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
 
 ## Conclusion
 The Challan Calculator integrates national and state-specific traffic violation enforcement with robust rule resolution and a user-friendly interface. It supports online and offline modes, ensuring accessibility across connectivity scenarios, while integrating emergency services for immediate assistance.
@@ -302,22 +302,22 @@ The Challan Calculator integrates national and state-specific traffic violation 
 - State-specific overrides reflect regional enforcement schedules and rates.
 
 **Section sources**
-- [motor_vehicles_act_1988_summary.txt:349-390](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L349-L390)
-- [state_overrides.csv:1-14](file://chatbot_service/data/state_overrides.csv#L1-L14)
+- [motor_vehicles_act_1988_summary.txt:349-390](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L349-L390)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/state_overrides.csv#L1-L14)
 
 ### Offline Data Bundling Strategy
 - Datasets include violations and state overrides for 25+ major cities and states.
 - Bundled CSVs enable DuckDB-based offline calculations without external dependencies.
 
 **Section sources**
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
 
 ### User Interface Inputs and Outputs
 - Inputs: Violation code, vehicle class, state/UT, repeat flag.
 - Outputs: Base fine, repeat fine, total amount due, section, description, and state override note.
 
 **Section sources**
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [page.tsx:71-80](file://frontend/app/challan/page.tsx#L71-L80)
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [page.tsx:71-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L80)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)

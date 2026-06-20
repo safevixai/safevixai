@@ -2,22 +2,22 @@
 
 <cite>
 **Referenced Files in This Document**
-- [README.md](file://README.md)
-- [DESIGN.md](file://DESIGN.md)
-- [docs/Architecture.md](file://docs/Architecture.md)
-- [docs/Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [render.yaml](file://render.yaml)
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [frontend/package.json](file://frontend/package.json)
-- [frontend/next.config.js](file://frontend/next.config.js)
-- [frontend/public/manifest.json](file://frontend/public/manifest.json)
-- [frontend/lib/offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [frontend/lib/offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [frontend/lib/offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [frontend/lib/store.ts](file://frontend/lib/store.ts)
-- [backend/requirements.txt](file://backend/requirements.txt)
-- [chatbot_service/requirements.txt](file://chatbot_service/requirements.txt)
+- [README.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md)
+- [DESIGN.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md)
+- [docs/Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md)
+- [docs/Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [frontend/next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
+- [frontend/public/manifest.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json)
+- [frontend/lib/offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [frontend/lib/offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [frontend/lib/offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [frontend/lib/store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [backend/requirements.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt)
+- [chatbot_service/requirements.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt)
 </cite>
 
 ## Table of Contents
@@ -61,12 +61,12 @@ F --> |"HTTPS"| C
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:208-224](file://docs/Architecture.md#L208-L224)
-- [README.md:57-70](file://README.md#L57-L70)
+- [docs/Architecture.md:208-224](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L208-L224)
+- [README.md:57-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L57-L70)
 
 **Section sources**
-- [README.md:57-70](file://README.md#L57-L70)
-- [docs/Architecture.md:208-224](file://docs/Architecture.md#L208-L224)
+- [README.md:57-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L57-L70)
+- [docs/Architecture.md:208-224](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L208-L224)
 
 ## Core Components
 - Backend API Service (FastAPI, Python 3.11)
@@ -85,10 +85,10 @@ Key runtime and technology highlights:
 - Frontend: Next.js 15 + React 19 + TypeScript + MapLibre GL + WebLLM + Transformers.js + DuckDB-Wasm + HNSWlib-wasm + IndexedDB + Service Worker
 
 **Section sources**
-- [README.md:112-121](file://README.md#L112-L121)
-- [backend/requirements.txt:1-46](file://backend/requirements.txt#L1-L46)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [frontend/package.json:14-53](file://frontend/package.json#L14-L53)
+- [README.md:112-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L112-L121)
+- [backend/requirements.txt:1-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L46)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [frontend/package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
 
 ## Architecture Overview
 SafeVixAI employs a three-service microservices architecture with clear separation of concerns and offline-first design.
@@ -123,10 +123,10 @@ BE --> HF["CDN-hosted model files - WebLLM CDN"]
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:5-45](file://docs/Architecture.md#L5-L45)
+- [docs/Architecture.md:5-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L5-L45)
 
 **Section sources**
-- [docs/Architecture.md:3-45](file://docs/Architecture.md#L3-L45)
+- [docs/Architecture.md:3-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L3-L45)
 
 ## Detailed Component Analysis
 
@@ -165,10 +165,10 @@ B-->>F : EmergencyResponse with sorted results
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:141-165](file://docs/Architecture.md#L141-L165)
+- [docs/Architecture.md:141-165](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L141-L165)
 
 **Section sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
 
 ### Chatbot Service
 Responsibilities:
@@ -210,10 +210,10 @@ FE-->>U : Display formatted response
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:169-204](file://docs/Architecture.md#L169-L204)
+- [docs/Architecture.md:169-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L169-L204)
 
 **Section sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
 
 ### Frontend PWA and Offline-First Architecture
 Responsibilities:
@@ -233,7 +233,7 @@ L5["Layer 5 - Road Reports"] --> L5D["IndexedDB + Background Sync API — offlin
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:128-137](file://docs/Architecture.md#L128-L137)
+- [docs/Architecture.md:128-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L128-L137)
 
 Key offline modules:
 - Offline AI engine: System AI (Chrome/Android AICore) or Transformers.js Gemma 4 E2B with WebGPU acceleration and browser cache.
@@ -241,10 +241,10 @@ Key offline modules:
 - Offline SOS queue: IndexedDB-backed queue with background sync on connectivity restoration.
 
 **Section sources**
-- [frontend/lib/offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [frontend/lib/offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [frontend/lib/offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [frontend/lib/store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [frontend/lib/offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [frontend/lib/offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [frontend/lib/offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [frontend/lib/store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### Infrastructure and Deployment Topology
 - Backend and Chatbot services deployed on Render.com with HTTPS endpoints.
@@ -276,12 +276,12 @@ CS --> |"LLM Providers"| H
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:40-45](file://docs/Architecture.md#L40-L45)
-- [render.yaml:1-83](file://render.yaml#L1-L83)
+- [docs/Architecture.md:40-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L40-L45)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
 
 **Section sources**
-- [docs/Architecture.md:40-45](file://docs/Architecture.md#L40-L45)
-- [render.yaml:1-83](file://render.yaml#L1-L83)
+- [docs/Architecture.md:40-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L40-L45)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
 
 ## Dependency Analysis
 - Service coupling:
@@ -303,14 +303,14 @@ CS --> LLM["LLM Providers"]
 ```
 
 **Diagram sources**
-- [docs/Architecture.md:27-34](file://docs/Architecture.md#L27-L34)
-- [backend/main.py:14-22](file://backend/main.py#L14-L22)
-- [chatbot_service/main.py:25-38](file://chatbot_service/main.py#L25-L38)
+- [docs/Architecture.md:27-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L27-L34)
+- [backend/main.py:14-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L14-L22)
+- [chatbot_service/main.py:25-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L25-L38)
 
 **Section sources**
-- [docs/Architecture.md:27-34](file://docs/Architecture.md#L27-L34)
-- [backend/main.py:14-22](file://backend/main.py#L14-L22)
-- [chatbot_service/main.py:25-38](file://chatbot_service/main.py#L25-L38)
+- [docs/Architecture.md:27-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L27-L34)
+- [backend/main.py:14-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L14-L22)
+- [chatbot_service/main.py:25-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L25-L38)
 
 ## Performance Considerations
 - Caching:
@@ -325,9 +325,9 @@ CS --> LLM["LLM Providers"]
   - Enterprise-scale offline file uploads and distributed processing require object storage and Supabase Realtime synchronization.
 
 **Section sources**
-- [docs/Architecture.md:128-137](file://docs/Architecture.md#L128-L137)
-- [docs/Offline_Architecture.md:12-23](file://docs/Offline_Architecture.md#L12-L23)
-- [render.yaml:8-9](file://render.yaml#L8-L9)
+- [docs/Architecture.md:128-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L128-L137)
+- [docs/Offline_Architecture.md:12-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L12-L23)
+- [render.yaml:8-9](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L8-L9)
 
 ## Troubleshooting Guide
 Common issues and diagnostics:
@@ -341,10 +341,10 @@ Common issues and diagnostics:
   - IndexedDB queue persists SOS events; ensure background sync is registered and online event handlers are attached.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [frontend/lib/offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
-- [frontend/lib/offline-sos-queue.ts:75-137](file://frontend/lib/offline-sos-queue.ts#L75-L137)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [frontend/lib/offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
+- [frontend/lib/offline-sos-queue.ts:75-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L137)
 
 ## Conclusion
 SafeVixAI’s microservices architecture cleanly separates concerns across backend, chatbot, and frontend services, enabling robust offline-first capabilities through service workers, IndexedDB, DuckDB-Wasm, and local AI engines. The system integrates cloud-hosted services for scalability and resilience, while maintaining stateless operations and free-tier deployments across Render, Vercel, Supabase, and Upstash. The documented offline architecture outlines a clear path to enterprise-grade reliability with object storage and Supabase Realtime for distributed offline resync.
@@ -357,10 +357,10 @@ SafeVixAI’s microservices architecture cleanly separates concerns across backe
 - Frontend: Next.js 15 for SSR/SSG; WebLLM/Transformers.js for offline AI; DuckDB-Wasm/HNSWlib-wasm for offline RAG; MapLibre GL for maps; IndexedDB for offline queues.
 
 **Section sources**
-- [README.md:112-121](file://README.md#L112-L121)
-- [backend/requirements.txt:1-46](file://backend/requirements.txt#L1-L46)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [frontend/package.json:14-53](file://frontend/package.json#L14-L53)
+- [README.md:112-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L112-L121)
+- [backend/requirements.txt:1-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L46)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [frontend/package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
 
 ### Cross-Cutting Concerns
 - Security:
@@ -371,9 +371,9 @@ SafeVixAI’s microservices architecture cleanly separates concerns across backe
   - Render ephemeral disk risk mitigated by transitioning to object storage for offline file uploads; Supabase Realtime for offline queue resync.
 
 **Section sources**
-- [backend/main.py:66-72](file://backend/main.py#L66-L72)
-- [chatbot_service/main.py:95-104](file://chatbot_service/main.py#L95-L104)
-- [docs/Offline_Architecture.md:8-23](file://docs/Offline_Architecture.md#L8-L23)
+- [backend/main.py:66-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L66-L72)
+- [chatbot_service/main.py:95-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L95-L104)
+- [docs/Offline_Architecture.md:8-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L8-L23)
 
 ### System Context Diagrams
 - Service boundaries and communication protocols:
@@ -382,5 +382,5 @@ SafeVixAI’s microservices architecture cleanly separates concerns across backe
   - Backend uses Supabase/PostgreSQL with PostGIS; Redis for cache; DuckDB for offline computations; Frontend uses IndexedDB and browser cache.
 
 **Section sources**
-- [docs/Architecture.md:5-45](file://docs/Architecture.md#L5-L45)
-- [render.yaml:1-83](file://render.yaml#L1-L83)
+- [docs/Architecture.md:5-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L5-L45)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)

@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [README.md](file://README.md)
-- [DESIGN.md](file://DESIGN.md)
-- [docs/PRD.md](file://docs/PRD.md)
-- [docs/Features.md](file://docs/Features.md)
-- [docs/Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [docs/TechStack.md](file://docs/TechStack.md)
-- [backend/main.py](file://backend/main.py)
-- [backend/api/v1/__init__.py](file://backend/api/v1/__init__.py)
-- [backend/api/v1/emergency.py](file://backend/api/v1/emergency.py)
-- [backend/api/v1/challan.py](file://backend/api/v1/challan.py)
-- [backend/api/v1/roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [frontend/package.json](file://frontend/package.json)
-- [frontend/lib/offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [frontend/lib/offline-rag.ts](file://frontend/lib/offline-rag.ts)
+- [README.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md)
+- [DESIGN.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md)
+- [docs/PRD.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/PRD.md)
+- [docs/Features.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md)
+- [docs/Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [docs/TechStack.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/api/v1/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py)
+- [backend/api/v1/emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [backend/api/v1/challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [backend/api/v1/roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [frontend/lib/offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [frontend/lib/offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
 </cite>
 
 ## Table of Contents
@@ -46,8 +46,8 @@ Practical examples of impact:
 - A passenger reports a pothole via camera; the in-browser YOLO model confirms the issue, and the report is routed to the correct authority with a future background-sync submission.
 
 **Section sources**
-- [README.md:10-18](file://README.md#L10-L18)
-- [docs/PRD.md:3-14](file://docs/PRD.md#L3-L14)
+- [README.md:10-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L10-L18)
+- [docs/PRD.md:3-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/PRD.md#L3-L14)
 
 ## Project Structure
 SafeVixAI follows a three-service architecture:
@@ -87,14 +87,14 @@ CB_APP --> CB_ENGINE
 ```
 
 **Diagram sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [backend/api/v1/__init__.py:17-27](file://backend/api/v1/__init__.py#L17-L27)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [frontend/package.json:14-53](file://frontend/package.json#L14-L53)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [backend/api/v1/__init__.py:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L27)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [frontend/package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
 
 **Section sources**
-- [README.md:57-70](file://README.md#L57-L70)
-- [docs/TechStack.md:7-27](file://docs/TechStack.md#L7-L27)
+- [README.md:57-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L57-L70)
+- [docs/TechStack.md:7-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L7-L27)
 
 ## Core Modules
 - Emergency Locator (SafeVixAI Core)
@@ -107,8 +107,8 @@ CB_APP --> CB_ENGINE
   - Geotagged reporting, in-browser YOLOv8n pothole detection, authority routing, offline queue, and community issues layer.
 
 **Section sources**
-- [docs/PRD.md:7-14](file://docs/PRD.md#L7-L14)
-- [docs/Features.md:3-185](file://docs/Features.md#L3-L185)
+- [docs/PRD.md:7-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/PRD.md#L7-L14)
+- [docs/Features.md:3-185](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L3-L185)
 
 ## Architecture Overview
 SafeVixAI employs an offline-first, browser-native AI architecture:
@@ -152,16 +152,16 @@ CB --> API
 ```
 
 **Diagram sources**
-- [docs/Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
-- [frontend/lib/offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [frontend/lib/offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [docs/TechStack.md:56-68](file://docs/TechStack.md#L56-L68)
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
+- [docs/Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
+- [frontend/lib/offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [frontend/lib/offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [docs/TechStack.md:56-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L56-L68)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
 
 **Section sources**
-- [docs/Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
-- [docs/TechStack.md:56-68](file://docs/TechStack.md#L56-L68)
+- [docs/Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
+- [docs/TechStack.md:56-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L56-L68)
 
 ## Detailed Component Analysis
 
@@ -189,12 +189,12 @@ UI-->>User : "Map + list + directions"
 ```
 
 **Diagram sources**
-- [backend/api/v1/emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
-- [docs/Features.md:11-23](file://docs/Features.md#L11-L23)
+- [backend/api/v1/emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
+- [docs/Features.md:11-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L11-L23)
 
 **Section sources**
-- [docs/Features.md:5-54](file://docs/Features.md#L5-L54)
-- [backend/api/v1/emergency.py:19-76](file://backend/api/v1/emergency.py#L19-L76)
+- [docs/Features.md:5-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L5-L54)
+- [backend/api/v1/emergency.py:19-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L76)
 
 ### AI Chatbot (SafeVixAI + DriveLegal)
 - Intent detection: Nine intents mapped to tools (find hospital, police, ambulance, tow, first aid, challan query, road report, legal info, other).
@@ -221,12 +221,12 @@ UI-->>User : "Text + voice output"
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [docs/Features.md:57-103](file://docs/Features.md#L57-L103)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [docs/Features.md:57-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L57-L103)
 
 **Section sources**
-- [docs/Features.md:57-103](file://docs/Features.md#L57-L103)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
+- [docs/Features.md:57-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L57-L103)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
 
 ### Challan Calculator (DriveLegal)
 - Fine engine: DuckDB SQL join of national violations and state overrides; supports 22+ MVA sections and five vehicle types.
@@ -243,12 +243,12 @@ Result --> End(["User shares or saves"])
 ```
 
 **Diagram sources**
-- [docs/Features.md:106-122](file://docs/Features.md#L106-L122)
-- [backend/api/v1/challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
+- [docs/Features.md:106-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L106-L122)
+- [backend/api/v1/challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
 
 **Section sources**
-- [docs/Features.md:106-122](file://docs/Features.md#L106-L122)
-- [backend/api/v1/challan.py:17-26](file://backend/api/v1/challan.py#L17-L26)
+- [docs/Features.md:106-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L106-L122)
+- [backend/api/v1/challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L26)
 
 ### Road Reporter (RoadWatch)
 - Reporting workflow: Type, severity, GPS, optional photo, description; AI detects potholes via YOLOv8n; routes to NHAI/PWD/PMGSY.
@@ -273,12 +273,12 @@ UI-->>User : "Toast : Saved offline if needed"
 ```
 
 **Diagram sources**
-- [docs/Features.md:125-155](file://docs/Features.md#L125-L155)
-- [backend/api/v1/roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
+- [docs/Features.md:125-155](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L125-L155)
+- [backend/api/v1/roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
 
 **Section sources**
-- [docs/Features.md:125-155](file://docs/Features.md#L125-L155)
-- [backend/api/v1/roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
+- [docs/Features.md:125-155](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L125-L155)
+- [backend/api/v1/roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
 
 ### Offline-First Architecture and Offline AI
 - Offline AI engine: System AI (Chrome/Android AICore) check, fallback to Transformers.js Gemma 4 E2B, and keyword fallback.
@@ -301,13 +301,13 @@ TFResp --> |No| Fallback["Keyword fallback"]
 ```
 
 **Diagram sources**
-- [frontend/lib/offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
-- [frontend/lib/offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
+- [frontend/lib/offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
+- [frontend/lib/offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
 
 **Section sources**
-- [docs/Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
-- [frontend/lib/offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [frontend/lib/offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [docs/Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
+- [frontend/lib/offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [frontend/lib/offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
 
 ## Dependency Analysis
 - Frontend depends on Next.js 15, React 19, Tailwind CSS, MapLibre GL, DuckDB-Wasm, Transformers.js, WebLLM, and HNSWlib-wasm.
@@ -330,13 +330,13 @@ FE --> CV["Transformers.js + YOLOv8n"]
 ```
 
 **Diagram sources**
-- [frontend/package.json:14-53](file://frontend/package.json#L14-L53)
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [docs/TechStack.md:56-68](file://docs/TechStack.md#L56-L68)
+- [frontend/package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [docs/TechStack.md:56-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L56-L68)
 
 **Section sources**
-- [docs/TechStack.md:31-189](file://docs/TechStack.md#L31-L189)
+- [docs/TechStack.md:31-189](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L31-L189)
 
 ## Performance Considerations
 - Offline readiness: First-load offline bundles ensure core features (locator, chat, challan, reporter) remain functional immediately.
@@ -359,11 +359,11 @@ FE --> CV["Transformers.js + YOLOv8n"]
   - Ensure database table creation and insert for sos_incidents; confirm Overpass/Nominatim availability if PostGIS results are sparse.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [backend/api/v1/challan.py:22-25](file://backend/api/v1/challan.py#L22-L25)
-- [backend/api/v1/roadwatch.py:37-42](file://backend/api/v1/roadwatch.py#L37-L42)
-- [backend/api/v1/emergency.py:51-67](file://backend/api/v1/emergency.py#L51-L67)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [backend/api/v1/challan.py:22-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L22-L25)
+- [backend/api/v1/roadwatch.py:37-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L37-L42)
+- [backend/api/v1/emergency.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L51-L67)
 
 ## Conclusion
 SafeVixAI delivers a three-in-one road safety solution that is reliable, accessible, and open. Its offline-first design, in-browser AI engines, and deterministic legal calculations make it suitable for India’s diverse connectivity landscape. By leveraging free-tier infrastructure and browser-native capabilities, the platform achieves zero infrastructure costs while maintaining high impact for emergency response, legal education, and road accountability.
@@ -380,8 +380,8 @@ SafeVixAI delivers a three-in-one road safety solution that is reliable, accessi
 - Zero infrastructure cost: All tiers are free; total cost is zero.
 
 **Section sources**
-- [docs/TechStack.md:7-27](file://docs/TechStack.md#L7-L27)
-- [README.md:112-121](file://README.md#L112-L121)
+- [docs/TechStack.md:7-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L7-L27)
+- [README.md:112-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L112-L121)
 
 ### UI/UX Philosophy and Accessibility
 - Dark tactical theme with emergency-centric color tokens and terminal-style UI.
@@ -389,8 +389,8 @@ SafeVixAI delivers a three-in-one road safety solution that is reliable, accessi
 - Accessibility: WCAG AA contrast, 44 px touch targets, voice input, and multilingual support.
 
 **Section sources**
-- [DESIGN.md:13-31](file://DESIGN.md#L13-L31)
-- [DESIGN.md:367-530](file://DESIGN.md#L367-L530)
+- [DESIGN.md:13-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md#L13-L31)
+- [DESIGN.md:367-530](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md#L367-L530)
 
 ## HuggingFace Dataset Hub
 

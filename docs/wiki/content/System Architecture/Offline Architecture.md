@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [violations.csv](file://frontend/public/offline-data/violations.csv)
-- [state_overrides.csv](file://frontend/public/offline-data/state_overrides.csv)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [next.config.js](file://frontend/next.config.js)
-- [package.json](file://frontend/package.json)
-- [OfflineChat.tsx](file://frontend/components/OfflineChat.tsx)
-- [page.tsx (Emergency)](file://frontend/app/emergency/page.tsx)
-- [page.tsx (Challan)](file://frontend/app/challan/page.tsx)
-- [page.tsx (Report)](file://frontend/app/report/page.tsx)
-- [emergency-numbers.ts](file://frontend/lib/emergency-numbers.ts)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [violations.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
+- [package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [OfflineChat.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/OfflineChat.tsx)
+- [page.tsx (Emergency)](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx)
+- [page.tsx (Challan)](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx)
+- [page.tsx (Report)](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx)
+- [emergency-numbers.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts)
 </cite>
 
 ## Table of Contents
@@ -77,8 +77,8 @@ Report --> IDB
 ```
 
 **Section sources**
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
-- [package.json:14-52](file://frontend/package.json#L14-L52)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
 
 ## Core Components
 - App shell and service worker precache: Ensures critical assets are cached for offline readiness.
@@ -88,13 +88,13 @@ Report --> IDB
 - Road reports: IndexedDB stores SOS events and triggers background sync when connectivity returns.
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [page.tsx (Emergency):109-107](file://frontend/app/emergency/page.tsx#L109-L107)
-- [page.tsx (Challan):45-320](file://frontend/app/challan/page.tsx#L45-L320)
-- [page.tsx (Report):101-557](file://frontend/app/report/page.tsx#L101-L557)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [page.tsx (Emergency):109-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx#L109-L107)
+- [page.tsx (Challan):45-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L320)
+- [page.tsx (Report):101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
 
 ## Architecture Overview
 The offline-first architecture progressively enhances capabilities:
@@ -121,10 +121,10 @@ D --- HNSW
 ```
 
 **Diagram sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
 
 ## Detailed Component Analysis
 
@@ -145,8 +145,8 @@ Fallback --> Ready
 ```
 
 **Section sources**
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
-- [next.config.js:4-14](file://frontend/next.config.js#L4-L14)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
+- [next.config.js:4-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L4-L14)
 
 ### Layer 2: Emergency POI Data with GeoJSON and Turf.js
 - Purpose: Display cached emergency points-of-interest (POIs) near the user’s location.
@@ -169,8 +169,8 @@ Map-->>UI : Render POI circles
 ```
 
 **Section sources**
-- [page.tsx (Emergency):19-61](file://frontend/app/emergency/page.tsx#L19-L61)
-- [page.tsx (Emergency):19-61](file://frontend/app/emergency/page.tsx#L19-L61)
+- [page.tsx (Emergency):19-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx#L19-L61)
+- [page.tsx (Emergency):19-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx#L19-L61)
 
 ### Layer 3: Challan Calculator with DuckDB-Wasm
 - Purpose: Compute challan fines offline using cached datasets and DuckDB-Wasm.
@@ -187,10 +187,10 @@ Query --> Result["Return base/repeat fine + section"]
 ```
 
 **Section sources**
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
-- [page.tsx (Challan):45-320](file://frontend/app/challan/page.tsx#L45-L320)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [page.tsx (Challan):45-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L320)
 
 ### Layer 4: AI Chatbot with WebLLM Phi-3 Mini and HNSWlib.js
 - Purpose: Enable offline AI reasoning and retrieval augmented generation (RAG) for road safety queries.
@@ -212,9 +212,9 @@ OfflineAI-->>UI : Response (model/system fallback)
 ```
 
 **Section sources**
-- [OfflineChat.tsx:6-21](file://frontend/components/OfflineChat.tsx#L6-L21)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:18-34](file://frontend/lib/offline-rag.ts#L18-L34)
+- [OfflineChat.tsx:6-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/OfflineChat.tsx#L6-L21)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:18-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L18-L34)
 
 ### Layer 5: Road Reports with IndexedDB and Background Sync
 - Purpose: Queue and persist SOS and report events while offline; sync when connectivity returns.
@@ -240,8 +240,8 @@ SW->>IDB : Delete synced items
 ```
 
 **Section sources**
-- [offline-sos-queue.ts:25-138](file://frontend/lib/offline-sos-queue.ts#L25-L138)
-- [page.tsx (Report):232-258](file://frontend/app/report/page.tsx#L232-L258)
+- [offline-sos-queue.ts:25-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L138)
+- [page.tsx (Report):232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
 
 ## Dependency Analysis
 - Build-time dependencies:
@@ -264,12 +264,12 @@ NextCfg["next.config.js"] --> WASM["Async WebAssembly + Workers"]
 ```
 
 **Diagram sources**
-- [package.json:14-52](file://frontend/package.json#L14-L52)
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
 
 **Section sources**
-- [package.json:14-52](file://frontend/package.json#L14-L52)
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
 
 ## Performance Considerations
 - Offline AI model size and caching:
@@ -298,11 +298,11 @@ NextCfg["next.config.js"] --> WASM["Async WebAssembly + Workers"]
   - If sync does not trigger, verify ServiceWorker registration and SyncManager availability.
 
 **Section sources**
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
-- [offline-ai.ts:71-154](file://frontend/lib/offline-ai.ts#L71-L154)
-- [duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
-- [offline-sos-queue.ts:29-42](file://frontend/lib/offline-sos-queue.ts#L29-L42)
-- [offline-sos-queue.ts:61-68](file://frontend/lib/offline-sos-queue.ts#L61-L68)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
+- [offline-ai.ts:71-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L71-L154)
+- [duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
+- [offline-sos-queue.ts:29-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L29-L42)
+- [offline-sos-queue.ts:61-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L61-L68)
 
 ## Conclusion
 SafeVixAI’s five-layer offline-first architecture delivers robust offline experiences across emergency protocols, challan calculations, AI-powered assistance, and road reporting. By combining service worker precaching, local data assets, IndexedDB persistence, and WebAssembly-based engines, the system remains resilient and responsive even without connectivity.
@@ -316,13 +316,13 @@ SafeVixAI’s five-layer offline-first architecture delivers robust offline expe
 - Challan datasets are bundled as CSV files for offline querying.
 
 **Section sources**
-- [emergency-numbers.ts:10-124](file://frontend/lib/emergency-numbers.ts#L10-L124)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [emergency-numbers.ts:10-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L10-L124)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
 
 ### Appendix B: Offline Architecture Vision
 - Current state: Queued SOS events and cached chat logs stored in IndexedDB; uploads use Workbox background sync.
 - Enterprise-scale considerations: Use object storage for images and Supabase Realtime for offline resync.
 
 **Section sources**
-- [Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
+- [Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)

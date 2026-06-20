@@ -2,18 +2,18 @@
 
 <cite>
 **Referenced Files in This Document**
-- [authority_router.py](file://backend/services/authority_router.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [config.py](file://backend/core/config.py)
-- [import_road_infrastructure.py](file://backend/scripts/app/import_road_infrastructure.py)
-- [prepare_road_sources.py](file://backend/scripts/data/prepare_road_sources.py)
-- [road_sources.example.json](file://backend/data/road_sources.example.json)
-- [page.tsx](file://frontend/app/report/page.tsx)
-- [emergency-numbers.ts](file://frontend/lib/emergency-numbers.ts)
+- [authority_router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [import_road_infrastructure.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_road_infrastructure.py)
+- [prepare_road_sources.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py)
+- [road_sources.example.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx)
+- [emergency-numbers.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts)
 </cite>
 
 ## Table of Contents
@@ -72,28 +72,28 @@ FE --> API
 ```
 
 **Diagram sources**
-- [roadwatch.py:53-70](file://backend/api/v1/roadwatch.py#L53-L70)
-- [roadwatch_service.py:70-125](file://backend/services/roadwatch_service.py#L70-L125)
-- [authority_router.py:48-114](file://backend/services/authority_router.py#L48-L114)
-- [overpass_service.py:80-107](file://backend/services/overpass_service.py#L80-L107)
-- [road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
-- [schemas.py:83-116](file://backend/models/schemas.py#L83-L116)
-- [import_road_infrastructure.py:204-250](file://backend/scripts/app/import_road_infrastructure.py#L204-L250)
-- [prepare_road_sources.py:145-194](file://backend/scripts/data/prepare_road_sources.py#L145-L194)
-- [road_sources.example.json:1-69](file://backend/data/road_sources.example.json#L1-L69)
-- [page.tsx:504-508](file://frontend/app/report/page.tsx#L504-L508)
+- [roadwatch.py:53-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L53-L70)
+- [roadwatch_service.py:70-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L125)
+- [authority_router.py:48-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L114)
+- [overpass_service.py:80-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L107)
+- [road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
+- [schemas.py:83-116](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L116)
+- [import_road_infrastructure.py:204-250](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_road_infrastructure.py#L204-L250)
+- [prepare_road_sources.py:145-194](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L145-L194)
+- [road_sources.example.json:1-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json#L1-L69)
+- [page.tsx:504-508](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L504-L508)
 
 **Section sources**
-- [roadwatch.py:19-70](file://backend/api/v1/roadwatch.py#L19-L70)
-- [roadwatch_service.py:56-125](file://backend/services/roadwatch_service.py#L56-L125)
-- [authority_router.py:42-114](file://backend/services/authority_router.py#L42-L114)
-- [overpass_service.py:24-107](file://backend/services/overpass_service.py#L24-L107)
-- [road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
-- [schemas.py:83-116](file://backend/models/schemas.py#L83-L116)
-- [import_road_infrastructure.py:204-250](file://backend/scripts/app/import_road_infrastructure.py#L204-L250)
-- [prepare_road_sources.py:145-194](file://backend/scripts/data/prepare_road_sources.py#L145-L194)
-- [road_sources.example.json:1-69](file://backend/data/road_sources.example.json#L1-L69)
-- [page.tsx:504-508](file://frontend/app/report/page.tsx#L504-L508)
+- [roadwatch.py:19-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L70)
+- [roadwatch_service.py:56-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L125)
+- [authority_router.py:42-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L114)
+- [overpass_service.py:24-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L107)
+- [road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
+- [schemas.py:83-116](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L116)
+- [import_road_infrastructure.py:204-250](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_road_infrastructure.py#L204-L250)
+- [prepare_road_sources.py:145-194](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L145-L194)
+- [road_sources.example.json:1-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json#L1-L69)
+- [page.tsx:504-508](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L504-L508)
 
 ## Core Components
 - AuthorityRouter: Central algorithm that resolves road ownership and authority based on spatial lookup and OpenStreetMap context.
@@ -104,12 +104,12 @@ FE --> API
 - Import pipeline: Scripts to normalize and import government datasets into the road_infrastructure table.
 
 **Section sources**
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [roadwatch_service.py:56-125](file://backend/services/roadwatch_service.py#L56-L125)
-- [overpass_service.py:24-122](file://backend/services/overpass_service.py#L24-L122)
-- [road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
-- [schemas.py:83-116](file://backend/models/schemas.py#L83-L116)
-- [import_road_infrastructure.py:132-163](file://backend/scripts/app/import_road_infrastructure.py#L132-L163)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [roadwatch_service.py:56-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L125)
+- [overpass_service.py:24-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L122)
+- [road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
+- [schemas.py:83-116](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L116)
+- [import_road_infrastructure.py:132-163](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_road_infrastructure.py#L132-L163)
 
 ## Architecture Overview
 The authority routing process combines a spatial database lookup with a fallback to OSM-based road classification. The system caches results and enriches the response with executive engineer and budget details when available.
@@ -140,11 +140,11 @@ API-->>Client : JSON response
 ```
 
 **Diagram sources**
-- [roadwatch.py:53-60](file://backend/api/v1/roadwatch.py#L53-L60)
-- [roadwatch_service.py:70-77](file://backend/services/roadwatch_service.py#L70-L77)
-- [authority_router.py:48-79](file://backend/services/authority_router.py#L48-L79)
-- [overpass_service.py:80-107](file://backend/services/overpass_service.py#L80-L107)
-- [road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
+- [roadwatch.py:53-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L53-L60)
+- [roadwatch_service.py:70-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L77)
+- [authority_router.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L79)
+- [overpass_service.py:80-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L107)
+- [road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
 
 ## Detailed Component Analysis
 
@@ -172,12 +172,12 @@ Fallback --> End
 ```
 
 **Diagram sources**
-- [authority_router.py:48-126](file://backend/services/authority_router.py#L48-L126)
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
+- [authority_router.py:48-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L126)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
 
 **Section sources**
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
 
 ### RoadWatchService: Caching, Escalation, and Submission
 - Caching: Uses Redis to cache authority and infrastructure responses for performance.
@@ -205,12 +205,12 @@ RoadWatchService --> OverpassService : "uses"
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:56-125](file://backend/services/roadwatch_service.py#L56-L125)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [overpass_service.py:24-107](file://backend/services/overpass_service.py#L24-L107)
+- [roadwatch_service.py:56-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L125)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [overpass_service.py:24-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L107)
 
 **Section sources**
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
 
 ### OverpassService: OpenStreetMap Road Context
 - Extracts road candidates around a point, classifies highway tags, and returns the closest match with road type, name, and number.
@@ -229,10 +229,10 @@ Best --> Return["Return RoadContext"]
 ```
 
 **Diagram sources**
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
 
 **Section sources**
-- [overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
+- [overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
 
 ### Road Ownership Database and Executive Engineer Assignment
 - RoadInfrastructure table stores road segments with geometry, ownership classification fields, and asset intelligence (executive engineer, contractor, budgets, dates).
@@ -263,10 +263,10 @@ string data_source_url
 ```
 
 **Diagram sources**
-- [road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
+- [road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
 
 **Section sources**
-- [road_issue.py:42-66](file://backend/models/road_issue.py#L42-L66)
+- [road_issue.py:42-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L42-L66)
 
 ### Authority Preview API Response Structure
 The authority preview response includes road classification, authority contact, escalation path, and optional asset intelligence.
@@ -295,10 +295,10 @@ class AuthorityPreviewResponse {
 ```
 
 **Diagram sources**
-- [schemas.py:83-101](file://backend/models/schemas.py#L83-L101)
+- [schemas.py:83-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L101)
 
 **Section sources**
-- [schemas.py:83-101](file://backend/models/schemas.py#L83-L101)
+- [schemas.py:83-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L101)
 
 ### Escalation Path Determination and Severity Mapping
 - The system maps road ownership codes to escalation paths (e.g., Ministry of Road Transport, State Transport Minister, District Magistrate).
@@ -317,24 +317,24 @@ Emergency --> Escalate
 ```
 
 **Section sources**
-- [page.tsx:55-61](file://frontend/app/report/page.tsx#L55-L61)
+- [page.tsx:55-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L55-L61)
 
 ### Complaint Portal Linking and Helpline Integration
 - AuthorityRouter provides a complaint portal URL and helpline number per road ownership code.
 - Frontend displays the portal link and escalation path for quick action.
 
 **Section sources**
-- [authority_router.py:25-31](file://backend/services/authority_router.py#L25-L31)
-- [page.tsx:504-508](file://frontend/app/report/page.tsx#L504-L508)
-- [emergency-numbers.ts:104-119](file://frontend/lib/emergency-numbers.ts#L104-L119)
+- [authority_router.py:25-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L25-L31)
+- [page.tsx:504-508](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L504-L508)
+- [emergency-numbers.ts:104-119](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L104-L119)
 
 ### Fallback Mechanisms and Manual Override Capabilities
 - Unknown road ownership: If no road segment is found in the database and OverpassService fails, the system falls back to URBAN authority with default contact details.
 - Manual override: The system’s design allows administrators to update the authority matrix and import pipeline to reflect jurisdictional overrides or new datasets.
 
 **Section sources**
-- [authority_router.py:73-126](file://backend/services/authority_router.py#L73-L126)
-- [road_sources.example.json:1-69](file://backend/data/road_sources.example.json#L1-L69)
+- [authority_router.py:73-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L73-L126)
+- [road_sources.example.json:1-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json#L1-L69)
 
 ### Government Dataset Integration
 - Import pipeline: Normalizes diverse CSV/JSON/GeoJSON sources into a unified RoadInfrastructure table with standardized fields.
@@ -350,14 +350,14 @@ Import --> DB["PostgreSQL road_infrastructure"]
 ```
 
 **Diagram sources**
-- [prepare_road_sources.py:145-194](file://backend/scripts/data/prepare_road_sources.py#L145-L194)
-- [import_road_infrastructure.py:204-250](file://backend/scripts/app/import_road_infrastructure.py#L204-L250)
-- [road_sources.example.json:1-69](file://backend/data/road_sources.example.json#L1-L69)
+- [prepare_road_sources.py:145-194](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L145-L194)
+- [import_road_infrastructure.py:204-250](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_road_infrastructure.py#L204-L250)
+- [road_sources.example.json:1-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json#L1-L69)
 
 **Section sources**
-- [prepare_road_sources.py:1-195](file://backend/scripts/data/prepare_road_sources.py#L1-L195)
-- [import_road_infrastructure.py:132-163](file://backend/scripts/app/import_road_infrastructure.py#L132-L163)
-- [road_sources.example.json:1-69](file://backend/data/road_sources.example.json#L1-L69)
+- [prepare_road_sources.py:1-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/prepare_road_sources.py#L1-L195)
+- [import_road_infrastructure.py:132-163](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/import_road_infrastructure.py#L132-L163)
+- [road_sources.example.json:1-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/data/road_sources.example.json#L1-L69)
 
 ## Dependency Analysis
 - AuthorityRouter depends on Settings, OverpassService, CacheHelper, RoadInfrastructure model, and Pydantic schemas.
@@ -380,16 +380,16 @@ API["/api/v1/roads"] --> RoadWatchService
 ```
 
 **Diagram sources**
-- [authority_router.py:42-46](file://backend/services/authority_router.py#L42-L46)
-- [roadwatch_service.py:56-68](file://backend/services/roadwatch_service.py#L56-L68)
-- [overpass_service.py:24-26](file://backend/services/overpass_service.py#L24-L26)
-- [roadwatch.py:53-60](file://backend/api/v1/roadwatch.py#L53-L60)
+- [authority_router.py:42-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L46)
+- [roadwatch_service.py:56-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L68)
+- [overpass_service.py:24-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L26)
+- [roadwatch.py:53-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L53-L60)
 
 **Section sources**
-- [authority_router.py:42-46](file://backend/services/authority_router.py#L42-L46)
-- [roadwatch_service.py:56-68](file://backend/services/roadwatch_service.py#L56-L68)
-- [overpass_service.py:24-26](file://backend/services/overpass_service.py#L24-L26)
-- [roadwatch.py:53-60](file://backend/api/v1/roadwatch.py#L53-L60)
+- [authority_router.py:42-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L46)
+- [roadwatch_service.py:56-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L68)
+- [overpass_service.py:24-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L26)
+- [roadwatch.py:53-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L53-L60)
 
 ## Performance Considerations
 - Spatial indexing: RoadInfrastructure geometry is indexed in PostGIS to accelerate ST_DWithin and ST_Distance queries.
@@ -414,9 +414,9 @@ API["/api/v1/roads"] --> RoadWatchService
   - Validate Settings for timeouts, URLs, and allowed content types.
 
 **Section sources**
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [overpass_service.py:123-134](file://backend/services/overpass_service.py#L123-L134)
-- [config.py:35-47](file://backend/core/config.py#L35-L47)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [overpass_service.py:123-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L123-L134)
+- [config.py:35-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L35-L47)
 
 ## Conclusion
 The Authority Routing System provides a robust, extensible framework for assigning the correct government authority to road issues. By combining spatially-aware road ownership data with OSM-based fallbacks, it ensures reliable authority identification even in areas with incomplete datasets. The system’s caching, escalation-aware responses, and integration with complaint portals and helplines streamline citizen engagement and improve maintenance outcomes. Administrators can evolve the system by updating the authority matrix and importing new government datasets to reflect changing jurisdictions and asset ownership.

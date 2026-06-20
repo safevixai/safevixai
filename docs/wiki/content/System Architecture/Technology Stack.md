@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/requirements.txt](file://backend/requirements.txt)
-- [chatbot_service/requirements.txt](file://chatbot_service/requirements.txt)
-- [frontend/package.json](file://frontend/package.json)
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [backend/core/database.py](file://backend/core/database.py)
-- [backend/core/redis_client.py](file://backend/core/redis_client.py)
-- [backend/migrations/env.py](file://backend/migrations/env.py)
-- [frontend/lib/offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [frontend/lib/duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [frontend/components/maps/MapLibreCanvas.tsx](file://frontend/components/maps/MapLibreCanvas.tsx)
-- [frontend/public/manifest.json](file://frontend/public/manifest.json)
-- [docs/TechStack.md](file://docs/TechStack.md)
+- [backend/requirements.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt)
+- [chatbot_service/requirements.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [backend/core/database.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py)
+- [backend/core/redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
+- [backend/migrations/env.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py)
+- [frontend/lib/offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [frontend/lib/duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [frontend/components/maps/MapLibreCanvas.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx)
+- [frontend/public/manifest.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json)
+- [docs/TechStack.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md)
 </cite>
 
 ## Table of Contents
@@ -77,14 +77,14 @@ CB_API --> |"Memory"| CB_Redis
 ```
 
 **Diagram sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [frontend/package.json:14-52](file://frontend/package.json#L14-L52)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [frontend/package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
 
 **Section sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [frontend/package.json:14-52](file://frontend/package.json#L14-L52)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [frontend/package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
 
 ## Core Components
 - Backend stack: FastAPI 0.136.0, SQLAlchemy 2.0.49, PostgreSQL 16 + PostGIS 3.4, Redis 7.4.0, Alembic 1.18.4, httpx, DuckDB, geopandas/shapely/geopy, numpy/pandas/Pillow, Pydantic/pydantic-settings/python-dotenv, python-multipart/aiofiles/pypdf.
@@ -92,10 +92,10 @@ CB_API --> |"Memory"| CB_Redis
 - Frontend stack: Next.js 15.3.1, React 19.1.0, TypeScript 5.5.3, MapLibre GL 5.22.0, @mlc-ai/web-llm 0.2.73, @huggingface/transformers 4.0.1, @duckdb/duckdb-wasm 1.29.0, hnswlib-wasm, @turf/turf 6.5.0, idb 8.0.0, zustand 4.5.4, swr 2.2.5, axios, motion/react-hot-toast/lucide-react, shadcn, three.js/@react-three/fiber, Tailwind CSS.
 
 **Section sources**
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [frontend/package.json:14-52](file://frontend/package.json#L14-L52)
-- [docs/TechStack.md:31-68](file://docs/TechStack.md#L31-L68)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [frontend/package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [docs/TechStack.md:31-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L31-L68)
 
 ## Architecture Overview
 SafeVixAI employs a distributed, offline-first architecture:
@@ -121,14 +121,14 @@ Client --> HNSW
 ```
 
 **Diagram sources**
-- [frontend/lib/offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
-- [frontend/lib/duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
-- [frontend/public/manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [frontend/lib/offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
+- [frontend/lib/duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
+- [frontend/public/manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 **Section sources**
-- [frontend/lib/offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
-- [frontend/lib/duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
-- [frontend/public/manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [frontend/lib/offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
+- [frontend/lib/duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
+- [frontend/public/manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 ## Detailed Component Analysis
 
@@ -147,12 +147,12 @@ Key runtime configuration and lifecycle:
 - Health endpoint checks database and cache availability.
 
 **Section sources**
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
-- [backend/core/database.py:16-50](file://backend/core/database.py#L16-L50)
-- [backend/core/redis_client.py:136-140](file://backend/core/redis_client.py#L136-L140)
-- [backend/migrations/env.py:14-64](file://backend/migrations/env.py#L14-L64)
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [backend/core/database.py:16-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L16-L50)
+- [backend/core/redis_client.py:136-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L136-L140)
+- [backend/migrations/env.py:14-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/migrations/env.py#L14-L64)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
 
 ### Chatbot Service Stack
 - Framework: FastAPI 0.136.0 with Uvicorn standard and SlowAPI rate limiting.
@@ -169,9 +169,9 @@ Agent architecture:
 - Tools cover SOS, challan calculation, legal search, first aid, road infrastructure, weather, geocoding, and report submission.
 
 **Section sources**
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [chatbot_service/config.py:40-126](file://chatbot_service/config.py#L40-L126)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [chatbot_service/config.py:40-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L40-L126)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
 
 ### Frontend Stack
 - Framework: Next.js 15.3.1, React 19.1.0, TypeScript 5.5.3, Tailwind CSS 3.4.10.
@@ -188,11 +188,11 @@ Offline technologies:
 - Service Worker and Cache Storage for offline caching and background sync.
 
 **Section sources**
-- [frontend/package.json:14-52](file://frontend/package.json#L14-L52)
-- [frontend/components/maps/MapLibreCanvas.tsx:300-560](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L560)
-- [frontend/lib/offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
-- [frontend/lib/duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
-- [frontend/public/manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [frontend/package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [frontend/components/maps/MapLibreCanvas.tsx:300-560](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L560)
+- [frontend/lib/offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
+- [frontend/lib/duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
+- [frontend/public/manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 ### Offline AI Pipeline (WebLLM)
 ```mermaid
@@ -216,10 +216,10 @@ end
 ```
 
 **Diagram sources**
-- [frontend/lib/offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
+- [frontend/lib/offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
 
 **Section sources**
-- [frontend/lib/offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
+- [frontend/lib/offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
 
 ### Offline Challan Calculation (DuckDB-Wasm)
 ```mermaid
@@ -233,10 +233,10 @@ Mock --> Return
 ```
 
 **Diagram sources**
-- [frontend/lib/duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
+- [frontend/lib/duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
 
 **Section sources**
-- [frontend/lib/duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
+- [frontend/lib/duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
 
 ### Map Rendering and Fallback Styles
 ```mermaid
@@ -255,10 +255,10 @@ UI-->>UI : "Apply style and render"
 ```
 
 **Diagram sources**
-- [frontend/components/maps/MapLibreCanvas.tsx:326-380](file://frontend/components/maps/MapLibreCanvas.tsx#L326-L380)
+- [frontend/components/maps/MapLibreCanvas.tsx:326-380](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L326-L380)
 
 **Section sources**
-- [frontend/components/maps/MapLibreCanvas.tsx:326-380](file://frontend/components/maps/MapLibreCanvas.tsx#L326-L380)
+- [frontend/components/maps/MapLibreCanvas.tsx:326-380](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L326-L380)
 
 ## Dependency Analysis
 - Backend depends on:
@@ -291,14 +291,14 @@ CB --> Mem["Redis 7.4.0"]
 ```
 
 **Diagram sources**
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [frontend/package.json:14-52](file://frontend/package.json#L14-L52)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [frontend/package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
 
 **Section sources**
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [frontend/package.json:14-52](file://frontend/package.json#L14-L52)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [frontend/package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
 
 ## Performance Considerations
 - Asynchronous I/O: Backend leverages SQLAlchemy asyncio and asyncpg for scalable database operations.
@@ -316,10 +316,10 @@ CB --> Mem["Redis 7.4.0"]
 - Chatbot provider configuration: At least one LLM provider key must be present; otherwise, a fatal error is raised during settings load.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [backend/core/redis_client.py:115-125](file://backend/core/redis_client.py#L115-L125)
-- [backend/core/config.py:86-96](file://backend/core/config.py#L86-L96)
-- [chatbot_service/config.py:123-126](file://chatbot_service/config.py#L123-L126)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [backend/core/redis_client.py:115-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L125)
+- [backend/core/config.py:86-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L86-L96)
+- [chatbot_service/config.py:123-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L123-L126)
 
 ## Conclusion
 SafeVixAI’s stack balances modern cloud-native development with robust offline-first capabilities. The backend and chatbot services provide scalable, maintainable APIs with strong typing and async I/O, while the frontend delivers a responsive PWA with offline AI, SQL, and vector search. The chosen technologies enable cost-effective deployment, global accessibility, and a seamless user experience across online and offline contexts.
@@ -354,10 +354,10 @@ SafeVixAI’s stack balances modern cloud-native development with robust offline
   - idb 8.0.0
 
 **Section sources**
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [frontend/package.json:14-52](file://frontend/package.json#L14-L52)
-- [docs/TechStack.md:31-189](file://docs/TechStack.md#L31-L189)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [frontend/package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [docs/TechStack.md:31-189](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L31-L189)
 
 ### Upgrade Paths
 - Backend
@@ -375,9 +375,9 @@ SafeVixAI’s stack balances modern cloud-native development with robust offline
   - WebLLM/Transformers.js: Validate model loading and caching behavior.
 
 **Section sources**
-- [backend/requirements.txt:4-5](file://backend/requirements.txt#L4-L5)
-- [chatbot_service/requirements.txt:11-12](file://chatbot_service/requirements.txt#L11-L12)
-- [frontend/package.json:33, 38](file://frontend/package.json#L33,L38)
+- [backend/requirements.txt:4-5](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L4-L5)
+- [chatbot_service/requirements.txt:11-12](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L11-L12)
+- [frontend/package.json:33, 38](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L33,L38)
 
 ### Rationale for Technology Choices
 - Backend
@@ -397,7 +397,7 @@ SafeVixAI’s stack balances modern cloud-native development with robust offline
   - DuckDB-Wasm + HNSWlib.js: Offline SQL and vector search for responsive UX.
 
 **Section sources**
-- [docs/TechStack.md:31-189](file://docs/TechStack.md#L31-L189)
+- [docs/TechStack.md:31-189](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L31-L189)
 
 ## HuggingFace Dataset Hub
 

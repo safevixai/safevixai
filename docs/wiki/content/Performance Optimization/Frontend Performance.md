@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [package.json](file://frontend/package.json)
-- [next.config.js](file://frontend/nexT.config.js)
-- [layout.tsx](file://frontend/app/layout.tsx)
-- [manifest.json](file://frontend/public/manifest.json)
-- [store.ts](file://frontend/lib/store.ts)
-- [MapLibreCanvas.tsx](file://frontend/components/maps/MapLibreCanvas.tsx)
-- [EmergencyMap.tsx](file://frontend/components/EmergencyMap.tsx)
-- [ChatInterface.tsx](file://frontend/components/ChatInterface.tsx)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [ConnectivityProvider.tsx](file://frontend/components/ConnectivityProvider.tsx)
-- [ClientAppHooks.tsx](file://frontend/components/ClientAppHooks.tsx)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [analytics-provider.tsx](file://frontend/lib/analytics-provider.tsx)
+- [package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/nexT.config.js)
+- [layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [manifest.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [MapLibreCanvas.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx)
+- [EmergencyMap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx)
+- [ChatInterface.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [ConnectivityProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx)
+- [ClientAppHooks.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [analytics-provider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx)
 </cite>
 
 ## Table of Contents
@@ -51,16 +51,16 @@ Root --> Manifest["PWA Manifest"]
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [EmergencyMap.tsx:10-23](file://frontend/components/EmergencyMap.tsx#L10-L23)
-- [ChatInterface.tsx:64-316](file://frontend/components/ChatInterface.tsx#L64-L316)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [EmergencyMap.tsx:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L10-L23)
+- [ChatInterface.tsx:64-316](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L316)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 **Section sources**
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [package.json:1-85](file://frontend/package.json#L1-L85)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
 
 ## Core Components
 - Dynamic map rendering with SSR disabled for the map component to avoid hydration mismatches and reduce server payload.
@@ -69,11 +69,11 @@ Root --> Manifest["PWA Manifest"]
 - Connectivity-aware UI and offline SOS queue with IndexedDB and optional background sync.
 
 **Section sources**
-- [EmergencyMap.tsx:10-23](file://frontend/components/EmergencyMap.tsx#L10-L23)
-- [MapLibreCanvas.tsx:300-559](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [offline-ai.ts:74-110](file://frontend/lib/offline-ai.ts#L74-L110)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
+- [EmergencyMap.tsx:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L10-L23)
+- [MapLibreCanvas.tsx:300-559](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [offline-ai.ts:74-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L74-L110)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
 
 ## Architecture Overview
 High-level performance-oriented architecture:
@@ -103,13 +103,13 @@ UI --> SOS
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [EmergencyMap.tsx:10-23](file://frontend/components/EmergencyMap.tsx#L10-L23)
-- [MapLibreCanvas.tsx:300-559](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
-- [ChatInterface.tsx:64-316](file://frontend/components/ChatInterface.tsx#L64-L316)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [EmergencyMap.tsx:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L10-L23)
+- [MapLibreCanvas.tsx:300-559](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
+- [ChatInterface.tsx:64-316](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L316)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
 
 ## Detailed Component Analysis
 
@@ -132,12 +132,12 @@ Canvas-->>UI : Ready with overlays and controls
 ```
 
 **Diagram sources**
-- [EmergencyMap.tsx:10-23](file://frontend/components/EmergencyMap.tsx#L10-L23)
-- [MapLibreCanvas.tsx:300-559](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
+- [EmergencyMap.tsx:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L10-L23)
+- [MapLibreCanvas.tsx:300-559](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
 
 **Section sources**
-- [EmergencyMap.tsx:10-23](file://frontend/components/EmergencyMap.tsx#L10-L23)
-- [MapLibreCanvas.tsx:300-559](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
+- [EmergencyMap.tsx:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L10-L23)
+- [MapLibreCanvas.tsx:300-559](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L559)
 
 ### AI Chatbot Performance (Dynamic Imports and Streaming)
 - The chat interface streams responses from the backend via Server-Sent Events and conditionally switches to offline AI when connectivity indicates offline mode.
@@ -166,12 +166,12 @@ end
 ```
 
 **Diagram sources**
-- [ChatInterface.tsx:64-316](file://frontend/components/ChatInterface.tsx#L64-L316)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
+- [ChatInterface.tsx:64-316](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L316)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
 
 **Section sources**
-- [ChatInterface.tsx:64-316](file://frontend/components/ChatInterface.tsx#L64-L316)
-- [offline-ai.ts:74-110](file://frontend/lib/offline-ai.ts#L74-L110)
+- [ChatInterface.tsx:64-316](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L316)
+- [offline-ai.ts:74-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L74-L110)
 
 ### Emergency Services and Offline Resilience
 - Connectivity state is tracked globally and reflected in UI elements.
@@ -189,14 +189,14 @@ Enqueue --> Done
 ```
 
 **Diagram sources**
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 **Section sources**
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [ClientAppHooks.tsx:8-34](file://frontend/components/ClientAppHooks.tsx#L8-L34)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [ClientAppHooks.tsx:8-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L34)
 
 ### State Management with Zustand (Efficient Updates and Persistence)
 - The store defines slices for GPS, services, AI mode, connectivity, user profile, UI state, and auth.
@@ -220,11 +220,11 @@ class ZustandStore {
 ```
 
 **Diagram sources**
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 **Section sources**
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 ## Dependency Analysis
 - Heavy third-party libraries are isolated in dynamic imports or specialized modules to keep the initial bundle small.
@@ -242,12 +242,12 @@ Pkg --> Zstd["zustand"]
 ```
 
 **Diagram sources**
-- [package.json:14-52](file://frontend/package.json#L14-L52)
-- [next.config.js:19-39](file://frontend/next.config.js#L19-L39)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
 
 **Section sources**
-- [package.json:14-52](file://frontend/package.json#L14-L52)
-- [next.config.js:19-39](file://frontend/next.config.js#L19-L39)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
 
 ## Performance Considerations
 - Code splitting and dynamic imports
@@ -299,10 +299,10 @@ Pkg --> Zstd["zustand"]
   - Ensure background sync registration succeeds and network is available.
 
 **Section sources**
-- [MapLibreCanvas.tsx:441-474](file://frontend/components/maps/MapLibreCanvas.tsx#L441-L474)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [MapLibreCanvas.tsx:441-474](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L441-L474)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 ## Conclusion
 By combining dynamic imports, selective persistence, and offline-first strategies, SafeVixAI achieves a responsive, resilient frontend. Prioritize code splitting for heavy modules, optimize bundles with tree shaking and compression, monitor Core Web Vitals, and progressively enhance with service workers and IndexedDB to ensure reliable operation in low-connectivity environments.
@@ -314,5 +314,5 @@ By combining dynamic imports, selective persistence, and offline-first strategie
   - Manifest and viewport settings are defined in the root layout and public manifest.
 
 **Section sources**
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-68)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-68)

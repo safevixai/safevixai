@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [router.py](file://chatbot_service/providers/router.py)
-- [base.py](file://chatbot_service/providers/base.py)
-- [config.py](file://chatbot_service/config.py)
-- [gemini_provider.py](file://chatbot_service/providers/gemini_provider.py)
-- [groq_provider.py](file://chatbot_service/providers/groq_provider.py)
-- [sarvam_provider.py](file://chatbot_service/providers/sarvam_provider.py)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [edge-ai.ts](file://frontend/lib/edge-ai.ts)
-- [OfflineChat.tsx](file://frontend/components/OfflineChat.tsx)
-- [ModelLoader.tsx](file://frontend/components/ModelLoader.tsx)
-- [Architecture.md](file://docs/Architecture.md)
-- [AI_Instructions.md](file://docs/AI_Instructions.md)
-- [offline.py](file://backend/api/v1/offline.py)
-- [AnalyticsProvider.tsx](file://frontend/lib/analytics-provider.tsx)
+- [router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py)
+- [base.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [gemini_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py)
+- [groq_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py)
+- [sarvam_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [edge-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts)
+- [OfflineChat.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/OfflineChat.tsx)
+- [ModelLoader.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx)
+- [Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md)
+- [AI_Instructions.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [AnalyticsProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx)
 </cite>
 
 ## Table of Contents
@@ -65,12 +65,12 @@ FE_ANALYTICS --> |"Events"| FE_UI
 ```
 
 **Diagram sources**
-- [Architecture.md:67-91](file://docs/Architecture.md#L67-L91)
-- [Architecture.md:105-122](file://docs/Architecture.md#L105-L122)
+- [Architecture.md:67-91](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L67-L91)
+- [Architecture.md:105-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L105-L122)
 
 **Section sources**
-- [Architecture.md:49-58](file://docs/Architecture.md#L49-L58)
-- [Architecture.md:63-102](file://docs/Architecture.md#L63-L102)
+- [Architecture.md:49-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L49-L58)
+- [Architecture.md:63-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L63-L102)
 
 ## Core Components
 - ProviderRouter orchestrates multi-backend LLM inference with intelligent routing and fallback.
@@ -82,14 +82,14 @@ FE_ANALYTICS --> |"Events"| FE_UI
 - Offline bundle API prepares offline data for the frontend.
 
 **Section sources**
-- [router.py:75-199](file://chatbot_service/providers/router.py#L75-L199)
-- [base.py:90-206](file://chatbot_service/providers/base.py#L90-L206)
-- [gemini_provider.py:18-71](file://chatbot_service/providers/gemini_provider.py#L18-L71)
-- [groq_provider.py:10-23](file://chatbot_service/providers/groq_provider.py#L10-L23)
-- [sarvam_provider.py:44-125](file://chatbot_service/providers/sarvam_provider.py#L44-L125)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
+- [router.py:75-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L199)
+- [base.py:90-206](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L206)
+- [gemini_provider.py:18-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py#L18-L71)
+- [groq_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py#L10-L23)
+- [sarvam_provider.py:44-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py#L44-L125)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
 
 ## Architecture Overview
 SafeVixAI implements a dual-layer AI architecture:
@@ -117,9 +117,9 @@ RESP --> OUT["Formatted Response"]
 ```
 
 **Diagram sources**
-- [Architecture.md:67-91](file://docs/Architecture.md#L67-L91)
-- [router.py:125-199](file://chatbot_service/providers/router.py#L125-L199)
-- [AI_Instructions.md:98-149](file://docs/AI_Instructions.md#L98-L149)
+- [Architecture.md:67-91](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L67-L91)
+- [router.py:125-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L199)
+- [AI_Instructions.md:98-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L98-L149)
 
 ## Detailed Component Analysis
 
@@ -144,14 +144,14 @@ PRIO --> TPL["Template (fallback)"]
 ```
 
 **Diagram sources**
-- [router.py:48-73](file://chatbot_service/providers/router.py#L48-L73)
-- [router.py:125-153](file://chatbot_service/providers/router.py#L125-L153)
-- [router.py:113-123](file://chatbot_service/providers/router.py#L113-L123)
+- [router.py:48-73](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L48-L73)
+- [router.py:125-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L153)
+- [router.py:113-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L113-L123)
 
 **Section sources**
-- [router.py:1-10](file://chatbot_service/providers/router.py#L1-L10)
-- [router.py:125-199](file://chatbot_service/providers/router.py#L125-L199)
-- [base.py:44-63](file://chatbot_service/providers/base.py#L44-L63)
+- [router.py:1-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L1-L10)
+- [router.py:125-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L199)
+- [base.py:44-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L44-L63)
 
 ### Provider Implementations
 - HttpProvider: Shared async HTTP transport, prompt building, safety filtering, and OpenAI-compatible payload construction.
@@ -193,16 +193,16 @@ TemplateProvider <.. HttpProvider : "fallback"
 ```
 
 **Diagram sources**
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [gemini_provider.py:18-71](file://chatbot_service/providers/gemini_provider.py#L18-L71)
-- [groq_provider.py:10-23](file://chatbot_service/providers/groq_provider.py#L10-L23)
-- [sarvam_provider.py:44-125](file://chatbot_service/providers/sarvam_provider.py#L44-L125)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [gemini_provider.py:18-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py#L18-L71)
+- [groq_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py#L10-L23)
+- [sarvam_provider.py:44-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py#L44-L125)
 
 **Section sources**
-- [base.py:65-88](file://chatbot_service/providers/base.py#L65-L88)
-- [gemini_provider.py:29-71](file://chatbot_service/providers/gemini_provider.py#L29-L71)
-- [groq_provider.py:15-23](file://chatbot_service/providers/groq_provider.py#L15-L23)
-- [sarvam_provider.py:58-117](file://chatbot_service/providers/sarvam_provider.py#L58-L117)
+- [base.py:65-88](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L65-L88)
+- [gemini_provider.py:29-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py#L29-L71)
+- [groq_provider.py:15-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py#L15-L23)
+- [sarvam_provider.py:58-117](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py#L58-L117)
 
 ### Offline Inference with WebAssembly and WebGPU
 The frontend provides two offline engines:
@@ -230,11 +230,11 @@ UI-->>U : Status "ready"
 ```
 
 **Diagram sources**
-- [offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
+- [offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [AI_Instructions.md:98-149](file://docs/AI_Instructions.md#L98-L149)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [AI_Instructions.md:98-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L98-L149)
 
 ### Edge Computing Simulation and Warm-Up
 The edge-ai module simulates on-device inference behavior and can be used to evaluate latency characteristics during development. It demonstrates:
@@ -251,16 +251,16 @@ D --> E
 ```
 
 **Diagram sources**
-- [edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
+- [edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
 
 **Section sources**
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
 
 ### Offline Bundle API
 The backend exposes an endpoint to build offline bundles for cities, enabling the frontend to cache emergency data and reduce reliance on network connectivity.
 
 **Section sources**
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
 
 ## Dependency Analysis
 ProviderRouter depends on:
@@ -285,12 +285,12 @@ HP --> BR["build_messages()"]
 ```
 
 **Diagram sources**
-- [router.py:85-109](file://chatbot_service/providers/router.py#L85-L109)
-- [base.py:65-88](file://chatbot_service/providers/base.py#L65-L88)
+- [router.py:85-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L85-L109)
+- [base.py:65-88](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L65-L88)
 
 **Section sources**
-- [router.py:16-31](file://chatbot_service/providers/router.py#L16-L31)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
+- [router.py:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L16-L31)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
 
 ## Performance Considerations
 
@@ -305,8 +305,8 @@ Optimization tips:
 - Cache model artifacts to avoid repeated downloads.
 
 **Section sources**
-- [offline-ai.ts:87-110](file://frontend/lib/offline-ai.ts#L87-L110)
-- [AI_Instructions.md:103-107](file://docs/AI_Instructions.md#L103-L107)
+- [offline-ai.ts:87-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L87-L110)
+- [AI_Instructions.md:103-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L103-L107)
 
 ### Provider Routing and Latency Optimization
 - Primary English queries route to Groq for highest throughput.
@@ -319,10 +319,10 @@ Selection criteria:
 - Provider timeouts and rate limits are mitigated by ordered fallback.
 
 **Section sources**
-- [router.py:125-153](file://chatbot_service/providers/router.py#L125-L153)
-- [router.py:113-123](file://chatbot_service/providers/router.py#L113-L123)
-- [gemini_provider.py:29-71](file://chatbot_service/providers/gemini_provider.py#L29-L71)
-- [groq_provider.py:10-23](file://chatbot_service/providers/groq_provider.py#L10-L23)
+- [router.py:125-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L153)
+- [router.py:113-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L113-L123)
+- [gemini_provider.py:29-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py#L29-L71)
+- [groq_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py#L10-L23)
 
 ### Batch Processing Strategies
 - Frontend offline inference processes one query at a time; batching is not applicable.
@@ -333,7 +333,7 @@ Recommendations:
 - Aggregate small tool calls into a single context assembly pass.
 
 **Section sources**
-- [base.py:129-159](file://chatbot_service/providers/base.py#L129-L159)
+- [base.py:129-159](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L129-L159)
 
 ### Edge Computing Optimizations
 - Use Chrome Built-in AI when available to eliminate model download costs.
@@ -341,8 +341,8 @@ Recommendations:
 - Precompute embeddings and indices for offline RAG to minimize runtime work.
 
 **Section sources**
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [AI_Instructions.md:128-143](file://docs/AI_Instructions.md#L128-L143)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [AI_Instructions.md:128-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L128-L143)
 
 ### Resource Allocation for Concurrent Requests
 - Chatbot Service uses async HTTP clients and shared transports to minimize overhead.
@@ -350,16 +350,16 @@ Recommendations:
 - Provider timeouts configured per provider to bound latency.
 
 **Section sources**
-- [base.py:124-127](file://chatbot_service/providers/base.py#L124-L127)
-- [config.py:69-113](file://chatbot_service/config.py#L69-L113)
+- [base.py:124-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L124-L127)
+- [config.py:69-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L113)
 
 ### Model Warm-Up Procedures
 - Frontend: Call initialization routines on user confirmation to preload model and build offline indices.
 - Backend: Ensure providers’ API keys and endpoints are configured at startup.
 
 **Section sources**
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [config.py:115-126](file://chatbot_service/config.py#L115-L126)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [config.py:115-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L115-L126)
 
 ### Performance Monitoring
 - PostHog integration captures user interactions and session events for behavioral insights.
@@ -370,8 +370,8 @@ Recommendations:
 - Track fallback frequency and reasons to optimize routing thresholds.
 
 **Section sources**
-- [AnalyticsProvider.tsx:7-25](file://frontend/lib/analytics-provider.tsx#L7-L25)
-- [router.py:172-178](file://chatbot_service/providers/router.py#L172-L178)
+- [AnalyticsProvider.tsx:7-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L7-L25)
+- [router.py:172-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L172-L178)
 
 ## Troubleshooting Guide
 
@@ -382,10 +382,10 @@ Common issues and resolutions:
 - Offline model load failures: Falls back to keyword-based responses; verify browser support for WebGPU and sufficient storage.
 
 **Section sources**
-- [config.py:115-126](file://chatbot_service/config.py#L115-L126)
-- [base.py:129-136](file://chatbot_service/providers/base.py#L129-L136)
-- [router.py:179-198](file://chatbot_service/providers/router.py#L179-L198)
-- [offline-ai.ts:144-153](file://frontend/lib/offline-ai.ts#L144-L153)
+- [config.py:115-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L115-L126)
+- [base.py:129-136](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L129-L136)
+- [router.py:179-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L179-L198)
+- [offline-ai.ts:144-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L144-L153)
 
 ## Conclusion
 SafeVixAI achieves robust AI inference optimization through:
@@ -403,5 +403,5 @@ These strategies deliver low-latency, reliable responses across online and offli
 - GitHub/NVIDIA/OpenRouter/Mistral/Together: Additional capacity and diversity.
 
 **Section sources**
-- [router.py:113-123](file://chatbot_service/providers/router.py#L113-L123)
-- [chatbot_docs/Architecture.md:21-39](file://chatbot_docs/Architecture.md#L21-L39)
+- [router.py:113-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L113-L123)
+- [chatbot_docs/Architecture.md:21-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_docs/Architecture.md#L21-L39)

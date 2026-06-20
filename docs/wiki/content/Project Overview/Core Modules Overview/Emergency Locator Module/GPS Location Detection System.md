@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [location-tracker.ts](file://frontend/lib/location-tracker.ts)
-- [location-utils.ts](file://frontend/lib/location-utils.ts)
-- [store.ts](file://frontend/lib/store.ts)
-- [DashboardMapBootstrap.tsx](file://frontend/components/dashboard/DashboardMapBootstrap.tsx)
-- [emergency.ts](file://backend/api/v1/emergency.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [config.py](file://backend/core/config.py)
-- [sos-share.ts](file://frontend/lib/sos-share.ts)
-- [maps-fallback.ts](file://frontend/lib/maps-fallback.ts)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [location-tracker.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts)
+- [location-utils.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [DashboardMapBootstrap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx)
+- [emergency.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [sos-share.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts)
+- [maps-fallback.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/maps-fallback.ts)
 </cite>
 
 ## Table of Contents
@@ -68,28 +68,28 @@ SVC --> MODEL
 ```
 
 **Diagram sources**
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [store.ts:4-226](file://frontend/lib/store.ts#L4-L226)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [sos-share.ts:9-69](file://frontend/lib/sos-share.ts#L9-L69)
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [store.ts:4-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L4-L226)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [sos-share.ts:9-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L69)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 **Section sources**
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [store.ts:4-226](file://frontend/lib/store.ts#L4-L226)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [sos-share.ts:9-69](file://frontend/lib/sos-share.ts#L9-L69)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [store.ts:4-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L4-L226)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [sos-share.ts:9-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L69)
 
 ## Core Components
 - Frontend geolocation hook: Requests high-accuracy location with timeouts and permission checks; maintains state in a global store and watches updates continuously
@@ -100,12 +100,12 @@ SVC --> MODEL
 - Configuration: Centralizes radius steps, limits, and caching TTL for robustness
 
 **Section sources**
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [store.ts:4-226](file://frontend/lib/store.ts#L4-L226)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:26-100](file://backend/core/config.py#L26-L100)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [store.ts:4-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L4-L226)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:26-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L100)
 
 ## Architecture Overview
 The GPS system integrates frontend and backend:
@@ -133,11 +133,11 @@ MapBoot-->>Store : setNearbyServices(), setServiceSearchMeta()
 ```
 
 **Diagram sources**
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [store.ts:63-136](file://frontend/lib/store.ts#L63-L136)
-- [DashboardMapBootstrap.tsx:171-300](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L171-L300)
-- [emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
-- [emergency_locator.py:187-217](file://backend/services/emergency_locator.py#L187-L217)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [store.ts:63-136](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L136)
+- [DashboardMapBootstrap.tsx:171-300](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L171-L300)
+- [emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
+- [emergency_locator.py:187-217](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L217)
 
 ## Detailed Component Analysis
 
@@ -167,12 +167,12 @@ SetError2 --> End
 ```
 
 **Diagram sources**
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
 
 **Section sources**
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [location-utils.ts:3,17-19](file://frontend/lib/location-utils.ts#L3,L17-L19)
-- [store.ts:4,63-68](file://frontend/lib/store.ts#L4,L63-L68)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [location-utils.ts:3,17-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L3,L17-L19)
+- [store.ts:4,63-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L4,L63-L68)
 
 ### Location Tracker Implementation
 - Adds a GeoJSON source and concentric circle layers to visualize the user’s location and accuracy
@@ -195,10 +195,10 @@ Tracker-->>Caller : cleanup() via clearWatch()
 ```
 
 **Diagram sources**
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
 
 **Section sources**
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
 
 ### Location Utilities: Coordinate Conversion, Distance, Proximity
 - Approximate location detection: Flags a location as approximate if its accuracy meets or exceeds a threshold
@@ -219,11 +219,11 @@ E --> |No| L4["short label"]
 ```
 
 **Diagram sources**
-- [location-utils.ts:33-56](file://frontend/lib/location-utils.ts#L33-L56)
+- [location-utils.ts:33-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L33-L56)
 
 **Section sources**
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [emergency_locator.py:468-479](file://backend/services/emergency_locator.py#L468-L479)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [emergency_locator.py:468-479](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L468-L479)
 
 ### Backend Emergency Locator Service
 - Validates coordinates and categories, normalizes inputs, and constructs radius steps from configuration
@@ -269,14 +269,14 @@ EmergencyLocatorService --> EmergencyService : "queries"
 ```
 
 **Diagram sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:26-100](file://backend/core/config.py#L26-L100)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:26-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L100)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 **Section sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:26-100](file://backend/core/config.py#L26-L100)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:26-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L100)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 ### Backend API: Location Request Processing and Validation
 - Exposes endpoints to discover nearby services, build SOS payloads, and fetch emergency numbers
@@ -298,11 +298,11 @@ API-->>Client : EmergencyResponse
 ```
 
 **Diagram sources**
-- [emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
-- [emergency_locator.py:187-217](file://backend/services/emergency_locator.py#L187-L217)
+- [emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
+- [emergency_locator.py:187-217](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L217)
 
 **Section sources**
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
 
 ### SOS Sharing with Coordinates and Reverse Geocoding
 - Generates pre-filled links for WhatsApp and SMS with coordinates and optional address derived from reverse geocoding
@@ -322,10 +322,10 @@ Encode --> End(["Return shareable link"])
 ```
 
 **Diagram sources**
-- [sos-share.ts:9-69](file://frontend/lib/sos-share.ts#L9-L69)
+- [sos-share.ts:9-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L69)
 
 **Section sources**
-- [sos-share.ts:9-69](file://frontend/lib/sos-share.ts#L9-L69)
+- [sos-share.ts:9-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L69)
 
 ## Dependency Analysis
 - Frontend depends on:
@@ -354,23 +354,23 @@ GEO --> SOS["sos-share.ts"]
 ```
 
 **Diagram sources**
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [store.ts:4-226](file://frontend/lib/store.ts#L4-L226)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [sos-share.ts:9-69](file://frontend/lib/sos-share.ts#L9-L69)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [store.ts:4-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L4-L226)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [sos-share.ts:9-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L69)
 
 **Section sources**
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:11-181](file://backend/core/config.py#L11-L181)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 ## Performance Considerations
 - Frontend
@@ -403,11 +403,11 @@ GEO --> SOS["sos-share.ts"]
   - Inspect cache keys and TTL to diagnose stale or missing results
 
 **Section sources**
-- [geolocation.ts:63-71](file://frontend/lib/geolocation.ts#L63-L71)
-- [location-utils.ts:17-19](file://frontend/lib/location-utils.ts#L17-L19)
-- [DashboardMapBootstrap.tsx:131-158](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L131-L158)
-- [emergency.py:20-26](file://backend/api/v1/emergency.py#L20-L26)
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
+- [geolocation.ts:63-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L63-L71)
+- [location-utils.ts:17-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L17-L19)
+- [DashboardMapBootstrap.tsx:131-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L131-L158)
+- [emergency.py:20-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L20-L26)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
 
 ## Conclusion
 The GPS Location Detection System combines robust frontend geolocation with resilient backend emergency discovery. It enforces accuracy-aware UX, optimizes for battery life, and provides fallback strategies for degraded environments. Together with SOS sharing and caching, it delivers reliable location-based services for emergency scenarios.

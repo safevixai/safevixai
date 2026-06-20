@@ -2,23 +2,23 @@
 
 <cite>
 **Referenced Files in This Document**
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [challan_service.py](file://backend/services/challan_service.py)
-- [challan.py](file://backend/api/v1/challan.py)
-- [challan_tool.py](file://chatbot_service/tools/challan_tool.py)
-- [main.py](file://chatbot_service/main.py)
-- [vectorstore.py](file://chatbot_service/rag/vectorstore.py)
-- [legal_search_tool.py](file://chatbot_service/tools/legal_search_tool.py)
-- [first_aid_tool.py](file://chatbot_service/tools/first_aid_tool.py)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-data/violations.csv](file://frontend/public/offline-data/violations.csv)
-- [offline-data/state_overrides.csv](file://frontend/public/offline-data/state_overrides.csv)
-- [offline-data/first-aid.json](file://frontend/public/offline-data/first-aid.json)
-- [build_offline_bundle.py](file://backend/scripts/app/build_offline_bundle.py)
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [challan_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [vectorstore.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py)
+- [legal_search_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py)
+- [first_aid_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-data/violations.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv)
+- [offline-data/state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv)
+- [offline-data/first-aid.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json)
+- [build_offline_bundle.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
 </cite>
 
 ## Table of Contents
@@ -90,21 +90,21 @@ CB_CTX --> CB_TOOLS
 ```
 
 **Diagram sources**
-- [emergency.py:12-75](file://backend/api/v1/emergency.py#L12-L75)
-- [roadwatch.py:19-96](file://backend/api/v1/roadwatch.py#L19-L96)
-- [challan.py:10-25](file://backend/api/v1/challan.py#L10-L25)
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [roadwatch_service.py:56-324](file://backend/services/roadwatch_service.py#L56-L324)
-- [challan_service.py:96-313](file://backend/services/challan_service.py#L96-L313)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-data/violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [offline-data/state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [emergency.py:12-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L75)
+- [roadwatch.py:19-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L96)
+- [challan.py:10-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L25)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [roadwatch_service.py:56-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L324)
+- [challan_service.py:96-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L313)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-data/violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [offline-data/state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
 
 **Section sources**
-- [emergency.py:12-75](file://backend/api/v1/emergency.py#L12-L75)
-- [roadwatch.py:19-96](file://backend/api/v1/roadwatch.py#L19-L96)
-- [challan.py:10-25](file://backend/api/v1/challan.py#L10-L25)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [emergency.py:12-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L75)
+- [roadwatch.py:19-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L96)
+- [challan.py:10-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L25)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ## Core Components
 This section introduces each module’s purpose, capabilities, and offline support.
@@ -145,10 +145,10 @@ This section introduces each module’s purpose, capabilities, and offline suppo
   - Offline capability: Queued uploads and offline metadata persistence handled by frontend and backend scripts.
 
 **Section sources**
-- [emergency_locator.py:28-158](file://backend/services/emergency_locator.py#L28-L158)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [challan_service.py:96-313](file://backend/services/challan_service.py#L96-L313)
-- [roadwatch_service.py:56-324](file://backend/services/roadwatch_service.py#L56-L324)
+- [emergency_locator.py:28-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L28-L158)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [challan_service.py:96-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L313)
+- [roadwatch_service.py:56-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L324)
 
 ## Architecture Overview
 The platform integrates backend APIs, chatbot services, and frontend capabilities with robust offline support.
@@ -181,12 +181,12 @@ UI-->>User : "Display nearby services"
 ```
 
 **Diagram sources**
-- [emergency.py:19-70](file://backend/api/v1/emergency.py#L19-L70)
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
+- [emergency.py:19-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L70)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
 
 **Section sources**
-- [emergency.py:19-70](file://backend/api/v1/emergency.py#L19-L70)
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
+- [emergency.py:19-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L70)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
 
 ## Detailed Component Analysis
 
@@ -217,16 +217,16 @@ CacheSet --> ReturnResp["Return EmergencyResponse"]
 ```
 
 **Diagram sources**
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
 
 Practical examples:
 - Finding hospitals, police, and ambulances within 2 km radius around a user’s location.
 - Building an offline bundle for Chennai with 150 services and emergency numbers.
 
 **Section sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [build_offline_bundle.py:14-46](file://backend/scripts/app/build_offline_bundle.py#L14-L46)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [build_offline_bundle.py:14-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L14-L46)
 
 ### AI Chatbot Module
 - Purpose: Multilingual legal assistance and first aid guidance with RAG.
@@ -263,21 +263,21 @@ Engine-->>Chat : "First aid guidance"
 ```
 
 **Diagram sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [vectorstore.py:51-67](file://chatbot_service/rag/vectorstore.py#L51-L67)
-- [legal_search_tool.py:6-11](file://chatbot_service/tools/legal_search_tool.py#L6-L11)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [vectorstore.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L51-L67)
+- [legal_search_tool.py:6-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py#L6-L11)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
 
 Practical examples:
 - Legal search for “helmet fine” returns MV Act sections and penalties.
 - First aid guidance for “burns” with step-by-step instructions and warnings.
 
 **Section sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [vectorstore.py:20-110](file://chatbot_service/rag/vectorstore.py#L20-L110)
-- [legal_search_tool.py:6-11](file://chatbot_service/tools/legal_search_tool.py#L6-L11)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [vectorstore.py:20-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L110)
+- [legal_search_tool.py:6-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py#L6-L11)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ### Challan Calculator (DriveLegal) Module
 - Purpose: Calculate accurate fines based on the Motor Vehicles Act 2019 with state-specific overrides.
@@ -304,18 +304,18 @@ Amount --> Respond["Return ChallanResponse"]
 ```
 
 **Diagram sources**
-- [challan_tool.py:31-69](file://chatbot_service/tools/challan_tool.py#L31-L69)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
+- [challan_tool.py:31-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L31-L69)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
 
 Practical examples:
 - Calculating a helmet fine for a two-wheeler in Tamil Nadu with repeat-offence logic.
 - Determining drunk driving penalties with state-specific overrides.
 
 **Section sources**
-- [challan_tool.py:27-81](file://chatbot_service/tools/challan_tool.py#L27-L81)
-- [challan_service.py:96-313](file://backend/services/challan_service.py#L96-L313)
-- [offline-data/violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [offline-data/state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [challan_tool.py:27-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L81)
+- [challan_service.py:96-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L313)
+- [offline-data/violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [offline-data/state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
 
 ### Road Reporter (RoadWatch) Module
 - Purpose: Enable community-driven reporting of road infrastructure issues with automatic authority routing.
@@ -350,16 +350,16 @@ API-->>UI : "Acknowledge submission"
 ```
 
 **Diagram sources**
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 Practical examples:
 - Reporting a pothole with a photo; the system routes to the correct authority and generates a complaint reference.
 - Discovering open and acknowledged road issues within a 5 km radius.
 
 **Section sources**
-- [roadwatch.py:26-96](file://backend/api/v1/roadwatch.py#L26-L96)
-- [roadwatch_service.py:56-324](file://backend/services/roadwatch_service.py#L56-L324)
+- [roadwatch.py:26-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L96)
+- [roadwatch_service.py:56-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L324)
 
 ## Dependency Analysis
 The modules interact through well-defined boundaries: backend APIs, service layers, and shared offline datasets.
@@ -385,19 +385,19 @@ CS --> |"Loads from"| OFF_S["offline-data/state_overrides.csv"]
 ```
 
 **Diagram sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [challan_service.py:96-313](file://backend/services/challan_service.py#L96-L313)
-- [roadwatch_service.py:56-324](file://backend/services/roadwatch_service.py#L56-L324)
-- [emergency.py:12-75](file://backend/api/v1/emergency.py#L12-L75)
-- [challan.py:10-25](file://backend/api/v1/challan.py#L10-L25)
-- [roadwatch.py:19-96](file://backend/api/v1/roadwatch.py#L19-L96)
-- [offline-data/violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [offline-data/state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [challan_service.py:96-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L313)
+- [roadwatch_service.py:56-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L324)
+- [emergency.py:12-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L75)
+- [challan.py:10-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L10-L25)
+- [roadwatch.py:19-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L96)
+- [offline-data/violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [offline-data/state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
 
 **Section sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [challan_service.py:96-313](file://backend/services/challan_service.py#L96-L313)
-- [roadwatch_service.py:56-324](file://backend/services/roadwatch_service.py#L56-L324)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [challan_service.py:96-313](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L313)
+- [roadwatch_service.py:56-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L324)
 
 ## Performance Considerations
 - Caching: Redis caches emergency results and road issues with versioned keys to invalidate efficiently.
@@ -425,10 +425,10 @@ Common issues and resolutions:
   - Verify browser support for system AI or Transformers.js availability.
 
 **Section sources**
-- [emergency_locator.py:342-373](file://backend/services/emergency_locator.py#L342-L373)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [roadwatch_service.py:275-324](file://backend/services/roadwatch_service.py#L275-L324)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [emergency_locator.py:342-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L342-L373)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [roadwatch_service.py:275-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L324)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ## Conclusion
 SafeVixAI’s core modules deliver a comprehensive, offline-capable platform for emergency response, legal guidance, fine calculation, and road infrastructure reporting. The backend APIs and services integrate seamlessly with the frontend’s offline-first design, ensuring reliable functionality across 25 major Indian cities. Developers can extend and maintain these modules by leveraging the existing caching, vector indexing, and offline dataset strategies.

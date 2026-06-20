@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [config.py](file://backend/core/config.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [sos-share.ts](file://frontend/lib/sos-share.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [EmergencyMap.tsx](file://frontend/components/EmergencyMap.tsx)
-- [EmergencyMapInner.tsx](file://frontend/components/EmergencyMapInner.tsx)
-- [map-defaults.ts](file://frontend/lib/map-defaults.ts)
-- [GlobalSOS.tsx](file://frontend/components/GlobalSOS.tsx)
-- [location-utils.ts](file://frontend/lib/location-utils.ts)
-- [chennai.json](file://frontend/public/offline-data/chennai.json)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [sos-share.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [EmergencyMap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx)
+- [EmergencyMapInner.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx)
+- [map-defaults.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts)
+- [GlobalSOS.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx)
+- [location-utils.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts)
+- [chennai.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json)
 </cite>
 
 ## Table of Contents
@@ -64,26 +64,26 @@ OFF --> API
 ```
 
 **Diagram sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [config.py:26-108](file://backend/core/config.py#L26-L108)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
-- [offline-sos-queue.ts:25-138](file://frontend/lib/offline-sos-queue.ts#L25-L138)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [config.py:26-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L108)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [offline-sos-queue.ts:25-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L138)
 
 **Section sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [config.py:26-108](file://backend/core/config.py#L26-L108)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
-- [offline-sos-queue.ts:25-138](file://frontend/lib/offline-sos-queue.ts#L25-L138)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [config.py:26-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L108)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [offline-sos-queue.ts:25-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L138)
 
 ## Core Components
 - EmergencyLocatorService: Parses categories, builds radius steps, queries database with PostGIS, merges results from local catalog and Overpass fallback, and caches responses.
@@ -96,15 +96,15 @@ OFF --> API
 - Map Integration: Dynamic MapLibre GL rendering with facility markers and route overlays.
 
 **Section sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [config.py:26-108](file://backend/core/config.py#L26-L108)
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
-- [offline-sos-queue.ts:25-138](file://frontend/lib/offline-sos-queue.ts#L25-L138)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [config.py:26-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L108)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
+- [offline-sos-queue.ts:25-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L138)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
 
 ## Architecture Overview
 The Emergency Locator follows a tiered discovery pattern:
@@ -137,14 +137,14 @@ API-->>Client : JSON payload
 ```
 
 **Diagram sources**
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
-- [emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
+- [emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
 
 **Section sources**
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
-- [emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
+- [emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
 
 ## Detailed Component Analysis
 
@@ -171,11 +171,11 @@ ErrorDenied --> End
 ```
 
 **Diagram sources**
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
 
 **Section sources**
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [location-utils.ts:17-57](file://frontend/lib/location-utils.ts#L17-L57)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [location-utils.ts:17-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L17-L57)
 
 ### Tiered Radius Fallback System
 - Radius steps configurable via environment; defaults include 500m, 1km, 5km, 10km, 25km, 50km.
@@ -200,12 +200,12 @@ K --> L
 ```
 
 **Diagram sources**
-- [emergency_locator.py:178-373](file://backend/services/emergency_locator.py#L178-L373)
-- [config.py:26-32](file://backend/core/config.py#L26-L32)
+- [emergency_locator.py:178-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L178-L373)
+- [config.py:26-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L32)
 
 **Section sources**
-- [emergency_locator.py:178-373](file://backend/services/emergency_locator.py#L178-L373)
-- [config.py:26-32](file://backend/core/config.py#L26-L32)
+- [emergency_locator.py:178-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L178-L373)
+- [config.py:26-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L32)
 
 ### Overpass API Integration
 - Queries amenities and emergency services around a point with a given radius.
@@ -239,12 +239,12 @@ OverpassService --> EmergencyServiceItem : "produces"
 ```
 
 **Diagram sources**
-- [overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [schemas.py:36-51](file://backend/models/schemas.py#L36-L51)
+- [overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [schemas.py:36-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L36-L51)
 
 **Section sources**
-- [overpass_service.py:35-249](file://backend/services/overpass_service.py#L35-L249)
-- [schemas.py:36-51](file://backend/models/schemas.py#L36-L51)
+- [overpass_service.py:35-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L249)
+- [schemas.py:36-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L36-L51)
 
 ### SOS Sharing and Emergency Contact Notifications
 - Generates WhatsApp/SMS links with location, readable address (BigDataCloud), and user profile details.
@@ -266,13 +266,13 @@ API-->>Client : {services, numbers, radius_used, source}
 ```
 
 **Diagram sources**
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 **Section sources**
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 ### Offline Emergency Map Implementation
 - Prebuilt offline bundles for 25 major Indian cities; each bundle includes center coordinates, services, and emergency numbers.
@@ -291,18 +291,18 @@ Frontend --> Map["EmergencyMap / EmergencyMapInner"]
 ```
 
 **Diagram sources**
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [emergency_locator.py:39-115](file://backend/services/emergency_locator.py#L39-L115)
-- [chennai.json:1-100](file://frontend/public/offline-data/chennai.json#L1-L100)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [emergency_locator.py:39-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L39-L115)
+- [chennai.json:1-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L100)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
 
 **Section sources**
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [emergency_locator.py:39-115](file://backend/services/emergency_locator.py#L39-L115)
-- [chennai.json:1-100](file://frontend/public/offline-data/chennai.json#L1-L100)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [emergency_locator.py:39-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L39-L115)
+- [chennai.json:1-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L100)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
 
 ### User Interface and Accessibility
 - Dynamic map loading with SSR-safe placeholder.
@@ -335,16 +335,16 @@ EmergencyMapInner --> MapLibreCanvas : "uses"
 ```
 
 **Diagram sources**
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:35-83](file://frontend/components/EmergencyMapInner.tsx#L35-L83)
-- [map-defaults.ts:1-8](file://frontend/lib/map-defaults.ts#L1-L8)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:35-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L35-L83)
+- [map-defaults.ts:1-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts#L1-L8)
 
 **Section sources**
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
-- [map-defaults.ts:1-8](file://frontend/lib/map-defaults.ts#L1-L8)
-- [GlobalSOS.tsx:7-56](file://frontend/components/GlobalSOS.tsx#L7-L56)
-- [location-utils.ts:17-57](file://frontend/lib/location-utils.ts#L17-L57)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [map-defaults.ts:1-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts#L1-L8)
+- [GlobalSOS.tsx:7-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx#L7-L56)
+- [location-utils.ts:17-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L17-L57)
 
 ## Dependency Analysis
 - Backend depends on Settings for configuration, Redis for caching, PostgreSQL for persistence, and OverpassService for external data.
@@ -363,22 +363,22 @@ MAP["EmergencyMap"] --> API
 ```
 
 **Diagram sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:26-108](file://backend/core/config.py#L26-L108)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
-- [offline-sos-queue.ts:25-138](file://frontend/lib/offline-sos-queue.ts#L25-L138)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:26-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L108)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
+- [offline-sos-queue.ts:25-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L138)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
 
 **Section sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:26-108](file://backend/core/config.py#L26-L108)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
-- [offline-sos-queue.ts:25-138](file://frontend/lib/offline-sos-queue.ts#L25-L138)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:26-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L108)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
+- [offline-sos-queue.ts:25-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L138)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
 
 ## Performance Considerations
 - Database queries leverage PostGIS functions (ST_Distance, ST_DWithin) and ordering by trauma/24hr to reduce client-side sorting overhead.
@@ -394,11 +394,11 @@ Common issues and resolutions:
 - Offline SOS not sent: IndexedDB queue persists requests; background sync triggers on network restoration.
 
 **Section sources**
-- [geolocation.ts:63-71](file://frontend/lib/geolocation.ts#L63-L71)
-- [location-utils.ts:17-57](file://frontend/lib/location-utils.ts#L17-L57)
-- [overpass_service.py:123-134](file://backend/services/overpass_service.py#L123-L134)
-- [emergency.py:38-40](file://backend/api/v1/emergency.py#L38-L40)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [geolocation.ts:63-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L63-L71)
+- [location-utils.ts:17-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L17-L57)
+- [overpass_service.py:123-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L123-L134)
+- [emergency.py:38-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L38-L40)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 ## Conclusion
 The Emergency Locator module delivers a resilient, layered emergency response system with accurate GPS detection, tiered discovery, and robust fallbacks. It integrates seamlessly with MapLibre GL for visualization, supports offline city bundles, and provides practical SOS sharing and queueing for connectivity loss. The modular design and centralized configuration enable easy tuning and deployment across diverse environments.
@@ -416,5 +416,5 @@ The Emergency Locator module delivers a resilient, layered emergency response sy
 - Cache TTL: Controls response caching for performance.
 
 **Section sources**
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
-- [config.py:99-108](file://backend/core/config.py#L99-L108)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
+- [config.py:99-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L99-L108)

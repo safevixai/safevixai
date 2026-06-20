@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [page.tsx](file://frontend/app/report/page.tsx)
-- [ReportForm.tsx](file://frontend/components/ReportForm.tsx)
-- [HazardViewfinder.tsx](file://frontend/components/report/HazardViewfinder.tsx)
-- [store.ts](file://frontend/lib/store.ts)
-- [api.ts](file://frontend/lib/api.ts)
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [location-utils.ts](file://frontend/lib/location-utils.ts)
-- [Tailwind config](file://frontend/tailwind.config.js)
-- [UI/UX guidelines](file://docs/UIUX.md)
-- [Toast component](file://frontend/components/dashboard/Toast.tsx)
-- [BottomNav component](file://frontend/components/dashboard/BottomNav.tsx)
-- [SystemHeader component](file://frontend/components/dashboard/SystemHeader.tsx)
-- [package.json](file://frontend/package.json)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx)
+- [ReportForm.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx)
+- [HazardViewfinder.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [location-utils.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts)
+- [Tailwind config](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tailwind.config.js)
+- [UI/UX guidelines](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md)
+- [Toast component](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/Toast.tsx)
+- [BottomNav component](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx)
+- [SystemHeader component](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx)
+- [package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
 </cite>
 
 ## Table of Contents
@@ -71,19 +71,19 @@ RP --> TO
 ```
 
 **Diagram sources**
-- [page.tsx:101-555](file://frontend/app/report/page.tsx#L101-L555)
-- [HazardViewfinder.tsx:17-104](file://frontend/components/report/HazardViewfinder.tsx#L17-L104)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [api.ts:14-821](file://frontend/lib/api.ts#L14-L821)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [BottomNav.tsx:24-102](file://frontend/components/dashboard/BottomNav.tsx#L24-L102)
-- [SystemHeader.tsx:16-169](file://frontend/components/dashboard/SystemHeader.tsx#L16-L169)
-- [Toast.tsx:17-53](file://frontend/components/dashboard/Toast.tsx#L17-L53)
+- [page.tsx:101-555](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L555)
+- [HazardViewfinder.tsx:17-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L17-L104)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [api.ts:14-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L14-L821)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [BottomNav.tsx:24-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L102)
+- [SystemHeader.tsx:16-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L16-L169)
+- [Toast.tsx:17-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/Toast.tsx#L17-L53)
 
 **Section sources**
-- [page.tsx:101-555](file://frontend/app/report/page.tsx#L101-L555)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [page.tsx:101-555](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L555)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 ## Core Components
 - Report Page: Orchestrates the entire workflow, including location acquisition, authority matching, photo preview, form submission, and success confirmation.
@@ -95,14 +95,14 @@ RP --> TO
 - Responsive and Accessibility: Tailwind configuration and UI/UX guidelines ensure mobile-first design and inclusive interactions.
 
 **Section sources**
-- [page.tsx:101-555](file://frontend/app/report/page.tsx#L101-L555)
-- [HazardViewfinder.tsx:17-104](file://frontend/components/report/HazardViewfinder.tsx#L17-L104)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [api.ts:654-750](file://frontend/lib/api.ts#L654-L750)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [Tailwind config:1-131](file://frontend/tailwind.config.js#L1-L131)
-- [UI/UX guidelines:225-264](file://docs/UIUX.md#L225-L264)
+- [page.tsx:101-555](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L555)
+- [HazardViewfinder.tsx:17-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L17-L104)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [api.ts:654-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L750)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [Tailwind config:1-131](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tailwind.config.js#L1-L131)
+- [UI/UX guidelines:225-264](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L225-L264)
 
 ## Architecture Overview
 The reporting interface follows a reactive pattern:
@@ -137,10 +137,10 @@ Page-->>User : Success confirmation card
 ```
 
 **Diagram sources**
-- [page.tsx:147-258](file://frontend/app/report/page.tsx#L147-L258)
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [api.ts:654-750](file://frontend/lib/api.ts#L654-L750)
-- [store.ts:133-136](file://frontend/lib/store.ts#L133-L136)
+- [page.tsx:147-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L147-L258)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [api.ts:654-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L750)
+- [store.ts:133-136](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L133-L136)
 
 ## Detailed Component Analysis
 
@@ -176,10 +176,10 @@ ShowSubmitErr --> End
 ```
 
 **Diagram sources**
-- [page.tsx:101-555](file://frontend/app/report/page.tsx#L101-L555)
+- [page.tsx:101-555](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L555)
 
 **Section sources**
-- [page.tsx:101-555](file://frontend/app/report/page.tsx#L101-L555)
+- [page.tsx:101-555](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L555)
 
 ### Photo Upload System
 - Accepts JPG, PNG, or WEBP images
@@ -199,12 +199,12 @@ Preview --> Ready["Photo ready for submission"]
 ```
 
 **Diagram sources**
-- [page.tsx:260-262](file://frontend/app/report/page.tsx#L260-L262)
-- [page.tsx:223-223](file://frontend/app/report/page.tsx#L223-L223)
+- [page.tsx:260-262](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L260-L262)
+- [page.tsx:223-223](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L223-L223)
 
 **Section sources**
-- [page.tsx:260-262](file://frontend/app/report/page.tsx#L260-L262)
-- [page.tsx:358-370](file://frontend/app/report/page.tsx#L358-L370)
+- [page.tsx:260-262](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L260-L262)
+- [page.tsx:358-370](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L358-L370)
 
 ### Real-time Authority Matching
 - Reverse geocoding provides readable address and locality
@@ -226,12 +226,12 @@ Page-->>Page : Update UI with matched data
 ```
 
 **Diagram sources**
-- [page.tsx:151-202](file://frontend/app/report/page.tsx#L151-L202)
-- [api.ts:707-721](file://frontend/lib/api.ts#L707-L721)
+- [page.tsx:151-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L151-L202)
+- [api.ts:707-721](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L707-L721)
 
 **Section sources**
-- [page.tsx:151-202](file://frontend/app/report/page.tsx#L151-L202)
-- [api.ts:707-721](file://frontend/lib/api.ts#L707-L721)
+- [page.tsx:151-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L151-L202)
+- [api.ts:707-721](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L707-L721)
 
 ### Submission Workflow
 - Validates presence of location and hazard type
@@ -252,12 +252,12 @@ Page-->>User : Show success card with authority contact and portal
 ```
 
 **Diagram sources**
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 **Section sources**
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 ### State Management with Zustand
 - GPS location and errors are stored centrally
@@ -284,12 +284,12 @@ GeolocationHook --> ZustandStore : "updates"
 ```
 
 **Diagram sources**
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
 
 **Section sources**
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
 
 ### Animation Systems
 - Motion library powers entrance animations, transitions, and interactive feedback
@@ -308,14 +308,14 @@ Toast --> Feedback["Success/Error/Info"]
 ```
 
 **Diagram sources**
-- [HazardViewfinder.tsx:27-104](file://frontend/components/report/HazardViewfinder.tsx#L27-L104)
-- [page.tsx:448-456](file://frontend/app/report/page.tsx#L448-L456)
-- [Toast.tsx:35-53](file://frontend/components/dashboard/Toast.tsx#L35-L53)
+- [HazardViewfinder.tsx:27-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L27-L104)
+- [page.tsx:448-456](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L448-L456)
+- [Toast.tsx:35-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/Toast.tsx#L35-L53)
 
 **Section sources**
-- [HazardViewfinder.tsx:27-104](file://frontend/components/report/HazardViewfinder.tsx#L27-L104)
-- [page.tsx:448-456](file://frontend/app/report/page.tsx#L448-L456)
-- [Toast.tsx:17-53](file://frontend/components/dashboard/Toast.tsx#L17-L53)
+- [HazardViewfinder.tsx:27-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L27-L104)
+- [page.tsx:448-456](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L448-L456)
+- [Toast.tsx:17-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/Toast.tsx#L17-L53)
 
 ### Responsive Design Adaptations
 - Mobile-first layout with bottom navigation and fixed-position controls
@@ -335,14 +335,14 @@ SAFEA["Safe Area Insets"] --> BN
 ```
 
 **Diagram sources**
-- [BottomNav.tsx:32-98](file://frontend/components/dashboard/BottomNav.tsx#L32-L98)
-- [Tailwind config:125-127](file://frontend/tailwind.config.js#L125-L127)
-- [UI/UX guidelines:254-262](file://docs/UIUX.md#L254-L262)
+- [BottomNav.tsx:32-98](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L32-L98)
+- [Tailwind config:125-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tailwind.config.js#L125-L127)
+- [UI/UX guidelines:254-262](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L254-L262)
 
 **Section sources**
-- [BottomNav.tsx:24-102](file://frontend/components/dashboard/BottomNav.tsx#L24-L102)
-- [Tailwind config:1-131](file://frontend/tailwind.config.js#L1-L131)
-- [UI/UX guidelines:225-264](file://docs/UIUX.md#L225-L264)
+- [BottomNav.tsx:24-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L102)
+- [Tailwind config:1-131](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tailwind.config.js#L1-L131)
+- [UI/UX guidelines:225-264](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L225-L264)
 
 ### Accessibility Features
 - Minimum 44x44px touch targets for all interactive elements
@@ -353,8 +353,8 @@ SAFEA["Safe Area Insets"] --> BN
 - Loading states use skeleton screens instead of blank states
 
 **Section sources**
-- [UI/UX guidelines:225-264](file://docs/UIUX.md#L225-L264)
-- [page.tsx:332-334](file://frontend/app/report/page.tsx#L332-L334)
+- [UI/UX guidelines:225-264](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L225-L264)
+- [page.tsx:332-334](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L332-L334)
 
 ## Dependency Analysis
 Key dependencies and their roles:
@@ -376,16 +376,16 @@ RHT["React Hot Toast (react-hot-toast)"] --> Toast
 ```
 
 **Diagram sources**
-- [store.ts:1-2](file://frontend/lib/store.ts#L1-L2)
-- [api.ts:1-1](file://frontend/lib/api.ts#L1-L1)
-- [page.tsx:7-7](file://frontend/app/report/page.tsx#L7-L7)
-- [HazardViewfinder.tsx:3-3](file://frontend/components/report/HazardViewfinder.tsx#L3-L3)
-- [Toast.tsx:4-4](file://frontend/components/dashboard/Toast.tsx#L4-L4)
-- [Tailwind config:1-131](file://frontend/tailwind.config.js#L1-L131)
-- [package.json:52-52](file://frontend/package.json#L52-L52)
+- [store.ts:1-2](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L2)
+- [api.ts:1-1](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L1)
+- [page.tsx:7-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L7-L7)
+- [HazardViewfinder.tsx:3-3](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L3-L3)
+- [Toast.tsx:4-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/Toast.tsx#L4-L4)
+- [Tailwind config:1-131](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tailwind.config.js#L1-L131)
+- [package.json:52-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L52-L52)
 
 **Section sources**
-- [package.json:14-53](file://frontend/package.json#L14-L53)
+- [package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
 
 ## Performance Considerations
 - Debounce or throttle geolocation updates to reduce unnecessary re-renders
@@ -403,10 +403,10 @@ Common issues and resolutions:
 - Network connectivity: Use toast notifications to inform users of online/offline status
 
 **Section sources**
-- [geolocation.ts:63-70](file://frontend/lib/geolocation.ts#L63-L70)
-- [page.tsx:223-223](file://frontend/app/report/page.tsx#L223-L223)
-- [page.tsx:252-254](file://frontend/app/report/page.tsx#L252-L254)
-- [Toast.tsx:17-53](file://frontend/components/dashboard/Toast.tsx#L17-L53)
+- [geolocation.ts:63-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L63-L70)
+- [page.tsx:223-223](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L223-L223)
+- [page.tsx:252-254](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L252-L254)
+- [Toast.tsx:17-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/Toast.tsx#L17-L53)
 
 ## Conclusion
 The community reporting interface combines a streamlined multi-step form, robust photo handling, real-time authority matching, and resilient submission workflow. With Zustand for state management, Motion for animations, and Tailwind/Turbo for responsive design, it delivers a user-friendly experience optimized for mobile devices and diverse accessibility needs.

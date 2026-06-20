@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [vectorstore.py](file://chatbot_service/rag/vectorstore.py)
-- [embeddings.py](file://chatbot_service/rag/embeddings.py)
-- [document_loader.py](file://chatbot_service/rag/document_loader.py)
-- [retriever.py](file://chatbot_service/rag/retriever.py)
-- [build_vectorstore.py](file://chatbot_service/data/build_vectorstore.py)
-- [config.py](file://chatbot_service/config.py)
-- [context_assembler.py](file://chatbot_service/agent/context_assembler.py)
-- [graph.py](file://chatbot_service/agent/graph.py)
-- [state.py](file://chatbot_service/agent/state.py)
-- [main.py](file://chatbot_service/main.py)
-- [chat.py](file://chatbot_service/api/chat.py)
-- [motor_vehicles_act_1988_summary.txt](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
-- [who_road_safety_india-road_safety_indicators_ind.csv](file://chatbot_service/data/legal/who_road_safety_india-road_safety_indicators_ind.csv)
-- [first_aid.json](file://chatbot_service/data/first_aid.json)
+- [vectorstore.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py)
+- [embeddings.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py)
+- [document_loader.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py)
+- [retriever.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py)
+- [build_vectorstore.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/build_vectorstore.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [context_assembler.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py)
+- [graph.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py)
+- [state.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py)
+- [motor_vehicles_act_1988_summary.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt)
+- [who_road_safety_india-road_safety_indicators_ind.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/who_road_safety_india-road_safety_indicators_ind.csv)
+- [first_aid.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json)
 </cite>
 
 ## Table of Contents
@@ -75,23 +75,23 @@ GE --> API
 ```
 
 **Diagram sources**
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:9-30](file://chatbot_service/rag/embeddings.py#L9-L30)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:9-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L9-L30)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
 
 **Section sources**
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
 
 ## Core Components
 - Document Loader: Reads and normalizes text from TXT/MD/JSON/CSV/PDF, infers category from folder, and truncates to safe lengths.
@@ -103,13 +103,13 @@ GE --> API
 - Configuration: Provides environment-driven paths, model identifiers, and defaults for RAG.
 
 **Section sources**
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:9-30](file://chatbot_service/rag/embeddings.py#L9-L30)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:9-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L9-L30)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 ## Architecture Overview
 The RAG pipeline is a local-first, file-backed system optimized for offline operation and reproducible builds. It avoids external vector databases by maintaining a compact JSON index of document chunks. Retrieval is performed via a custom scoring function that combines token overlap, phrase containment, and length normalization. The system augments retrieval results with domain-specific tools and contextual information.
@@ -142,13 +142,13 @@ API-->>Client : response
 ```
 
 **Diagram sources**
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [retriever.py:22-39](file://chatbot_service/rag/retriever.py#L22-L39)
-- [vectorstore.py:51-67](file://chatbot_service/rag/vectorstore.py#L51-L67)
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:9-30](file://chatbot_service/rag/embeddings.py#L9-L30)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [retriever.py:22-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L22-L39)
+- [vectorstore.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L51-L67)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:9-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L9-L30)
 
 ## Detailed Component Analysis
 
@@ -177,14 +177,14 @@ Iterate --> Done(["Return list of documents"])
 ```
 
 **Diagram sources**
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [document_loader.py:60-93](file://chatbot_service/rag/document_loader.py#L60-L93)
-- [document_loader.py:96-102](file://chatbot_service/rag/document_loader.py#L96-L102)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [document_loader.py:60-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L60-L93)
+- [document_loader.py:96-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L96-L102)
 
 **Section sources**
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [document_loader.py:60-93](file://chatbot_service/rag/document_loader.py#L60-L93)
-- [document_loader.py:96-102](file://chatbot_service/rag/document_loader.py#L96-L102)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [document_loader.py:60-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L60-L93)
+- [document_loader.py:96-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L96-L102)
 
 ### Embedding Strategies and Similarity Scoring
 - Tokenization: Extracts sequences of alphanumeric characters with underscore, lowercased.
@@ -204,10 +204,10 @@ H --> I["Return combined score"]
 ```
 
 **Diagram sources**
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
 
 **Section sources**
-- [embeddings.py:9-30](file://chatbot_service/rag/embeddings.py#L9-L30)
+- [embeddings.py:9-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L9-L30)
 
 ### Vector Store and Chunking
 - Index storage: JSON file containing normalized chunks with source, title, category, and content.
@@ -239,11 +239,11 @@ LocalVectorStore --> DocumentChunk : "stores"
 ```
 
 **Diagram sources**
-- [vectorstore.py:11-26](file://chatbot_service/rag/vectorstore.py#L11-L26)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
+- [vectorstore.py:11-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L11-L26)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
 
 **Section sources**
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
 
 ### Retriever and Hybrid-like Search
 - Wraps the vector store and exposes a simplified interface.
@@ -262,12 +262,12 @@ Retriever-->>Caller : [RetrievalResult, ...]
 ```
 
 **Diagram sources**
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [vectorstore.py:51-67](file://chatbot_service/rag/vectorstore.py#L51-L67)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [vectorstore.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L51-L67)
 
 **Section sources**
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [vectorstore.py:51-67](file://chatbot_service/rag/vectorstore.py#L51-L67)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [vectorstore.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L51-L67)
 
 ### Context Assembly and Intent-driven Retrieval
 - Determines intent and augments conversation context with:
@@ -289,10 +289,10 @@ B --> |other| H["Add retrieved (no scope)"]
 ```
 
 **Diagram sources**
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
 
 **Section sources**
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
 
 ### Chat Engine and Lifecycle
 - Manages session history, safety checks, intent detection, and provider generation.
@@ -317,12 +317,12 @@ Engine-->>API : ChatResponse
 ```
 
 **Diagram sources**
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [main.py:59-78](file://chatbot_service/main.py#L59-L78)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [main.py:59-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L59-L78)
 
 **Section sources**
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [main.py:59-78](file://chatbot_service/main.py#L59-L78)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [main.py:59-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L59-L78)
 
 ### Configuration and Index Builder
 - Settings define persistent directories for data and index, embedding model identifier, and retrieval top-K.
@@ -338,12 +338,12 @@ Stats --> End(["Exit"])
 ```
 
 **Diagram sources**
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [build_vectorstore.py:7-11](file://chatbot_service/data/build_vectorstore.py#L7-L11)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [build_vectorstore.py:7-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/build_vectorstore.py#L7-L11)
 
 **Section sources**
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [build_vectorstore.py:7-11](file://chatbot_service/data/build_vectorstore.py#L7-L11)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [build_vectorstore.py:7-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/build_vectorstore.py#L7-L11)
 
 ### Example Datasets and Content Types
 - Legal documents: A summarized legal corpus for traffic laws and road safety.
@@ -353,9 +353,9 @@ Stats --> End(["Exit"])
 These files demonstrate ingestion of heterogeneous formats and inform the categorization and retrieval strategies.
 
 **Section sources**
-- [motor_vehicles_act_1988_summary.txt:1-391](file://chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
-- [who_road_safety_india-road_safety_indicators_ind.csv:1-25](file://chatbot_service/data/legal/who_road_safety_india-road_safety_indicators_ind.csv#L1-L25)
-- [first_aid.json:1-388](file://chatbot_service/data/first_aid.json#L1-L388)
+- [motor_vehicles_act_1988_summary.txt:1-391](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/motor_vehicles_act_1988_summary.txt#L1-L391)
+- [who_road_safety_india-road_safety_indicators_ind.csv:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/legal/who_road_safety_india-road_safety_indicators_ind.csv#L1-L25)
+- [first_aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json#L1-L388)
 
 ## Dependency Analysis
 - Cohesion: RAG components are cohesive around document ingestion, chunking, scoring, and retrieval.
@@ -375,18 +375,18 @@ GE --> API["api/chat.py"]
 ```
 
 **Diagram sources**
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:9-30](file://chatbot_service/rag/embeddings.py#L9-L30)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:9-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L9-L30)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
 
 **Section sources**
-- [main.py:51-78](file://chatbot_service/main.py#L51-L78)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
+- [main.py:51-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L51-L78)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
 
 ## Performance Considerations
 - Index size and chunk length: Adjust chunking thresholds to balance recall and processing overhead.
@@ -405,9 +405,9 @@ GE --> API["api/chat.py"]
 - Slow retrieval: Reduce top-K or enable category scoping; consider increasing chunk size cautiously to maintain relevance.
 
 **Section sources**
-- [document_loader.py:84-87](file://chatbot_service/rag/document_loader.py#L84-L87)
-- [build_vectorstore.py:7-11](file://chatbot_service/data/build_vectorstore.py#L7-L11)
-- [vectorstore.py:27-34](file://chatbot_service/rag/vectorstore.py#L27-L34)
+- [document_loader.py:84-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L84-L87)
+- [build_vectorstore.py:7-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/build_vectorstore.py#L7-L11)
+- [vectorstore.py:27-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L27-L34)
 
 ## Conclusion
 The RAG system implements a pragmatic, local-first approach to document retrieval for road safety applications. By combining robust document ingestion, simple but effective similarity scoring, and category-aware retrieval, it enables accurate, context-rich responses. The modular design supports easy extension to additional content types and retrieval strategies, while the configuration-driven setup simplifies deployment and maintenance.
@@ -422,8 +422,8 @@ The RAG system implements a pragmatic, local-first approach to document retrieva
 - Maintenance: Periodically review categories and chunk sizes; prune or restructure content to improve recall and precision.
 
 **Section sources**
-- [build_vectorstore.py:7-11](file://chatbot_service/data/build_vectorstore.py#L7-L11)
-- [graph.py:92-94](file://chatbot_service/agent/graph.py#L92-L94)
+- [build_vectorstore.py:7-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/build_vectorstore.py#L7-L11)
+- [graph.py:92-94](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L92-L94)
 
 ### Retrieval Patterns and Context Assembly Examples
 - Emergency intents: Combine nearby SOS services and weather with scoped retrieval for medical/emergency content.
@@ -432,5 +432,5 @@ The RAG system implements a pragmatic, local-first approach to document retrieva
 - General intents: Use broad retrieval without category scoping.
 
 **Section sources**
-- [context_assembler.py:64-79](file://chatbot_service/agent/context_assembler.py#L64-L79)
-- [graph.py:48-57](file://chatbot_service/agent/graph.py#L48-L57)
+- [context_assembler.py:64-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L64-L79)
+- [graph.py:48-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L48-L57)

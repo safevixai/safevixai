@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [config.py](file://backend/core/config.py)
-- [SOSButton.tsx](file://frontend/components/SOSButton.tsx)
-- [GlobalSOS.tsx](file://frontend/components/GlobalSOS.tsx)
-- [page.tsx](file://frontend/app/sos/page.tsx)
-- [crash-detection.ts](file://frontend/lib/crash-detection.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [sos-share.ts](file://frontend/lib/sos-share.ts)
-- [store.ts](file://frontend/lib/store.ts)
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [location-tracker.ts](file://frontend/lib/location-tracker.ts)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [SOSButton.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx)
+- [GlobalSOS.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx)
+- [crash-detection.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [sos-share.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [location-tracker.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts)
 </cite>
 
 ## Table of Contents
@@ -82,36 +82,36 @@ Locator --> Cfg
 ```
 
 **Diagram sources**
-- [page.tsx:14-343](file://frontend/app/sos/page.tsx#L14-L343)
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [GlobalSOS.tsx:7-56](file://frontend/components/GlobalSOS.tsx#L7-L56)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [schemas.py:26-66](file://backend/models/schemas.py#L26-L66)
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
+- [page.tsx:14-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L14-L343)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [GlobalSOS.tsx:7-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx#L7-L56)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [schemas.py:26-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L26-L66)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
 
 **Section sources**
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [schemas.py:26-66](file://backend/models/schemas.py#L26-L66)
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [GlobalSOS.tsx:7-56](file://frontend/components/GlobalSOS.tsx#L7-L56)
-- [page.tsx:14-343](file://frontend/app/sos/page.tsx#L14-L343)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [location-tracker.ts:8-66](file://frontend/lib/location-tracker.ts#L8-L66)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [schemas.py:26-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L26-L66)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [GlobalSOS.tsx:7-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx#L7-L56)
+- [page.tsx:14-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L14-L343)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [location-tracker.ts:8-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L66)
 
 ## Core Components
 - SOS Activation UI:
@@ -128,13 +128,13 @@ Locator --> Cfg
   - Integrates with emergency locator service and caching
 
 **Section sources**
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [page.tsx:62-114](file://frontend/app/sos/page.tsx#L62-L114)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [page.tsx:62-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L62-L114)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 ## Architecture Overview
 The SOS system integrates frontend user actions with backend emergency services discovery and delivery channels.
@@ -159,11 +159,11 @@ Queue->>API : "Background sync when online"
 ```
 
 **Diagram sources**
-- [page.tsx:102-114](file://frontend/app/sos/page.tsx#L102-L114)
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [page.tsx:102-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L102-L114)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 ## Detailed Component Analysis
 
@@ -190,12 +190,12 @@ Cancel --> End
 ```
 
 **Diagram sources**
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [page.tsx:62-114](file://frontend/app/sos/page.tsx#L62-L114)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [page.tsx:62-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L62-L114)
 
 **Section sources**
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [page.tsx:62-114](file://frontend/app/sos/page.tsx#L62-L114)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [page.tsx:62-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L62-L114)
 
 ### SOS Sharing Functionality (WhatsApp Integration, SMS Dispatch, Emergency Contacts)
 - WhatsApp link generation:
@@ -220,12 +220,12 @@ UI->>User : "Open link in WhatsApp"
 ```
 
 **Diagram sources**
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
 
 **Section sources**
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [store.ts:53-58](file://frontend/lib/store.ts#L53-L58)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [store.ts:53-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L53-L58)
 
 ### Crash Detection System (Automatic SOS Triggering)
 - Thresholds:
@@ -249,11 +249,11 @@ Debounce --> Wait
 ```
 
 **Diagram sources**
-- [crash-detection.ts:22-45](file://frontend/lib/crash-detection.ts#L22-L45)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
+- [crash-detection.ts:22-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L22-L45)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
 
 **Section sources**
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
 
 ### SOS Queue Management (Offline Handling)
 - IndexedDB storage:
@@ -278,12 +278,12 @@ Loop --> |No| Done["Complete"]
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 **Section sources**
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 ### Backend Emergency API Endpoints for SOS Processing
 - Endpoint: GET /api/v1/emergency/sos
@@ -310,12 +310,12 @@ API-->>FE : "SosResponse"
 ```
 
 **Diagram sources**
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 **Section sources**
-- [emergency.py:19-71](file://backend/api/v1/emergency.py#L19-L71)
-- [emergency_locator.py:187-239](file://backend/services/emergency_locator.py#L187-L239)
+- [emergency.py:19-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L71)
+- [emergency_locator.py:187-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L239)
 
 ### Emergency Locator Service and Data Sources
 - Categories supported: hospital, police, ambulance, fire, towing, pharmacy, puncture, showroom
@@ -354,14 +354,14 @@ EmergencyLocatorService --> EmergencyService : "queries"
 ```
 
 **Diagram sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 **Section sources**
-- [emergency_locator.py:28-37](file://backend/services/emergency_locator.py#L28-L37)
-- [emergency_locator.py:187-239](file://backend/services/emergency_locator.py#L187-L239)
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
+- [emergency_locator.py:28-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L28-L37)
+- [emergency_locator.py:187-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L239)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
 
 ### Location Accuracy and User Confirmation
 - Location accuracy:
@@ -372,9 +372,9 @@ EmergencyLocatorService --> EmergencyService : "queries"
   - Crash detection triggers automatic activation with visual feedback
 
 **Section sources**
-- [geolocation.ts:74-86](file://frontend/lib/geolocation.ts#L74-L86)
-- [page.tsx:117-120](file://frontend/app/sos/page.tsx#L117-L120)
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
+- [geolocation.ts:74-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L74-L86)
+- [page.tsx:117-120](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L117-L120)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
 
 ### Integration with Emergency Response Systems
 - Emergency numbers:
@@ -385,8 +385,8 @@ EmergencyLocatorService --> EmergencyService : "queries"
   - City-specific bundles for offline use with merged sources
 
 **Section sources**
-- [emergency_locator.py:117-131](file://backend/services/emergency_locator.py#L117-L131)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [emergency_locator.py:117-131](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L117-L131)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 ## Dependency Analysis
 - Frontend dependencies:
@@ -411,28 +411,28 @@ Locator --> Cfg["config.py"]
 ```
 
 **Diagram sources**
-- [page.tsx:14-343](file://frontend/app/sos/page.tsx#L14-L343)
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [schemas.py:26-66](file://backend/models/schemas.py#L26-L66)
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
+- [page.tsx:14-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L14-L343)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [schemas.py:26-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L26-L66)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
 
 **Section sources**
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [schemas.py:26-66](file://backend/models/schemas.py#L26-L66)
-- [config.py:26-36](file://backend/core/config.py#L26-L36)
-- [page.tsx:14-343](file://frontend/app/sos/page.tsx#L14-L343)
-- [sos-share.ts:9-35](file://frontend/lib/sos-share.ts#L9-L35)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [schemas.py:26-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L26-L66)
+- [config.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L36)
+- [page.tsx:14-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L14-L343)
+- [sos-share.ts:9-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L35)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 ## Performance Considerations
 - Frontend:
@@ -459,10 +459,10 @@ Locator --> Cfg["config.py"]
   - Adjust thresholds for device sensitivity
 
 **Section sources**
-- [geolocation.ts:35-108](file://frontend/lib/geolocation.ts#L35-L108)
-- [page.tsx:102-114](file://frontend/app/sos/page.tsx#L102-L114)
-- [offline-sos-queue.ts:118-123](file://frontend/lib/offline-sos-queue.ts#L118-L123)
-- [crash-detection.ts:57-69](file://frontend/lib/crash-detection.ts#L57-L69)
+- [geolocation.ts:35-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L35-L108)
+- [page.tsx:102-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L102-L114)
+- [offline-sos-queue.ts:118-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L118-L123)
+- [crash-detection.ts:57-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L57-L69)
 
 ## Conclusion
 The SOS Sharing and Communication system combines robust frontend activation mechanisms (manual and automatic), reliable SOS sharing channels, resilient offline handling, and a scalable backend emergency locator service. By leveraging device sensors, geolocation, and standardized emergency APIs, it provides a comprehensive framework for emergency notification and coordination with fallback strategies and user-centric UX.

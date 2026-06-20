@@ -2,14 +2,14 @@
 
 <cite>
 **Referenced Files in This Document**
-- [ChallanPage](file://frontend/app/challan/page.tsx)
-- [ChallanCalculator](file://frontend/components/ChallanCalculator.tsx)
-- [store](file://frontend/lib/store.ts)
-- [api](file://frontend/lib/api.ts)
-- [duckdb-challan](file://frontend/lib/duckdb-challan.ts)
-- [ViolationsList](file://frontend/components/ViolationsList.tsx)
-- [UIUX](file://docs/UIUX.md)
-- [globals.css](file://frontend/app/globals.css)
+- [ChallanPage](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx)
+- [ChallanCalculator](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx)
+- [store](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [api](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [duckdb-challan](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [ViolationsList](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx)
+- [UIUX](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md)
+- [globals.css](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css)
 </cite>
 
 ## Table of Contents
@@ -32,14 +32,14 @@ The Challan Calculator is implemented as two complementary UI surfaces:
 - A comprehensive page with a live summary panel, detailed inputs, and AI insights
 
 Key files:
-- [ChallanPage](file://frontend/app/challan/page.tsx): Full-featured page with live summary, inputs, and AI footer
-- [ChallanCalculator](file://frontend/components/ChallanCalculator.tsx): Compact calculator with grid-based violation selection and result display
-- [store](file://frontend/lib/store.ts): Shared Zustand store with persisted state for violation, vehicle class, jurisdiction, and repeat status
-- [api](file://frontend/lib/api.ts): API client and calculateChallan endpoint
-- [duckdb-challan](file://frontend/lib/duckdb-challan.ts): Offline calculation helper for DuckDB-backed fine lookup
-- [ViolationsList](file://frontend/components/ViolationsList.tsx): Reference list of common violations
-- [UIUX](file://docs/UIUX.md): Accessibility and animation guidelines
-- [globals.css](file://frontend/app/globals.css): Theming, typography, animations, and responsive utilities
+- [ChallanPage](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx): Full-featured page with live summary, inputs, and AI footer
+- [ChallanCalculator](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx): Compact calculator with grid-based violation selection and result display
+- [store](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts): Shared Zustand store with persisted state for violation, vehicle class, jurisdiction, and repeat status
+- [api](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts): API client and calculateChallan endpoint
+- [duckdb-challan](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts): Offline calculation helper for DuckDB-backed fine lookup
+- [ViolationsList](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx): Reference list of common violations
+- [UIUX](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md): Accessibility and animation guidelines
+- [globals.css](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css): Theming, typography, animations, and responsive utilities
 
 ```mermaid
 graph TB
@@ -65,22 +65,22 @@ CP --> VL
 ```
 
 **Diagram sources**
-- [ChallanPage:45-320](file://frontend/app/challan/page.tsx#L45-L320)
-- [ChallanCalculator:13-186](file://frontend/components/ChallanCalculator.tsx#L13-L186)
-- [store:129-226](file://frontend/lib/store.ts#L129-L226)
-- [api:817-821](file://frontend/lib/api.ts#L817-L821)
-- [duckdb-challan:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [ViolationsList:1-54](file://frontend/components/ViolationsList.tsx#L1-L54)
+- [ChallanPage:45-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L320)
+- [ChallanCalculator:13-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L13-L186)
+- [store:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
+- [api:817-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L817-L821)
+- [duckdb-challan:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [ViolationsList:1-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx#L1-L54)
 
 **Section sources**
-- [ChallanPage:45-320](file://frontend/app/challan/page.tsx#L45-L320)
-- [ChallanCalculator:13-186](file://frontend/components/ChallanCalculator.tsx#L13-L186)
-- [store:129-226](file://frontend/lib/store.ts#L129-L226)
-- [api:817-821](file://frontend/lib/api.ts#L817-L821)
-- [duckdb-challan:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [ViolationsList:1-54](file://frontend/components/ViolationsList.tsx#L1-L54)
-- [UIUX:225-279](file://docs/UIUX.md#L225-L279)
-- [globals.css:1-1045](file://frontend/app/globals.css#L1-L1045)
+- [ChallanPage:45-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L45-L320)
+- [ChallanCalculator:13-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L13-L186)
+- [store:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
+- [api:817-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L817-L821)
+- [duckdb-challan:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [ViolationsList:1-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx#L1-L54)
+- [UIUX:225-279](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L225-L279)
+- [globals.css:1-1045](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L1-L1045)
 
 ## Core Components
 - Violation selection grid: Six predefined violations with icons and labels, with visual selection feedback and keyboard-friendly interaction.
@@ -95,15 +95,15 @@ CP --> VL
 - Accessibility: Focus rings, ARIA roles, keyboard navigation, and WCAG-compliant contrast.
 
 **Section sources**
-- [ChallanPage:20-36](file://frontend/app/challan/page.tsx#L20-L36)
-- [ChallanPage:38-43](file://frontend/app/challan/page.tsx#L38-L43)
-- [ChallanPage:209-298](file://frontend/app/challan/page.tsx#L209-L298)
-- [ChallanPage:111-180](file://frontend/app/challan/page.tsx#L111-L180)
-- [ChallanPage:301-312](file://frontend/app/challan/page.tsx#L301-L312)
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
-- [store:53-58](file://frontend/lib/store.ts#L53-L58)
-- [UIUX:225-279](file://docs/UIUX.md#L225-L279)
-- [globals.css:1-1045](file://frontend/app/globals.css#L1-L1045)
+- [ChallanPage:20-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L20-L36)
+- [ChallanPage:38-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L38-L43)
+- [ChallanPage:209-298](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L209-L298)
+- [ChallanPage:111-180](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L111-L180)
+- [ChallanPage:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
+- [store:53-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L53-L58)
+- [UIUX:225-279](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L225-L279)
+- [globals.css:1-1045](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L1-L1045)
 
 ## Architecture Overview
 The UI integrates with a shared store and network layer to compute and display fines in real time. The page orchestrates live updates via SWR, while the compact calculator triggers manual calculations.
@@ -129,10 +129,10 @@ P-->>U : Animated total liability update
 ```
 
 **Diagram sources**
-- [ChallanPage:49-82](file://frontend/app/challan/page.tsx#L49-L82)
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
-- [api:817-821](file://frontend/lib/api.ts#L817-L821)
-- [duckdb-challan:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [ChallanPage:49-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L49-L82)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
+- [api:817-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L817-L821)
+- [duckdb-challan:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 ## Detailed Component Analysis
 
@@ -151,12 +151,12 @@ Recalc --> Result["Display updated fine summary"]
 ```
 
 **Diagram sources**
-- [ChallanPage:209-222](file://frontend/app/challan/page.tsx#L209-L222)
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
+- [ChallanPage:209-222](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L209-L222)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
 
 **Section sources**
-- [ChallanPage:20-36](file://frontend/app/challan/page.tsx#L20-L36)
-- [ChallanPage:209-222](file://frontend/app/challan/page.tsx#L209-L222)
+- [ChallanPage:20-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L20-L36)
+- [ChallanPage:209-222](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L209-L222)
 
 ### Vehicle Class Selection System
 - Four classifications: 2W, 4W, HTV, BUS.
@@ -180,12 +180,12 @@ UI --> VehicleClass : "renders"
 ```
 
 **Diagram sources**
-- [ChallanPage:38-43](file://frontend/app/challan/page.tsx#L38-L43)
-- [ChallanPage:232-256](file://frontend/app/challan/page.tsx#L232-L256)
+- [ChallanPage:38-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L38-L43)
+- [ChallanPage:232-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L232-L256)
 
 **Section sources**
-- [ChallanPage:38-43](file://frontend/app/challan/page.tsx#L38-L43)
-- [ChallanPage:232-256](file://frontend/app/challan/page.tsx#L232-L256)
+- [ChallanPage:38-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L38-L43)
+- [ChallanPage:232-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L232-L256)
 
 ### Jurisdiction Selection Dropdown
 - State/UT selection with human-readable labels and codes.
@@ -201,12 +201,12 @@ Fetch --> Render["Render updated summary"]
 ```
 
 **Diagram sources**
-- [ChallanPage:264-274](file://frontend/app/challan/page.tsx#L264-L274)
-- [ChallanPage:62-63](file://frontend/app/challan/page.tsx#L62-L63)
+- [ChallanPage:264-274](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L264-L274)
+- [ChallanPage:62-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L62-L63)
 
 **Section sources**
-- [ChallanPage:20-27](file://frontend/app/challan/page.tsx#L20-L27)
-- [ChallanPage:264-274](file://frontend/app/challan/page.tsx#L264-L274)
+- [ChallanPage:20-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L20-L27)
+- [ChallanPage:264-274](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L264-L274)
 
 ### Repeat Offender Toggle Mechanism
 - Animated switch with spring physics for smooth state transitions.
@@ -227,12 +227,12 @@ P-->>U : Update summary with animation
 ```
 
 **Diagram sources**
-- [ChallanPage:279-298](file://frontend/app/challan/page.tsx#L279-L298)
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
+- [ChallanPage:279-298](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L279-L298)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
 
 **Section sources**
-- [ChallanPage:279-298](file://frontend/app/challan/page.tsx#L279-L298)
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
+- [ChallanPage:279-298](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L279-L298)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
 
 ### Real-Time Fine Calculation Display
 - Live summary panel shows total liability with animated number transitions.
@@ -253,15 +253,15 @@ Hide --> Done
 ```
 
 **Diagram sources**
-- [ChallanPage:71-82](file://frontend/app/challan/page.tsx#L71-L82)
-- [ChallanPage:121-128](file://frontend/app/challan/page.tsx#L121-L128)
-- [ChallanPage:140-152](file://frontend/app/challan/page.tsx#L140-L152)
-- [ChallanPage:156-178](file://frontend/app/challan/page.tsx#L156-L178)
+- [ChallanPage:71-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L82)
+- [ChallanPage:121-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L121-L128)
+- [ChallanPage:140-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L140-L152)
+- [ChallanPage:156-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L156-L178)
 
 **Section sources**
-- [ChallanPage:71-82](file://frontend/app/challan/page.tsx#L71-L82)
-- [ChallanPage:111-180](file://frontend/app/challan/page.tsx#L111-L180)
-- [ChallanPage:156-178](file://frontend/app/challan/page.tsx#L156-L178)
+- [ChallanPage:71-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L82)
+- [ChallanPage:111-180](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L111-L180)
+- [ChallanPage:156-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L156-L178)
 
 ### Detailed Report Functionality
 - DETAILED REPORT button triggers a brief toast notification indicating offline status.
@@ -269,7 +269,7 @@ Hide --> Done
 - Intended to guide users to next steps when the detailed report is unavailable.
 
 **Section sources**
-- [ChallanPage:156-178](file://frontend/app/challan/page.tsx#L156-L178)
+- [ChallanPage:156-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L156-L178)
 
 ### AI Tactical Insight Footer
 - Gradient-styled footer with zap icon and contextual legal insight.
@@ -277,7 +277,7 @@ Hide --> Done
 - Reinforces trust by providing actionable, law-aware guidance.
 
 **Section sources**
-- [ChallanPage:301-312](file://frontend/app/challan/page.tsx#L301-L312)
+- [ChallanPage:301-312](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L301-L312)
 
 ### State Management Using the Shared Store
 - Centralized state for violation, vehicle class, jurisdiction, and repeat status.
@@ -292,19 +292,19 @@ UpdateStore --> UI["Re-render UI with new values"]
 ```
 
 **Diagram sources**
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
-- [ChallanPage:51-60](file://frontend/app/challan/page.tsx#L51-L60)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
+- [ChallanPage:51-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L51-L60)
 
 **Section sources**
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
-- [ChallanPage:51-60](file://frontend/app/challan/page.tsx#L51-L60)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
+- [ChallanPage:51-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L51-L60)
 
 ### Backwards Compatibility for Cached Values
 - Legacy values are mapped to current violation IDs.
 - Ensures continuity for users upgrading from older versions.
 
 **Section sources**
-- [ChallanPage:51-57](file://frontend/app/challan/page.tsx#L51-L57)
+- [ChallanPage:51-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L51-L57)
 
 ### Responsive Design Adaptations
 - Mobile-first layout with sticky summary on larger screens.
@@ -313,9 +313,9 @@ UpdateStore --> UI["Re-render UI with new values"]
 - Large touch targets and reduced reliance on hover.
 
 **Section sources**
-- [ChallanPage:96-193](file://frontend/app/challan/page.tsx#L96-L193)
-- [UIUX:254-262](file://docs/UIUX.md#L254-L262)
-- [globals.css:10-23](file://frontend/app/globals.css#L10-L23)
+- [ChallanPage:96-193](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L96-L193)
+- [UIUX:254-262](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L254-L262)
+- [globals.css:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L10-L23)
 
 ### Error Handling, Loading States, and Accessibility
 - Loading states: Skeletons and disabled states prevent misleading empty UI.
@@ -324,9 +324,9 @@ UpdateStore --> UI["Re-render UI with new values"]
 - Animations: Subtle, purposeful, and non-animated elements remain static to preserve clarity.
 
 **Section sources**
-- [ChallanPage:140-152](file://frontend/app/challan/page.tsx#L140-L152)
-- [UIUX:225-279](file://docs/UIUX.md#L225-L279)
-- [globals.css:290-370](file://frontend/app/globals.css#L290-L370)
+- [ChallanPage:140-152](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L140-L152)
+- [UIUX:225-279](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L225-L279)
+- [globals.css:290-370](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L290-L370)
 
 ## Dependency Analysis
 - UI components depend on the shared store for state and on SWR for data fetching.
@@ -344,16 +344,16 @@ STORE --> STATE["Persisted State"]
 ```
 
 **Diagram sources**
-- [ChallanPage:49-82](file://frontend/app/challan/page.tsx#L49-L82)
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
-- [api:817-821](file://frontend/lib/api.ts#L817-L821)
-- [duckdb-challan:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
+- [ChallanPage:49-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L49-L82)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
+- [api:817-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L817-L821)
+- [duckdb-challan:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
 
 **Section sources**
-- [ChallanPage:49-82](file://frontend/app/challan/page.tsx#L49-L82)
-- [store:195-202](file://frontend/lib/store.ts#L195-L202)
-- [api:817-821](file://frontend/lib/api.ts#L817-L821)
-- [duckdb-challan:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
+- [ChallanPage:49-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L49-L82)
+- [store:195-202](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L195-L202)
+- [api:817-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L817-L821)
+- [duckdb-challan:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
 
 ## Performance Considerations
 - Keep previous data during refetch to avoid flicker.
@@ -371,9 +371,9 @@ STORE --> STATE["Persisted State"]
 - For accessibility issues, ensure focus rings are visible, labels are descriptive, and interactive elements are reachable via keyboard.
 
 **Section sources**
-- [ChallanPage:71-82](file://frontend/app/challan/page.tsx#L71-L82)
-- [duckdb-challan:4-18](file://frontend/lib/duckdb-challan.ts#L4-L18)
-- [UIUX:225-279](file://docs/UIUX.md#L225-L279)
+- [ChallanPage:71-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/challan/page.tsx#L71-L82)
+- [duckdb-challan:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-L18)
+- [UIUX:225-279](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/UIUX.md#L225-L279)
 
 ## Conclusion
 The Challan Calculator delivers a fast, intuitive, and trustworthy experience for estimating penalties. Its dual UI surfaces—compact calculator and comprehensive page—support both quick checks and detailed analysis. The shared store ensures continuity across sessions, while SWR and optional offline engines power responsive, resilient calculations. Accessibility and animation guidelines reinforce clarity and usability across devices.

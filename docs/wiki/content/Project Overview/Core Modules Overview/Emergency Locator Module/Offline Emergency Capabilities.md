@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [emergency-numbers.ts](file://frontend/lib/emergency-numbers.ts)
-- [emergency-numbers.json](file://frontend/public/offline-data/state_overrides.csv)
-- [first-aid.json](file://frontend/public/offline-data/first-aid.json)
-- [chennai.json](file://frontend/public/offline-data/chennai.json)
-- [offline.py](file://backend/api/v1/offline.py)
-- [local_emergency_catalog.py](file://backend/services/local_emergency_catalog.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [api.ts](file://frontend/lib/api.ts)
-- [EmergencyMap.tsx](file://frontend/components/EmergencyMap.tsx)
-- [EmergencyMapInner.tsx](file://frontend/components/EmergencyMapInner.tsx)
-- [page.tsx](file://frontend/app/emergency/page.tsx)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [emergency-numbers.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts)
+- [emergency-numbers.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv)
+- [first-aid.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json)
+- [chennai.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [local_emergency_catalog.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [EmergencyMap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx)
+- [EmergencyMapInner.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx)
 </cite>
 
 ## Table of Contents
@@ -68,32 +68,32 @@ I --> K
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [api.ts:623-671](file://frontend/lib/api.ts#L623-L671)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [local_emergency_catalog.py:1-243](file://backend/services/local_emergency_catalog.py#L1-L243)
-- [emergency_locator.py:83-129](file://backend/services/emergency_locator.py#L83-L129)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [api.ts:623-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L623-L671)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [local_emergency_catalog.py:1-243](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L1-L243)
+- [emergency_locator.py:83-129](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L83-L129)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [api.ts:623-671](file://frontend/lib/api.ts#L623-L671)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [local_emergency_catalog.py:1-243](file://backend/services/local_emergency_catalog.py#L1-L243)
-- [emergency_locator.py:83-129](file://backend/services/emergency_locator.py#L83-L129)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [api.ts:623-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L623-L671)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [local_emergency_catalog.py:1-243](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L1-L243)
+- [emergency_locator.py:83-129](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L83-L129)
 
 ## Core Components
 - Offline SOS Queue: Stores emergency requests locally and syncs when online.
@@ -106,16 +106,16 @@ I --> K
 - Emergency Map: Renders offline emergency services on a map UI.
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [local_emergency_catalog.py:1-243](file://backend/services/local_emergency_catalog.py#L1-L243)
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [local_emergency_catalog.py:1-243](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L1-L243)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
 
 ## Architecture Overview
 The offline emergency architecture prioritizes local resources and cached data. When offline, the frontend uses IndexedDB for SOS queue persistence, offline AI engines, cached emergency numbers, first aid content, and city-specific bundles. When connectivity is restored, the system syncs queued SOS events and refreshes data via backend-generated bundles.
@@ -143,15 +143,15 @@ FE->>FE : Cache bundle for offline use
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-124](file://frontend/lib/offline-sos-queue.ts#L48-L124)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [api.ts:638-647](file://frontend/lib/api.ts#L638-L647)
+- [offline-sos-queue.ts:48-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L124)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [api.ts:638-647](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L638-L647)
 
 **Section sources**
-- [Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [api.ts:623-671](file://frontend/lib/api.ts#L623-L671)
+- [Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [api.ts:623-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L623-L671)
 
 ## Detailed Component Analysis
 
@@ -184,10 +184,10 @@ Next --> Done(["Complete"])
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:25-137](file://frontend/lib/offline-sos-queue.ts#L25-L137)
+- [offline-sos-queue.ts:25-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L137)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
 
 ### Offline Data Bundling Strategy (25 Major Indian Cities)
 - Endpoint: GET /api/v1/offline/bundle/{city}
@@ -218,15 +218,15 @@ FE->>FE : Cache bundle for offline use
 ```
 
 **Diagram sources**
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [local_emergency_catalog.py:25-34](file://backend/services/local_emergency_catalog.py#L25-L34)
-- [emergency_locator.py:89-115](file://backend/services/emergency_locator.py#L89-L115)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [local_emergency_catalog.py:25-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L25-L34)
+- [emergency_locator.py:89-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L89-L115)
 
 **Section sources**
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [local_emergency_catalog.py:1-243](file://backend/services/local_emergency_catalog.py#L1-L243)
-- [emergency_locator.py:83-129](file://backend/services/emergency_locator.py#L83-L129)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [local_emergency_catalog.py:1-243](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L1-L243)
+- [emergency_locator.py:83-129](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L83-L129)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
 
 ### Offline-First Architecture and Emergency Protocols
 - Offline-first priorities:
@@ -248,18 +248,18 @@ UI --> User["User Guidance"]
 ```
 
 **Diagram sources**
-- [page.tsx:36-107](file://frontend/app/emergency/page.tsx#L36-L107)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [page.tsx:36-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx#L36-L107)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
 
 **Section sources**
-- [page.tsx:1-418](file://frontend/app/emergency/page.tsx#L1-L418)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [page.tsx:1-418](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx#L1-L418)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
 
 ### Offline Emergency Map Functionality
 - Map UI:
@@ -286,13 +286,13 @@ EmergencyMapInner --> MapLibreCanvas : "uses"
 ```
 
 **Diagram sources**
-- [EmergencyMap.tsx:25-57](file://frontend/components/EmergencyMap.tsx#L25-L57)
-- [EmergencyMapInner.tsx:44-82](file://frontend/components/EmergencyMapInner.tsx#L44-L82)
+- [EmergencyMap.tsx:25-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L57)
+- [EmergencyMapInner.tsx:44-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L82)
 
 **Section sources**
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
 
 ### Service Worker Implementation for Caching Critical Emergency Data
 - Current state:
@@ -316,10 +316,10 @@ E --> F["Subsequent requests served globally"]
 ```
 
 **Diagram sources**
-- [Offline_Architecture.md:3-23](file://docs/Offline_Architecture.md#L3-L23)
+- [Offline_Architecture.md:3-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L3-L23)
 
 **Section sources**
-- [Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
+- [Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
 
 ### Data Synchronization When Connectivity Is Restored
 - SOS queue:
@@ -349,13 +349,13 @@ end
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [api.ts:638-647](file://frontend/lib/api.ts#L638-L647)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [api.ts:638-647](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L638-L647)
 
 **Section sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [api.ts:638-647](file://frontend/lib/api.ts#L638-L647)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [api.ts:638-647](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L638-L647)
 
 ### Offline Storage Limits and Refresh Strategies
 - IndexedDB:
@@ -368,10 +368,10 @@ end
   - Cached in frontend modules and JSON files; refreshed on demand or via application lifecycle.
 
 **Section sources**
-- [offline-sos-queue.ts:12-42](file://frontend/lib/offline-sos-queue.ts#L12-L42)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
+- [offline-sos-queue.ts:12-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L12-L42)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
 
 ### Local Emergency Service Discovery
 - Local catalog:
@@ -385,10 +385,10 @@ end
   - Map UI renders services with appropriate icons and distances.
 
 **Section sources**
-- [local_emergency_catalog.py:25-243](file://backend/services/local_emergency_catalog.py#L25-L243)
-- [emergency_locator.py:89-129](file://backend/services/emergency_locator.py#L89-L129)
-- [EmergencyMapInner.tsx:12-22](file://frontend/components/EmergencyMapInner.tsx#L12-L22)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
+- [local_emergency_catalog.py:25-243](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L25-L243)
+- [emergency_locator.py:89-129](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L89-L129)
+- [EmergencyMapInner.tsx:12-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L12-L22)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
 
 ### User Guidance for Offline Emergency Scenarios
 - Emergency Protocols:
@@ -399,7 +399,7 @@ end
   - Tactical filters and categories help users quickly access relevant protocols.
 
 **Section sources**
-- [page.tsx:36-107](file://frontend/app/emergency/page.tsx#L36-L107)
+- [page.tsx:36-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency/page.tsx#L36-L107)
 
 ## Dependency Analysis
 The offline emergency system exhibits clear separation of concerns:
@@ -421,32 +421,32 @@ BE_LOC2["emergency_locator.py"] --> BE_OFFLINE
 ```
 
 **Diagram sources**
-- [api.ts:623-671](file://frontend/lib/api.ts#L623-L671)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [local_emergency_catalog.py:1-243](file://backend/services/local_emergency_catalog.py#L1-L243)
-- [emergency_locator.py:83-129](file://backend/services/emergency_locator.py#L83-L129)
+- [api.ts:623-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L623-L671)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [local_emergency_catalog.py:1-243](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L1-L243)
+- [emergency_locator.py:83-129](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L83-L129)
 
 **Section sources**
-- [api.ts:623-671](file://frontend/lib/api.ts#L623-L671)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [emergency-numbers.ts:1-124](file://frontend/lib/emergency-numbers.ts#L1-L124)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [chennai.json:1-800](file://frontend/public/offline-data/chennai.json#L1-L800)
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [local_emergency_catalog.py:1-243](file://backend/services/local_emergency_catalog.py#L1-L243)
-- [emergency_locator.py:83-129](file://backend/services/emergency_locator.py#L83-L129)
+- [api.ts:623-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L623-L671)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [emergency-numbers.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L1-L124)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [chennai.json:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L800)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [local_emergency_catalog.py:1-243](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L1-L243)
+- [emergency_locator.py:83-129](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L83-L129)
 
 ## Performance Considerations
 - IndexedDB throughput: Batch operations are sequential; consider transaction batching for large queues.
@@ -469,10 +469,10 @@ BE_LOC2["emergency_locator.py"] --> BE_OFFLINE
   - Verify fallback keyword responses when model is unavailable.
 
 **Section sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [local_emergency_catalog.py:180-226](file://backend/services/local_emergency_catalog.py#L180-L226)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [local_emergency_catalog.py:180-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L180-L226)
 
 ## Conclusion
 The Offline Emergency Capabilities leverage an offline-first design to ensure reliable emergency support without connectivity. The SOS queue, offline AI, cached emergency numbers, first aid content, city bundles, and map UI work together to provide actionable guidance and local resource discovery. The backend’s offline bundle endpoint and local catalog loaders enable scalable, stateless offline data distribution. Future enhancements include secure, globally persisted uploads and robust queue synchronization via Supabase Realtime.
@@ -494,4 +494,4 @@ The Offline Emergency Capabilities leverage an offline-first design to ensure re
   - CPGRAMS: 1800-11-0012
 
 **Section sources**
-- [emergency-numbers.ts:10-124](file://frontend/lib/emergency-numbers.ts#L10-L124)
+- [emergency-numbers.ts:10-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/emergency-numbers.ts#L10-L124)

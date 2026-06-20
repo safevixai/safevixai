@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [router.py](file://chatbot_service/providers/router.py)
-- [base.py](file://chatbot_service/providers/base.py)
-- [config.py](file://chatbot_service/config.py)
-- [groq_provider.py](file://chatbot_service/providers/groq_provider.py)
-- [gemini_provider.py](file://chatbot_service/providers/gemini_provider.py)
-- [sarvam_provider.py](file://chatbot_service/providers/sarvam_provider.py)
-- [cerebras_provider.py](file://chatbot_service/providers/cerebras_provider.py)
-- [github_models_provider.py](file://chatbot_service/providers/github_models_provider.py)
-- [mistral_provider.py](file://chatbot_service/providers/mistral_provider.py)
-- [nvidia_nim_provider.py](file://chatbot_service/providers/nvidia_nim_provider.py)
-- [openrouter_provider.py](file://chatbot_service/providers/openrouter_provider.py)
-- [together_provider.py](file://chatbot_service/providers/together_provider.py)
-- [main.py](file://chatbot_service/main.py)
-- [chat.py](file://chatbot_service/api/chat.py)
+- [router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py)
+- [base.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [groq_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py)
+- [gemini_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py)
+- [sarvam_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py)
+- [cerebras_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/cerebras_provider.py)
+- [github_models_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/github_models_provider.py)
+- [mistral_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/mistral_provider.py)
+- [nvidia_nim_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/nvidia_nim_provider.py)
+- [openrouter_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/openrouter_provider.py)
+- [together_provider.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/together_provider.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py)
 </cite>
 
 ## Table of Contents
@@ -74,18 +74,18 @@ O --> D
 ```
 
 **Diagram sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [chat.py:24-40](file://chatbot_service/api/chat.py#L24-L40)
-- [router.py:75-123](file://chatbot_service/providers/router.py#L75-L123)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [chat.py:24-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L24-L40)
+- [router.py:75-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L123)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 **Section sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [chat.py:24-40](file://chatbot_service/api/chat.py#L24-L40)
-- [router.py:75-123](file://chatbot_service/providers/router.py#L75-L123)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [chat.py:24-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L24-L40)
+- [router.py:75-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L123)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 ## Core Components
 - Provider abstraction layer: a shared base class defines the unified interface for all providers, including request/result data models, prompt building, and HTTP transport.
@@ -100,11 +100,11 @@ Key responsibilities:
 - Deterministic fallback: a template provider ensures graceful degradation when all external providers fail.
 
 **Section sources**
-- [base.py:44-87](file://chatbot_service/providers/base.py#L44-L87)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [base.py:162-206](file://chatbot_service/providers/base.py#L162-L206)
-- [router.py:75-123](file://chatbot_service/providers/router.py#L75-L123)
-- [config.py:69-126](file://chatbot_service/config.py#L69-L126)
+- [base.py:44-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L44-L87)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [base.py:162-206](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L162-L206)
+- [router.py:75-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L123)
+- [config.py:69-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L126)
 
 ## Architecture Overview
 The routing system composes a deterministic provider selection with a robust fallback chain. The ChatEngine receives a request, optionally detects language, selects a provider, and executes the request. On failure, it retries across the fallback chain until success or exhaustion.
@@ -148,8 +148,8 @@ end
 ```
 
 **Diagram sources**
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [router.py:154-199](file://chatbot_service/providers/router.py#L154-L199)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [router.py:154-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L199)
 
 ## Detailed Component Analysis
 
@@ -204,23 +204,23 @@ HttpProvider <|-- TogetherProvider
 ```
 
 **Diagram sources**
-- [base.py:44-87](file://chatbot_service/providers/base.py#L44-L87)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [base.py:162-206](file://chatbot_service/providers/base.py#L162-L206)
-- [groq_provider.py:10-23](file://chatbot_service/providers/groq_provider.py#L10-L23)
-- [cerebras_provider.py:10-23](file://chatbot_service/providers/cerebras_provider.py#L10-L23)
-- [gemini_provider.py:18-71](file://chatbot_service/providers/gemini_provider.py#L18-L71)
-- [sarvam_provider.py:44-125](file://chatbot_service/providers/sarvam_provider.py#L44-L125)
-- [github_models_provider.py:10-26](file://chatbot_service/providers/github_models_provider.py#L10-L26)
-- [nvidia_nim_provider.py:10-26](file://chatbot_service/providers/nvidia_nim_provider.py#L10-L26)
-- [openrouter_provider.py:10-29](file://chatbot_service/providers/openrouter_provider.py#L10-L29)
-- [mistral_provider.py:10-23](file://chatbot_service/providers/mistral_provider.py#L10-L23)
-- [together_provider.py:10-23](file://chatbot_service/providers/together_provider.py#L10-L23)
+- [base.py:44-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L44-L87)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [base.py:162-206](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L162-L206)
+- [groq_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py#L10-L23)
+- [cerebras_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/cerebras_provider.py#L10-L23)
+- [gemini_provider.py:18-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py#L18-L71)
+- [sarvam_provider.py:44-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py#L44-L125)
+- [github_models_provider.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/github_models_provider.py#L10-L26)
+- [nvidia_nim_provider.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/nvidia_nim_provider.py#L10-L26)
+- [openrouter_provider.py:10-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/openrouter_provider.py#L10-L29)
+- [mistral_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/mistral_provider.py#L10-L23)
+- [together_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/together_provider.py#L10-L23)
 
 **Section sources**
-- [base.py:44-87](file://chatbot_service/providers/base.py#L44-L87)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [base.py:162-206](file://chatbot_service/providers/base.py#L162-L206)
+- [base.py:44-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L44-L87)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [base.py:162-206](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L162-L206)
 
 ### Routing Strategy and Fallback Chain
 ProviderRouter implements:
@@ -252,12 +252,12 @@ Done --> End(["Done"])
 ```
 
 **Diagram sources**
-- [router.py:125-153](file://chatbot_service/providers/router.py#L125-L153)
-- [router.py:154-199](file://chatbot_service/providers/router.py#L154-L199)
+- [router.py:125-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L153)
+- [router.py:154-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L199)
 
 **Section sources**
-- [router.py:125-153](file://chatbot_service/providers/router.py#L125-L153)
-- [router.py:154-199](file://chatbot_service/providers/router.py#L154-L199)
+- [router.py:125-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L153)
+- [router.py:154-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L199)
 
 ### Provider Implementations and Capabilities
 - Groq: fastest English provider, suitable for low-latency English queries.
@@ -275,15 +275,15 @@ Each provider implements:
 Gemini differs by translating OpenAI-style messages into Gemini’s contents format and using a provider-specific endpoint.
 
 **Section sources**
-- [groq_provider.py:10-23](file://chatbot_service/providers/groq_provider.py#L10-L23)
-- [cerebras_provider.py:10-23](file://chatbot_service/providers/cerebras_provider.py#L10-L23)
-- [gemini_provider.py:18-71](file://chatbot_service/providers/gemini_provider.py#L18-L71)
-- [sarvam_provider.py:44-125](file://chatbot_service/providers/sarvam_provider.py#L44-L125)
-- [github_models_provider.py:10-26](file://chatbot_service/providers/github_models_provider.py#L10-L26)
-- [openrouter_provider.py:10-29](file://chatbot_service/providers/openrouter_provider.py#L10-L29)
-- [mistral_provider.py:10-23](file://chatbot_service/providers/mistral_provider.py#L10-L23)
-- [together_provider.py:10-23](file://chatbot_service/providers/together_provider.py#L10-L23)
-- [nvidia_nim_provider.py:10-26](file://chatbot_service/providers/nvidia_nim_provider.py#L10-L26)
+- [groq_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/groq_provider.py#L10-L23)
+- [cerebras_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/cerebras_provider.py#L10-L23)
+- [gemini_provider.py:18-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/gemini_provider.py#L18-L71)
+- [sarvam_provider.py:44-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py#L44-L125)
+- [github_models_provider.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/github_models_provider.py#L10-L26)
+- [openrouter_provider.py:10-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/openrouter_provider.py#L10-L29)
+- [mistral_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/mistral_provider.py#L10-L23)
+- [together_provider.py:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/together_provider.py#L10-L23)
+- [nvidia_nim_provider.py:10-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/nvidia_nim_provider.py#L10-L26)
 
 ### Configuration and Environment
 Settings are loaded from environment variables and validated at startup:
@@ -292,8 +292,8 @@ Settings are loaded from environment variables and validated at startup:
 - HTTP timeouts and user-agent headers are configurable.
 
 **Section sources**
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [config.py:115-126](file://chatbot_service/config.py#L115-L126)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [config.py:115-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L115-L126)
 
 ### Health Monitoring and Automatic Failover Triggers
 - Application-level health endpoint verifies memory backend availability.
@@ -305,9 +305,9 @@ Operational signals:
 - Router attaches metadata to results for observability (provider_used, fallback_from, detected_lang, india_badge).
 
 **Section sources**
-- [main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [router.py:170-199](file://chatbot_service/providers/router.py#L170-L199)
-- [base.py:54-63](file://chatbot_service/providers/base.py#L54-L63)
+- [main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [router.py:170-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L170-L199)
+- [base.py:54-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L54-L63)
 
 ## Dependency Analysis
 The routing system exhibits low coupling and high cohesion:
@@ -340,14 +340,14 @@ Base --> Together
 ```
 
 **Diagram sources**
-- [router.py:85-109](file://chatbot_service/providers/router.py#L85-L109)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [router.py:85-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L85-L109)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 **Section sources**
-- [router.py:85-109](file://chatbot_service/providers/router.py#L85-L109)
-- [base.py:90-160](file://chatbot_service/providers/base.py#L90-L160)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [router.py:85-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L85-L109)
+- [base.py:90-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L160)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 ## Performance Considerations
 - Latency optimization: prioritize providers with lower latency for English queries (Groq, Cerebras) and route Indian-language queries to Sarvam variants optimized for Indic languages.
@@ -370,10 +370,10 @@ Operational checks:
 - Router metadata helps trace which provider was used and whether a fallback occurred.
 
 **Section sources**
-- [config.py:115-126](file://chatbot_service/config.py#L115-L126)
-- [base.py:129-139](file://chatbot_service/providers/base.py#L129-L139)
-- [router.py:170-199](file://chatbot_service/providers/router.py#L170-L199)
-- [main.py:106-115](file://chatbot_service/main.py#L106-L115)
+- [config.py:115-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L115-L126)
+- [base.py:129-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L129-L139)
+- [router.py:170-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L170-L199)
+- [main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
 
 ## Conclusion
 The routing system provides a robust, extensible, and observable multi-provider architecture. It balances performance, cost, and availability through intelligent selection and automatic failover, while ensuring consistent response formatting and safety. The modular design allows adding new providers and refining routing heuristics without disrupting the rest of the system.
@@ -390,9 +390,9 @@ The routing system provides a robust, extensible, and observable multi-provider 
 - Quality assessment: monitor fallback_from and provider_used metadata to evaluate routing effectiveness.
 
 **Section sources**
-- [router.py:3-10](file://chatbot_service/providers/router.py#L3-L10)
-- [router.py:125-153](file://chatbot_service/providers/router.py#L125-L153)
-- [sarvam_provider.py:15-25](file://chatbot_service/providers/sarvam_provider.py#L15-L25)
+- [router.py:3-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L3-L10)
+- [router.py:125-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L153)
+- [sarvam_provider.py:15-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py#L15-L25)
 
 ### Response Formatting Consistency
 All providers return a standardized ProviderResult with:
@@ -405,6 +405,6 @@ All providers return a standardized ProviderResult with:
 - india_badge: indicator when Sarvam is used.
 
 **Section sources**
-- [base.py:54-63](file://chatbot_service/providers/base.py#L54-L63)
-- [router.py:170-178](file://chatbot_service/providers/router.py#L170-L178)
-- [sarvam_provider.py:114-116](file://chatbot_service/providers/sarvam_provider.py#L114-L116)
+- [base.py:54-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L54-L63)
+- [router.py:170-178](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L170-L178)
+- [sarvam_provider.py:114-116](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/sarvam_provider.py#L114-L116)

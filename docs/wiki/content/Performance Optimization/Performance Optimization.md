@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/main.py](file://backend/main.py)
-- [backend/core/redis_client.py](file://backend/core/redis_client.py)
-- [backend/core/database.py](file://backend/core/database.py)
-- [backend/services/emergency_locator.py](file://backend/services/emergency_locator.py)
-- [backend/services/llm_service.py](file://backend/services/llm_service.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [chatbot_service/memory/redis_memory.py](file://chatbot_service/memory/redis_memory.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [frontend/next.config.js](file://frontend/next.config.js)
-- [frontend/lib/offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [frontend/lib/edge-ai.ts](file://frontend/lib/edge-ai.ts)
-- [frontend/package.json](file://frontend/package.json)
-- [backend/core/config.py](file://backend/core/config.py)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/core/redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
+- [backend/core/database.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py)
+- [backend/services/emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [backend/services/llm_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/llm_service.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [chatbot_service/memory/redis_memory.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [frontend/next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
+- [frontend/lib/offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [frontend/lib/edge-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
 </cite>
 
 ## Table of Contents
@@ -71,23 +71,23 @@ FE_Pkg --> FE_OffAI
 ```
 
 **Diagram sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [backend/core/database.py:16-41](file://backend/core/database.py#L16-L41)
-- [backend/core/redis_client.py:136-139](file://backend/core/redis_client.py#L136-L139)
-- [backend/services/emergency_locator.py:161-300](file://backend/services/emergency_locator.py#L161-L300)
-- [backend/services/llm_service.py:11-68](file://backend/services/llm_service.py#L11-L68)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [chatbot_service/config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [frontend/next.config.js:19-39](file://frontend/next.config.js#L19-L39)
-- [frontend/lib/offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [frontend/lib/edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
-- [frontend/package.json:14-53](file://frontend/package.json#L14-L53)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [backend/core/database.py:16-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L16-L41)
+- [backend/core/redis_client.py:136-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L136-L139)
+- [backend/services/emergency_locator.py:161-300](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L300)
+- [backend/services/llm_service.py:11-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/llm_service.py#L11-L68)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [chatbot_service/config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [frontend/next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
+- [frontend/lib/offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [frontend/lib/edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
+- [frontend/package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
 
 **Section sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [frontend/next.config.js:19-39](file://frontend/next.config.js#L19-L39)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [frontend/next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
 
 ## Core Components
 - Caching layer abstraction with Redis and in-memory fallback
@@ -104,12 +104,12 @@ Key performance-relevant configurations:
 - Frontend WebAssembly and worker configuration for Transformers.js
 
 **Section sources**
-- [backend/core/redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [backend/core/database.py:16-41](file://backend/core/database.py#L16-L41)
-- [backend/services/emergency_locator.py:161-300](file://backend/services/emergency_locator.py#L161-L300)
-- [backend/services/llm_service.py:11-68](file://backend/services/llm_service.py#L11-L68)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [frontend/next.config.js:19-39](file://frontend/next.config.js#L19-L39)
+- [backend/core/redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [backend/core/database.py:16-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L16-L41)
+- [backend/services/emergency_locator.py:161-300](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L300)
+- [backend/services/llm_service.py:11-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/llm_service.py#L11-L68)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [frontend/next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
 
 ## Architecture Overview
 High-level runtime flow:
@@ -149,11 +149,11 @@ end
 ```
 
 **Diagram sources**
-- [backend/services/emergency_locator.py:187-216](file://backend/services/emergency_locator.py#L187-L216)
-- [backend/core/redis_client.py:43-70](file://backend/core/redis_client.py#L43-L70)
-- [backend/services/emergency_locator.py:301-373](file://backend/services/emergency_locator.py#L301-L373)
-- [backend/services/llm_service.py:26-36](file://backend/services/llm_service.py#L26-L36)
-- [chatbot_service/main.py:41-93](file://chatbot_service/main.py#L41-L93)
+- [backend/services/emergency_locator.py:187-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L216)
+- [backend/core/redis_client.py:43-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L70)
+- [backend/services/emergency_locator.py:301-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L301-L373)
+- [backend/services/llm_service.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/llm_service.py#L26-L36)
+- [chatbot_service/main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
 
 ## Detailed Component Analysis
 
@@ -170,9 +170,9 @@ Optimization tips:
 - Enable Redis cluster/replication for HA and reduced latency
 
 **Section sources**
-- [backend/core/redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [backend/core/config.py:33-36](file://backend/core/config.py#L33-L36)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
+- [backend/core/redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [backend/core/config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
 
 ### Database Query Optimization and Connection Pooling
 - Async SQLAlchemy engine with configurable pool size, overflow, and timeouts
@@ -187,8 +187,8 @@ Optimization tips:
 - Monitor pool utilization and adjust pool size based on concurrent workload
 
 **Section sources**
-- [backend/core/database.py:16-41](file://backend/core/database.py#L16-L41)
-- [backend/services/emergency_locator.py:375-421](file://backend/services/emergency_locator.py#L375-L421)
+- [backend/core/database.py:16-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L16-L41)
+- [backend/services/emergency_locator.py:375-421](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L375-L421)
 
 ### AI Model Inference Optimization
 - Backend LLM proxy with timeout and fallback responses
@@ -202,10 +202,10 @@ Optimization tips:
 - Minimize model size and optimize prompts for deterministic, concise responses
 
 **Section sources**
-- [backend/services/llm_service.py:11-68](file://backend/services/llm_service.py#L11-L68)
-- [frontend/lib/offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [frontend/next.config.js:23-30](file://frontend/next.config.js#L23-L30)
-- [frontend/package.json:17-18](file://frontend/package.json#L17-L18)
+- [backend/services/llm_service.py:11-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/llm_service.py#L11-L68)
+- [frontend/lib/offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [frontend/next.config.js:23-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L30)
+- [frontend/package.json:17-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L17-L18)
 
 ### WebAssembly Integration and Offline Model Loading
 - Next.js Webpack config enables asyncWebAssembly and worker-loader for Transformers.js workers
@@ -219,8 +219,8 @@ Optimization tips:
 - Graceful degradation to keyword fallback when model fails to load
 
 **Section sources**
-- [frontend/next.config.js:19-39](file://frontend/next.config.js#L19-L39)
-- [frontend/lib/offline-ai.ts:71-110](file://frontend/lib/offline-ai.ts#L71-L110)
+- [frontend/next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
+- [frontend/lib/offline-ai.ts:71-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L71-L110)
 
 ### Frontend Performance Improvements
 - Code splitting and lazy loading via dynamic imports (offline AI)
@@ -235,9 +235,9 @@ Optimization tips:
 - Prefer lightweight libraries and tree-shaking
 
 **Section sources**
-- [frontend/lib/offline-ai.ts:74-75](file://frontend/lib/offline-ai.ts#L74-L75)
-- [frontend/next.config.js:23-30](file://frontend/next.config.js#L23-L30)
-- [frontend/package.json:14-53](file://frontend/package.json#L14-L53)
+- [frontend/lib/offline-ai.ts:74-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L74-L75)
+- [frontend/next.config.js:23-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L30)
+- [frontend/package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
 
 ### Monitoring, Metrics, and Bottleneck Identification
 - Health endpoints expose database and cache availability
@@ -252,10 +252,10 @@ Optimization tips:
 - Use APM tools to identify slow routes and external service calls
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [backend/core/redis_client.py:115-124](file://backend/core/redis_client.py#L115-L124)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [chatbot_service/memory/redis_memory.py:67-76](file://chatbot_service/memory/redis_memory.py#L67-L76)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [backend/core/redis_client.py:115-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L124)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [chatbot_service/memory/redis_memory.py:67-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L67-L76)
 
 ### Scalability and Cost-Effective Deployment
 - Horizontal scaling: multiple backend and chatbot instances behind a load balancer
@@ -271,9 +271,9 @@ Optimization tips:
 - Right-size container resources and enable connection reuse
 
 **Section sources**
-- [backend/core/config.py:19-24](file://backend/core/config.py#L19-L24)
-- [backend/core/database.py:21-29](file://backend/core/database.py#L21-L29)
-- [chatbot_service/config.py:47-66](file://chatbot_service/config.py#L47-L66)
+- [backend/core/config.py:19-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L24)
+- [backend/core/database.py:21-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L29)
+- [chatbot_service/config.py:47-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L47-L66)
 
 ## Dependency Analysis
 ```mermaid
@@ -290,23 +290,23 @@ FEConf --> FE_PKG["frontend/package.json"]
 ```
 
 **Diagram sources**
-- [backend/core/config.py:19-68](file://backend/core/config.py#L19-L68)
-- [backend/core/redis_client.py:136-139](file://backend/core/redis_client.py#L136-L139)
-- [backend/core/database.py:16-41](file://backend/core/database.py#L16-L41)
-- [backend/services/llm_service.py:11-22](file://backend/services/llm_service.py#L11-L22)
-- [backend/services/emergency_locator.py:161-166](file://backend/services/emergency_locator.py#L161-L166)
-- [chatbot_service/config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [chatbot_service/memory/redis_memory.py:10-15](file://chatbot_service/memory/redis_memory.py#L10-L15)
-- [chatbot_service/main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [frontend/next.config.js:19-39](file://frontend/next.config.js#L19-L39)
-- [frontend/lib/offline-ai.ts:74-110](file://frontend/lib/offline-ai.ts#L74-L110)
-- [frontend/lib/edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
-- [frontend/package.json:14-53](file://frontend/package.json#L14-L53)
+- [backend/core/config.py:19-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L68)
+- [backend/core/redis_client.py:136-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L136-L139)
+- [backend/core/database.py:16-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L16-L41)
+- [backend/services/llm_service.py:11-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/llm_service.py#L11-L22)
+- [backend/services/emergency_locator.py:161-166](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L166)
+- [chatbot_service/config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [chatbot_service/memory/redis_memory.py:10-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L15)
+- [chatbot_service/main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [frontend/next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
+- [frontend/lib/offline-ai.ts:74-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L74-L110)
+- [frontend/lib/edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
+- [frontend/package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
 
 **Section sources**
-- [backend/core/config.py:19-68](file://backend/core/config.py#L19-L68)
-- [chatbot_service/config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [frontend/next.config.js:19-39](file://frontend/next.config.js#L19-L39)
+- [backend/core/config.py:19-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L68)
+- [chatbot_service/config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [frontend/next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
 
 ## Performance Considerations
 - Caching
@@ -351,11 +351,11 @@ Common issues and remedies:
   - Actions: check WebAssembly and worker configuration, verify CDN accessibility, provide progress feedback
 
 **Section sources**
-- [backend/core/redis_client.py:115-124](file://backend/core/redis_client.py#L115-L124)
-- [backend/core/database.py:43-49](file://backend/core/database.py#L43-L49)
-- [backend/services/emergency_locator.py:178-185](file://backend/services/emergency_locator.py#L178-L185)
-- [backend/services/llm_service.py:26-36](file://backend/services/llm_service.py#L26-L36)
-- [frontend/next.config.js:23-30](file://frontend/next.config.js#L23-L30)
+- [backend/core/redis_client.py:115-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L124)
+- [backend/core/database.py:43-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L43-L49)
+- [backend/services/emergency_locator.py:178-185](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L178-L185)
+- [backend/services/llm_service.py:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/llm_service.py#L26-L36)
+- [frontend/next.config.js:23-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L30)
 
 ## Conclusion
 By combining robust caching with Redis, optimized database queries, efficient AI inference strategies, and frontend performance enhancements, SafeVixAI can achieve high responsiveness and reliability. Implementing the recommendations above—tuning TTLs, adding spatial indexes, leveraging WebGPU, and instrumenting observability—will significantly improve user experience and operational efficiency.
@@ -366,17 +366,17 @@ By combining robust caching with Redis, optimized database queries, efficient AI
 
 ### Configuration Reference
 - Backend database pool and cache TTLs
-  - [backend/core/config.py:19-36](file://backend/core/config.py#L19-L36)
-  - [backend/core/database.py:21-29](file://backend/core/database.py#L21-L29)
+  - [backend/core/config.py:19-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L36)
+  - [backend/core/database.py:21-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L29)
 - Chatbot memory and session TTLs
-  - [chatbot_service/config.py:47-66](file://chatbot_service/config.py#L47-L66)
-  - [chatbot_service/memory/redis_memory.py:10-15](file://chatbot_service/memory/redis_memory.py#L10-L15)
+  - [chatbot_service/config.py:47-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L47-L66)
+  - [chatbot_service/memory/redis_memory.py:10-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L15)
 - Frontend WebAssembly and worker settings
-  - [frontend/next.config.js:23-30](file://frontend/next.config.js#L23-L30)
+  - [frontend/next.config.js:23-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L30)
 
 **Section sources**
-- [backend/core/config.py:19-36](file://backend/core/config.py#L19-L36)
-- [backend/core/database.py:21-29](file://backend/core/database.py#L21-L29)
-- [chatbot_service/config.py:47-66](file://chatbot_service/config.py#L47-L66)
-- [chatbot_service/memory/redis_memory.py:10-15](file://chatbot_service/memory/redis_memory.py#L10-L15)
-- [frontend/next.config.js:23-30](file://frontend/next.config.js#L23-L30)
+- [backend/core/config.py:19-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L36)
+- [backend/core/database.py:21-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L29)
+- [chatbot_service/config.py:47-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L47-L66)
+- [chatbot_service/memory/redis_memory.py:10-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L15)
+- [frontend/next.config.js:23-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L30)

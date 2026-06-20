@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [challan_service.py](file://backend/services/challan_service.py)
-- [challan.py](file://backend/api/v1/challan.py)
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [intent_detector.py](file://chatbot_service/agent/intent_detector.py)
-- [context_assembler.py](file://chatbot_service/agent/context_assembler.py)
-- [state.py](file://chatbot_service/agent/state.py)
-- [router.py](file://chatbot_service/providers/router.py)
-- [redis_memory.py](file://chatbot_service/memory/redis_memory.py)
-- [retriever.py](file://chatbot_service/rag/retriever.py)
-- [challan_tool.py](file://chatbot_service/tools/challan_tool.py)
-- [emergency_tool.py](file://chatbot_service/tools/emergency_tool.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [intent_detector.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py)
+- [context_assembler.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py)
+- [state.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py)
+- [router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py)
+- [redis_memory.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py)
+- [retriever.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py)
+- [challan_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py)
+- [emergency_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py)
 </cite>
 
 ## Table of Contents
@@ -84,34 +84,34 @@ DCD -. "offline simulation" .- CT
 ```
 
 **Diagram sources**
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [retriever.py:22-39](file://chatbot_service/rag/retriever.py#L22-L39)
-- [router.py:154-198](file://chatbot_service/providers/router.py#L154-L198)
-- [redis_memory.py:23-56](file://chatbot_service/memory/redis_memory.py#L23-L56)
-- [challan_tool.py:31-69](file://chatbot_service/tools/challan_tool.py#L31-L69)
-- [emergency_tool.py:10-14](file://chatbot_service/tools/emergency_tool.py#L10-L14)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [retriever.py:22-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L22-L39)
+- [router.py:154-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L198)
+- [redis_memory.py:23-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L56)
+- [challan_tool.py:31-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L31-L69)
+- [emergency_tool.py:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L10-L14)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 **Section sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [overpass_service.py:24-134](file://backend/services/overpass_service.py#L24-L134)
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [challan_service.py:96-149](file://backend/services/challan_service.py#L96-L149)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [router.py:75-198](file://chatbot_service/providers/router.py#L75-L198)
-- [redis_memory.py:10-56](file://chatbot_service/memory/redis_memory.py#L10-L56)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [challan_tool.py:27-69](file://chatbot_service/tools/challan_tool.py#L27-L69)
-- [emergency_tool.py:6-14](file://chatbot_service/tools/emergency_tool.py#L6-L14)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [overpass_service.py:24-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L134)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [challan_service.py:96-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L149)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [router.py:75-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L198)
+- [redis_memory.py:10-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L56)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [challan_tool.py:27-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L69)
+- [emergency_tool.py:6-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L14)
 
 ## Core Components
 - EmergencyLocatorService orchestrates cache-first search, PostGIS distance queries, local catalog merging, and Overpass fallback.
@@ -121,14 +121,14 @@ DCD -. "offline simulation" .- CT
 - Frontend DuckDB utility simulates offline challan computation.
 
 **Section sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [overpass_service.py:24-134](file://backend/services/overpass_service.py#L24-L134)
-- [challan_service.py:96-149](file://backend/services/challan_service.py#L96-L149)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [router.py:75-198](file://chatbot_service/providers/router.py#L75-L198)
-- [redis_memory.py:10-56](file://chatbot_service/memory/redis_memory.py#L10-L56)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [overpass_service.py:24-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L134)
+- [challan_service.py:96-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L149)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [router.py:75-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L198)
+- [redis_memory.py:10-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L56)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 ## Architecture Overview
 The system integrates backend APIs, caching, external services, and a chatbot agent with RAG and provider routing.
@@ -168,17 +168,17 @@ ET --> API_E
 ```
 
 **Diagram sources**
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [router.py:154-198](file://chatbot_service/providers/router.py#L154-L198)
-- [redis_memory.py:23-56](file://chatbot_service/memory/redis_memory.py#L23-L56)
-- [challan_tool.py:31-69](file://chatbot_service/tools/challan_tool.py#L31-L69)
-- [emergency_tool.py:10-14](file://chatbot_service/tools/emergency_tool.py#L10-L14)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [router.py:154-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L198)
+- [redis_memory.py:23-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L56)
+- [challan_tool.py:31-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L31-L69)
+- [emergency_tool.py:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L10-L14)
 
 ## Detailed Component Analysis
 
@@ -219,10 +219,10 @@ end
 ```
 
 **Diagram sources**
-- [emergency.py:19-39](file://backend/api/v1/emergency.py#L19-L39)
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
-- [schemas.py:53-58](file://backend/models/schemas.py#L53-L58)
+- [emergency.py:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L39)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
+- [schemas.py:53-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L53-L58)
 
 Key behaviors:
 - Cache key includes coordinates, categories, radius, and limit.
@@ -231,10 +231,10 @@ Key behaviors:
 - Overpass fallback is attempted with retries and backoff; errors are handled gracefully.
 
 **Section sources**
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
-- [overpass_service.py:35-134](file://backend/services/overpass_service.py#L35-L134)
-- [emergency.py:19-39](file://backend/api/v1/emergency.py#L19-L39)
-- [schemas.py:36-58](file://backend/models/schemas.py#L36-L58)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
+- [overpass_service.py:35-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L134)
+- [emergency.py:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L39)
+- [schemas.py:36-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L36-L58)
 
 ### AI Chatbot Agentic RAG Data Flow (Intent Detection, Context Assembly, Provider Routing, Memory)
 The chatbot pipeline detects intent, assembles context from tools and RAG, selects a provider, and manages conversation memory.
@@ -261,14 +261,14 @@ CA-->>Client : response, sources, session_id
 ```
 
 **Diagram sources**
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [retriever.py:22-39](file://chatbot_service/rag/retriever.py#L22-L39)
-- [router.py:154-198](file://chatbot_service/providers/router.py#L154-L198)
-- [redis_memory.py:23-56](file://chatbot_service/memory/redis_memory.py#L23-L56)
-- [state.py:41-52](file://chatbot_service/agent/state.py#L41-L52)
-- [challan_tool.py:49-69](file://chatbot_service/tools/challan_tool.py#L49-L69)
-- [emergency_tool.py:10-14](file://chatbot_service/tools/emergency_tool.py#L10-L14)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [retriever.py:22-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L22-L39)
+- [router.py:154-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L198)
+- [redis_memory.py:23-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L56)
+- [state.py:41-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L41-L52)
+- [challan_tool.py:49-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L49-L69)
+- [emergency_tool.py:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L10-L14)
 
 Processing logic highlights:
 - IntentDetector classifies messages into emergency, first aid, challan, legal, road_issue, or general.
@@ -277,14 +277,14 @@ Processing logic highlights:
 - ConversationMemoryStore persists and retrieves session histories with Redis and in-memory fallback.
 
 **Section sources**
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:43-215](file://chatbot_service/agent/context_assembler.py#L43-L215)
-- [retriever.py:17-40](file://chatbot_service/rag/retriever.py#L17-L40)
-- [router.py:75-198](file://chatbot_service/providers/router.py#L75-L198)
-- [redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [state.py:24-52](file://chatbot_service/agent/state.py#L24-L52)
-- [challan_tool.py:27-81](file://chatbot_service/tools/challan_tool.py#L27-L81)
-- [emergency_tool.py:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:43-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L215)
+- [retriever.py:17-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L40)
+- [router.py:75-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L198)
+- [redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [state.py:24-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L24-L52)
+- [challan_tool.py:27-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L81)
+- [emergency_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
 
 ### Challan Calculator Data Flow (DuckDB SQL-like Queries and State Overrides)
 The challan calculator validates inputs, applies state-specific overrides, and computes amounts. The frontend provides an offline DuckDB simulation.
@@ -309,10 +309,10 @@ Return --> End
 ```
 
 **Diagram sources**
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-L149)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-L149)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 Validation and normalization:
 - Vehicle class and state code are normalized; unknown state defaults are enforced.
@@ -323,10 +323,10 @@ Frontend offline simulation:
 - DuckDB Challan utility simulates offline computation and returns base/repeat fines and section info.
 
 **Section sources**
-- [challan_service.py:96-314](file://backend/services/challan_service.py#L96-L314)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [schemas.py:240-257](file://backend/models/schemas.py#L240-L257)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-L50)
+- [challan_service.py:96-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-L314)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [schemas.py:240-257](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L240-L257)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-L50)
 
 ## Dependency Analysis
 - EmergencyLocatorService depends on Redis cache, PostGIS via SQLAlchemy/GeoAlchemy2, OverpassService, and local catalog loader.
@@ -351,28 +351,28 @@ ET --> API_E["/api/v1/emergency/nearby"]
 ```
 
 **Diagram sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [overpass_service.py:24-134](file://backend/services/overpass_service.py#L24-L134)
-- [challan_service.py:151-238](file://backend/services/challan_service.py#L151-L238)
-- [context_assembler.py:17-41](file://chatbot_service/agent/context_assembler.py#L17-L41)
-- [router.py:75-109](file://chatbot_service/providers/router.py#L75-L109)
-- [redis_memory.py:10-21](file://chatbot_service/memory/redis_memory.py#L10-L21)
-- [challan_tool.py:27-47](file://chatbot_service/tools/challan_tool.py#L27-L47)
-- [emergency_tool.py:6-14](file://chatbot_service/tools/emergency_tool.py#L6-L14)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [emergency.py:19-39](file://backend/api/v1/emergency.py#L19-L39)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [overpass_service.py:24-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L134)
+- [challan_service.py:151-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-L238)
+- [context_assembler.py:17-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L41)
+- [router.py:75-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L109)
+- [redis_memory.py:10-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L21)
+- [challan_tool.py:27-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L47)
+- [emergency_tool.py:6-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L14)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [emergency.py:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L39)
 
 **Section sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [overpass_service.py:24-134](file://backend/services/overpass_service.py#L24-L134)
-- [challan_service.py:151-238](file://backend/services/challan_service.py#L151-L238)
-- [context_assembler.py:17-41](file://chatbot_service/agent/context_assembler.py#L17-L41)
-- [router.py:75-109](file://chatbot_service/providers/router.py#L75-L109)
-- [redis_memory.py:10-21](file://chatbot_service/memory/redis_memory.py#L10-L21)
-- [challan_tool.py:27-47](file://chatbot_service/tools/challan_tool.py#L27-L47)
-- [emergency_tool.py:6-14](file://chatbot_service/tools/emergency_tool.py#L6-L14)
-- [challan.py:17-25](file://backend/api/v1/challan.py#L17-L25)
-- [emergency.py:19-39](file://backend/api/v1/emergency.py#L19-L39)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [overpass_service.py:24-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L134)
+- [challan_service.py:151-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-L238)
+- [context_assembler.py:17-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L41)
+- [router.py:75-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L109)
+- [redis_memory.py:10-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L21)
+- [challan_tool.py:27-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L47)
+- [emergency_tool.py:6-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L14)
+- [challan.py:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-L25)
+- [emergency.py:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L39)
 
 ## Performance Considerations
 - Emergency locator:
@@ -400,11 +400,11 @@ ET --> API_E["/api/v1/emergency/nearby"]
   - CSV parsing errors are ignored to keep defaults intact; verify dataset presence and encoding.
 
 **Section sources**
-- [emergency.py:38-70](file://backend/api/v1/emergency.py#L38-L70)
-- [emergency_locator.py:343-364](file://backend/services/emergency_locator.py#L343-L364)
-- [router.py:196-198](file://chatbot_service/providers/router.py#L196-L198)
-- [redis_memory.py:67-76](file://chatbot_service/memory/redis_memory.py#L67-L76)
-- [challan_service.py:110-113](file://backend/services/challan_service.py#L110-L113)
+- [emergency.py:38-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L38-L70)
+- [emergency_locator.py:343-364](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L343-L364)
+- [router.py:196-198](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L196-L198)
+- [redis_memory.py:67-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L67-L76)
+- [challan_service.py:110-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L110-L113)
 
 ## Conclusion
 SafeVixAI’s data flows emphasize reliability and responsiveness:

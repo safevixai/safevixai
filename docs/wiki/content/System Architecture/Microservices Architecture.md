@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [render.yaml](file://render.yaml)
-- [backend/Dockerfile](file://backend/Dockerfile)
-- [chatbot_service/Dockerfile](file://chatbot_service/Dockerfile)
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [frontend/lib/api.ts](file://frontend/lib/api.ts)
-- [frontend/next.config.js](file://frontend/next.config.js)
-- [frontend/package.json](file://frontend/package.json)
-- [.github/workflows/backend.yml](file://.github/workflows/backend.yml)
-- [.github/workflows/chatbot.yml](file://.github/workflows/chatbot.yml)
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
-- [backend/requirements.txt](file://backend/requirements.txt)
-- [chatbot_service/requirements.txt](file://chatbot_service/requirements.txt)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [backend/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile)
+- [chatbot_service/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [frontend/lib/api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [frontend/next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [.github/workflows/backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
+- [.github/workflows/chatbot.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
+- [backend/requirements.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt)
+- [chatbot_service/requirements.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt)
 </cite>
 
 ## Table of Contents
@@ -85,32 +85,32 @@ FA --> CM
 ```
 
 **Diagram sources**
-- [render.yaml:1-83](file://render.yaml#L1-L83)
-- [backend/Dockerfile:1-27](file://backend/Dockerfile#L1-L27)
-- [chatbot_service/Dockerfile:1-52](file://chatbot_service/Dockerfile#L1-L52)
-- [backend/main.py:1-132](file://backend/main.py#L1-L132)
-- [chatbot_service/main.py:1-149](file://chatbot_service/main.py#L1-L149)
-- [backend/core/config.py:1-181](file://backend/core/config.py#L1-L181)
-- [chatbot_service/config.py:1-126](file://chatbot_service/config.py#L1-L126)
-- [frontend/lib/api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [frontend/next.config.js:1-44](file://frontend/next.config.js#L1-L44)
-- [frontend/package.json:1-85](file://frontend/package.json#L1-L85)
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
+- [backend/Dockerfile:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile#L1-L27)
+- [chatbot_service/Dockerfile:1-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile#L1-L52)
+- [backend/main.py:1-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L1-L132)
+- [chatbot_service/main.py:1-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L1-L149)
+- [backend/core/config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [chatbot_service/config.py:1-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L1-L126)
+- [frontend/lib/api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [frontend/next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
+- [frontend/package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
 
 **Section sources**
-- [render.yaml:1-83](file://render.yaml#L1-L83)
-- [backend/Dockerfile:1-27](file://backend/Dockerfile#L1-L27)
-- [chatbot_service/Dockerfile:1-52](file://chatbot_service/Dockerfile#L1-L52)
-- [backend/main.py:1-132](file://backend/main.py#L1-L132)
-- [chatbot_service/main.py:1-149](file://chatbot_service/main.py#L1-L149)
-- [backend/core/config.py:1-181](file://backend/core/config.py#L1-L181)
-- [chatbot_service/config.py:1-126](file://chatbot_service/config.py#L1-L126)
-- [frontend/lib/api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [frontend/next.config.js:1-44](file://frontend/next.config.js#L1-L44)
-- [frontend/package.json:1-85](file://frontend/package.json#L1-L85)
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
+- [backend/Dockerfile:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile#L1-L27)
+- [chatbot_service/Dockerfile:1-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile#L1-L52)
+- [backend/main.py:1-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L1-L132)
+- [chatbot_service/main.py:1-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L1-L149)
+- [backend/core/config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-L181)
+- [chatbot_service/config.py:1-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L1-L126)
+- [frontend/lib/api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [frontend/next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
+- [frontend/package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
 
 ## Core Components
 - Backend API service (FastAPI):
@@ -132,12 +132,12 @@ Key runtime characteristics:
 - Frontend runs development server on port 3000 locally
 
 **Section sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [chatbot_service/main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [backend/core/config.py:50-64](file://backend/core/config.py#L50-L64)
-- [chatbot_service/config.py:72-84](file://chatbot_service/config.py#L72-L84)
-- [frontend/lib/api.ts:4-47](file://frontend/lib/api.ts#L4-L47)
-- [frontend/next.config.js:19-40](file://frontend/next.config.js#L19-L40)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [chatbot_service/main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [backend/core/config.py:50-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L50-L64)
+- [chatbot_service/config.py:72-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L72-L84)
+- [frontend/lib/api.ts:4-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L4-L47)
+- [frontend/next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
 
 ## Architecture Overview
 SafeVixAI employs a clear microservices boundary:
@@ -161,14 +161,14 @@ BE --> |"External calls"| CB
 ```
 
 **Diagram sources**
-- [frontend/lib/api.ts:4-47](file://frontend/lib/api.ts#L4-L47)
-- [backend/main.py:98-99](file://backend/main.py#L98-L99)
-- [chatbot_service/main.py:130-137](file://chatbot_service/main.py#L130-L137)
+- [frontend/lib/api.ts:4-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L4-L47)
+- [backend/main.py:98-99](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L98-L99)
+- [chatbot_service/main.py:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L130-L137)
 
 **Section sources**
-- [frontend/lib/api.ts:4-47](file://frontend/lib/api.ts#L4-L47)
-- [backend/main.py:98-99](file://backend/main.py#L98-L99)
-- [chatbot_service/main.py:130-137](file://chatbot_service/main.py#L130-L137)
+- [frontend/lib/api.ts:4-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L4-L47)
+- [backend/main.py:98-99](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L98-L99)
+- [chatbot_service/main.py:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L130-L137)
 
 ## Detailed Component Analysis
 
@@ -201,12 +201,12 @@ Backend-->>Client : "JSON response"
 ```
 
 **Diagram sources**
-- [backend/main.py:88-127](file://backend/main.py#L88-L127)
-- [backend/core/config.py:11-70](file://backend/core/config.py#L11-L70)
+- [backend/main.py:88-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L88-L127)
+- [backend/core/config.py:11-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L70)
 
 **Section sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 ### Chatbot Service
 Responsibilities:
@@ -239,12 +239,12 @@ Chatbot-->>Client : "ChatResponse"
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py:71-83](file://chatbot_service/main.py#L71-L83)
-- [chatbot_service/config.py:71-113](file://chatbot_service/config.py#L71-L113)
+- [chatbot_service/main.py:71-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L71-L83)
+- [chatbot_service/config.py:71-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L71-L113)
 
 **Section sources**
-- [chatbot_service/main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [chatbot_service/config.py:39-126](file://chatbot_service/config.py#L39-L126)
+- [chatbot_service/main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [chatbot_service/config.py:39-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L126)
 
 ### Frontend PWA
 Responsibilities:
@@ -273,12 +273,12 @@ RenderCB --> End
 ```
 
 **Diagram sources**
-- [frontend/lib/api.ts:4-47](file://frontend/lib/api.ts#L4-L47)
+- [frontend/lib/api.ts:4-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L4-L47)
 
 **Section sources**
-- [frontend/lib/api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [frontend/next.config.js:1-44](file://frontend/next.config.js#L1-L44)
-- [frontend/package.json:1-85](file://frontend/package.json#L1-L85)
+- [frontend/lib/api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [frontend/next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
+- [frontend/package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
 
 ## Dependency Analysis
 Independent deployments and environments:
@@ -302,26 +302,26 @@ CB_Req --> CB_Code["chatbot_service/*"]
 ```
 
 **Diagram sources**
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
-- [.github/workflows/frontend.yml:1-43](file://.github/workflows/frontend.yml#L1-L43)
-- [render.yaml:1-83](file://render.yaml#L1-L83)
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [backend/Dockerfile:1-27](file://backend/Dockerfile#L1-L27)
-- [chatbot_service/Dockerfile:1-52](file://chatbot_service/Dockerfile#L1-L52)
-- [frontend/package.json:1-85](file://frontend/package.json#L1-L85)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
+- [.github/workflows/frontend.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L1-L43)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [backend/Dockerfile:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile#L1-L27)
+- [chatbot_service/Dockerfile:1-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile#L1-L52)
+- [frontend/package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
 
 **Section sources**
-- [render.yaml:1-83](file://render.yaml#L1-L83)
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
-- [.github/workflows/frontend.yml:1-43](file://.github/workflows/frontend.yml#L1-L43)
-- [backend/requirements.txt:1-49](file://backend/requirements.txt#L1-L49)
-- [chatbot_service/requirements.txt:1-53](file://chatbot_service/requirements.txt#L1-L53)
-- [backend/Dockerfile:1-27](file://backend/Dockerfile#L1-L27)
-- [chatbot_service/Dockerfile:1-52](file://chatbot_service/Dockerfile#L1-L52)
-- [frontend/package.json:1-85](file://frontend/package.json#L1-L85)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
+- [.github/workflows/frontend.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L1-L43)
+- [backend/requirements.txt:1-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/requirements.txt#L1-L49)
+- [chatbot_service/requirements.txt:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L1-L53)
+- [backend/Dockerfile:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile#L1-L27)
+- [chatbot_service/Dockerfile:1-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile#L1-L52)
+- [frontend/package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
 
 ## Performance Considerations
 - Separate Docker containers enable independent scaling of backend and chatbot services
@@ -348,11 +348,11 @@ Common issues and diagnostics:
   - Confirm PORT variable usage and startCommand alignment with exposed ports
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [chatbot_service/config.py:118-126](file://chatbot_service/config.py#L118-L126)
-- [frontend/lib/api.ts:4-47](file://frontend/lib/api.ts#L4-L47)
-- [render.yaml:1-83](file://render.yaml#L1-L83)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [chatbot_service/config.py:118-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L118-L126)
+- [frontend/lib/api.ts:4-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L4-L47)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
 
 ## Conclusion
 SafeVixAI’s microservices architecture cleanly separates concerns across backend API, chatbot, and frontend PWA. Independent deployments on Render.com and Vercel, combined with distinct Docker configurations and environment settings, enable scalable and maintainable operations. Inter-service communication is explicit and decoupled, with the frontend consuming both services via separate HTTP clients. The monorepo structure preserves independence while sharing common documentation and CI/CD patterns.
@@ -372,5 +372,5 @@ SafeVixAI’s microservices architecture cleanly separates concerns across backe
   - An API gateway could consolidate routing, authentication, and rate limiting if traffic grows
 
 **Section sources**
-- [render.yaml:1-83](file://render.yaml#L1-L83)
-- [frontend/lib/api.ts:4-47](file://frontend/lib/api.ts#L4-L47)
+- [render.yaml:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml#L1-L83)
+- [frontend/lib/api.ts:4-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L4-L47)

@@ -2,18 +2,18 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [backend/core/redis_client.py](file://backend/core/redis_client.py)
-- [chatbot_service/memory/redis_memory.py](file://chatbot_service/memory/redis_memory.py)
-- [backend/api/v1/chat.py](file://backend/api/v1/chat.py)
-- [chatbot_service/api/chat.py](file://chatbot_service/api/chat.py)
-- [backend/api/v1/tracking.py](file://backend/api/v1/tracking.py)
-- [frontend/lib/analytics-provider.tsx](file://frontend/lib/analytics-provider.tsx)
-- [.github/workflows/backend.yml](file://.github/workflows/backend.yml)
-- [.github/workflows/chatbot.yml](file://.github/workflows/chatbot.yml)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [backend/core/redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
+- [chatbot_service/memory/redis_memory.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py)
+- [backend/api/v1/chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py)
+- [chatbot_service/api/chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py)
+- [backend/api/v1/tracking.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/tracking.py)
+- [frontend/lib/analytics-provider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx)
+- [.github/workflows/backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
+- [.github/workflows/chatbot.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml)
 </cite>
 
 ## Table of Contents
@@ -72,32 +72,32 @@ WChatbot --> CMain
 ```
 
 **Diagram sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [chatbot_service/main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
-- [chatbot_service/config.py:39-126](file://chatbot_service/config.py#L39-L126)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [backend/api/v1/chat.py:10-24](file://backend/api/v1/chat.py#L10-L24)
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [backend/api/v1/tracking.py:1-29](file://backend/api/v1/tracking.py#L1-L29)
-- [frontend/lib/analytics-provider.tsx:1-26](file://frontend/lib/analytics-provider.tsx#L1-L26)
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [chatbot_service/main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [chatbot_service/config.py:39-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L126)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [backend/api/v1/chat.py:10-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L10-L24)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [backend/api/v1/tracking.py:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/tracking.py#L1-L29)
+- [frontend/lib/analytics-provider.tsx:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L1-L26)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
 
 **Section sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [chatbot_service/main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
-- [chatbot_service/config.py:39-126](file://chatbot_service/config.py#L39-L126)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [backend/api/v1/chat.py:10-24](file://backend/api/v1/chat.py#L10-L24)
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [backend/api/v1/tracking.py:1-29](file://backend/api/v1/tracking.py#L1-L29)
-- [frontend/lib/analytics-provider.tsx:1-26](file://frontend/lib/analytics-provider.tsx#L1-L26)
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [chatbot_service/main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [chatbot_service/config.py:39-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L126)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [backend/api/v1/chat.py:10-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L10-L24)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [backend/api/v1/tracking.py:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/tracking.py#L1-L29)
+- [frontend/lib/analytics-provider.tsx:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L1-L26)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
 
 ## Core Components
 - Backend API service
@@ -118,12 +118,12 @@ Observability signals currently present:
 - CI workflows for automated testing.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [backend/core/redis_client.py:115-124](file://backend/core/redis_client.py#L115-L124)
-- [chatbot_service/memory/redis_memory.py:67-76](file://chatbot_service/memory/redis_memory.py#L67-L76)
-- [chatbot_service/api/chat.py:43-97](file://chatbot_service/api/chat.py#L43-L97)
-- [frontend/lib/analytics-provider.tsx:7-25](file://frontend/lib/analytics-provider.tsx#L7-L25)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [backend/core/redis_client.py:115-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L124)
+- [chatbot_service/memory/redis_memory.py:67-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L67-L76)
+- [chatbot_service/api/chat.py:43-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L43-L97)
+- [frontend/lib/analytics-provider.tsx:7-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L7-L25)
 
 ## Architecture Overview
 The system consists of two FastAPI services and a frontend, communicating over HTTP. Redis is used for caching and conversation memory. CI workflows run tests for both services.
@@ -145,10 +145,10 @@ CB --> |"Cache"| Cache
 ```
 
 **Diagram sources**
-- [backend/main.py:65-128](file://backend/main.py#L65-L128)
-- [chatbot_service/main.py:94-145](file://chatbot_service/main.py#L94-L145)
-- [backend/core/redis_client.py:136-140](file://backend/core/redis_client.py#L136-L140)
-- [chatbot_service/memory/redis_memory.py:10-16](file://chatbot_service/memory/redis_memory.py#L10-L16)
+- [backend/main.py:65-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L65-L128)
+- [chatbot_service/main.py:94-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L94-L145)
+- [backend/core/redis_client.py:136-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L136-L140)
+- [chatbot_service/memory/redis_memory.py:10-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L16)
 
 ## Detailed Component Analysis
 
@@ -181,14 +181,14 @@ CB-->>FE : "Streaming response"
 ```
 
 **Diagram sources**
-- [backend/api/v1/chat.py:17-23](file://backend/api/v1/chat.py#L17-L23)
-- [chatbot_service/api/chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [backend/core/redis_client.py:43-58](file://backend/core/redis_client.py#L43-L58)
-- [chatbot_service/memory/redis_memory.py:23-44](file://chatbot_service/memory/redis_memory.py#L23-L44)
+- [backend/api/v1/chat.py:17-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L17-L23)
+- [chatbot_service/api/chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [backend/core/redis_client.py:43-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L58)
+- [chatbot_service/memory/redis_memory.py:23-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L44)
 
 **Section sources**
-- [backend/main.py:65-128](file://backend/main.py#L65-L128)
-- [chatbot_service/main.py:94-145](file://chatbot_service/main.py#L94-L145)
+- [backend/main.py:65-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L65-L128)
+- [chatbot_service/main.py:94-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L94-L145)
 
 ### Key Performance Indicators (KPIs)
 - Emergency response time
@@ -201,8 +201,8 @@ CB-->>FE : "Streaming response"
   - Chatbot session counts and average session length.
 
 **Section sources**
-- [chatbot_service/api/chat.py:43-97](file://chatbot_service/api/chat.py#L43-L97)
-- [frontend/lib/analytics-provider.tsx:13-21](file://frontend/lib/analytics-provider.tsx#L13-L21)
+- [chatbot_service/api/chat.py:43-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L43-L97)
+- [frontend/lib/analytics-provider.tsx:13-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L13-L21)
 
 ### Custom Metrics Collection
 - Backend
@@ -214,8 +214,8 @@ CB-->>FE : "Streaming response"
   - Capture user action timings and navigation metrics via PostHog and OpenTelemetry.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
 
 ### Alerting Strategies
 - Health degradation thresholds
@@ -229,9 +229,9 @@ CB-->>FE : "Streaming response"
   - Redis memory usage and eviction events; database connection pool exhaustion.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [chatbot_service/api/chat.py:29-40](file://chatbot_service/api/chat.py#L29-L40)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [chatbot_service/api/chat.py:29-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L29-L40)
 
 ### Performance Dashboards
 - Backend
@@ -242,9 +242,9 @@ CB-->>FE : "Streaming response"
   - Page views, page leave, conversion funnels, device/region breakdown.
 
 **Section sources**
-- [backend/api/v1/chat.py:17-23](file://backend/api/v1/chat.py#L17-L23)
-- [chatbot_service/api/chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [frontend/lib/analytics-provider.tsx:13-21](file://frontend/lib/analytics-provider.tsx#L13-L21)
+- [backend/api/v1/chat.py:17-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L17-L23)
+- [chatbot_service/api/chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [frontend/lib/analytics-provider.tsx:13-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L13-L21)
 
 ### Observability Patterns
 
@@ -269,12 +269,12 @@ Fallback --> ReturnVal
 ```
 
 **Diagram sources**
-- [backend/core/redis_client.py:43-124](file://backend/core/redis_client.py#L43-L124)
-- [chatbot_service/memory/redis_memory.py:23-76](file://chatbot_service/memory/redis_memory.py#L23-L76)
+- [backend/core/redis_client.py:43-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L124)
+- [chatbot_service/memory/redis_memory.py:23-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L76)
 
 **Section sources**
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
 
 #### Database Query Metrics
 - Backend uses async SQLAlchemy with configurable pool size and timeouts.
@@ -285,8 +285,8 @@ Recommendations:
 - Track pool usage and timeouts to detect saturation.
 
 **Section sources**
-- [backend/core/config.py:19-24](file://backend/core/config.py#L19-L24)
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
+- [backend/core/config.py:19-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L24)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
 
 #### Frontend User Experience Tracking
 - PostHog provider initializes with environment variables and manual pageleave capture.
@@ -297,7 +297,7 @@ Recommendations:
 - Track time-to-interactive and error boundaries.
 
 **Section sources**
-- [frontend/lib/analytics-provider.tsx:7-25](file://frontend/lib/analytics-provider.tsx#L7-L25)
+- [frontend/lib/analytics-provider.tsx:7-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L7-L25)
 
 ### Integration with Monitoring Platforms
 - Backend
@@ -309,8 +309,8 @@ Recommendations:
   - Export telemetry to backend or directly to vendor collectors.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
 
 ### Log Aggregation Strategies
 - Centralize service logs and correlate by request ID.
@@ -318,8 +318,8 @@ Recommendations:
 - Include structured context (service, endpoint, user ID) in logs.
 
 **Section sources**
-- [backend/api/v1/chat.py:17-23](file://backend/api/v1/chat.py#L17-L23)
-- [chatbot_service/api/chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
+- [backend/api/v1/chat.py:17-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L17-L23)
+- [chatbot_service/api/chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
 
 ### Automated Performance Testing Workflows
 - CI pipelines run tests for backend and chatbot services.
@@ -339,12 +339,12 @@ ChatbotPass --> |No| BlockCB["Block deployment"]
 ```
 
 **Diagram sources**
-- [.github/workflows/backend.yml:18-55](file://.github/workflows/backend.yml#L18-L55)
-- [.github/workflows/chatbot.yml:18-55](file://.github/workflows/chatbot.yml#L18-L55)
+- [.github/workflows/backend.yml:18-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L18-L55)
+- [.github/workflows/chatbot.yml:18-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L18-L55)
 
 **Section sources**
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-55)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-55)
 
 ## Dependency Analysis
 - Backend depends on Redis cache and domain services; health checks surface cache backend name and availability.
@@ -362,17 +362,17 @@ FE --> CChatAPI
 ```
 
 **Diagram sources**
-- [backend/main.py:24-63](file://backend/main.py#L24-L63)
-- [chatbot_service/main.py:44-93](file://chatbot_service/main.py#L44-L93)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [backend/api/v1/chat.py:17-23](file://backend/api/v1/chat.py#L17-L23)
-- [chatbot_service/api/chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [frontend/lib/analytics-provider.tsx:7-25](file://frontend/lib/analytics-provider.tsx#L7-L25)
+- [backend/main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
+- [chatbot_service/main.py:44-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L44-L93)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [backend/api/v1/chat.py:17-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/chat.py#L17-L23)
+- [chatbot_service/api/chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [frontend/lib/analytics-provider.tsx:7-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L7-L25)
 
 **Section sources**
-- [backend/main.py:24-63](file://backend/main.py#L24-L63)
-- [chatbot_service/main.py:44-93](file://chatbot_service/main.py#L44-L93)
+- [backend/main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
+- [chatbot_service/main.py:44-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L44-L93)
 
 ## Performance Considerations
 - Redis fallback
@@ -383,9 +383,9 @@ FE --> CChatAPI
   - Use health endpoints for readiness/liveness probes; surface cache backend status to inform autoscaling decisions.
 
 **Section sources**
-- [backend/core/redis_client.py:115-124](file://backend/core/redis_client.py#L115-L124)
-- [chatbot_service/memory/redis_memory.py:67-76](file://chatbot_service/memory/redis_memory.py#L67-L76)
-- [chatbot_service/api/chat.py:43-97](file://chatbot_service/api/chat.py#L43-L97)
+- [backend/core/redis_client.py:115-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L124)
+- [chatbot_service/memory/redis_memory.py:67-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L67-L76)
+- [chatbot_service/api/chat.py:43-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L43-L97)
 
 ## Troubleshooting Guide
 - Backend health degraded
@@ -396,9 +396,9 @@ FE --> CChatAPI
   - Review SSE event generator error handling and client buffering headers.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [chatbot_service/api/chat.py:84-87](file://chatbot_service/api/chat.py#L84-L87)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [chatbot_service/api/chat.py:84-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L84-L87)
 
 ## Conclusion
 SafeVixAI’s services currently provide foundational health signals and Redis-backed caching/memory. To achieve robust observability, integrate OpenTelemetry for distributed tracing, instrument custom metrics for KPIs, and expand log aggregation and alerting. Extend CI with performance tests and SLO validation to support capacity planning and regression detection. Align frontend telemetry with backend metrics for end-to-end visibility.
@@ -410,5 +410,5 @@ SafeVixAI’s services currently provide foundational health signals and Redis-b
 - Chatbot settings include Redis, RAG directories, embedding model, retrieval top-k, and provider configuration.
 
 **Section sources**
-- [backend/core/config.py:19-60](file://backend/core/config.py#L19-L60)
-- [chatbot_service/config.py:40-113](file://chatbot_service/config.py#L40-L113)
+- [backend/core/config.py:19-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L19-L60)
+- [chatbot_service/config.py:40-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L40-L113)

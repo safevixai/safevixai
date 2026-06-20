@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [authority_router.py](file://backend/services/authority_router.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [page.tsx](file://frontend/app/report/page.tsx)
-- [HazardViewfinder.tsx](file://frontend/components/report/HazardViewfinder.tsx)
-- [PotholeDetector.tsx](file://frontend/components/PotholeDetector.tsx)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [api.ts](file://frontend/lib/api.ts)
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [AI_Instructions.md](file://docs/AI_Instructions.md)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [authority_router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx)
+- [HazardViewfinder.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx)
+- [PotholeDetector.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [AI_Instructions.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md)
 </cite>
 
 ## Table of Contents
@@ -68,20 +68,20 @@ OSQ --> API
 ```
 
 **Diagram sources**
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [HazardViewfinder.tsx:17-105](file://frontend/components/report/HazardViewfinder.tsx#L17-L105)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [HazardViewfinder.tsx:17-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L17-L105)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
 
 **Section sources**
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
 
 ## Core Components
 - RoadWatch API: Exposes endpoints for nearby issues, authority preview, infrastructure lookup, and report submission.
@@ -92,11 +92,11 @@ OSQ --> API
 - Offline Support: IndexedDB queue for SOS reports and offline AI engine for conversational assistance.
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
-- [roadwatch_service.py:70-253](file://backend/services/roadwatch_service.py#L70-L253)
-- [authority_router.py:48-126](file://backend/services/authority_router.py#L48-L126)
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
+- [roadwatch_service.py:70-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L253)
+- [authority_router.py:48-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L126)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
 
 ## Architecture Overview
 The system follows a layered architecture:
@@ -130,11 +130,11 @@ API-->>UI : Show confirmation and authority details
 ```
 
 **Diagram sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [authority_router.py:48-126](file://backend/services/authority_router.py#L48-L126)
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [authority_router.py:48-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L126)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 ## Detailed Component Analysis
 
@@ -147,7 +147,7 @@ API-->>UI : Show confirmation and authority details
 Validation and caching are applied for robustness and performance.
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
 
 ### RoadWatch Service: Spatial Analysis and Submission
 - Authority Resolution: Uses cached authority preview derived from road infrastructure or Overpass road context.
@@ -168,11 +168,11 @@ CacheBump --> Done(["Return RoadReportResponse"])
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 **Section sources**
-- [roadwatch_service.py:70-253](file://backend/services/roadwatch_service.py#L70-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [roadwatch_service.py:70-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 ### Authority Routing: Automatic Authority Assignment
 - Road Infrastructure Priority: If a road segment exists within a small radius, use its type and number to normalize to a road type code.
@@ -192,12 +192,12 @@ F -- No --> H["Fallback to Urban authority"]
 ```
 
 **Diagram sources**
-- [authority_router.py:48-126](file://backend/services/authority_router.py#L48-L126)
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
+- [authority_router.py:48-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L126)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
 
 **Section sources**
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
 
 ### Community Reporting Interface: Hazard Viewfinder and Real-Time Updates
 - Hazard Viewfinder: Live viewport with GPS status, signal strength, and optional photo overlay; displays AI confidence and hazard status.
@@ -223,15 +223,15 @@ API-->>UI : Show confirmation with reference
 ```
 
 **Diagram sources**
-- [page.tsx:134-210](file://frontend/app/report/page.tsx#L134-L210)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [roadwatch.py:53-97](file://backend/api/v1/roadwatch.py#L53-L97)
-- [roadwatch_service.py:70-125](file://backend/services/roadwatch_service.py#L70-L125)
+- [page.tsx:134-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L134-L210)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [roadwatch.py:53-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L53-L97)
+- [roadwatch_service.py:70-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L125)
 
 **Section sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [HazardViewfinder.tsx:17-105](file://frontend/components/report/HazardViewfinder.tsx#L17-L105)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [HazardViewfinder.tsx:17-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L17-L105)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
 
 ### AI-Powered Pothole Detection: In-Browser Computer Vision
 - In-Browser Detection: Uses a 15MB ONNX model (YOLOv8n) via Transformers.js to detect potholes and road damage directly in the browser.
@@ -242,8 +242,8 @@ API-->>UI : Show confirmation with reference
 Note: The in-browser YOLO model is referenced in the project documentation and implemented in the frontend component.
 
 **Section sources**
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
-- [AI_Instructions.md:181-213](file://docs/AI_Instructions.md#L181-L213)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
+- [AI_Instructions.md:181-213](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L181-L213)
 
 ### Offline Report Queue: Connectivity Resilience
 - IndexedDB Queue: Stores SOS events offline; syncs automatically when connectivity is restored.
@@ -260,10 +260,10 @@ Flush --> Done(["Success or retry on error"])
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-124](file://frontend/lib/offline-sos-queue.ts#L48-L124)
+- [offline-sos-queue.ts:48-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L124)
 
 **Section sources**
-- [offline-sos-queue.ts:25-138](file://frontend/lib/offline-sos-queue.ts#L25-L138)
+- [offline-sos-queue.ts:25-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L138)
 
 ### Integration with OpenStreetMap and Overpass API
 - Road Context: Overpass queries return the nearest highway-tagged ways and classifies road type codes.
@@ -271,8 +271,8 @@ Flush --> Done(["Success or retry on error"])
 - Service Search: Overpass service also supports nearby emergency services, demonstrating broader OSM integration.
 
 **Section sources**
-- [overpass_service.py:80-122](file://backend/services/overpass_service.py#L80-L122)
-- [authority_router.py:73-126](file://backend/services/authority_router.py#L73-L126)
+- [overpass_service.py:80-122](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L80-L122)
+- [authority_router.py:73-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L73-L126)
 
 ### Reporting Workflow: From Submission to Authority Notification
 - Location Detection: GPS hook provides coordinates with accuracy; reverse geocoding augments address context.
@@ -298,15 +298,15 @@ API-->>UI : Show confirmation
 ```
 
 **Diagram sources**
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 **Section sources**
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 ## Dependency Analysis
 - Backend Dependencies:
@@ -331,21 +331,21 @@ OSQ["offline-sos-queue.ts"] --> API
 ```
 
 **Diagram sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
 
 **Section sources**
-- [roadwatch_service.py:56-69](file://backend/services/roadwatch_service.py#L56-L69)
-- [authority_router.py:42-46](file://backend/services/authority_router.py#L42-L46)
-- [overpass_service.py:24-31](file://backend/services/overpass_service.py#L24-L31)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [roadwatch_service.py:56-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L69)
+- [authority_router.py:42-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L46)
+- [overpass_service.py:24-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L31)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 ## Performance Considerations
 - Spatial Queries: Distance calculations and ST_DWithin are used to efficiently bound nearby issues and infrastructure lookups.
@@ -362,10 +362,10 @@ OSQ["offline-sos-queue.ts"] --> API
 - Offline Sync: IndexedDB queue stores SOS events; background sync attempts to transmit when connectivity returns.
 
 **Section sources**
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [authority_router.py:73-79](file://backend/services/authority_router.py#L73-L79)
-- [roadwatch_service.py:280-318](file://backend/services/roadwatch_service.py#L280-L318)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [authority_router.py:73-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L73-L79)
+- [roadwatch_service.py:280-318](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L280-L318)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 ## Conclusion
 RoadWatch delivers a robust, community-driven road reporting platform with automatic location detection, optional photo capture, AI-powered pothole detection, and seamless authority routing. Its integration with OpenStreetMap and Overpass ensures transparency and accuracy, while offline capabilities and resilient queues enhance usability in challenging connectivity environments.
@@ -389,5 +389,5 @@ RoadWatch delivers a robust, community-driven road reporting platform with autom
   - Response: RoadReportResponse
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
-- [api.ts:156-200](file://frontend/lib/api.ts#L156-L200)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
+- [api.ts:156-200](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L156-L200)

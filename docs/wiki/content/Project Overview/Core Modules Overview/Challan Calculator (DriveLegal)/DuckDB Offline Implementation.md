@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [violations.csv](file://frontend/public/offline-data/violations.csv)
-- [state_overrides.csv](file://frontend/public/offline-data/state_overrides.csv)
-- [challan.py](file://backend/api/v1/challan.py)
-- [challan_service.py](file://backend/services/challan_service.py)
-- [challan.py](file://backend/models/challan.py)
-- [config.py](file://backend/core/config.py)
-- [seed_violations.py](file://backend/scripts/data/seed_violations.py)
-- [ChallanCalculator.tsx](file://frontend/components/ChallanCalculator.tsx)
-- [api.ts](file://frontend/lib/api.ts)
-- [store.ts](file://frontend/lib/store.ts)
-- [offline.py](file://backend/api/v1/offline.py)
-- [build_offline_bundle.py](file://backend/scripts/app/build_offline_bundle.py)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [violations.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [seed_violations.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py)
+- [ChallanCalculator.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [build_offline_bundle.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py)
 </cite>
 
 ## Table of Contents
@@ -75,30 +75,30 @@ Seed --> Config
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-186)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-226)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-821)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-51)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-14)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-26)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-314)
-- [challan.py:1-53](file://backend/models/challan.py#L1-53)
-- [config.py:1-181](file://backend/core/config.py#L1-181)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-482)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-186)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-226)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-821)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-51)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-14)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-26)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-314)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-53)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-181)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-482)
 
 **Section sources**
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-51)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-14)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-26)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-314)
-- [challan.py:1-53](file://backend/models/challan.py#L1-53)
-- [config.py:1-181](file://backend/core/config.py#L1-181)
-- [seed_violations.py:1-482](file://backend/scripts/data/seed_violations.py#L1-482)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-186)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-821)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-226)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-51)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-14)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-26)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-314)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-53)
+- [config.py:1-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L1-181)
+- [seed_violations.py:1-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L1-482)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-186)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-821)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-226)
 
 ## Core Components
 - DuckDB Offline Abstraction:
@@ -119,11 +119,11 @@ Seed --> Config
   - Uses a store to manage connectivity and user inputs.
 
 **Section sources**
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-51)
-- [challan_service.py:96-314](file://backend/services/challan_service.py#L96-314)
-- [challan.py:6-53](file://backend/models/challan.py#L6-53)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-186)
-- [store.ts:60-120](file://frontend/lib/store.ts#L60-120)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-51)
+- [challan_service.py:96-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-314)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-53)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-186)
+- [store.ts:60-120](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-120)
 
 ## Architecture Overview
 The offline architecture separates concerns between frontend data bundling and backend computation:
@@ -160,11 +160,11 @@ end
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-62)
-- [store.ts:90-93](file://frontend/lib/store.ts#L90-93)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-821)
-- [challan.py:17-26](file://backend/api/v1/challan.py#L17-26)
-- [challan_service.py:103-149](file://backend/services/challan_service.py#L103-149)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-62)
+- [store.ts:90-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L90-93)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-821)
+- [challan.py:17-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L17-26)
+- [challan_service.py:103-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L103-149)
 
 ## Detailed Component Analysis
 
@@ -189,11 +189,11 @@ Fallback --> Return
 ```
 
 **Diagram sources**
-- [duckdb-challan.ts:4-18](file://frontend/lib/duckdb-challan.ts#L4-18)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-50)
+- [duckdb-challan.ts:4-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L4-18)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-50)
 
 **Section sources**
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-51)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-51)
 
 ### Backend ChallanService
 - Responsibilities:
@@ -252,12 +252,12 @@ ChallanService --> StateChallanOverride : "loads and uses"
 ```
 
 **Diagram sources**
-- [challan_service.py:96-314](file://backend/services/challan_service.py#L96-314)
-- [challan.py:6-53](file://backend/models/challan.py#L6-53)
+- [challan_service.py:96-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-314)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-53)
 
 **Section sources**
-- [challan_service.py:96-314](file://backend/services/challan_service.py#L96-314)
-- [challan.py:6-53](file://backend/models/challan.py#L6-53)
+- [challan_service.py:96-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L96-314)
+- [challan.py:6-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L6-53)
 
 ### Data Schema and CSV Normalization
 - violations.csv:
@@ -283,15 +283,15 @@ Backend --> Service["ChallanService"]
 ```
 
 **Diagram sources**
-- [seed_violations.py:158-301](file://backend/scripts/data/seed_violations.py#L158-301)
-- [seed_violations.py:419-482](file://backend/scripts/data/seed_violations.py#L419-482)
-- [challan_service.py:168-238](file://backend/services/challan_service.py#L168-238)
+- [seed_violations.py:158-301](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L158-301)
+- [seed_violations.py:419-482](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L419-482)
+- [challan_service.py:168-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L168-238)
 
 **Section sources**
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-27)
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-14)
-- [seed_violations.py:158-301](file://backend/scripts/data/seed_violations.py#L158-301)
-- [challan_service.py:168-238](file://backend/services/challan_service.py#L168-238)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-14)
+- [seed_violations.py:158-301](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L158-301)
+- [challan_service.py:168-238](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L168-238)
 
 ### Frontend Integration and Fallback Mechanisms
 - Connectivity-aware calculation:
@@ -319,16 +319,16 @@ end
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-62)
-- [store.ts:90-93](file://frontend/lib/store.ts#L90-93)
-- [duckdb-challan.ts:20-50](file://frontend/lib/duckdb-challan.ts#L20-50)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-821)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-62)
+- [store.ts:90-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L90-93)
+- [duckdb-challan.ts:20-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L20-50)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-821)
 
 **Section sources**
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-186)
-- [store.ts:60-120](file://frontend/lib/store.ts#L60-120)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-51)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-821)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-186)
+- [store.ts:60-120](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-120)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-51)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-821)
 
 ## Dependency Analysis
 - Frontend Dependencies:
@@ -354,17 +354,17 @@ CSV --> BackendData["backend/datasets/challan"]
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-186)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-226)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-821)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-51)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-26)
-- [challan_service.py:151-166](file://backend/services/challan_service.py#L151-166)
-- [config.py:55-57](file://backend/core/config.py#L55-57)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-186)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-226)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-821)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-51)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-26)
+- [challan_service.py:151-166](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-166)
+- [config.py:55-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L55-57)
 
 **Section sources**
-- [challan_service.py:151-166](file://backend/services/challan_service.py#L151-166)
-- [config.py:55-57](file://backend/core/config.py#L55-57)
+- [challan_service.py:151-166](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L151-166)
+- [config.py:55-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L55-57)
 
 ## Performance Considerations
 - Data Loading:
@@ -407,9 +407,9 @@ CSV --> BackendData["backend/datasets/challan"]
   - Validate that the simulated offline lookup returns expected results.
 
 **Section sources**
-- [challan_service.py:109-113](file://backend/services/challan_service.py#L109-113)
-- [challan_service.py:293-314](file://backend/services/challan_service.py#L293-314)
-- [seed_violations.py:383-396](file://backend/scripts/data/seed_violations.py#L383-396)
+- [challan_service.py:109-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L109-113)
+- [challan_service.py:293-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L293-314)
+- [seed_violations.py:383-396](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/data/seed_violations.py#L383-396)
 
 ## Conclusion
 The DuckDB offline implementation for the Challan Calculator combines frontend CSV bundling with backend CSV loading and normalization to deliver accurate, real-time fine calculations. The system supports online and offline modes, with robust input validation and state override handling. By leveraging DuckDB WASM for in-browser querying and maintaining normalized CSV datasets, the solution ensures reliable operation across 25+ major cities while preserving performance and data consistency.

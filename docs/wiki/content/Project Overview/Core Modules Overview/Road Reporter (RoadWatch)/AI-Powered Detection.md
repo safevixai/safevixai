@@ -2,15 +2,15 @@
 
 <cite>
 **Referenced Files in This Document**
-- [edge-ai.ts](file://frontend/lib/edge-ai.ts)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [PotholeDetector.tsx](file://frontend/components/PotholeDetector.tsx)
-- [HazardViewfinder.tsx](file://frontend/components/report/HazardViewfinder.tsx)
-- [report page.tsx](file://frontend/app/report/page.tsx)
-- [api.ts](file://frontend/lib/api.ts)
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [AI_Instructions.md](file://docs/AI_Instructions.md)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
+- [edge-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [PotholeDetector.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx)
+- [HazardViewfinder.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx)
+- [report page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [AI_Instructions.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
 </cite>
 
 ## Table of Contents
@@ -59,20 +59,20 @@ API --> BE
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [HazardViewfinder.tsx:1-105](file://frontend/components/report/HazardViewfinder.tsx#L1-L105)
-- [report page.tsx:1-557](file://frontend/app/report/page.tsx#L1-L557)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [HazardViewfinder.tsx:1-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L1-L105)
+- [report page.tsx:1-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L1-L557)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
 
 **Section sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [HazardViewfinder.tsx:1-105](file://frontend/components/report/HazardViewfinder.tsx#L1-L105)
-- [report page.tsx:1-557](file://frontend/app/report/page.tsx#L1-L557)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [HazardViewfinder.tsx:1-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L1-L105)
+- [report page.tsx:1-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L1-L557)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
 
 ## Core Components
 - PotholeDetector: In-browser camera capture and simulated AI scan with confidence overlay
@@ -82,11 +82,11 @@ API --> BE
 - Reporting UI: Integrates camera capture, optional photo upload, spatial context, and authority routing
 
 **Section sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [HazardViewfinder.tsx:1-105](file://frontend/components/report/HazardViewfinder.tsx#L1-L105)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
-- [report page.tsx:1-557](file://frontend/app/report/page.tsx#L1-L557)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [HazardViewfinder.tsx:1-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L1-L105)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
+- [report page.tsx:1-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L1-L557)
 
 ## Architecture Overview
 The system combines:
@@ -119,12 +119,12 @@ API-->>View : Update spatial context and authority
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:43-54](file://frontend/components/PotholeDetector.tsx#L43-L54)
-- [HazardViewfinder.tsx:17-25](file://frontend/components/report/HazardViewfinder.tsx#L17-L25)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
-- [report page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
+- [PotholeDetector.tsx:43-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L43-L54)
+- [HazardViewfinder.tsx:17-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L17-L25)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
+- [report page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
 
 ## Detailed Component Analysis
 
@@ -147,10 +147,10 @@ Overlay --> End(["Ready for report"])
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:43-54](file://frontend/components/PotholeDetector.tsx#L43-L54)
+- [PotholeDetector.tsx:43-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L43-L54)
 
 **Section sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
 
 ### Offline AI Engine (Text Generation)
 - Path selection: Chrome Built-in AI (system), Transformers.js Gemma 4 E2B, or keyword fallback
@@ -190,14 +190,14 @@ end
 ```
 
 **Diagram sources**
-- [offline-ai.ts:47-67](file://frontend/lib/offline-ai.ts#L47-L67)
-- [offline-ai.ts:71-110](file://frontend/lib/offline-ai.ts#L71-L110)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-ai.ts:160-211](file://frontend/lib/offline-ai.ts#L160-L211)
-- [offline-ai.ts:225-255](file://frontend/lib/offline-ai.ts#L225-L255)
+- [offline-ai.ts:47-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L67)
+- [offline-ai.ts:71-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L71-L110)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-ai.ts:160-211](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L160-L211)
+- [offline-ai.ts:225-255](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L225-L255)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ### Edge AI Engine (Deterministic Offline Responses)
 - Lightweight offline keyword matching for common queries
@@ -217,11 +217,11 @@ B --> |Yes| I["Return cloud-style response"]
 ```
 
 **Diagram sources**
-- [edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
-- [edge-ai.ts:6-10](file://frontend/lib/edge-ai.ts#L6-L10)
+- [edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
+- [edge-ai.ts:6-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L6-L10)
 
 **Section sources**
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
 
 ### Reporting UI and Spatial Analysis
 - Live viewport with AI confidence and GPS signal status
@@ -251,15 +251,15 @@ API-->>RP : Update viewport and confirm status
 ```
 
 **Diagram sources**
-- [report page.tsx:134-210](file://frontend/app/report/page.tsx#L134-L210)
-- [report page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [api.ts:655-671](file://frontend/lib/api.ts#L655-L671)
-- [api.ts:707-721](file://frontend/lib/api.ts#L707-L721)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [report page.tsx:134-210](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L134-L210)
+- [report page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [api.ts:655-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L655-L671)
+- [api.ts:707-721](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L707-L721)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 **Section sources**
-- [report page.tsx:1-557](file://frontend/app/report/page.tsx#L1-L557)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
+- [report page.tsx:1-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L1-L557)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
 
 ### Conceptual Overview
 - In-browser pothole detection uses a compact ONNX model (as documented) to run object detection locally
@@ -301,19 +301,19 @@ RP --> BE["Backend"]
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [HazardViewfinder.tsx:1-105](file://frontend/components/report/HazardViewfinder.tsx#L1-L105)
-- [report page.tsx:1-557](file://frontend/app/report/page.tsx#L1-L557)
-- [offline-ai.ts:75-109](file://frontend/lib/offline-ai.ts#L75-L109)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [HazardViewfinder.tsx:1-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L1-L105)
+- [report page.tsx:1-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L1-L557)
+- [offline-ai.ts:75-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L75-L109)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
 
 **Section sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [HazardViewfinder.tsx:1-105](file://frontend/components/report/HazardViewfinder.tsx#L1-L105)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
-- [report page.tsx:1-557](file://frontend/app/report/page.tsx#L1-L557)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [HazardViewfinder.tsx:1-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L1-L105)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
+- [report page.tsx:1-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L1-L557)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
 
 ## Performance Considerations
 - Device acceleration: WebGPU preferred, with WASM fallback for broader compatibility
@@ -332,11 +332,11 @@ RP --> BE["Backend"]
 - Offline SOS sync: IndexedDB queue persists events; background sync triggers on connection restoration
 
 **Section sources**
-- [PotholeDetector.tsx:18-41](file://frontend/components/PotholeDetector.tsx#L18-L41)
-- [offline-ai.ts:142-153](file://frontend/lib/offline-ai.ts#L142-L153)
-- [offline-ai.ts:77-79](file://frontend/lib/offline-ai.ts#L77-L79)
-- [api.ts:729-750](file://frontend/lib/api.ts#L729-L750)
-- [offline-sos-queue.ts:48-124](file://frontend/lib/offline-sos-queue.ts#L48-L124)
+- [PotholeDetector.tsx:18-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L18-L41)
+- [offline-ai.ts:142-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L142-L153)
+- [offline-ai.ts:77-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L77-L79)
+- [api.ts:729-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L729-L750)
+- [offline-sos-queue.ts:48-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L124)
 
 ## Conclusion
 The AI-powered detection system achieves real-time, on-device pothole and hazard identification with confidence scoring and threshold-based classification. By combining in-browser object detection, offline AI engines, and spatial analysis, it delivers resilient, privacy-preserving, and efficient road safety workflows. Fallback mechanisms and offline-first design ensure reliable operation under degraded connectivity, while quantization and device acceleration optimize performance and battery life.

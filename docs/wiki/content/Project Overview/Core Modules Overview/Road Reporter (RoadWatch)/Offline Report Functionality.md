@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [ReportForm.tsx](file://frontend/components/ReportForm.tsx)
-- [offline.py](file://backend/api/v1/offline.py)
-- [build_offline_bundle.py](file://backend/scripts/app/build_offline_bundle.py)
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [TechStack.md](file://docs/TechStack.md)
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [ChallanCalculator.tsx](file://frontend/components/ChallanCalculator.tsx)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [ReportForm.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [build_offline_bundle.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [TechStack.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [ChallanCalculator.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx)
 </cite>
 
 ## Table of Contents
@@ -61,20 +61,20 @@ OFFAPI --> BUNDLE
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [ReportForm.tsx:40-204](file://frontend/components/ReportForm.tsx#L40-L204)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [ReportForm.tsx:40-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L40-L204)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [ReportForm.tsx:40-204](file://frontend/components/ReportForm.tsx#L40-L204)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [ReportForm.tsx:40-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L40-L204)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
 
 ## Core Components
 - Offline SOS Queue: Stores SOS events in IndexedDB and attempts to sync upon reconnection. It optionally triggers background sync via the browser’s SyncManager.
@@ -83,12 +83,12 @@ OFFAPI --> BUNDLE
 - Offline Data Bundles: Backend endpoint and script to build offline emergency bundles for cities, enabling offline discovery of nearby services.
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [ReportForm.tsx:40-204](file://frontend/components/ReportForm.tsx#L40-L204)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [ReportForm.tsx:40-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L40-L204)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
 
 ## Architecture Overview
 The offline architecture combines browser-native capabilities with backend-provided offline bundles:
@@ -115,9 +115,9 @@ IDB->>IDB : "Delete synced items from IndexedDB"
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 ## Detailed Component Analysis
 
@@ -151,13 +151,13 @@ end
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
 
 ### Offline Report Queue (localStorage)
 - When offline, the report form saves a normalized payload to localStorage under a dedicated queue key.
@@ -176,10 +176,10 @@ UX --> Done
 ```
 
 **Diagram sources**
-- [ReportForm.tsx:40-64](file://frontend/components/ReportForm.tsx#L40-L64)
+- [ReportForm.tsx:40-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L40-L64)
 
 **Section sources**
-- [ReportForm.tsx:40-204](file://frontend/components/ReportForm.tsx#L40-L204)
+- [ReportForm.tsx:40-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L40-L204)
 
 ### Offline AI Engine and RAG
 - Offline AI supports three tiers: system AI (Chrome built-in), Transformers.js Gemma 4 E2B, and keyword fallback.
@@ -200,13 +200,13 @@ OfflineAI --> OfflineRAG : "complements offline knowledge"
 ```
 
 **Diagram sources**
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-ai.ts:160-211](file://frontend/lib/offline-ai.ts#L160-L211)
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-ai.ts:160-211](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L160-L211)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
 
 ### Offline Data Bundling for Emergency Services
 - Backend exposes a GET endpoint to build and return an offline bundle for a given city.
@@ -234,12 +234,12 @@ API-->>Admin : "GET /offline/bundle/{city}"
 ```
 
 **Diagram sources**
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [build_offline_bundle.py:14-31](file://backend/scripts/app/build_offline_bundle.py#L14-L31)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [build_offline_bundle.py:14-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L14-L31)
 
 **Section sources**
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
 
 ### Offline Challan Calculation (Graceful Degradation)
 - When offline, the challan calculator provides a deterministic offline result after a short delay.
@@ -256,12 +256,12 @@ OnlineCalc --> Result
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
-- [duckdb-challan.ts:3-18](file://frontend/lib/duckdb-challan.ts#L3-L18)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)
+- [duckdb-challan.ts:3-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L3-L18)
 
 **Section sources**
-- [ChallanCalculator.tsx:32-62](file://frontend/components/ChallanCalculator.tsx#L32-L62)
-- [duckdb-challan.ts:3-18](file://frontend/lib/duckdb-challan.ts#L3-L18)
+- [ChallanCalculator.tsx:32-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L32-L62)
+- [duckdb-challan.ts:3-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L3-L18)
 
 ## Dependency Analysis
 - Frontend depends on browser APIs (IndexedDB, Service Worker, Background Sync) and environment variables for backend URLs.
@@ -279,16 +279,16 @@ Docs --> BE_API
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
-- [Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [build_offline_bundle.py:1-51](file://backend/scripts/app/build_offline_bundle.py#L1-L51)
-- [Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [build_offline_bundle.py:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L1-L51)
+- [Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
 
 ## Performance Considerations
 - IndexedDB transactions and getAll/getAllKeys are used to enumerate queued items; consider batching and backoff strategies for large queues.
@@ -304,11 +304,11 @@ Docs --> BE_API
 - Offline report queue not transmitting: Confirm localStorage persistence and that the UI triggers submission when connectivity returns.
 
 **Section sources**
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:61-68](file://frontend/lib/offline-sos-queue.ts#L61-L68)
-- [offline-sos-queue.ts:118-123](file://frontend/lib/offline-sos-queue.ts#L118-L123)
-- [offline.py:24-27](file://backend/api/v1/offline.py#L24-L27)
-- [build_offline_bundle.py:14-31](file://backend/scripts/app/build_offline_bundle.py#L14-L31)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:61-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L61-L68)
+- [offline-sos-queue.ts:118-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L118-L123)
+- [offline.py:24-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L24-L27)
+- [build_offline_bundle.py:14-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L14-L31)
 
 ## Conclusion
 The offline report functionality leverages IndexedDB for persistent queuing, optional background sync for retries, and offline-aware UI behaviors. The backend contributes by providing offline data bundles for emergency services and road infrastructure. Together, these components ensure core functionality remains available and data consistency is maintained during connectivity issues.
@@ -319,10 +319,10 @@ The offline report functionality leverages IndexedDB for persistent queuing, opt
 - Browser-native technologies used for offline capabilities include IndexedDB, Service Worker + Workbox, Cache Storage API, Background Sync API, and Notification API.
 
 **Section sources**
-- [TechStack.md:56-70](file://docs/TechStack.md#L56-L70)
+- [TechStack.md:56-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/TechStack.md#L56-L70)
 
 ### Offline Architecture Notes
 - Current MVP uses ephemeral disks and local uploads, which are unsuitable for enterprise-scale distribution. The proposed V2 solution migrates to object storage and uses Supabase Realtime for robust offline resync and conflict resolution.
 
 **Section sources**
-- [Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
+- [Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)

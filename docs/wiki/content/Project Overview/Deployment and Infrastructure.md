@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [render.yaml](file://render.yaml)
-- [chatbot_service/render.yaml](file://chatbot_service/render.yaml)
-- [backend/Dockerfile](file://backend/Dockerfile)
-- [chatbot_service/Dockerfile](file://chatbot_service/Dockerfile)
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [docs/Deployment.md](file://docs/Deployment.md)
-- [SETUP.md](file://SETUP.md)
-- [.github/workflows/backend.yml](file://.github/workflows/backend.yml)
-- [.github/workflows/chatbot.yml](file://.github/workflows/chatbot.yml)
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
-- [frontend/package.json](file://frontend/package.json)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [chatbot_service/render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/render.yaml)
+- [backend/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile)
+- [chatbot_service/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
+- [SETUP.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/SETUP.md)
+- [.github/workflows/backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
+- [.github/workflows/chatbot.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
 </cite>
 
 ## Table of Contents
@@ -70,15 +70,15 @@ GH --> |"Deploys"| VERCEL
 ```
 
 **Diagram sources**
-- [render.yaml](file://render.yaml)
-- [chatbot_service/render.yaml](file://chatbot_service/render.yaml)
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [chatbot_service/render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/render.yaml)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 **Section sources**
-- [docs/Deployment.md](file://docs/Deployment.md)
-- [SETUP.md](file://SETUP.md)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
+- [SETUP.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/SETUP.md)
 
 ## Core Components
 - Backend (FastAPI): Provides system health checks, CORS configuration, static uploads, and API routes. It initializes services for geocoding, routing, emergency locator, roadwatch, and LLM integration, and integrates with Supabase and Upstash.
@@ -92,14 +92,14 @@ Key configuration and runtime behaviors are defined in:
 - Dockerfiles for containerization
 
 **Section sources**
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [render.yaml](file://render.yaml)
-- [chatbot_service/render.yaml](file://chatbot_service/render.yaml)
-- [backend/Dockerfile](file://backend/Dockerfile)
-- [chatbot_service/Dockerfile](file://chatbot_service/Dockerfile)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [chatbot_service/render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/render.yaml)
+- [backend/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile)
+- [chatbot_service/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile)
 
 ## Architecture Overview
 The deployment architecture centers on three independently scalable services behind managed hosting platforms with shared infrastructure:
@@ -130,11 +130,11 @@ RenderCB --> |"Backend Tools"| RenderBE
 ```
 
 **Diagram sources**
-- [docs/Deployment.md](file://docs/Deployment.md)
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [render.yaml](file://render.yaml)
-- [chatbot_service/render.yaml](file://chatbot_service/render.yaml)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [chatbot_service/render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/render.yaml)
 
 ## Detailed Component Analysis
 
@@ -176,17 +176,17 @@ Vercel-->>Client : "UI updates"
 ```
 
 **Diagram sources**
-- [backend/main.py](file://backend/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [render.yaml](file://render.yaml)
-- [backend/Dockerfile](file://backend/Dockerfile)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [backend/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile)
 
 **Section sources**
-- [render.yaml](file://render.yaml)
-- [backend/Dockerfile](file://backend/Dockerfile)
-- [backend/main.py](file://backend/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/render.yaml)
+- [backend/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/Dockerfile)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 ### Chatbot Service Deployment (Render.com)
 - Hosting: Separate Render.com web service configured via render.yaml.
@@ -225,17 +225,17 @@ Vercel-->>Client : "Display reply"
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [chatbot_service/render.yaml](file://chatbot_service/render.yaml)
-- [chatbot_service/Dockerfile](file://chatbot_service/Dockerfile)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [chatbot_service/render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/render.yaml)
+- [chatbot_service/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile)
 
 **Section sources**
-- [chatbot_service/render.yaml](file://chatbot_service/render.yaml)
-- [chatbot_service/Dockerfile](file://chatbot_service/Dockerfile)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [chatbot_service/render.yaml](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/render.yaml)
+- [chatbot_service/Dockerfile](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/Dockerfile)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 ### Frontend Deployment (Vercel)
 - Hosting: Vercel with GitHub integration.
@@ -260,14 +260,14 @@ Live --> Users["Users Access PWA"]
 ```
 
 **Diagram sources**
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
-- [frontend/package.json](file://frontend/package.json)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 **Section sources**
-- [frontend/package.json](file://frontend/package.json)
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [frontend/package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 ### CI/CD Pipelines (GitHub Actions)
 - Triggering: Push to main branch and Pull Requests targeting main (path-filtered).
@@ -289,14 +289,14 @@ FE --> DeployFE["Vercel Deploy"]
 ```
 
 **Diagram sources**
-- [.github/workflows/backend.yml](file://.github/workflows/backend.yml)
-- [.github/workflows/chatbot.yml](file://.github/workflows/chatbot.yml)
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
+- [.github/workflows/backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
+- [.github/workflows/chatbot.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
 
 **Section sources**
-- [.github/workflows/backend.yml](file://.github/workflows/backend.yml)
-- [.github/workflows/chatbot.yml](file://.github/workflows/chatbot.yml)
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
+- [.github/workflows/backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
+- [.github/workflows/chatbot.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
 
 ## Dependency Analysis
 - Backend depends on:
@@ -323,14 +323,14 @@ CB --> BE
 ```
 
 **Diagram sources**
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 **Section sources**
-- [backend/main.py](file://backend/main.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 ## Performance Considerations
 - Render.com free tier:
@@ -360,9 +360,9 @@ Common issues and resolutions:
   - Set NEXT_PUBLIC_BACKEND_URL and NEXT_PUBLIC_CHATBOT_URL to deployed service URLs.
 
 **Section sources**
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 ## Conclusion
 SafeVixAI’s deployment model leverages free-tier providers to achieve a zero-infrastructure cost baseline while maintaining a robust, multi-service architecture. Render.com hosts the backend and chatbot services with automated deployments via GitHub Actions, Vercel hosts the Next.js PWA, and Supabase and Upstash provide database and caching layers. The documented environment variables, health checks, and CI/CD workflows enable repeatable setups for developers and DevOps engineers. For production scaling, consider upgrading to paid tiers on Render and Vercel, enabling autoscaling, and implementing proactive uptime monitoring to mitigate cold starts.
@@ -378,7 +378,7 @@ SafeVixAI’s deployment model leverages free-tier providers to achieve a zero-i
 - CI/CD via GitHub Actions at no extra cost.
 
 **Section sources**
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 ### Practical Examples
 
@@ -392,7 +392,7 @@ SafeVixAI’s deployment model leverages free-tier providers to achieve a zero-i
   - Visit safevixai.vercel.app and verify “Add to Home Screen” prompt.
 
 **Section sources**
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)
 
 ### Environment Variables Reference
 
@@ -417,4 +417,4 @@ SafeVixAI’s deployment model leverages free-tier providers to achieve a zero-i
   - NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 **Section sources**
-- [docs/Deployment.md](file://docs/Deployment.md)
+- [docs/Deployment.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Deployment.md)

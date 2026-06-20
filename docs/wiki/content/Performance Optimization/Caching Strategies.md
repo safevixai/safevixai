@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [redis_client.py](file://backend/core/redis_client.py)
-- [config.py](file://backend/core/config.py)
-- [main.py](file://backend/main.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [geocoding_service.py](file://backend/services/geocoding_service.py)
-- [routing_service.py](file://backend/services/routing_service.py)
-- [user.py](file://backend/api/v1/user.py)
-- [user.py](file://backend/models/user.py)
-- [seed_emergency.py](file://scripts/app/seed_emergency.py)
+- [redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [geocoding_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py)
+- [routing_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py)
+- [user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [seed_emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/app/seed_emergency.py)
 </cite>
 
 ## Table of Contents
@@ -65,18 +65,18 @@ RCL --> RTG
 ```
 
 **Diagram sources**
-- [config.py:33-36](file://backend/core/config.py#L33-L36)
-- [redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [main.py:24-63](file://backend/main.py#L24-L63)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [geocoding_service.py:19-170](file://backend/services/geocoding_service.py#L19-L170)
-- [routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
+- [config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
+- [redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [geocoding_service.py:19-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L19-L170)
+- [routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
 
 **Section sources**
-- [config.py:33-36](file://backend/core/config.py#L33-L36)
-- [redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [main.py:24-63](file://backend/main.py#L24-L63)
+- [config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
+- [redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
 
 ## Core Components
 - CacheHelper: Dual-backend cache with Redis and in-memory fallback. Provides JSON get/set/delete, integer get/increment, and health checks. Automatically switches backend when Redis fails.
@@ -89,9 +89,9 @@ Key behaviors:
 - TTL values are drawn from Settings for each domain.
 
 **Section sources**
-- [redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [config.py:33-36](file://backend/core/config.py#L33-L36)
-- [main.py:24-63](file://backend/main.py#L24-L63)
+- [redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
+- [main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
 
 ## Architecture Overview
 The cache sits between the API handlers and external services or databases. It reduces latency and downstream load by serving precomputed or recently fetched data.
@@ -136,11 +136,11 @@ API-->>Client : Response
 ```
 
 **Diagram sources**
-- [redis_client.py:43-124](file://backend/core/redis_client.py#L43-L124)
-- [emergency_locator.py:196-216](file://backend/services/emergency_locator.py#L196-L216)
-- [roadwatch_service.py:70-125](file://backend/services/roadwatch_service.py#L70-L125)
-- [geocoding_service.py:33-63](file://backend/services/geocoding_service.py#L33-L63)
-- [routing_service.py:48-142](file://backend/services/routing_service.py#L48-L142)
+- [redis_client.py:43-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L124)
+- [emergency_locator.py:196-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L196-L216)
+- [roadwatch_service.py:70-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L125)
+- [geocoding_service.py:33-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L33-L63)
+- [routing_service.py:48-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L48-L142)
 
 ## Detailed Component Analysis
 
@@ -173,10 +173,10 @@ class CacheHelper {
 ```
 
 **Diagram sources**
-- [redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
+- [redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
 
 **Section sources**
-- [redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
+- [redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
 
 ### Emergency Services Caching
 - Cache keys:
@@ -216,13 +216,13 @@ end
 ```
 
 **Diagram sources**
-- [emergency_locator.py:196-216](file://backend/services/emergency_locator.py#L196-L216)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [emergency_locator.py:196-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L196-L216)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 **Section sources**
-- [emergency_locator.py:196-216](file://backend/services/emergency_locator.py#L196-L216)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [config.py](file://backend/core/config.py#L33)
+- [emergency_locator.py:196-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L196-L216)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33)
 
 ### Road Infrastructure and Issues Caching
 - Cache keys:
@@ -242,14 +242,14 @@ Invalidate --> End(["Next query builds new cache key with latest version"])
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:232-233](file://backend/services/roadwatch_service.py#L232-L233)
-- [roadwatch_service.py:137-142](file://backend/services/roadwatch_service.py#L137-L142)
+- [roadwatch_service.py:232-233](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L232-L233)
+- [roadwatch_service.py:137-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L137-L142)
 
 **Section sources**
-- [roadwatch_service.py:70-125](file://backend/services/roadwatch_service.py#L70-L125)
-- [roadwatch_service.py:137-184](file://backend/services/roadwatch_service.py#L137-L184)
-- [roadwatch_service.py:232-233](file://backend/services/roadwatch_service.py#L232-L233)
-- [config.py](file://backend/core/config.py#L35)
+- [roadwatch_service.py:70-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L125)
+- [roadwatch_service.py:137-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L137-L184)
+- [roadwatch_service.py:232-233](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L232-L233)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L35)
 
 ### Geocoding Caching
 - Cache keys:
@@ -284,11 +284,11 @@ end
 ```
 
 **Diagram sources**
-- [geocoding_service.py:33-63](file://backend/services/geocoding_service.py#L33-L63)
+- [geocoding_service.py:33-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L33-L63)
 
 **Section sources**
-- [geocoding_service.py:33-63](file://backend/services/geocoding_service.py#L33-L63)
-- [config.py](file://backend/core/config.py#L34)
+- [geocoding_service.py:33-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L33-L63)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L34)
 
 ### Routing Caching
 - Cache keys:
@@ -322,19 +322,19 @@ end
 ```
 
 **Diagram sources**
-- [routing_service.py:48-142](file://backend/services/routing_service.py#L48-L142)
+- [routing_service.py:48-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L48-L142)
 
 **Section sources**
-- [routing_service.py:48-142](file://backend/services/routing_service.py#L48-L142)
-- [config.py](file://backend/core/config.py#L36)
+- [routing_service.py:48-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L48-L142)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L36)
 
 ### User Data Caching
 - Current implementation: User profile endpoints read/write directly from/to the database without cache usage.
 - Recommendation: Apply short TTL caching for profile reads (e.g., user:profile:<id>) with invalidation on write.
 
 **Section sources**
-- [user.py:16-83](file://backend/api/v1/user.py#L16-L83)
-- [user.py:13-25](file://backend/models/user.py#L13-L25)
+- [user.py:16-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L83)
+- [user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
 
 ## Dependency Analysis
 - CacheHelper depends on Redis client and maintains an in-memory dictionary.
@@ -352,18 +352,18 @@ FastAPI["FastAPI lifespan"] --> CacheHelper
 ```
 
 **Diagram sources**
-- [config.py:33-36](file://backend/core/config.py#L33-L36)
-- [redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [main.py:24-63](file://backend/main.py#L24-L63)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [geocoding_service.py:19-170](file://backend/services/geocoding_service.py#L19-L170)
-- [routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
+- [config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
+- [redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [geocoding_service.py:19-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L19-L170)
+- [routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
 
 **Section sources**
-- [config.py:33-36](file://backend/core/config.py#L33-L36)
-- [redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [main.py:24-63](file://backend/main.py#L24-L63)
+- [config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
+- [redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
 
 ## Performance Considerations
 - Latency reduction: Cache hits avoid database queries and external API calls.
@@ -385,8 +385,8 @@ FastAPI["FastAPI lifespan"] --> CacheHelper
   - Monitor cache backend transitions and adjust TTLs accordingly.
 
 **Section sources**
-- [main.py:103-125](file://backend/main.py#L103-L125)
-- [redis_client.py:115-124](file://backend/core/redis_client.py#L115-L124)
+- [main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [redis_client.py:115-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L124)
 
 ## Conclusion
 SafeVixAI employs a robust dual-tier caching strategy centered on CacheHelper. Redis is the primary backend with seamless in-memory fallback, ensuring resilience. Domain-specific TTLs and explicit invalidation (versioned issues) balance freshness and performance. While user profile reads currently bypass cache, adding short-lived caching with write-through invalidation would further improve performance.
@@ -416,13 +416,13 @@ SafeVixAI employs a robust dual-tier caching strategy centered on CacheHelper. R
   - TTL: routing cache TTL
 
 **Section sources**
-- [emergency_locator.py:196-216](file://backend/services/emergency_locator.py#L196-L216)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [roadwatch_service.py:70-125](file://backend/services/roadwatch_service.py#L70-L125)
-- [roadwatch_service.py:137-184](file://backend/services/roadwatch_service.py#L137-L184)
-- [geocoding_service.py:33-63](file://backend/services/geocoding_service.py#L33-L63)
-- [routing_service.py:48-142](file://backend/services/routing_service.py#L48-L142)
-- [config.py:33-36](file://backend/core/config.py#L33-L36)
+- [emergency_locator.py:196-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L196-L216)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [roadwatch_service.py:70-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L125)
+- [roadwatch_service.py:137-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L137-L184)
+- [geocoding_service.py:33-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L33-L63)
+- [routing_service.py:48-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L48-L142)
+- [config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
 
 ### Cache Invalidation Policies
 - Emergency services: short TTL; stale data refreshed on next request.
@@ -432,17 +432,17 @@ SafeVixAI employs a robust dual-tier caching strategy centered on CacheHelper. R
 - Routing: short TTL; stale data refreshed on next request.
 
 **Section sources**
-- [roadwatch_service.py:232-233](file://backend/services/roadwatch_service.py#L232-L233)
-- [config.py:33-36](file://backend/core/config.py#L33-L36)
+- [roadwatch_service.py:232-233](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L232-L233)
+- [config.py:33-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L33-L36)
 
 ### Failover Mechanisms
 - Redis failures are detected on each operation; backend_name reflects “redis+memory” when Redis is down.
 - All cache operations transparently fall back to memory until Redis recovers.
 
 **Section sources**
-- [redis_client.py:20-24](file://backend/core/redis_client.py#L20-L24)
-- [redis_client.py:45-51](file://backend/core/redis_client.py#L45-L51)
-- [redis_client.py:115-124](file://backend/core/redis_client.py#L115-L124)
+- [redis_client.py:20-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L20-L24)
+- [redis_client.py:45-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L45-L51)
+- [redis_client.py:115-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L124)
 
 ### Cache Configuration Examples
 - Emergency service coordinates: use emergency:nearby:<lat>:<lon>:<cats>:<radius>:<limit> with global TTL.
@@ -450,10 +450,10 @@ SafeVixAI employs a robust dual-tier caching strategy centered on CacheHelper. R
 - User preferences: introduce user:profile:<id> with short TTL and invalidate on update.
 
 **Section sources**
-- [emergency_locator.py:196-216](file://backend/services/emergency_locator.py#L196-L216)
-- [roadwatch_service.py:137-142](file://backend/services/roadwatch_service.py#L137-L142)
-- [roadwatch_service.py:232-233](file://backend/services/roadwatch_service.py#L232-L233)
-- [user.py:16-83](file://backend/api/v1/user.py#L16-L83)
+- [emergency_locator.py:196-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L196-L216)
+- [roadwatch_service.py:137-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L137-L142)
+- [roadwatch_service.py:232-233](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L232-L233)
+- [user.py:16-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/user.py#L16-L83)
 
 ### Cache Warming and Background Refresh
 - Startup warming: Seed emergency data to warm emergency:nearby and offline:bundle keys for major cities.
@@ -462,4 +462,4 @@ SafeVixAI employs a robust dual-tier caching strategy centered on CacheHelper. R
 Note: The repository includes a seed script entry point for emergency data. Extend it to populate cache keys for hotspots.
 
 **Section sources**
-- [seed_emergency.py:1-19](file://scripts/app/seed_emergency.py#L1-L19)
+- [seed_emergency.py:1-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/scripts/app/seed_emergency.py#L1-L19)
