@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [next.config.js](file://frontend/next.config.js)
-- [package.json](file://frontend/package.json)
-- [layout.tsx](file://frontend/app/layout.tsx)
-- [globals.css](file://frontend/app/globals.css)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [edge-ai.ts](file://frontend/lib/edge-ai.ts)
-- [store.ts](file://frontend/lib/store.ts)
-- [ModelLoader.tsx](file://frontend/components/ModelLoader.tsx)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [crash-detection.ts](file://frontend/lib/crash-detection.ts)
-- [ClientAppHooks.tsx](file://frontend/components/ClientAppHooks.tsx)
-- [manifest.json](file://frontend/public/manifest.json)
-- [analytics-provider.tsx](file://frontend/lib/analytics-provider.tsx)
+- [next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
+- [package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [globals.css](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [edge-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [ModelLoader.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [crash-detection.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts)
+- [ClientAppHooks.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx)
+- [manifest.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json)
+- [analytics-provider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx)
 </cite>
 
 ## Table of Contents
@@ -52,17 +52,17 @@ L["PWA Manifest<br/>manifest.json"] --> M["Mobile Performance & Core Web Vitals"
 ```
 
 **Diagram sources**
-- [next.config.js:1-44](file://frontend/next.config.js#L1-L44)
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 **Section sources**
-- [next.config.js:1-44](file://frontend/next.config.js#L1-L44)
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 ## Core Components
 - Next.js configuration enabling WebAssembly and Web Workers for AI model loading
@@ -74,13 +74,13 @@ L["PWA Manifest<br/>manifest.json"] --> M["Mobile Performance & Core Web Vitals"
 - Crash detection using DeviceMotionEvent for progressive enhancement
 
 **Section sources**
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
-- [offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
-- [edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [offline-sos-queue.ts:25-137](file://frontend/lib/offline-sos-queue.ts#L25-L137)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
+- [offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
+- [edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [offline-sos-queue.ts:25-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L137)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
 
 ## Architecture Overview
 The frontend architecture integrates Next.js with WebAssembly-based AI models, progressive offline capabilities, and a PWA shell optimized for mobile performance.
@@ -116,13 +116,13 @@ PWA --> Root
 ```
 
 **Diagram sources**
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [ModelLoader.tsx:1-61](file://frontend/components/ModelLoader.tsx#L1-L61)
-- [offline-sos-queue.ts:25-137](file://frontend/lib/offline-sos-queue.ts#L25-L137)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [ModelLoader.tsx:1-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L1-L61)
+- [offline-sos-queue.ts:25-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L137)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 ## Detailed Component Analysis
 
@@ -140,11 +140,11 @@ RemoteImages --> Output(["Optimized Build Artifacts"])
 ```
 
 **Diagram sources**
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
 
 **Section sources**
-- [next.config.js:3-18](file://frontend/next.config.js#L3-L18)
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
+- [next.config.js:3-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L3-L18)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
 
 ### Image Optimization and Lazy Loading
 - Remote image hosts configured for Next.js Image Optimization
@@ -163,14 +163,14 @@ NextImage-->>Browser : Serve optimized asset
 ```
 
 **Diagram sources**
-- [next.config.js:4-14](file://frontend/next.config.js#L4-L14)
-- [globals.css:206-226](file://frontend/app/globals.css#L206-L226)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [next.config.js:4-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L4-L14)
+- [globals.css:206-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L206-L226)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 **Section sources**
-- [next.config.js:4-14](file://frontend/next.config.js#L4-L14)
-- [globals.css:206-226](file://frontend/app/globals.css#L206-L226)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [next.config.js:4-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L4-L14)
+- [globals.css:206-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L206-L226)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 ### Offline AI Engine (WebAssembly)
 - Checks for system AI (Chrome/Android AICore) first for zero-download operation
@@ -190,19 +190,19 @@ Ask --> Response["Return response or keyword fallback"]
 ```
 
 **Diagram sources**
-- [offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
-- [offline-ai.ts:160-211](file://frontend/lib/offline-ai.ts#L160-L211)
+- [offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
+- [offline-ai.ts:160-211](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L160-L211)
 
 **Section sources**
-- [offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
-- [offline-ai.ts:160-211](file://frontend/lib/offline-ai.ts#L160-L211)
+- [offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
+- [offline-ai.ts:160-211](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L160-L211)
 
 ### Edge AI Engine (Simulated)
 - Provides deterministic offline responses without model downloads
 - Useful for demos and low-latency scenarios
 
 **Section sources**
-- [edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
+- [edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
 
 ### State Management and Lazy Loading
 - Zustand store manages AI mode, model load progress, and UI state
@@ -224,14 +224,14 @@ Store --> ModelLoader : "drives progress UI"
 ```
 
 **Diagram sources**
-- [store.ts:84-88](file://frontend/lib/store.ts#L84-L88)
-- [store.ts:160-164](file://frontend/lib/store.ts#L160-L164)
-- [ModelLoader.tsx:5-8](file://frontend/components/ModelLoader.tsx#L5-L8)
+- [store.ts:84-88](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L84-L88)
+- [store.ts:160-164](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L160-L164)
+- [ModelLoader.tsx:5-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L5-L8)
 
 **Section sources**
-- [store.ts:84-88](file://frontend/lib/store.ts#L84-L88)
-- [store.ts:160-164](file://frontend/lib/store.ts#L160-L164)
-- [ModelLoader.tsx:1-61](file://frontend/components/ModelLoader.tsx#L1-L61)
+- [store.ts:84-88](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L84-L88)
+- [store.ts:160-164](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L160-L164)
+- [ModelLoader.tsx:1-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L1-L61)
 
 ### Progressive Enhancement Patterns
 - Crash detection attaches DeviceMotion listeners with permission handling
@@ -250,14 +250,14 @@ SOS-->>App : sync when online
 ```
 
 **Diagram sources**
-- [ClientAppHooks.tsx:8-34](file://frontend/components/ClientAppHooks.tsx#L8-L34)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
+- [ClientAppHooks.tsx:8-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L34)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
 
 **Section sources**
-- [ClientAppHooks.tsx:8-34](file://frontend/components/ClientAppHooks.tsx#L8-L34)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
+- [ClientAppHooks.tsx:8-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L34)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
 
 ### PWA and Mobile Performance
 - PWA manifest defines standalone display, theme/background colors, and shortcuts
@@ -265,9 +265,9 @@ SOS-->>App : sync when online
 - CSS utilities reduce layout shifts and optimize animations
 
 **Section sources**
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [layout.tsx:28-36](file://frontend/app/layout.tsx#L28-L36)
-- [globals.css:10-23](file://frontend/app/globals.css#L10-L23)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [layout.tsx:28-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L28-L36)
+- [globals.css:10-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L10-L23)
 
 ## Dependency Analysis
 - Next.js 15.3.1 with Webpack experiments for async WebAssembly
@@ -288,12 +288,12 @@ PostHog["posthog-js"] --> Analytics["Analytics Provider"]
 ```
 
 **Diagram sources**
-- [package.json:14-52](file://frontend/package.json#L14-L52)
-- [next.config.js:26-30](file://frontend/next.config.js#L26-L30)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [next.config.js:26-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L26-L30)
 
 **Section sources**
-- [package.json:14-52](file://frontend/package.json#L14-L52)
-- [next.config.js:26-30](file://frontend/next.config.js#L26-L30)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
+- [next.config.js:26-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L26-L30)
 
 ## Performance Considerations
 - Bundle size reduction
@@ -333,10 +333,10 @@ PostHog["posthog-js"] --> Analytics["Analytics Provider"]
   - Ensure environment variables are present before initializing PostHog
 
 **Section sources**
-- [next.config.js:26-36](file://frontend/next.config.js#L26-L36)
-- [offline-ai.ts:142-153](file://frontend/lib/offline-ai.ts#L142-L153)
-- [offline-sos-queue.ts:25-137](file://frontend/lib/offline-sos-queue.ts#L25-L137)
-- [analytics-provider.tsx:8-22](file://frontend/lib/analytics-provider.tsx#L8-L22)
+- [next.config.js:26-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L26-L36)
+- [offline-ai.ts:142-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L142-L153)
+- [offline-sos-queue.ts:25-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L137)
+- [analytics-provider.tsx:8-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/analytics-provider.tsx#L8-L22)
 
 ## Conclusion
 The SafeVixAI frontend leverages Next.js optimizations, WebAssembly-based AI engines, and progressive offline capabilities to deliver a performant, mobile-first experience. By combining dynamic imports, WebGPU acceleration, PWA features, and robust state management, the application achieves strong runtime performance and resilience. Monitoring and profiling should continue to guide iterative improvements to Core Web Vitals and user experience.

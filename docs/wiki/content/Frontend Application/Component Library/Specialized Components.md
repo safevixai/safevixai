@@ -2,23 +2,23 @@
 
 <cite>
 **Referenced Files in This Document**
-- [AuthorityCard.tsx](file://frontend/components/AuthorityCard.tsx)
-- [ChallanCalculator.tsx](file://frontend/components/ChallanCalculator.tsx)
-- [FirstAidCard.tsx](file://frontend/components/FirstAidCard.tsx)
-- [ModelLoader.tsx](file://frontend/components/ModelLoader.tsx)
-- [PotholeDetector.tsx](file://frontend/components/PotholeDetector.tsx)
-- [ReportForm.tsx](file://frontend/components/ReportForm.tsx)
-- [ServiceCard.tsx](file://frontend/components/ServiceCard.tsx)
-- [ViolationsList.tsx](file://frontend/components/ViolationsList.tsx)
-- [api.ts](file://frontend/lib/api.ts)
-- [store.ts](file://frontend/lib/store.ts)
-- [duckdb-challan.ts](file://frontend/lib/duckdb-challan.ts)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [challan.py](file://backend/api/v1/challan.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [challan_service.py](file://backend/services/challan_service.py)
-- [challan.py](file://backend/models/challan.py)
+- [AuthorityCard.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx)
+- [ChallanCalculator.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx)
+- [FirstAidCard.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx)
+- [ModelLoader.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx)
+- [PotholeDetector.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx)
+- [ReportForm.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx)
+- [ServiceCard.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ServiceCard.tsx)
+- [ViolationsList.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [duckdb-challan.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [challan_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py)
+- [challan.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py)
 </cite>
 
 ## Table of Contents
@@ -78,42 +78,42 @@ RWAPI --> CHSVC
 ```
 
 **Diagram sources**
-- [AuthorityCard.tsx:1-34](file://frontend/components/AuthorityCard.tsx#L1-L34)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [FirstAidCard.tsx:1-121](file://frontend/components/FirstAidCard.tsx#L1-L121)
-- [ModelLoader.tsx:1-61](file://frontend/components/ModelLoader.tsx#L1-L61)
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
-- [ServiceCard.tsx:1-96](file://frontend/components/ServiceCard.tsx#L1-L96)
-- [ViolationsList.tsx:1-54](file://frontend/components/ViolationsList.tsx#L1-L54)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
+- [AuthorityCard.tsx:1-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L1-L34)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [FirstAidCard.tsx:1-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L1-L121)
+- [ModelLoader.tsx:1-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L1-L61)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
+- [ServiceCard.tsx:1-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ServiceCard.tsx#L1-L96)
+- [ViolationsList.tsx:1-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx#L1-L54)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
 
 **Section sources**
-- [AuthorityCard.tsx:1-34](file://frontend/components/AuthorityCard.tsx#L1-L34)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [FirstAidCard.tsx:1-121](file://frontend/components/FirstAidCard.tsx#L1-L121)
-- [ModelLoader.tsx:1-61](file://frontend/components/ModelLoader.tsx#L1-L61)
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
-- [ServiceCard.tsx:1-96](file://frontend/components/ServiceCard.tsx#L1-L96)
-- [ViolationsList.tsx:1-54](file://frontend/components/ViolationsList.tsx#L1-L54)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
+- [AuthorityCard.tsx:1-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L1-L34)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [FirstAidCard.tsx:1-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L1-L121)
+- [ModelLoader.tsx:1-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L1-L61)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
+- [ServiceCard.tsx:1-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ServiceCard.tsx#L1-L96)
+- [ViolationsList.tsx:1-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx#L1-L54)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
 
 ## Core Components
 - AuthorityCard: Displays assigned authority and SLA for road maintenance.
@@ -126,14 +126,14 @@ RWAPI --> CHSVC
 - ViolationsList: Static directory of common challan violations and amounts.
 
 **Section sources**
-- [AuthorityCard.tsx:1-34](file://frontend/components/AuthorityCard.tsx#L1-L34)
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [FirstAidCard.tsx:1-121](file://frontend/components/FirstAidCard.tsx#L1-L121)
-- [ModelLoader.tsx:1-61](file://frontend/components/ModelLoader.tsx#L1-L61)
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
-- [ServiceCard.tsx:1-96](file://frontend/components/ServiceCard.tsx#L1-L96)
-- [ViolationsList.tsx:1-54](file://frontend/components/ViolationsList.tsx#L1-L54)
+- [AuthorityCard.tsx:1-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L1-L34)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [FirstAidCard.tsx:1-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L1-L121)
+- [ModelLoader.tsx:1-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L1-L61)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
+- [ServiceCard.tsx:1-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ServiceCard.tsx#L1-L96)
+- [ViolationsList.tsx:1-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx#L1-L54)
 
 ## Architecture Overview
 The components rely on a shared Zustand store for connectivity and GPS state, and on API clients for backend integration. Offline engines support AI and challan calculations. The backend exposes REST endpoints for challan calculation and road reporting.
@@ -153,8 +153,8 @@ UI->>UI : Update state, show result
 ```
 
 **Diagram sources**
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ## Detailed Component Analysis
 
@@ -164,7 +164,7 @@ UI->>UI : Update state, show result
 - Integration: No runtime API calls; used for contextual awareness.
 
 **Section sources**
-- [AuthorityCard.tsx:1-34](file://frontend/components/AuthorityCard.tsx#L1-L34)
+- [AuthorityCard.tsx:1-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L1-L34)
 
 ### ChallanCalculator
 - Purpose: Calculate challan penalties with state-specific overrides.
@@ -205,17 +205,17 @@ UI->>UI : Render result card
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
 
 **Section sources**
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
 
 ### FirstAidCard
 - Purpose: Display first aid steps with bold emphasis and offline badge.
@@ -225,7 +225,7 @@ UI->>UI : Render result card
 - User interaction: Minimal; static rendering.
 
 **Section sources**
-- [FirstAidCard.tsx:1-121](file://frontend/components/FirstAidCard.tsx#L1-L121)
+- [FirstAidCard.tsx:1-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L1-L121)
 
 ### ModelLoader
 - Purpose: Show model loading overlay during offline AI initialization.
@@ -235,9 +235,9 @@ UI->>UI : Render result card
 - Integration: Reads modelLoadProgress from store.
 
 **Section sources**
-- [ModelLoader.tsx:1-61](file://frontend/components/ModelLoader.tsx#L1-L61)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [ModelLoader.tsx:1-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L1-L61)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ### PotholeDetector
 - Purpose: Simulate camera access and AI scanning for potholes.
@@ -264,10 +264,10 @@ Done --> Overlay["Show 'Locked' HUD and result"]
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
 
 **Section sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
 
 ### ReportForm
 - Purpose: Multi-step form to report road hazards with severity, description, and optional photo.
@@ -301,13 +301,13 @@ UI->>UI : Reset form and show success
 ```
 
 **Diagram sources**
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 **Section sources**
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### ServiceCard
 - Purpose: Display nearby emergency/service providers with category-specific accents.
@@ -319,15 +319,15 @@ UI->>UI : Reset form and show success
   - Provides aria labels for actions.
 
 **Section sources**
-- [ServiceCard.tsx:1-96](file://frontend/components/ServiceCard.tsx#L1-L96)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [ServiceCard.tsx:1-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ServiceCard.tsx#L1-L96)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### ViolationsList
 - Purpose: Browse common challan violations and amounts.
 - Behavior: Static list with descriptions and MV Act references.
 
 **Section sources**
-- [ViolationsList.tsx:1-54](file://frontend/components/ViolationsList.tsx#L1-L54)
+- [ViolationsList.tsx:1-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ViolationsList.tsx#L1-L54)
 
 ## Dependency Analysis
 - Frontend components depend on:
@@ -355,27 +355,27 @@ CHSVC --> CHMODEL["challan.py (models)"]
 ```
 
 **Diagram sources**
-- [ChallanCalculator.tsx:1-186](file://frontend/components/ChallanCalculator.tsx#L1-L186)
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [FirstAidCard.tsx:1-121](file://frontend/components/FirstAidCard.tsx#L1-L121)
-- [ModelLoader.tsx:1-61](file://frontend/components/ModelLoader.tsx#L1-L61)
-- [ServiceCard.tsx:1-96](file://frontend/components/ServiceCard.tsx#L1-L96)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [duckdb-challan.ts:1-51](file://frontend/lib/duckdb-challan.ts#L1-L51)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
+- [ChallanCalculator.tsx:1-186](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChallanCalculator.tsx#L1-L186)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [FirstAidCard.tsx:1-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L1-L121)
+- [ModelLoader.tsx:1-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx#L1-L61)
+- [ServiceCard.tsx:1-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ServiceCard.tsx#L1-L96)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [duckdb-challan.ts:1-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/duckdb-challan.ts#L1-L51)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
 
 **Section sources**
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [challan.py:1-26](file://backend/api/v1/challan.py#L1-L26)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [challan.py:1-53](file://backend/models/challan.py#L1-L53)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [challan.py:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/challan.py#L1-L26)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [challan.py:1-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/challan.py#L1-L53)
 
 ## Performance Considerations
 - Offline AI model loading:
@@ -401,10 +401,10 @@ CHSVC --> CHMODEL["challan.py (models)"]
   - Ensure aiMode transitions to loading and modelLoadProgress updates.
 
 **Section sources**
-- [PotholeDetector.tsx:1-146](file://frontend/components/PotholeDetector.tsx#L1-L146)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [challan_service.py:1-314](file://backend/services/challan_service.py#L1-L314)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
+- [PotholeDetector.tsx:1-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L1-L146)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [challan_service.py:1-314](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/challan_service.py#L1-L314)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
 
 ## Conclusion
 These specialized components implement focused, user-centric features with robust offline-first strategies. They leverage a shared store for state, a unified API client for backend integration, and modular offline engines for AI and calculations. The backend provides reliable endpoints for challan and reporting, ensuring consistent behavior across connectivity scenarios.

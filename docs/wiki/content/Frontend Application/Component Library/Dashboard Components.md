@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [BottomNav.tsx](file://frontend/components/dashboard/BottomNav.tsx)
-- [DashboardMapBootstrap.tsx](file://frontend/components/dashboard/DashboardMapBootstrap.tsx)
-- [ProfileCard.tsx](file://frontend/components/dashboard/ProfileCard.tsx)
-- [SystemHeader.tsx](file://frontend/components/dashboard/SystemHeader.tsx)
-- [SystemSidebar.tsx](file://frontend/components/dashboard/SystemSidebar.tsx)
-- [ThreeDrivingScore.tsx](file://frontend/components/dashboard/ThreeDrivingScore.tsx)
-- [FloatingSidebarControls.tsx](file://frontend/components/dashboard/FloatingSidebarControls.tsx)
-- [MapBackgroundInner.tsx](file://frontend/components/dashboard/MapBackgroundInner.tsx)
-- [RecentAlertsOverlay.tsx](file://frontend/components/dashboard/RecentAlertsOverlay.tsx)
-- [TopSearch.tsx](file://frontend/components/dashboard/TopSearch.tsx)
-- [store.ts](file://frontend/lib/store.ts)
+- [BottomNav.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx)
+- [DashboardMapBootstrap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx)
+- [ProfileCard.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ProfileCard.tsx)
+- [SystemHeader.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx)
+- [SystemSidebar.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx)
+- [ThreeDrivingScore.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx)
+- [FloatingSidebarControls.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/FloatingSidebarControls.tsx)
+- [MapBackgroundInner.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx)
+- [RecentAlertsOverlay.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx)
+- [TopSearch.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/TopSearch.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
 </cite>
 
 ## Table of Contents
@@ -62,30 +62,30 @@ PC --> ST
 ```
 
 **Diagram sources**
-- [BottomNav.tsx:1-103](file://frontend/components/dashboard/BottomNav.tsx#L1-L103)
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
-- [SystemHeader.tsx:1-170](file://frontend/components/dashboard/SystemHeader.tsx#L1-L170)
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [ThreeDrivingScore.tsx:1-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
-- [FloatingSidebarControls.tsx:1-212](file://frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
-- [MapBackgroundInner.tsx:1-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
-- [RecentAlertsOverlay.tsx:1-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
-- [TopSearch.tsx:1-280](file://frontend/components/dashboard/TopSearch.tsx#L1-L280)
-- [ProfileCard.tsx:1-48](file://frontend/components/dashboard/ProfileCard.tsx#L1-L48)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [BottomNav.tsx:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L1-L103)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [SystemHeader.tsx:1-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L1-L170)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [ThreeDrivingScore.tsx:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
+- [FloatingSidebarControls.tsx:1-212](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
+- [MapBackgroundInner.tsx:1-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
+- [RecentAlertsOverlay.tsx:1-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
+- [TopSearch.tsx:1-280](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/TopSearch.tsx#L1-L280)
+- [ProfileCard.tsx:1-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ProfileCard.tsx#L1-L48)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 **Section sources**
-- [BottomNav.tsx:1-103](file://frontend/components/dashboard/BottomNav.tsx#L1-L103)
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
-- [SystemHeader.tsx:1-170](file://frontend/components/dashboard/SystemHeader.tsx#L1-L170)
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [ThreeDrivingScore.tsx:1-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
-- [FloatingSidebarControls.tsx:1-212](file://frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
-- [MapBackgroundInner.tsx:1-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
-- [RecentAlertsOverlay.tsx:1-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
-- [TopSearch.tsx:1-280](file://frontend/components/dashboard/TopSearch.tsx#L1-L280)
-- [ProfileCard.tsx:1-48](file://frontend/components/dashboard/ProfileCard.tsx#L1-L48)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [BottomNav.tsx:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L1-L103)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [SystemHeader.tsx:1-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L1-L170)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [ThreeDrivingScore.tsx:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
+- [FloatingSidebarControls.tsx:1-212](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
+- [MapBackgroundInner.tsx:1-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
+- [RecentAlertsOverlay.tsx:1-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
+- [TopSearch.tsx:1-280](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/TopSearch.tsx#L1-L280)
+- [ProfileCard.tsx:1-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ProfileCard.tsx#L1-L48)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ## Core Components
 - BottomNav: Mobile-first navigation bar with animated active indicator and haptic feedback.
@@ -96,12 +96,12 @@ PC --> ST
 - ThreeDrivingScore: 3D driving score visualization using @react-three/fiber.
 
 **Section sources**
-- [BottomNav.tsx:1-103](file://frontend/components/dashboard/BottomNav.tsx#L1-L103)
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [ProfileCard.tsx:1-48](file://frontend/components/dashboard/ProfileCard.tsx#L1-L48)
-- [SystemHeader.tsx:1-170](file://frontend/components/dashboard/SystemHeader.tsx#L1-L170)
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
-- [ThreeDrivingScore.tsx:1-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
+- [BottomNav.tsx:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L1-L103)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [ProfileCard.tsx:1-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ProfileCard.tsx#L1-L48)
+- [SystemHeader.tsx:1-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L1-L170)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [ThreeDrivingScore.tsx:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
 
 ## Architecture Overview
 The dashboard orchestrates navigation, map rendering, and real-time data through a central Zustand store. Components subscribe to store slices and dispatch actions to update state. Event-driven communication is used for location refresh and map fly-to operations.
@@ -130,12 +130,12 @@ Map->>Store : Subscribe to gpsLocation/nearby*
 ```
 
 **Diagram sources**
-- [SystemHeader.tsx:1-170](file://frontend/components/dashboard/SystemHeader.tsx#L1-L170)
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
-- [BottomNav.tsx:1-103](file://frontend/components/dashboard/BottomNav.tsx#L1-L103)
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [MapBackgroundInner.tsx:1-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [SystemHeader.tsx:1-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L1-L170)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [BottomNav.tsx:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L1-L103)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [MapBackgroundInner.tsx:1-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ## Detailed Component Analysis
 
@@ -155,10 +155,10 @@ Animate --> End(["Visible on mobile"])
 ```
 
 **Diagram sources**
-- [BottomNav.tsx:24-100](file://frontend/components/dashboard/BottomNav.tsx#L24-L100)
+- [BottomNav.tsx:24-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L100)
 
 **Section sources**
-- [BottomNav.tsx:1-103](file://frontend/components/dashboard/BottomNav.tsx#L1-L103)
+- [BottomNav.tsx:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L1-L103)
 
 ### DashboardMapBootstrap
 - Purpose: Hydrate map-related data and manage connectivity.
@@ -191,12 +191,12 @@ Finalize --> End(["Hydration complete"])
 ```
 
 **Diagram sources**
-- [DashboardMapBootstrap.tsx:104-326](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L104-L326)
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
+- [DashboardMapBootstrap.tsx:104-326](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L104-L326)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
 
 **Section sources**
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### ProfileCard
 - Purpose: Display operator identity and quick stats.
@@ -213,10 +213,10 @@ ProfileCard : "Uses Lucide icons"
 ```
 
 **Diagram sources**
-- [ProfileCard.tsx:5-47](file://frontend/components/dashboard/ProfileCard.tsx#L5-L47)
+- [ProfileCard.tsx:5-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ProfileCard.tsx#L5-L47)
 
 **Section sources**
-- [ProfileCard.tsx:1-48](file://frontend/components/dashboard/ProfileCard.tsx#L1-L48)
+- [ProfileCard.tsx:1-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ProfileCard.tsx#L1-L48)
 
 ### SystemHeader
 - Purpose: Desktop header with search, online/offline controls, theme switcher, and operator badge.
@@ -235,12 +235,12 @@ Header->>Header : handleSearch prevents default
 ```
 
 **Diagram sources**
-- [SystemHeader.tsx:46-51](file://frontend/components/dashboard/SystemHeader.tsx#L46-L51)
-- [store.ts:107-111](file://frontend/lib/store.ts#L107-L111)
+- [SystemHeader.tsx:46-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L46-L51)
+- [store.ts:107-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L107-L111)
 
 **Section sources**
-- [SystemHeader.tsx:1-170](file://frontend/components/dashboard/SystemHeader.tsx#L1-L170)
-- [store.ts:107-111](file://frontend/lib/store.ts#L107-L111)
+- [SystemHeader.tsx:1-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L1-L170)
+- [store.ts:107-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L107-L111)
 
 ### SystemSidebar
 - Purpose: Animated sidebar overlay with navigation grid, quick dial, and SOS action.
@@ -260,10 +260,10 @@ Close --> SOS
 ```
 
 **Diagram sources**
-- [SystemSidebar.tsx:63-204](file://frontend/components/dashboard/SystemSidebar.tsx#L63-L204)
+- [SystemSidebar.tsx:63-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L63-L204)
 
 **Section sources**
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
 
 ### ThreeDrivingScore
 - Purpose: 3D visualization of driving score with animated torus ring and emissive material.
@@ -289,10 +289,10 @@ ThreeDrivingScore --> ScoreRing : "renders"
 ```
 
 **Diagram sources**
-- [ThreeDrivingScore.tsx:50-67](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L50-L67)
+- [ThreeDrivingScore.tsx:50-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L50-L67)
 
 **Section sources**
-- [ThreeDrivingScore.tsx:1-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
+- [ThreeDrivingScore.tsx:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
 
 ### FloatingSidebarControls
 - Purpose: Floating HUD with driving score gauge, relocate button, emergency protocols, and SOS.
@@ -313,10 +313,10 @@ HUD->>HUD : vibrate if available
 ```
 
 **Diagram sources**
-- [FloatingSidebarControls.tsx:132-211](file://frontend/components/dashboard/FloatingSidebarControls.tsx#L132-L211)
+- [FloatingSidebarControls.tsx:132-211](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/FloatingSidebarControls.tsx#L132-L211)
 
 **Section sources**
-- [FloatingSidebarControls.tsx:1-212](file://frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
+- [FloatingSidebarControls.tsx:1-212](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
 
 ### MapBackgroundInner
 - Purpose: Renders MapLibre canvas with facilities and issues; displays location badges.
@@ -337,10 +337,10 @@ LocationBadges --> |Accurate| Done["Render map only"]
 ```
 
 **Diagram sources**
-- [MapBackgroundInner.tsx:88-168](file://frontend/components/dashboard/MapBackgroundInner.tsx#L88-L168)
+- [MapBackgroundInner.tsx:88-168](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L88-L168)
 
 **Section sources**
-- [MapBackgroundInner.tsx:1-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
+- [MapBackgroundInner.tsx:1-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
 
 ### RecentAlertsOverlay
 - Purpose: Floating alert chips summarizing nearby road issues with severity-based visuals.
@@ -356,10 +356,10 @@ Render --> Hover["Hover effects on chips"]
 ```
 
 **Diagram sources**
-- [RecentAlertsOverlay.tsx:47-99](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L99)
+- [RecentAlertsOverlay.tsx:47-99](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L99)
 
 **Section sources**
-- [RecentAlertsOverlay.tsx:1-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
+- [RecentAlertsOverlay.tsx:1-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
 
 ### TopSearch
 - Purpose: Floating Google Maps-style search bar with autocomplete, location badge, and category chips.
@@ -382,11 +382,11 @@ Search->>Store : setServiceCategory(...)
 ```
 
 **Diagram sources**
-- [TopSearch.tsx:73-85](file://frontend/components/dashboard/TopSearch.tsx#L73-L85)
-- [TopSearch.tsx:248-270](file://frontend/components/dashboard/TopSearch.tsx#L248-L270)
+- [TopSearch.tsx:73-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/TopSearch.tsx#L73-L85)
+- [TopSearch.tsx:248-270](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/TopSearch.tsx#L248-L270)
 
 **Section sources**
-- [TopSearch.tsx:1-280](file://frontend/components/dashboard/TopSearch.tsx#L1-L280)
+- [TopSearch.tsx:1-280](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/TopSearch.tsx#L1-L280)
 
 ## Dependency Analysis
 - Centralized state: All components depend on useAppStore for GPS, nearby data, UI flags, and connectivity.
@@ -411,22 +411,22 @@ TDS --> THREE["@react-three/fiber"]
 ```
 
 **Diagram sources**
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [BottomNav.tsx:1-103](file://frontend/components/dashboard/BottomNav.tsx#L1-L103)
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
-- [SystemHeader.tsx:1-170](file://frontend/components/dashboard/SystemHeader.tsx#L1-L170)
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [ThreeDrivingScore.tsx:1-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
-- [FloatingSidebarControls.tsx:1-212](file://frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
-- [MapBackgroundInner.tsx:1-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
-- [RecentAlertsOverlay.tsx:1-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
-- [TopSearch.tsx:1-280](file://frontend/components/dashboard/TopSearch.tsx#L1-L280)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [BottomNav.tsx:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L1-L103)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [SystemHeader.tsx:1-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L1-L170)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [ThreeDrivingScore.tsx:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
+- [FloatingSidebarControls.tsx:1-212](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/FloatingSidebarControls.tsx#L1-L212)
+- [MapBackgroundInner.tsx:1-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
+- [RecentAlertsOverlay.tsx:1-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L1-L100)
+- [TopSearch.tsx:1-280](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/TopSearch.tsx#L1-L280)
 
 **Section sources**
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [MapBackgroundInner.tsx:1-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
-- [ThreeDrivingScore.tsx:1-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [MapBackgroundInner.tsx:1-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
+- [ThreeDrivingScore.tsx:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
 
 ## Performance Considerations
 - Real-time data updates
@@ -461,11 +461,11 @@ TDS --> THREE["@react-three/fiber"]
   - Confirm camera positioning and lighting setup align with scene scale.
 
 **Section sources**
-- [BottomNav.tsx:24-100](file://frontend/components/dashboard/BottomNav.tsx#L24-L100)
-- [SystemSidebar.tsx:22-209](file://frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
-- [DashboardMapBootstrap.tsx:104-326](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L104-L326)
-- [store.ts:211-225](file://frontend/lib/store.ts#L211-L225)
-- [ThreeDrivingScore.tsx:50-67](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L50-L67)
+- [BottomNav.tsx:24-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L100)
+- [SystemSidebar.tsx:22-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
+- [DashboardMapBootstrap.tsx:104-326](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L104-L326)
+- [store.ts:211-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L211-L225)
+- [ThreeDrivingScore.tsx:50-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L50-L67)
 
 ## Conclusion
 The dashboard components form a cohesive system centered around a shared store and event-driven interactions. Navigation bars and sidebars provide intuitive access to map and emergency features, while DashboardMapBootstrap ensures robust hydration of nearby data. ThreeDrivingScore adds immersive feedback, and MapBackgroundInner delivers responsive map rendering. By adhering to the outlined patterns—debounced inputs, resilient hydration, memoized derivations, and controlled 3D rendering—the dashboard remains performant and user-friendly across devices.

@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [offline.py](file://backend/api/v1/offline.py)
-- [ConnectivityProvider.tsx](file://frontend/components/ConnectivityProvider.tsx)
-- [NetworkMonitor.tsx](file://frontend/components/NetworkMonitor.tsx)
-- [store.ts](file://frontend/lib/store.ts)
-- [vectorstore.py](file://chatbot_service/rag/vectorstore.py)
-- [embeddings.py](file://chatbot_service/rag/embeddings.py)
-- [state_overrides.csv](file://frontend/public/offline-data/state_overrides.csv)
-- [violations.csv](file://frontend/public/offline-data/violations.csv)
-- [first-aid.json](file://frontend/public/offline-data/first-aid.json)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [ConnectivityProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx)
+- [NetworkMonitor.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [vectorstore.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py)
+- [embeddings.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py)
+- [state_overrides.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv)
+- [violations.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv)
+- [first-aid.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json)
 </cite>
 
 ## Table of Contents
@@ -64,26 +64,26 @@ H --> I
 ```
 
 **Diagram sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [NetworkMonitor.tsx:1-35](file://frontend/components/NetworkMonitor.tsx#L1-L35)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [vectorstore.py:1-110](file://chatbot_service/rag/vectorstore.py#L1-L110)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [NetworkMonitor.tsx:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L1-L35)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [vectorstore.py:1-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L1-L110)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [vectorstore.py:1-110](file://chatbot_service/rag/vectorstore.py#L1-L110)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [NetworkMonitor.tsx:1-35](file://frontend/components/NetworkMonitor.tsx#L1-L35)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [vectorstore.py:1-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L1-L110)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [NetworkMonitor.tsx:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L1-L35)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ## Core Components
 - Offline AI engine: Detects and uses the system AI (Chrome window.ai) when available, otherwise loads a quantized Gemma model via Transformers.js with WebGPU acceleration and WASM fallback. Includes a keyword fallback for deterministic responses.
@@ -94,13 +94,13 @@ H --> I
 - Persistent app state: Zustand store with selective persistence for user preferences and offline-related flags.
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [NetworkMonitor.tsx:1-35](file://frontend/components/NetworkMonitor.tsx#L1-L35)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [NetworkMonitor.tsx:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L1-L35)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ## Architecture Overview
 The offline-first architecture combines:
@@ -133,11 +133,11 @@ BE-->>DB : "200 OK"
 ```
 
 **Diagram sources**
-- [offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 ## Detailed Component Analysis
 
@@ -169,13 +169,13 @@ Keyword --> End2(["Return {type: fallback}"])
 ```
 
 **Diagram sources**
-- [offline-ai.ts:47-67](file://frontend/lib/offline-ai.ts#L47-L67)
-- [offline-ai.ts:71-110](file://frontend/lib/offline-ai.ts#L71-L110)
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-ai.ts:225-255](file://frontend/lib/offline-ai.ts#L225-L255)
+- [offline-ai.ts:47-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L67)
+- [offline-ai.ts:71-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L71-L110)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-ai.ts:225-255](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L225-L255)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ### Offline RAG and Vector Store
 The frontend provides a lightweight local RAG simulation:
@@ -199,14 +199,14 @@ TopK --> Out["Return matched chunks"]
 ```
 
 **Diagram sources**
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
-- [vectorstore.py:27-49](file://chatbot_service/rag/vectorstore.py#L27-L49)
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
+- [vectorstore.py:27-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L27-L49)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
 
 **Section sources**
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [vectorstore.py:1-110](file://chatbot_service/rag/vectorstore.py#L1-L110)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [vectorstore.py:1-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L1-L110)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
 
 ### SOS Queue Management (Emergency Reporting)
 The SOS queue persists emergency reports while offline and flushes them when connectivity is restored:
@@ -241,12 +241,12 @@ end
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
 
 ### Offline Data Bundling for 25 Major Indian Cities
 The backend exposes an endpoint to serve city-specific offline bundles:
@@ -265,10 +265,10 @@ API-->>Client : "200 OK with bundle JSON"
 ```
 
 **Diagram sources**
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 **Section sources**
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
 
 ### Connectivity Detection and State Propagation
 Two complementary approaches detect connectivity:
@@ -288,14 +288,14 @@ SetOffline --> Update
 ```
 
 **Diagram sources**
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
-- [NetworkMonitor.tsx:9-31](file://frontend/components/NetworkMonitor.tsx#L9-L31)
-- [store.ts:60-92](file://frontend/lib/store.ts#L60-L92)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [NetworkMonitor.tsx:9-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L9-L31)
+- [store.ts:60-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-L92)
 
 **Section sources**
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [NetworkMonitor.tsx:1-35](file://frontend/components/NetworkMonitor.tsx#L1-L35)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [NetworkMonitor.tsx:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L1-L35)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### Local Data Persistence Patterns
 - IndexedDB: Used for SOS queue persistence with timestamped entries and optional background sync.
@@ -310,14 +310,14 @@ E["store.ts"] --> F["Persisted storage"]
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-ai.ts:77-85](file://frontend/lib/offline-ai.ts#L77-L85)
-- [store.ts:211-224](file://frontend/lib/store.ts#L211-L224)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-ai.ts:77-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L77-L85)
+- [store.ts:211-224](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L211-L224)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### Conflict Resolution Strategies
 - IndexedDB queue ordering by timestamp ensures FIFO flushing.
@@ -337,11 +337,11 @@ Loop --> |No| End(["Done"])
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [Offline_Architecture.md:20-23](file://docs/Offline_Architecture.md#L20-L23)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [Offline_Architecture.md:20-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L20-L23)
 
 ### Fallback Mechanisms for Degradated Networks
 - Model fallback: System AI → Transformers.js → Keyword fallback.
@@ -349,9 +349,9 @@ Loop --> |No| End(["Done"])
 - Queue fallback: IndexedDB persistence with background sync registration; manual retry on error.
 
 **Section sources**
-- [offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
-- [offline-sos-queue.ts:60-68](file://frontend/lib/offline-sos-queue.ts#L60-L68)
+- [offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
+- [offline-sos-queue.ts:60-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L60-L68)
 
 ### Practical Examples
 - Offline mode detection: Subscribe to online/offline events and update store; use ConnectivityState to gate network-dependent features.
@@ -359,10 +359,10 @@ Loop --> |No| End(["Done"])
 - Conflict resolution: On flush failure, stop and retry later; rely on timestamp ordering to maintain order.
 
 **Section sources**
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [NetworkMonitor.tsx:1-35](file://frontend/components/NetworkMonitor.tsx#L1-L35)
-- [store.ts:211-224](file://frontend/lib/store.ts#L211-L224)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [NetworkMonitor.tsx:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L1-L35)
+- [store.ts:211-224](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L211-L224)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 ## Dependency Analysis
 - Frontend depends on:
@@ -389,26 +389,26 @@ CVS --> CEMB["chatbot_service/rag/embeddings.py"]
 ```
 
 **Diagram sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [NetworkMonitor.tsx:1-35](file://frontend/components/NetworkMonitor.tsx#L1-L35)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [vectorstore.py:1-110](file://chatbot_service/rag/vectorstore.py#L1-L110)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [NetworkMonitor.tsx:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L1-L35)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [vectorstore.py:1-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L1-L110)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [vectorstore.py:1-110](file://chatbot_service/rag/vectorstore.py#L1-L110)
-- [embeddings.py:1-31](file://chatbot_service/rag/embeddings.py#L1-L31)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [NetworkMonitor.tsx:1-35](file://frontend/components/NetworkMonitor.tsx#L1-L35)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [vectorstore.py:1-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L1-L110)
+- [embeddings.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L1-L31)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [NetworkMonitor.tsx:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L1-L35)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ## Performance Considerations
 - Model loading:
@@ -445,11 +445,11 @@ CVS --> CEMB["chatbot_service/rag/embeddings.py"]
   - Validate store updates and UI bindings.
 
 **Section sources**
-- [offline-ai.ts:148-153](file://frontend/lib/offline-ai.ts#L148-L153)
-- [vectorstore.py:27-34](file://chatbot_service/rag/vectorstore.py#L27-L34)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
-- [NetworkMonitor.tsx:9-31](file://frontend/components/NetworkMonitor.tsx#L9-L31)
+- [offline-ai.ts:148-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L148-L153)
+- [vectorstore.py:27-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L27-L34)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [NetworkMonitor.tsx:9-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L9-L31)
 
 ## Conclusion
 SafeVixAI’s offline-first design leverages system AI when available, falls back to a quantized WebAssembly model with caching, simulates vector search locally, and persists emergency reports in IndexedDB with automatic flush on reconnect. The backend serves city-specific offline bundles, and the frontend tracks connectivity to adapt behavior. With planned enhancements like Supabase Realtime for conflict resolution and cloud object storage for uploads, the platform can scale to enterprise-grade reliability while maintaining a seamless offline experience.
@@ -464,7 +464,7 @@ SafeVixAI’s offline-first design leverages system AI when available, falls bac
 - City bundles served via backend endpoint for offline navigation and services.
 
 **Section sources**
-- [state_overrides.csv:1-14](file://frontend/public/offline-data/state_overrides.csv#L1-L14)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [state_overrides.csv:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/state_overrides.csv#L1-L14)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)

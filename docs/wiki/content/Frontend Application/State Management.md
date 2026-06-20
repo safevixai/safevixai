@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [layout.tsx](file://frontend/app/layout.tsx)
-- [ConnectivityProvider.tsx](file://frontend/components/ConnectivityProvider.tsx)
-- [ConnectivityBadge.tsx](file://frontend/components/ConnectivityBadge.tsx)
-- [ThemeProvider.tsx](file://frontend/components/ThemeProvider.tsx)
-- [ClientAppHooks.tsx](file://frontend/components/ClientAppHooks.tsx)
-- [store.ts](file://frontend/lib/store.ts)
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [location-tracker.ts](file://frontend/lib/location-tracker.ts)
-- [routing.ts](file://frontend/lib/routing.ts)
-- [safe-spaces-layer.ts](file://frontend/lib/safe-spaces-layer.ts)
-- [DashboardMapBootstrap.tsx](file://frontend/components/dashboard/DashboardMapBootstrap.tsx)
-- [crash-detection.ts](file://frontend/lib/crash-detection.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [user-profile.ts](file://frontend/lib/user-profile.ts)
+- [layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [ConnectivityProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx)
+- [ConnectivityBadge.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx)
+- [ThemeProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx)
+- [ClientAppHooks.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [location-tracker.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts)
+- [routing.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/routing.ts)
+- [safe-spaces-layer.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts)
+- [DashboardMapBootstrap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx)
+- [crash-detection.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [user-profile.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/user-profile.ts)
 </cite>
 
 ## Table of Contents
@@ -80,22 +80,22 @@ CAH --> OSQ
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
-- [ConnectivityProvider.tsx:6-26](file://frontend/components/ConnectivityProvider.tsx#L6-L26)
-- [ClientAppHooks.tsx:8-34](file://frontend/components/ClientAppHooks.tsx#L8-L34)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [DashboardMapBootstrap.tsx:77-329](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L329)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [location-tracker.ts:8-65](file://frontend/lib/location-tracker.ts#L8-L65)
-- [routing.ts:31-80](file://frontend/lib/routing.ts#L31-L80)
-- [safe-spaces-layer.ts:14-61](file://frontend/lib/safe-spaces-layer.ts#L14-L61)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
+- [ConnectivityProvider.tsx:6-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L6-L26)
+- [ClientAppHooks.tsx:8-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L34)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [DashboardMapBootstrap.tsx:77-329](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L329)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [location-tracker.ts:8-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L65)
+- [routing.ts:31-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/routing.ts#L31-L80)
+- [safe-spaces-layer.ts:14-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L14-L61)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 **Section sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
 
 ## Core Components
 - Zustand store (Redux-like):
@@ -111,10 +111,10 @@ CAH --> OSQ
 Key store interfaces and actions are defined in the store module. Providers wire these up at the root.
 
 **Section sources**
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
-- [ConnectivityProvider.tsx:6-26](file://frontend/components/ConnectivityProvider.tsx#L6-L26)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
+- [ConnectivityProvider.tsx:6-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L6-L26)
 
 ## Architecture Overview
 The state architecture follows a unidirectional data flow:
@@ -140,9 +140,9 @@ UI->>Map : "Render services and issues"
 ```
 
 **Diagram sources**
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [DashboardMapBootstrap.tsx:222-300](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L222-L300)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [DashboardMapBootstrap.tsx:222-300](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L222-L300)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 ## Detailed Component Analysis
 
@@ -203,10 +203,10 @@ class AppState {
 ```
 
 **Diagram sources**
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
 
 **Section sources**
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 ### Theme Provider
 - Manages theme state and applies resolved theme to the document element
@@ -223,10 +223,10 @@ Update --> End(["Ready"])
 ```
 
 **Diagram sources**
-- [ThemeProvider.tsx:23-48](file://frontend/components/ThemeProvider.tsx#L23-L48)
+- [ThemeProvider.tsx:23-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L23-L48)
 
 **Section sources**
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
 
 ### Connectivity Provider and Badge
 - Provider listens to browser online/offline events and updates store connectivity
@@ -245,13 +245,13 @@ Badge-->>Badge : "Display label and color"
 ```
 
 **Diagram sources**
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
-- [store.ts:91-92](file://frontend/lib/store.ts#L91-L92)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [store.ts:91-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L91-L92)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
 
 **Section sources**
-- [ConnectivityProvider.tsx:6-26](file://frontend/components/ConnectivityProvider.tsx#L6-L26)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [ConnectivityProvider.tsx:6-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L6-L26)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
 
 ### Geolocation Hook and Location Tracker
 - useGeolocation:
@@ -275,13 +275,13 @@ Hook->>Hook : "Cleanup on unmount"
 ```
 
 **Diagram sources**
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [location-tracker.ts:46-64](file://frontend/lib/location-tracker.ts#L46-L64)
-- [store.ts:135-136](file://frontend/lib/store.ts#L135-L136)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [location-tracker.ts:46-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L46-L64)
+- [store.ts:135-136](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L135-L136)
 
 **Section sources**
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [location-tracker.ts:8-65](file://frontend/lib/location-tracker.ts#L8-L65)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [location-tracker.ts:8-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L65)
 
 ### Dashboard Map Hydration (Redux-like Flow)
 - Subscribes to GPS and store slices
@@ -303,12 +303,12 @@ H --> I
 ```
 
 **Diagram sources**
-- [DashboardMapBootstrap.tsx:160-326](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L160-L326)
-- [store.ts:149-158](file://frontend/lib/store.ts#L149-L158)
-- [store.ts:157-158](file://frontend/lib/store.ts#L157-L158)
+- [DashboardMapBootstrap.tsx:160-326](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L160-L326)
+- [store.ts:149-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L149-L158)
+- [store.ts:157-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L157-L158)
 
 **Section sources**
-- [DashboardMapBootstrap.tsx:77-329](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L329)
+- [DashboardMapBootstrap.tsx:77-329](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L329)
 
 ### Offline SOS Queue and Crash Detection
 - Offline SOS queue:
@@ -335,14 +335,14 @@ OSQ->>IDB : "Delete synced entry"
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-124](file://frontend/lib/offline-sos-queue.ts#L48-L124)
-- [ClientAppHooks.tsx:8-34](file://frontend/components/ClientAppHooks.tsx#L8-L34)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
+- [offline-sos-queue.ts:48-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L124)
+- [ClientAppHooks.tsx:8-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L34)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [ClientAppHooks.tsx:8-34](file://frontend/components/ClientAppHooks.tsx#L8-L34)
-- [crash-detection.ts:1-101](file://frontend/lib/crash-detection.ts#L1-L101)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [ClientAppHooks.tsx:8-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L34)
+- [crash-detection.ts:1-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L1-L101)
 
 ### Routing and Safe Spaces Layers
 - Routing:
@@ -363,12 +363,12 @@ UI->>RT : "removeRouteFromMap()"
 ```
 
 **Diagram sources**
-- [routing.ts:31-80](file://frontend/lib/routing.ts#L31-L80)
-- [routing.ts:86-142](file://frontend/lib/routing.ts#L86-L142)
+- [routing.ts:31-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/routing.ts#L31-L80)
+- [routing.ts:86-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/routing.ts#L86-L142)
 
 **Section sources**
-- [routing.ts:1-143](file://frontend/lib/routing.ts#L1-L143)
-- [safe-spaces-layer.ts:14-61](file://frontend/lib/safe-spaces-layer.ts#L14-L61)
+- [routing.ts:1-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/routing.ts#L1-L143)
+- [safe-spaces-layer.ts:14-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L14-L61)
 
 ## Dependency Analysis
 - Provider hierarchy:
@@ -398,14 +398,14 @@ DMB --> SSL["safe-spaces-layer.ts"]
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [DashboardMapBootstrap.tsx:77-102](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L102)
-- [geolocation.ts:13-19](file://frontend/lib/geolocation.ts#L13-L19)
-- [ConnectivityBadge.tsx:16-17](file://frontend/components/ConnectivityBadge.tsx#L16-L17)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [DashboardMapBootstrap.tsx:77-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L102)
+- [geolocation.ts:13-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L19)
+- [ConnectivityBadge.tsx:16-17](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L17)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 **Section sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
 
 ## Performance Considerations
 - Selective subscriptions:
@@ -442,12 +442,12 @@ DMB --> SSL["safe-spaces-layer.ts"]
   - Use demo simulation for testing without real hardware
 
 **Section sources**
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [location-tracker.ts:46-64](file://frontend/lib/location-tracker.ts#L46-L64)
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
-- [crash-detection.ts:51-83](file://frontend/lib/crash-detection.ts#L51-L83)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [location-tracker.ts:46-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L46-L64)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
+- [crash-detection.ts:51-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/crash-detection.ts#L51-L83)
 
 ## Conclusion
 The frontend employs a pragmatic, layered state management approach:

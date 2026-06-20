@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [button.tsx](file://frontend/components/ui/button.tsx)
-- [AppSidebar.tsx](file://frontend/components/AppSidebar.tsx)
-- [ClientAppHooks.tsx](file://frontend/components/ClientAppHooks.tsx)
-- [ConnectivityBadge.tsx](file://frontend/components/ConnectivityBadge.tsx)
-- [NetworkMonitor.tsx](file://frontend/components/NetworkMonitor.tsx)
-- [ThemeProvider.tsx](file://frontend/components/ThemeProvider.tsx)
-- [ConnectivityProvider.tsx](file://frontend/components/ConnectivityProvider.tsx)
-- [store.ts](file://frontend/lib/store.ts)
-- [layout.tsx](file://frontend/app/layout.tsx)
-- [tailwind.config.js](file://frontend/tailwind.config.js)
-- [components.json](file://frontend/components.json)
-- [utils.ts](file://frontend/lib/utils.ts)
-- [globals.css](file://frontend/app/globals.css)
+- [button.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx)
+- [AppSidebar.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx)
+- [ClientAppHooks.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx)
+- [ConnectivityBadge.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx)
+- [NetworkMonitor.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx)
+- [ThemeProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx)
+- [ConnectivityProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [tailwind.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tailwind.config.js)
+- [components.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components.json)
+- [utils.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts)
+- [globals.css](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css)
 </cite>
 
 ## Table of Contents
@@ -54,20 +54,20 @@ NM --> ST
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
-- [ConnectivityProvider.tsx:6-26](file://frontend/components/ConnectivityProvider.tsx#L6-L26)
-- [ClientAppHooks.tsx:8-37](file://frontend/components/ClientAppHooks.tsx#L8-L37)
-- [AppSidebar.tsx:42-170](file://frontend/components/AppSidebar.tsx#L42-L170)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
-- [NetworkMonitor.tsx:6-34](file://frontend/components/NetworkMonitor.tsx#L6-L34)
-- [button.tsx:43-58](file://frontend/components/ui/button.tsx#L43-L58)
-- [utils.ts:4-6](file://frontend/lib/utils.ts#L4-L6)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
+- [ConnectivityProvider.tsx:6-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L6-L26)
+- [ClientAppHooks.tsx:8-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L37)
+- [AppSidebar.tsx:42-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L170)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [NetworkMonitor.tsx:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L6-L34)
+- [button.tsx:43-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L58)
+- [utils.ts:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts#L4-L6)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 **Section sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [components.json:1-26](file://frontend/components.json#L1-L26)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [components.json:1-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components.json#L1-L26)
 
 ## Core Components
 This section documents the core UI components and their responsibilities, props, styling, and accessibility.
@@ -110,12 +110,12 @@ This section documents the core UI components and their responsibilities, props,
   - Accessibility: Respects system preference; ensures smooth transitions.
 
 **Section sources**
-- [button.tsx:43-58](file://frontend/components/ui/button.tsx#L43-L58)
-- [AppSidebar.tsx:42-170](file://frontend/components/AppSidebar.tsx#L42-L170)
-- [ClientAppHooks.tsx:8-37](file://frontend/components/ClientAppHooks.tsx#L8-L37)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
-- [NetworkMonitor.tsx:6-34](file://frontend/components/NetworkMonitor.tsx#L6-L34)
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
+- [button.tsx:43-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L58)
+- [AppSidebar.tsx:42-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L170)
+- [ClientAppHooks.tsx:8-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L37)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [NetworkMonitor.tsx:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L6-L34)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
 
 ## Architecture Overview
 The UI components are composed within the Next.js root layout. Providers orchestrate global state and behavior:
@@ -150,11 +150,11 @@ Hooks-->>Browser : toast on crash detected
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
-- [ConnectivityProvider.tsx:6-26](file://frontend/components/ConnectivityProvider.tsx#L6-L26)
-- [ClientAppHooks.tsx:8-37](file://frontend/components/ClientAppHooks.tsx#L8-L37)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
+- [ConnectivityProvider.tsx:6-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L6-L26)
+- [ClientAppHooks.tsx:8-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L37)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
 
 ## Detailed Component Analysis
 
@@ -180,13 +180,13 @@ Button --> Utils : "merges classes"
 ```
 
 **Diagram sources**
-- [button.tsx:43-58](file://frontend/components/ui/button.tsx#L43-L58)
-- [utils.ts:4-6](file://frontend/lib/utils.ts#L4-L6)
+- [button.tsx:43-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L58)
+- [utils.ts:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts#L4-L6)
 
 **Section sources**
-- [button.tsx:6-41](file://frontend/components/ui/button.tsx#L6-L41)
-- [button.tsx:43-58](file://frontend/components/ui/button.tsx#L43-L58)
-- [utils.ts:4-6](file://frontend/lib/utils.ts#L4-L6)
+- [button.tsx:6-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L6-L41)
+- [button.tsx:43-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L58)
+- [utils.ts:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts#L4-L6)
 
 ### AppSidebar Component
 - Implementation pattern: Uses Next.js navigation hooks to detect active route and Zustand store to manage collapsed state. Renders navigation items and quick dial entries with icons and labels. Includes animated active indicator and a prominent SOS action.
@@ -206,11 +206,11 @@ RenderFooter --> End(["Done"])
 ```
 
 **Diagram sources**
-- [AppSidebar.tsx:42-170](file://frontend/components/AppSidebar.tsx#L42-L170)
+- [AppSidebar.tsx:42-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L170)
 
 **Section sources**
-- [AppSidebar.tsx:23-40](file://frontend/components/AppSidebar.tsx#L23-L40)
-- [AppSidebar.tsx:42-170](file://frontend/components/AppSidebar.tsx#L42-L170)
+- [AppSidebar.tsx:23-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L23-L40)
+- [AppSidebar.tsx:42-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L170)
 
 ### ClientAppHooks Component
 - Implementation pattern: Runs side effects on mount to initialize offline sync listeners and crash detection. Displays a toast notification when a crash is detected.
@@ -232,10 +232,10 @@ Comp->>Toast : show error toast with details
 ```
 
 **Diagram sources**
-- [ClientAppHooks.tsx:8-37](file://frontend/components/ClientAppHooks.tsx#L8-L37)
+- [ClientAppHooks.tsx:8-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L37)
 
 **Section sources**
-- [ClientAppHooks.tsx:8-37](file://frontend/components/ClientAppHooks.tsx#L8-L37)
+- [ClientAppHooks.tsx:8-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L8-L37)
 
 ### ConnectivityBadge Component
 - Implementation pattern: Reads current connectivity state from Zustand store and renders a badge with a colored dot and label. Uses aria-live and aria-label for accessibility.
@@ -253,13 +253,13 @@ RenderBadge --> End(["Done"])
 ```
 
 **Diagram sources**
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
-- [store.ts:61](file://frontend/lib/store.ts#L61)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [store.ts:61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L61)
 
 **Section sources**
-- [ConnectivityBadge.tsx:5-10](file://frontend/components/ConnectivityBadge.tsx#L5-L10)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
-- [store.ts:90-92](file://frontend/lib/store.ts#L90-L92)
+- [ConnectivityBadge.tsx:5-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L5-L10)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [store.ts:90-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L90-L92)
 
 ### NetworkMonitor Component
 - Implementation pattern: Adds online/offline event listeners on mount and updates Zustand store accordingly. Removes listeners on unmount.
@@ -280,12 +280,12 @@ NM->>Browser : Remove listeners on cleanup
 ```
 
 **Diagram sources**
-- [NetworkMonitor.tsx:6-34](file://frontend/components/NetworkMonitor.tsx#L6-L34)
-- [store.ts:90-92](file://frontend/lib/store.ts#L90-L92)
+- [NetworkMonitor.tsx:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L6-L34)
+- [store.ts:90-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L90-L92)
 
 **Section sources**
-- [NetworkMonitor.tsx:6-34](file://frontend/components/NetworkMonitor.tsx#L6-L34)
-- [store.ts:90-92](file://frontend/lib/store.ts#L90-L92)
+- [NetworkMonitor.tsx:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L6-L34)
+- [store.ts:90-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L90-L92)
 
 ### ThemeProvider Component
 - Implementation pattern: Manages theme selection, resolves system preference, applies data-theme and class toggles, and persists user choice in localStorage. Exposes a context for consumers.
@@ -304,11 +304,11 @@ Persist --> End(["Done"])
 ```
 
 **Diagram sources**
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
 
 **Section sources**
-- [ThemeProvider.tsx:5-17](file://frontend/components/ThemeProvider.tsx#L5-L17)
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
+- [ThemeProvider.tsx:5-17](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L5-L17)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
 
 ## Dependency Analysis
 The components depend on shared utilities and state management:
@@ -330,24 +330,24 @@ TP --> MM["matchMedia"]
 ```
 
 **Diagram sources**
-- [button.tsx:4-6](file://frontend/components/ui/button.tsx#L4-L6)
-- [utils.ts:4-6](file://frontend/lib/utils.ts#L4-L6)
-- [globals.css:1-800](file://frontend/app/globals.css#L1-L800)
-- [AppSidebar.tsx:21](file://frontend/components/AppSidebar.tsx#L21)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [ConnectivityBadge.tsx:3](file://frontend/components/ConnectivityBadge.tsx#L3)
-- [NetworkMonitor.tsx:4](file://frontend/components/NetworkMonitor.tsx#L4)
-- [ThemeProvider.tsx:20-48](file://frontend/components/ThemeProvider.tsx#L20-L48)
+- [button.tsx:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L4-L6)
+- [utils.ts:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts#L4-L6)
+- [globals.css:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L1-L800)
+- [AppSidebar.tsx:21](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L21)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [ConnectivityBadge.tsx:3](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L3)
+- [NetworkMonitor.tsx:4](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L4)
+- [ThemeProvider.tsx:20-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L20-L48)
 
 **Section sources**
-- [button.tsx:4-6](file://frontend/components/ui/button.tsx#L4-L6)
-- [utils.ts:4-6](file://frontend/lib/utils.ts#L4-L6)
-- [globals.css:1-800](file://frontend/app/globals.css#L1-L800)
-- [AppSidebar.tsx:21](file://frontend/components/AppSidebar.tsx#L21)
-- [store.ts:129-225](file://frontend/lib/store.ts#L129-L225)
-- [ConnectivityBadge.tsx:3](file://frontend/components/ConnectivityBadge.tsx#L3)
-- [NetworkMonitor.tsx:4](file://frontend/components/NetworkMonitor.tsx#L4)
-- [ThemeProvider.tsx:20-48](file://frontend/components/ThemeProvider.tsx#L20-L48)
+- [button.tsx:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L4-L6)
+- [utils.ts:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts#L4-L6)
+- [globals.css:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L1-L800)
+- [AppSidebar.tsx:21](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L21)
+- [store.ts:129-225](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L225)
+- [ConnectivityBadge.tsx:3](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L3)
+- [NetworkMonitor.tsx:4](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L4)
+- [ThemeProvider.tsx:20-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L20-L48)
 
 ## Performance Considerations
 - Prefer variant and size props on Button to avoid ad-hoc class concatenation.
@@ -376,12 +376,12 @@ TP --> MM["matchMedia"]
   - Ensure data-theme attribute and class toggles are applied to the root element.
 
 **Section sources**
-- [button.tsx:43-58](file://frontend/components/ui/button.tsx#L43-L58)
-- [AppSidebar.tsx:42-170](file://frontend/components/AppSidebar.tsx#L42-L170)
-- [ConnectivityBadge.tsx:16-31](file://frontend/components/ConnectivityBadge.tsx#L16-L31)
-- [NetworkMonitor.tsx:6-34](file://frontend/components/NetworkMonitor.tsx#L6-L34)
-- [ThemeProvider.tsx:19-62](file://frontend/components/ThemeProvider.tsx#L19-L62)
-- [store.ts:90-92](file://frontend/lib/store.ts#L90-L92)
+- [button.tsx:43-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L58)
+- [AppSidebar.tsx:42-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L170)
+- [ConnectivityBadge.tsx:16-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityBadge.tsx#L16-L31)
+- [NetworkMonitor.tsx:6-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/NetworkMonitor.tsx#L6-L34)
+- [ThemeProvider.tsx:19-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L19-L62)
+- [store.ts:90-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L90-L92)
 
 ## Conclusion
 The core UI components form a cohesive system that emphasizes consistency, accessibility, and performance. They leverage Tailwind CSS for styling, Zustand for state, and React primitives for behavior. By following the documented patterns and guidelines, developers can extend components reliably while maintaining design consistency across the application.
@@ -394,11 +394,11 @@ The core UI components form a cohesive system that emphasizes consistency, acces
 - Utility classes support animations, glassmorphism, and responsive layouts.
 
 **Section sources**
-- [tailwind.config.js:1-131](file://frontend/tailwind.config.js#L1-L131)
-- [globals.css:25-195](file://frontend/app/globals.css#L25-L195)
+- [tailwind.config.js:1-131](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tailwind.config.js#L1-L131)
+- [globals.css:25-195](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/globals.css#L25-L195)
 
 ### Provider Composition
 - Root layout composes ThemeProvider, ConnectivityProvider, ClientAppHooks, and PageShell to establish global behavior and state.
 
 **Section sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)

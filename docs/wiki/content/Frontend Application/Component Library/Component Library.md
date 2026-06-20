@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [EmergencyMap.tsx](file://frontend/components/EmergencyMap.tsx)
-- [EmergencyMapInner.tsx](file://frontend/components/EmergencyMapInner.tsx)
-- [DashboardMapBootstrap.tsx](file://frontend/components/dashboard/DashboardMapBootstrap.tsx)
-- [MapBackgroundInner.tsx](file://frontend/components/dashboard/MapBackgroundInner.tsx)
-- [MapLibreCanvas.tsx](file://frontend/components/maps/MapLibreCanvas.tsx)
-- [ChatInterface.tsx](file://frontend/components/ChatInterface.tsx)
-- [button.tsx](file://frontend/components/ui/button.tsx)
-- [ReportForm.tsx](file://frontend/components/ReportForm.tsx)
-- [FirstAidCard.tsx](file://frontend/components/FirstAidCard.tsx)
-- [SystemSidebar.tsx](file://frontend/components/dashboard/SystemSidebar.tsx)
-- [SystemHeader.tsx](file://frontend/components/dashboard/SystemHeader.tsx)
-- [AuthorityCard.tsx](file://frontend/components/AuthorityCard.tsx)
-- [SOSButton.tsx](file://frontend/components/SOSButton.tsx)
-- [store.ts](file://frontend/lib/store.ts)
+- [EmergencyMap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx)
+- [EmergencyMapInner.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx)
+- [DashboardMapBootstrap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx)
+- [MapBackgroundInner.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx)
+- [MapLibreCanvas.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx)
+- [ChatInterface.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx)
+- [button.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx)
+- [ReportForm.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx)
+- [FirstAidCard.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx)
+- [SystemSidebar.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx)
+- [SystemHeader.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx)
+- [AuthorityCard.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx)
+- [SOSButton.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
 </cite>
 
 ## Table of Contents
@@ -83,25 +83,25 @@ B --> |"Styling"| MLC
 ```
 
 **Diagram sources**
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [MapBackgroundInner.tsx:88-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L88-L169)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
-- [ReportForm.tsx:17-205](file://frontend/components/ReportForm.tsx#L17-L205)
-- [FirstAidCard.tsx:23-121](file://frontend/components/FirstAidCard.tsx#L23-L121)
-- [AuthorityCard.tsx:3-34](file://frontend/components/AuthorityCard.tsx#L3-L34)
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [SystemHeader.tsx:16-170](file://frontend/components/dashboard/SystemHeader.tsx#L16-L170)
-- [SystemSidebar.tsx:22-209](file://frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [MapBackgroundInner.tsx:88-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L88-L169)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
+- [ReportForm.tsx:17-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L17-L205)
+- [FirstAidCard.tsx:23-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L23-L121)
+- [AuthorityCard.tsx:3-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L3-L34)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [SystemHeader.tsx:16-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L16-L170)
+- [SystemSidebar.tsx:22-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
 
 **Section sources**
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [MapLibreCanvas.tsx:1-800](file://frontend/components/maps/MapLibreCanvas.tsx#L1-L800)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [MapLibreCanvas.tsx:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1-L800)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ## Core Components
 This section outlines the primary reusable components and their roles.
@@ -113,16 +113,16 @@ This section outlines the primary reusable components and their roles.
 - Forms and cards for reporting hazards, first aid steps, authority info, and SOS actions.
 
 **Section sources**
-- [button.tsx:43-59](file://frontend/components/ui/button.tsx#L43-L59)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
-- [ReportForm.tsx:17-205](file://frontend/components/ReportForm.tsx#L17-L205)
-- [FirstAidCard.tsx:23-121](file://frontend/components/FirstAidCard.tsx#L23-L121)
-- [AuthorityCard.tsx:3-34](file://frontend/components/AuthorityCard.tsx#L3-L34)
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
+- [button.tsx:43-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L59)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
+- [ReportForm.tsx:17-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L17-L205)
+- [FirstAidCard.tsx:23-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L23-L121)
+- [AuthorityCard.tsx:3-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L3-L34)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
 
 ## Architecture Overview
 The component library follows a layered architecture:
@@ -140,12 +140,12 @@ Map --> Integrations["Integrations<br/>routing, geolocation, offline"]
 ```
 
 **Diagram sources**
-- [button.tsx:43-59](file://frontend/components/ui/button.tsx#L43-L59)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
-- [ReportForm.tsx:17-205](file://frontend/components/ReportForm.tsx#L17-L205)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
+- [button.tsx:43-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L59)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
+- [ReportForm.tsx:17-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L17-L205)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
 
 ## Detailed Component Analysis
 
@@ -165,14 +165,14 @@ MLC-->>Caller : Interactive map with overlays
 ```
 
 **Diagram sources**
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
 
 **Section sources**
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
 
 ### DashboardMapBootstrap
 This component orchestrates hydration of nearby services and road issues, handles connectivity transitions, and normalizes data for downstream consumers.
@@ -191,12 +191,12 @@ Offline --> Done
 ```
 
 **Diagram sources**
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
 
 **Section sources**
-- [DashboardMapBootstrap.tsx:1-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [DashboardMapBootstrap.tsx:1-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L1-L330)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### MapBackgroundInner
 Renders a live map background using MapLibreCanvas, mapping nearby services and road issues to visual markers with appropriate icons and colors.
@@ -213,14 +213,14 @@ MLC-->>MB : Map rendered with overlays
 ```
 
 **Diagram sources**
-- [MapBackgroundInner.tsx:88-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L88-L169)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
+- [MapBackgroundInner.tsx:88-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L88-L169)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
 
 **Section sources**
-- [MapBackgroundInner.tsx:1-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [MapBackgroundInner.tsx:1-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L1-L169)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### ChatInterface
 Implements a dual-mode chat with online streaming and offline AI. It manages message lifecycle, SSE streaming, and UI feedback.
@@ -244,10 +244,10 @@ end
 ```
 
 **Diagram sources**
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
 
 **Section sources**
-- [ChatInterface.tsx:1-317](file://frontend/components/ChatInterface.tsx#L1-L317)
+- [ChatInterface.tsx:1-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L1-L317)
 
 ### ReportForm
 Multi-step form for reporting road hazards with validation, photo constraints, and offline submission support.
@@ -264,10 +264,10 @@ Submit --> Done(["Success screen"])
 ```
 
 **Diagram sources**
-- [ReportForm.tsx:17-205](file://frontend/components/ReportForm.tsx#L17-L205)
+- [ReportForm.tsx:17-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L17-L205)
 
 **Section sources**
-- [ReportForm.tsx:1-205](file://frontend/components/ReportForm.tsx#L1-L205)
+- [ReportForm.tsx:1-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L1-L205)
 
 ### FirstAidCard
 Displays first aid steps with bold-marked emphasis and offline badge.
@@ -283,10 +283,10 @@ class FirstAidCard {
 ```
 
 **Diagram sources**
-- [FirstAidCard.tsx:23-121](file://frontend/components/FirstAidCard.tsx#L23-L121)
+- [FirstAidCard.tsx:23-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L23-L121)
 
 **Section sources**
-- [FirstAidCard.tsx:1-121](file://frontend/components/FirstAidCard.tsx#L1-L121)
+- [FirstAidCard.tsx:1-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L1-L121)
 
 ### AuthorityCard
 Displays assigned authority information with SLA.
@@ -299,10 +299,10 @@ class AuthorityCard {
 ```
 
 **Diagram sources**
-- [AuthorityCard.tsx:3-34](file://frontend/components/AuthorityCard.tsx#L3-L34)
+- [AuthorityCard.tsx:3-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L3-L34)
 
 **Section sources**
-- [AuthorityCard.tsx:1-34](file://frontend/components/AuthorityCard.tsx#L1-L34)
+- [AuthorityCard.tsx:1-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L1-L34)
 
 ### SOSButton
 Interactive emergency trigger with confirmation overlay and sharing options.
@@ -320,10 +320,10 @@ Collapse --> End
 ```
 
 **Diagram sources**
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
 
 **Section sources**
-- [SOSButton.tsx:1-126](file://frontend/components/SOSButton.tsx#L1-L126)
+- [SOSButton.tsx:1-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L1-L126)
 
 ### SystemHeader and SystemSidebar
 Provide desktop/global header controls and mobile sidebar navigation with animated entrance and persistent state.
@@ -343,14 +343,14 @@ SS->>ZS : setSystemSidebarOpen(false)
 ```
 
 **Diagram sources**
-- [SystemHeader.tsx:16-170](file://frontend/components/dashboard/SystemHeader.tsx#L16-L170)
-- [SystemSidebar.tsx:22-209](file://frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
+- [SystemHeader.tsx:16-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L16-L170)
+- [SystemSidebar.tsx:22-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
 
 **Section sources**
-- [SystemHeader.tsx:1-170](file://frontend/components/dashboard/SystemHeader.tsx#L1-L170)
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [SystemHeader.tsx:1-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L1-L170)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### Button Primitive
 Provides variant and size variants with Tailwind-based styling and accessibility attributes.
@@ -366,10 +366,10 @@ class Button {
 ```
 
 **Diagram sources**
-- [button.tsx:43-59](file://frontend/components/ui/button.tsx#L43-L59)
+- [button.tsx:43-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L43-L59)
 
 **Section sources**
-- [button.tsx:1-59](file://frontend/components/ui/button.tsx#L1-L59)
+- [button.tsx:1-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ui/button.tsx#L1-L59)
 
 ## Dependency Analysis
 Component dependencies are primarily driven by:
@@ -394,23 +394,23 @@ SS["SystemSidebar.tsx"] --> ZS
 ```
 
 **Diagram sources**
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [MapBackgroundInner.tsx:88-169](file://frontend/components/dashboard/MapBackgroundInner.tsx#L88-L169)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
-- [ReportForm.tsx:17-205](file://frontend/components/ReportForm.tsx#L17-L205)
-- [FirstAidCard.tsx:23-121](file://frontend/components/FirstAidCard.tsx#L23-L121)
-- [AuthorityCard.tsx:3-34](file://frontend/components/AuthorityCard.tsx#L3-L34)
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:44-83](file://frontend/components/EmergencyMapInner.tsx#L44-L83)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
-- [SystemHeader.tsx:16-170](file://frontend/components/dashboard/SystemHeader.tsx#L16-L170)
-- [SystemSidebar.tsx:22-209](file://frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [MapBackgroundInner.tsx:88-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/MapBackgroundInner.tsx#L88-L169)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
+- [ReportForm.tsx:17-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L17-L205)
+- [FirstAidCard.tsx:23-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L23-L121)
+- [AuthorityCard.tsx:3-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L3-L34)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:44-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L83)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [SystemHeader.tsx:16-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L16-L170)
+- [SystemSidebar.tsx:22-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
 
 **Section sources**
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [MapLibreCanvas.tsx:300-800](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [MapLibreCanvas.tsx:300-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L800)
 
 ## Performance Considerations
 - Lazy loading: EmergencyMap uses dynamic imports to avoid SSR overhead.
@@ -429,10 +429,10 @@ SS["SystemSidebar.tsx"] --> ZS
 - Photo validation: ReportForm enforces size and MIME-type constraints and shows toast notifications.
 
 **Section sources**
-- [MapLibreCanvas.tsx:441-474](file://frontend/components/maps/MapLibreCanvas.tsx#L441-L474)
-- [DashboardMapBootstrap.tsx:131-158](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L131-L158)
-- [ChatInterface.tsx:144-158](file://frontend/components/ChatInterface.tsx#L144-L158)
-- [ReportForm.tsx:28-38](file://frontend/components/ReportForm.tsx#L28-L38)
+- [MapLibreCanvas.tsx:441-474](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L441-L474)
+- [DashboardMapBootstrap.tsx:131-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L131-L158)
+- [ChatInterface.tsx:144-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L144-L158)
+- [ReportForm.tsx:28-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L28-L38)
 
 ## Conclusion
 The component library emphasizes composability, resilience, and a consistent design system. Map components encapsulate complex rendering logic, while the Zustand store centralizes cross-cutting concerns. UI primitives and feature components follow predictable patterns for styling, accessibility, and performance.
@@ -454,16 +454,16 @@ The component library emphasizes composability, resilience, and a consistent des
 - SystemSidebar: no props; controlled by store state
 
 **Section sources**
-- [EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
-- [EmergencyMapInner.tsx:35-42](file://frontend/components/EmergencyMapInner.tsx#L35-L42)
-- [MapLibreCanvas.tsx:155-167](file://frontend/components/maps/MapLibreCanvas.tsx#L155-L167)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
-- [ReportForm.tsx:17-205](file://frontend/components/ReportForm.tsx#L17-L205)
-- [FirstAidCard.tsx:5-9](file://frontend/components/FirstAidCard.tsx#L5-L9)
-- [AuthorityCard.tsx:3-34](file://frontend/components/AuthorityCard.tsx#L3-L34)
-- [SOSButton.tsx:13-126](file://frontend/components/SOSButton.tsx#L13-L126)
-- [SystemHeader.tsx:9-21](file://frontend/components/dashboard/SystemHeader.tsx#L9-L21)
-- [SystemSidebar.tsx:22-209](file://frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
+- [EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
+- [EmergencyMapInner.tsx:35-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L35-L42)
+- [MapLibreCanvas.tsx:155-167](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L155-L167)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
+- [ReportForm.tsx:17-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L17-L205)
+- [FirstAidCard.tsx:5-9](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L5-L9)
+- [AuthorityCard.tsx:3-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AuthorityCard.tsx#L3-L34)
+- [SOSButton.tsx:13-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/SOSButton.tsx#L13-L126)
+- [SystemHeader.tsx:9-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemHeader.tsx#L9-L21)
+- [SystemSidebar.tsx:22-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L22-L209)
 
 ### Styling with Tailwind CSS
 - Use className consistently for layout and theming.

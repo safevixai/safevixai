@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/main.py](file://backend/main.py)
-- [backend/api/v1/__init__.py](file://backend/api/v1/__init__.py)
-- [backend/api/v1/emergency.py](file://backend/api/v1/emergency.py)
-- [backend/api/v1/routing.py](file://backend/api/v1/routing.py)
-- [backend/api/v1/auth.py](file://backend/api/v1/auth.py)
-- [backend/api/v1/offline.py](file://backend/api/v1/offline.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [backend/core/redis_client.py](file://backend/core/redis_client.py)
-- [backend/services/emergency_locator.py](file://backend/services/emergency_locator.py)
-- [backend/services/geocoding_service.py](file://backend/services/geocoding_service.py)
-- [backend/services/routing_service.py](file://backend/services/routing_service.py)
-- [backend/services/overpass_service.py](file://backend/services/overpass_service.py)
-- [backend/services/authority_router.py](file://backend/services/authority_router.py)
-- [backend/models/schemas.py](file://backend/models/schemas.py)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/api/v1/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py)
+- [backend/api/v1/emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [backend/api/v1/routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py)
+- [backend/api/v1/auth.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py)
+- [backend/api/v1/offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [backend/core/redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
+- [backend/services/emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [backend/services/geocoding_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py)
+- [backend/services/routing_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py)
+- [backend/services/overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [backend/services/authority_router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py)
+- [backend/models/schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
 </cite>
 
 ## Table of Contents
@@ -79,23 +79,23 @@ S_geo --> C_redis
 ```
 
 **Diagram sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [backend/api/v1/__init__.py:17-27](file://backend/api/v1/__init__.py#L17-L27)
-- [backend/api/v1/emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [backend/api/v1/routing.py:11-64](file://backend/api/v1/routing.py#L11-L64)
-- [backend/api/v1/offline.py:11-28](file://backend/api/v1/offline.py#L11-L28)
-- [backend/api/v1/auth.py:6-44](file://backend/api/v1/auth.py#L6-L44)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
-- [backend/services/emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [backend/services/geocoding_service.py:19-170](file://backend/services/geocoding_service.py#L19-L170)
-- [backend/services/routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
-- [backend/services/overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [backend/services/authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [backend/api/v1/__init__.py:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L27)
+- [backend/api/v1/emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [backend/api/v1/routing.py:11-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L11-L64)
+- [backend/api/v1/offline.py:11-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L11-L28)
+- [backend/api/v1/auth.py:6-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L6-L44)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
+- [backend/services/emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [backend/services/geocoding_service.py:19-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L19-L170)
+- [backend/services/routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
+- [backend/services/overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [backend/services/authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
 
 **Section sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [backend/api/v1/__init__.py:17-27](file://backend/api/v1/__init__.py#L17-L27)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [backend/api/v1/__init__.py:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/__init__.py#L17-L27)
 
 ## Core Components
 - REST API routers and endpoints for emergency, routing, offline, and authentication.
@@ -111,16 +111,16 @@ Key responsibilities:
 - OverpassService: OSM queries for services and road context with retry and classification logic.
 
 **Section sources**
-- [backend/api/v1/emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [backend/api/v1/routing.py:11-64](file://backend/api/v1/routing.py#L11-L64)
-- [backend/api/v1/offline.py:11-28](file://backend/api/v1/offline.py#L11-L28)
-- [backend/api/v1/auth.py:6-44](file://backend/api/v1/auth.py#L6-L44)
-- [backend/services/emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [backend/services/geocoding_service.py:19-170](file://backend/services/geocoding_service.py#L19-L170)
-- [backend/services/routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
-- [backend/services/overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
-- [backend/services/authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [backend/models/schemas.py:10-288](file://backend/models/schemas.py#L10-L288)
+- [backend/api/v1/emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [backend/api/v1/routing.py:11-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L11-L64)
+- [backend/api/v1/offline.py:11-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L11-L28)
+- [backend/api/v1/auth.py:6-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L6-L44)
+- [backend/services/emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [backend/services/geocoding_service.py:19-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L19-L170)
+- [backend/services/routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
+- [backend/services/overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
+- [backend/services/authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [backend/models/schemas.py:10-288](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L10-L288)
 
 ## Architecture Overview
 The backend initializes services and caches at startup, mounts routers, and exposes endpoints. Each endpoint delegates to a service, which performs external API calls, applies transformations, and caches results. Error propagation to clients is handled via exceptions mapped to HTTP status codes.
@@ -149,9 +149,9 @@ end
 ```
 
 **Diagram sources**
-- [backend/api/v1/emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
-- [backend/services/emergency_locator.py:187-217](file://backend/services/emergency_locator.py#L187-L217)
-- [backend/core/redis_client.py:43-71](file://backend/core/redis_client.py#L43-L71)
+- [backend/api/v1/emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
+- [backend/services/emergency_locator.py:187-217](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L217)
+- [backend/core/redis_client.py:43-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L71)
 
 ## Detailed Component Analysis
 
@@ -186,12 +186,12 @@ CacheSet --> ReturnResp["Return EmergencyResponse"]
 ```
 
 **Diagram sources**
-- [backend/services/emergency_locator.py:187-374](file://backend/services/emergency_locator.py#L187-L374)
-- [backend/core/redis_client.py:43-71](file://backend/core/redis_client.py#L43-L71)
+- [backend/services/emergency_locator.py:187-374](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L374)
+- [backend/core/redis_client.py:43-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L71)
 
 **Section sources**
-- [backend/services/emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [backend/api/v1/emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
+- [backend/services/emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [backend/api/v1/emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
 
 ### Geocoding Service
 - Dual provider fallback: Photon first, Nominatim second.
@@ -228,11 +228,11 @@ end
 ```
 
 **Diagram sources**
-- [backend/services/geocoding_service.py:33-111](file://backend/services/geocoding_service.py#L33-L111)
-- [backend/core/redis_client.py:43-71](file://backend/core/redis_client.py#L43-L71)
+- [backend/services/geocoding_service.py:33-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L33-L111)
+- [backend/core/redis_client.py:43-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L71)
 
 **Section sources**
-- [backend/services/geocoding_service.py:19-170](file://backend/services/geocoding_service.py#L19-L170)
+- [backend/services/geocoding_service.py:19-170](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L19-L170)
 
 ### Routing Service
 - Provider selection:
@@ -267,12 +267,12 @@ end
 ```
 
 **Diagram sources**
-- [backend/services/routing_service.py:35-142](file://backend/services/routing_service.py#L35-L142)
-- [backend/core/redis_client.py:43-71](file://backend/core/redis_client.py#L43-L71)
+- [backend/services/routing_service.py:35-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L35-L142)
+- [backend/core/redis_client.py:43-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L71)
 
 **Section sources**
-- [backend/services/routing_service.py:20-356](file://backend/services/routing_service.py#L20-L356)
-- [backend/api/v1/routing.py:18-41](file://backend/api/v1/routing.py#L18-L41)
+- [backend/services/routing_service.py:20-356](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L20-L356)
+- [backend/api/v1/routing.py:18-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L18-L41)
 
 ### Overpass Service
 - Builds Overpass QL queries for services and roads.
@@ -293,10 +293,10 @@ Limit --> Return["Return list"]
 ```
 
 **Diagram sources**
-- [backend/services/overpass_service.py:35-135](file://backend/services/overpass_service.py#L35-L135)
+- [backend/services/overpass_service.py:35-135](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L135)
 
 **Section sources**
-- [backend/services/overpass_service.py:24-249](file://backend/services/overpass_service.py#L24-L249)
+- [backend/services/overpass_service.py:24-249](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L249)
 
 ### Authority Router
 - Resolves road authority by:
@@ -319,10 +319,10 @@ Fallback --> Preview
 ```
 
 **Diagram sources**
-- [backend/services/authority_router.py:48-126](file://backend/services/authority_router.py#L48-L126)
+- [backend/services/authority_router.py:48-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L126)
 
 **Section sources**
-- [backend/services/authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
+- [backend/services/authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
 
 ### Authentication
 - Demo login endpoint with predefined users and JWT token generation.
@@ -341,10 +341,10 @@ Auth-->>Client : {access_token, token_type, operator_name}
 ```
 
 **Diagram sources**
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
 
 **Section sources**
-- [backend/api/v1/auth.py:6-44](file://backend/api/v1/auth.py#L6-L44)
+- [backend/api/v1/auth.py:6-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L6-L44)
 
 ### Offline Bundles
 - Endpoint to build and cache a city-specific emergency bundle combining database, local catalog, and Overpass data.
@@ -369,12 +369,12 @@ Offline-->>Client : bundle JSON
 ```
 
 **Diagram sources**
-- [backend/api/v1/offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [backend/services/emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [backend/api/v1/offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [backend/services/emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 **Section sources**
-- [backend/api/v1/offline.py:11-28](file://backend/api/v1/offline.py#L11-L28)
-- [backend/services/emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [backend/api/v1/offline.py:11-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L11-L28)
+- [backend/services/emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 ## Dependency Analysis
 - Startup wiring initializes services and cache, attaching them to the app state for DI via dependency injection in routers.
@@ -403,14 +403,14 @@ Main --> Overpass
 ```
 
 **Diagram sources**
-- [backend/main.py:24-63](file://backend/main.py#L24-L63)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
+- [backend/main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
 
 **Section sources**
-- [backend/main.py:24-63](file://backend/main.py#L24-L63)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
-- [backend/core/redis_client.py:10-140](file://backend/core/redis_client.py#L10-L140)
+- [backend/main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
+- [backend/core/redis_client.py:10-140](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L140)
 
 ## Performance Considerations
 - Caching:
@@ -427,10 +427,10 @@ Main --> Overpass
   - Providers’ responses are normalized into unified schemas to reduce downstream complexity.
 
 **Section sources**
-- [backend/core/redis_client.py:43-125](file://backend/core/redis_client.py#L43-L125)
-- [backend/services/geocoding_service.py:99-111](file://backend/services/geocoding_service.py#L99-L111)
-- [backend/services/emergency_locator.py:342-374](file://backend/services/emergency_locator.py#L342-L374)
-- [backend/services/routing_service.py:61-105](file://backend/services/routing_service.py#L61-L105)
+- [backend/core/redis_client.py:43-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L125)
+- [backend/services/geocoding_service.py:99-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/geocoding_service.py#L99-L111)
+- [backend/services/emergency_locator.py:342-374](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L342-L374)
+- [backend/services/routing_service.py:61-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/routing_service.py#L61-L105)
 
 ## Troubleshooting Guide
 - Health endpoint:
@@ -446,10 +446,10 @@ Main --> Overpass
   - Cache unavailability falls back to in-memory store; monitor health via health endpoint.
 
 **Section sources**
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [backend/api/v1/emergency.py:38-40](file://backend/api/v1/emergency.py#L38-L40)
-- [backend/api/v1/routing.py:37-40](file://backend/api/v1/routing.py#L37-L40)
-- [backend/services/exceptions.py:1-7](file://backend/services/exceptions.py#L1-L7)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [backend/api/v1/emergency.py:38-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L38-L40)
+- [backend/api/v1/routing.py:37-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/routing.py#L37-L40)
+- [backend/services/exceptions.py:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/exceptions.py#L1-L7)
 
 ## Conclusion
 The backend implements robust API integration patterns with layered caching, provider fallbacks, and strict error handling. Emergency discovery combines local data, OSM, and geocoding to deliver resilient results. Routing integrates premium and free providers with normalization. The architecture supports offline bundling and health monitoring, enabling reliable operation across varied network conditions.

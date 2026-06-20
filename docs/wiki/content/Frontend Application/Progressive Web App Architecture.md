@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [manifest.json](file://frontend/public/manifest.json)
-- [next.config.js](file://frontend/next.config.js)
-- [layout.tsx](file://frontend/app/layout.tsx)
-- [ConnectivityProvider.tsx](file://frontend/components/ConnectivityProvider.tsx)
-- [ClientAppHooks.tsx](file://frontend/components/ClientAppHooks.tsx)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [package.json](file://frontend/package.json)
-- [offline.py](file://backend/api/v1/offline.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
+- [manifest.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json)
+- [next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
+- [layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [ConnectivityProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx)
+- [ClientAppHooks.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
 </cite>
 
 ## Table of Contents
@@ -61,25 +61,25 @@ B1 --> B2
 ```
 
 **Diagram sources**
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [next.config.js:1-44](file://frontend/next.config.js#L1-L44)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [ClientAppHooks.tsx:1-38](file://frontend/components/ClientAppHooks.tsx#L1-L38)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [ClientAppHooks.tsx:1-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L1-L38)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
 
 **Section sources**
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [next.config.js:1-44](file://frontend/next.config.js#L1-L44)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
 
 ## Core Components
 - Manifest and PWA Registration: The manifest defines app identity, display mode, icons, shortcuts, and screenshots. The Next.js metadata integrates the manifest and Apple Web App settings.
@@ -89,12 +89,12 @@ B1 --> B2
 - Connectivity Monitoring: Tracks online/offline state and updates the UI accordingly.
 
 **Section sources**
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
 
 ## Architecture Overview
 The PWA architecture follows an offline-first design:
@@ -123,10 +123,10 @@ BE-->>UI : "Acknowledge sync"
 ```
 
 **Diagram sources**
-- [layout.tsx:16-26](file://frontend/app/layout.tsx#L16-L26)
-- [offline-ai.ts:70-110](file://frontend/lib/offline-ai.ts#L70-L110)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [layout.tsx:16-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L16-L26)
+- [offline-ai.ts:70-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L70-L110)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 ## Detailed Component Analysis
 
@@ -143,12 +143,12 @@ Precache --> Ready(["PWA Ready"])
 ```
 
 **Diagram sources**
-- [layout.tsx:16-36](file://frontend/app/layout.tsx#L16-L36)
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
+- [layout.tsx:16-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L16-L36)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
 
 **Section sources**
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
 
 ### Manifest.json Setup
 Key manifest fields:
@@ -163,7 +163,7 @@ Key manifest fields:
 These settings enable installability, standalone behavior, and discoverability across platforms.
 
 **Section sources**
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 ### Offline AI Engine (Transformers.js + WebGPU/WASM)
 Offline AI tiers:
@@ -185,11 +185,11 @@ G --> H
 ```
 
 **Diagram sources**
-- [offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
+- [offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
 
 ### Offline RAG (Local Legal Index)
 Provides a lightweight local search over cached legal documents. In this prototype, a simple keyword filter simulates vector similarity search. In production, HNSWlib-wasm would replace this logic for true similarity search.
@@ -202,10 +202,10 @@ K --> R["Return top matches"]
 ```
 
 **Diagram sources**
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
 
 **Section sources**
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
 
 ### Offline Queue and Background Sync (IndexedDB + Background Sync)
 - IndexedDB: Stores SOS events with timestamps and indexes for efficient retrieval.
@@ -225,11 +225,11 @@ BE-->>IDB : "Delete synced entries"
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
 
 ### Connectivity Detection and UI Updates
 The ConnectivityProvider listens to online/offline events and updates the app state, enabling UI to reflect current connectivity.
@@ -241,10 +241,10 @@ U --> V["UI reacts (e.g., show badges, disable offline features)"]
 ```
 
 **Diagram sources**
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
 
 **Section sources**
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
 
 ### Backend Offline Bundle and SOS Endpoint
 - Offline Bundle Endpoint: Builds and caches a city-specific emergency bundle containing nearby services and emergency numbers.
@@ -267,14 +267,14 @@ BE-->>FE : "{services, numbers}"
 ```
 
 **Diagram sources**
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 **Section sources**
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 ## Dependency Analysis
 - Frontend Dependencies: Transformers.js, HNSWlib-wasm, idb, and Next.js WebAssembly/worker configuration enable offline AI and vector search.
@@ -293,16 +293,16 @@ BE --> OVR["Overpass Service"]
 ```
 
 **Diagram sources**
-- [package.json:14-53](file://frontend/package.json#L14-L53)
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
+- [package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
 
 **Section sources**
-- [package.json:14-53](file://frontend/package.json#L14-L53)
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
+- [package.json:14-53](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L53)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
 
 ## Performance Considerations
 - Model Loading: Use WebGPU acceleration where available; fallback to WASM for broader compatibility. Cache models via Cache API to avoid repeated downloads.
@@ -327,10 +327,10 @@ BE --> OVR["Overpass Service"]
   - Ensure the ConnectivityProvider attaches early in the app tree and listens to online/offline events.
 
 **Section sources**
-- [layout.tsx:16-26](file://frontend/app/layout.tsx#L16-L26)
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [layout.tsx:16-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L16-L26)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
 
 ## Conclusion
 SafeVixAI’s PWA architecture combines a robust manifest and service worker registration with offline-first design patterns. The offline AI engine leverages modern web APIs for model loading and caching, while IndexedDB ensures reliable offline data persistence and background sync. The backend complements this with offline city bundles and SOS endpoints. Together, these components deliver a resilient, installable, and capable application that functions effectively offline.
@@ -353,9 +353,9 @@ SafeVixAI’s PWA architecture combines a robust manifest and service worker reg
   - Use the connectivity provider to detect online/offline state and adjust UI behavior accordingly.
 
 **Section sources**
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
 
 ### Browser Compatibility and Security Notes
 - Service Workers: Require HTTPS in production; ensure proper scope and registration.
@@ -363,5 +363,5 @@ SafeVixAI’s PWA architecture combines a robust manifest and service worker reg
 - Permissions: Request user consent before enabling offline AI and sensor-based features.
 
 **Section sources**
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [layout.tsx:16-26](file://frontend/app/layout.tsx#L16-L26)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [layout.tsx:16-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L16-L26)

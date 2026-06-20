@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [package.json](file://frontend/package.json)
-- [next.config.js](file://frontend/next.config.js)
-- [manifest.json](file://frontend/public/manifest.json)
-- [layout.tsx](file://frontend/app/layout.tsx)
-- [store.ts](file://frontend/lib/store.ts)
-- [ConnectivityProvider.tsx](file://frontend/components/ConnectivityProvider.tsx)
-- [ThemeProvider.tsx](file://frontend/components/ThemeProvider.tsx)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [api.ts](file://frontend/lib/api.ts)
-- [page.tsx](file://frontend/app/page.tsx)
-- [ClientAppHooks.tsx](file://frontend/components/ClientAppHooks.tsx)
-- [PageShell.tsx](file://frontend/components/PageShell.tsx)
-- [utils.ts](file://frontend/lib/utils.ts)
-- [map-defaults.ts](file://frontend/lib/map-defaults.ts)
+- [package.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json)
+- [next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
+- [manifest.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json)
+- [layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [ConnectivityProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx)
+- [ThemeProvider.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx)
+- [ClientAppHooks.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx)
+- [PageShell.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx)
+- [utils.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts)
+- [map-defaults.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts)
 </cite>
 
 ## Table of Contents
@@ -61,21 +61,21 @@ O["public/manifest.json"] --> A
 ```
 
 **Diagram sources**
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [ThemeProvider.tsx:1-63](file://frontend/components/ThemeProvider.tsx#L1-L63)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [PageShell.tsx:1-36](file://frontend/components/PageShell.tsx#L1-L36)
-- [ClientAppHooks.tsx:1-38](file://frontend/components/ClientAppHooks.tsx#L1-L38)
-- [page.tsx:1-229](file://frontend/app/page.tsx#L1-L229)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [ThemeProvider.tsx:1-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L1-L63)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [PageShell.tsx:1-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L1-L36)
+- [ClientAppHooks.tsx:1-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L1-L38)
+- [page.tsx:1-229](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L1-L229)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
 
 **Section sources**
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [package.json:1-85](file://frontend/package.json#L1-L85)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
 
 ## Core Components
 - Layout and Providers
@@ -99,16 +99,16 @@ O["public/manifest.json"] --> A
   - page.tsx renders the main dashboard with dynamic map bootstrapping, area intelligence cards, stats, recent hazards, and collapsible desktop panel. It integrates with the store and Tailwind classes for responsive design.
 
 **Section sources**
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [ThemeProvider.tsx:1-63](file://frontend/components/ThemeProvider.tsx#L1-L63)
-- [ConnectivityProvider.tsx:1-27](file://frontend/components/ConnectivityProvider.tsx#L1-L27)
-- [PageShell.tsx:1-36](file://frontend/components/PageShell.tsx#L1-L36)
-- [ClientAppHooks.tsx:1-38](file://frontend/components/ClientAppHooks.tsx#L1-L38)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [page.tsx:1-229](file://frontend/app/page.tsx#L1-L229)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [ThemeProvider.tsx:1-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L1-L63)
+- [ConnectivityProvider.tsx:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L1-L27)
+- [PageShell.tsx:1-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L1-L36)
+- [ClientAppHooks.tsx:1-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ClientAppHooks.tsx#L1-L38)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [page.tsx:1-229](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L1-L229)
 
 ## Architecture Overview
 The frontend follows a layered architecture:
@@ -149,13 +149,13 @@ I2 --> Build["Webpack Config<br/>WASM + Workers"]
 ```
 
 **Diagram sources**
-- [page.tsx:1-229](file://frontend/app/page.tsx#L1-L229)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [next.config.js:1-44](file://frontend/next.config.js#L1-L44)
+- [page.tsx:1-229](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L1-L229)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
 
 ## Detailed Component Analysis
 
@@ -221,10 +221,10 @@ AppState <.. StoreActions : "actions"
 ```
 
 **Diagram sources**
-- [store.ts:63-226](file://frontend/lib/store.ts#L63-L226)
+- [store.ts:63-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L226)
 
 **Section sources**
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
 
 ### Offline AI Engine
 The offline AI engine supports three tiers:
@@ -256,12 +256,12 @@ OA-->>UI : "response or keyword fallback"
 ```
 
 **Diagram sources**
-- [offline-ai.ts:114-221](file://frontend/lib/offline-ai.ts#L114-L221)
-- [store.ts:84-88](file://frontend/lib/store.ts#L84-L88)
+- [offline-ai.ts:114-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L221)
+- [store.ts:84-88](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L84-L88)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
 
 ### Offline RAG Simulation
 The local RAG retrieves MV Act citations by keyword matching against a small dataset. In production, HNSWlib-wasm would replace this for semantic similarity.
@@ -275,10 +275,10 @@ Filter --> Return["Return Matching LawDocs"]
 ```
 
 **Diagram sources**
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
 
 **Section sources**
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
 
 ### API Integration Patterns
 The API client:
@@ -306,11 +306,11 @@ API-->>Page : "ChatResponse"
 ```
 
 **Diagram sources**
-- [page.tsx:31-37](file://frontend/app/page.tsx#L31-L37)
-- [api.ts:624-800](file://frontend/lib/api.ts#L624-L800)
+- [page.tsx:31-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L31-L37)
+- [api.ts:624-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L624-L800)
 
 **Section sources**
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
 
 ### Dashboard Composition and Routing
 - The root page uses dynamic imports for map components to avoid SSR and improve hydration performance.
@@ -330,13 +330,13 @@ Main --> Bottom["components/dashboard/BottomNav.tsx"]
 ```
 
 **Diagram sources**
-- [layout.tsx:38-84](file://frontend/app/layout.tsx#L38-L84)
-- [page.tsx:17-27](file://frontend/app/page.tsx#L17-L27)
-- [PageShell.tsx:13-35](file://frontend/components/PageShell.tsx#L13-L35)
+- [layout.tsx:38-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L84)
+- [page.tsx:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L17-L27)
+- [PageShell.tsx:13-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L13-L35)
 
 **Section sources**
-- [page.tsx:1-229](file://frontend/app/page.tsx#L1-L229)
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
+- [page.tsx:1-229](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L1-L229)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
 
 ### Progressive Web App Features
 - Manifest: Defines app identity, display mode, orientation, theme/background colors, icons, shortcuts, screenshots, and categories.
@@ -352,12 +352,12 @@ Cache --> Offline["Offline Data Access"]
 ```
 
 **Diagram sources**
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [next.config.js:19-39](file://frontend/next.config.js#L19-L39)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [next.config.js:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L39)
 
 **Section sources**
-- [manifest.json:1-68](file://frontend/public/manifest.json#L1-L68)
-- [next.config.js:1-44](file://frontend/next.config.js#L1-L44)
+- [manifest.json:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/manifest.json#L1-L68)
+- [next.config.js:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L1-L44)
 
 ### Responsive Design, Accessibility, and Mobile Optimization
 - Tailwind utilities and responsive breakpoints are used extensively in the dashboard and components.
@@ -366,9 +366,9 @@ Cache --> Offline["Offline Data Access"]
 - Theme switching and system preference handling for optimal viewing across devices.
 
 **Section sources**
-- [page.tsx:77-229](file://frontend/app/page.tsx#L77-L229)
-- [PageShell.tsx:18-32](file://frontend/components/PageShell.tsx#L18-L32)
-- [ThemeProvider.tsx:23-48](file://frontend/components/ThemeProvider.tsx#L23-L48)
+- [page.tsx:77-229](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L77-L229)
+- [PageShell.tsx:18-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L18-L32)
+- [ThemeProvider.tsx:23-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ThemeProvider.tsx#L23-L48)
 
 ### Animations and Transitions with Tailwind
 - Pulse and opacity transitions are used for connectivity indicators and interactive states.
@@ -376,9 +376,9 @@ Cache --> Offline["Offline Data Access"]
 - Loading spinners and animated indicators for async operations.
 
 **Section sources**
-- [page.tsx:112-119](file://frontend/app/page.tsx#L112-L119)
-- [page.tsx:94-100](file://frontend/app/page.tsx#L94-L100)
-- [page.tsx:23-26](file://frontend/app/page.tsx#L23-L26)
+- [page.tsx:112-119](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L112-L119)
+- [page.tsx:94-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L94-L100)
+- [page.tsx:23-26](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L23-L26)
 
 ## Dependency Analysis
 Key runtime dependencies include:
@@ -406,10 +406,10 @@ Pkg --> Motion["motion"]
 ```
 
 **Diagram sources**
-- [package.json:14-52](file://frontend/package.json#L14-L52)
+- [package.json:14-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L14-L52)
 
 **Section sources**
-- [package.json:1-85](file://frontend/package.json#L1-L85)
+- [package.json:1-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/package.json#L1-L85)
 
 ## Performance Considerations
 - Dynamic imports for heavy map components reduce initial bundle size.
@@ -438,10 +438,10 @@ Pkg --> Motion["motion"]
   - Confirm dynamic import is used for map components and SSR is disabled for them.
 
 **Section sources**
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
-- [ConnectivityProvider.tsx:9-23](file://frontend/components/ConnectivityProvider.tsx#L9-L23)
-- [api.ts:4-12](file://frontend/lib/api.ts#L4-L12)
-- [page.tsx:17-27](file://frontend/app/page.tsx#L17-L27)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
+- [ConnectivityProvider.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ConnectivityProvider.tsx#L9-L23)
+- [api.ts:4-12](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L4-L12)
+- [page.tsx:17-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L17-L27)
 
 ## Conclusion
 
@@ -468,12 +468,12 @@ The SafeVixAI frontend leverages Next.js App Router, Zustand for state, and a ro
 - Auth: isAuthenticated, authToken, operatorName
 
 **Section sources**
-- [store.ts:4-58](file://frontend/lib/store.ts#L4-L58)
+- [store.ts:4-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L4-L58)
 
 ### Tailwind Utilities and Helpers
 - Utility merging: cn(...) from clsx and tailwind-merge
 - Map defaults: fallback center and zoom levels configurable via environment variables
 
 **Section sources**
-- [utils.ts:1-7](file://frontend/lib/utils.ts#L1-L7)
-- [map-defaults.ts:1-8](file://frontend/lib/map-defaults.ts#L1-L8)
+- [utils.ts:1-7](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/utils.ts#L1-L7)
+- [map-defaults.ts:1-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts#L1-L8)

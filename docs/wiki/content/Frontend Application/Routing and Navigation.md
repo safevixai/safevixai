@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [layout.tsx](file://frontend/app/layout.tsx)
-- [page.tsx](file://frontend/app/page.tsx)
-- [AppSidebar.tsx](file://frontend/components/AppSidebar.tsx)
-- [SystemSidebar.tsx](file://frontend/components/dashboard/SystemSidebar.tsx)
-- [BottomNav.tsx](file://frontend/components/dashboard/BottomNav.tsx)
-- [PageShell.tsx](file://frontend/components/PageShell.tsx)
-- [login/page.tsx](file://frontend/app/login/page.tsx)
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx)
-- [store.ts](file://frontend/lib/store.ts)
-- [api.ts](file://frontend/lib/api.ts)
-- [next.config.js](file://frontend/next.config.js)
+- [layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx)
+- [AppSidebar.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx)
+- [SystemSidebar.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx)
+- [BottomNav.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx)
+- [PageShell.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx)
+- [login/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [next.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js)
 </cite>
 
 ## Table of Contents
@@ -49,24 +49,24 @@ A --> H
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [PageShell.tsx:13-35](file://frontend/components/PageShell.tsx#L13-L35)
-- [page.tsx:29-228](file://frontend/app/page.tsx#L29-L228)
-- [login/page.tsx:21-345](file://frontend/app/login/page.tsx#L21-L345)
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
-- [AppSidebar.tsx:42-169](file://frontend/components/AppSidebar.tsx#L42-L169)
-- [SystemSidebar.tsx:62-205](file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
-- [BottomNav.tsx:24-102](file://frontend/components/dashboard/BottomNav.tsx#L24-L102)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [PageShell.tsx:13-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L13-L35)
+- [page.tsx:29-228](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L29-L228)
+- [login/page.tsx:21-345](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L21-L345)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
+- [AppSidebar.tsx:42-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L169)
+- [SystemSidebar.tsx:62-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
+- [BottomNav.tsx:24-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L102)
 
 **Section sources**
-- [layout.tsx:1-86](file://frontend/app/layout.tsx#L1-L86)
-- [page.tsx:1-229](file://frontend/app/page.tsx#L1-L229)
-- [login/page.tsx:1-346](file://frontend/app/login/page.tsx#L1-L346)
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx#L1-L174)
-- [PageShell.tsx:1-36](file://frontend/components/PageShell.tsx#L1-L36)
-- [AppSidebar.tsx:1-171](file://frontend/components/AppSidebar.tsx#L1-L171)
-- [SystemSidebar.tsx:1-209](file://frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
-- [BottomNav.tsx:1-103](file://frontend/components/dashboard/BottomNav.tsx#L1-L103)
+- [layout.tsx:1-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L1-L86)
+- [page.tsx:1-229](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L1-L229)
+- [login/page.tsx:1-346](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L1-L346)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx#L1-L174)
+- [PageShell.tsx:1-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L1-L36)
+- [AppSidebar.tsx:1-171](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L1-L171)
+- [SystemSidebar.tsx:1-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L1-L209)
+- [BottomNav.tsx:1-103](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L1-L103)
 
 ## Core Components
 - Root layout defines global metadata, viewport, and providers for theme, connectivity, analytics, and page shell.
@@ -83,12 +83,12 @@ Key routing and navigation primitives:
 - Zustand store for UI state and authentication flags.
 
 **Section sources**
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
-- [PageShell.tsx:13-35](file://frontend/components/PageShell.tsx#L13-L35)
-- [AppSidebar.tsx:42-169](file://frontend/components/AppSidebar.tsx#L42-L169)
-- [SystemSidebar.tsx:62-205](file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
-- [BottomNav.tsx:24-102](file://frontend/components/dashboard/BottomNav.tsx#L24-L102)
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
+- [PageShell.tsx:13-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L13-L35)
+- [AppSidebar.tsx:42-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L169)
+- [SystemSidebar.tsx:62-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
+- [BottomNav.tsx:24-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L102)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
 
 ## Architecture Overview
 The routing architecture combines server-rendered metadata and client-side navigation. The root layout sets global metadata and viewport. Providers wrap the app to supply theme, connectivity, and analytics. The page shell positions navigation components and renders page content. Navigation components compute active states from the current path and trigger programmatic navigation when needed.
@@ -116,12 +116,12 @@ MSB->>PG : Navigate to target page
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [PageShell.tsx:13-35](file://frontend/components/PageShell.tsx#L13-L35)
-- [AppSidebar.tsx:84-112](file://frontend/components/AppSidebar.tsx#L84-L112)
-- [SystemSidebar.tsx:122-142](file://frontend/components/dashboard/SystemSidebar.tsx#L122-L142)
-- [BottomNav.tsx:49-58](file://frontend/components/dashboard/BottomNav.tsx#L49-L58)
-- [page.tsx:29-228](file://frontend/app/page.tsx#L29-L228)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [PageShell.tsx:13-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L13-L35)
+- [AppSidebar.tsx:84-112](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L84-L112)
+- [SystemSidebar.tsx:122-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L122-L142)
+- [BottomNav.tsx:49-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L49-L58)
+- [page.tsx:29-228](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L29-L228)
 
 ## Detailed Component Analysis
 
@@ -144,16 +144,16 @@ Dyn --> |Render with params| Dyn
 ```
 
 **Diagram sources**
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
-- [page.tsx:29-228](file://frontend/app/page.tsx#L29-L228)
-- [login/page.tsx:21-345](file://frontend/app/login/page.tsx#L21-L345)
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
+- [page.tsx:29-228](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L29-L228)
+- [login/page.tsx:21-345](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L21-L345)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
 
 **Section sources**
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
-- [page.tsx:29-228](file://frontend/app/page.tsx#L29-L228)
-- [login/page.tsx:21-345](file://frontend/app/login/page.tsx#L21-L345)
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
+- [page.tsx:29-228](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L29-L228)
+- [login/page.tsx:21-345](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L21-L345)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
 
 ### Desktop Sidebar Navigation
 - Uses Next.js Link for navigation and usePathname to compute active state.
@@ -175,12 +175,12 @@ AppSidebar --> Store : "reads/writes UI state"
 ```
 
 **Diagram sources**
-- [AppSidebar.tsx:42-169](file://frontend/components/AppSidebar.tsx#L42-L169)
-- [store.ts:109-110](file://frontend/lib/store.ts#L109-L110)
+- [AppSidebar.tsx:42-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L169)
+- [store.ts:109-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L109-L110)
 
 **Section sources**
-- [AppSidebar.tsx:42-169](file://frontend/components/AppSidebar.tsx#L42-L169)
-- [store.ts:109-110](file://frontend/lib/store.ts#L109-L110)
+- [AppSidebar.tsx:42-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L169)
+- [store.ts:109-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L109-L110)
 
 ### Mobile System Sidebar Navigation
 - Controlled by a store flag; animates in/out with motion variants.
@@ -201,12 +201,12 @@ MSB->>ST : setOpen(false)
 ```
 
 **Diagram sources**
-- [SystemSidebar.tsx:62-205](file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
-- [store.ts:107-108](file://frontend/lib/store.ts#L107-L108)
+- [SystemSidebar.tsx:62-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
+- [store.ts:107-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L107-L108)
 
 **Section sources**
-- [SystemSidebar.tsx:62-205](file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
-- [store.ts:107-108](file://frontend/lib/store.ts#L107-L108)
+- [SystemSidebar.tsx:62-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
+- [store.ts:107-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L107-L108)
 
 ### Bottom Navigation (Mobile)
 - Renders a horizontal tab bar with active indicator.
@@ -220,10 +220,10 @@ R --> N["On tap: navigate via Link"]
 ```
 
 **Diagram sources**
-- [BottomNav.tsx:24-102](file://frontend/components/dashboard/BottomNav.tsx#L24-L102)
+- [BottomNav.tsx:24-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L102)
 
 **Section sources**
-- [BottomNav.tsx:24-102](file://frontend/components/dashboard/BottomNav.tsx#L24-L102)
+- [BottomNav.tsx:24-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L102)
 
 ### Dynamic Routes and Route Parameters
 - Dynamic route folder [emergency-card/[userId]] receives route parameters and optional search params.
@@ -240,10 +240,10 @@ Page-->>U : Render emergency card with extracted data
 ```
 
 **Diagram sources**
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
 
 **Section sources**
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
 
 ### Programmatic Navigation and Route Guards
 - Programmatic navigation uses Next.js useRouter to redirect after successful login.
@@ -263,10 +263,10 @@ end
 ```
 
 **Diagram sources**
-- [login/page.tsx:34-37](file://frontend/app/login/page.tsx#L34-L37)
+- [login/page.tsx:34-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L34-L37)
 
 **Section sources**
-- [login/page.tsx:34-37](file://frontend/app/login/page.tsx#L34-L37)
+- [login/page.tsx:34-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L34-L37)
 
 ### Authentication Integration and Navigation State
 - Authentication state is persisted in the Zustand store and injected into API requests via interceptors.
@@ -285,14 +285,14 @@ LP->>Router : replace("/")
 ```
 
 **Diagram sources**
-- [login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [api.ts:19-47](file://frontend/lib/api.ts#L19-L47)
-- [store.ts:204-209](file://frontend/lib/store.ts#L204-L209)
+- [login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [api.ts:19-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L47)
+- [store.ts:204-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L204-L209)
 
 **Section sources**
-- [login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [api.ts:19-47](file://frontend/lib/api.ts#L19-L47)
-- [store.ts:204-209](file://frontend/lib/store.ts#L204-L209)
+- [login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [api.ts:19-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L47)
+- [store.ts:204-209](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L204-L209)
 
 ### SEO Optimization and Meta Tags
 - Root layout exports Metadata and Viewport for title, description, keywords, Open Graph, and theme color behavior.
@@ -306,10 +306,10 @@ M --> MAN["Manifest + Apple Web App"]
 ```
 
 **Diagram sources**
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
 
 **Section sources**
-- [layout.tsx:10-36](file://frontend/app/layout.tsx#L10-L36)
+- [layout.tsx:10-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L10-L36)
 
 ### Navigation Accessibility
 - Skip link targets main content for keyboard/screen reader users.
@@ -325,14 +325,14 @@ MSB --> CL["Close button aria-label='Close Sidebar'"]
 ```
 
 **Diagram sources**
-- [PageShell.tsx:18-19](file://frontend/components/PageShell.tsx#L18-L19)
-- [SystemSidebar.tsx:81-83](file://frontend/components/dashboard/SystemSidebar.tsx#L81-L83)
-- [SystemSidebar.tsx:101-107](file://frontend/components/dashboard/SystemSidebar.tsx#L101-L107)
+- [PageShell.tsx:18-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L18-L19)
+- [SystemSidebar.tsx:81-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L81-L83)
+- [SystemSidebar.tsx:101-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L101-L107)
 
 **Section sources**
-- [PageShell.tsx:18-19](file://frontend/components/PageShell.tsx#L18-L19)
-- [SystemSidebar.tsx:81-83](file://frontend/components/dashboard/SystemSidebar.tsx#L81-L83)
-- [SystemSidebar.tsx:101-107](file://frontend/components/dashboard/SystemSidebar.tsx#L101-L107)
+- [PageShell.tsx:18-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L18-L19)
+- [SystemSidebar.tsx:81-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L81-L83)
+- [SystemSidebar.tsx:101-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L101-L107)
 
 ### Error Handling for Navigation Failures
 - Login form validates presence of credentials and displays errors.
@@ -349,12 +349,12 @@ C --> |Error| ER["Parse error + show message"]
 ```
 
 **Diagram sources**
-- [login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [api.ts:19-47](file://frontend/lib/api.ts#L19-L47)
+- [login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [api.ts:19-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L47)
 
 **Section sources**
-- [login/page.tsx:50-82](file://frontend/app/login/page.tsx#L50-L82)
-- [api.ts:19-47](file://frontend/lib/api.ts#L19-L47)
+- [login/page.tsx:50-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L50-L82)
+- [api.ts:19-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L47)
 
 ## Dependency Analysis
 - Navigation components depend on Next.js Link and usePathname for declarative navigation and active state.
@@ -378,20 +378,20 @@ API["api.ts"] --> ST
 ```
 
 **Diagram sources**
-- [layout.tsx:38-85](file://frontend/app/layout.tsx#L38-L85)
-- [PageShell.tsx:13-35](file://frontend/components/PageShell.tsx#L13-L35)
-- [AppSidebar.tsx:42-169](file://frontend/components/AppSidebar.tsx#L42-L169)
-- [SystemSidebar.tsx:62-205](file://frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
-- [BottomNav.tsx:24-102](file://frontend/components/dashboard/BottomNav.tsx#L24-L102)
-- [page.tsx:29-228](file://frontend/app/page.tsx#L29-L228)
-- [login/page.tsx:21-345](file://frontend/app/login/page.tsx#L21-L345)
-- [emergency-card/[userId]/page.tsx](file://frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
-- [api.ts:19-47](file://frontend/lib/api.ts#L19-L47)
+- [layout.tsx:38-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L85)
+- [PageShell.tsx:13-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PageShell.tsx#L13-L35)
+- [AppSidebar.tsx:42-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L42-L169)
+- [SystemSidebar.tsx:62-205](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/SystemSidebar.tsx#L62-L205)
+- [BottomNav.tsx:24-102](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/BottomNav.tsx#L24-L102)
+- [page.tsx:29-228](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L29-L228)
+- [login/page.tsx:21-345](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L21-L345)
+- [emergency-card/[userId]/page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/emergency-card/[userId]/page.tsx#L10-L173)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
+- [api.ts:19-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L47)
 
 **Section sources**
-- [store.ts:63-127](file://frontend/lib/store.ts#L63-L127)
-- [api.ts:19-47](file://frontend/lib/api.ts#L19-L47)
+- [store.ts:63-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L127)
+- [api.ts:19-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L19-L47)
 
 ## Performance Considerations
 - WebAssembly and workers: next.config.js enables asyncWebAssembly and worker-loader to support offline AI features.
@@ -405,9 +405,9 @@ Recommendations:
 - Monitor hydration and consider progressive enhancement for critical UI.
 
 **Section sources**
-- [next.config.js:19-40](file://frontend/next.config.js#L19-L40)
-- [layout.tsx:45-71](file://frontend/app/layout.tsx#L45-L71)
-- [page.tsx:18-27](file://frontend/app/page.tsx#L18-L27)
+- [next.config.js:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L19-L40)
+- [layout.tsx:45-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L45-L71)
+- [page.tsx:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/page.tsx#L18-L27)
 
 ## Troubleshooting Guide
 Common issues and resolutions:
@@ -423,10 +423,10 @@ Common issues and resolutions:
   - Confirm asyncWebAssembly and worker-loader are enabled in webpack config.
 
 **Section sources**
-- [AppSidebar.tsx:82-88](file://frontend/components/AppSidebar.tsx#L82-L88)
-- [login/page.tsx:34-37](file://frontend/app/login/page.tsx#L34-L37)
-- [layout.tsx:45-71](file://frontend/app/layout.tsx#L45-L71)
-- [next.config.js:23-36](file://frontend/next.config.js#L23-L36)
+- [AppSidebar.tsx:82-88](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/AppSidebar.tsx#L82-L88)
+- [login/page.tsx:34-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/login/page.tsx#L34-L37)
+- [layout.tsx:45-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L45-L71)
+- [next.config.js:23-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/next.config.js#L23-L36)
 
 ## Conclusion
 The application leverages Next.js App Router to deliver a responsive, accessible, and performant navigation experience. Navigation components integrate with the Zustand store for UI state and with authentication state for guarded navigation. Dynamic routes enable parameterized pages, while SEO metadata and accessibility features improve usability. Performance enhancements through WebAssembly and preloading support offline-first capabilities.
