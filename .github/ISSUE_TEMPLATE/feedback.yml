@@ -1,0 +1,36 @@
+name: Docs Feedback
+description: Share feedback about the SafeVixAI documentation
+title: "Docs feedback: "
+labels: ["feedback", "docs"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve our docs! Your feedback is valuable.
+
+  - type: input
+    id: page
+    attributes:
+      label: Documentation Page
+      description: Which page were you viewing?
+      placeholder: /wiki/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      description: Was this page helpful?
+      options:
+        - Helpful
+        - Needs Improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: What could be improved?
+      description: Tell us what was unclear, missing, or incorrect.
+      placeholder: The section about X was confusing because...
