@@ -403,6 +403,7 @@ Generate a comprehensive wiki page in Markdown for the following module.
 - Platform uses: 9 LLM providers (Groq, Gemini, Cerebras, etc.), Supabase Auth, Next.js frontend, FastAPI backend
 - Embeddings: LocalHashEmbeddingFunction (zero-dependency, SHA-256 based)
 - Auth: Supabase Auth with JWT (no demo credentials)
+- Glossary reference: See `docs/glossary.md` for standard terminology. Use consistent terms (e.g., "Chatbot Service" not "chatbot server", "Backend" not "API server", "RAG" not "vector search").
 
 ## Source Code
 ```{info['ext'].lstrip('.')}
@@ -421,6 +422,18 @@ Generate a complete wiki page with these sections:
 8. **Error Handling** — How errors are managed
 9. **Related Modules** — Links to related files
 
+The FIRST line MUST be a YAML frontmatter block (between `---` delimiters) with:
+```yaml
+---
+title: Human-readable Page Title
+description: One-sentence summary for SEO (max 160 chars)
+tags: [keyword1, keyword2, section-name]
+owner: backend-team  # One of: backend-team, frontend-team, chatbot-team, infra-team, docs-team
+review-by: {datetime.now().strftime('%Y-%m-%d')}
+generated: {datetime.now().strftime('%Y-%m-%d')}
+---
+```
+
 Rules:
 - Be specific to THIS code, not generic
 - Use actual function/class names from the source
@@ -431,6 +444,10 @@ Rules:
 - Output ONLY the markdown, no preamble
 - Include at least one mermaid diagram (```mermaid) showing the module's data flow or class relationships
 - Ensure mermaid syntax is valid: quote labels with special chars, no HTML tags in labels
+- Include a `review-by:` line in the frontmatter dated 90 days from today
+- Use only known environment variables from the project's `.env.example` files
+- Reference only actual API routes (prefixed with /api/v1/)
+- If this module is deprecated, set `deprecated: true` in frontmatter and `deprecated_by: path/to/replacement.md`
 """
 
 
@@ -477,7 +494,26 @@ def generate_ast_stub(info):
         logger.debug("Failed to read source file for AST stub generation", exc_info=True)
 
     desc = docstring.split("\n")[0] if docstring else f"{title} module for the {info['section']} subsystem."
-    sections = [f"# {title}\n", f"> Source: `{source}` | Generated: {now}\n", f"## Overview\n\n{desc}\n"]
+    known_teams = {"backend", "frontend", "chatbot", "infra", "data", "docs"}
+    section_lower = info["section"].lower()
+    team = "docs-team"
+    for t in known_teams:
+        if t in section_lower:
+            team = f"{t}-team"
+            break
+    sections = [
+        "---\n"
+        f"title: {title}\n"
+        f"description: {desc}\n"
+        f"tags: [{info['section']}, {name}]\n"
+        f"owner: {team}\n"
+        f"generated: {now}\n"
+        f"review-by: {datetime.now().strftime('%Y-%m-%d')}\n"
+        "---\n",
+        f"# {title}\n",
+        f"> Source: `{source}` | Generated: {now}\n",
+        f"## Overview\n\n{desc}\n",
+    ]
 
     if classes:
         sections.append("## Classes\n")
@@ -505,28 +541,79 @@ def generate_ast_stub(info):
     return "\n".join(sections)
 
 
+MERMAID_TYPES = {"graph", "flowchart", "sequenceDiagram", "classDiagram",
+                 "stateDiagram", "erDiagram", "gantt", "pie", "gitgraph",
+                 "journey", "mindmap", "timeline", "quadrantChart",
+                 "sankey-beta", "xychart-beta", "block-beta"}
+
+FLOW_DIRECTIONS = {"TB", "BT", "LR", "RL", "TD"}
+
+KNOWN_ENV_VARS = set()
+_env_files = [ROOT / "backend" / ".env.example",
+              ROOT / "chatbot_service" / ".env.example",
+              ROOT / "frontend" / ".env.example"]
+for _ef in _env_files:
+    if _ef.exists():
+        for _line in _ef.read_text(encoding="utf-8").splitlines():
+            _line = _line.strip()
+            if _line and not _line.startswith("#"):
+                _m = re.match(r'^([A-Z_][A-Z0-9_]*)', _line)
+                if _m:
+                    KNOWN_ENV_VARS.add(_m.group(1))
+
+KNOWN_API_ROUTES = set()
+_route_dir = ROOT / "backend" / "api" / "v1"
+if _route_dir.exists():
+    for _rf in sorted(_route_dir.rglob("*.py")):
+        _txt = _rf.read_text(encoding="utf-8")
+        _prefix = ""
+        for _pm in re.finditer(r'prefix\s*=\s*["\']([^"\']+)["\']', _txt):
+            _prefix = _pm.group(1)
+        for _rm in re.finditer(r'@router\.(?:get|post|put|delete|patch|websocket)\(\s*["\']([^"\')]*)["\']', _txt):
+            _route = _rm.group(1)
+            KNOWN_API_ROUTES.add(f"{_prefix}{_route}")
+
+
 def review_generated_doc(content, info, source_code, llm):
     """Self-review: validate generated doc matches source code.
 
     Checks:
     1. Function/class names in doc actually exist in source
-    2. Mermaid diagrams have valid syntax (no unclosed blocks, no HTML tags)
+    2. Mermaid diagrams have valid syntax (balanced parens, valid types, flow directions, subgraphs)
     3. No hallucinated API endpoints or dependencies
+    4. No hallucinated environment variables
+    5. Source lines cited actually exist in the source file
     Returns (is_valid, issues) tuple.
     """
     issues = []
 
     # ── Check mermaid syntax ────────────────────────────────────────────
-    import re as _re
-    mermaid_blocks = _re.findall(r'```mermaid\s*\n(.*?)```', content, _re.DOTALL)
+    mermaid_blocks = re.findall(r'```mermaid\s*\n(.*?)```', content, re.DOTALL)
     for i, block in enumerate(mermaid_blocks):
-        # Common mermaid errors
+        first_line = block.strip().split("\n")[0].strip()
+        # Check diagram type
+        mtype = first_line.split()[0] if first_line else ""
+        if mtype not in MERMAID_TYPES:
+            issues.append(f"Mermaid block {i+1}: unknown diagram type '{mtype}'")
+        # Check flow direction for graph/flowchart
+        if mtype in ("graph", "flowchart"):
+            words = first_line.split()
+            if len(words) > 1:
+                direction = words[1]
+                if direction not in FLOW_DIRECTIONS:
+                    issues.append(f"Mermaid block {i+1}: invalid flow direction '{direction}'")
+        # Basic syntax checks
         if block.count('(') != block.count(')'):
             issues.append(f"Mermaid block {i+1}: unbalanced parentheses")
         if block.count('[') != block.count(']'):
             issues.append(f"Mermaid block {i+1}: unbalanced brackets")
         if '<br>' in block and '<br/>' not in block:
             issues.append(f"Mermaid block {i+1}: use <br/> not <br>")
+        # Subgraph must have matching end
+        subgraph_count = block.count("subgraph ")
+        end_count = block.count("end")
+        if subgraph_count > 0 and end_count < subgraph_count + 1:
+            issues.append(f"Mermaid block {i+1}: {subgraph_count} subgraph(s) but only {end_count} end(s)")
 
     # ── Check function/class name accuracy ──────────────────────────────
     if source_code:
@@ -542,8 +629,8 @@ def review_generated_doc(content, info, source_code, llm):
                         real_names.add(node.name)
 
                 # Find backtick-quoted names in doc that look like function/class refs
-                doc_refs = set(_re.findall(r'`(\w+)\(`', content))
-                doc_refs |= set(_re.findall(r'`class\s+(\w+)`', content))
+                doc_refs = set(re.findall(r'`(\w+)\(`', content))
+                doc_refs |= set(re.findall(r'`class\s+(\w+)`', content))
                 doc_refs -= {"self", "cls", "str", "int", "dict", "list", "bool", "None",
                               "True", "False", "print", "len", "range", "type", "open",
                               "Exception", "ValueError", "TypeError", "KeyError"}
@@ -554,11 +641,59 @@ def review_generated_doc(content, info, source_code, llm):
             except SyntaxError:
                 logger.debug("SyntaxError parsing source for review name check", exc_info=True)
 
+    # ── Check for hallucinated API routes ───────────────────────────────
+    if KNOWN_API_ROUTES:
+        doc_routes = set(re.findall(r'/api/v1/[a-z0-9_/-]+', content))
+        for route in doc_routes:
+            if route.count("/") >= 3:  # At least /api/v1/X
+                if route not in KNOWN_API_ROUTES and route.rstrip("/") not in KNOWN_API_ROUTES:
+                    issues.append(f"Possible hallucinated API route: {route}")
+
+    # ── Check for hallucinated env vars ─────────────────────────────────
+    if KNOWN_ENV_VARS:
+        doc_envs = set(re.findall(r'`?([A-Z][A-Z0-9_]{3,})`?', content))
+        doc_envs -= {"True", "False", "None", "SHA", "JWT", "API", "JSON", "HTML",
+                      "CSS", "URL", "HTTP", "HTTPS", "DNS", "SQL", "YAML", "UUID",
+                      "ID", "DB", "UI", "UX", "AI", "OS", "PDF", "PNG", "SVG",
+                      "TLS", "SSL", "CORS", "REST", "CLI", "YAML"}
+        unknown = doc_envs - KNOWN_ENV_VARS
+        if unknown and len(unknown) > 3:
+            issues.append(f"Possible hallucinated env vars: {', '.join(sorted(unknown)[:5])}")
+
+    # ── Check source line references exist ──────────────────────────────
+    for sm in re.finditer(r'#L(\d+)', content):
+        ref_line = int(sm.group(1))
+        if source_code:
+            actual_lines = source_code.split("\n")
+            if ref_line > len(actual_lines):
+                issues.append(f"Source line reference #{ref_line} exceeds file length ({len(actual_lines)} lines)")
+
     # ── Minimal quality check ───────────────────────────────────────────
     if content.count("#") < 2:
         issues.append("Missing headings — too few # markers")
     if "TODO" in content or "PLACEHOLDER" in content:
         issues.append("Contains TODO/PLACEHOLDER markers")
+
+    # ── Frontmatter checks ──────────────────────────────────────────────
+    fm = re.match(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
+    if fm:
+        fm_text = fm.group(1)
+        if 'description:' not in fm_text:
+            issues.append("Missing 'description:' in frontmatter")
+        if 'tags:' not in fm_text:
+            issues.append("Missing 'tags:' in frontmatter")
+        if 'owner:' not in fm_text:
+            issues.append("Missing 'owner:' in frontmatter")
+        if 'review-by:' not in fm_text:
+            issues.append("Missing 'review-by:' in frontmatter")
+        if 'generated:' not in fm_text:
+            issues.append("Missing 'generated:' in frontmatter")
+        # Check deprecated_by points to existing file
+        dm = re.search(r'deprecated_by:\s*(.+?)\s*$', fm_text, re.MULTILINE)
+        if dm:
+            target = dm.group(1).strip().strip('"\'')
+            if not (WIKI_CONTENT / target).exists() and not (DOCS_DIR / target).exists():
+                issues.append(f"deprecated_by '{target}' does not resolve to an existing file")
 
     return len(issues) == 0, issues
 
@@ -653,8 +788,29 @@ def run_check():
     docs_md = list(DOCS_DIR.glob("*.md"))
     print(f"--- docs/ folder: {len(docs_md)} files ---")
 
+    # ── Freshness check: files older than 90 days ───────────────────────
+    STALE_DAYS = 90
+    fresh_total = 0
+    stale_total = 0
+    now = datetime.now()
+    for f in sorted(WIKI_CONTENT.rglob("*.md")):
+        text = f.read_text(encoding="utf-8")[:500]
+        dm = re.search(r'(?:Generated|generated):\s*(\d{4}-\d{2}-\d{2})', text)
+        if dm:
+            gen_date = datetime.strptime(dm.group(1), "%Y-%m-%d")
+            age_days = (now - gen_date).days
+            if age_days >= STALE_DAYS:
+                stale_total += 1
+            else:
+                fresh_total += 1
+        else:
+            fresh_total += 1  # No date = assume fresh
+    print(f"--- Freshness: {fresh_total} fresh, {stale_total} stale (>={STALE_DAYS} days) ---")
+    if stale_total > 0:
+        print(f"  Stale pages need re-generation (run 'python wiki_manager.py update')")
+
     print(f"{'=' * 60}\n")
-    return len(uncovered), len(stale)
+    return len(uncovered), len(stale) + stale_total
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -954,10 +1110,16 @@ def run_full():
 # ══════════════════════════════════════════════════════════════════════════════
 
 def main():
-    mode = sys.argv[1] if len(sys.argv) > 1 else "check"
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    flags = [a for a in sys.argv[1:] if a.startswith("--")]
+    mode = args[0] if args else "check"
+    strict = "--strict" in flags
 
     if mode == "check":
         uncov, stale = run_check()
+        if strict and uncov > 0:
+            print(f"\n  STRICT MODE: {uncov} modules undocumented \u2014 failing")
+            sys.exit(1)
         sys.exit(1 if stale > 0 else 0)
     elif mode == "fix":
         run_fix()
