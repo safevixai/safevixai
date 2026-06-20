@@ -1,0 +1,19 @@
+name: Artifact Cleanup
+
+on:
+  schedule:
+    - cron: '0 6 * * 0'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean up old workflow artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: 7 days
+          skip-tags: true
