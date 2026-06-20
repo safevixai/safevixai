@@ -8,40 +8,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- 25/25 features completed (Emergency Locator, Family Live Tracking, Challan Calculator, RoadWatch Reporter, AI Chatbot RAG, 9-provider LLM Fallback Chain, Offline SOS Queue, WebLLM Offline AI, What3Words, Voice/ASR, Indian Language Detection, PWA Share Target, QR Emergency Card, MCP Server, Waze CIFS Feed, Circuit Breakers, Streaming Chat, Conversation Summarization, Multi-Turn Intent Refinement, Safety Checker, GSAP Animations, Speech Language Mapping, Assistant Voice Output, Crash Detection with Accelerometer + CrashCountdown UI, Authentication with JWT + guest auth + service-to-service auth)
-- 2,829 unit tests passing (Backend 1,365 + Chatbot 892 + Frontend 572)
-- 45/55 E2E tests passing with E2E hardening
-- Speech/ASR integration with IndicSeamlessService (Indian language ASR/TTS)
-- Crash detection module with accelerometer-based detection
-- Family live tracking via WebSocket at `/api/v1/tracking/{group_id}`
-- Auth system: JWT Bearer tokens, guest auth (anonymous UUID), service-to-service `X-Internal-Api-Key` header
-- MCP server endpoint at `backend/api/v1/mcp_server.py` (24KB, external agent integration)
-- Waze CIFS feed for community traffic/hazard data
-- Circuit breakers with email alerts when provider failure threshold exceeded
-- ALLOWED_HOSTS middleware for Host header validation
-- Progressive guest auth (`frontend/lib/guest-auth.ts`)
-- SWR data fetching layer with 7 cached hooks
-- dvh CSS variables (`--map-h`, `--chat-h`, `--card-min-h`) for iOS Safari viewport
-- CSP tightening (no `'unsafe-eval'` in production)
-- `__E2E_SKIP_AUTH__` localStorage flag for AuthGuard bypass in E2E tests
-- `copy-public.js` script for automated asset copying in standalone build
-- 32 new tests across 5 suites (SOS, auth security, guest auth, SWR, crash detection)
+- Enterprise open source hardening: VERSION file, pyproject.toml for both Python services, git tag v1.0.0
+- Community health: GOVERNANCE.md, SUPPORT.md, issue templates (bug, feature, config), FUNDING.yml
+- Tooling configs: ruff.toml, .prettierrc, .editorconfig (root), .gitleaks.toml
+- SBOM generation pipeline (CycloneDX for all 3 services + Docker Syft)
+- Release automation workflow (tag-triggered: test, build, SBOM, GitHub Release)
+- Auto version tagging on PR merge (semantic bump based on labels)
+- security.txt at `frontend/public/.well-known/security.txt`
+- MAINTAINERS.md and ADOPTERS.md
+- Version sync script (`scripts/sync-version.mjs`) to keep VERSION, package.json, pyproject.toml in sync
 
-### Changed
-- ContextAssembler now runs independent tools in parallel (emergency + weather + infra)
-- `copy-public.js` now always removes stale dirs and re-copies assets (fixes skip-if-exists bug)
-- E2E tests use `<main>` element locator instead of `#main`, `{ exact: true }` for text matching, `[aria-busy="true"]` hydration waits
-- SystemStatusBar auto-dismisses when `__E2E_SKIP_AUTH__` is set
-- Frontend build: `npm run build` = `next build && node scripts/copy-public.js`
-- Stable Mock Token rejection enforced in security middleware
+### OpenSSF Best Practices Hardening (2026-06-17)
 
-### Fixed
-- GSAP opacity timeout in `waitForMount` — removed `window.getComputedStyle(el).opacity` check, added try-catch in `usePageEntry.ts` to prevent GSAP errors from blocking hydration
-- CI nested dir `cp` bug — removed manual `cp -r` commands from `e2e.yml` and `frontend.yml` that created nested directories (e.g., `public/public/theme-init.js`)
-- Service Worker SOS flush now includes Authorization headers
-- Frontend API client now retries on 5xx errors with exponential backoff
-- In-memory session store now uses LRU eviction (500 session cap)
-- CI no longer skips when tests directory exists
+#### Documentation
+- RELEASE.md — Full release process document (versioning, branching, rollback, hotfix flow)
+- FUNDING.yml — GitHub Sponsors configuration
+- ADR-002-llm-fallback-chain.md — Standalone architecture decision record
+- ADR-003-postgis-over-mongo.md — Standalone architecture decision record
+- .reuse/dep5 — REUSE compliance license mapping for all file types
+- Root pyproject.toml — Centralized project metadata and tooling config
+
+#### Workflows
+- codeql.yml — CodeQL SAST analysis (Python + JavaScript/TypeScript) on every push/PR
+- dependency-review.yml — Dependency review on all PRs with license + vulnerability checks
+- stale.yml — Automated stale issue/PR management (60d stale, 14d close)
+- cleanup.yml — Weekly artifact cleanup (removes artifacts older than 7 days)
+- scorecard.yml — OpenSSF Scorecard analysis (weekly + on push to main)
+
+#### Bug Fixes
+- Fixed release.yml calling backend.yml, frontend.yml, and security.yml as reusable workflows without `on: workflow_call` triggers — added `workflow_call:` to all three called workflows
+
+#### Supply Chain Security
+- SBOM generation job added to security.yml (CycloneDX JSON + SPDX JSON via anchore/sbom-action)
+- Docker image signing with cosign (keyless signing via GitHub OIDC) added to release.yml
+- Signatures verified in CI as part of the release pipeline
+
+#### Governance & Security
+- GOVERNANCE.md updated with Security Team role, 2FA requirement for maintainers, Security Advisory process
+- MAINTAINERS.md updated with 2FA requirement notice
+- SECURITY.md expanded with detailed response SLA, disclosure policy, dependency security, supply chain security, and vulnerability management process
+
+#### Workflow Security
+- Added explicit least-privilege permissions to 7 workflows that previously had none set:
+  bundle-analysis.yml, e2e.yml, lighthouse.yml, load-test.yml, secrets-rotation.yml, security.yml, zap-scan.yml
+
+#### Testing & Quality
+- Fuzz tests integrated into backend CI pipeline (tests/fuzz/ runs as non-blocking step)
+- New fuzz test suite: tests/fuzz/test_fuzz_api.py (9 hypothesis-based test cases)
+- Backend coverage threshold raised from 60% to 80% (--cov-fail-under=80)
+- Chatbot coverage threshold raised from 60% to 80% (--cov-fail-under=80)
 
 ## [1.0.0] - 2026-05-18
 

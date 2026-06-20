@@ -1,42 +1,90 @@
-.PHONY: help setup test lint build docker docker-up clean deploy
+.PHONY: help setup test lint build docker docker-up docker-down clean deploy \
+        e2e terraform-fmt terraform-validate terraform-plan terraform-apply \
+        k8s-apply k8s-delete k8s-status k8s-logs k6-smoke k6-load k6-sustained k6-spike \
+        ecr-login ecr-build ecr-push security-scan
+
+SHELL := /bin/bash
+TF_DIR := terraform
+K8S_DIR := k8s
+K6_DIR := load-testing/k6
 
 help:
-	@echo "SafeVixAI Development Commands"
-	@echo "  make setup      - Install all dependencies"
-	@echo "  make test       - Run all tests"
-	@echo "  make lint       - Lint all code"
-	@echo "  make build      - Build all services"
-	@echo "  make docker     - Build Docker images"
-	@echo "  make docker-up  - Start Docker Compose"
-	@echo "  make clean      - Clean artifacts"
-	@echo "  make deploy     - Deploy to production"
+	@echo "╔══════════════════════════════════════════════════════╗"
+	@echo "║              SafeVixAI Development CLI              ║"
+	@echo "╠══════════════════════════════════════════════════════╣"
+	@echo "║  Development                                         ║"
+	@echo "║    make setup          Install all dependencies      ║"
+	@echo "║    make test           Run all tests                 ║"
+	@echo "║    make lint           Lint all code                 ║"
+	@echo "║    make build          Build frontend                ║"
+	@echo "║                                                     ║"
+	@echo "║  Docker                                              ║"
+	@echo "║    make docker         Build Docker images           ║"
+	@echo "║    make docker-up      Start Docker Compose          ║"
+	@echo "║    make docker-down    Stop Docker Compose           ║"
+	@echo "║    make ecr-login      Login to AWS ECR              ║"
+	@echo "║    make ecr-push       Build + push to ECR           ║"
+	@echo "║                                                     ║"
+	@echo "║  Infrastructure (Terraform)                          ║"
+	@echo "║    make tf-fmt        Format Terraform               ║"
+	@echo "║    make tf-validate   Validate Terraform             ║"
+	@echo "║    make tf-plan       Terraform plan                 ║"
+	@echo "║    make tf-apply      Terraform apply                ║"
+	@echo "║                                                     ║"
+	@echo "║  Kubernetes                                          ║"
+	@echo "║    make k8s-apply     Deploy to K8s                  ║"
+	@echo "║    make k8s-status    K8s pod status                 ║"
+	@echo "║    make k8s-logs     Tail service logs               ║"
+	@echo "║    make k8s-delete    Tear down K8s                  ║"
+	@echo "║                                                     ║"
+	@echo "║  Load Testing (k6)                                   ║"
+	@echo "║    make k6-smoke      Quick smoke test               ║"
+	@echo "║    make k6-load       Multi-scenario load test       ║"
+	@echo "║    make k6-sustained  15-min sustained load          ║"
+	@echo "║    make k6-spike      Emergency endpoint spike       ║"
+	@echo "║                                                     ║"
+	@echo "║  Quality                                             ║"
+	@echo "║    make e2e           Run Playwright E2E tests       ║"
+	@echo "║    make security-scan Run Gitleaks + Trivy           ║"
+	@echo "║    make clean         Clean artifacts                ║"
+	@echo "║                                                     ║"
+	@echo "║  Deployment                                          ║"
+	@echo "║    make deploy        Deploy to production           ║"
+	@echo "╚══════════════════════════════════════════════════════╝"
+
+# === Development ===
 
 setup:
-	cd backend && pip install -r requirements.txt
-	cd chatbot_service && pip install -r requirements.txt
-	cd frontend && npm install
+	cd backend && python -m pip install -r requirements.txt
+	cd chatbot_service && python -m pip install -r requirements.txt
+	cd frontend && npm ci
 
 test:
-	cd backend && pytest tests/ -q
-	cd chatbot_service && pytest tests/ -q
-	cd frontend && npm test
+	cd backend && PYTHONPATH=. pytest tests/ -q --tb=short
+	cd chatbot_service && PYTHONPATH=. pytest tests/ -q --tb=short
+	cd frontend && npm test -- --watchAll=false --no-coverage
 
 test-backend:
-	cd backend && pytest tests/ -v --tb=short
+	cd backend && PYTHONPATH=. pytest tests/ -v --tb=short -q
 
 test-chatbot:
-	cd chatbot_service && pytest tests/ -v --tb=short
+	cd chatbot_service && PYTHONPATH=. pytest tests/ -v --tb=short -q
 
 test-frontend:
-	cd frontend && npm test
+	cd frontend && npm test -- --watchAll=false --no-coverage
 
 lint:
 	cd backend && ruff check .
 	cd chatbot_service && ruff check .
 	cd frontend && npm run lint
 
+typecheck:
+	cd frontend && npx tsc --noEmit
+
 build:
 	cd frontend && npm run build
+
+# === Docker ===
 
 docker:
 	docker compose build
@@ -47,15 +95,106 @@ docker-up:
 docker-down:
 	docker compose down
 
-clean:
-	cd backend && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-	cd chatbot_service && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-	cd frontend && rm -rf .next coverage test-results
+docker-prod:
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
-deploy:
-	@echo "Deploying to production..."
-	# Trigger Render deploy hooks
-	@echo "Deployment complete"
+ecr-login:
+	aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $(AWS_ACCOUNT_ID).dkr.ecr.ap-south-1.amazonaws.com
+
+ecr-build-push-backend:
+	docker build -t safevixai/backend:latest backend/
+	docker tag safevixai/backend:latest $(AWS_ACCOUNT_ID).dkr.ecr.ap-south-1.amazonaws.com/safevixai/backend:latest
+	docker push $(AWS_ACCOUNT_ID).dkr.ecr.ap-south-1.amazonaws.com/safevixai/backend:latest
+
+ecr-build-push-chatbot:
+	docker build -t safevixai/chatbot:latest chatbot_service/
+	docker tag safevixai/chatbot:latest $(AWS_ACCOUNT_ID).dkr.ecr.ap-south-1.amazonaws.com/safevixai/chatbot:latest
+	docker push $(AWS_ACCOUNT_ID).dkr.ecr.ap-south-1.amazonaws.com/safevixai/chatbot:latest
+
+ecr-build-push-frontend:
+	docker build -f frontend/Dockerfile.frontend -t safevixai/frontend:latest frontend/
+	docker tag safevixai/frontend:latest $(AWS_ACCOUNT_ID).dkr.ecr.ap-south-1.amazonaws.com/safevixai/frontend:latest
+	docker push $(AWS_ACCOUNT_ID).dkr.ecr.ap-south-1.amazonaws.com/safevixai/frontend:latest
+
+ecr-build-push-all: ecr-build-push-backend ecr-build-push-chatbot ecr-build-push-frontend
+
+# === Terraform ===
+
+tf-fmt:
+	cd $(TF_DIR) && terraform fmt -recursive
+
+tf-validate:
+	cd $(TF_DIR) && terraform init -backend=false && terraform validate
+
+tf-plan:
+	cd $(TF_DIR) && terraform plan -no-color -out=tfplan
+
+tf-apply:
+	cd $(TF_DIR) && terraform apply -no-color tfplan
+
+tf-destroy:
+	cd $(TF_DIR) && terraform destroy
+
+# === Kubernetes ===
+
+k8s-apply:
+	kubectl apply -k $(K8S_DIR)
+
+k8s-delete:
+	kubectl delete -k $(K8S_DIR)
+
+k8s-status:
+	kubectl get pods,svc,ingress,hpa,pdb,networkpolicy -n safevixai
+
+k8s-logs:
+	kubectl logs -n safevixai -l app.kubernetes.io/part-of=safevixai --tail=100 -f
+
+k8s-rollout-backend:
+	kubectl rollout restart deployment/safevixai-backend -n safevixai
+	kubectl rollout status deployment/safevixai-backend -n safevixai --timeout=5m
+
+k8s-rollout-chatbot:
+	kubectl rollout restart deployment/safevixai-chatbot -n safevixai
+	kubectl rollout status deployment/safevixai-chatbot -n safevixai --timeout=10m
+
+k8s-rollout-frontend:
+	kubectl rollout restart deployment/safevixai-frontend -n safevixai
+	kubectl rollout status deployment/safevixai-frontend -n safevixai --timeout=5m
+
+# === Load Testing ===
+
+k6-smoke:
+	k6 run $(K6_DIR)/smoke.test.js
+
+k6-load:
+	k6 run $(K6_DIR)/main.test.js
+
+k6-sustained:
+	k6 run $(K6_DIR)/sustained-load.test.js
+
+k6-spike:
+	k6 run $(K6_DIR)/emergency-spike.test.js
+
+# === Quality ===
 
 e2e:
 	cd frontend && npx playwright test e2e/ --grep-invert="Visual Regression|visual"
+
+security-scan:
+	gitleaks detect --source . --verbose
+	trivy fs --severity HIGH,CRITICAL --no-progress .
+
+# === Clean ===
+
+clean:
+	cd backend && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+	cd chatbot_service && find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+	cd frontend && rm -rf .next coverage test-results playwright-report
+
+# === Deploy ===
+
+deploy:
+	@echo "=== Deploying SafeVixAI ==="
+	cd $(TF_DIR) && terraform apply -auto-approve
+	kubectl apply -k $(K8S_DIR)
+	@echo "=== Deployment complete ==="

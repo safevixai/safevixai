@@ -230,12 +230,21 @@ graphify-out/
 **/.securecoder-ignore
 
 # ============================================================
-# DOCS (auto-generated audit reports, runbooks, verification)
+# DOCS (auto-generated audit reports, verification)
 # ============================================================
 docs/audit/
-docs/runbooks/
 docs/test/
 docs/verification_report.json
+
+# ============================================================
+# TERRAFORM (state files should NEVER be committed)
+# ============================================================
+.terraform/
+terraform/.terraform/
+terraform/tfplan
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfplan
 
 # ============================================================
 # TEST OUTPUTS & CACHE
@@ -257,3 +266,15 @@ run_error.json
 
 # --- Local Scraping & Raw ETL Datasets ---
 backend/data/civic_intel/
+
+# ============================================================
+# ROTATION LOGS (secrets rotation output, contains metadata)
+# ============================================================
+rotation-log-*.json
+
+# ============================================================
+# LOAD TESTING CACHE (k6 output artifacts)
+# ============================================================
+load-testing/**/results.json
+load-testing/**/*.tar
+*.k6.tar

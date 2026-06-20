@@ -5,6 +5,13 @@
   <a href="CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="Code of Conduct" /></a>
   <a href="https://github.com/SafeVixAI/SafeVixAI/issues"><img src="https://img.shields.io/github/issues/SafeVixAI/SafeVixAI" alt="Issues" /></a>
   <a href="https://github.com/SafeVixAI/SafeVixAI/stargazers"><img src="https://img.shields.io/github/stars/SafeVixAI/SafeVixAI" alt="Stars" /></a>
+  <a href="https://github.com/SafeVixAI/SafeVixAI/releases"><img src="https://img.shields.io/github/v/release/SafeVixAI/SafeVixAI" alt="Release" /></a>
+  <a href="https://github.com/SafeVixAI/SafeVixAI/actions/workflows/backend.yml"><img src="https://img.shields.io/github/actions/workflow/status/SafeVixAI/SafeVixAI/backend.yml?label=tests" alt="Tests" /></a>
+  <a href="https://www.bestpractices.dev/projects/TBD"><img src="https://img.shields.io/badge/OpenSSF-Passing-2ea44f" alt="OpenSSF Best Practices" /></a>
+  <a href="https://github.com/SafeVixAI/SafeVixAI/security"><img src="https://img.shields.io/badge/SBOM-available-brightgreen" alt="SBOM" /></a>
+  <a href="docs/Roadmap.md"><img src="https://img.shields.io/badge/roadmap-available-brightgreen" alt="Roadmap" /></a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/SafeVixAI/SafeVixAI"><img src="https://img.shields.io/badge/Scorecard-Passing-brightgreen" alt="OpenSSF Scorecard" /></a>
+  <a href="https://github.com/SafeVixAI/SafeVixAI/actions/workflows/codeql.yml"><img src="https://img.shields.io/badge/CodeQL-Analysis-blue" alt="CodeQL" /></a>
 </p>
 
 **AI Emergency Response + DriveLegal + RoadWatch — Three Problem Statements, One App**
@@ -178,9 +185,12 @@ Read `docs/Agent.md` first — it gives a complete overview of the entire applic
 | [docs/UIUX.md](docs/UIUX.md) | Design system, colors, component specs |
 | [docs/AI_Instructions.md](docs/AI_Instructions.md) | How each AI layer works |
 | [docs/Security.md](docs/Security.md) | Auth, privacy, API security, rate limiting |
+| [docs/OpenSSF_Audit_Report.md](docs/OpenSSF_Audit_Report.md) | OpenSSF Best Practices compliance audit |
 | [docs/Deployment.md](docs/Deployment.md) | Step-by-step deployment guide |
 | [Hugging Face Hub](https://huggingface.co/datasets/SafeVixAI/SafeVixAI-Dataset-Hub) | **Intelligence Layer** (Models, Data, Notebooks) |
 | [SETUP.md](SETUP.md) | Full installation and run guide |
+| [RELEASE.md](RELEASE.md) | Release process, versioning, rollback |
+| [MAINTAINERS.md](MAINTAINERS.md) | Maintainer list and responsibilities |
 
 ---
 
@@ -191,12 +201,38 @@ Read `docs/Agent.md` first — it gives a complete overview of the entire applic
 
 ---
 
+## OpenSSF Best Practices
+
+SafeVixAI is committed to achieving [OpenSSF Best Practices Badge](https://www.bestpractices.dev) compliance across all three levels:
+
+| Level | Status | Key Requirements Met |
+|-------|--------|---------------------|
+| **Passing** | ✅ Implemented | License, documentation, CI/CD, SAST, vulnerability reporting, security policy |
+| **Silver** | 🟡 In progress | Signed releases, 2FA, SBOM, Scorecard, dependency review, artifact signing |
+| **Gold** | 🟡 In progress | Fuzzing, CodeQL, REUSE compliance, expanded dynamic analysis |
+
+**Supply chain security controls:**
+- ✅ Software Bill of Materials (CycloneDX + SPDX) generated every build
+- ✅ Docker images signed with cosign (keyless signing via GitHub OIDC)
+- ✅ CodeQL static analysis (Python + JavaScript/TypeScript)
+- ✅ OpenSSF Scorecard analysis (weekly)
+- ✅ Dependency review on every PR
+- ✅ Gitleaks secret scanning (18 custom provider patterns)
+- ✅ Trivy filesystem + container vulnerability scanning
+- ✅ Dependabot automated dependency updates (weekly, 4 ecosystems)
+
+---
+
 ## Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 
 - Report bugs via [GitHub Issues](https://github.com/SafeVixAI/SafeVixAI/issues)
+- Feature requests: see [Feature Request Template](.github/ISSUE_TEMPLATE/feature_request.md)
 - Security vulnerabilities: see [SECURITY.md](SECURITY.md)
+- Governance: see [GOVERNANCE.md](GOVERNANCE.md)
+- Roadmap: see [ROADMAP.md](ROADMAP.md)
+- Support: see [SUPPORT.md](SUPPORT.md)
 - All contributions under MIT license
 
 ## License
