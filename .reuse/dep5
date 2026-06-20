@@ -1,0 +1,72 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: SafeVixAI
+Upstream-Contact: SafeVixAI Team <safevixai@googlegroups.com>
+Source: https://github.com/SafeVixAI/SafeVixAI
+
+Files: *
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: backend/requirements.txt
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: chatbot_service/requirements.txt
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: frontend/package.json
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: .github/workflows/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: docs/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: terraform/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: k8s/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: scripts/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: .gitignore
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: .editorconfig
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: .pre-commit-config.yaml
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: docker-compose*.yml
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: Makefile
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: tests/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: load-testing/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
+
+Files: monitoring/*
+Copyright: 2026 SafeVixAI Team
+License: MIT
