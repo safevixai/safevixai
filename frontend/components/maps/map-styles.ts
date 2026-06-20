@@ -3,7 +3,7 @@
  * Google Maps raster styles, MapTiler vector, OpenFreeMap fallback.
  */
 
-const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY;
+const MAPTILER_PROXY = '/api/proxy/maptiler';
 const OPENFREEMAP_STYLE_URL =
   process.env.NEXT_PUBLIC_MAP_STYLE_URL ?? 'https://tiles.openfreemap.org/styles/liberty';
 
@@ -86,9 +86,7 @@ export function buildStyleCandidates(
   const darkStyle = process.env.NEXT_PUBLIC_MAPTILER_STYLE_DARK ?? 'dataviz-dark';
   const styleId = resolvedTheme === 'dark' ? darkStyle : lightStyle;
 
-  const mapTilerStyleUrl = MAPTILER_KEY
-    ? `https://api.maptiler.com/maps/${showSatellite ? 'hybrid' : styleId}/style.json?key=${MAPTILER_KEY}`
-    : null;
+  const mapTilerStyleUrl = `${MAPTILER_PROXY}/maps/${showSatellite ? 'hybrid' : styleId}/style.json`;
 
   return [
     {
@@ -96,15 +94,11 @@ export function buildStyleCandidates(
       label: showSatellite ? 'Google Maps (Satellite)' : 'Google Maps (India)',
       style: showSatellite ? buildGoogleMapsSatelliteStyle() : buildGoogleMapsRasterStyle(resolvedTheme === 'dark'),
     },
-    ...(mapTilerStyleUrl
-      ? [
-          {
-            kind: 'maptiler-vector',
-            label: showSatellite ? 'MapTiler (Satellite)' : 'MapTiler Streets',
-            style: mapTilerStyleUrl,
-          } as MapStyleCandidate,
-        ]
-      : []),
+    {
+      kind: 'maptiler-vector',
+      label: showSatellite ? 'MapTiler (Satellite)' : 'MapTiler Streets',
+      style: mapTilerStyleUrl,
+    } as MapStyleCandidate,
     {
       kind: 'openfreemap',
       label: 'OpenFreeMap Liberty',

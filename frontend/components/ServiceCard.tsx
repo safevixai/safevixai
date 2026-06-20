@@ -62,13 +62,13 @@ export const ServiceCard = memo(function ServiceCard({ service, className = '' }
  return (
  <div className={`service-card ${className}`} role="article" aria-label={service.name}>
  {/* Left accent bar */}
- <div className="service-card-accent" style={{ backgroundColor: color }} aria-hidden="true" />
+  <div className="sv-service-accent" style={{ backgroundColor: color }} aria-hidden="true" />
 
- <div className="service-card-body">
- {/* Top row: name + distance */}
- <div className="service-card-top">
- <div>
- <div className="service-card-name">{service.name}</div>
+  <div className="sv-service-body">
+  {/* Top row: name + distance */}
+  <div className="sv-service-top">
+  <div>
+  <div className="sv-service-name">{service.name}</div>
  <div style={{ color, fontSize: '0.75rem', fontWeight: 600, marginTop: '2px' }}>
  {label}
  {service.source === 'offline' && (
@@ -82,36 +82,36 @@ export const ServiceCard = memo(function ServiceCard({ service, className = '' }
  )}
  </div>
  </div>
- <div className="service-card-dist">{formatDistance(service.distance)}</div>
+  <div className="sv-service-dist">{formatDistance(service.distance)}</div>
  </div>
 
- {/* Actions row */}
- <div className="service-card-actions">
+  {/* Actions row */}
+  <div className="sv-service-actions">
  {service.phone && (
  <a
  href={`tel:${service.phone}`}
- className="btn btn-outline-green"
+  className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold border border-brand-light/30 text-brand-light hover:bg-brand-light/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-light/40"
  aria-label={`Call ${service.name}: ${service.phone}`}
  >
  Call
  </a>
  )}
 
- {/* Primary: open in preferred nav app */}
- <button
- onClick={() => openBestNavApp(dest)}
- className="btn btn-outline-blue"
- aria-label={`Get directions to ${service.name}`}
- >
-  Map Directions
- </button>
+  {/* Primary: open in preferred nav app */}
+  <button
+  onClick={() => openBestNavApp(dest)}
+  className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold border border-brand/30 text-brand hover:bg-brand/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
+  aria-label={`Get directions to ${service.name}`}
+  >
+   Map Directions
+  </button>
 
- {/* Secondary: nav app chooser dropdown */}
- <div className="relative">
- <button
- onClick={() => setShowNavChoice(!showNavChoice)}
- className="btn btn-outline-blue"
- aria-label="Choose navigation app"
+  {/* Secondary: nav app chooser dropdown */}
+  <div className="relative">
+  <button
+  onClick={() => setShowNavChoice(!showNavChoice)}
+  className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold border border-brand/30 text-brand hover:bg-brand/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
+  aria-label="Choose navigation app"
  style={{ padding: '0.25rem 0.5rem', minWidth: 'auto' }}
  title={`Using: ${NAV_APPS.find(a => a.key === getPreferredNavApp())?.label || 'Google Maps'}`}
  >

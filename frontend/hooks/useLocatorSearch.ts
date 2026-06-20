@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useAppStore } from '@/lib/store';
-import { fetchRoutePreview, RoutePreviewResponse, RouteOption } from '@/lib/api';
+import { fetchRoutePreview, RoutePreviewResponse } from '@/lib/api';
 import { formatLocationSubtitle } from '@/lib/location-utils';
 import { FALLBACK_MAP_CENTER } from '@/lib/map-defaults';
 import {
@@ -27,12 +28,12 @@ export function useLocatorSearch() {
   const lastRerouteAtRef = useRef(0);
   const lastRerouteLocationRef = useRef<[number, number] | null>(null);
 
-  const { gpsError, gpsLocation, nearbyServices, serviceSearchMeta } = useAppStore((state) => ({
+  const { gpsError, gpsLocation, nearbyServices, serviceSearchMeta } = useAppStore(useShallow((state) => ({
     gpsError: state.gpsError,
     gpsLocation: state.gpsLocation,
     nearbyServices: state.nearbyServices,
     serviceSearchMeta: state.serviceSearchMeta,
-  }));
+  })))
 
   const coords: [number, number] = gpsLocation ? [gpsLocation.lat, gpsLocation.lon] : DEFAULT_COORDS;
 

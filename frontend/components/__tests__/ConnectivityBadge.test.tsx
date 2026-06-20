@@ -60,25 +60,25 @@ describe('ConnectivityBadge', () => {
   it('applies correct color class for online', () => {
     mockUseAppStore.mockReturnValue('online');
     const { container } = render(<ConnectivityBadge />);
-    expect(container.firstChild).toHaveClass('conn-online');
+    expect(container.firstChild).toHaveClass('sv-conn-online');
   });
 
   it('applies correct color class for cached', () => {
     mockUseAppStore.mockReturnValue('cached');
     const { container } = render(<ConnectivityBadge />);
-    expect(container.firstChild).toHaveClass('conn-cached');
+    expect(container.firstChild).toHaveClass('sv-conn-cached');
   });
 
   it('applies correct color class for offline', () => {
     mockUseAppStore.mockReturnValue('offline');
     const { container } = render(<ConnectivityBadge />);
-    expect(container.firstChild).toHaveClass('conn-offline');
+    expect(container.firstChild).toHaveClass('sv-conn-offline');
   });
 
   it('applies correct color class for ai-offline', () => {
     mockUseAppStore.mockReturnValue('ai-offline');
     const { container } = render(<ConnectivityBadge />);
-    expect(container.firstChild).toHaveClass('conn-ai');
+    expect(container.firstChild).toHaveClass('sv-conn-ai');
   });
 
   it('applies custom className', () => {
@@ -87,9 +87,9 @@ describe('ConnectivityBadge', () => {
     expect(container.firstChild).toHaveClass('my-class');
   });
 
-  it('has conn-badge class', () => {
+  it('has sv-conn-badge class', () => {
     mockUseAppStore.mockReturnValue('online');
     const { container } = render(<ConnectivityBadge />);
-    expect(container.firstChild).toHaveClass('conn-badge');
+    expect(container.firstChild).toHaveClass('sv-conn-badge');
   });
 });

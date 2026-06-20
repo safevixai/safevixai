@@ -3,13 +3,15 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { haptics } from '@/lib/haptics';
+import { SOS_HIDDEN_ROUTES } from '@/lib/routes';
 
 export function GlobalSOS() {
   const pathname = usePathname();
-  
-  // Don't show on pages that already have their own SOS mechanism
-  const hiddenOnRoutes = ['/sos', '/', '/emergency', '/first-aid', '/report', '/challan', '/profile', '/settings'];
-  if (hiddenOnRoutes.includes(pathname)) return null;
+
+  if (SOS_HIDDEN_ROUTES.some((route) => {
+    if (route === '/') return pathname === '/';
+    return pathname === route || pathname.startsWith(route);
+  })) return null;
 
   const handleClick = () => {
     haptics.heavy();

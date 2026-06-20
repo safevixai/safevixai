@@ -4,7 +4,6 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import { startCrashDetection, stopCrashDetection, simulateCrashDemo } from '@/lib/crash-detection';
-import { useAppStore } from '@/lib/store';
 
 interface UseCrashDetectionOptions {
   /** Callback when a crash is detected with the G-force magnitude */

@@ -3,6 +3,7 @@
 import React from 'react'
 import { Globe } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { useShallow } from 'zustand/react/shallow'
 import { useAppStore } from '@/lib/store'
 import { cn } from '@/lib/utils'
 
@@ -30,10 +31,10 @@ interface LanguageSelectorProps {
 
 export function LanguageSelector({ className, onChangeLanguage }: LanguageSelectorProps) {
   const router = useRouter()
-  const { userProfile, setUserProfile } = useAppStore((state) => ({
+  const { userProfile, setUserProfile } = useAppStore(useShallow((state) => ({
     userProfile: state.userProfile,
     setUserProfile: state.setUserProfile,
-  }))
+  })))
 
   const currentLang = userProfile.preferredLanguage || 'en'
 

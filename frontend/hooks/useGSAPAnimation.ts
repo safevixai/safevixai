@@ -3,7 +3,7 @@
 'use client';
 
 import { useGSAP } from '@gsap/react';
-import { gsap, ScrollTrigger } from '@/lib/gsap';
+import { ScrollTrigger } from '@/lib/gsap';
 import { RefObject } from 'react';
 
 interface AnimationConfig {

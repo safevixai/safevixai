@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, lazy, Suspense } from 'react';
 import { usePathname } from 'next/navigation';
 import { AppSidebar } from '@/components/AppSidebar';
 import SystemSidebar from '@/components/dashboard/SystemSidebar';
@@ -8,7 +8,6 @@ import BottomNav from '@/components/dashboard/BottomNav';
 import { RightSidebar } from '@/components/RightSidebar';
 import { NetworkMonitor } from '@/components/NetworkMonitor';
 import { GlobalSOS } from '@/components/GlobalSOS';
-import { CommandPalette } from '@/components/search/CommandPalette';
 import { KeyboardShortcutsHelp } from '@/components/ui/KeyboardShortcutsHelp';
 import { OfflineBanner } from '@/components/ui/OfflineBanner';
 import { SystemStatusBar } from '@/components/ui/SystemStatusBar';
@@ -17,6 +16,8 @@ import { ServerHealthStatus } from '@/components/ServerHealthStatus';
 import { useAppStore } from '@/lib/store';
 import { AuthGuard } from '@/components/auth/AuthGuard';
 import { Menu } from 'lucide-react';
+
+const CommandPalette = lazy(() => import('@/components/search/CommandPalette').then((m) => ({ default: m.CommandPalette })));
 
 interface AppFrameProps {
   children: ReactNode;
@@ -66,7 +67,7 @@ export function AppFrame({ children }: AppFrameProps) {
       {/* ── Global Utilities ── */}
       <NetworkMonitor />
       <GlobalSOS />
-      <CommandPalette />
+      <Suspense fallback={null}><CommandPalette /></Suspense>
       <KeyboardShortcutsHelp />
       <SystemStatusBar />
       <OfflineBanner />

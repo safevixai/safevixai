@@ -187,8 +187,8 @@ const HUDButton = ({ icon, label, color = "#c5c6cd", href, onClick, ariaLabel }:
   return <div className="pointer-events-auto">{ButtonContent}</div>;
 };
 
-// ── Check if traffic API key is available ──
-const TRAFFIC_KEY_AVAILABLE = !!process.env.NEXT_PUBLIC_TOMTOM_KEY;
+// ── Traffic layer always available (key proxied via server) ──
+const TRAFFIC_KEY_AVAILABLE = true;
 
 // ── Main Dashboard HUD ──
 export default function FloatingSidebarControls() {

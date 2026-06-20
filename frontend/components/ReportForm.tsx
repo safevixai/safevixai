@@ -185,8 +185,9 @@ const ReportForm: React.FC = () => {
             />
 
             <div className="bg-surface-1/40 rounded-lg border border-brand/10 p-4">
-              <label className="text-[10px] font-semibold uppercase tracking-widest text-brand/40 mb-3 block">Attach Evidence (Photo)</label>
+              <label htmlFor="report-photo" className="text-[10px] font-semibold uppercase tracking-widest text-brand/40 mb-3 block">Attach Evidence (Photo)</label>
               <input 
+                id="report-photo"
                 type="file" 
                 accept="image/jpeg, image/png, image/webp"
                 onChange={(e) => setPhoto(e.target.files?.[0] || null)}

@@ -7,6 +7,7 @@ import { triggerSos, fetchCsrfToken } from '@/lib/api'
 import { startCrashDetection, stopCrashDetection } from '@/lib/crash-detection'
 import { enqueueSOS, registerOfflineSyncListeners } from '@/lib/offline-sos-queue'
 import { STANDARD_GRAVITY_MS2 } from '@/lib/safety-constants'
+import { useShallow } from 'zustand/react/shallow';
 import { useAppStore } from '@/lib/store'
 import { getSupabaseBrowserClient } from '@/lib/supabase-auth'
 import { PUBLIC_API_BASE_URL, PUBLIC_CHATBOT_BASE_URL } from '@/lib/public-env'
@@ -14,6 +15,7 @@ import { FEATURES } from '@/lib/features'
 import { beginLocationBroadcast, startFamilyTracking } from '@/lib/live-tracking'
 import { Loader2 } from 'lucide-react'
 import { track } from '@/lib/analytics'
+import { initRUM } from '@/lib/rum'
 import { loadUserProfileFromIndexedDB, migrateUserProfileFromLocalStorage } from '@/lib/profile-storage'
 import i18n from '@/lib/i18n'
 import { CrashCountdown } from '@/components/crash/CrashCountdown'
@@ -27,7 +29,9 @@ function SystemBanners() {
   const [localWarming, setLocalWarming] = useState(false)
   const setServerWarming = useAppStore(state => state.setServerWarming)
 
-  const skipAuth = typeof window !== 'undefined' && window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true';
+  const skipAuth = process.env.NODE_ENV !== 'production' &&
+    typeof window !== 'undefined' &&
+    window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true';
 
   useEffect(() => {
     if (skipAuth) return;
@@ -48,7 +52,7 @@ function SystemBanners() {
       }
     };
     checkHealth();
-  }, [setServerWarming]);
+  }, [setServerWarming, skipAuth]);
 
   return (
     <>
@@ -63,11 +67,11 @@ function SystemBanners() {
 }
 
 export function EnterpriseClientAppHooks() {
-  const { crashDetectionEnabled, gpsLocation, userProfile } = useAppStore((state) => ({
+  const { crashDetectionEnabled, gpsLocation, userProfile } = useAppStore(useShallow((state) => ({
     crashDetectionEnabled: state.crashDetectionEnabled,
     gpsLocation: state.gpsLocation,
     userProfile: state.userProfile,
-  }))
+  })))
   const [crashState, setCrashState] = useState<{ force: number; severity: string } | null>(null)
   const [dispatching, setDispatching] = useState(false)
   const stopCrashTrackingRef = useRef<(() => void) | null>(null)
@@ -96,6 +100,7 @@ export function EnterpriseClientAppHooks() {
   }, [userProfile.preferredLanguage]);
 
   useEffect(() => {
+    initRUM();
     registerOfflineSyncListeners()
 
     // Register Service worker

@@ -3,6 +3,7 @@
 import React from 'react';
 import { AlertCircle, CloudRain, Car, AlertTriangle } from 'lucide-react';
 
+import { useShallow } from 'zustand/react/shallow';
 import { useAppStore } from '@/lib/store';
 
 function getAlertVisual(issueType: string, severity: number) {
@@ -46,10 +47,10 @@ function formatIssueType(issueType: string) {
 }
 
 export default function RecentAlertsOverlay() {
-  const { isDesktopSidebarCollapsed, nearbyRoadIssues } = useAppStore((state) => ({
+  const { isDesktopSidebarCollapsed, nearbyRoadIssues } = useAppStore(useShallow((state) => ({
     isDesktopSidebarCollapsed: state.isDesktopSidebarCollapsed,
     nearbyRoadIssues: state.nearbyRoadIssues,
-  }));
+  })));
 
   const visibleIssues = nearbyRoadIssues.slice(0, 3);
   const summaryLabel =
@@ -62,7 +63,7 @@ export default function RecentAlertsOverlay() {
       className={`fixed bottom-24 lg:bottom-4 left-0 w-full z-40 pointer-events-none pl-4 pr-20 flex flex-col items-center lg:pr-0 transition-all duration-300 ${isDesktopSidebarCollapsed ? 'lg:pl-[88px]' : 'lg:pl-[280px]'}`}
     >
       <div className="w-fit max-w-full pointer-events-auto flex flex-col gap-2">
-        <div className="self-center glass-panel rounded-full px-4 py-1.5 shadow-xl flex items-center gap-2">
+        <div className="self-center sv-glass rounded-full px-4 py-1.5 shadow-xl flex items-center gap-2">
           <span
             className={`w-1.5 h-1.5 rounded-full glow-breathe ${nearbyRoadIssues.length > 0 ? 'bg-emergency shadow-[0_0_8px_var(--emergency)]' : 'bg-brand-light'}`}
           />
@@ -78,7 +79,7 @@ export default function RecentAlertsOverlay() {
               return (
                 <div
                   key={issue.uuid}
-                  className={`snap-center flex-shrink-0 hover-magnetic glass-panel rounded-full ${visual.borderClass} px-3 py-1.5 shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-colors relative border`}
+                  className={`snap-center flex-shrink-0 sv-hover-magnetic sv-glass rounded-full ${visual.borderClass} px-3 py-1.5 shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-colors relative border`}
                 >
                   <div className={visual.iconClass}>
                     {visual.icon}

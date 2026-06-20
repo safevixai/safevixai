@@ -1,33 +1,65 @@
 // frontend/components/providers/GSAPProvider.tsx
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { gsap, ScrollTrigger } from '@/lib/gsap';
+
+// Routes that have GSAP animations — everything else skips the 50KB GSAP bundle
+const ANIMATION_ROUTES = new Set([
+  '/', '/assistant', '/bystander', '/challan', '/command-center',
+  '/emergency', '/first-aid', '/guide', '/landing', '/locator',
+  '/officer', '/report', '/report/track', '/sos', '/tracking',
+]);
+
+function needsAnimation(pathname: string): boolean {
+  for (const route of ANIMATION_ROUTES) {
+    if (pathname === route || pathname.startsWith(route + '/')) return true;
+    if (route.includes('[session_id]') && pathname.startsWith('/track/')) return true;
+  }
+  return false;
+}
 
 export function GSAPProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const gsapRef = useRef<{ gsap: typeof import('gsap')['gsap']; ScrollTrigger: typeof import('gsap/ScrollTrigger')['ScrollTrigger'] } | null>(null);
 
-  // Kill all ScrollTriggers AND active tweens on route change
+  // Trigger GSAP module import (registers plugins at module scope) only on animated routes
   useEffect(() => {
+    if (!needsAnimation(pathname)) return;
+    let cancelled = false;
+    import('@/lib/gsap').then((mod) => {
+      if (cancelled) return;
+      gsapRef.current = mod;
+    });
+    return () => { cancelled = true; };
+  }, [pathname]);
+
+  // Kill animations on route change
+  useEffect(() => {
+    if (!needsAnimation(pathname)) return;
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf('*');
+      import('@/lib/gsap').then(({ gsap, ScrollTrigger }) => {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        gsap.killTweensOf('*');
+      });
     };
   }, [pathname]);
 
-  // Respect prefers-reduced-motion — WCAG requirement
+  // Respect prefers-reduced-motion
   useEffect(() => {
+    if (!needsAnimation(pathname)) return;
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mq.matches) {
-      gsap.globalTimeline.timeScale(1000);
+    if (mq.matches && gsapRef.current) {
+      gsapRef.current.gsap.globalTimeline.timeScale(1000);
     }
     const handler = (e: MediaQueryListEvent) => {
-      gsap.globalTimeline.timeScale(e.matches ? 1000 : 1);
+      if (gsapRef.current) {
+        gsapRef.current.gsap.globalTimeline.timeScale(e.matches ? 1000 : 1);
+      }
     };
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
-  }, []);
+  }, [pathname]);
 
   return <>{children}</>;
 }

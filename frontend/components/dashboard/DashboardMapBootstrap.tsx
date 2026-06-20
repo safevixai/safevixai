@@ -6,6 +6,7 @@ import {
   fetchNearbyServices,
   fetchRoadIssues,
 } from '@/lib/api';
+import { useShallow } from 'zustand/react/shallow';
 import { useGeolocation } from '@/lib/geolocation';
 import { getAddressFromGPS } from '@/lib/reverse-geocode';
 import { NearbyRoadIssue, NearbyService, useAppStore } from '@/lib/store';
@@ -89,7 +90,7 @@ export default function DashboardMapBootstrap() {
     setNearbyServices,
     setRoadIssueSearchMeta,
     setServiceSearchMeta,
-  } = useAppStore((state) => ({
+  } = useAppStore(useShallow((state) => ({
     gpsLocation: state.gpsLocation,
     mapSearchTarget: state.mapSearchTarget,
     connectivity: state.connectivity,
@@ -101,7 +102,7 @@ export default function DashboardMapBootstrap() {
     setNearbyServices: state.setNearbyServices,
     setRoadIssueSearchMeta: state.setRoadIssueSearchMeta,
     setServiceSearchMeta: state.setServiceSearchMeta,
-  }));
+  })));
 
   useEffect(() => {
     const syncConnectivity = () => {

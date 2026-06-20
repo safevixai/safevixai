@@ -5,6 +5,7 @@ import React, { useMemo } from 'react';
 import { MapLibreCanvas, MapLibreFacility, MapLibreIssue } from '@/components/maps/MapLibreCanvas';
 import { formatLocationSubtitle, isApproximateLocation } from '@/lib/location-utils';
 import { FALLBACK_MAP_CENTER, FALLBACK_MAP_ZOOM, LIVE_MAP_ZOOM } from '@/lib/map-defaults';
+import { useShallow } from 'zustand/react/shallow';
 import { NearbyRoadIssue, NearbyService, useAppStore } from '@/lib/store';
 
 function formatDistance(meters: number) {
@@ -86,12 +87,12 @@ function issueIcon(issue: NearbyRoadIssue) {
 }
 
 export default function MapBackgroundInner() {
-  const { gpsLocation, mapSearchTarget, nearbyRoadIssues, nearbyServices } = useAppStore((state) => ({
+  const { gpsLocation, mapSearchTarget, nearbyRoadIssues, nearbyServices } = useAppStore(useShallow((state) => ({
     gpsLocation: state.gpsLocation,
     mapSearchTarget: state.mapSearchTarget,
     nearbyServices: state.nearbyServices,
     nearbyRoadIssues: state.nearbyRoadIssues,
-  }));
+  })));
 
   const searchLat = mapSearchTarget?.lat;
   const searchLon = mapSearchTarget?.lon;

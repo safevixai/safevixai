@@ -3,10 +3,10 @@
 import { useAppStore, ConnectivityState } from '@/lib/store';
 
 const CONFIG: Record<ConnectivityState, { label: string; color: string }> = {
-  'online':     { label: 'Live',    color: 'conn-online' },
-  'cached':     { label: 'Cached',  color: 'conn-cached' },
-  'offline':    { label: 'Offline', color: 'conn-offline' },
-  'ai-offline': { label: 'AI Active', color: 'conn-ai' },
+  'online':     { label: 'Live',    color: 'sv-conn-online' },
+  'cached':     { label: 'Cached',  color: 'sv-conn-cached' },
+  'offline':    { label: 'Offline', color: 'sv-conn-offline' },
+  'ai-offline': { label: 'AI Active', color: 'sv-conn-ai' },
 };
 
 interface Props {
@@ -22,9 +22,9 @@ export function ConnectivityBadge({ className = '' }: Props) {
       role="status"
       aria-live="polite"
       aria-label={`Connectivity: ${label}`}
-      className={`conn-badge ${color} ${className}`}
+      className={`sv-conn-badge ${color} ${className}`}
     >
-      <span className="conn-dot" aria-hidden="true" />
+      <span className="sv-conn-dot" aria-hidden="true" />
       {label}
     </span>
   );

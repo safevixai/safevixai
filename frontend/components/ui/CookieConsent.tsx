@@ -9,11 +9,11 @@ import posthog from 'posthog-js';
 
 export default function CookieConsent() {
   const [show, setShow] = useState(false);
-  const { setAnalyticsOptIn } = useAppStore();
+  const setAnalyticsOptIn = useAppStore((s) => s.setAnalyticsOptIn);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true') return;
+    if (process.env.NODE_ENV !== 'production' && window.localStorage.getItem('__E2E_SKIP_AUTH__') === 'true') return;
     const consent = window.localStorage.getItem(ANALYTICS_CONSENT_KEY);
     if (!consent) {
       // Show banner if no consent choice has been recorded yet

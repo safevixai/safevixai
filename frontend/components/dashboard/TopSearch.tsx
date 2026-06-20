@@ -4,6 +4,7 @@ import React, { useState, useEffect, memo } from 'react';
 import Link from 'next/link';
 import { Menu, Mic, MapPin, Moon, Sun, Monitor, Search, ArrowLeft, Layers, Hospital, Shield, Ambulance, Flame, Pill } from 'lucide-react';
 import { formatAccuracyLabel, formatLocationLabel, isApproximateLocation } from '@/lib/location-utils';
+import { useShallow } from 'zustand/react/shallow';
 import { useAppStore } from '@/lib/store';
 import { useTheme } from '@/components/ThemeProvider';
 import { searchPlaces, GeocodingResult } from '@/lib/geocoding';
@@ -37,7 +38,7 @@ const TopSearch = memo(function TopSearch({
   showBack = false,
   backHref = '/'
 }: TopSearchProps) {
-  const { gpsError, gpsLocation, serviceCategory, setMapSearchTarget, setServiceCategory, setSystemSidebarOpen, isDesktopSidebarCollapsed, setDesktopSidebarCollapsed, isThinSidebarEnabled } = useAppStore((state) => ({
+  const { gpsError, gpsLocation, serviceCategory, setMapSearchTarget, setServiceCategory, setSystemSidebarOpen, isDesktopSidebarCollapsed, setDesktopSidebarCollapsed, isThinSidebarEnabled } = useAppStore(useShallow((state) => ({
     gpsError: state.gpsError,
     gpsLocation: state.gpsLocation,
     serviceCategory: state.serviceCategory,
@@ -47,7 +48,7 @@ const TopSearch = memo(function TopSearch({
     isDesktopSidebarCollapsed: state.isDesktopSidebarCollapsed,
     setDesktopSidebarCollapsed: state.setDesktopSidebarCollapsed,
     isThinSidebarEnabled: state.isThinSidebarEnabled,
-  }));
+  })));
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
