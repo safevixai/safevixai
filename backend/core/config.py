@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     jwks_url: str | None = Field(default=None, validation_alias='JWKS_URL')
 
     database_url: str = 'postgresql+asyncpg://postgres:postgres@localhost:5432/safevixai'
+    database_replica_url: str | None = None
     redis_url: str | None = None
     # P1-05: Increased pool size from 1 to 10 (audit H8) to prevent severe connection bottlenecks
     db_pool_size: int = 10

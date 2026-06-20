@@ -33,7 +33,7 @@ from fastapi.staticfiles import StaticFiles
 
 from api.v1 import api_router
 from core.config import get_settings
-from core.database import check_database
+from core.database import check_database, check_replica_database
 from core.limiter import limiter
 from core.idempotency import IdempotencyMiddleware
 from core.versioning import APIVersioningMiddleware
@@ -577,6 +577,14 @@ def create_app() -> FastAPI:
         db_latency = (_time_module.time() - db_start) * 1000
         dependencies.append(DependencyHealth(
             name="database", available=database_available, latency_ms=round(db_latency, 1)
+        ))
+
+        replica_start = _time_module.time()
+        replica_available = await check_replica_database()
+        replica_latency = (_time_module.time() - replica_start) * 1000
+        dependencies.append(DependencyHealth(
+            name="database_replica", available=replica_available, latency_ms=round(replica_latency, 1),
+            error=None if replica_available else "Read replica unavailable or not configured"
         ))
 
         cache_available = False
