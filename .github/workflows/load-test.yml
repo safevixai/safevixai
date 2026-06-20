@@ -1,0 +1,58 @@
+name: Load Test
+
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Every Monday at 8 AM UTC
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: 'Base URL to test against'
+        required: true
+        default: 'https://api.safevixai.com'
+      vu_count:
+        description: 'Max virtual users'
+        required: true
+        default: '100'
+
+permissions:
+  contents: read
+
+jobs:
+  k6-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run k6 smoke test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: load-testing/k6/smoke.test.js
+          flags: --quiet --summary-export=results.json
+        env:
+          API_BASE_URL: ${{ github.event.inputs.target_url || 'https://api.safevixai.com' }}
+          CHATBOT_BASE_URL: ${{ github.event.inputs.target_url || 'https://api.safevixai.com' }}
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-results
+          path: results.json
+
+  k6-load:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run k6 load test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: load-testing/k6/main.test.js
+          flags: --quiet
+        env:
+          API_BASE_URL: ${{ github.event.inputs.target_url }}
+          CHATBOT_BASE_URL: ${{ github.event.inputs.target_url }}
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-load-results
+          path: results.json
