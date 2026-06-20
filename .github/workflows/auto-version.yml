@@ -1,0 +1,60 @@
+name: Auto Version Tag
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: auto-version-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tag:
+    name: Auto Version Bump
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine bump type from labels
+        id: labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            if (labels.includes('breaking')) return 'major';
+            if (labels.includes('feature') || labels.includes('enhancement')) return 'minor';
+            return 'patch';
+
+      - name: Calculate new version
+        id: version
+        run: |
+          CURRENT=$(cat VERSION | tr -d '\n\r')
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+          case "${{ steps.labels.outputs.result }}" in
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH + 1)) ;;
+          esac
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+          echo "next=$MAJOR.$MINOR.$PATCH" >> $GITHUB_OUTPUT
+
+      - name: Update VERSION file
+        run: echo "${{ steps.version.outputs.next }}" > VERSION
+
+      - name: Commit and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add VERSION
+          git commit -m "chore: bump version to ${{ steps.version.outputs.next }}"
+          git tag -a "v${{ steps.version.outputs.next }}" -m "v${{ steps.version.outputs.next }}"
+          git push origin main --tags

@@ -1,0 +1,190 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+  packages: write
+  attestations: write
+  id-token: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.parse.outputs.version }}
+      channel: ${{ steps.parse.outputs.channel }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Parse tag
+        id: parse
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          echo "version=${TAG#v}" >> $GITHUB_OUTPUT
+          if [[ "$TAG" == *"-"* ]]; then
+            echo "channel=prerelease" >> $GITHUB_OUTPUT
+          else
+            echo "channel=stable" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate VERSION file matches tag
+        run: |
+          FILE_VERSION=$(cat VERSION | tr -d '\n\r')
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          if [ "$FILE_VERSION" != "$TAG_VERSION" ]; then
+            echo "ERROR: VERSION file ($FILE_VERSION) does not match tag ($TAG_VERSION)"
+            exit 1
+          fi
+
+  test:
+    name: Test Suite
+    needs: [validate]
+    uses: ./.github/workflows/backend.yml
+    secrets: inherit
+
+  lint:
+    name: Lint & Type Check
+    needs: [validate]
+    uses: ./.github/workflows/frontend.yml
+    secrets: inherit
+
+  sbom:
+    name: Generate SBOM
+    needs: [validate]
+    uses: ./.github/workflows/security.yml
+    secrets: inherit
+
+  build:
+    name: Build & Push Images
+    needs: [validate, test, lint]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - { name: backend, context: backend, dockerfile: backend/Dockerfile }
+          - { name: chatbot, context: chatbot_service, dockerfile: chatbot_service/Dockerfile }
+          - { name: frontend, context: frontend, dockerfile: frontend/Dockerfile.frontend }
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/${{ matrix.service.name }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.service.context }}
+          file: ${{ matrix.service.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  sign:
+    name: Sign Container Images
+    needs: [validate, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    strategy:
+      matrix:
+        service:
+          - { name: backend, tag: ghcr.io/${{ github.repository }}/backend }
+          - { name: chatbot, tag: ghcr.io/${{ github.repository }}/chatbot }
+          - { name: frontend, tag: ghcr.io/${{ github.repository }}/frontend }
+    steps:
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sign image with cosign keyless
+        run: |
+          cosign sign --yes \
+            -a "repo=${{ github.repository }}" \
+            -a "workflow=${{ github.workflow }}" \
+            -a "ref=${{ github.ref }}" \
+            -a "sha=${{ github.sha }}" \
+            "${{ matrix.service.tag }}:v${{ needs.validate.outputs.version }}"
+
+      - name: Verify signature
+        run: |
+          cosign verify --insecure-ignore-tlog \
+            "${{ matrix.service.tag }}:v${{ needs.validate.outputs.version }}"
+
+  create-release:
+    name: Create GitHub Release
+    needs: [validate, build, sign, sbom]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate release notes
+        id: notes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
+            const version = '${{ needs.validate.outputs.version }}';
+            const section = changelog.match(
+              new RegExp(`## \\[${version}\\] - [\\d-]+\\n\\n([\\s\\S]*?)(?=\\n## \\[|\\n\\[Unreleased\\])`)
+            );
+            return section ? section[1].trim() : 'See CHANGELOG.md for details.';
+
+      - name: Download SBOM artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: sbom-artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: v${{ needs.validate.outputs.version }}
+          tag_name: ${{ github.ref_name }}
+          body: ${{ steps.notes.outputs.result }}
+          files: |
+            sbom-artifacts/**/*
+          prerelease: ${{ needs.validate.outputs.channel == 'prerelease' }}
+          generate_release_notes: false
