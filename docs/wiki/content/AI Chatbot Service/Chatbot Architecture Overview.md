@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [chatbot_service/agent/__init__.py](file://chatbot_service/agent/__init__.py)
-- [chatbot_service/agent/context_assembler.py](file://chatbot_service/agent/context_assembler.py)
-- [chatbot_service/agent/graph.py](file://chatbot_service/agent/graph.py)
-- [chatbot_service/agent/intent_detector.py](file://chatbot_service/agent/intent_detector.py)
-- [chatbot_service/agent/safety_checker.py](file://chatbot_service/agent/safety_checker.py)
-- [chatbot_service/providers/router.py](file://chatbot_service/providers/router.py)
-- [chatbot_service/providers/base.py](file://chatbot_service/providers/base.py)
-- [chatbot_service/memory/redis_memory.py](file://chatbot_service/memory/redis_memory.py)
-- [chatbot_service/rag/retriever.py](file://chatbot_service/rag/retriever.py)
-- [chatbot_service/rag/vectorstore.py](file://chatbot_service/rag/vectorstore.py)
-- [chatbot_service/api/chat.py](file://chatbot_service/api/chat.py)
-- [chatbot_service/api/admin.py](file://chatbot_service/api/admin.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [chatbot_service/agent/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/__init__.py)
+- [chatbot_service/agent/context_assembler.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py)
+- [chatbot_service/agent/graph.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py)
+- [chatbot_service/agent/intent_detector.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py)
+- [chatbot_service/agent/safety_checker.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py)
+- [chatbot_service/providers/router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py)
+- [chatbot_service/providers/base.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py)
+- [chatbot_service/memory/redis_memory.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py)
+- [chatbot_service/rag/retriever.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py)
+- [chatbot_service/rag/vectorstore.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py)
+- [chatbot_service/api/chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py)
+- [chatbot_service/api/admin.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py)
 </cite>
 
 ## Table of Contents
@@ -87,21 +87,21 @@ ROUTER --> BASE
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/config.py:69-126](file://chatbot_service/config.py#L69-L126)
-- [chatbot_service/agent/graph.py:15-109](file://chatbot_service/agent/graph.py#L15-L109)
-- [chatbot_service/agent/context_assembler.py:17-215](file://chatbot_service/agent/context_assembler.py#L17-L215)
-- [chatbot_service/providers/router.py:75-199](file://chatbot_service/providers/router.py#L75-L199)
-- [chatbot_service/providers/base.py:90-206](file://chatbot_service/providers/base.py#L90-L206)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [chatbot_service/rag/vectorstore.py:20-110](file://chatbot_service/rag/vectorstore.py#L20-L110)
-- [chatbot_service/rag/retriever.py:17-40](file://chatbot_service/rag/retriever.py#L17-L40)
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [chatbot_service/api/admin.py:12-52](file://chatbot_service/api/admin.py#L12-L52)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/config.py:69-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L126)
+- [chatbot_service/agent/graph.py:15-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L109)
+- [chatbot_service/agent/context_assembler.py:17-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L215)
+- [chatbot_service/providers/router.py:75-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L199)
+- [chatbot_service/providers/base.py:90-206](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L206)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [chatbot_service/rag/vectorstore.py:20-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L110)
+- [chatbot_service/rag/retriever.py:17-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L40)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [chatbot_service/api/admin.py:12-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L12-L52)
 
 **Section sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/config.py:69-126](file://chatbot_service/config.py#L69-L126)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/config.py:69-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L126)
 
 ## Core Components
 - FastAPI application with dependency injection during lifespan, CORS middleware, rate limiting, and health endpoints.
@@ -114,15 +114,15 @@ ROUTER --> BASE
 - API surface exposing chat endpoints (blocking and streaming) and admin endpoints for index rebuilding and health.
 
 **Section sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/agent/graph.py:15-109](file://chatbot_service/agent/graph.py#L15-L109)
-- [chatbot_service/providers/router.py:75-199](file://chatbot_service/providers/router.py#L75-L199)
-- [chatbot_service/agent/context_assembler.py:17-215](file://chatbot_service/agent/context_assembler.py#L17-L215)
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
-- [chatbot_service/rag/vectorstore.py:20-110](file://chatbot_service/rag/vectorstore.py#L20-L110)
-- [chatbot_service/rag/retriever.py:17-40](file://chatbot_service/rag/retriever.py#L17-L40)
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [chatbot_service/api/admin.py:12-52](file://chatbot_service/api/admin.py#L12-L52)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/agent/graph.py:15-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L109)
+- [chatbot_service/providers/router.py:75-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L199)
+- [chatbot_service/agent/context_assembler.py:17-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L215)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
+- [chatbot_service/rag/vectorstore.py:20-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L110)
+- [chatbot_service/rag/retriever.py:17-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L40)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [chatbot_service/api/admin.py:12-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L12-L52)
 
 ## Architecture Overview
 The system follows an agentic RAG pipeline:
@@ -173,15 +173,15 @@ end
 ```
 
 **Diagram sources**
-- [chatbot_service/api/chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
-- [chatbot_service/agent/graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [chatbot_service/agent/safety_checker.py:12-31](file://chatbot_service/agent/safety_checker.py#L12-L31)
-- [chatbot_service/agent/intent_detector.py:9-25](file://chatbot_service/agent/intent_detector.py#L9-L25)
-- [chatbot_service/agent/context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [chatbot_service/rag/retriever.py:22-39](file://chatbot_service/rag/retriever.py#L22-L39)
-- [chatbot_service/providers/router.py:154-199](file://chatbot_service/providers/router.py#L154-L199)
-- [chatbot_service/providers/base.py:129-159](file://chatbot_service/providers/base.py#L129-L159)
-- [chatbot_service/memory/redis_memory.py:23-44](file://chatbot_service/memory/redis_memory.py#L23-L44)
+- [chatbot_service/api/chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
+- [chatbot_service/agent/graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [chatbot_service/agent/safety_checker.py:12-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L31)
+- [chatbot_service/agent/intent_detector.py:9-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L25)
+- [chatbot_service/agent/context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [chatbot_service/rag/retriever.py:22-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L22-L39)
+- [chatbot_service/providers/router.py:154-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L199)
+- [chatbot_service/providers/base.py:129-159](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L129-L159)
+- [chatbot_service/memory/redis_memory.py:23-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L44)
 
 ## Detailed Component Analysis
 
@@ -203,12 +203,12 @@ Health --> Ready(["Application Ready"])
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/config.py:69-126](file://chatbot_service/config.py#L69-L126)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/config.py:69-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L126)
 
 **Section sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/config.py:69-126](file://chatbot_service/config.py#L69-L126)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/config.py:69-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L126)
 
 ### Agent Orchestration (ChatEngine)
 - Coordinates safety evaluation, intent detection, context assembly, provider routing, and memory persistence.
@@ -232,10 +232,10 @@ class ChatEngine {
 ```
 
 **Diagram sources**
-- [chatbot_service/agent/graph.py:15-109](file://chatbot_service/agent/graph.py#L15-L109)
+- [chatbot_service/agent/graph.py:15-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L109)
 
 **Section sources**
-- [chatbot_service/agent/graph.py:15-109](file://chatbot_service/agent/graph.py#L15-L109)
+- [chatbot_service/agent/graph.py:15-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L109)
 
 ### Intent Detection
 - Rule-based classifier categorizing user messages into emergency, first_aid, challan, legal, road_issue, or general.
@@ -257,10 +257,10 @@ K --> |No| M["intent=general"]
 ```
 
 **Diagram sources**
-- [chatbot_service/agent/intent_detector.py:9-25](file://chatbot_service/agent/intent_detector.py#L9-L25)
+- [chatbot_service/agent/intent_detector.py:9-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L25)
 
 **Section sources**
-- [chatbot_service/agent/intent_detector.py:9-25](file://chatbot_service/agent/intent_detector.py#L9-L25)
+- [chatbot_service/agent/intent_detector.py:9-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L25)
 
 ### Safety Checker
 - Blocks harmful prompts and returns a policy-compliant response.
@@ -274,10 +274,10 @@ U --> |No| W["Return blocked=False"]
 ```
 
 **Diagram sources**
-- [chatbot_service/agent/safety_checker.py:12-31](file://chatbot_service/agent/safety_checker.py#L12-L31)
+- [chatbot_service/agent/safety_checker.py:12-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L31)
 
 **Section sources**
-- [chatbot_service/agent/safety_checker.py:12-31](file://chatbot_service/agent/safety_checker.py#L12-L31)
+- [chatbot_service/agent/safety_checker.py:12-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L31)
 
 ### Context Assembly
 - Assembles ConversationContext with retrieved RAG snippets and tool outputs.
@@ -306,11 +306,11 @@ AddGen --> BuildCtx
 ```
 
 **Diagram sources**
-- [chatbot_service/agent/context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [chatbot_service/agent/context_assembler.py:83-215](file://chatbot_service/agent/context_assembler.py#L83-L215)
+- [chatbot_service/agent/context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [chatbot_service/agent/context_assembler.py:83-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L83-L215)
 
 **Section sources**
-- [chatbot_service/agent/context_assembler.py:17-215](file://chatbot_service/agent/context_assembler.py#L17-L215)
+- [chatbot_service/agent/context_assembler.py:17-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L215)
 
 ### Provider Routing and Language-Aware Selection
 - Detects Indian language scripts and routes to specialized providers for legal and general queries.
@@ -334,13 +334,13 @@ RetryChain --> Done
 ```
 
 **Diagram sources**
-- [chatbot_service/providers/router.py:48-73](file://chatbot_service/providers/router.py#L48-L73)
-- [chatbot_service/providers/router.py:125-153](file://chatbot_service/providers/router.py#L125-L153)
-- [chatbot_service/providers/router.py:154-199](file://chatbot_service/providers/router.py#L154-L199)
+- [chatbot_service/providers/router.py:48-73](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L48-L73)
+- [chatbot_service/providers/router.py:125-153](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L125-L153)
+- [chatbot_service/providers/router.py:154-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L199)
 
 **Section sources**
-- [chatbot_service/providers/router.py:75-199](file://chatbot_service/providers/router.py#L75-L199)
-- [chatbot_service/providers/base.py:90-206](file://chatbot_service/providers/base.py#L90-L206)
+- [chatbot_service/providers/router.py:75-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L199)
+- [chatbot_service/providers/base.py:90-206](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/base.py#L90-L206)
 
 ### Memory Management
 - ConversationMemoryStore persists messages with timestamps and metadata.
@@ -364,10 +364,10 @@ class ConversationMemoryStore {
 ```
 
 **Diagram sources**
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
 
 **Section sources**
-- [chatbot_service/memory/redis_memory.py:10-90](file://chatbot_service/memory/redis_memory.py#L10-L90)
+- [chatbot_service/memory/redis_memory.py:10-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L90)
 
 ### RAG Pipeline
 - LocalVectorStore loads and persists document chunks; builds index from data directory.
@@ -386,12 +386,12 @@ Score --> Results["Return (chunk, score) list"]
 ```
 
 **Diagram sources**
-- [chatbot_service/rag/vectorstore.py:20-110](file://chatbot_service/rag/vectorstore.py#L20-L110)
-- [chatbot_service/rag/retriever.py:17-40](file://chatbot_service/rag/retriever.py#L17-L40)
+- [chatbot_service/rag/vectorstore.py:20-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L110)
+- [chatbot_service/rag/retriever.py:17-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L40)
 
 **Section sources**
-- [chatbot_service/rag/vectorstore.py:20-110](file://chatbot_service/rag/vectorstore.py#L20-L110)
-- [chatbot_service/rag/retriever.py:17-40](file://chatbot_service/rag/retriever.py#L17-L40)
+- [chatbot_service/rag/vectorstore.py:20-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L110)
+- [chatbot_service/rag/retriever.py:17-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L40)
 
 ### API Surface
 - Chat endpoints: blocking and streaming with SSE; streaming simulates token delivery for UX.
@@ -413,12 +413,12 @@ Admin-->>Client : Index rebuilt stats
 ```
 
 **Diagram sources**
-- [chatbot_service/api/chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
-- [chatbot_service/api/admin.py:45-52](file://chatbot_service/api/admin.py#L45-L52)
+- [chatbot_service/api/chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
+- [chatbot_service/api/admin.py:45-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L45-L52)
 
 **Section sources**
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [chatbot_service/api/admin.py:12-52](file://chatbot_service/api/admin.py#L12-L52)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [chatbot_service/api/admin.py:12-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L12-L52)
 
 ## Dependency Analysis
 - Cohesion: Each module has a single responsibility (routing, memory, RAG, tools, agent orchestration).
@@ -445,22 +445,22 @@ ADMIN --> MEM
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/agent/graph.py:15-109](file://chatbot_service/agent/graph.py#L15-L109)
-- [chatbot_service/providers/router.py:75-199](file://chatbot_service/providers/router.py#L75-L199)
-- [chatbot_service/rag/retriever.py:17-40](file://chatbot_service/rag/retriever.py#L17-L40)
-- [chatbot_service/rag/vectorstore.py:20-110](file://chatbot_service/rag/vectorstore.py#L20-L110)
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [chatbot_service/api/admin.py:12-52](file://chatbot_service/api/admin.py#L12-L52)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/agent/graph.py:15-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L109)
+- [chatbot_service/providers/router.py:75-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L199)
+- [chatbot_service/rag/retriever.py:17-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L40)
+- [chatbot_service/rag/vectorstore.py:20-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L110)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [chatbot_service/api/admin.py:12-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L12-L52)
 
 **Section sources**
-- [chatbot_service/main.py:41-145](file://chatbot_service/main.py#L41-L145)
-- [chatbot_service/agent/graph.py:15-109](file://chatbot_service/agent/graph.py#L15-L109)
-- [chatbot_service/providers/router.py:75-199](file://chatbot_service/providers/router.py#L75-L199)
-- [chatbot_service/rag/retriever.py:17-40](file://chatbot_service/rag/retriever.py#L17-L40)
-- [chatbot_service/rag/vectorstore.py:20-110](file://chatbot_service/rag/vectorstore.py#L20-L110)
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [chatbot_service/api/admin.py:12-52](file://chatbot_service/api/admin.py#L12-L52)
+- [chatbot_service/main.py:41-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L145)
+- [chatbot_service/agent/graph.py:15-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L109)
+- [chatbot_service/providers/router.py:75-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L75-L199)
+- [chatbot_service/rag/retriever.py:17-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L40)
+- [chatbot_service/rag/vectorstore.py:20-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L110)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [chatbot_service/api/admin.py:12-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L12-L52)
 
 ## Performance Considerations
 - Streaming UX: Simulated streaming via word-delimited chunks to improve perceived latency.
@@ -480,10 +480,10 @@ ADMIN --> MEM
 - Provider errors: ProviderRouter falls back across providers; persistent failures indicate missing API keys or network issues.
 
 **Section sources**
-- [chatbot_service/main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [chatbot_service/api/admin.py:32-52](file://chatbot_service/api/admin.py#L32-L52)
-- [chatbot_service/agent/safety_checker.py:12-31](file://chatbot_service/agent/safety_checker.py#L12-L31)
-- [chatbot_service/providers/router.py:154-199](file://chatbot_service/providers/router.py#L154-L199)
+- [chatbot_service/main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [chatbot_service/api/admin.py:32-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L32-L52)
+- [chatbot_service/agent/safety_checker.py:12-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L31)
+- [chatbot_service/providers/router.py:154-199](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/providers/router.py#L154-L199)
 
 ## Conclusion
 
@@ -503,6 +503,6 @@ The SafeVixAI Chatbot Service employs a clean, modular architecture centered on 
   - System: GET /health, GET /
 
 **Section sources**
-- [chatbot_service/api/chat.py:16-111](file://chatbot_service/api/chat.py#L16-L111)
-- [chatbot_service/api/admin.py:12-52](file://chatbot_service/api/admin.py#L12-L52)
-- [chatbot_service/main.py:106-142](file://chatbot_service/main.py#L106-L142)
+- [chatbot_service/api/chat.py:16-111](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L16-L111)
+- [chatbot_service/api/admin.py:12-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/admin.py#L12-L52)
+- [chatbot_service/main.py:106-142](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L142)

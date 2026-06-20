@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [chatbot_service/tools/__init__.py](file://chatbot_service/tools/__init__.py)
-- [chatbot_service/tools/emergency_tool.py](file://chatbot_service/tools/emergency_tool.py)
-- [chatbot_service/tools/legal_search_tool.py](file://chatbot_service/tools/legal_search_tool.py)
-- [chatbot_service/tools/road_infra_tool.py](file://chatbot_service/tools/road_infra_tool.py)
-- [chatbot_service/tools/weather_tool.py](file://chatbot_service/tools/weather_tool.py)
-- [chatbot_service/tools/open_meteo.py](file://chatbot_service/tools/open_meteo.py)
-- [chatbot_service/tools/sos_tool.py](file://chatbot_service/tools/sos_tool.py)
-- [chatbot_service/tools/challan_tool.py](file://chatbot_service/tools/challan_tool.py)
-- [chatbot_service/tools/first_aid_tool.py](file://chatbot_service/tools/first_aid_tool.py)
-- [chatbot_service/tools/geocoding.py](file://chatbot_service/tools/geocoding.py)
-- [chatbot_service/tools/road_issues_tool.py](file://chatbot_service/tools/road_issues_tool.py)
-- [chatbot_service/tools/submit_report_tool.py](file://chatbot_service/tools/submit_report_tool.py)
-- [chatbot_service/tools/what3words.py](file://chatbot_service/tools/what3words.py)
-- [chatbot_service/config.py](file://chatbot_service/config.py)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
+- [chatbot_service/tools/__init__.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py)
+- [chatbot_service/tools/emergency_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py)
+- [chatbot_service/tools/legal_search_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py)
+- [chatbot_service/tools/road_infra_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_infra_tool.py)
+- [chatbot_service/tools/weather_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py)
+- [chatbot_service/tools/open_meteo.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/open_meteo.py)
+- [chatbot_service/tools/sos_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py)
+- [chatbot_service/tools/challan_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py)
+- [chatbot_service/tools/first_aid_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py)
+- [chatbot_service/tools/geocoding.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py)
+- [chatbot_service/tools/road_issues_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_issues_tool.py)
+- [chatbot_service/tools/submit_report_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/submit_report_tool.py)
+- [chatbot_service/tools/what3words.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py)
+- [chatbot_service/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
 </cite>
 
 ## Table of Contents
@@ -73,23 +73,23 @@ TOOLS --> SUBMIT
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [chatbot_service/tools/__init__.py:8-70](file://chatbot_service/tools/__init__.py#L8-L70)
-- [chatbot_service/tools/weather_tool.py:15-64](file://chatbot_service/tools/weather_tool.py#L15-L64)
-- [chatbot_service/tools/open_meteo.py:61-127](file://chatbot_service/tools/open_meteo.py#L61-L127)
-- [chatbot_service/tools/sos_tool.py:10-44](file://chatbot_service/tools/sos_tool.py#L10-L44)
-- [chatbot_service/tools/what3words.py:19-89](file://chatbot_service/tools/what3words.py#L19-L89)
-- [chatbot_service/tools/geocoding.py:17-125](file://chatbot_service/tools/geocoding.py#L17-L125)
-- [chatbot_service/tools/challan_tool.py:27-81](file://chatbot_service/tools/challan_tool.py#L27-L81)
-- [chatbot_service/tools/first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
-- [chatbot_service/tools/road_infra_tool.py:6-15](file://chatbot_service/tools/road_infra_tool.py#L6-L15)
-- [chatbot_service/tools/road_issues_tool.py:6-15](file://chatbot_service/tools/road_issues_tool.py#L6-L15)
-- [chatbot_service/tools/submit_report_tool.py:19-112](file://chatbot_service/tools/submit_report_tool.py#L19-L112)
-- [chatbot_service/config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [chatbot_service/main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [chatbot_service/tools/__init__.py:8-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L8-L70)
+- [chatbot_service/tools/weather_tool.py:15-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L15-L64)
+- [chatbot_service/tools/open_meteo.py:61-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/open_meteo.py#L61-L127)
+- [chatbot_service/tools/sos_tool.py:10-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py#L10-L44)
+- [chatbot_service/tools/what3words.py:19-89](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py#L19-L89)
+- [chatbot_service/tools/geocoding.py:17-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py#L17-L125)
+- [chatbot_service/tools/challan_tool.py:27-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L81)
+- [chatbot_service/tools/first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [chatbot_service/tools/road_infra_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_infra_tool.py#L6-L15)
+- [chatbot_service/tools/road_issues_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_issues_tool.py#L6-L15)
+- [chatbot_service/tools/submit_report_tool.py:19-112](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/submit_report_tool.py#L19-L112)
+- [chatbot_service/config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 **Section sources**
-- [chatbot_service/main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [chatbot_service/tools/__init__.py:8-70](file://chatbot_service/tools/__init__.py#L8-L70)
+- [chatbot_service/main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [chatbot_service/tools/__init__.py:8-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L8-L70)
 
 ## Core Components
 - BackendToolClient: Thin async HTTP client wrapping httpx with shared base URL, timeouts, and headers. Provides GET and POST helpers returning JSON or None on errors.
@@ -104,8 +104,8 @@ Key responsibilities:
 - Graceful degradation when optional integrations are missing
 
 **Section sources**
-- [chatbot_service/tools/__init__.py:8-36](file://chatbot_service/tools/__init__.py#L8-L36)
-- [chatbot_service/main.py:41-93](file://chatbot_service/main.py#L41-L93)
+- [chatbot_service/tools/__init__.py:8-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L8-L36)
+- [chatbot_service/main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
 
 ## Architecture Overview
 The chatbot service initializes tools during application lifespan. Tools depend on configuration, retrieval, and external APIs. Weather and SOS tools coordinate multiple external services with fallbacks. BackendToolClient ensures consistent HTTP behavior across internal API calls.
@@ -136,10 +136,10 @@ App-->>Client : Response
 ```
 
 **Diagram sources**
-- [chatbot_service/main.py:59-70](file://chatbot_service/main.py#L59-L70)
-- [chatbot_service/tools/sos_tool.py:21-43](file://chatbot_service/tools/sos_tool.py#L21-L43)
-- [chatbot_service/tools/what3words.py:26-57](file://chatbot_service/tools/what3words.py#L26-L57)
-- [chatbot_service/tools/geocoding.py:36-121](file://chatbot_service/tools/geocoding.py#L36-L121)
+- [chatbot_service/main.py:59-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L59-L70)
+- [chatbot_service/tools/sos_tool.py:21-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py#L21-L43)
+- [chatbot_service/tools/what3words.py:26-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py#L26-L57)
+- [chatbot_service/tools/geocoding.py:36-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py#L36-L121)
 
 ## Detailed Component Analysis
 
@@ -156,8 +156,8 @@ Operational notes:
 - Accepts JSON responses only.
 
 **Section sources**
-- [chatbot_service/tools/__init__.py:8-36](file://chatbot_service/tools/__init__.py#L8-L36)
-- [chatbot_service/config.py:45-84](file://chatbot_service/config.py#L45-L84)
+- [chatbot_service/tools/__init__.py:8-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L8-L36)
+- [chatbot_service/config.py:45-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L45-L84)
 
 ### Emergency Services Lookup (EmergencyTool)
 - Purpose: Find nearby emergency services for a given coordinate pair.
@@ -172,8 +172,8 @@ Response formatting:
 - Delegates to BackendToolClient; caller interprets JSON.
 
 **Section sources**
-- [chatbot_service/tools/emergency_tool.py:6-15](file://chatbot_service/tools/emergency_tool.py#L6-L15)
-- [chatbot_service/tools/__init__.py:19-33](file://chatbot_service/tools/__init__.py#L19-L33)
+- [chatbot_service/tools/emergency_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L6-L15)
+- [chatbot_service/tools/__init__.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L19-L33)
 
 ### Legal Search (LegalSearchTool)
 - Purpose: Retrieve legal information using a retrieval-based approach scoped to legal content.
@@ -187,7 +187,7 @@ Response formatting:
 - Returns a list of RetrievalResult objects.
 
 **Section sources**
-- [chatbot_service/tools/legal_search_tool.py:6-12](file://chatbot_service/tools/legal_search_tool.py#L6-L12)
+- [chatbot_service/tools/legal_search_tool.py:6-12](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py#L6-L12)
 
 ### Road Infrastructure Queries (RoadInfrastructureTool)
 - Purpose: Query road infrastructure data near a coordinate.
@@ -202,8 +202,8 @@ Response formatting:
 - Delegates to BackendToolClient; caller interprets JSON.
 
 **Section sources**
-- [chatbot_service/tools/road_infra_tool.py:6-15](file://chatbot_service/tools/road_infra_tool.py#L6-L15)
-- [chatbot_service/tools/__init__.py:19-33](file://chatbot_service/tools/__init__.py#L19-L33)
+- [chatbot_service/tools/road_infra_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_infra_tool.py#L6-L15)
+- [chatbot_service/tools/__init__.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L19-L33)
 
 ### Weather Information (WeatherTool)
 - Purpose: Provide weather data for risk assessment with a primary and fallback provider.
@@ -236,12 +236,12 @@ Normalize --> ReturnOWM["Return OpenWeatherMap result"]
 ```
 
 **Diagram sources**
-- [chatbot_service/tools/weather_tool.py:24-59](file://chatbot_service/tools/weather_tool.py#L24-L59)
-- [chatbot_service/tools/open_meteo.py:72-123](file://chatbot_service/tools/open_meteo.py#L72-L123)
+- [chatbot_service/tools/weather_tool.py:24-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L24-L59)
+- [chatbot_service/tools/open_meteo.py:72-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/open_meteo.py#L72-L123)
 
 **Section sources**
-- [chatbot_service/tools/weather_tool.py:15-64](file://chatbot_service/tools/weather_tool.py#L15-L64)
-- [chatbot_service/config.py:58-104](file://chatbot_service/config.py#L58-L104)
+- [chatbot_service/tools/weather_tool.py:15-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L15-L64)
+- [chatbot_service/config.py:58-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L58-L104)
 
 ### SOS Functionality (SosTool)
 - Purpose: Assemble a comprehensive SOS payload by combining backend emergency data with geocoding and 3-word address conversion.
@@ -277,12 +277,12 @@ S-->>Caller : payload or None
 ```
 
 **Diagram sources**
-- [chatbot_service/tools/sos_tool.py:21-43](file://chatbot_service/tools/sos_tool.py#L21-L43)
-- [chatbot_service/tools/what3words.py:26-57](file://chatbot_service/tools/what3words.py#L26-L57)
-- [chatbot_service/tools/geocoding.py:36-121](file://chatbot_service/tools/geocoding.py#L36-L121)
+- [chatbot_service/tools/sos_tool.py:21-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py#L21-L43)
+- [chatbot_service/tools/what3words.py:26-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py#L26-L57)
+- [chatbot_service/tools/geocoding.py:36-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py#L36-L121)
 
 **Section sources**
-- [chatbot_service/tools/sos_tool.py:10-44](file://chatbot_service/tools/sos_tool.py#L10-L44)
+- [chatbot_service/tools/sos_tool.py:10-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py#L10-L44)
 
 ### Challan Calculation (ChallanTool)
 - Purpose: Calculate challan penalties based on violation code, vehicle class, state, and repeat offense flag.
@@ -299,7 +299,7 @@ Response formatting:
 - Returns backend JSON or None.
 
 **Section sources**
-- [chatbot_service/tools/challan_tool.py:27-81](file://chatbot_service/tools/challan_tool.py#L27-L81)
+- [chatbot_service/tools/challan_tool.py:27-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L81)
 
 ### First Aid Guides (FirstAidTool)
 - Purpose: Provide first aid guidance based on a query string, falling back to embedded defaults if data is unavailable.
@@ -316,7 +316,7 @@ Response formatting:
 - Returns a structured guide with title, steps, optional warnings, and conditions.
 
 **Section sources**
-- [chatbot_service/tools/first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [chatbot_service/tools/first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
 
 ### Road Issues Lookup (RoadIssuesTool)
 - Purpose: Query recent road issues around a coordinate within a radius.
@@ -331,8 +331,8 @@ Response formatting:
 - Delegates to BackendToolClient; caller interprets JSON.
 
 **Section sources**
-- [chatbot_service/tools/road_issues_tool.py:6-15](file://chatbot_service/tools/road_issues_tool.py#L6-L15)
-- [chatbot_service/tools/__init__.py:19-33](file://chatbot_service/tools/__init__.py#L19-L33)
+- [chatbot_service/tools/road_issues_tool.py:6-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_issues_tool.py#L6-L15)
+- [chatbot_service/tools/__init__.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L19-L33)
 
 ### Submit Report (SubmitReportTool)
 - Purpose: Submit road hazard reports to the backend API; gracefully degrades if backend is unavailable.
@@ -349,7 +349,7 @@ Response formatting:
 - Returns a standardized result with submission status, optional report ID, and user-facing message.
 
 **Section sources**
-- [chatbot_service/tools/submit_report_tool.py:19-112](file://chatbot_service/tools/submit_report_tool.py#L19-L112)
+- [chatbot_service/tools/submit_report_tool.py:19-112](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/submit_report_tool.py#L19-L112)
 
 ### What3Words Integration (What3WordsTool)
 - Purpose: Convert GPS coordinates to 3-word addresses and back for precise location sharing.
@@ -367,8 +367,8 @@ Response formatting:
 - Returns structured dictionaries with words, formatted 3-word string, and optional map URL.
 
 **Section sources**
-- [chatbot_service/tools/what3words.py:19-89](file://chatbot_service/tools/what3words.py#L19-L89)
-- [chatbot_service/config.py:61-105](file://chatbot_service/config.py#L61-L105)
+- [chatbot_service/tools/what3words.py:19-89](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py#L19-L89)
+- [chatbot_service/config.py:61-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L61-L105)
 
 ### Geocoding (GeocodingClient)
 - Purpose: Reverse geocode coordinates to human-readable addresses with fallback providers.
@@ -386,8 +386,8 @@ Response formatting:
 - Returns structured address components (road, city, state, postcode, display) plus source indicator.
 
 **Section sources**
-- [chatbot_service/tools/geocoding.py:17-125](file://chatbot_service/tools/geocoding.py#L17-L125)
-- [chatbot_service/config.py:62-105](file://chatbot_service/config.py#L62-L105)
+- [chatbot_service/tools/geocoding.py:17-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py#L17-L125)
+- [chatbot_service/config.py:62-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L62-L105)
 
 ## Dependency Analysis
 - Internal dependencies:
@@ -453,18 +453,18 @@ LegalSearchTool --> Settings : "uses"
 ```
 
 **Diagram sources**
-- [chatbot_service/config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [chatbot_service/tools/__init__.py:8-36](file://chatbot_service/tools/__init__.py#L8-L36)
-- [chatbot_service/tools/weather_tool.py:15-64](file://chatbot_service/tools/weather_tool.py#L15-L64)
-- [chatbot_service/tools/open_meteo.py:61-127](file://chatbot_service/tools/open_meteo.py#L61-L127)
-- [chatbot_service/tools/sos_tool.py:10-44](file://chatbot_service/tools/sos_tool.py#L10-L44)
-- [chatbot_service/tools/what3words.py:19-89](file://chatbot_service/tools/what3words.py#L19-L89)
-- [chatbot_service/tools/geocoding.py:17-125](file://chatbot_service/tools/geocoding.py#L17-L125)
-- [chatbot_service/tools/legal_search_tool.py:6-12](file://chatbot_service/tools/legal_search_tool.py#L6-L12)
+- [chatbot_service/config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [chatbot_service/tools/__init__.py:8-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L8-L36)
+- [chatbot_service/tools/weather_tool.py:15-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L15-L64)
+- [chatbot_service/tools/open_meteo.py:61-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/open_meteo.py#L61-L127)
+- [chatbot_service/tools/sos_tool.py:10-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py#L10-L44)
+- [chatbot_service/tools/what3words.py:19-89](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py#L19-L89)
+- [chatbot_service/tools/geocoding.py:17-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py#L17-L125)
+- [chatbot_service/tools/legal_search_tool.py:6-12](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py#L6-L12)
 
 **Section sources**
-- [chatbot_service/config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [chatbot_service/tools/__init__.py:8-36](file://chatbot_service/tools/__init__.py#L8-L36)
+- [chatbot_service/config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [chatbot_service/tools/__init__.py:8-36](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L8-L36)
 
 ## Performance Considerations
 - Parallelization:
@@ -502,12 +502,12 @@ Operational tips:
 - Monitor rate limits for external providers (Nominatim, OpenWeatherMap, OpenCage).
 
 **Section sources**
-- [chatbot_service/tools/__init__.py:19-33](file://chatbot_service/tools/__init__.py#L19-L33)
-- [chatbot_service/tools/weather_tool.py:37-59](file://chatbot_service/tools/weather_tool.py#L37-L59)
-- [chatbot_service/tools/sos_tool.py:34-43](file://chatbot_service/tools/sos_tool.py#L34-L43)
-- [chatbot_service/tools/submit_report_tool.py:53-87](file://chatbot_service/tools/submit_report_tool.py#L53-L87)
-- [chatbot_service/tools/geocoding.py:83-121](file://chatbot_service/tools/geocoding.py#L83-L121)
-- [chatbot_service/tools/what3words.py:33-57](file://chatbot_service/tools/what3words.py#L33-L57)
+- [chatbot_service/tools/__init__.py:19-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/__init__.py#L19-L33)
+- [chatbot_service/tools/weather_tool.py:37-59](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L37-L59)
+- [chatbot_service/tools/sos_tool.py:34-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py#L34-L43)
+- [chatbot_service/tools/submit_report_tool.py:53-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/submit_report_tool.py#L53-L87)
+- [chatbot_service/tools/geocoding.py:83-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py#L83-L121)
+- [chatbot_service/tools/what3words.py:33-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py#L33-L57)
 
 ## Conclusion
 The tool system provides a robust, extensible foundation for integrating chatbot interactions with internal and external services. It emphasizes resilience through fallbacks, predictable response shapes, and graceful degradation. Configuration-driven behavior ensures portability across environments, while parallelization and rate limiting improve responsiveness and reliability.
@@ -517,24 +517,24 @@ The tool system provides a robust, extensible foundation for integrating chatbot
 ## Appendices
 
 ### Tool Execution Examples (paths)
-- Emergency lookup: [find_nearby:10-14](file://chatbot_service/tools/emergency_tool.py#L10-L14)
-- Legal search: [search:10-11](file://chatbot_service/tools/legal_search_tool.py#L10-L11)
-- Road infrastructure: [lookup:10-14](file://chatbot_service/tools/road_infra_tool.py#L10-L14)
-- Weather: [lookup:24-33](file://chatbot_service/tools/weather_tool.py#L24-L33)
-- SOS payload: [get_payload:21-43](file://chatbot_service/tools/sos_tool.py#L21-L43)
-- Challan calculation: [calculate:38-47](file://chatbot_service/tools/challan_tool.py#L38-L47), [infer_and_calculate:49-69](file://chatbot_service/tools/challan_tool.py#L49-L69)
-- First aid: [lookup:54-60](file://chatbot_service/tools/first_aid_tool.py#L54-L60)
-- Road issues: [lookup:10-14](file://chatbot_service/tools/road_issues_tool.py#L10-L14)
-- Report submission: [submit:39-81](file://chatbot_service/tools/submit_report_tool.py#L39-L81)
-- 3-word conversion: [gps_to_words:26-57](file://chatbot_service/tools/what3words.py#L26-L57)
-- Reverse geocoding: [reverse_geocode:36-46](file://chatbot_service/tools/geocoding.py#L36-L46)
+- Emergency lookup: [find_nearby:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/emergency_tool.py#L10-L14)
+- Legal search: [search:10-11](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/legal_search_tool.py#L10-L11)
+- Road infrastructure: [lookup:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_infra_tool.py#L10-L14)
+- Weather: [lookup:24-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L24-L33)
+- SOS payload: [get_payload:21-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py#L21-L43)
+- Challan calculation: [calculate:38-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L38-L47), [infer_and_calculate:49-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L49-L69)
+- First aid: [lookup:54-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L54-L60)
+- Road issues: [lookup:10-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/road_issues_tool.py#L10-L14)
+- Report submission: [submit:39-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/submit_report_tool.py#L39-L81)
+- 3-word conversion: [gps_to_words:26-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/what3words.py#L26-L57)
+- Reverse geocoding: [reverse_geocode:36-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/geocoding.py#L36-L46)
 
 ### Configuration Options
-- Backend base URL and timeout: [Settings:45-84](file://chatbot_service/config.py#L45-L84)
-- Weather provider keys and units: [Settings:58-104](file://chatbot_service/config.py#L58-L104)
-- HTTP client settings: [Settings:63-64](file://chatbot_service/config.py#L63-L64)
-- Rate limiting: [SlowAPI setup:18-104](file://chatbot_service/main.py#L18-L104)
+- Backend base URL and timeout: [Settings:45-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L45-L84)
+- Weather provider keys and units: [Settings:58-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L58-L104)
+- HTTP client settings: [Settings:63-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L63-L64)
+- Rate limiting: [SlowAPI setup:18-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L18-L104)
 
 **Section sources**
-- [chatbot_service/config.py:45-104](file://chatbot_service/config.py#L45-L104)
-- [chatbot_service/main.py:18-104](file://chatbot_service/main.py#L18-L104)
+- [chatbot_service/config.py:45-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L45-L104)
+- [chatbot_service/main.py:18-104](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L18-L104)

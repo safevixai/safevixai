@@ -2,22 +2,22 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/pytest.ini](file://backend/pytest.ini)
-- [chatbot_service/pytest.ini](file://chatbot_service/pytest.ini)
-- [frontend/jest.config.js](file://frontend/jest.config.js)
-- [backend/tests/conftest.py](file://backend/tests/conftest.py)
-- [chatbot_service/tests/conftest.py](file://chatbot_service/tests/conftest.py)
-- [.github/workflows/backend.yml](file://.github/workflows/backend.yml)
-- [.github/workflows/chatbot.yml](file://.github/workflows/chatbot.yml)
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
-- [.github/workflows/e2e.yml](file://.github/workflows/e2e.yml)
-- [.github/workflows/security.yml](file://.github/workflows/security.yml)
-- [backend/tests/test_chatbot.py](file://backend/tests/test_chatbot.py)
-- [backend/tests/test_routing.py](file://backend/tests/test_routing.py)
-- [chatbot_service/tests/test_e2e.py](file://chatbot_service/tests/test_e2e.py)
-- [chatbot_service/tests/test_intent.py](file://chatbot_service/tests/test_intent.py)
-- [chatbot_service/tests/test_rag.py](file://chatbot_service/tests/test_rag.py)
-- [frontend/tests/home.test.tsx](file://frontend/tests/home.test.tsx)
+- [backend/pytest.ini](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/pytest.ini)
+- [chatbot_service/pytest.ini](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/pytest.ini)
+- [frontend/jest.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js)
+- [backend/tests/conftest.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py)
+- [chatbot_service/tests/conftest.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/conftest.py)
+- [.github/workflows/backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
+- [.github/workflows/chatbot.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
+- [.github/workflows/e2e.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/e2e.yml)
+- [.github/workflows/security.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml)
+- [backend/tests/test_chatbot.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_chatbot.py)
+- [backend/tests/test_routing.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_routing.py)
+- [chatbot_service/tests/test_e2e.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_e2e.py)
+- [chatbot_service/tests/test_intent.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_intent.py)
+- [chatbot_service/tests/test_rag.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_rag.py)
+- [frontend/tests/home.test.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tests/home.test.tsx)
 </cite>
 
 ## Table of Contents
@@ -78,28 +78,28 @@ W_Security --> C_Tests
 ```
 
 **Diagram sources**
-- [backend/pytest.ini:1-5](file://backend/pytest.ini#L1-L5)
-- [chatbot_service/pytest.ini:1-4](file://chatbot_service/pytest.ini#L1-L4)
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
-- [backend/tests/conftest.py:1-31](file://backend/tests/conftest.py#L1-L31)
-- [chatbot_service/tests/conftest.py:1-10](file://chatbot_service/tests/conftest.py#L1-L10)
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
-- [.github/workflows/frontend.yml:1-43](file://.github/workflows/frontend.yml#L1-L43)
-- [.github/workflows/e2e.yml:1-43](file://.github/workflows/e2e.yml#L1-L43)
-- [.github/workflows/security.yml:1-64](file://.github/workflows/security.yml#L1-L64)
+- [backend/pytest.ini:1-5](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/pytest.ini#L1-L5)
+- [chatbot_service/pytest.ini:1-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/pytest.ini#L1-L4)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
+- [backend/tests/conftest.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py#L1-L31)
+- [chatbot_service/tests/conftest.py:1-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/conftest.py#L1-L10)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
+- [.github/workflows/frontend.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L1-L43)
+- [.github/workflows/e2e.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/e2e.yml#L1-L43)
+- [.github/workflows/security.yml:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L1-L64)
 
 **Section sources**
-- [backend/pytest.ini:1-5](file://backend/pytest.ini#L1-L5)
-- [chatbot_service/pytest.ini:1-4](file://chatbot_service/pytest.ini#L1-L4)
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
-- [backend/tests/conftest.py:1-31](file://backend/tests/conftest.py#L1-L31)
-- [chatbot_service/tests/conftest.py:1-10](file://chatbot_service/tests/conftest.py#L1-L10)
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
-- [.github/workflows/frontend.yml:1-43](file://.github/workflows/frontend.yml#L1-L43)
-- [.github/workflows/e2e.yml:1-43](file://.github/workflows/e2e.yml#L1-L43)
-- [.github/workflows/security.yml:1-64](file://.github/workflows/security.yml#L1-L64)
+- [backend/pytest.ini:1-5](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/pytest.ini#L1-L5)
+- [chatbot_service/pytest.ini:1-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/pytest.ini#L1-L4)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
+- [backend/tests/conftest.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py#L1-L31)
+- [chatbot_service/tests/conftest.py:1-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/conftest.py#L1-L10)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
+- [.github/workflows/frontend.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L1-L43)
+- [.github/workflows/e2e.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/e2e.yml#L1-L43)
+- [.github/workflows/security.yml:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L1-L64)
 
 ## Core Components
 - Backend FastAPI service
@@ -119,11 +119,11 @@ Key testing artifacts:
 - Frontend DOM assertions and component rendering checks
 
 **Section sources**
-- [backend/tests/conftest.py:18-31](file://backend/tests/conftest.py#L18-L31)
-- [chatbot_service/pytest.ini:1-4](file://chatbot_service/pytest.ini#L1-L4)
-- [chatbot_service/tests/test_e2e.py:219-236](file://chatbot_service/tests/test_e2e.py#L219-L236)
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
-- [frontend/tests/home.test.tsx:1-25](file://frontend/tests/home.test.tsx#L1-L25)
+- [backend/tests/conftest.py:18-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py#L18-L31)
+- [chatbot_service/pytest.ini:1-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/pytest.ini#L1-L4)
+- [chatbot_service/tests/test_e2e.py:219-236](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_e2e.py#L219-L236)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
+- [frontend/tests/home.test.tsx:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tests/home.test.tsx#L1-L25)
 
 ## Architecture Overview
 The testing architecture integrates per-service test suites with dedicated CI jobs. Security scanning is performed independently, and frontend unit tests are executed via Vitest in a separate workflow.
@@ -148,11 +148,11 @@ SEC-->>GH : Security scan report
 ```
 
 **Diagram sources**
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
-- [.github/workflows/frontend.yml:1-43](file://.github/workflows/frontend.yml#L1-L43)
-- [.github/workflows/e2e.yml:1-43](file://.github/workflows/e2e.yml#L1-L43)
-- [.github/workflows/security.yml:1-64](file://.github/workflows/security.yml#L1-L64)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
+- [.github/workflows/frontend.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L1-L43)
+- [.github/workflows/e2e.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/e2e.yml#L1-L43)
+- [.github/workflows/security.yml:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L1-L64)
 
 ## Detailed Component Analysis
 
@@ -179,14 +179,14 @@ TC-->>RESP : Assert status and payload fields
 ```
 
 **Diagram sources**
-- [backend/tests/conftest.py:22-31](file://backend/tests/conftest.py#L22-L31)
-- [backend/tests/test_chatbot.py:16-33](file://backend/tests/test_chatbot.py#L16-L33)
+- [backend/tests/conftest.py:22-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py#L22-L31)
+- [backend/tests/test_chatbot.py:16-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_chatbot.py#L16-L33)
 
 **Section sources**
-- [backend/pytest.ini:1-5](file://backend/pytest.ini#L1-L5)
-- [backend/tests/conftest.py:18-31](file://backend/tests/conftest.py#L18-L31)
-- [backend/tests/test_chatbot.py:1-33](file://backend/tests/test_chatbot.py#L1-L33)
-- [backend/tests/test_routing.py:1-97](file://backend/tests/test_routing.py#L1-L97)
+- [backend/pytest.ini:1-5](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/pytest.ini#L1-L5)
+- [backend/tests/conftest.py:18-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py#L18-L31)
+- [backend/tests/test_chatbot.py:1-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_chatbot.py#L1-L33)
+- [backend/tests/test_routing.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_routing.py#L1-L97)
 
 ### Chatbot Service Testing
 - Pytest configuration
@@ -216,15 +216,15 @@ AC-->>RESP : Assert response characteristics
 ```
 
 **Diagram sources**
-- [chatbot_service/pytest.ini:1-4](file://chatbot_service/pytest.ini#L1-L4)
-- [chatbot_service/tests/test_e2e.py:219-236](file://chatbot_service/tests/test_e2e.py#L219-L236)
-- [chatbot_service/tests/test_e2e.py:247-309](file://chatbot_service/tests/test_e2e.py#L247-L309)
+- [chatbot_service/pytest.ini:1-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/pytest.ini#L1-L4)
+- [chatbot_service/tests/test_e2e.py:219-236](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_e2e.py#L219-L236)
+- [chatbot_service/tests/test_e2e.py:247-309](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_e2e.py#L247-L309)
 
 **Section sources**
-- [chatbot_service/pytest.ini:1-4](file://chatbot_service/pytest.ini#L1-L4)
-- [chatbot_service/tests/test_e2e.py:1-309](file://chatbot_service/tests/test_e2e.py#L1-L309)
-- [chatbot_service/tests/test_intent.py:1-14](file://chatbot_service/tests/test_intent.py#L1-L14)
-- [chatbot_service/tests/test_rag.py:1-18](file://chatbot_service/tests/test_rag.py#L1-L18)
+- [chatbot_service/pytest.ini:1-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/pytest.ini#L1-L4)
+- [chatbot_service/tests/test_e2e.py:1-309](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_e2e.py#L1-L309)
+- [chatbot_service/tests/test_intent.py:1-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_intent.py#L1-L14)
+- [chatbot_service/tests/test_rag.py:1-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_rag.py#L1-L18)
 
 ### Frontend Testing
 - Jest configuration
@@ -244,13 +244,13 @@ AssertModules --> End(["Pass/Fail"])
 ```
 
 **Diagram sources**
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
-- [frontend/tests/home.test.tsx:5-10](file://frontend/tests/home.test.tsx#L5-L10)
-- [frontend/tests/home.test.tsx:12-24](file://frontend/tests/home.test.tsx#L12-L24)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
+- [frontend/tests/home.test.tsx:5-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tests/home.test.tsx#L5-L10)
+- [frontend/tests/home.test.tsx:12-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tests/home.test.tsx#L12-L24)
 
 **Section sources**
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
-- [frontend/tests/home.test.tsx:1-25](file://frontend/tests/home.test.tsx#L1-L25)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
+- [frontend/tests/home.test.tsx:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tests/home.test.tsx#L1-L25)
 
 ### Continuous Integration Testing
 - Backend CI
@@ -278,18 +278,18 @@ SEC_YML --> SAFETY["safety (CVE scan)"]
 ```
 
 **Diagram sources**
-- [.github/workflows/backend.yml:32-55](file://.github/workflows/backend.yml#L32-L55)
-- [.github/workflows/chatbot.yml:32-55](file://.github/workflows/chatbot.yml#L32-L55)
-- [.github/workflows/frontend.yml:36-43](file://.github/workflows/frontend.yml#L36-L43)
-- [.github/workflows/e2e.yml:35-43](file://.github/workflows/e2e.yml#L35-L43)
-- [.github/workflows/security.yml:30-64](file://.github/workflows/security.yml#L30-L64)
+- [.github/workflows/backend.yml:32-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L32-L55)
+- [.github/workflows/chatbot.yml:32-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L32-L55)
+- [.github/workflows/frontend.yml:36-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L36-L43)
+- [.github/workflows/e2e.yml:35-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/e2e.yml#L35-L43)
+- [.github/workflows/security.yml:30-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L30-L64)
 
 **Section sources**
-- [.github/workflows/backend.yml:1-55](file://.github/workflows/backend.yml#L1-L55)
-- [.github/workflows/chatbot.yml:1-55](file://.github/workflows/chatbot.yml#L1-L55)
-- [.github/workflows/frontend.yml:1-43](file://.github/workflows/frontend.yml#L1-L43)
-- [.github/workflows/e2e.yml:1-43](file://.github/workflows/e2e.yml#L1-L43)
-- [.github/workflows/security.yml:1-64](file://.github/workflows/security.yml#L1-L64)
+- [.github/workflows/backend.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L1-L55)
+- [.github/workflows/chatbot.yml:1-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L1-L55)
+- [.github/workflows/frontend.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L1-L43)
+- [.github/workflows/e2e.yml:1-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/e2e.yml#L1-L43)
+- [.github/workflows/security.yml:1-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L1-L64)
 
 ## Dependency Analysis
 - Backend
@@ -314,20 +314,20 @@ F_JestCfg["frontend/jest.config.js"] --> F_Test["frontend/tests/home.test.tsx"]
 ```
 
 **Diagram sources**
-- [backend/tests/conftest.py:14-31](file://backend/tests/conftest.py#L14-L31)
-- [backend/tests/test_chatbot.py:16-33](file://backend/tests/test_chatbot.py#L16-L33)
-- [backend/tests/test_routing.py:67-97](file://backend/tests/test_routing.py#L67-L97)
-- [chatbot_service/tests/conftest.py:1-10](file://chatbot_service/tests/conftest.py#L1-L10)
-- [chatbot_service/tests/test_e2e.py:219-236](file://chatbot_service/tests/test_e2e.py#L219-L236)
-- [chatbot_service/tests/test_intent.py:6-14](file://chatbot_service/tests/test_intent.py#L6-L14)
-- [chatbot_service/tests/test_rag.py:9-18](file://chatbot_service/tests/test_rag.py#L9-L18)
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
-- [frontend/tests/home.test.tsx:1-25](file://frontend/tests/home.test.tsx#L1-L25)
+- [backend/tests/conftest.py:14-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py#L14-L31)
+- [backend/tests/test_chatbot.py:16-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_chatbot.py#L16-L33)
+- [backend/tests/test_routing.py:67-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_routing.py#L67-L97)
+- [chatbot_service/tests/conftest.py:1-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/conftest.py#L1-L10)
+- [chatbot_service/tests/test_e2e.py:219-236](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_e2e.py#L219-L236)
+- [chatbot_service/tests/test_intent.py:6-14](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_intent.py#L6-L14)
+- [chatbot_service/tests/test_rag.py:9-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_rag.py#L9-L18)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
+- [frontend/tests/home.test.tsx:1-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/tests/home.test.tsx#L1-L25)
 
 **Section sources**
-- [backend/tests/conftest.py:1-31](file://backend/tests/conftest.py#L1-L31)
-- [chatbot_service/tests/conftest.py:1-10](file://chatbot_service/tests/conftest.py#L1-L10)
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
+- [backend/tests/conftest.py:1-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/conftest.py#L1-L31)
+- [chatbot_service/tests/conftest.py:1-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/conftest.py#L1-L10)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
 
 ## Performance Considerations
 - Current test suite focuses on correctness and integration rather than performance or load testing.
@@ -353,11 +353,11 @@ F_JestCfg["frontend/jest.config.js"] --> F_Test["frontend/tests/home.test.tsx"]
   - Confirm jsdom environment and component mocking align with actual runtime behavior
 
 **Section sources**
-- [backend/pytest.ini:2-4](file://backend/pytest.ini#L2-L4)
-- [chatbot_service/pytest.ini:1-4](file://chatbot_service/pytest.ini#L1-L4)
-- [.github/workflows/backend.yml:47-55](file://.github/workflows/backend.yml#L47-L55)
-- [.github/workflows/chatbot.yml:47-55](file://.github/workflows/chatbot.yml#L47-L55)
-- [frontend/jest.config.js:9-12](file://frontend/jest.config.js#L9-L12)
+- [backend/pytest.ini:2-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/pytest.ini#L2-L4)
+- [chatbot_service/pytest.ini:1-4](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/pytest.ini#L1-L4)
+- [.github/workflows/backend.yml:47-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L47-L55)
+- [.github/workflows/chatbot.yml:47-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L47-L55)
+- [frontend/jest.config.js:9-12](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L9-L12)
 
 ## Conclusion
 
@@ -379,7 +379,7 @@ SafeVixAI’s testing strategy leverages per-service test suites and CI workflow
 - Centralize shared fixtures for repeated setup across related tests
 
 **Section sources**
-- [chatbot_service/tests/test_rag.py:9-18](file://chatbot_service/tests/test_rag.py#L9-L18)
+- [chatbot_service/tests/test_rag.py:9-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_rag.py#L9-L18)
 
 ### Coverage and Quality Metrics
 - Enforce minimum coverage thresholds per service and gate PRs on coverage checks
@@ -387,7 +387,7 @@ SafeVixAI’s testing strategy leverages per-service test suites and CI workflow
 - Maintain clean diffs by avoiding noisy test output and focusing on meaningful assertions
 
 **Section sources**
-- [.github/workflows/security.yml:42-64](file://.github/workflows/security.yml#L42-L64)
+- [.github/workflows/security.yml:42-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L42-L64)
 
 ### Production Validation
 - Run smoke tests against staging endpoints before releases
@@ -395,6 +395,6 @@ SafeVixAI’s testing strategy leverages per-service test suites and CI workflow
 - Monitor CI failure rates and address regressions promptly
 
 **Section sources**
-- [.github/workflows/backend.yml:39-46](file://.github/workflows/backend.yml#L39-L46)
-- [.github/workflows/chatbot.yml:39-46](file://.github/workflows/chatbot.yml#L39-L46)
-- [.github/workflows/e2e.yml:35-43](file://.github/workflows/e2e.yml#L35-L43)
+- [.github/workflows/backend.yml:39-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L39-L46)
+- [.github/workflows/chatbot.yml:39-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L39-L46)
+- [.github/workflows/e2e.yml:35-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/e2e.yml#L35-L43)

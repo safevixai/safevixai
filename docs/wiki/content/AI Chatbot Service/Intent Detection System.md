@@ -2,14 +2,14 @@
 
 <cite>
 **Referenced Files in This Document**
-- [intent_detector.py](file://chatbot_service/agent/intent_detector.py)
-- [graph.py](file://chatbot_service/agent/graph.py)
-- [context_assembler.py](file://chatbot_service/agent/context_assembler.py)
-- [state.py](file://chatbot_service/agent/state.py)
-- [chat.py](file://chatbot_service/api/chat.py)
-- [test_intent.py](file://chatbot_service/tests/test_intent.py)
-- [challan_tool.py](file://chatbot_service/tools/challan_tool.py)
-- [first_aid_tool.py](file://chatbot_service/tools/first_aid_tool.py)
+- [intent_detector.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py)
+- [graph.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py)
+- [context_assembler.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py)
+- [state.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py)
+- [chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py)
+- [test_intent.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_intent.py)
+- [challan_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py)
+- [first_aid_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py)
 </cite>
 
 ## Table of Contents
@@ -62,16 +62,16 @@ CE --> ST
 ```
 
 **Diagram sources**
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
 
 **Section sources**
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
 
 ## Core Components
 - IntentDetector: A rule-based classifier that maps user messages to one of nine intent categories. It performs case-insensitive substring matching and uses regular expressions for specific patterns (e.g., challan code detection).
@@ -81,11 +81,11 @@ CE --> ST
 - API routes: Expose chat and streaming endpoints, returning structured responses and metadata such as intent and sources.
 
 **Section sources**
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [state.py:9-52](file://chatbot_service/agent/state.py#L9-L52)
-- [chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [state.py:9-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L9-L52)
+- [chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
 
 ## Architecture Overview
 The intent detection pipeline integrates with the chat engine to influence tool selection and response generation. The flow is as follows:
@@ -122,10 +122,10 @@ API-->>Client : "SSE stream with intent and sources"
 ```
 
 **Diagram sources**
-- [chat.py:43-97](file://chatbot_service/api/chat.py#L43-L97)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [intent_detector.py:10-24](file://chatbot_service/agent/intent_detector.py#L10-L24)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
+- [chat.py:43-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L43-L97)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [intent_detector.py:10-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L10-L24)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
 
 ## Detailed Component Analysis
 
@@ -152,9 +152,9 @@ Integration with chat engine:
 - The ChatEngine invokes the detector and passes the intent to the ContextAssembler.
 
 **Section sources**
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [graph.py:48-57](file://chatbot_service/agent/graph.py#L48-L57)
-- [test_intent.py:6-13](file://chatbot_service/tests/test_intent.py#L6-L13)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [graph.py:48-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L48-L57)
+- [test_intent.py:6-13](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_intent.py#L6-L13)
 
 ### ContextAssembler
 The ContextAssembler builds a ConversationContext tailored to the detected intent. It selects tools and retrieves documents accordingly, enriching the context for the provider.
@@ -192,12 +192,12 @@ BuildContext --> End(["Return Context"])
 ```
 
 **Diagram sources**
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
 
 **Section sources**
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [challan_tool.py:27-81](file://chatbot_service/tools/challan_tool.py#L27-L81)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [challan_tool.py:27-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L27-L81)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
 
 ### ChatEngine
 The ChatEngine coordinates the entire chat flow:
@@ -214,8 +214,8 @@ Key responsibilities:
 - Provider request construction and response packaging.
 
 **Section sources**
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
-- [state.py:9-52](file://chatbot_service/agent/state.py#L9-L52)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
+- [state.py:9-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L9-L52)
 
 ### API Layer
 The API exposes two endpoints:
@@ -225,7 +225,7 @@ The API exposes two endpoints:
 Both endpoints depend on the ChatEngine instance registered in the FastAPI app state.
 
 **Section sources**
-- [chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
+- [chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
 
 ### Intent Categories and Representative Queries
 Below are nine intent categories and representative user queries. These examples illustrate how the rule-based classifier maps messages to intents.
@@ -257,8 +257,8 @@ Below are nine intent categories and representative user queries. These examples
 Note: The classifier’s default category is general when no specific keywords or patterns match the predefined categories.
 
 **Section sources**
-- [intent_detector.py:10-24](file://chatbot_service/agent/intent_detector.py#L10-L24)
-- [test_intent.py:6-13](file://chatbot_service/tests/test_intent.py#L6-L13)
+- [intent_detector.py:10-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L10-L24)
+- [test_intent.py:6-13](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_intent.py#L6-L13)
 
 ## Dependency Analysis
 The intent detection system exhibits clear separation of concerns:
@@ -301,14 +301,14 @@ ChatEngine --> ChatResponse : "produces"
 ```
 
 **Diagram sources**
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
-- [state.py:9-52](file://chatbot_service/agent/state.py#L9-L52)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
+- [state.py:9-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L9-L52)
 
 **Section sources**
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [state.py:9-52](file://chatbot_service/agent/state.py#L9-L52)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [state.py:9-52](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L9-L52)
 
 ## Performance Considerations
 - Classification speed: Rule-based classification is computationally lightweight and scales linearly with the number of keywords and patterns.
@@ -329,7 +329,7 @@ Validation references:
 - Unit tests confirm emergency and challan classification behavior.
 
 **Section sources**
-- [test_intent.py:6-13](file://chatbot_service/tests/test_intent.py#L6-L13)
+- [test_intent.py:6-13](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_intent.py#L6-L13)
 
 ## Conclusion
 The intent detection system employs a robust, rule-based classifier integrated tightly with the chat engine. It enables precise tool selection and retrieval-driven responses, ensuring users receive targeted assistance across nine categories. While the current implementation lacks probabilistic scoring, its deterministic nature offers predictable behavior and straightforward maintainability.
@@ -346,6 +346,6 @@ The intent detection system employs a robust, rule-based classifier integrated t
 - Road Issue: Road infrastructure and issues are added when location is available; reporting guidance is included when the query mentions reporting.
 
 **Section sources**
-- [context_assembler.py:64-201](file://chatbot_service/agent/context_assembler.py#L64-L201)
-- [challan_tool.py:49-81](file://chatbot_service/tools/challan_tool.py#L49-L81)
-- [first_aid_tool.py:54-109](file://chatbot_service/tools/first_aid_tool.py#L54-L109)
+- [context_assembler.py:64-201](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L64-L201)
+- [challan_tool.py:49-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/challan_tool.py#L49-L81)
+- [first_aid_tool.py:54-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L54-L109)

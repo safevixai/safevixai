@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [speech_translation.py](file://chatbot_service/services/speech_translation.py)
-- [speech.py](file://chatbot_service/api/speech.py)
-- [config.py](file://chatbot_service/config.py)
-- [main.py](file://chatbot_service/main.py)
-- [VoiceInput.tsx](file://frontend/components/VoiceInput.tsx)
-- [multimodal-ai-chat-input.tsx](file://frontend/components/chat/multimodal-ai-chat-input.tsx)
-- [ChatInterface.tsx](file://frontend/components/ChatInterface.tsx)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [requirements.txt](file://chatbot_service/requirements.txt)
-- [test_voice.py](file://chatbot_service/tests/test_voice.py)
-- [Features.md](file://chatbot_docs/Features.md)
+- [speech_translation.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py)
+- [speech.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [VoiceInput.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx)
+- [multimodal-ai-chat-input.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/chat/multimodal-ai-chat-input.tsx)
+- [ChatInterface.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [requirements.txt](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt)
+- [test_voice.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_voice.py)
+- [Features.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_docs/Features.md)
 </cite>
 
 ## Table of Contents
@@ -64,24 +64,24 @@ CI --> OFF
 ```
 
 **Diagram sources**
-- [speech.py:12-77](file://chatbot_service/api/speech.py#L12-L77)
-- [speech_translation.py:34-141](file://chatbot_service/services/speech_translation.py#L34-L141)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [VoiceInput.tsx:48-144](file://frontend/components/VoiceInput.tsx#L48-L144)
-- [multimodal-ai-chat-input.tsx:139-162](file://frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [speech.py:12-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L12-L77)
+- [speech_translation.py:34-141](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L34-L141)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [VoiceInput.tsx:48-144](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx#L48-L144)
+- [multimodal-ai-chat-input.tsx:139-162](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 **Section sources**
-- [speech.py:12-77](file://chatbot_service/api/speech.py#L12-L77)
-- [speech_translation.py:34-141](file://chatbot_service/services/speech_translation.py#L34-L141)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [VoiceInput.tsx:48-144](file://frontend/components/VoiceInput.tsx#L48-L144)
-- [multimodal-ai-chat-input.tsx:139-162](file://frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [speech.py:12-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L12-L77)
+- [speech_translation.py:34-141](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L34-L141)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [VoiceInput.tsx:48-144](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx#L48-L144)
+- [multimodal-ai-chat-input.tsx:139-162](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ## Core Components
 - IndicSeamlessService: Loads the Seamless M4T model and tokenizer, performs audio preprocessing, and generates translated text
@@ -91,11 +91,11 @@ CI --> OFF
 - Offline AI: Provides voice-enabled offline responses when connectivity is unavailable
 
 **Section sources**
-- [speech_translation.py:34-141](file://chatbot_service/services/speech_translation.py#L34-L141)
-- [speech.py:34-77](file://chatbot_service/api/speech.py#L34-L77)
-- [VoiceInput.tsx:48-144](file://frontend/components/VoiceInput.tsx#L48-L144)
-- [multimodal-ai-chat-input.tsx:139-162](file://frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [speech_translation.py:34-141](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L34-L141)
+- [speech.py:34-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L34-L77)
+- [VoiceInput.tsx:48-144](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx#L48-L144)
+- [multimodal-ai-chat-input.tsx:139-162](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ## Architecture Overview
 The voice pipeline connects the frontend voice capture to the backend speech translation service and integrates with the chat UI.
@@ -121,11 +121,11 @@ FE_CI-->>User : "Display response in chat"
 ```
 
 **Diagram sources**
-- [speech.py:34-77](file://chatbot_service/api/speech.py#L34-L77)
-- [speech_translation.py:61-107](file://chatbot_service/services/speech_translation.py#L61-L107)
-- [config.py:54-101](file://chatbot_service/config.py#L54-L101)
-- [VoiceInput.tsx:48-144](file://frontend/components/VoiceInput.tsx#L48-L144)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
+- [speech.py:34-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L34-L77)
+- [speech_translation.py:61-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L61-L107)
+- [config.py:54-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L54-L101)
+- [VoiceInput.tsx:48-144](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx#L48-L144)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
 
 ## Detailed Component Analysis
 
@@ -162,11 +162,11 @@ IndicSeamlessService --> SpeechTranslationResult : "returns"
 ```
 
 **Diagram sources**
-- [speech_translation.py:25-141](file://chatbot_service/services/speech_translation.py#L25-L141)
+- [speech_translation.py:25-141](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L25-L141)
 
 **Section sources**
-- [speech_translation.py:34-141](file://chatbot_service/services/speech_translation.py#L34-L141)
-- [config.py:54-101](file://chatbot_service/config.py#L54-L101)
+- [speech_translation.py:34-141](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L34-L141)
+- [config.py:54-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L54-L101)
 
 ### Speech Translation API
 Provides a FastAPI endpoint for translating speech:
@@ -190,11 +190,11 @@ Router-->>Client : "200 OK + payload"
 ```
 
 **Diagram sources**
-- [speech.py:34-77](file://chatbot_service/api/speech.py#L34-L77)
-- [speech_translation.py:61-107](file://chatbot_service/services/speech_translation.py#L61-L107)
+- [speech.py:34-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L34-L77)
+- [speech_translation.py:61-107](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L61-L107)
 
 **Section sources**
-- [speech.py:12-77](file://chatbot_service/api/speech.py#L12-L77)
+- [speech.py:12-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L12-L77)
 
 ### Frontend Voice Capture and Integration
 - VoiceInput.tsx: Uses the Web Speech API to capture speech and emit transcriptions
@@ -214,14 +214,14 @@ Fallback --> End
 ```
 
 **Diagram sources**
-- [VoiceInput.tsx:48-144](file://frontend/components/VoiceInput.tsx#L48-L144)
-- [multimodal-ai-chat-input.tsx:139-162](file://frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
+- [VoiceInput.tsx:48-144](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx#L48-L144)
+- [multimodal-ai-chat-input.tsx:139-162](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
 
 **Section sources**
-- [VoiceInput.tsx:48-144](file://frontend/components/VoiceInput.tsx#L48-L144)
-- [multimodal-ai-chat-input.tsx:139-162](file://frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
-- [ChatInterface.tsx:64-317](file://frontend/components/ChatInterface.tsx#L64-L317)
+- [VoiceInput.tsx:48-144](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx#L48-L144)
+- [multimodal-ai-chat-input.tsx:139-162](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
+- [ChatInterface.tsx:64-317](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L64-L317)
 
 ### Offline Voice Feedback
 The offline AI module provides voice-enabled responses when online capabilities are unavailable:
@@ -241,12 +241,12 @@ Respond --> End(["Show response in chat"])
 ```
 
 **Diagram sources**
-- [offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
-- [ChatInterface.tsx:131-143](file://frontend/components/ChatInterface.tsx#L131-L143)
+- [offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
+- [ChatInterface.tsx:131-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L131-L143)
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [ChatInterface.tsx:131-143](file://frontend/components/ChatInterface.tsx#L131-L143)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [ChatInterface.tsx:131-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ChatInterface.tsx#L131-L143)
 
 ## Dependency Analysis
 Runtime dependencies for speech processing are declared in the chatbot service requirements.
@@ -265,10 +265,10 @@ REQ --> DS
 ```
 
 **Diagram sources**
-- [requirements.txt:4-8](file://chatbot_service/requirements.txt#L4-L8)
+- [requirements.txt:4-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L4-L8)
 
 **Section sources**
-- [requirements.txt:4-8](file://chatbot_service/requirements.txt#L4-L8)
+- [requirements.txt:4-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/requirements.txt#L4-L8)
 
 ## Performance Considerations
 - Device selection: The service auto-selects CUDA if available, otherwise falls back to CPU
@@ -278,10 +278,10 @@ REQ --> DS
 - Rate limiting: The endpoint enforces a per-minute rate limit to protect resources
 
 **Section sources**
-- [speech_translation.py:130-136](file://chatbot_service/services/speech_translation.py#L130-L136)
-- [speech_translation.py:122-129](file://chatbot_service/services/speech_translation.py#L122-L129)
-- [speech.py:58-64](file://chatbot_service/api/speech.py#L58-L64)
-- [speech.py:29-31](file://chatbot_service/api/speech.py#L29-L31)
+- [speech_translation.py:130-136](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L130-L136)
+- [speech_translation.py:122-129](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L122-L129)
+- [speech.py:58-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L58-L64)
+- [speech.py:29-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L29-L31)
 
 ## Troubleshooting Guide
 Common issues and resolutions:
@@ -292,9 +292,9 @@ Common issues and resolutions:
 - Test coverage: Unit tests validate model directory status reporting
 
 **Section sources**
-- [speech_translation.py:69-73](file://chatbot_service/services/speech_translation.py#L69-L73)
-- [speech.py:40-54](file://chatbot_service/api/speech.py#L40-L54)
-- [test_voice.py:10-27](file://chatbot_service/tests/test_voice.py#L10-L27)
+- [speech_translation.py:69-73](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L69-L73)
+- [speech.py:40-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L40-L54)
+- [test_voice.py:10-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tests/test_voice.py#L10-L27)
 
 ## Conclusion
 The voice and multimodal capabilities leverage a robust backend speech service powered by Indic Seamless and a responsive frontend that captures speech and integrates it into the chat experience. The system emphasizes multilingual support, accessibility, and resilience through offline AI fallback, while maintaining performance via device-aware model loading and thread pool offloading.
@@ -312,8 +312,8 @@ The voice and multimodal capabilities leverage a robust backend speech service p
 - Response: Structured result including text, target language, device, model source, and sample rate
 
 **Section sources**
-- [speech.py:34-77](file://chatbot_service/api/speech.py#L34-L77)
-- [speech_translation.py:25-31](file://chatbot_service/services/speech_translation.py#L25-L31)
+- [speech.py:34-77](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/speech.py#L34-L77)
+- [speech_translation.py:25-31](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/services/speech_translation.py#L25-L31)
 
 ### Configuration Options
 - speech_model_id: model identifier for Indic Seamless
@@ -322,7 +322,7 @@ The voice and multimodal capabilities leverage a robust backend speech service p
 - speech_default_target_lang: Default target language for translation
 
 **Section sources**
-- [config.py:54-101](file://chatbot_service/config.py#L54-L101)
+- [config.py:54-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L54-L101)
 
 ### Accessibility and User Experience Notes
 - VoiceInput.tsx provides visual feedback during recording and graceful fallback when the Web Speech API is unavailable
@@ -330,6 +330,6 @@ The voice and multimodal capabilities leverage a robust backend speech service p
 - Offline AI ensures voice-enabled responses remain available even without network connectivity
 
 **Section sources**
-- [VoiceInput.tsx:48-144](file://frontend/components/VoiceInput.tsx#L48-L144)
-- [multimodal-ai-chat-input.tsx:139-162](file://frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [VoiceInput.tsx:48-144](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/VoiceInput.tsx#L48-L144)
+- [multimodal-ai-chat-input.tsx:139-162](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/chat/multimodal-ai-chat-input.tsx#L139-L162)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)

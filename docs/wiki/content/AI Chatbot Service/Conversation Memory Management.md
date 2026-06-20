@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [redis_memory.py](file://chatbot_service/memory/redis_memory.py)
-- [main.py](file://chatbot_service/main.py)
-- [config.py](file://chatbot_service/config.py)
-- [graph.py](file://chatbot_service/agent/graph.py)
-- [context_assembler.py](file://chatbot_service/agent/context_assembler.py)
-- [safety_checker.py](file://chatbot_service/agent/safety_checker.py)
-- [chat.py](file://chatbot_service/api/chat.py)
-- [state.py](file://chatbot_service/agent/state.py)
-- [.env.example](file://chatbot_service/.env.example)
-- [redis_client.py](file://backend/core/redis_client.py)
+- [redis_memory.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [graph.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py)
+- [context_assembler.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py)
+- [safety_checker.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py)
+- [chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py)
+- [state.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py)
+- [.env.example](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/.env.example)
+- [redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
 </cite>
 
 ## Table of Contents
@@ -59,18 +59,18 @@ C <- --> R
 ```
 
 **Diagram sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [config.py:69-113](file://chatbot_service/config.py#L69-L113)
-- [redis_memory.py:10-89](file://chatbot_service/memory/redis_memory.py#L10-L89)
-- [graph.py:15-32](file://chatbot_service/agent/graph.py#L15-L32)
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [safety_checker.py:12-30](file://chatbot_service/agent/safety_checker.py#L12-L30)
-- [chat.py:24-40](file://chatbot_service/api/chat.py#L24-L40)
-- [state.py:9-21](file://chatbot_service/agent/state.py#L9-L21)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [config.py:69-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L113)
+- [redis_memory.py:10-89](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L89)
+- [graph.py:15-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L32)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [safety_checker.py:12-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L30)
+- [chat.py:24-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L24-L40)
+- [state.py:9-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L9-L21)
 
 **Section sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [config.py:69-113](file://chatbot_service/config.py#L69-L113)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [config.py:69-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L113)
 
 ## Core Components
 - ConversationMemoryStore: Provides asynchronous append, retrieval, and cleanup of conversation messages per session, with Redis-backed persistence and in-memory fallback.
@@ -87,11 +87,11 @@ Key responsibilities:
 - Cleanup via explicit deletion and TTL expiry.
 
 **Section sources**
-- [redis_memory.py:10-89](file://chatbot_service/memory/redis_memory.py#L10-L89)
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
-- [safety_checker.py:12-30](file://chatbot_service/agent/safety_checker.py#L12-L30)
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
+- [redis_memory.py:10-89](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L89)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
+- [safety_checker.py:12-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L30)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
 
 ## Architecture Overview
 The memory store is initialized during application startup and attached to the app state. Chat requests flow through the API layer into the ChatEngine, which uses the memory store to persist user and assistant turns, retrieve recent history, and optionally block unsafe content.
@@ -120,11 +120,11 @@ API-->>Client : ChatResponse
 ```
 
 **Diagram sources**
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [redis_memory.py:23-56](file://chatbot_service/memory/redis_memory.py#L23-L56)
-- [safety_checker.py:13-30](file://chatbot_service/agent/safety_checker.py#L13-L30)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [redis_memory.py:23-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L56)
+- [safety_checker.py:13-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L13-L30)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
 
 ## Detailed Component Analysis
 
@@ -168,10 +168,10 @@ class ConversationMemoryStore {
 ```
 
 **Diagram sources**
-- [redis_memory.py:10-89](file://chatbot_service/memory/redis_memory.py#L10-L89)
+- [redis_memory.py:10-89](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L89)
 
 **Section sources**
-- [redis_memory.py:10-89](file://chatbot_service/memory/redis_memory.py#L10-L89)
+- [redis_memory.py:10-89](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L89)
 
 ### ChatEngine Integration
 The ChatEngine coordinates memory operations around chat processing:
@@ -196,11 +196,11 @@ AppendAssistant --> Done(["Return response"])
 ```
 
 **Diagram sources**
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [redis_memory.py:23-81](file://chatbot_service/memory/redis_memory.py#L23-L81)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [redis_memory.py:23-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L81)
 
 **Section sources**
-- [graph.py:15-87](file://chatbot_service/agent/graph.py#L15-L87)
+- [graph.py:15-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L87)
 
 ### Safety Checker Integration
 The SafetyChecker evaluates incoming messages and returns a decision to block or allow. If blocked, the ChatEngine appends a policy-compliant response to memory and returns early.
@@ -218,11 +218,11 @@ C --> |No| E["Return blocked=False"]
 ```
 
 **Diagram sources**
-- [safety_checker.py:13-30](file://chatbot_service/agent/safety_checker.py#L13-L30)
+- [safety_checker.py:13-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L13-L30)
 
 **Section sources**
-- [safety_checker.py:12-30](file://chatbot_service/agent/safety_checker.py#L12-L30)
-- [graph.py:38-46](file://chatbot_service/agent/graph.py#L38-L46)
+- [safety_checker.py:12-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L30)
+- [graph.py:38-46](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L38-L46)
 
 ### API Endpoints and Memory Usage
 - POST /api/v1/chat/: Standard chat endpoint delegates to ChatEngine.
@@ -244,13 +244,13 @@ Router-->>Client : JSON response
 ```
 
 **Diagram sources**
-- [chat.py:100-105](file://chatbot_service/api/chat.py#L100-L105)
-- [graph.py:89-90](file://chatbot_service/agent/graph.py#L89-L90)
-- [redis_memory.py:46-56](file://chatbot_service/memory/redis_memory.py#L46-L56)
+- [chat.py:100-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L100-L105)
+- [graph.py:89-90](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L89-L90)
+- [redis_memory.py:46-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L46-L56)
 
 **Section sources**
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [chat.py:100-105](file://chatbot_service/api/chat.py#L100-L105)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [chat.py:100-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L100-L105)
 
 ### Memory Operations Examples
 - Basic chat session:
@@ -269,9 +269,9 @@ Router-->>Client : JSON response
 These flows are orchestrated by the ChatEngine and backed by ConversationMemoryStore.
 
 **Section sources**
-- [graph.py:33-87](file://chatbot_service/agent/graph.py#L33-L87)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [redis_memory.py:23-81](file://chatbot_service/memory/redis_memory.py#L23-L81)
+- [graph.py:33-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L33-L87)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [redis_memory.py:23-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L81)
 
 ### Serialization Strategies
 - Message payloads are serialized to JSON before storage and deserialized on retrieval.
@@ -283,7 +283,7 @@ Efficiency considerations:
 - Payloads include minimal fields to reduce storage overhead.
 
 **Section sources**
-- [redis_memory.py:23-56](file://chatbot_service/memory/redis_memory.py#L23-L56)
+- [redis_memory.py:23-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L23-L56)
 
 ### Cleanup Mechanisms
 - Explicit session clearing: deletes the Redis key for a session.
@@ -295,8 +295,8 @@ Operational hygiene:
 - Health endpoint surfaces memory backend availability.
 
 **Section sources**
-- [redis_memory.py:58-85](file://chatbot_service/memory/redis_memory.py#L58-L85)
-- [main.py:106-115](file://chatbot_service/main.py#L106-L115)
+- [redis_memory.py:58-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L58-L85)
+- [main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
 
 ## Dependency Analysis
 - Application initialization creates a ConversationMemoryStore and attaches it to app state.
@@ -316,17 +316,17 @@ API["api/chat.py: API Router"] --> Engine
 ```
 
 **Diagram sources**
-- [config.py:69-113](file://chatbot_service/config.py#L69-L113)
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [redis_memory.py:10-15](file://chatbot_service/memory/redis_memory.py#L10-L15)
-- [graph.py:15-32](file://chatbot_service/agent/graph.py#L15-L32)
-- [safety_checker.py:12-30](file://chatbot_service/agent/safety_checker.py#L12-L30)
-- [context_assembler.py:17-41](file://chatbot_service/agent/context_assembler.py#L17-L41)
-- [chat.py:24-40](file://chatbot_service/api/chat.py#L24-L40)
+- [config.py:69-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L69-L113)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [redis_memory.py:10-15](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L10-L15)
+- [graph.py:15-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L32)
+- [safety_checker.py:12-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/safety_checker.py#L12-L30)
+- [context_assembler.py:17-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L41)
+- [chat.py:24-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L24-L40)
 
 **Section sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [graph.py:15-32](file://chatbot_service/agent/graph.py#L15-L32)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [graph.py:15-32](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/graph.py#L15-L32)
 
 ## Performance Considerations
 - Storage efficiency:
@@ -364,9 +364,9 @@ Operational checks:
 - Monitor backend_name via application logs and health checks.
 
 **Section sources**
-- [redis_memory.py:17-21](file://chatbot_service/memory/redis_memory.py#L17-L21)
-- [main.py:106-115](file://chatbot_service/main.py#L106-L115)
-- [chat.py:100-105](file://chatbot_service/api/chat.py#L100-L105)
+- [redis_memory.py:17-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/memory/redis_memory.py#L17-L21)
+- [main.py:106-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L106-L115)
+- [chat.py:100-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L100-L105)
 
 ## Conclusion
 The conversation memory system provides robust, session-based persistence with Redis as the primary backend and a resilient in-memory fallback. It integrates tightly with the chat engine, safety checker, and context assembler to deliver secure, contextual, and scalable conversational experiences. Proper configuration of Redis URL and session TTL, combined with careful message serialization and TTL-based cleanup, ensures efficient operation and strong reliability.
@@ -380,14 +380,14 @@ The conversation memory system provides robust, session-based persistence with R
 - SESSION_TTL_SECONDS: Controls automatic expiration of session data.
 
 Environment template:
-- See [REDIS_URL](file://chatbot_service/.env.example#L18) and [SESSION_TTL_SECONDS](file://chatbot_service/.env.example#L56) usage in settings loader.
+- See [REDIS_URL](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/.env.example#L18) and [SESSION_TTL_SECONDS](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/.env.example#L56) usage in settings loader.
 
 **Section sources**
-- [.env.example:18](file://chatbot_service/.env.example#L18)
-- [config.py:108](file://chatbot_service/config.py#L108)
+- [.env.example:18](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/.env.example#L18)
+- [config.py:108](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L108)
 
 ### Related Redis Utilities
 - Backend cache helper demonstrates JSON serialization, TTL handling, and health-aware fallback for Redis-backed caching. Useful for understanding complementary patterns in the system.
 
 **Section sources**
-- [redis_client.py:43-80](file://backend/core/redis_client.py#L43-L80)
+- [redis_client.py:43-80](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L43-L80)

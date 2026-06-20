@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [backend/main.py](file://backend/main.py)
-- [backend/core/config.py](file://backend/core/config.py)
-- [backend/core/security.py](file://backend/core/security.py)
-- [backend/api/v1/auth.py](file://backend/api/v1/auth.py)
-- [backend/core/redis_client.py](file://backend/core/redis_client.py)
-- [backend/core/database.py](file://backend/core/database.py)
-- [backend/models/user.py](file://backend/models/user.py)
-- [backend/models/schemas.py](file://backend/models/schemas.py)
-- [.github/workflows/security.yml](file://.github/workflows/security.yml)
-- [docs/Security.md](file://docs/Security.md)
-- [chatbot_docs/Security.md](file://chatbot_docs/Security.md)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/core/config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [backend/core/security.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py)
+- [backend/api/v1/auth.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py)
+- [backend/core/redis_client.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py)
+- [backend/core/database.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py)
+- [backend/models/user.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py)
+- [backend/models/schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [.github/workflows/security.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml)
+- [docs/Security.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md)
+- [chatbot_docs/Security.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_docs/Security.md)
 </cite>
 
 ## Table of Contents
@@ -53,17 +53,17 @@ H --> I["SQLAlchemy Models<br/>backend/models/*"]
 ```
 
 **Diagram sources**
-- [backend/main.py:66-72](file://backend/main.py#L66-L72)
-- [backend/api/v1/auth.py:1-44](file://backend/api/v1/auth.py#L1-L44)
-- [backend/core/security.py:1-41](file://backend/core/security.py#L1-L41)
-- [backend/core/config.py:73-84](file://backend/core/config.py#L73-L84)
-- [backend/core/redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [backend/core/database.py:21-35](file://backend/core/database.py#L21-L35)
-- [backend/models/user.py:13-25](file://backend/models/user.py#L13-L25)
+- [backend/main.py:66-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L66-L72)
+- [backend/api/v1/auth.py:1-44](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L1-L44)
+- [backend/core/security.py:1-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L1-L41)
+- [backend/core/config.py:73-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L73-L84)
+- [backend/core/redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [backend/core/database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
+- [backend/models/user.py:13-25](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/user.py#L13-L25)
 
 **Section sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 ## Core Components
 - CORS configuration: Controlled via environment variable and applied at startup.
@@ -74,12 +74,12 @@ H --> I["SQLAlchemy Models<br/>backend/models/*"]
 - Pydantic schemas: Define request/response models and health status.
 
 **Section sources**
-- [backend/core/config.py:73-84](file://backend/core/config.py#L73-L84)
-- [backend/core/security.py:13-41](file://backend/core/security.py#L13-L41)
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/core/redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
-- [backend/core/database.py:21-35](file://backend/core/database.py#L21-L35)
-- [backend/models/schemas.py:15-24](file://backend/models/schemas.py#L15-L24)
+- [backend/core/config.py:73-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L73-L84)
+- [backend/core/security.py:13-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L41)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/core/redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
+- [backend/core/database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
+- [backend/models/schemas.py:15-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L15-L24)
 
 ## Architecture Overview
 The authentication and security architecture centers around:
@@ -112,11 +112,11 @@ M --> DB
 ```
 
 **Diagram sources**
-- [backend/main.py:66-72](file://backend/main.py#L66-L72)
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [backend/core/redis_client.py:136-139](file://backend/core/redis_client.py#L136-L139)
-- [backend/core/database.py:21-35](file://backend/core/database.py#L21-L35)
+- [backend/main.py:66-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L66-L72)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [backend/core/redis_client.py:136-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L136-L139)
+- [backend/core/database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
 
 ## Detailed Component Analysis
 
@@ -136,11 +136,11 @@ ValidSub --> |Yes| ReturnPayload["Return decoded payload"]
 ```
 
 **Diagram sources**
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
 
 **Section sources**
-- [backend/core/security.py:13-21](file://backend/core/security.py#L13-L21)
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
+- [backend/core/security.py:13-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L21)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
 
 ### CORS Configuration
 - Origins are loaded from an environment variable and normalized. In development, wildcards are allowed; in production, a RuntimeError is raised if wildcard CORS is used, enforcing explicit origin configuration.
@@ -157,12 +157,12 @@ AllowAll --> Apply
 ```
 
 **Diagram sources**
-- [backend/core/config.py:73-84](file://backend/core/config.py#L73-L84)
-- [backend/main.py:66-72](file://backend/main.py#L66-L72)
+- [backend/core/config.py:73-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L73-L84)
+- [backend/main.py:66-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L66-L72)
 
 **Section sources**
-- [backend/core/config.py:73-84](file://backend/core/config.py#L73-L84)
-- [backend/main.py:66-72](file://backend/main.py#L66-L72)
+- [backend/core/config.py:73-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L73-L84)
+- [backend/main.py:66-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L66-L72)
 
 ### Rate Limiting Strategies
 
@@ -184,10 +184,10 @@ Check --> |No| Block["Block request or return 429"]
 ```
 
 **Diagram sources**
-- [backend/core/redis_client.py:83-95](file://backend/core/redis_client.py#L83-L95)
+- [backend/core/redis_client.py:83-95](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L83-L95)
 
 **Section sources**
-- [backend/core/redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
+- [backend/core/redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
 
 ### User Authentication Flows
 - The login endpoint authenticates via Supabase Auth and issues a JWT bearer token.
@@ -206,35 +206,35 @@ A-->>C : {access_token, token_type, operator_name}
 ```
 
 **Diagram sources**
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/core/security.py:13-21](file://backend/core/security.py#L13-L21)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/core/security.py:13-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L13-L21)
 
 **Section sources**
-- [backend/api/v1/auth.py:18-38](file://backend/api/v1/auth.py#L18-L38)
+- [backend/api/v1/auth.py:18-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L18-L38)
 
 ### Session Management
 - Sessions are stateless via JWT bearer tokens. JWT tokens are validated with strict signature verification using environment-sourced keys.
 - Redis cache is used for ephemeral data and counters; memory fallback ensures resilience.
 
 **Section sources**
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [backend/core/redis_client.py:10-139](file://backend/core/redis_client.py#L10-L139)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [backend/core/redis_client.py:10-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L10-L139)
 
 ### Password Security Practices
 - Passwords are managed by Supabase Auth with bcrypt hashing. No plaintext credentials are stored in the codebase.
 - Environment variables should store secrets; credentials are sourced exclusively from environment variables.
 
 **Section sources**
-- [backend/api/v1/auth.py:26-28](file://backend/api/v1/auth.py#L26-L28)
-- [docs/Security.md:108-126](file://docs/Security.md#L108-L126)
+- [backend/api/v1/auth.py:26-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L26-L28)
+- [docs/Security.md:108-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L108-L126)
 
 ### API Key Management
 - API keys are stored in environment variables and referenced in CI/CD via secrets.
 - Keys are passed in headers (e.g., Authorization) rather than URLs.
 
 **Section sources**
-- [docs/Security.md:112-121](file://docs/Security.md#L112-L121)
-- [.github/workflows/security.yml:39-63](file://.github/workflows/security.yml#L39-L63)
+- [docs/Security.md:112-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L112-L121)
+- [.github/workflows/security.yml:39-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L39-L63)
 
 ### OAuth Integration
 - No OAuth integration is present in the current codebase. For production, integrate an OAuth library (e.g., Authlib or OAuth2Client) with PKCE for web apps and a redirect flow for mobile/desktop.
@@ -245,7 +245,7 @@ A-->>C : {access_token, token_type, operator_name}
 - External services are accessed using API keys passed via headers. Ensure keys are rotated regularly and scoped to minimum required permissions.
 
 **Section sources**
-- [docs/Security.md:108-126](file://docs/Security.md#L108-L126)
+- [docs/Security.md:108-126](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L108-L126)
 
 ### Data Privacy Measures and GDPR Compliance
 - Data minimization: Only collect necessary data; avoid storing GPS coordinates for emergency searches.
@@ -256,14 +256,14 @@ A-->>C : {access_token, token_type, operator_name}
 - Transport security: Enforce HTTPS, TLS for Redis and database connections.
 
 **Section sources**
-- [docs/Security.md:64-95](file://docs/Security.md#L64-L95)
-- [docs/Security.md:98-105](file://docs/Security.md#L98-L105)
+- [docs/Security.md:64-95](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L64-L95)
+- [docs/Security.md:98-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L98-L105)
 
 ### Role-Based Access Control and Permissions
 - RBAC is not implemented in the current codebase. For production, define roles (e.g., operator, admin) and scopes in JWT claims, enforce via dependency overrides, and gate endpoints accordingly.
 
 **Section sources**
-- [backend/core/security.py:33-40](file://backend/core/security.py#L33-L40)
+- [backend/core/security.py:33-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L33-L40)
 
 ### Audit Logging
 - Not implemented in the current codebase. For production, log access events (IP, user agent, endpoint, timestamp, outcome) with retention policies and secure aggregation.
@@ -277,7 +277,7 @@ A-->>C : {access_token, token_type, operator_name}
 - API keys transmitted in headers.
 
 **Section sources**
-- [docs/Security.md:98-105](file://docs/Security.md#L98-L105)
+- [docs/Security.md:98-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L98-L105)
 
 ### Common Security Vulnerabilities
 - CSRF: Mitigated by CORS and stateless JWT; ensure SameSite cookies if using cookies.
@@ -287,7 +287,7 @@ A-->>C : {access_token, token_type, operator_name}
 - Insecure Logging: Redact sensitive fields; avoid logging secrets.
 
 **Section sources**
-- [docs/Security.md:159-166](file://docs/Security.md#L159-L166)
+- [docs/Security.md:159-166](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L159-L166)
 
 ### Penetration Testing Approaches
 - Dynamic scanning: OWASP ZAP or Burp Suite against staging.
@@ -296,7 +296,7 @@ A-->>C : {access_token, token_type, operator_name}
 - Dependency checks: Dependabot and periodic audits.
 
 **Section sources**
-- [.github/workflows/security.yml:12-63](file://.github/workflows/security.yml#L12-L63)
+- [.github/workflows/security.yml:12-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/security.yml#L12-L63)
 
 ### Incident Response Procedures
 - Immediate: Isolate affected services, rotate secrets, revoke compromised tokens.
@@ -325,15 +325,15 @@ FA --> DB["SQLAlchemy Engine"]
 ```
 
 **Diagram sources**
-- [backend/main.py:66-72](file://backend/main.py#L66-L72)
-- [backend/api/v1/auth.py:24-38](file://backend/api/v1/auth.py#L24-L38)
-- [backend/core/security.py:23-41](file://backend/core/security.py#L23-L41)
-- [backend/core/redis_client.py:136-139](file://backend/core/redis_client.py#L136-L139)
-- [backend/core/database.py:21-35](file://backend/core/database.py#L21-L35)
+- [backend/main.py:66-72](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L66-L72)
+- [backend/api/v1/auth.py:24-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/auth.py#L24-L38)
+- [backend/core/security.py:23-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L23-L41)
+- [backend/core/redis_client.py:136-139](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L136-L139)
+- [backend/core/database.py:21-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L21-L35)
 
 **Section sources**
-- [backend/main.py:24-128](file://backend/main.py#L24-L128)
-- [backend/core/config.py:11-181](file://backend/core/config.py#L11-L181)
+- [backend/main.py:24-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L128)
+- [backend/core/config.py:11-181](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L11-L181)
 
 ## Performance Considerations
 - Use Redis for hot-path rate limiting and caching to reduce database load.
@@ -349,10 +349,10 @@ FA --> DB["SQLAlchemy Engine"]
 - Database connectivity: Ensure connection string normalization and pool settings.
 
 **Section sources**
-- [backend/core/config.py:73-84](file://backend/core/config.py#L73-L84)
-- [backend/core/security.py:33-40](file://backend/core/security.py#L33-L40)
-- [backend/core/redis_client.py:115-124](file://backend/core/redis_client.py#L115-L124)
-- [backend/core/database.py:43-49](file://backend/core/database.py#L43-L49)
+- [backend/core/config.py:73-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L73-L84)
+- [backend/core/security.py:33-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/security.py#L33-L40)
+- [backend/core/redis_client.py:115-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/redis_client.py#L115-L124)
+- [backend/core/database.py:43-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/database.py#L43-L49)
 
 ## Conclusion
 SafeVixAI’s current security posture emphasizes practical protections for a hackathon MVP, including CORS enforcement, JWT-based authentication, Redis-backed caching, and strict input validation. For production, prioritize robust password hashing, RBAC, audit logging, comprehensive penetration testing, and adherence to data minimization and privacy principles. The documented CI security scanning provides a foundation for ongoing vulnerability management.
@@ -368,9 +368,9 @@ SafeVixAI’s current security posture emphasizes practical protections for a ha
 - REDIS_URL: Supports rediss:// for TLS.
 
 **Section sources**
-- [backend/core/config.py:16-24](file://backend/core/config.py#L16-L24)
-- [backend/core/config.py:73-84](file://backend/core/config.py#L73-L84)
-- [docs/Security.md:108-121](file://docs/Security.md#L108-L121)
+- [backend/core/config.py:16-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L16-L24)
+- [backend/core/config.py:73-84](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L73-L84)
+- [docs/Security.md:108-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L108-L121)
 
 ### Appendix B: Chatbot Security Highlights
 - Safety checker enforces inclusion of emergency numbers in critical responses.
@@ -378,4 +378,4 @@ SafeVixAI’s current security posture emphasizes practical protections for a ha
 - Session tracking via UUID reduces persistent PII.
 
 **Section sources**
-- [chatbot_docs/Security.md:5-27](file://chatbot_docs/Security.md#L5-L27)
+- [chatbot_docs/Security.md:5-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_docs/Security.md#L5-L27)

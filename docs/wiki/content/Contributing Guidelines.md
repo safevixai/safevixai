@@ -2,21 +2,21 @@
 
 <cite>
 **Referenced Files in This Document**
-- [README.md](file://README.md)
-- [SETUP.md](file://SETUP.md)
-- [docs/Contributing.md](file://docs/Contributing.md)
-- [chatbot_docs/Contributing.md](file://chatbot_docs/Contributing.md)
-- [DESIGN.md](file://DESIGN.md)
-- [.github/workflows/backend.yml](file://.github/workflows/backend.yml)
-- [.github/workflows/frontend.yml](file://.github/workflows/frontend.yml)
-- [.github/workflows/chatbot.yml](file://.github/workflows/chatbot.yml)
-- [backend/main.py](file://backend/main.py)
-- [backend/api/v1/emergency.py](file://backend/api/v1/emergency.py)
-- [frontend/app/layout.tsx](file://frontend/app/layout.tsx)
-- [frontend/components/EmergencyMap.tsx](file://frontend/components/EmergencyMap.tsx)
-- [chatbot_service/main.py](file://chatbot_service/main.py)
-- [backend/pytest.ini](file://backend/pytest.ini)
-- [frontend/jest.config.js](file://frontend/jest.config.js)
+- [README.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md)
+- [SETUP.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/SETUP.md)
+- [docs/Contributing.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md)
+- [chatbot_docs/Contributing.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_docs/Contributing.md)
+- [DESIGN.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md)
+- [.github/workflows/backend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml)
+- [.github/workflows/frontend.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml)
+- [.github/workflows/chatbot.yml](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml)
+- [backend/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [backend/api/v1/emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [frontend/app/layout.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx)
+- [frontend/components/EmergencyMap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx)
+- [chatbot_service/main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [backend/pytest.ini](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/pytest.ini)
+- [frontend/jest.config.js](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js)
 </cite>
 
 ## Table of Contents
@@ -60,15 +60,15 @@ FLayout --> FMap
 ```
 
 **Diagram sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [backend/api/v1/emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [chatbot_service/main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [frontend/app/layout.tsx:38-86](file://frontend/app/layout.tsx#L38-L86)
-- [frontend/components/EmergencyMap.tsx:25-58](file://frontend/components/EmergencyMap.tsx#L25-L58)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [backend/api/v1/emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [chatbot_service/main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [frontend/app/layout.tsx:38-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L86)
+- [frontend/components/EmergencyMap.tsx:25-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L58)
 
 **Section sources**
-- [README.md:57-70](file://README.md#L57-L70)
-- [SETUP.md:41-221](file://SETUP.md#L41-L221)
+- [README.md:57-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/README.md#L57-L70)
+- [SETUP.md:41-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/SETUP.md#L41-L221)
 
 ## Core Components
 - Development workflow: feature branches, pull requests, peer review, and merging into main.
@@ -79,12 +79,12 @@ FLayout --> FMap
 - Quality gates: CI jobs must pass; environment variables must remain secret; PR checklist enforced.
 
 **Section sources**
-- [docs/Contributing.md:16-105](file://docs/Contributing.md#L16-L105)
-- [docs/Contributing.md:108-174](file://docs/Contributing.md#L108-L174)
-- [docs/Contributing.md:177-197](file://docs/Contributing.md#L177-L197)
-- [.github/workflows/backend.yml:17-55](file://.github/workflows/backend.yml#L17-L55)
-- [.github/workflows/frontend.yml:17-43](file://.github/workflows/frontend.yml#L17-L43)
-- [.github/workflows/chatbot.yml:17-55](file://.github/workflows/chatbot.yml#L17-L55)
+- [docs/Contributing.md:16-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L16-L105)
+- [docs/Contributing.md:108-174](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L108-L174)
+- [docs/Contributing.md:177-197](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L177-L197)
+- [.github/workflows/backend.yml:17-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L17-L55)
+- [.github/workflows/frontend.yml:17-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L17-L43)
+- [.github/workflows/chatbot.yml:17-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L17-L55)
 
 ## Architecture Overview
 SafeVixAI follows a modular architecture with clear separation of concerns:
@@ -113,9 +113,9 @@ CB --> BE
 ```
 
 **Diagram sources**
-- [backend/main.py:65-128](file://backend/main.py#L65-L128)
-- [chatbot_service/main.py:94-145](file://chatbot_service/main.py#L94-L145)
-- [frontend/app/layout.tsx:38-86](file://frontend/app/layout.tsx#L38-L86)
+- [backend/main.py:65-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L65-L128)
+- [chatbot_service/main.py:94-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L94-L145)
+- [frontend/app/layout.tsx:38-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L86)
 
 ## Detailed Component Analysis
 
@@ -142,8 +142,8 @@ MergeMain --> End(["Done"])
 ```
 
 **Section sources**
-- [docs/Contributing.md:16-56](file://docs/Contributing.md#L16-L56)
-- [docs/Contributing.md:177-188](file://docs/Contributing.md#L177-L188)
+- [docs/Contributing.md:16-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L16-L56)
+- [docs/Contributing.md:177-188](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L177-L188)
 
 ### Team Assignment Structure
 - Modules and ownership:
@@ -154,7 +154,7 @@ MergeMain --> End(["Done"])
 - Shared files: backend main, database; frontend layout and store require coordination.
 
 **Section sources**
-- [docs/Contributing.md:89-105](file://docs/Contributing.md#L89-L105)
+- [docs/Contributing.md:89-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L89-L105)
 
 ### Coding Standards
 - Backend (Python)
@@ -170,14 +170,14 @@ MergeMain --> End(["Done"])
   - Use SWR for API calls
 
 **Section sources**
-- [docs/Contributing.md:108-154](file://docs/Contributing.md#L108-L154)
+- [docs/Contributing.md:108-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L108-L154)
 
 ### Commit Message Conventions
 - Use conventional types: feat, fix, docs, refactor, test, chore, style.
 - Examples: feat: add new endpoint, fix: SSR map rendering, docs: update API docs, test: add pytest suite.
 
 **Section sources**
-- [docs/Contributing.md:60-86](file://docs/Contributing.md#L60-L86)
+- [docs/Contributing.md:60-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L60-L86)
 
 ### Testing Requirements and Quality Gates
 - Backend: pytest in backend/tests; CI job runs tests on push and PR.
@@ -201,14 +201,14 @@ Repo-->>Dev : Review and merge
 ```
 
 **Diagram sources**
-- [.github/workflows/backend.yml:17-55](file://.github/workflows/backend.yml#L17-L55)
-- [.github/workflows/frontend.yml:17-43](file://.github/workflows/frontend.yml#L17-L43)
-- [.github/workflows/chatbot.yml:17-55](file://.github/workflows/chatbot.yml#L17-L55)
+- [.github/workflows/backend.yml:17-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L17-L55)
+- [.github/workflows/frontend.yml:17-43](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L17-L43)
+- [.github/workflows/chatbot.yml:17-55](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/chatbot.yml#L17-L55)
 
 **Section sources**
-- [docs/Contributing.md:157-174](file://docs/Contributing.md#L157-L174)
-- [backend/pytest.ini:1-5](file://backend/pytest.ini#L1-L5)
-- [frontend/jest.config.js:1-16](file://frontend/jest.config.js#L1-L16)
+- [docs/Contributing.md:157-174](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L157-L174)
+- [backend/pytest.ini:1-5](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/pytest.ini#L1-L5)
+- [frontend/jest.config.js:1-16](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/jest.config.js#L1-L16)
 
 ### Example Contribution Scenarios
 
@@ -218,8 +218,8 @@ Repo-->>Dev : Review and merge
 - PR: include rationale, test coverage, and environment variable updates in .env.example if applicable.
 
 **Section sources**
-- [backend/api/v1/emergency.py:19-76](file://backend/api/v1/emergency.py#L19-L76)
-- [docs/Contributing.md:177-188](file://docs/Contributing.md#L177-L188)
+- [backend/api/v1/emergency.py:19-76](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L76)
+- [docs/Contributing.md:177-188](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L177-L188)
 
 #### Bug Fix: Map Rendering on SSR
 - Identify the issue in frontend/components/EmergencyMap.tsx.
@@ -227,8 +227,8 @@ Repo-->>Dev : Review and merge
 - Verify with npm run test and npm run lint.
 
 **Section sources**
-- [frontend/components/EmergencyMap.tsx:9-23](file://frontend/components/EmergencyMap.tsx#L9-L23)
-- [docs/Contributing.md:157-174](file://docs/Contributing.md#L157-L174)
+- [frontend/components/EmergencyMap.tsx:9-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L9-L23)
+- [docs/Contributing.md:157-174](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L157-L174)
 
 #### Documentation Contribution: Design System Updates
 - Update DESIGN.md with new tokens or patterns.
@@ -236,8 +236,8 @@ Repo-->>Dev : Review and merge
 - Keep branding and color tokens consistent with existing definitions.
 
 **Section sources**
-- [DESIGN.md:13-30](file://DESIGN.md#L13-L30)
-- [DESIGN.md:33-100](file://DESIGN.md#L33-L100)
+- [DESIGN.md:13-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md#L13-L30)
+- [DESIGN.md:33-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/DESIGN.md#L33-L100)
 
 ### Chatbot Team Specifics
 - Use chatbot/ feature branches.
@@ -245,7 +245,7 @@ Repo-->>Dev : Review and merge
 - Enforce peer review and avoid direct pushes.
 
 **Section sources**
-- [chatbot_docs/Contributing.md:5-22](file://chatbot_docs/Contributing.md#L5-L22)
+- [chatbot_docs/Contributing.md:5-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_docs/Contributing.md#L5-L22)
 
 ## Dependency Analysis
 - Backend depends on database, Redis, Overpass/Nominatim, and integrates with the Chatbot Service.
@@ -264,14 +264,14 @@ CB --> BE
 ```
 
 **Diagram sources**
-- [backend/main.py:24-64](file://backend/main.py#L24-L64)
-- [chatbot_service/main.py:44-93](file://chatbot_service/main.py#L44-L93)
-- [frontend/app/layout.tsx:38-86](file://frontend/app/layout.tsx#L38-L86)
+- [backend/main.py:24-64](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L64)
+- [chatbot_service/main.py:44-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L44-L93)
+- [frontend/app/layout.tsx:38-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L86)
 
 **Section sources**
-- [backend/main.py:24-132](file://backend/main.py#L24-L132)
-- [chatbot_service/main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [frontend/app/layout.tsx:38-86](file://frontend/app/layout.tsx#L38-L86)
+- [backend/main.py:24-132](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L132)
+- [chatbot_service/main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [frontend/app/layout.tsx:38-86](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/layout.tsx#L38-L86)
 
 ## Performance Considerations
 - Favor async I/O in backend routes and services.
@@ -286,10 +286,10 @@ CB --> BE
 - CI failures: address test failures locally before pushing; review CI logs for missing dependencies or environment variables.
 
 **Section sources**
-- [SETUP.md:316-342](file://SETUP.md#L316-L342)
-- [backend/main.py:103-125](file://backend/main.py#L103-L125)
-- [.github/workflows/backend.yml:47-54](file://.github/workflows/backend.yml#L47-L54)
-- [.github/workflows/frontend.yml:36-42](file://.github/workflows/frontend.yml#L36-L42)
+- [SETUP.md:316-342](https://github.com/SafeVixAI/SafeVixAI/blob/main/SETUP.md#L316-L342)
+- [backend/main.py:103-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L103-L125)
+- [.github/workflows/backend.yml:47-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/backend.yml#L47-L54)
+- [.github/workflows/frontend.yml:36-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/.github/workflows/frontend.yml#L36-L42)
 
 ## Conclusion
 By following this guide, contributors can collaborate effectively, maintain high code quality, and deliver impactful features across the backend, chatbot, and frontend. Adhering to the workflow, standards, and quality gates ensures a smooth development experience and reliable user outcomes.
@@ -302,5 +302,5 @@ By following this guide, contributors can collaborate effectively, maintain high
 - Chatbot team follows separate assignment ownership and peer review rules.
 
 **Section sources**
-- [docs/Contributing.md:199-204](file://docs/Contributing.md#L199-L204)
-- [chatbot_docs/Contributing.md:5-22](file://chatbot_docs/Contributing.md#L5-L22)
+- [docs/Contributing.md:199-204](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Contributing.md#L199-L204)
+- [chatbot_docs/Contributing.md:5-22](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_docs/Contributing.md#L5-L22)

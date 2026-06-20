@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [context_assembler.py](file://chatbot_service/agent/context_assembler.py)
-- [state.py](file://chatbot_service/agent/state.py)
-- [intent_detector.py](file://chatbot_service/agent/intent_detector.py)
-- [retriever.py](file://chatbot_service/rag/retriever.py)
-- [vectorstore.py](file://chatbot_service/rag/vectorstore.py)
-- [document_loader.py](file://chatbot_service/rag/document_loader.py)
-- [embeddings.py](file://chatbot_service/rag/embeddings.py)
-- [main.py](file://chatbot_service/main.py)
-- [chat.py](file://chatbot_service/api/chat.py)
-- [weather_tool.py](file://chatbot_service/tools/weather_tool.py)
-- [first_aid_tool.py](file://chatbot_service/tools/first_aid_tool.py)
+- [context_assembler.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py)
+- [state.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py)
+- [intent_detector.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py)
+- [retriever.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py)
+- [vectorstore.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py)
+- [document_loader.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py)
+- [embeddings.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [chat.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py)
+- [weather_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py)
+- [first_aid_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py)
 </cite>
 
 ## Table of Contents
@@ -64,18 +64,18 @@ CA --> ST
 ```
 
 **Diagram sources**
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
-- [weather_tool.py:15-33](file://chatbot_service/tools/weather_tool.py#L15-L33)
-- [first_aid_tool.py:49-60](file://chatbot_service/tools/first_aid_tool.py#L49-L60)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
+- [weather_tool.py:15-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L15-L33)
+- [first_aid_tool.py:49-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L60)
 
 **Section sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [chat.py:24-40](file://chatbot_service/api/chat.py#L24-L40)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [chat.py:24-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L24-L40)
 
 ## Core Components
 - ContextAssembler: central orchestrator that builds ConversationContext by combining:
@@ -94,12 +94,12 @@ Key configuration points:
 - Relevance scoring in embeddings.score_query()
 
 **Section sources**
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
-- [state.py:24-51](file://chatbot_service/agent/state.py#L24-L51)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
+- [state.py:24-51](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/state.py#L24-L51)
 
 ## Architecture Overview
 The pipeline begins at the API endpoint, which delegates to the ChatEngine. The ChatEngine detects intent, invokes ContextAssembler, and then feeds the assembled context to the LLM provider. ContextAssembler augments the base message with:
@@ -134,13 +134,13 @@ Engine-->>Client : ChatResponse
 ```
 
 **Diagram sources**
-- [chat.py:28-40](file://chatbot_service/api/chat.py#L28-L40)
-- [intent_detector.py:10-24](file://chatbot_service/agent/intent_detector.py#L10-L24)
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [retriever.py:22-39](file://chatbot_service/rag/retriever.py#L22-L39)
-- [vectorstore.py:51-67](file://chatbot_service/rag/vectorstore.py#L51-L67)
-- [weather_tool.py:24-33](file://chatbot_service/tools/weather_tool.py#L24-L33)
-- [first_aid_tool.py:54-60](file://chatbot_service/tools/first_aid_tool.py#L54-L60)
+- [chat.py:28-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L40)
+- [intent_detector.py:10-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L10-L24)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [retriever.py:22-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L22-L39)
+- [vectorstore.py:51-67](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L51-L67)
+- [weather_tool.py:24-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L24-L33)
+- [first_aid_tool.py:54-60](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L54-L60)
 
 ## Detailed Component Analysis
 
@@ -179,12 +179,12 @@ Done(["Return ConversationContext"])
 ```
 
 **Diagram sources**
-- [context_assembler.py:43-81](file://chatbot_service/agent/context_assembler.py#L43-L81)
-- [context_assembler.py:203-215](file://chatbot_service/agent/context_assembler.py#L203-L215)
+- [context_assembler.py:43-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L43-L81)
+- [context_assembler.py:203-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L203-L215)
 
 **Section sources**
-- [context_assembler.py:17-81](file://chatbot_service/agent/context_assembler.py#L17-L81)
-- [context_assembler.py:203-215](file://chatbot_service/agent/context_assembler.py#L203-L215)
+- [context_assembler.py:17-81](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L81)
+- [context_assembler.py:203-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L203-L215)
 
 ### Retriever and LocalVectorStore
 - Retriever
@@ -225,16 +225,16 @@ LocalVectorStore --> Embeddings : "scores"
 ```
 
 **Diagram sources**
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:9-30](file://chatbot_service/rag/embeddings.py#L9-L30)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:9-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L9-L30)
 
 **Section sources**
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [vectorstore.py:20-109](file://chatbot_service/rag/vectorstore.py#L20-L109)
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [vectorstore.py:20-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L109)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
 
 ### Embedding and Scoring
 - Tokenization uses a simple pattern to extract alpha sequences
@@ -256,10 +256,10 @@ I --> J["Return score"]
 ```
 
 **Diagram sources**
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
 
 **Section sources**
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
 
 ### Intent Detection and Routing
 - Detects intent based on keyword heuristics
@@ -283,10 +283,10 @@ R --> |No| GEN["intent = general"]
 ```
 
 **Diagram sources**
-- [intent_detector.py:10-24](file://chatbot_service/agent/intent_detector.py#L10-L24)
+- [intent_detector.py:10-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L10-L24)
 
 **Section sources**
-- [intent_detector.py:9-24](file://chatbot_service/agent/intent_detector.py#L9-L24)
+- [intent_detector.py:9-24](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/intent_detector.py#L9-L24)
 
 ### API Integration and Execution
 - FastAPI routes accept chat requests and forward to ChatEngine
@@ -308,12 +308,12 @@ API-->>Client : Response or SSE stream
 ```
 
 **Diagram sources**
-- [chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
+- [chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
 
 **Section sources**
-- [chat.py:28-97](file://chatbot_service/api/chat.py#L28-L97)
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
+- [chat.py:28-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/api/chat.py#L28-L97)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
 
 ## Dependency Analysis
 - ContextAssembler depends on Retriever and multiple tools for augmentation
@@ -335,15 +335,15 @@ Assembler --> Tools["WeatherTool / FirstAidTool / ..."]
 ```
 
 **Diagram sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
-- [context_assembler.py:17-41](file://chatbot_service/agent/context_assembler.py#L17-L41)
-- [retriever.py:17-39](file://chatbot_service/rag/retriever.py#L17-L39)
-- [vectorstore.py:20-49](file://chatbot_service/rag/vectorstore.py#L20-L49)
-- [document_loader.py:28-57](file://chatbot_service/rag/document_loader.py#L28-L57)
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
+- [context_assembler.py:17-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L17-L41)
+- [retriever.py:17-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/retriever.py#L17-L39)
+- [vectorstore.py:20-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L20-L49)
+- [document_loader.py:28-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/document_loader.py#L28-L57)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
 
 **Section sources**
-- [main.py:41-93](file://chatbot_service/main.py#L41-L93)
+- [main.py:41-93](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L93)
 
 ## Performance Considerations
 - Indexing and chunking
@@ -380,10 +380,10 @@ Common issues and resolutions:
   - Reduce top_k or snippet length; ensure downstream LLM receives manageable context sizes
 
 **Section sources**
-- [vectorstore.py:27-49](file://chatbot_service/rag/vectorstore.py#L27-L49)
-- [embeddings.py:17-30](file://chatbot_service/rag/embeddings.py#L17-L30)
-- [context_assembler.py:203-215](file://chatbot_service/agent/context_assembler.py#L203-L215)
-- [weather_tool.py:24-33](file://chatbot_service/tools/weather_tool.py#L24-L33)
+- [vectorstore.py:27-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/vectorstore.py#L27-L49)
+- [embeddings.py:17-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/rag/embeddings.py#L17-L30)
+- [context_assembler.py:203-215](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/agent/context_assembler.py#L203-L215)
+- [weather_tool.py:24-33](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/weather_tool.py#L24-L33)
 
 ## Conclusion
 The context assembly pipeline integrates intent-driven tool augmentation with a local vector store to deliver targeted, timely, and concise context for LLMs. By leveraging category-scoped retrieval, snippet truncation, and structured tool outputs, it balances relevance and performance. Tuning top-k, chunk size, and scoring can further optimize accuracy and latency for large context windows.

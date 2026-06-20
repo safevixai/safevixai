@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [OfflineChat.tsx](file://frontend/components/OfflineChat.tsx)
-- [store.ts](file://frontend/lib/store.ts)
-- [offline.py](file://backend/api/v1/offline.py)
-- [first-aid.json](file://frontend/public/offline-data/first-aid.json)
-- [violations.csv](file://frontend/public/offline-data/violations.csv)
-- [chennai.json](file://frontend/public/offline-data/chennai.json)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [OfflineChat.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/OfflineChat.tsx)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [first-aid.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json)
+- [violations.csv](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv)
+- [chennai.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json)
 </cite>
 
 ## Table of Contents
@@ -61,22 +61,22 @@ STORE --> API
 ```
 
 **Diagram sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
 
 **Section sources**
-- [Offline_Architecture.md:1-23](file://docs/Offline_Architecture.md#L1-L23)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [store.ts:1-226](file://frontend/lib/store.ts#L1-L226)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [chennai.json:1-200](file://frontend/public/offline-data/chennai.json#L1-L200)
+- [Offline_Architecture.md:1-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L1-L23)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [store.ts:1-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L1-L226)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [chennai.json:1-200](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L200)
 
 ## Core Components
 - Offline AI Engine
@@ -97,13 +97,13 @@ STORE --> API
   - Backend endpoint to serve per-city offline bundles
 
 **Section sources**
-- [offline-ai.ts:114-221](file://frontend/lib/offline-ai.ts#L114-L221)
-- [offline-rag.ts:18-34](file://frontend/lib/offline-rag.ts#L18-L34)
-- [offline-sos-queue.ts:22-137](file://frontend/lib/offline-sos-queue.ts#L22-L137)
-- [store.ts:60-127](file://frontend/lib/store.ts#L60-L127)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
+- [offline-ai.ts:114-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L221)
+- [offline-rag.ts:18-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L18-L34)
+- [offline-sos-queue.ts:22-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L22-L137)
+- [store.ts:60-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-L127)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
 
 ## Architecture Overview
 The offline-first architecture ensures core functionality remains available without network connectivity:
@@ -138,9 +138,9 @@ API-->>UI : "Acknowledge and remove from queue"
 ```
 
 **Diagram sources**
-- [offline-ai.ts:114-221](file://frontend/lib/offline-ai.ts#L114-L221)
-- [offline-sos-queue.ts:48-137](file://frontend/lib/offline-sos-queue.ts#L48-L137)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
+- [offline-ai.ts:114-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L221)
+- [offline-sos-queue.ts:48-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L137)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
 
 ## Detailed Component Analysis
 
@@ -173,11 +173,11 @@ TransResp --> |No| Fallback["Keyword Fallback"]
 ```
 
 **Diagram sources**
-- [offline-ai.ts:47-154](file://frontend/lib/offline-ai.ts#L47-L154)
+- [offline-ai.ts:47-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L47-L154)
 
 **Section sources**
-- [offline-ai.ts:114-221](file://frontend/lib/offline-ai.ts#L114-L221)
-- [Offline_Architecture.md:4](file://docs/Offline_Architecture.md#L4)
+- [offline-ai.ts:114-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L221)
+- [Offline_Architecture.md:4](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L4)
 
 ### Offline RAG Index
 The offline RAG simulates vector similarity search using a local keyword index:
@@ -196,10 +196,10 @@ Rank --> ReturnDocs["Return Matching Docs"]
 ```
 
 **Diagram sources**
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
 
 **Section sources**
-- [offline-rag.ts:18-34](file://frontend/lib/offline-rag.ts#L18-L34)
+- [offline-rag.ts:18-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L18-L34)
 
 ### IndexedDB Offline SOS Queue
 The SOS queue persists emergency events when offline and synchronizes them upon reconnect:
@@ -224,11 +224,11 @@ API-->>UI : "200 OK -> delete from queue"
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-137](file://frontend/lib/offline-sos-queue.ts#L48-L137)
+- [offline-sos-queue.ts:48-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L137)
 
 **Section sources**
-- [offline-sos-queue.ts:22-137](file://frontend/lib/offline-sos-queue.ts#L22-L137)
-- [Offline_Architecture.md:4](file://docs/Offline_Architecture.md#L4)
+- [offline-sos-queue.ts:22-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L22-L137)
+- [Offline_Architecture.md:4](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L4)
 
 ### Offline Data Bundling for 25 Major Indian Cities
 Offline data is organized as city-specific JSON and CSV assets:
@@ -246,16 +246,16 @@ Assets --> UI["UI Renders Offline Data"]
 ```
 
 **Diagram sources**
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
-- [chennai.json:1-200](file://frontend/public/offline-data/chennai.json#L1-L200)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
+- [chennai.json:1-200](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L200)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
 
 **Section sources**
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
-- [chennai.json:1-200](file://frontend/public/offline-data/chennai.json#L1-L200)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
+- [chennai.json:1-200](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L200)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
 
 ### Progressive Enhancement Patterns
 The application progressively enhances functionality based on connectivity and capability:
@@ -277,12 +277,12 @@ AI_Offline --> Online : "model ready"
 ```
 
 **Diagram sources**
-- [store.ts:60-92](file://frontend/lib/store.ts#L60-L92)
-- [offline-ai.ts:213-221](file://frontend/lib/offline-ai.ts#L213-L221)
+- [store.ts:60-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-L92)
+- [offline-ai.ts:213-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L213-L221)
 
 **Section sources**
-- [store.ts:60-92](file://frontend/lib/store.ts#L60-L92)
-- [offline-ai.ts:213-221](file://frontend/lib/offline-ai.ts#L213-L221)
+- [store.ts:60-92](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-L92)
+- [offline-ai.ts:213-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L213-L221)
 
 ### Offline AI Model Loading and Vector Store Initialization
 - Offline AI loading:
@@ -313,12 +313,12 @@ VS-->>UI : "ready for similarity search"
 ```
 
 **Diagram sources**
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
 
 **Section sources**
-- [offline-ai.ts:124-154](file://frontend/lib/offline-ai.ts#L124-L154)
-- [offline-rag.ts:22-34](file://frontend/lib/offline-rag.ts#L22-L34)
+- [offline-ai.ts:124-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L124-L154)
+- [offline-rag.ts:22-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L22-L34)
 
 ### Emergency Service Caching
 Emergency services are cached locally and rendered without network connectivity:
@@ -335,14 +335,14 @@ UI --> "Render Offline Services"
 ```
 
 **Diagram sources**
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [chennai.json:1-200](file://frontend/public/offline-data/chennai.json#L1-L200)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [chennai.json:1-200](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L200)
 
 **Section sources**
-- [first-aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [violations.csv:1-27](file://frontend/public/offline-data/violations.csv#L1-L27)
-- [chennai.json:1-200](file://frontend/public/offline-data/chennai.json#L1-L200)
+- [first-aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [violations.csv:1-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/violations.csv#L1-L27)
+- [chennai.json:1-200](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/chennai.json#L1-L200)
 
 ## Dependency Analysis
 The offline architecture exhibits clear separation of concerns:
@@ -364,18 +364,18 @@ API["offline.py"] --> DATA
 ```
 
 **Diagram sources**
-- [offline-ai.ts:114-221](file://frontend/lib/offline-ai.ts#L114-L221)
-- [offline-rag.ts:18-34](file://frontend/lib/offline-rag.ts#L18-L34)
-- [offline-sos-queue.ts:22-137](file://frontend/lib/offline-sos-queue.ts#L22-L137)
-- [store.ts:60-127](file://frontend/lib/store.ts#L60-L127)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
+- [offline-ai.ts:114-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L221)
+- [offline-rag.ts:18-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L18-L34)
+- [offline-sos-queue.ts:22-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L22-L137)
+- [store.ts:60-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-L127)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
 
 **Section sources**
-- [offline-ai.ts:114-221](file://frontend/lib/offline-ai.ts#L114-L221)
-- [offline-rag.ts:18-34](file://frontend/lib/offline-rag.ts#L18-L34)
-- [offline-sos-queue.ts:22-137](file://frontend/lib/offline-sos-queue.ts#L22-L137)
-- [store.ts:60-127](file://frontend/lib/store.ts#L60-L127)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
+- [offline-ai.ts:114-221](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L221)
+- [offline-rag.ts:18-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L18-L34)
+- [offline-sos-queue.ts:22-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L22-L137)
+- [store.ts:60-127](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L60-L127)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
 
 ## Performance Considerations
 - Model loading
@@ -411,8 +411,8 @@ Common issues and resolutions:
   - Verify HTTPS and proper scope for background sync
 
 **Section sources**
-- [offline-sos-queue.ts:60-68](file://frontend/lib/offline-sos-queue.ts#L60-L68)
-- [Offline_Architecture.md:8-23](file://docs/Offline_Architecture.md#L8-L23)
+- [offline-sos-queue.ts:60-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L60-L68)
+- [Offline_Architecture.md:8-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L8-L23)
 
 ## Conclusion
 The offline-first architecture delivers resilient functionality across connectivity scenarios. By combining system AI, Transformers.js, and keyword fallbacks, the AI engine remains responsive and accessible. IndexedDB and background sync ensure offline submissions are not lost. Offline datasets power UI rendering and search, while the backend provides city-specific bundles. Progressive enhancement patterns guarantee core features remain functional even without network connectivity. With careful attention to storage limits, cache invalidation, and queue management, the system scales to real-world usage.
