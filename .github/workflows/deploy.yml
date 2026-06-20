@@ -1,0 +1,78 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [Backend CI, Chatbot CI, Frontend CI]
+    types: [completed]
+    branches: [main]
+
+env:
+  AWS_REGION: ap-south-1
+  EKS_CLUSTER: safevixai-production
+
+jobs:
+  deploy-backend:
+    if: ${{ github.event.workflow_run.workflow == 'Backend CI' && github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name $EKS_CLUSTER --region $AWS_REGION
+      - name: Deploy backend
+        working-directory: k8s
+        run: |
+          kubectl set image deployment/safevixai-backend -n safevixai \
+            backend=${{ env.ECR_REGISTRY }}/safevixai/backend:${{ github.event.workflow_run.head_sha }}
+          kubectl rollout status deployment/safevixai-backend -n safevixai --timeout=5m
+
+  deploy-chatbot:
+    if: ${{ github.event.workflow_run.workflow == 'Chatbot CI' && github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name $EKS_CLUSTER --region $AWS_REGION
+      - name: Deploy chatbot
+        working-directory: k8s
+        run: |
+          kubectl set image deployment/safevixai-chatbot -n safevixai \
+            chatbot=${{ env.ECR_REGISTRY }}/safevixai/chatbot:${{ github.event.workflow_run.head_sha }}
+          kubectl rollout status deployment/safevixai-chatbot -n safevixai --timeout=10m
+
+  deploy-frontend:
+    if: ${{ github.event.workflow_run.workflow == 'Frontend CI' && github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name $EKS_CLUSTER --region $AWS_REGION
+      - name: Deploy frontend
+        working-directory: k8s
+        run: |
+          kubectl set image deployment/safevixai-frontend -n safevixai \
+            frontend=${{ env.ECR_REGISTRY }}/safevixai/frontend:${{ github.event.workflow_run.head_sha }}
+          kubectl rollout status deployment/safevixai-frontend -n safevixai --timeout=5m
