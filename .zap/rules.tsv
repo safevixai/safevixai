@@ -1,0 +1,14 @@
+# OWASP ZAP scan rules — Alert filter overrides for SafeVixAI
+# Format: rule_id	new_risk	new_confidence	url_pattern	parameter	attack	evidence	description
+
+# Allow MapLibre tiles from OpenStreetMap (false positive)
+10038	False Positive	Medium	.*tile\.openstreetmap\.org.*	.*	.*	.*	MapLibre tile server is a trusted dependency
+
+# Allow WebLLM WASM blob workers
+10038	False Positive	Medium	.*webllm.*	.*	.*	.*	WebLLM blob worker URLs are expected for offline AI
+
+# Allow WebSocket connections for family tracking (not user-input)
+10038	False Positive	Medium	.*tracking.*	.*	.*	.*	WebSocket for live family tracking (no user parameter injection)
+
+# Allow static CSV/JSON data files for DuckDB-Wasm challan calculations
+10038	False Positive	Medium	.*duckdb.*	.*	.*	.*	Static DuckDB-Wasm assets (pre-verified offline data)

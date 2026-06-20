@@ -1,0 +1,7 @@
+# SafeVixAI Security Contact
+Canonical: https://github.com/SafeVixAI/SafeVixAI/SECURITY.md
+Contact: mailto:safevixai@googlegroups.com
+Expires: 2027-06-15T00:00:00.000Z
+Preferred-Languages: en, hi, ta, te, bn, mr
+Encryption: https://github.com/SafeVixAI/SafeVixAI/blob/main/SECURITY.md
+Policy: https://github.com/SafeVixAI/SafeVixAI/security/policy

@@ -1,0 +1,132 @@
+title = "SafeVixAI Gitleaks Configuration"
+
+[extend]
+useDefault = true
+
+# ── Custom rules for SafeVixAI ──────────────────────────────────────────────
+
+[[rules]]
+id = "safevisxai-google-api-key"
+description = "Google API Key (AIza prefix)"
+regex = '''AIza[0-9A-Za-z\-_]{35}'''
+tags = ["api-key", "google"]
+
+[[rules]]
+id = "safevisxai-groq-api-key"
+description = "Groq API Key (gsk_ prefix)"
+regex = '''gsk_[0-9A-Za-z]{57}'''
+tags = ["api-key", "groq"]
+
+[[rules]]
+id = "safevisxai-github-token"
+description = "GitHub Personal Access Token (ghp_ prefix)"
+regex = '''ghp_[0-9A-Za-z]{36}'''
+tags = ["api-key", "github"]
+
+[[rules]]
+id = "safevisxai-nvidia-nim-key"
+description = "NVIDIA NIM API Key (nvapi- prefix)"
+regex = '''nvapi-[0-9a-zA-Z\-_]{100,}'''
+tags = ["api-key", "nvidia"]
+
+[[rules]]
+id = "safevisxai-huggingface-token"
+description = "HuggingFace Token (hf_ prefix)"
+regex = '''hf_[0-9A-Za-z]{34}'''
+tags = ["api-key", "huggingface"]
+
+[[rules]]
+id = "safevisxai-cerebras-key"
+description = "Cerebras API Key (csk- prefix)"
+regex = '''csk-[0-9a-z]{50}'''
+tags = ["api-key", "cerebras"]
+
+[[rules]]
+id = "safevisxai-openrouter-key"
+description = "OpenRouter API Key (sk-or-v1- prefix)"
+regex = '''sk-or-v1-[0-9a-f]{64}'''
+tags = ["api-key", "openrouter"]
+
+[[rules]]
+id = "safevisxai-together-key"
+description = "Together AI Key (tgp_v1_ prefix)"
+regex = '''tgp_v1_[0-9A-Za-z]{50,}'''
+tags = ["api-key", "together"]
+
+[[rules]]
+id = "safevisxai-sarvam-key"
+description = "Sarvam AI Key (sk_ prefix)"
+regex = '''sk_[a-z0-9]{30,}'''
+tags = ["api-key", "sarvam"]
+
+[[rules]]
+id = "safevisxai-kaggle-token"
+description = "Kaggle API Token (KGAT_ prefix)"
+regex = '''KGAT_[0-9a-f]{32}'''
+tags = ["api-key", "kaggle"]
+
+[[rules]]
+id = "safevisxai-supabase-jwt"
+description = "Supabase JWT (eyJ prefix, Supabase issuer)"
+regex = '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[A-Za-z0-9\-_]+\.eyJpc3MiOiJzdXBhYmFzZSI'''
+tags = ["api-key", "supabase", "jwt"]
+
+[[rules]]
+id = "safevisxai-openroute-base64"
+description = "OpenRouteService base64 token"
+regex = '''eyJvcmciOiI1YjNjZT'''
+tags = ["api-key", "openrouteservice"]
+
+[[rules]]
+id = "safevisxai-jwt-secret"
+description = "JWT Secret (likely hardcoded in source)"
+regex = '''JWT_SECRET_KEY=['"][A-Za-z0-9\-_\/+]{40,}['"]'''
+tags = ["jwt", "secret"]
+
+[[rules]]
+id = "safevisxai-mistral-key"
+description = "Mistral API Key"
+regex = '''[A-Za-z0-9]{32}'''
+allowlist = ["YOUR_MISTRAL", "placeholder"]
+
+[[rules]]
+id = "safevisxai-supabase-service-role"
+description = "Supabase Service Role Key"
+regex = '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[A-Za-z0-9\-_]+\.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im'''
+tags = ["api-key", "supabase", "service-role"]
+
+[[rules]]
+id = "safevisxai-database-url-with-password"
+description = "Database URL containing plaintext password"
+regex = '''postgres(ql)?(\+asyncpg)?://[^:]+:[^@]+@[^/]+/[^?]+'''
+tags = ["database", "password"]
+
+[[rules]]
+id = "safevisxai-redis-url-with-password"
+description = "Redis URL with plaintext password"
+regex = '''rediss?://[^:]+:[^@]+@[^/]+'''
+tags = ["redis", "password"]
+
+[[rules]]
+id = "safevisxai-gmail-app-password"
+description = "Gmail App Password (16 chars with spaces)"
+regex = '''[a-z]{4}\s[a-z]{4}\s[a-z]{4}\s[a-z]{4}'''
+tags = ["email", "password"]
+
+# ── Allowlist ────────────────────────────────────────────────────────────────
+
+[allowlist]
+description = "Allowlisted patterns — false positives or legitimate test data"
+# .env files are gitignored; don't flag them in pre-commit
+paths = [
+    # Gitignored env files won't be staged, but just in case:
+    '''(^|/)\.env$''',
+    '''(^|/)\.env\.local$''',
+    '''(^|/)\.env\.production$''',
+]
+# Example/placeholder values
+regexes = [
+    '''YOUR_.*''',
+    '''placeholder''',
+    '''CHANGE_ME''',
+]
