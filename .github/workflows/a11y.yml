@@ -1,0 +1,104 @@
+name: Accessibility (a11y)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "mkdocs-requirements.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pa11y:
+    name: WCAG 2.1 AA Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install MkDocs + dependencies
+        run: |
+          pip install -r mkdocs-requirements.txt
+          pip install mkdocs
+
+      - name: Inject root docs
+        run: |
+          cp README.md docs/index.md
+          cp SETUP.md docs/SETUP.md
+          cp DESIGN.md docs/DESIGN.md
+          cp AGENTS.md docs/AGENTS.md
+          cp SKILL.md docs/SKILL.md
+
+      - name: Build docs site
+        run: mkdocs build --strict
+
+      - name: Setup Node (for pa11y-ci)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pa11y-ci
+        run: npm install -g pa11y-ci@3
+
+      - name: Serve site and run accessibility tests
+        run: |
+          cd site
+          python -m http.server 8000 &
+          SERVER_PID=$!
+          cd ..
+
+          # Wait for server
+          for i in $(seq 1 10); do
+            curl -s http://localhost:8000/ > /dev/null 2>&1 && break
+            sleep 1
+          done
+
+          # Override config for CI
+          cat > .pa11yci-ci.json << 'EOF'
+          {
+            "defaults": {
+              "standard": "WCAG2AA",
+              "timeout": 30000,
+              "wait": 1500,
+              "runner": "axe",
+              "level": "error",
+              "threshold": 10,
+              "chromeLaunchConfig": {
+                "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+              }
+            },
+            "urls": [
+              "http://localhost:8000/",
+              "http://localhost:8000/glossary/"
+            ]
+          }
+          EOF
+
+          npx pa11y-ci --config .pa11yci-ci.json 2>&1 | tee pa11y-output.txt
+          EXIT_CODE=${PIPESTATUS[0]}
+
+          kill $SERVER_PID 2>/dev/null
+          exit $EXIT_CODE
+
+      - name: Upload pa11y report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pa11y-report
+          path: pa11y-output.txt
