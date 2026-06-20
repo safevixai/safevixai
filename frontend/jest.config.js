@@ -20,6 +20,14 @@ const customJestConfig = {
     '<rootDir>/hooks/__tests__/useSOS.test.ts',
   ],
   modulePathIgnorePatterns: ['<rootDir>/.next/'],
+  coverageThreshold: {
+    global: {
+      branches: 55,
+      functions: 55,
+      lines: 60,
+      statements: 60,
+    },
+  },
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

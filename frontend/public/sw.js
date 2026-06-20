@@ -303,6 +303,26 @@ self.addEventListener('sync', (event) => {
   }
 });
 
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'offline-data-refresh') {
+    event.waitUntil((async () => {
+      try {
+        const cache = await caches.open(CACHE_NAME);
+        await Promise.all(
+          OFFLINE_DATA_URLS.map(async (url) => {
+            try {
+              const res = await fetch(url, { cache: 'no-cache' });
+              if (res.ok) await cache.put(url, res);
+            } catch { /* skip failed individual fetches */ }
+          })
+        );
+        const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+        clients.forEach((client) => client.postMessage({ type: 'OFFLINE_DATA_REFRESHED' }));
+      } catch { /* periodic sync refresh failed */ }
+    })());
+  }
+});
+
 // P1-12: Each item is flushed in its own isolated transaction.
 // If the network fails mid-loop, only successfully-sent items are deleted.
 // The remaining items stay in the queue and are retried on the next sync event.

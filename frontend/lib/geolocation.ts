@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useAppStore, GpsLocation } from '@/lib/store';
 
 interface GeolocationResult {
@@ -11,13 +12,13 @@ interface GeolocationResult {
 }
 
 export function useGeolocation(): GeolocationResult {
-  const { setGpsLocation, setGpsError, gpsLocation, gpsError, locationTracking } = useAppStore((s) => ({
+  const { setGpsLocation, setGpsError, gpsLocation, gpsError, locationTracking } = useAppStore(useShallow((s) => ({
     setGpsLocation: s.setGpsLocation,
     setGpsError: s.setGpsError,
     gpsLocation: s.gpsLocation,
     gpsError: s.gpsError,
     locationTracking: s.locationTracking,
-  }));
+  })));
   const [loading, setLoading] = useState(false);
   const watchIdRef = useRef<number | null>(null);
 

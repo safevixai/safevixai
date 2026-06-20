@@ -1,18 +1,12 @@
 import type maplibregl from 'maplibre-gl';
-import { logClientWarning } from './client-logger';
 
-const TOMTOM_KEY = process.env.NEXT_PUBLIC_TOMTOM_KEY;
+const PROXY_BASE = '/api/proxy/tomtom';
 
 export function addTrafficLayer(map: maplibregl.Map): void {
-  if (!TOMTOM_KEY) {
-    logClientWarning('[Traffic] NEXT_PUBLIC_TOMTOM_KEY not set; traffic layer disabled');
-    return;
-  }
-
   map.addSource('tomtom-traffic-flow', {
     type: 'raster',
     tiles: [
-      `https://api.tomtom.com/traffic/map/4/tile/flow/relative/{z}/{x}/{y}.png?key=${TOMTOM_KEY}`,
+      `${PROXY_BASE}/traffic/map/4/tile/flow/relative/{z}/{x}/{y}.png`,
     ],
     tileSize: 256,
     attribution: 'TomTom Traffic',
@@ -28,7 +22,7 @@ export function addTrafficLayer(map: maplibregl.Map): void {
   map.addSource('tomtom-incidents', {
     type: 'raster',
     tiles: [
-      `https://api.tomtom.com/traffic/map/4/tile/incidents/s3/{z}/{x}/{y}.png?key=${TOMTOM_KEY}`,
+      `${PROXY_BASE}/traffic/map/4/tile/incidents/s3/{z}/{x}/{y}.png`,
     ],
     tileSize: 256,
   });

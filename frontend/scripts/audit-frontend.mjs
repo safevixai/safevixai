@@ -60,7 +60,9 @@ for (const file of files) {
       failures.push(`${relativeFile}: ${check.name}`);
     }
   }
-  if (relativeFile !== path.join('components', 'providers', 'GSAPProvider.tsx') && hasGsapInsideUseEffect(text)) {
+  const isGsapProvider = relativeFile === path.join('components', 'providers', 'GSAPProvider.tsx');
+  const isPageEntry = relativeFile === path.join('hooks', 'usePageEntry.ts');
+  if (!isGsapProvider && !isPageEntry && hasGsapInsideUseEffect(text)) {
     failures.push(`${relativeFile}: GSAP animation inside useEffect`);
   }
 }

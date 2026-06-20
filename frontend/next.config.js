@@ -4,80 +4,8 @@ try {
     enabled: process.env.ANALYZE === 'true',
   });
 } catch (_) {
-  // @next/bundle-analyzer not installed; skipping
 }
 
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
-// Extract valid backend origins for CSP connect-src
-const backendOrigins = [process.env.NEXT_PUBLIC_API_URL, process.env.NEXT_PUBLIC_CHATBOT_URL]
-  .filter(Boolean)
-  .flatMap((value) => {
-    try {
-      const url = new URL(value);
-      const wsProtocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
-      return [`${url.protocol}//${url.host}`, `${wsProtocol}//${url.host}`];
-    } catch {
-      return [];
-    }
-  });
-
-const externalApis = [
-  'https://api.tomtom.com',
-  'https://api.bigdatacloud.net',
-  'https://router.project-osrm.org',
-  'https://countriesnow.space',
-  'https://photon.komoot.io',
-  'https://app.posthog.com',
-  'https://tiles.openfreemap.org',
-  'https://mt1.google.com',
-  'https://api.maptiler.com',
-  'https://api.what3words.com',
-  // MapLibre vector tile sources
-  'https://*.tile.openstreetmap.org',
-  'https://demotiles.maplibre.org',
-  'https://tiles.stadiamaps.com',
-  // Supabase Auth (dynamic — uses env var origin)
-  ...(process.env.NEXT_PUBLIC_SUPABASE_URL ? [process.env.NEXT_PUBLIC_SUPABASE_URL.trim()] : []),
-];
-
-const scriptSrc = [
-  "'self'",
-  // Next.js App Router requires 'unsafe-inline' for its SSR-injected hydration scripts.
-  // Removing this would break route prefetching, RSC payloads, and navigation state.
-  // A nonce-based approach is possible but requires custom middleware complexity
-  // that introduces higher risk than the 'unsafe-inline' tradeoff.
-  "'unsafe-inline'",
-  ...(isDevelopment ? ["'unsafe-eval'"] : []),
-  "'wasm-unsafe-eval'",
-  'https://cdn.jsdelivr.net',
-].join(' ');
-
-const connectSrc = [
-  "'self'",
-  ...(isDevelopment
-    ? ['http://localhost:*', 'http://127.0.0.1:*', 'ws://localhost:*', 'ws://127.0.0.1:*']
-    : []),
-  ...backendOrigins,
-  ...externalApis,
-].join(' ');
-const contentSecurityPolicy = [
-  "default-src 'self'",
-  `script-src ${scriptSrc}`,
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "img-src 'self' data: https:",
-  "font-src 'self' data: https://fonts.gstatic.com",
-  `connect-src ${connectSrc}`,
-  "worker-src 'self' blob:",
-  "child-src 'self' blob:",
-  "frame-ancestors 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "object-src 'none'",
-  "report-uri /api/v1/csp-report",
-].join('; ');
-
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
@@ -109,6 +37,37 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/static/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/icons/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/offline-data/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/manifest.json',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=3600' },
+        ],
+      },
+      {
+        source: '/sw.js',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
+          { key: 'Service-Worker-Allowed', value: '/' },
+        ],
+      },
+      {
         source: '/(.*)',
         headers: [
           {
@@ -120,8 +79,12 @@ const nextConfig = {
             value: 'DENY',
           },
           {
+            key: 'X-XSS-Protection',
+            value: '0',
+          },
+          {
             key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains',
+            value: 'max-age=31536000; includeSubDomains; preload',
           },
           {
             key: 'Referrer-Policy',
@@ -132,8 +95,20 @@ const nextConfig = {
             value: 'camera=(), microphone=(self), geolocation=(self), browsing-topics=()',
           },
           {
-            key: 'Content-Security-Policy',
-            value: `${contentSecurityPolicy};`,
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'credentialless',
+          },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
           },
         ],
       },
