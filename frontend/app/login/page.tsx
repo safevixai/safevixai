@@ -189,42 +189,50 @@ export default function LoginPage() {
 
               {/* Email */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
+                <label htmlFor="login-email" className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
                   {t('operator_email')}
                 </label>
                 <div className="relative">
                   <Mail size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                   <input
+                    id="login-email"
                     ref={emailRef}
                     type="email"
                     autoComplete="email"
+                    aria-required="true"
+                    aria-invalid={errors.email ? 'true' : undefined}
+                    aria-describedby={errors.email ? 'login-email-error' : undefined}
                     value={email}
                     onChange={e => { setEmail(e.target.value); handleChange('email', e.target.value); setError(''); }}
                     onBlur={e => handleBlur('email', e.target.value)}
                     placeholder="operator@safevixai.app"
                     className={`w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.email ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
                   />
-                  {errors.email && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.email}</p>}
+                  {errors.email && <p id="login-email-error" role="alert" className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.email}</p>}
                 </div>
               </div>
 
               {/* Password */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
+                <label htmlFor="login-password" className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
                   {t('access_key')}
                 </label>
                 <div className="relative">
                   <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                   <input
+                    id="login-password"
                     type={showPwd ? 'text' : 'password'}
                     autoComplete="current-password"
+                    aria-required="true"
+                    aria-invalid={errors.password ? 'true' : undefined}
+                    aria-describedby={errors.password ? 'login-password-error' : undefined}
                     value={password}
                     onChange={e => { setPassword(e.target.value); handleChange('password', e.target.value); setError(''); }}
                     onBlur={e => handleBlur('password', e.target.value)}
                     placeholder="••••••••••••"
                     className={`w-full h-12 pl-11 pr-12 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.password ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
                   />
-                  {errors.password && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.password}</p>}
+                  {errors.password && <p id="login-password-error" role="alert" className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.password}</p>}
                   <button
                     type="button"
                     onClick={() => setShowPwd(v => !v)}

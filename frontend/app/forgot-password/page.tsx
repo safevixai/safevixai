@@ -124,22 +124,26 @@ export default function ForgotPasswordPage() {
 
               {/* Email */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
+                <label htmlFor="forgot-email" className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
                   Operator Email
                 </label>
                 <div className="relative">
                   <Mail size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                   <input
+                    id="forgot-email"
                     ref={emailRef}
                     type="email"
                     autoComplete="email"
+                    aria-required="true"
+                    aria-invalid={errors.email ? 'true' : undefined}
+                    aria-describedby={errors.email ? 'forgot-email-error' : undefined}
                     value={email}
                     onChange={e => { setEmail(e.target.value); handleChange('email', e.target.value); setError(''); setSuccess(''); }}
                     onBlur={e => handleBlur('email', e.target.value)}
                     placeholder="operator@safevixai.app"
                     className={`w-full h-12 pl-11 pr-4 rounded-xl bg-white/5 border text-white placeholder:text-text-3 text-sm font-medium focus:outline-none focus:ring-1 transition-all ${errors.email ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30' : 'border-white/10 focus:border-brand focus:ring-brand/40'}`}
                   />
-                  {errors.email && <p className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.email}</p>}
+                  {errors.email && <p id="forgot-email-error" role="alert" className="text-[10px] font-semibold text-red-400 px-1 mt-0.5">{errors.email}</p>}
                 </div>
               </div>
 

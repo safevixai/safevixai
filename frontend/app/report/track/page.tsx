@@ -176,7 +176,8 @@ export default function TrackPage() {
   };
 
   return (
-    <div className="sv-page aurora-glow relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-20">
+    <div className="sv-page sv-aurora relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-20">
+      <h1 className="sr-only">Complaint Tracker</h1>
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] h-[38rem] w-[38rem] rounded-full bg-cyan-500/5 blur-[150px]" />
         <div className="absolute left-[-8%] bottom-[-16%] h-[28rem] w-[28rem] rounded-full bg-brand/5 blur-[140px]" />

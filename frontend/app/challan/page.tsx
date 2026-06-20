@@ -344,7 +344,7 @@ export default function ChallanPage() {
   };
 
   return (
-    <div className="sv-page aurora-glow relative flex flex-col overflow-x-hidden transition-colors duration-500">
+    <div className="sv-page sv-aurora relative flex flex-col overflow-x-hidden transition-colors duration-500">
 
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Challan Terminal" showBack={false} />
@@ -637,12 +637,12 @@ export default function ChallanPage() {
                       02. Vehicle Identification
                     </h3>
 
-                    <div ref={vehicleGridRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4 stagger-entrance">
+                    <div ref={vehicleGridRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4 sv-stagger">
                        {VEHICLE_CLASSES.map(cls => (
                          <button
                            key={cls.id}
                            onClick={() => setChallanState({ vehicle: cls.id })}
-                           className={`card-premium flex flex-col items-center justify-center gap-4 p-6 rounded-[2rem] border-2 transition-all duration-300 active:scale-95 ${
+                           className={`sv-card-premium flex flex-col items-center justify-center gap-4 p-6 rounded-[2rem] border-2 transition-all duration-300 active:scale-95 ${
                              vehicleId === cls.id
                               ? 'bg-brand-light border-brand-light/30 text-text-1 shadow-xl shadow-brand-light/20 ring-2 ring-brand-light/20'
                               : 'bg-white dark:bg-white/5 border-border text-text-3 hover:border-text-3 dark:hover:border-white/10 hover:shadow-md'
@@ -706,7 +706,7 @@ export default function ChallanPage() {
                   </section>
 
                   {/* AI Insight Footer */}
-                  <div ref={insightRef} className="glass-panel p-6 rounded-[2rem] bg-gradient-to-br from-brand-light/10 to-transparent border border-brand-light/20 flex gap-4">
+                  <div ref={insightRef} className="sv-glass p-6 rounded-[2rem] bg-gradient-to-br from-brand-light/10 to-transparent border border-brand-light/20 flex gap-4">
                     <div className="w-10 h-10 rounded-xl bg-brand-light/20 flex items-center justify-center flex-shrink-0">
                       <Zap size={20} className="text-brand-light" />
                     </div>
@@ -783,7 +783,7 @@ export default function ChallanPage() {
                        {garageVehicles.map((vehicle: VehicleGarageItem) => (
                          <div
                            key={vehicle.id}
-                           className="glass-panel p-6 rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent border border-border shadow-xl flex flex-col gap-4 relative overflow-hidden group"
+                           className="sv-glass p-6 rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent border border-border shadow-xl flex flex-col gap-4 relative overflow-hidden group"
                          >
                            <div className="absolute top-0 right-0 w-24 h-24 bg-brand-light/5 blur-xl rounded-full" />
 

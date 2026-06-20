@@ -341,7 +341,7 @@ export default function ReportPage() {
   }
 
   return (
-    <div ref={pageRef} className={cx("sv-page aurora-glow relative overflow-x-hidden", !mounted && 'opacity-0')}>
+    <div ref={pageRef} className={cx("sv-page sv-aurora relative overflow-x-hidden", !mounted && 'opacity-0')}>
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-12%] hidden h-[38rem] w-[38rem] rounded-full bg-cyan-500/10 blur-[150px] dark:block" />
         <div className="absolute left-[22%] top-[4%] hidden h-[20rem] w-[20rem] rounded-full bg-violet-500/8 blur-[120px] dark:block" />
@@ -590,8 +590,9 @@ export default function ReportPage() {
                     <p className="text-xs text-text-3 mb-4">Optional — allows authorities to reach you for updates</p>
                     <div className="space-y-4">
                       <div>
-                        <label className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Full Name</label>
+                        <label htmlFor="report-name" className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Full Name</label>
                         <input
+                          id="report-name"
                           type="text"
                           value={citizenName}
                           onChange={(e) => setCitizenName(e.target.value)}
@@ -601,8 +602,9 @@ export default function ReportPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Email</label>
+                        <label htmlFor="report-email" className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">Email</label>
                         <input
+                          id="report-email"
                           type="email"
                           value={citizenEmail}
                           onChange={(e) => setCitizenEmail(e.target.value)}
@@ -612,8 +614,9 @@ export default function ReportPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.your_phone')}</label>
+                        <label htmlFor="report-phone" className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-3">{t('report.your_phone')}</label>
                         <input
+                          id="report-phone"
                           type="tel"
                           value={citizenPhone}
                           onChange={(e) => setCitizenPhone(e.target.value.replace(/[^0-9+]/g, '').slice(0, 15))}

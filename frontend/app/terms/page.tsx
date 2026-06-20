@@ -10,7 +10,7 @@ export default function TermsOfServicePage() {
   const router = useRouter();
 
   return (
-    <div className="sv-page aurora-glow relative flex flex-col min-h-screen transition-colors duration-500 overflow-y-auto">
+    <div className="sv-page sv-aurora relative flex flex-col min-h-screen transition-colors duration-500 overflow-y-auto">
       {/* ── Navigation Header ── */}
       <SystemHeader title="Terms of Service Terminal" showBack={false} />
 

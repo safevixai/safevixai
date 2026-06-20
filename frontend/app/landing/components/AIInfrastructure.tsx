@@ -120,7 +120,7 @@ function NodeCard({ node, index }: { node: PipelineNode; index: number }) {
   const Icon = node.icon;
 
   return (
-    <div className="reveal-item glass-panel rounded-xl p-6 w-full lg:w-56 flex flex-col items-center text-center group transition-all duration-300 hover:border-brand-light/20">
+    <div className="reveal-item sv-glass rounded-xl p-6 w-full lg:w-56 flex flex-col items-center text-center group transition-all duration-300 hover:border-brand-light/20">
       {/* Step indicator (mobile) */}
       <div className="lg:hidden absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-surface-2 border border-brand-light/20 flex items-center justify-center">
         <span className="text-[10px] font-mono text-brand-light">{index + 1}</span>

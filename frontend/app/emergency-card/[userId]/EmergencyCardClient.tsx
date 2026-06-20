@@ -70,6 +70,7 @@ export function EmergencyCardClient({ userId, initialData }: EmergencyCardClient
 
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center p-4 font-sans">
+      <h1 className="sr-only">Emergency Card</h1>
       <style>{`
         @media print {
           body { background: white !important; }

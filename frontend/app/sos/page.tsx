@@ -193,8 +193,9 @@ export default function EmergencyPage() {
  setSmsLink(generateSosSmsLink(userProfile, gpsLoc));
  }, [coords, userProfile]);
 
- return (
- <div ref={pageRef} className="aurora-glow bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-red-500/30 selection:text-red-900 dark:selection:text-red-950 min-h-dvh flex flex-col relative overflow-x-hidden transition-colors duration-500">
+  return (
+  <div ref={pageRef} className="sv-aurora sv-page bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-red-500/30 selection:text-red-900 dark:selection:text-red-950 min-h-dvh flex flex-col relative overflow-x-hidden transition-colors duration-500">
+  <h1 className="sr-only">Emergency SOS Terminal</h1>
  
  {/* -- Unified Tactical Navigation Header -- */}
  <SystemHeader title="Emergency SOS Terminal" showBack={false} />
@@ -208,7 +209,7 @@ export default function EmergencyPage() {
  
  {/* -- TOP: SOS PULSING BUTTON -- */}
  <section className="flex flex-col items-center justify-center space-y-6">
- <div className="relative group sos-rings">
+  <div className="relative group sv-sos-rings">
  {/* G-Force Badge */}
  <div className="absolute -top-4 -right-4 z-10 bg-white/90 dark:bg-[#2a3548]/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-border-md dark:border-[#5b403f]/15 shadow-sm flex items-center gap-2">
  <span className="w-2 h-2 rounded-full bg-brand-light animate-pulse"></span>
@@ -224,7 +225,7 @@ export default function EmergencyPage() {
  onPointerUp={cancelHold}
  onPointerLeave={cancelHold}
  onContextMenu={e => e.preventDefault()}
- className={`relative ${!activated ? '' : ''} w-56 h-56 rounded-full bg-gradient-to-br from-emergency to-red-900 flex flex-col items-center justify-center text-white active:scale-90 transition-transform duration-150 overflow-hidden outline-none focus-premium`}
+ className={`relative ${!activated ? '' : ''} w-56 h-56 rounded-full bg-gradient-to-br from-emergency to-red-900 flex flex-col items-center justify-center text-white active:scale-90 transition-transform duration-150 overflow-hidden outline-none sv-focus-premium`}
  style={{
  boxShadow: !activated 
    ? '0 0 60px rgba(220,38,38,0.3), 0 0 120px rgba(220,38,38,0.1), inset 0 -4px 12px rgba(0,0,0,0.3)'
@@ -299,8 +300,8 @@ export default function EmergencyPage() {
  </section>
 
  {/* -- MIDDLE: QUICK DIAL CARDS -- */}
- <section className="grid grid-cols-3 gap-3 stagger-entrance">
-  <a href="tel:112" aria-label="Call 112 for all emergencies" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-red-500/30">
+ <section className="grid grid-cols-3 gap-3 sv-stagger">
+  <a href="tel:112" aria-label="Call 112 for all emergencies" className="sv-card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-red-500/30">
   <div className="w-12 h-12 rounded-lg bg-red-100 dark:bg-emergency/15 flex items-center justify-center text-red-600 dark:text-emergency">
   <Activity className="w-6 h-6" aria-hidden="true" focusable="false" />
   </div>
@@ -310,7 +311,7 @@ export default function EmergencyPage() {
  </div>
  </a>
  
-  <a href="tel:100" aria-label="Call 100 for police" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-sky-500/30">
+  <a href="tel:100" aria-label="Call 100 for police" className="sv-card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-sky-500/30">
   <div className="w-12 h-12 rounded-lg bg-sky-100 dark:bg-sky-500/15 flex items-center justify-center text-sky-600 dark:text-sky-400">
   <Shield className="w-6 h-6" aria-hidden="true" focusable="false" />
   </div>
@@ -320,7 +321,7 @@ export default function EmergencyPage() {
  </div>
  </a>
 
-  <a href="tel:102" aria-label="Call 102 for ambulance" className="card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-brand-light/30">
+  <a href="tel:102" aria-label="Call 102 for ambulance" className="sv-card-premium bg-white dark:bg-white/5 border border-border-md dark:border-white/10 shadow-sm p-5 rounded-xl flex flex-col items-center justify-center space-y-3 active:scale-95 transition-all hover:border-brand-light/30">
   <div className="w-12 h-12 rounded-lg bg-brand-light/15 dark:bg-[#05b046]/15 flex items-center justify-center text-brand dark:text-[#05b046]">
   <Heart className="w-6 h-6" aria-hidden="true" focusable="false" />
   </div>
@@ -340,7 +341,7 @@ export default function EmergencyPage() {
  </span>
  </div>
 
- <div className="glass-panel rounded-xl p-6 space-y-6">
+  <div className="sv-glass rounded-xl p-6 space-y-6">
  <div className="flex items-start gap-4">
  <div className="flex-1 space-y-1">
  <p className="text-text-2 dark:text-[#e4bebc] text-[10px] font-semibold uppercase tracking-widest">GPS Coordinates Preview</p>

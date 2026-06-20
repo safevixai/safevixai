@@ -110,6 +110,7 @@ export default function TrackingPage() {
 
   return (
     <div ref={pageRef} className="min-h-dvh bg-bg dark:bg-surface-1 flex flex-col font-['Inter'] relative overflow-hidden">
+      <h1 className="sr-only">Live Family Tracking</h1>
       <SystemHeader title="Live Family Tracking" showBack={true} />
 
       {wsStatus === 'idle' || wsStatus === 'disconnected' ? (

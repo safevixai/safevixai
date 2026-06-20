@@ -204,6 +204,7 @@ export default function SettingsPage() {
 
   return (
     <div ref={pageRef} className="sv-page relative flex flex-col transition-colors duration-500">
+      <h1 className="sr-only">Settings</h1>
 
       <TerminalHeader title={t('settings.title')} subtitle={t('settings.subtitle')} />
 

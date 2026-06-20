@@ -21,6 +21,7 @@ export default function LandingPage() {
   useBackendPrewarm();
   return (
     <main className="bg-bg text-text-1 min-h-dvh overflow-x-hidden">
+      <h1 className="sr-only">SafeVixAI - Road Safety Platform</h1>
       <LandingNavbar />
       <HeroSection />
       <CrisisSection />

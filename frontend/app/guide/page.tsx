@@ -134,6 +134,7 @@ export default function GuidePage() {
 
   return (
     <div className="min-h-screen bg-surface-1 px-4 md:px-8 py-6 pb-24">
+      <h1 className="sr-only">Municipality Guide</h1>
       {/* Header */}
       <TerminalHeader
         title={t('guide.title', 'Municipality Guide')}

@@ -101,6 +101,7 @@ function ShareReceiveInner() {
 
   return (
     <div className="min-h-[100dvh] bg-bg flex items-center justify-center p-6">
+      <h1 className="sr-only">Share Receive</h1>
       {/* Spots removed per user request */}
 
       {/* Top scan line */}

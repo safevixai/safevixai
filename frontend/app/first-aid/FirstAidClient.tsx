@@ -103,7 +103,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
   const filteredGuideKeys = guideKeys.filter(key => !emergencyMode || ['cpr', 'choking', 'bleeding'].includes(key));
 
   return (
-    <div className="sv-page aurora-glow relative flex flex-col h-[100dvh] overflow-hidden bg-surface-1">
+    <div className="sv-page sv-aurora relative flex flex-col h-[100dvh] overflow-hidden bg-surface-1">
       {/* ── Page Header Bar (Sticky) ── */}
       <header className="fixed top-0 left-0 w-full z-[100] bg-surface-1/80 backdrop-blur-2xl border-b border-border shadow-sm px-4 lg:px-8 h-[56px] flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -183,7 +183,7 @@ export function FirstAidClient({ guides }: { guides: Record<string, Guide> }) {
         />
 
         {/* ── AI Vision Assessment: Live Simulation ── */}
-        <section className="mt-12 mb-20 glass-panel scan-line-overlay rounded-[2.5rem] p-6 sm:p-10 shadow-sm">
+        <section className="mt-12 mb-20 sv-glass sv-scan-line rounded-[2.5rem] p-6 sm:p-10 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-3">
@@ -311,7 +311,7 @@ function ProtocolGrid({ guideKeys, guides, emergencyMode, onGuideSelect }: {
         key={key}
         onClick={() => onGuideSelect(key)}
         aria-label={`Open ${titleText} first aid guide`}
-        className={`protocol-card card-premium group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 text-left transition-all duration-300 border ${
+        className={`protocol-card sv-card-premium group cursor-pointer relative overflow-hidden rounded-xl p-6 sm:p-8 text-left transition-all duration-300 border ${
           isCritical 
             ? 'bg-white dark:bg-surface-2 border-red-500/20 shadow-[0_20px_50px_rgba(239,68,68,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
             : 'bg-white/60 dark:bg-surface-1/40 backdrop-blur-md border-border/80 dark:border-white/5 hover:border-brand/30'

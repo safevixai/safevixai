@@ -134,15 +134,18 @@ export default function ResetPasswordPage() {
             ) : (
               <form onSubmit={handleReset} className="flex flex-col gap-4" noValidate>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
+                  <label htmlFor="reset-password" className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
                     New Access Key
                   </label>
                   <div className="relative">
                     <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                     <input
+                      id="reset-password"
                       ref={pwdRef}
                       type={showPwd ? 'text' : 'password'}
                       autoComplete="new-password"
+                      aria-required="true"
+                      aria-invalid={error ? 'true' : undefined}
                       value={password}
                       onChange={e => { setPassword(e.target.value); setError(''); }}
                       placeholder="Min 8 characters"
@@ -160,14 +163,17 @@ export default function ResetPasswordPage() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
+                  <label htmlFor="reset-confirm-password" className="text-[9px] font-semibold text-text-3 uppercase tracking-[0.25em] pl-1">
                     Confirm Access Key
                   </label>
                   <div className="relative">
                     <Lock size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-4 pointer-events-none" />
                     <input
+                      id="reset-confirm-password"
                       type={showConfirmPwd ? 'text' : 'password'}
                       autoComplete="new-password"
+                      aria-required="true"
+                      aria-invalid={error ? 'true' : undefined}
                       value={confirmPassword}
                       onChange={e => { setConfirmPassword(e.target.value); setError(''); }}
                       placeholder="Re-enter access key"
@@ -185,7 +191,7 @@ export default function ResetPasswordPage() {
                 </div>
 
                 {error && (
-                  <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20">
+                  <div role="alert" className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20">
                     <AlertTriangle size={14} className="text-red-400 flex-shrink-0" />
                     <span className="text-[12px] font-bold text-red-400">{error}</span>
                   </div>

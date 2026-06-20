@@ -266,7 +266,8 @@ export default function OfficerFieldClient() {
   };
 
   return (
-    <div className="sv-page aurora-glow relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-24">
+    <div className="sv-page sv-aurora relative min-h-screen bg-surface-1 dark:bg-slate-950 text-text-1 dark:text-slate-100 pb-24">
+      <h1 className="sr-only">Field Response Uplink</h1>
       {/* ── Background aurora glow effects ── */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute right-[-10%] top-[-10%] h-[32rem] w-[32rem] rounded-full bg-emerald-500/5 blur-[120px]" />

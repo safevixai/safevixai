@@ -114,7 +114,7 @@ function ShieldLogo({ size = 64 }: { size?: number }) {
       viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="glow-breathe"
+      className="sv-glow-breathe"
     >
       <path
         d="M32 4L8 16v16c0 14.4 10.24 27.84 24 32 13.76-4.16 24-17.6 24-32V16L32 4z"

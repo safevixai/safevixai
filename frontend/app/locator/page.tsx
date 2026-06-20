@@ -89,7 +89,7 @@ function MobileLocator({
     : null;
 
   return (
-    <div className="aurora-glow min-h-dvh pb-48 bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-brand/30 relative overflow-x-hidden w-full">
+    <div className="sv-aurora min-h-dvh pb-48 bg-surface-2 dark:bg-surface-1 text-text-1 dark:text-text-1 font-['Inter'] selection:bg-brand/30 relative overflow-x-hidden w-full">
       <SystemHeader title={t('locator.resource_dispatch')} showBack={false} />
 
       <div className="lg:hidden relative z-[100]">
@@ -390,6 +390,7 @@ export default function LocatorPage() {
 
   return (
     <div className="w-full h-full min-h-dvh flex flex-col overflow-hidden">
+      <h1 className="sr-only">Emergency Locator</h1>
       <DashboardMapBootstrap />
       <div className="lg:hidden flex-1 flex flex-col">
         <MobileLocator

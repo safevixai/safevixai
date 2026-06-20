@@ -23,6 +23,7 @@ const MapBackground = dynamic(
 export default function V2Dashboard() {
   return (
     <div className="relative isolate h-[var(--full-content-h)] min-h-[var(--full-content-h)] md:h-[var(--full-content-h-desktop)] md:min-h-[var(--full-content-h-desktop)] w-full overflow-hidden bg-surface-1 text-text-1 flex">
+      <h1 className="sr-only">SafeVixAI Dashboard</h1>
       <div className="relative flex-1 h-full w-full overflow-hidden">
         <DashboardMapBootstrap />
         <MapBackground />

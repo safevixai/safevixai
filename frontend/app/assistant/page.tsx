@@ -333,8 +333,9 @@ export default function ChatPage() {
   }, { scope: pageRef });
 
   return (
-   <div ref={pageRef} className="aurora-glow w-full h-[var(--full-content-h)] md:h-[var(--full-content-h-desktop)] flex flex-col overflow-hidden bg-surface-1">
-  {/* Model Loading HUD overlay */}
+   <div ref={pageRef} className="sv-aurora w-full h-[var(--full-content-h)] md:h-[var(--full-content-h-desktop)] flex flex-col overflow-hidden bg-surface-1">
+   <h1 className="sr-only">AI Assistant</h1>
+   {/* Model Loading HUD overlay */}
   <ModelLoader />
 
   {/* ── Background Decorative Lines (SafeVixAI Pro Aesthetic) ── */}

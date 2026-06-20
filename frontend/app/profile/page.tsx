@@ -108,6 +108,7 @@ export default function ProfilePage() {
 
   return (
     <div ref={pageRef} className="sv-page relative flex flex-col overflow-x-hidden transition-colors duration-500">
+      <h1 className="sr-only">User Profile</h1>
 
       {/* ── Unified Tactical Navigation Header ── */}
       <TerminalHeader title="Operator Identity Matrix" subtitle="PROFILE & SETTINGS" />

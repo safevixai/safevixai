@@ -192,7 +192,7 @@ export default function EmergencyProtocolsPage() {
   };
 
   return (
-    <div className={`sv-page aurora-glow relative flex flex-col overflow-x-hidden transition-colors duration-500 ${!mounted ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`sv-page sv-aurora relative flex flex-col overflow-x-hidden transition-colors duration-500 ${!mounted ? 'opacity-0' : 'opacity-100'}`}>
       
       {/* ── Unified Tactical Navigation Header ── */}
       <SystemHeader title="Emergency Protocol Terminal" showBack={false} />
@@ -354,7 +354,7 @@ export default function EmergencyProtocolsPage() {
             </div>
           </div>
 
-          <div ref={protocolGridRef} className="grid gap-4 stagger-entrance">
+          <div ref={protocolGridRef} className="grid gap-4 sv-stagger">
               {filtered.map((protocol) => {
                 const isExpanded = expandedId === protocol.id;
                 return (
@@ -430,7 +430,7 @@ function ProtocolCard({ protocol, isExpanded, onToggle }: {
 
   return (
     <div
-      className={`protocol-card card-premium group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-border overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-surface-1 ring-1 ring-border shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
+      className={`protocol-card sv-card-premium group relative rounded-lg sm:rounded-xl transition-all duration-500 border border-border overflow-hidden shadow-sm ${isExpanded ? 'bg-white dark:bg-surface-1 ring-1 ring-border shadow-2xl' : 'bg-white/60 dark:bg-black/20 hover:bg-white dark:hover:bg-white/5'}`}
     >
       {/* Header: Intel Brief */}
       <button onClick={onToggle} className="w-full flex items-center p-5 sm:p-7 text-left gap-5 relative z-10 transition-colors">

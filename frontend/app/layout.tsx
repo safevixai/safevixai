@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Toaster } from 'sonner';
 import { headers } from 'next/headers';
 import { SWRConfig } from 'swr';
+import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ConnectivityProvider } from '@/components/ConnectivityProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -13,6 +14,28 @@ import { ViewTransitions } from 'next-view-transitions';
 import { AppFrame } from '@/components/ui/AppFrame';
 import { AnalyticsProvider } from '@/lib/analytics-provider';
 import { EnterpriseClientAppHooks } from '@/components/EnterpriseClientAppHooks';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700', '800'],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space',
+  weight: ['400', '500', '600', '700'],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+  weight: ['400', '500', '600', '700'],
+});
+
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_VERCEL_URL || 'https://safevixai.com';
 
 export const metadata: Metadata = {
@@ -80,16 +103,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const skipText = skipTextMap[locale] || skipTextMap.en;
 
   return (
-    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning className="font-sans">
+    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'} suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans`}>
       <head>
         <link rel="icon" type="image/png" href="/icons/favicon.png" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
         <link rel="preconnect" href="https://mt1.google.com" />
         <link rel="preconnect" href="https://api.maptiler.com" />
         <link rel="preconnect" href="https://tiles.openfreemap.org" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="preconnect" href={new URL(PUBLIC_API_BASE_URL).origin} />
         <link rel="preconnect" href={new URL(PUBLIC_CHATBOT_BASE_URL).origin} />
         <link rel="dns-prefetch" href="https://mt1.google.com" />
