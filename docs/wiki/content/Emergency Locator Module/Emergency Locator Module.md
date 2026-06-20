@@ -2,16 +2,16 @@
 
 <cite>
 **Referenced Files in This Document**
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [overpass_service.py](file://backend/services/overpass_service.py)
-- [local_emergency_catalog.py](file://backend/services/local_emergency_catalog.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [config.py](file://backend/core/config.py)
-- [main.py](file://backend/main.py)
-- [test_emergency.py](file://backend/tests/test_emergency.py)
-- [emergency_numbers.json](file://chatbot_service/data/emergency_numbers.json)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [overpass_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py)
+- [local_emergency_catalog.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py)
+- [test_emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_emergency.py)
+- [emergency_numbers.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json)
 </cite>
 
 ## Table of Contents
@@ -49,16 +49,16 @@ Overpass --> OSM["OpenStreetMap Overpass API"]
 ```
 
 **Diagram sources**
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [overpass_service.py:24-78](file://backend/services/overpass_service.py#L24-L78)
-- [local_emergency_catalog.py:25-34](file://backend/services/local_emergency_catalog.py#L25-L34)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [overpass_service.py:24-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L78)
+- [local_emergency_catalog.py:25-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L25-L34)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 **Section sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [config.py:26-47](file://backend/core/config.py#L26-L47)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [config.py:26-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L47)
 
 ## Core Components
 - EmergencyLocatorService: Central coordinator for emergency discovery, caching, merging, and fallback.
@@ -77,12 +77,12 @@ Key responsibilities:
 - Provide SOS payload with emergency numbers.
 
 **Section sources**
-- [emergency_locator.py:161-373](file://backend/services/emergency_locator.py#L161-L373)
-- [overpass_service.py:24-78](file://backend/services/overpass_service.py#L24-L78)
-- [local_emergency_catalog.py:25-34](file://backend/services/local_emergency_catalog.py#L25-L34)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [schemas.py:36-66](file://backend/models/schemas.py#L36-L66)
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
+- [emergency_locator.py:161-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L373)
+- [overpass_service.py:24-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L78)
+- [local_emergency_catalog.py:25-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L25-L34)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [schemas.py:36-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L36-L66)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
 
 ## Architecture Overview
 The Emergency Locator follows a layered architecture:
@@ -128,10 +128,10 @@ end
 ```
 
 **Diagram sources**
-- [emergency.py:19-38](file://backend/api/v1/emergency.py#L19-L38)
-- [emergency_locator.py:187-216](file://backend/services/emergency_locator.py#L187-L216)
-- [emergency_locator.py:301-373](file://backend/services/emergency_locator.py#L301-L373)
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
+- [emergency.py:19-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L38)
+- [emergency_locator.py:187-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L216)
+- [emergency_locator.py:301-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L301-L373)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
 
 ## Detailed Component Analysis
 
@@ -166,7 +166,7 @@ class EmergencyLocatorService {
 ```
 
 **Diagram sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
 
 Key behaviors:
 - Radius fallback: Iterates configured radius steps until reaching minimum results threshold.
@@ -175,12 +175,12 @@ Key behaviors:
 - Caching: Uses cache keys derived from inputs to reduce repeated work.
 
 **Section sources**
-- [emergency_locator.py:168-185](file://backend/services/emergency_locator.py#L168-L185)
-- [emergency_locator.py:187-216](file://backend/services/emergency_locator.py#L187-L216)
-- [emergency_locator.py:301-373](file://backend/services/emergency_locator.py#L301-L373)
-- [emergency_locator.py:375-421](file://backend/services/emergency_locator.py#L375-L421)
-- [emergency_locator.py:429-447](file://backend/services/emergency_locator.py#L429-L447)
-- [emergency_locator.py:482-506](file://backend/services/emergency_locator.py#L482-L506)
+- [emergency_locator.py:168-185](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L168-L185)
+- [emergency_locator.py:187-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L216)
+- [emergency_locator.py:301-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L301-L373)
+- [emergency_locator.py:375-421](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L375-L421)
+- [emergency_locator.py:429-447](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L429-L447)
+- [emergency_locator.py:482-506](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L482-L506)
 
 ### OverpassService
 Responsibilities:
@@ -202,15 +202,15 @@ SortLimit --> End(["Return EmergencyServiceItem[]"])
 ```
 
 **Diagram sources**
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
-- [overpass_service.py:123-134](file://backend/services/overpass_service.py#L123-L134)
-- [overpass_service.py:136-160](file://backend/services/overpass_service.py#L136-L160)
-- [overpass_service.py:238-248](file://backend/services/overpass_service.py#L238-L248)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
+- [overpass_service.py:123-134](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L123-L134)
+- [overpass_service.py:136-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L136-L160)
+- [overpass_service.py:238-248](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L238-L248)
 
 **Section sources**
-- [overpass_service.py:35-78](file://backend/services/overpass_service.py#L35-L78)
-- [overpass_service.py:123-160](file://backend/services/overpass_service.py#L123-L160)
-- [overpass_service.py:184-236](file://backend/services/overpass_service.py#L184-L236)
+- [overpass_service.py:35-78](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L35-L78)
+- [overpass_service.py:123-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L123-L160)
+- [overpass_service.py:184-236](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L184-L236)
 
 ### LocalEmergencyCatalog
 Responsibilities:
@@ -220,10 +220,10 @@ Responsibilities:
 - Provide LocalEmergencyEntry objects for merging.
 
 **Section sources**
-- [local_emergency_catalog.py:25-34](file://backend/services/local_emergency_catalog.py#L25-L34)
-- [local_emergency_catalog.py:37-91](file://backend/services/local_emergency_catalog.py#L37-L91)
-- [local_emergency_catalog.py:94-128](file://backend/services/local_emergency_catalog.py#L94-L128)
-- [local_emergency_catalog.py:131-169](file://backend/services/local_emergency_catalog.py#L131-L169)
+- [local_emergency_catalog.py:25-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L25-L34)
+- [local_emergency_catalog.py:37-91](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L37-L91)
+- [local_emergency_catalog.py:94-128](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L94-L128)
+- [local_emergency_catalog.py:131-169](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L131-L169)
 
 ### EmergencyService Model
 Responsibilities:
@@ -232,7 +232,7 @@ Responsibilities:
 - Index by category and state code for efficient filtering.
 
 **Section sources**
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
 
 ### API Endpoints
 Responsibilities:
@@ -240,9 +240,9 @@ Responsibilities:
 - Validate inputs and propagate external service errors.
 
 **Section sources**
-- [emergency.py:19-38](file://backend/api/v1/emergency.py#L19-L38)
-- [emergency.py:42-70](file://backend/api/v1/emergency.py#L42-L70)
-- [emergency.py:73-75](file://backend/api/v1/emergency.py#L73-L75)
+- [emergency.py:19-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L38)
+- [emergency.py:42-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L70)
+- [emergency.py:73-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L73-L75)
 
 ## Dependency Analysis
 The Emergency Locator integrates multiple services and configurations:
@@ -259,17 +259,17 @@ Numbers["Emergency Numbers JSON"] --> Locator
 ```
 
 **Diagram sources**
-- [config.py:26-47](file://backend/core/config.py#L26-L47)
-- [emergency_locator.py:161-166](file://backend/services/emergency_locator.py#L161-L166)
-- [overpass_service.py:24-30](file://backend/services/overpass_service.py#L24-L30)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [local_emergency_catalog.py:25-34](file://backend/services/local_emergency_catalog.py#L25-L34)
-- [emergency.py:19-75](file://backend/api/v1/emergency.py#L19-L75)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
+- [config.py:26-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L47)
+- [emergency_locator.py:161-166](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L166)
+- [overpass_service.py:24-30](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L24-L30)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [local_emergency_catalog.py:25-34](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/local_emergency_catalog.py#L25-L34)
+- [emergency.py:19-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L75)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
 
 **Section sources**
-- [config.py:26-47](file://backend/core/config.py#L26-L47)
-- [main.py:24-63](file://backend/main.py#L24-L63)
+- [config.py:26-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L47)
+- [main.py:24-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/main.py#L24-L63)
 
 ## Performance Considerations
 - Spatial indexing: EmergencyService uses PostGIS geography/geometry with spatial index on location for efficient DWithin queries.
@@ -294,9 +294,9 @@ Concrete examples from tests:
 - Local catalog precedence before Overpass.
 
 **Section sources**
-- [test_emergency.py:125-171](file://backend/tests/test_emergency.py#L125-L171)
-- [test_emergency.py:173-222](file://backend/tests/test_emergency.py#L173-L222)
-- [test_emergency.py:237-284](file://backend/tests/test_emergency.py#L237-L284)
+- [test_emergency.py:125-171](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_emergency.py#L125-L171)
+- [test_emergency.py:173-222](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_emergency.py#L173-L222)
+- [test_emergency.py:237-284](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/tests/test_emergency.py#L237-L284)
 
 ## Conclusion
 The Emergency Locator module delivers robust, configurable emergency service discovery through a layered approach: database-first spatial queries, local curated data, and Overpass API fallback. Its tiered radius strategy, caching, and deduplication ensure reliable results across varying GPS accuracy and network conditions. Configuration options enable tuning for different regions and use cases.
@@ -315,34 +315,34 @@ The Emergency Locator module delivers robust, configurable emergency service dis
 - HTTP user agent and request timeout: Control external service behavior.
 
 **Section sources**
-- [config.py:26-47](file://backend/core/config.py#L26-L47)
-- [config.py:99-108](file://backend/core/config.py#L99-L108)
+- [config.py:26-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L26-L47)
+- [config.py:99-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L99-L108)
 
 ### Supported Categories
 - hospital, police, ambulance, fire, towing, pharmacy, puncture, showroom
 
 **Section sources**
-- [emergency_locator.py:28-37](file://backend/services/emergency_locator.py#L28-L37)
-- [schemas.py](file://backend/models/schemas.py#L10)
+- [emergency_locator.py:28-37](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L28-L37)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L10)
 
 ### Emergency Numbers
 - Pan-India unified emergency numbers and state-specific helplines are loaded from JSON and included in SOS payloads.
 
 **Section sources**
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
-- [emergency_locator.py:134-158](file://backend/services/emergency_locator.py#L134-L158)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
+- [emergency_locator.py:134-158](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L134-L158)
 
 ### Integration with Overpass API and OpenStreetMap
 - OverpassService builds queries for amenities and emergency facilities, extracts geometry, and classifies services.
 - EmergencyLocatorService merges Overpass results with database and local catalog results.
 
 **Section sources**
-- [overpass_service.py:136-160](file://backend/services/overpass_service.py#L136-L160)
-- [overpass_service.py:184-236](file://backend/services/overpass_service.py#L184-L236)
-- [emergency_locator.py:343-355](file://backend/services/emergency_locator.py#L343-L355)
+- [overpass_service.py:136-160](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L136-L160)
+- [overpass_service.py:184-236](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/overpass_service.py#L184-L236)
+- [emergency_locator.py:343-355](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L343-L355)
 
 ### Geographic Boundaries and City Centers
 - CITY_CENTERS and OFFLINE_CITY_CENTERS define city centers for offline bundle creation and city-specific operations.
 
 **Section sources**
-- [emergency_locator.py:39-115](file://backend/services/emergency_locator.py#L39-L115)
+- [emergency_locator.py:39-115](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L39-L115)

@@ -2,19 +2,19 @@
 
 <cite>
 **Referenced Files in This Document**
-- [page.tsx](file://frontend/app/report/page.tsx)
-- [ReportForm.tsx](file://frontend/components/ReportForm.tsx)
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [reverse-geocode.ts](file://frontend/lib/reverse-geocode.ts)
-- [api.ts](file://frontend/lib/api.ts)
-- [location-utils.ts](file://frontend/lib/location-utils.ts)
-- [store.ts](file://frontend/lib/store.ts)
-- [HazardViewfinder.tsx](file://frontend/components/report/HazardViewfinder.tsx)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [config.py](file://backend/core/config.py)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx)
+- [ReportForm.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [reverse-geocode.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/reverse-geocode.ts)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [location-utils.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts)
+- [store.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts)
+- [HazardViewfinder.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py)
 </cite>
 
 ## Table of Contents
@@ -67,24 +67,24 @@ RWS --> CFG
 ```
 
 **Diagram sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [reverse-geocode.ts:25-48](file://frontend/lib/reverse-geocode.ts#L25-L48)
-- [api.ts:654-750](file://frontend/lib/api.ts#L654-L750)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [HazardViewfinder.tsx:17-105](file://frontend/components/report/HazardViewfinder.tsx#L17-L105)
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [schemas.py:142-161](file://backend/models/schemas.py#L142-L161)
-- [config.py:55-63](file://backend/core/config.py#L55-L63)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [reverse-geocode.ts:25-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/reverse-geocode.ts#L25-L48)
+- [api.ts:654-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L750)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [HazardViewfinder.tsx:17-105](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/report/HazardViewfinder.tsx#L17-L105)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [schemas.py:142-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L142-L161)
+- [config.py:55-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L55-L63)
 
 **Section sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [api.ts:654-750](file://frontend/lib/api.ts#L654-L750)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [api.ts:654-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L750)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
 
 ## Core Components
 - Report page form: Collects hazard type, severity, notes, and optional photo; displays real-time GPS status and accuracy; submits via API.
@@ -94,12 +94,12 @@ RWS --> CFG
 - Backend service: Validates inputs, resolves road authority and infrastructure, persists reports, and manages photo uploads.
 
 **Section sources**
-- [page.tsx:46-61](file://frontend/app/report/page.tsx#L46-L61)
-- [page.tsx:101-272](file://frontend/app/report/page.tsx#L101-L272)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [reverse-geocode.ts:25-48](file://frontend/lib/reverse-geocode.ts#L25-L48)
-- [api.ts:654-750](file://frontend/lib/api.ts#L654-L750)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [page.tsx:46-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L46-L61)
+- [page.tsx:101-272](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L272)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [reverse-geocode.ts:25-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/reverse-geocode.ts#L25-L48)
+- [api.ts:654-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L750)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 ## Architecture Overview
 The system follows a client-server pattern:
@@ -131,12 +131,12 @@ Page-->>User : Success screen with authority info
 ```
 
 **Diagram sources**
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 ## Detailed Component Analysis
 
@@ -174,15 +174,15 @@ ShowError --> Ready
 ```
 
 **Diagram sources**
-- [page.tsx:101-272](file://frontend/app/report/page.tsx#L101-L272)
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
+- [page.tsx:101-272](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L272)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
 
 **Section sources**
-- [page.tsx:46-61](file://frontend/app/report/page.tsx#L46-L61)
-- [page.tsx:101-272](file://frontend/app/report/page.tsx#L101-L272)
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
+- [page.tsx:46-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L46-L61)
+- [page.tsx:101-272](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L272)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
 
 ### GPS and Location Utilities
 - GPS hook requests high-accuracy location with timeouts and watches for continuous updates.
@@ -201,14 +201,14 @@ UpdateStore --> Format["Format labels via location-utils"]
 ```
 
 **Diagram sources**
-- [geolocation.ts:30-108](file://frontend/lib/geolocation.ts#L30-L108)
-- [location-utils.ts:17-56](file://frontend/lib/location-utils.ts#L17-L56)
-- [store.ts:63-68](file://frontend/lib/store.ts#L63-L68)
+- [geolocation.ts:30-108](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L30-L108)
+- [location-utils.ts:17-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L17-L56)
+- [store.ts:63-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L63-L68)
 
 **Section sources**
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [location-utils.ts:1-57](file://frontend/lib/location-utils.ts#L1-L57)
-- [store.ts:129-226](file://frontend/lib/store.ts#L129-L226)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [location-utils.ts:1-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L1-L57)
+- [store.ts:129-226](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/store.ts#L129-L226)
 
 ### Reverse Geocoding
 - The frontend uses a client-side reverse geocoder to convert coordinates to a readable address without hitting the backend.
@@ -226,12 +226,12 @@ API-->>Page : ReverseGeocodeResponse
 ```
 
 **Diagram sources**
-- [api.ts:654-671](file://frontend/lib/api.ts#L654-L671)
-- [reverse-geocode.ts:25-48](file://frontend/lib/reverse-geocode.ts#L25-L48)
+- [api.ts:654-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L671)
+- [reverse-geocode.ts:25-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/reverse-geocode.ts#L25-L48)
 
 **Section sources**
-- [api.ts:654-671](file://frontend/lib/api.ts#L654-L671)
-- [reverse-geocode.ts:25-48](file://frontend/lib/reverse-geocode.ts#L25-L48)
+- [api.ts:654-671](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L671)
+- [reverse-geocode.ts:25-48](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/reverse-geocode.ts#L25-L48)
 
 ### Backend API and Service
 - API endpoint validates coordinates, severity range, and issue type; accepts optional photo.
@@ -274,15 +274,15 @@ RoadWatchService --> RoadIssue : "creates/persists"
 ```
 
 **Diagram sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 **Section sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
-- [schemas.py:142-161](file://backend/models/schemas.py#L142-L161)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
+- [schemas.py:142-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L142-L161)
 
 ### Photo Upload Validation
 - Frontend enforces file type and size constraints before submission.
@@ -302,16 +302,16 @@ Save --> Done["Return photo_url"]
 ```
 
 **Diagram sources**
-- [ReportForm.tsx:9-10](file://frontend/components/ReportForm.tsx#L9-L10)
-- [ReportForm.tsx:28-65](file://frontend/components/ReportForm.tsx#L28-L65)
-- [config.py:59-63](file://backend/core/config.py#L59-L63)
-- [roadwatch_service.py:275-324](file://backend/services/roadwatch_service.py#L275-L324)
+- [ReportForm.tsx:9-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L9-L10)
+- [ReportForm.tsx:28-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L28-L65)
+- [config.py:59-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L59-L63)
+- [roadwatch_service.py:275-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L324)
 
 **Section sources**
-- [ReportForm.tsx:9-10](file://frontend/components/ReportForm.tsx#L9-L10)
-- [ReportForm.tsx:28-65](file://frontend/components/ReportForm.tsx#L28-L65)
-- [config.py:59-63](file://backend/core/config.py#L59-L63)
-- [roadwatch_service.py:275-324](file://backend/services/roadwatch_service.py#L275-L324)
+- [ReportForm.tsx:9-10](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L9-L10)
+- [ReportForm.tsx:28-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L28-L65)
+- [config.py:59-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L59-L63)
+- [roadwatch_service.py:275-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L324)
 
 ### Spatial Data Processing Workflow
 - Coordinate capture: High-accuracy GPS with continuous watching.
@@ -333,16 +333,16 @@ Save --> Response["Return RoadReportResponse"]
 ```
 
 **Diagram sources**
-- [geolocation.ts:74-85](file://frontend/lib/geolocation.ts#L74-L85)
-- [api.ts:654-721](file://frontend/lib/api.ts#L654-L721)
-- [roadwatch_service.py:70-125](file://backend/services/roadwatch_service.py#L70-L125)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [geolocation.ts:74-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L74-L85)
+- [api.ts:654-721](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L721)
+- [roadwatch_service.py:70-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L125)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 **Section sources**
-- [geolocation.ts:74-85](file://frontend/lib/geolocation.ts#L74-L85)
-- [api.ts:654-721](file://frontend/lib/api.ts#L654-L721)
-- [roadwatch_service.py:70-125](file://backend/services/roadwatch_service.py#L70-L125)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [geolocation.ts:74-85](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L74-L85)
+- [api.ts:654-721](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L721)
+- [roadwatch_service.py:70-125](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L70-L125)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 ## Dependency Analysis
 - Frontend depends on:
@@ -368,19 +368,19 @@ RWS --> CFG["config.py"]
 ```
 
 **Diagram sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [geolocation.ts:13-124](file://frontend/lib/geolocation.ts#L13-L124)
-- [api.ts:654-750](file://frontend/lib/api.ts#L654-L750)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
-- [schemas.py:142-161](file://backend/models/schemas.py#L142-L161)
-- [config.py:59-63](file://backend/core/config.py#L59-L63)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [geolocation.ts:13-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L124)
+- [api.ts:654-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L750)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
+- [schemas.py:142-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L142-L161)
+- [config.py:59-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L59-L63)
 
 **Section sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [api.ts:654-750](file://frontend/lib/api.ts#L654-L750)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [api.ts:654-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L654-L750)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 ## Performance Considerations
 - Concurrency: The frontend fetches authority, infrastructure, and reverse geocoding in parallel to minimize latency.
@@ -402,12 +402,12 @@ Common issues and resolutions:
 - Authority/infrastructure not found: Occasional upstream service delays; retry after a moment.
 
 **Section sources**
-- [geolocation.ts:63-71](file://frontend/lib/geolocation.ts#L63-L71)
-- [location-utils.ts:17-19](file://frontend/lib/location-utils.ts#L17-L19)
-- [ReportForm.tsx:28-38](file://frontend/components/ReportForm.tsx#L28-L38)
-- [config.py:59-63](file://backend/core/config.py#L59-L63)
-- [roadwatch_service.py:275-324](file://backend/services/roadwatch_service.py#L275-L324)
-- [roadwatch.py:95-96](file://backend/api/v1/roadwatch.py#L95-L96)
+- [geolocation.ts:63-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L63-L71)
+- [location-utils.ts:17-19](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-utils.ts#L17-L19)
+- [ReportForm.tsx:28-38](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L28-L38)
+- [config.py:59-63](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/core/config.py#L59-L63)
+- [roadwatch_service.py:275-324](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L324)
+- [roadwatch.py:95-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L95-L96)
 
 ## Conclusion
 The geotagged issue reporting system combines precise GPS capture, real-time reverse geocoding, and robust backend validation to deliver accurate, actionable reports. Its modular frontend and backend components ensure scalability, maintainability, and a smooth user experience across devices and connection states.

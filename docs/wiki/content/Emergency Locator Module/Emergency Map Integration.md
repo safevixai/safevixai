@@ -2,17 +2,17 @@
 
 <cite>
 **Referenced Files in This Document**
-- [EmergencyMap.tsx](file://frontend/components/EmergencyMap.tsx)
-- [EmergencyMapInner.tsx](file://frontend/components/EmergencyMapInner.tsx)
-- [MapLibreCanvas.tsx](file://frontend/components/maps/MapLibreCanvas.tsx)
-- [traffic-layer.ts](file://frontend/lib/traffic-layer.ts)
-- [safe-spaces-layer.ts](file://frontend/lib/safe-spaces-layer.ts)
-- [location-tracker.ts](file://frontend/lib/location-tracker.ts)
-- [geolocation.ts](file://frontend/lib/geolocation.ts)
-- [map-defaults.ts](file://frontend/lib/map-defaults.ts)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [page.tsx](file://frontend/app/locator/page.tsx)
+- [EmergencyMap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx)
+- [EmergencyMapInner.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx)
+- [MapLibreCanvas.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx)
+- [traffic-layer.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/traffic-layer.ts)
+- [safe-spaces-layer.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts)
+- [location-tracker.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts)
+- [geolocation.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts)
+- [map-defaults.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx)
 </cite>
 
 ## Table of Contents
@@ -64,23 +64,23 @@ API --> SVC
 ```
 
 **Diagram sources**
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [MapLibreCanvas.tsx:1-1241](file://frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
-- [traffic-layer.ts:1-50](file://frontend/lib/traffic-layer.ts#L1-L50)
-- [safe-spaces-layer.ts:1-62](file://frontend/lib/safe-spaces-layer.ts#L1-L62)
-- [location-tracker.ts:1-66](file://frontend/lib/location-tracker.ts#L1-L66)
-- [geolocation.ts:1-124](file://frontend/lib/geolocation.ts#L1-L124)
-- [map-defaults.ts:1-8](file://frontend/lib/map-defaults.ts#L1-L8)
-- [emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
-- [page.tsx:1-1244](file://frontend/app/locator/page.tsx#L1-L1244)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [MapLibreCanvas.tsx:1-1241](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
+- [traffic-layer.ts:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/traffic-layer.ts#L1-L50)
+- [safe-spaces-layer.ts:1-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L1-L62)
+- [location-tracker.ts:1-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L1-L66)
+- [geolocation.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L1-L124)
+- [map-defaults.ts:1-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts#L1-L8)
+- [emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
+- [page.tsx:1-1244](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L1-L1244)
 
 **Section sources**
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [MapLibreCanvas.tsx:1-1241](file://frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
-- [page.tsx:523-820](file://frontend/app/locator/page.tsx#L523-L820)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [MapLibreCanvas.tsx:1-1241](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
+- [page.tsx:523-820](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L523-L820)
 
 ## Core Components
 - EmergencyMap: A lightweight client-side wrapper that defers map rendering to the browser to keep server-side rendering stable.
@@ -93,15 +93,15 @@ API --> SVC
 - Backend Emergency APIs: Nearby emergency services, SOS payload, emergency numbers, and safe spaces.
 
 **Section sources**
-- [EmergencyMap.tsx:25-57](file://frontend/components/EmergencyMap.tsx#L25-L57)
-- [EmergencyMapInner.tsx:44-82](file://frontend/components/EmergencyMapInner.tsx#L44-L82)
-- [MapLibreCanvas.tsx:300-320](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L320)
-- [traffic-layer.ts:5-49](file://frontend/lib/traffic-layer.ts#L5-L49)
-- [safe-spaces-layer.ts:14-61](file://frontend/lib/safe-spaces-layer.ts#L14-L61)
-- [location-tracker.ts:8-65](file://frontend/lib/location-tracker.ts#L8-L65)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
+- [EmergencyMap.tsx:25-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L57)
+- [EmergencyMapInner.tsx:44-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L82)
+- [MapLibreCanvas.tsx:300-320](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L320)
+- [traffic-layer.ts:5-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/traffic-layer.ts#L5-L49)
+- [safe-spaces-layer.ts:14-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L14-L61)
+- [location-tracker.ts:8-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L65)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
 
 ## Architecture Overview
 The map integrates multiple data and overlay sources:
@@ -133,14 +133,14 @@ MLC-->>UI : Interactive map with overlays
 ```
 
 **Diagram sources**
-- [page.tsx:523-820](file://frontend/app/locator/page.tsx#L523-L820)
-- [EmergencyMap.tsx:25-57](file://frontend/components/EmergencyMap.tsx#L25-L57)
-- [EmergencyMapInner.tsx:44-82](file://frontend/components/EmergencyMapInner.tsx#L44-L82)
-- [MapLibreCanvas.tsx:300-560](file://frontend/components/maps/MapLibreCanvas.tsx#L300-L560)
-- [traffic-layer.ts:5-49](file://frontend/lib/traffic-layer.ts#L5-L49)
-- [safe-spaces-layer.ts:14-61](file://frontend/lib/safe-spaces-layer.ts#L14-L61)
-- [location-tracker.ts:8-65](file://frontend/lib/location-tracker.ts#L8-L65)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
+- [page.tsx:523-820](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L523-L820)
+- [EmergencyMap.tsx:25-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L57)
+- [EmergencyMapInner.tsx:44-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L82)
+- [MapLibreCanvas.tsx:300-560](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L300-L560)
+- [traffic-layer.ts:5-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/traffic-layer.ts#L5-L49)
+- [safe-spaces-layer.ts:14-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L14-L61)
+- [location-tracker.ts:8-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L65)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
 
 ## Detailed Component Analysis
 
@@ -163,13 +163,13 @@ FitViewport --> End(["Rendered"])
 ```
 
 **Diagram sources**
-- [MapLibreCanvas.tsx:396-540](file://frontend/components/maps/MapLibreCanvas.tsx#L396-L540)
-- [map-defaults.ts:1-8](file://frontend/lib/map-defaults.ts#L1-L8)
+- [MapLibreCanvas.tsx:396-540](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L396-L540)
+- [map-defaults.ts:1-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts#L1-L8)
 
 **Section sources**
-- [MapLibreCanvas.tsx:326-380](file://frontend/components/maps/MapLibreCanvas.tsx#L326-L380)
-- [MapLibreCanvas.tsx:408-540](file://frontend/components/maps/MapLibreCanvas.tsx#L408-L540)
-- [map-defaults.ts:1-8](file://frontend/lib/map-defaults.ts#L1-L8)
+- [MapLibreCanvas.tsx:326-380](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L326-L380)
+- [MapLibreCanvas.tsx:408-540](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L408-L540)
+- [map-defaults.ts:1-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts#L1-L8)
 
 ### Map Layer Management
 - Facilities: GeoJSON source with clustering and two layers (clusters and unclustered points). Selected facility gets a translucent glow layer.
@@ -209,16 +209,16 @@ MapLibreCanvas --> LocationTracker : "starts"
 ```
 
 **Diagram sources**
-- [MapLibreCanvas.tsx:155-167](file://frontend/components/maps/MapLibreCanvas.tsx#L155-L167)
-- [traffic-layer.ts:5-49](file://frontend/lib/traffic-layer.ts#L5-L49)
-- [safe-spaces-layer.ts:14-61](file://frontend/lib/safe-spaces-layer.ts#L14-L61)
-- [location-tracker.ts:8-65](file://frontend/lib/location-tracker.ts#L8-L65)
+- [MapLibreCanvas.tsx:155-167](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L155-L167)
+- [traffic-layer.ts:5-49](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/traffic-layer.ts#L5-L49)
+- [safe-spaces-layer.ts:14-61](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L14-L61)
+- [location-tracker.ts:8-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L65)
 
 **Section sources**
-- [MapLibreCanvas.tsx:700-1018](file://frontend/components/maps/MapLibreCanvas.tsx#L700-L1018)
-- [MapLibreCanvas.tsx:1020-1098](file://frontend/components/maps/MapLibreCanvas.tsx#L1020-L1098)
-- [MapLibreCanvas.tsx:1100-1150](file://frontend/components/maps/MapLibreCanvas.tsx#L1100-L1150)
-- [MapLibreCanvas.tsx:1174-1196](file://frontend/components/maps/MapLibreCanvas.tsx#L1174-L1196)
+- [MapLibreCanvas.tsx:700-1018](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L700-L1018)
+- [MapLibreCanvas.tsx:1020-1098](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1020-L1098)
+- [MapLibreCanvas.tsx:1100-1150](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1100-L1150)
+- [MapLibreCanvas.tsx:1174-1196](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1174-L1196)
 
 ### Service Markers and Popups
 - Facilities are clustered with a step-based color/size scale and labeled counts.
@@ -237,10 +237,10 @@ Points --> ClickPoint["On Point Click: Show Popup"]
 ```
 
 **Diagram sources**
-- [MapLibreCanvas.tsx:801-1018](file://frontend/components/maps/MapLibreCanvas.tsx#L801-L1018)
+- [MapLibreCanvas.tsx:801-1018](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L801-L1018)
 
 **Section sources**
-- [MapLibreCanvas.tsx:801-1018](file://frontend/components/maps/MapLibreCanvas.tsx#L801-L1018)
+- [MapLibreCanvas.tsx:801-1018](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L801-L1018)
 
 ### User Location Indicators
 - Live dot with pulsing ring and solid center, updated via watchPosition.
@@ -260,14 +260,14 @@ M-->>G : Read currentLocation state
 ```
 
 **Diagram sources**
-- [location-tracker.ts:8-65](file://frontend/lib/location-tracker.ts#L8-L65)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [MapLibreCanvas.tsx:561-629](file://frontend/components/maps/MapLibreCanvas.tsx#L561-L629)
+- [location-tracker.ts:8-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L65)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [MapLibreCanvas.tsx:561-629](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L561-L629)
 
 **Section sources**
-- [location-tracker.ts:8-65](file://frontend/lib/location-tracker.ts#L8-L65)
-- [geolocation.ts:13-123](file://frontend/lib/geolocation.ts#L13-L123)
-- [MapLibreCanvas.tsx:561-629](file://frontend/components/maps/MapLibreCanvas.tsx#L561-L629)
+- [location-tracker.ts:8-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L8-L65)
+- [geolocation.ts:13-123](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L13-L123)
+- [MapLibreCanvas.tsx:561-629](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L561-L629)
 
 ### Backend Integration and Service Discovery
 - Frontend requests nearby emergency services via the backend API.
@@ -286,14 +286,14 @@ API-->>UI : JSON payload
 ```
 
 **Diagram sources**
-- [page.tsx:523-820](file://frontend/app/locator/page.tsx#L523-L820)
-- [emergency.py:19-39](file://backend/api/v1/emergency.py#L19-L39)
-- [emergency_locator.py:187-216](file://backend/services/emergency_locator.py#L187-L216)
+- [page.tsx:523-820](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L523-L820)
+- [emergency.py:19-39](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L39)
+- [emergency_locator.py:187-216](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L216)
 
 **Section sources**
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [page.tsx:523-820](file://frontend/app/locator/page.tsx#L523-L820)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [page.tsx:523-820](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L523-L820)
 
 ## Dependency Analysis
 - Frontend map depends on MapLibre GL and several helper modules for overlays and tracking.
@@ -314,21 +314,21 @@ API --> SVC["emergency_locator.py"]
 ```
 
 **Diagram sources**
-- [MapLibreCanvas.tsx:1-1241](file://frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
-- [traffic-layer.ts:1-50](file://frontend/lib/traffic-layer.ts#L1-L50)
-- [safe-spaces-layer.ts:1-62](file://frontend/lib/safe-spaces-layer.ts#L1-L62)
-- [location-tracker.ts:1-66](file://frontend/lib/location-tracker.ts#L1-L66)
-- [page.tsx:1-1244](file://frontend/app/locator/page.tsx#L1-L1244)
-- [EmergencyMap.tsx:1-58](file://frontend/components/EmergencyMap.tsx#L1-L58)
-- [EmergencyMapInner.tsx:1-83](file://frontend/components/EmergencyMapInner.tsx#L1-L83)
-- [geolocation.ts:1-124](file://frontend/lib/geolocation.ts#L1-L124)
-- [emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
+- [MapLibreCanvas.tsx:1-1241](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
+- [traffic-layer.ts:1-50](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/traffic-layer.ts#L1-L50)
+- [safe-spaces-layer.ts:1-62](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L1-L62)
+- [location-tracker.ts:1-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/location-tracker.ts#L1-L66)
+- [page.tsx:1-1244](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L1-L1244)
+- [EmergencyMap.tsx:1-58](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L1-L58)
+- [EmergencyMapInner.tsx:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L1-L83)
+- [geolocation.ts:1-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L1-L124)
+- [emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
 
 **Section sources**
-- [MapLibreCanvas.tsx:1-1241](file://frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
-- [emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
+- [MapLibreCanvas.tsx:1-1241](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1-L1241)
+- [emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
 
 ## Performance Considerations
 - Style fallback: The map attempts multiple style sources and reports status to avoid long hangs.
@@ -360,11 +360,11 @@ Common issues and resolutions:
   - Ensure route GeoJSON is valid and contains at least two points; the component removes layers when route is invalid.
 
 **Section sources**
-- [MapLibreCanvas.tsx:441-474](file://frontend/components/maps/MapLibreCanvas.tsx#L441-L474)
-- [traffic-layer.ts:6-9](file://frontend/lib/traffic-layer.ts#L6-L9)
-- [safe-spaces-layer.ts:18-21](file://frontend/lib/safe-spaces-layer.ts#L18-L21)
-- [geolocation.ts:63-71](file://frontend/lib/geolocation.ts#L63-L71)
-- [MapLibreCanvas.tsx:652-686](file://frontend/components/maps/MapLibreCanvas.tsx#L652-L686)
+- [MapLibreCanvas.tsx:441-474](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L441-L474)
+- [traffic-layer.ts:6-9](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/traffic-layer.ts#L6-L9)
+- [safe-spaces-layer.ts:18-21](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/safe-spaces-layer.ts#L18-L21)
+- [geolocation.ts:63-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/geolocation.ts#L63-L71)
+- [MapLibreCanvas.tsx:652-686](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L652-L686)
 
 ## Conclusion
 The Emergency Map Integration delivers a robust, responsive, and configurable mapping experience. It combines backend-driven emergency discovery with live user location, optional traffic and safe spaces overlays, and a polished UI for selecting and navigating to services. By leveraging clustering, layered overlays, and graceful fallbacks, it remains performant and accessible across devices and network conditions.
@@ -385,21 +385,21 @@ The Emergency Map Integration delivers a robust, responsive, and configurable ma
   - Traffic and Safe Spaces toggles exposed in the UI.
 
 **Section sources**
-- [MapLibreCanvas.tsx:326-365](file://frontend/components/maps/MapLibreCanvas.tsx#L326-L365)
-- [map-defaults.ts:1-8](file://frontend/lib/map-defaults.ts#L1-L8)
-- [MapLibreCanvas.tsx:497-503](file://frontend/components/maps/MapLibreCanvas.tsx#L497-L503)
-- [MapLibreCanvas.tsx:1214-1237](file://frontend/components/maps/MapLibreCanvas.tsx#L1214-L1237)
+- [MapLibreCanvas.tsx:326-365](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L326-L365)
+- [map-defaults.ts:1-8](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/map-defaults.ts#L1-L8)
+- [MapLibreCanvas.tsx:497-503](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L497-L503)
+- [MapLibreCanvas.tsx:1214-1237](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/maps/MapLibreCanvas.tsx#L1214-L1237)
 
 ### Example Usage Paths
 - Rendering the map with facilities and route:
-  - [page.tsx:527-561](file://frontend/app/locator/page.tsx#L527-L561)
-  - [page.tsx:784-818](file://frontend/app/locator/page.tsx#L784-L818)
+  - [page.tsx:527-561](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L527-L561)
+  - [page.tsx:784-818](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L784-L818)
 - Dynamic map wrapper:
-  - [EmergencyMap.tsx:25-57](file://frontend/components/EmergencyMap.tsx#L25-L57)
+  - [EmergencyMap.tsx:25-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L57)
 - Inner map composition:
-  - [EmergencyMapInner.tsx:44-82](file://frontend/components/EmergencyMapInner.tsx#L44-L82)
+  - [EmergencyMapInner.tsx:44-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L82)
 
 **Section sources**
-- [page.tsx:523-820](file://frontend/app/locator/page.tsx#L523-L820)
-- [EmergencyMap.tsx:25-57](file://frontend/components/EmergencyMap.tsx#L25-L57)
-- [EmergencyMapInner.tsx:44-82](file://frontend/components/EmergencyMapInner.tsx#L44-L82)
+- [page.tsx:523-820](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/locator/page.tsx#L523-L820)
+- [EmergencyMap.tsx:25-57](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMap.tsx#L25-L57)
+- [EmergencyMapInner.tsx:44-82](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/EmergencyMapInner.tsx#L44-L82)

@@ -2,15 +2,15 @@
 
 <cite>
 **Referenced Files in This Document**
-- [PotholeDetector.tsx](file://frontend/components/PotholeDetector.tsx)
-- [edge-ai.ts](file://frontend/lib/edge-ai.ts)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [pothole.onnx](file://frontend/public/models/pothole.onnx)
-- [pothole.pt](file://backend/models/pothole.pt)
-- [AI_Instructions.md](file://docs/AI_Instructions.md)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [ReportForm.tsx](file://frontend/components/ReportForm.tsx)
-- [ModelLoader.tsx](file://frontend/components/ModelLoader.tsx)
+- [PotholeDetector.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx)
+- [edge-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [pothole.onnx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/models/pothole.onnx)
+- [pothole.pt](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/pothole.pt)
+- [AI_Instructions.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [ReportForm.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx)
+- [ModelLoader.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ModelLoader.tsx)
 </cite>
 
 ## Table of Contents
@@ -71,9 +71,9 @@ K --> L
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:11-145](file://frontend/components/PotholeDetector.tsx#L11-L145)
-- [offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
+- [PotholeDetector.tsx:11-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L145)
+- [offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
 
 The architecture ensures that pothole detection operates independently of network connectivity while seamlessly integrating with the reporting workflow when connectivity is available.
 
@@ -103,8 +103,8 @@ Backend->>User : Confirmation response
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:43-54](file://frontend/components/PotholeDetector.tsx#L43-L54)
-- [AI_Instructions.md:188-203](file://docs/AI_Instructions.md#L188-L203)
+- [PotholeDetector.tsx:43-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L43-L54)
+- [AI_Instructions.md:188-203](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L188-L203)
 
 The pipeline processes images through a series of convolutional layers, feature extraction blocks, and detection heads optimized specifically for pothole identification.
 
@@ -133,13 +133,13 @@ I --> |No| D
 ```
 
 **Diagram sources**
-- [offline-ai.ts:71-110](file://frontend/lib/offline-ai.ts#L71-L110)
+- [offline-ai.ts:71-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L71-L110)
 
 The model loading process prioritizes user experience by implementing intelligent caching and progressive loading strategies.
 
 **Section sources**
-- [pothole.onnx:1-800](file://frontend/public/models/pothole.onnx#L1-L800)
-- [offline-ai.ts:71-110](file://frontend/lib/offline-ai.ts#L71-L110)
+- [pothole.onnx:1-800](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/models/pothole.onnx#L1-L800)
+- [offline-ai.ts:71-110](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L71-L110)
 
 ## Inference Implementation
 
@@ -172,8 +172,8 @@ YOLOPipeline --> DetectionResult : produces
 ```
 
 **Diagram sources**
-- [PotholeDetector.tsx:11-145](file://frontend/components/PotholeDetector.tsx#L11-L145)
-- [AI_Instructions.md:188-203](file://docs/AI_Instructions.md#L188-L203)
+- [PotholeDetector.tsx:11-145](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L145)
+- [AI_Instructions.md:188-203](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L188-L203)
 
 ### Performance Metrics
 - **Latency**: Sub-2 second inference time on modern devices
@@ -181,8 +181,8 @@ YOLOPipeline --> DetectionResult : produces
 - **Accuracy**: Specialized training on road damage datasets
 
 **Section sources**
-- [PotholeDetector.tsx:18-54](file://frontend/components/PotholeDetector.tsx#L18-L54)
-- [AI_Instructions.md:181-213](file://docs/AI_Instructions.md#L181-L213)
+- [PotholeDetector.tsx:18-54](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L18-L54)
+- [AI_Instructions.md:181-213](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L181-L213)
 
 ## Confidence Scoring and False Positive Reduction
 
@@ -207,7 +207,7 @@ J --> K
 ```
 
 **Diagram sources**
-- [AI_Instructions.md:205-211](file://docs/AI_Instructions.md#L205-L211)
+- [AI_Instructions.md:205-211](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L205-L211)
 
 ### False Positive Mitigation Strategies
 - **Spatial Filtering**: Validates detections against road geometry constraints
@@ -216,7 +216,7 @@ J --> K
 - **Multi-scale Detection**: Validates detections at multiple scales and resolutions
 
 **Section sources**
-- [AI_Instructions.md:205-211](file://docs/AI_Instructions.md#L205-L211)
+- [AI_Instructions.md:205-211](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/AI_Instructions.md#L205-L211)
 
 ## Integration with Reporting Workflow
 
@@ -240,8 +240,8 @@ Reporter->>User : Display success message
 ```
 
 **Diagram sources**
-- [ReportForm.tsx:28-65](file://frontend/components/ReportForm.tsx#L28-L65)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
+- [ReportForm.tsx:28-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L28-L65)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
 
 ### Reporting Features
 - **Automatic Location Tagging**: GPS coordinates embedded in reports
@@ -250,8 +250,8 @@ Reporter->>User : Display success message
 - **Authority Routing**: Intelligent routing to appropriate road maintenance authorities
 
 **Section sources**
-- [ReportForm.tsx:17-65](file://frontend/components/ReportForm.tsx#L17-L65)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
+- [ReportForm.tsx:17-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L17-L65)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
 
 ## Offline AI Integration
 
@@ -274,8 +274,8 @@ H --> I
 ```
 
 **Diagram sources**
-- [offline-ai.ts:114-154](file://frontend/lib/offline-ai.ts#L114-L154)
-- [edge-ai.ts:15-28](file://frontend/lib/edge-ai.ts#L15-L28)
+- [offline-ai.ts:114-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L114-L154)
+- [edge-ai.ts:15-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L15-L28)
 
 ### Offline Capabilities
 - **System AI Integration**: Leverages native device AI capabilities when available
@@ -284,8 +284,8 @@ H --> I
 - **Intelligent Fallback**: Provides meaningful responses even without full AI capabilities
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [edge-ai.ts:1-29](file://frontend/lib/edge-ai.ts#L1-L29)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [edge-ai.ts:1-29](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts#L1-L29)
 
 ## Performance Considerations
 
@@ -334,8 +334,8 @@ Common issues and their solutions:
 - **Prevention**: Implement offline queue management, provide user feedback
 
 **Section sources**
-- [offline-ai.ts:142-154](file://frontend/lib/offline-ai.ts#L142-L154)
-- [ReportForm.tsx:28-65](file://frontend/components/ReportForm.tsx#L28-L65)
+- [offline-ai.ts:142-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L142-L154)
+- [ReportForm.tsx:28-65](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/ReportForm.tsx#L28-L65)
 
 ## Conclusion
 

@@ -2,22 +2,22 @@
 
 <cite>
 **Referenced Files in This Document**
-- [road_issue.py](file://backend/models/road_issue.py)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [api.ts](file://frontend/lib/api.ts)
-- [page.tsx](file://frontend/app/report/page.tsx)
-- [DashboardMapBootstrap.tsx](file://frontend/components/dashboard/DashboardMapBootstrap.tsx)
-- [RecentAlertsOverlay.tsx](file://frontend/components/dashboard/RecentAlertsOverlay.tsx)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [sos-share.ts](file://frontend/lib/sos-share.ts)
-- [Security.md](file://docs/Security.md)
-- [Features.md](file://docs/Features.md)
-- [Database.md](file://docs/Database.md)
-- [Architecture.md](file://docs/Architecture.md)
-- [ThreeDrivingScore.tsx](file://frontend/components/dashboard/ThreeDrivingScore.tsx)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [api.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx)
+- [DashboardMapBootstrap.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx)
+- [RecentAlertsOverlay.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [sos-share.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts)
+- [Security.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md)
+- [Features.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md)
+- [Database.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md)
+- [Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md)
+- [ThreeDrivingScore.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx)
 </cite>
 
 ## Table of Contents
@@ -70,28 +70,28 @@ SOS --> API
 ```
 
 **Diagram sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [RecentAlertsOverlay.tsx:47-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [roadwatch_service.py:1-325](file://backend/services/roadwatch_service.py#L1-L325)
-- [emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
-- [road_issue.py:1-66](file://backend/models/road_issue.py#L1-L66)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [RecentAlertsOverlay.tsx:47-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [roadwatch_service.py:1-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L1-L325)
+- [emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
+- [road_issue.py:1-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L1-L66)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
 
 **Section sources**
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [roadwatch_service.py:1-325](file://backend/services/roadwatch_service.py#L1-L325)
-- [api.ts:1-821](file://frontend/lib/api.ts#L1-L821)
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [RecentAlertsOverlay.tsx:47-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
-- [emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [emergency_locator.py:1-507](file://backend/services/emergency_locator.py#L1-L507)
-- [road_issue.py:1-66](file://backend/models/road_issue.py#L1-L66)
-- [emergency.py:1-45](file://backend/models/emergency.py#L1-L45)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [roadwatch_service.py:1-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L1-L325)
+- [api.ts:1-821](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L1-L821)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [RecentAlertsOverlay.tsx:47-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
+- [emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [emergency_locator.py:1-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L1-L507)
+- [road_issue.py:1-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L1-L66)
+- [emergency.py:1-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L1-L45)
 
 ## Core Components
 - Public reporting dashboard: Submits geotagged road issues with severity and optional photos; shows authority preview and infrastructure metadata.
@@ -102,15 +102,15 @@ SOS --> API
 - Privacy and anonymization: GPS coordinates for road reports are stored; emergency search coordinates are not stored; crash events are anonymized.
 
 **Section sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [RecentAlertsOverlay.tsx:47-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [api.ts:680-750](file://frontend/lib/api.ts#L680-L750)
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [Security.md:62-87](file://docs/Security.md#L62-L87)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [RecentAlertsOverlay.tsx:47-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [api.ts:680-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L680-L750)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [Security.md:62-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L62-L87)
 
 ## Architecture Overview
 The community reporting pipeline integrates frontend submission, backend processing, spatial indexing, caching, and emergency services.
@@ -136,16 +136,16 @@ FC-->>FP : Show confirmation and authority info
 ```
 
 **Diagram sources**
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 **Section sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 ## Detailed Component Analysis
 
@@ -175,14 +175,14 @@ Response --> Show["Show confirmation card with authority info"]
 ```
 
 **Diagram sources**
-- [page.tsx:101-272](file://frontend/app/report/page.tsx#L101-L272)
-- [api.ts:723-750](file://frontend/lib/api.ts#L723-L750)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [page.tsx:101-272](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L272)
+- [api.ts:723-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L723-L750)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 **Section sources**
-- [page.tsx:101-557](file://frontend/app/report/page.tsx#L101-L557)
-- [api.ts:680-750](file://frontend/lib/api.ts#L680-L750)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
+- [page.tsx:101-557](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L101-L557)
+- [api.ts:680-750](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L680-L750)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
 
 ### Community Engagement and Transparency Indicators
 - Community issues map layer: Toggle shows open/acknowledged/resolved issues near the user. Colors reflect status.
@@ -201,14 +201,14 @@ Issues --> AlertCards["Render alert cards"]
 ```
 
 **Diagram sources**
-- [DashboardMapBootstrap.tsx:222-272](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L222-L272)
-- [api.ts:680-705](file://frontend/lib/api.ts#L680-L705)
-- [RecentAlertsOverlay.tsx:47-99](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L99)
+- [DashboardMapBootstrap.tsx:222-272](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L222-L272)
+- [api.ts:680-705](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L680-L705)
+- [RecentAlertsOverlay.tsx:47-99](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L99)
 
 **Section sources**
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [RecentAlertsOverlay.tsx:47-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
-- [api.ts:680-705](file://frontend/lib/api.ts#L680-L705)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [RecentAlertsOverlay.tsx:47-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
+- [api.ts:680-705](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/api.ts#L680-L705)
 
 ### Data Visualization Components
 - Community issues map layer: Uses spatial queries to show nearby open/acknowledged/resolved issues with status-based styling.
@@ -228,16 +228,16 @@ Score --> |"Animated torus"| Scene["Three.js Scene"]
 ```
 
 **Diagram sources**
-- [DashboardMapBootstrap.tsx:222-272](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L222-L272)
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [RecentAlertsOverlay.tsx:47-99](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L99)
-- [ThreeDrivingScore.tsx:50-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L50-L68)
+- [DashboardMapBootstrap.tsx:222-272](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L222-L272)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [RecentAlertsOverlay.tsx:47-99](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L99)
+- [ThreeDrivingScore.tsx:50-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L50-L68)
 
 **Section sources**
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [RecentAlertsOverlay.tsx:47-100](file://frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
-- [ThreeDrivingScore.tsx:1-68](file://frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [RecentAlertsOverlay.tsx:47-100](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/RecentAlertsOverlay.tsx#L47-L100)
+- [ThreeDrivingScore.tsx:1-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/ThreeDrivingScore.tsx#L1-L68)
 
 ### Integration with Emergency Services and Escalation Pathways
 - Nearby emergency services: Retrieves hospitals, police, ambulances, fire, towing, and other services within configurable radius and categories.
@@ -265,16 +265,16 @@ BE-->>FE : Render services and SOS payload
 ```
 
 **Diagram sources**
-- [emergency.py:19-40](file://backend/api/v1/emergency.py#L19-L40)
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [Architecture.md:141-168](file://docs/Architecture.md#L141-L168)
+- [emergency.py:19-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L40)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [Architecture.md:141-168](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L141-L168)
 
 **Section sources**
-- [emergency.py:19-83](file://backend/api/v1/emergency.py#L19-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [Architecture.md:141-168](file://docs/Architecture.md#L141-L168)
+- [emergency.py:19-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [Architecture.md:141-168](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Architecture.md#L141-L168)
 
 ### Social Sharing and Public Road Condition Maps
 - Social sharing: Generates pre-filled WhatsApp/SMS SOS links with location, readable address, and user profile details.
@@ -290,11 +290,11 @@ SMS --> Share
 ```
 
 **Diagram sources**
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
 
 **Section sources**
-- [sos-share.ts:1-69](file://frontend/lib/sos-share.ts#L1-L69)
-- [DashboardMapBootstrap.tsx:77-330](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
+- [sos-share.ts:1-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L1-L69)
+- [DashboardMapBootstrap.tsx:77-330](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L77-L330)
 
 ### Examples of Feedback Loops Improving Maintenance Prioritization and Accountability
 - Hotspot identification: Frequent reports of potholes or waterlogging increase visibility and pressure on maintenance schedules.
@@ -310,8 +310,8 @@ SMS --> Share
 - User profile data (blood group, emergency contacts, vehicle number) remains in IndexedDB and is not uploaded unless explicitly consented.
 
 **Section sources**
-- [Security.md:62-87](file://docs/Security.md#L62-L87)
-- [Database.md:210-223](file://docs/Database.md#L210-L223)
+- [Security.md:62-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L62-L87)
+- [Database.md:210-223](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md#L210-L223)
 
 ## Dependency Analysis
 The reporting system relies on:
@@ -332,14 +332,14 @@ EService --> Overpass["Overpass API Fallback"]
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [emergency_locator.py:301-373](file://backend/services/emergency_locator.py#L301-L373)
-- [Database.md:227-236](file://docs/Database.md#L227-L236)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [emergency_locator.py:301-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L301-L373)
+- [Database.md:227-236](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md#L227-L236)
 
 **Section sources**
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [emergency_locator.py:301-373](file://backend/services/emergency_locator.py#L301-L373)
-- [Database.md:227-236](file://docs/Database.md#L227-L236)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [emergency_locator.py:301-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L301-L373)
+- [Database.md:227-236](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Database.md#L227-L236)
 
 ## Performance Considerations
 - Caching: Extensive use of Redis for emergency services, reverse geocoding, authority previews, and road issues to minimize latency.
@@ -357,9 +357,9 @@ Common issues and resolutions:
 - SOS link generation: Ensure location is available; fallback to approximate coordinates if needed.
 
 **Section sources**
-- [page.tsx:232-258](file://frontend/app/report/page.tsx#L232-L258)
-- [DashboardMapBootstrap.tsx:171-300](file://frontend/components/dashboard/DashboardMapBootstrap.tsx#L171-L300)
-- [emergency_locator.py:187-373](file://backend/services/emergency_locator.py#L187-L373)
+- [page.tsx:232-258](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/report/page.tsx#L232-L258)
+- [DashboardMapBootstrap.tsx:171-300](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/dashboard/DashboardMapBootstrap.tsx#L171-L300)
+- [emergency_locator.py:187-373](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L187-L373)
 
 ## Conclusion
 The community reporting and transparency system empowers citizens to report road hazards with geolocation, severity, and optional evidence. It surfaces authority and infrastructure details, visualizes community hotspots, integrates with emergency services, and maintains strong privacy safeguards. These capabilities collectively improve maintenance prioritization, public accountability, and responsive governance for safer roads.
@@ -369,5 +369,5 @@ The community reporting and transparency system empowers citizens to report road
 - Data privacy policy: See dedicated security documentation for what is stored and how data is anonymized.
 
 **Section sources**
-- [Features.md:125-185](file://docs/Features.md#L125-L185)
-- [Security.md:62-87](file://docs/Security.md#L62-L87)
+- [Features.md:125-185](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L125-L185)
+- [Security.md:62-87](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Security.md#L62-L87)

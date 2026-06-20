@@ -2,20 +2,20 @@
 
 <cite>
 **Referenced Files in This Document**
-- [first_aid.json](file://chatbot_service/data/first_aid.json)
-- [first_aid_tool.py](file://chatbot_service/tools/first_aid_tool.py)
-- [page.tsx](file://frontend/app/first-aid/page.tsx)
-- [FirstAidCard.tsx](file://frontend/components/FirstAidCard.tsx)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [emergency_numbers.json](file://chatbot_service/data/emergency_numbers.json)
-- [sos_tool.py](file://chatbot_service/tools/sos_tool.py)
-- [page.tsx](file://frontend/app/sos/page.tsx)
-- [GlobalSOS.tsx](file://frontend/components/GlobalSOS.tsx)
-- [sos-share.ts](file://frontend/lib/sos-share.ts)
-- [config.py](file://chatbot_service/config.py)
-- [main.py](file://chatbot_service/main.py)
-- [first-aid.json](file://frontend/public/offline-data/first-aid.json)
+- [first_aid.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json)
+- [first_aid_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx)
+- [FirstAidCard.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [emergency_numbers.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json)
+- [sos_tool.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/sos_tool.py)
+- [page.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx)
+- [GlobalSOS.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx)
+- [sos-share.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts)
+- [config.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py)
+- [main.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py)
+- [first-aid.json](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json)
 </cite>
 
 ## Table of Contents
@@ -75,21 +75,21 @@ GSOS --> SOSUI
 ```
 
 **Diagram sources**
-- [page.tsx:200-675](file://frontend/app/first-aid/page.tsx#L200-L675)
-- [FirstAidCard.tsx:23-121](file://frontend/components/FirstAidCard.tsx#L23-L121)
-- [page.tsx:14-343](file://frontend/app/sos/page.tsx#L14-L343)
-- [GlobalSOS.tsx:7-56](file://frontend/components/GlobalSOS.tsx#L7-L56)
-- [main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
+- [page.tsx:200-675](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L200-L675)
+- [FirstAidCard.tsx:23-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L23-L121)
+- [page.tsx:14-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L14-L343)
+- [GlobalSOS.tsx:7-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx#L7-L56)
+- [main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
 
 **Section sources**
-- [page.tsx:200-675](file://frontend/app/first-aid/page.tsx#L200-L675)
-- [main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
+- [page.tsx:200-675](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L200-L675)
+- [main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
 
 ## Core Components
 - First Aid Protocols: Structured JSON with id, title, category, steps, warnings, and “call ambulance if…” conditions.
@@ -103,12 +103,12 @@ Key configuration:
 - Emergency categories, radius steps, and caching are configurable in backend settings.
 
 **Section sources**
-- [first_aid.json:1-388](file://chatbot_service/data/first_aid.json#L1-L388)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
-- [page.tsx:200-675](file://frontend/app/first-aid/page.tsx#L200-L675)
-- [emergency.py:19-71](file://backend/api/v1/emergency.py#L19-L71)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [first_aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json#L1-L388)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [page.tsx:200-675](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L200-L675)
+- [emergency.py:19-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L19-L71)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 ## Architecture Overview
 End-to-end flow for First Aid guidance and SOS:
@@ -137,12 +137,12 @@ UI-->>User : Dispatch status + share links
 ```
 
 **Diagram sources**
-- [page.tsx:200-675](file://frontend/app/first-aid/page.tsx#L200-L675)
-- [first_aid_tool.py:54-75](file://chatbot_service/tools/first_aid_tool.py#L54-L75)
-- [first_aid.json:1-388](file://chatbot_service/data/first_aid.json#L1-L388)
-- [main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
+- [page.tsx:200-675](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L200-L675)
+- [first_aid_tool.py:54-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L54-L75)
+- [first_aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json#L1-L388)
+- [main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
 
 ## Detailed Component Analysis
 
@@ -174,12 +174,12 @@ Fallback --> Done
 ```
 
 **Diagram sources**
-- [first_aid_tool.py:62-109](file://chatbot_service/tools/first_aid_tool.py#L62-L109)
-- [first_aid.json:1-388](file://chatbot_service/data/first_aid.json#L1-L388)
+- [first_aid_tool.py:62-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L62-L109)
+- [first_aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json#L1-L388)
 
 **Section sources**
-- [first_aid.json:1-388](file://chatbot_service/data/first_aid.json#L1-L388)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [first_aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json#L1-L388)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
 
 ### Frontend First Aid Guidance UI
 Interactive features:
@@ -213,11 +213,11 @@ C-->>P : Overlay HUD
 ```
 
 **Diagram sources**
-- [page.tsx:200-675](file://frontend/app/first-aid/page.tsx#L200-L675)
+- [page.tsx:200-675](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L200-L675)
 
 **Section sources**
-- [page.tsx:200-675](file://frontend/app/first-aid/page.tsx#L200-L675)
-- [FirstAidCard.tsx:23-121](file://frontend/components/FirstAidCard.tsx#L23-L121)
+- [page.tsx:200-675](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L200-L675)
+- [FirstAidCard.tsx:23-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L23-L121)
 
 ### SOS Functionality and Emergency Integration
 SOS terminal:
@@ -249,18 +249,18 @@ SUI-->>U : Dispatch status + share links
 ```
 
 **Diagram sources**
-- [page.tsx:14-343](file://frontend/app/sos/page.tsx#L14-L343)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
+- [page.tsx:14-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L14-L343)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
 
 **Section sources**
-- [page.tsx:14-343](file://frontend/app/sos/page.tsx#L14-L343)
-- [GlobalSOS.tsx:7-56](file://frontend/components/GlobalSOS.tsx#L7-L56)
-- [sos-share.ts:9-68](file://frontend/lib/sos-share.ts#L9-L68)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [emergency_locator.py:218-239](file://backend/services/emergency_locator.py#L218-L239)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
+- [page.tsx:14-343](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L14-L343)
+- [GlobalSOS.tsx:7-56](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/GlobalSOS.tsx#L7-L56)
+- [sos-share.ts:9-68](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/sos-share.ts#L9-L68)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [emergency_locator.py:218-239](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L218-L239)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
 
 ### Chatbot Integration and First Aid Tool
 The chatbot composes context using FirstAidTool to surface relevant protocols alongside other tools (SOS, road issues, legal search). The tool resolves queries by matching keywords against normalized protocol metadata.
@@ -279,13 +279,13 @@ FirstAidTool --> Settings : "uses"
 ```
 
 **Diagram sources**
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 **Section sources**
-- [main.py:59-70](file://chatbot_service/main.py#L59-L70)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
+- [main.py:59-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L59-L70)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
 
 ## Dependency Analysis
 - Frontend depends on:
@@ -309,19 +309,19 @@ LOC --> NUM["Emergency Numbers<br/>emergency_numbers.json"]
 ```
 
 **Diagram sources**
-- [page.tsx:200-675](file://frontend/app/first-aid/page.tsx#L200-L675)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [first_aid.json:1-388](file://frontend/public/offline-data/first-aid.json#L1-L388)
-- [main.py:41-149](file://chatbot_service/main.py#L41-L149)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency_numbers.json:1-70](file://chatbot_service/data/emergency_numbers.json#L1-L70)
+- [page.tsx:200-675](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L200-L675)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [first_aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/public/offline-data/first-aid.json#L1-L388)
+- [main.py:41-149](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/main.py#L41-L149)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency_numbers.json:1-70](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/emergency_numbers.json#L1-L70)
 
 **Section sources**
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [emergency.py:12-83](file://backend/api/v1/emergency.py#L12-L83)
-- [first_aid_tool.py:49-109](file://chatbot_service/tools/first_aid_tool.py#L49-L109)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [emergency.py:12-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L12-L83)
+- [first_aid_tool.py:49-109](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L49-L109)
 
 ## Performance Considerations
 - First Aid Tool normalization runs once per process lifecycle; subsequent lookups are O(n) over keywords.
@@ -345,9 +345,9 @@ Common issues and resolutions:
   - Camera permission denied or unsupported device; UI displays informative overlay.
 
 **Section sources**
-- [first_aid_tool.py:62-75](file://chatbot_service/tools/first_aid_tool.py#L62-L75)
-- [page.tsx:49-106](file://frontend/app/first-aid/page.tsx#L49-L106)
-- [page.tsx:103-114](file://frontend/app/sos/page.tsx#L103-L114)
+- [first_aid_tool.py:62-75](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/tools/first_aid_tool.py#L62-L75)
+- [page.tsx:49-106](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L49-L106)
+- [page.tsx:103-114](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/sos/page.tsx#L103-L114)
 
 ## Conclusion
 The First Aid Guidance System integrates structured protocols, an intuitive UI, and robust emergency workflows. It emphasizes clarity, accessibility, and resilience through offline data and SOS capabilities. Developers can extend categories, refine escalation logic, and enhance diagnostic features while maintaining a strong separation of concerns across frontend, chatbot, and backend layers.
@@ -362,8 +362,8 @@ The First Aid Guidance System integrates structured protocols, an intuitive UI, 
 - Emergency mode: prioritizes critical protocols (e.g., CPR, choking, bleeding)
 
 **Section sources**
-- [first_aid.json:1-388](file://chatbot_service/data/first_aid.json#L1-L388)
-- [page.tsx:328-355](file://frontend/app/first-aid/page.tsx#L328-L355)
+- [first_aid.json:1-388](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/data/first_aid.json#L1-L388)
+- [page.tsx:328-355](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L328-L355)
 
 ### Configuration Options
 - RAG data directory: controls where first aid data is loaded from
@@ -372,8 +372,8 @@ The First Aid Guidance System integrates structured protocols, an intuitive UI, 
 - CORS origins and timeouts: controlled via environment variables
 
 **Section sources**
-- [config.py:39-113](file://chatbot_service/config.py#L39-L113)
-- [emergency_locator.py:161-185](file://backend/services/emergency_locator.py#L161-L185)
+- [config.py:39-113](https://github.com/SafeVixAI/SafeVixAI/blob/main/chatbot_service/config.py#L39-L113)
+- [emergency_locator.py:161-185](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L185)
 
 ### Accessibility and Display Preferences
 - Dark/light theme support via CSS variables
@@ -382,5 +382,5 @@ The First Aid Guidance System integrates structured protocols, an intuitive UI, 
 - Offline badges and status indicators
 
 **Section sources**
-- [page.tsx:247-277](file://frontend/app/first-aid/page.tsx#L247-L277)
-- [FirstAidCard.tsx:23-121](file://frontend/components/FirstAidCard.tsx#L23-L121)
+- [page.tsx:247-277](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/app/first-aid/page.tsx#L247-L277)
+- [FirstAidCard.tsx:23-121](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/FirstAidCard.tsx#L23-L121)

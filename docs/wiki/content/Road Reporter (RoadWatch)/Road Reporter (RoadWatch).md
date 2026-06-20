@@ -2,18 +2,18 @@
 
 <cite>
 **Referenced Files in This Document**
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [roadwatch_service.py](file://backend/services/roadwatch_service.py)
-- [authority_router.py](file://backend/services/authority_router.py)
-- [road_issue.py](file://backend/models/road_issue.py)
-- [schemas.py](file://backend/models/schemas.py)
-- [offline.py](file://backend/api/v1/offline.py)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [PotholeDetector.tsx](file://frontend/components/PotholeDetector.tsx)
-- [edge-ai.ts](file://frontend/lib/edge-ai.ts)
-- [emergency_locator.py](file://backend/services/emergency_locator.py)
-- [emergency.py](file://backend/models/emergency.py)
-- [build_offline_bundle.py](file://backend/scripts/app/build_offline_bundle.py)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [roadwatch_service.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py)
+- [authority_router.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py)
+- [road_issue.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py)
+- [schemas.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [PotholeDetector.tsx](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx)
+- [edge-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/edge-ai.ts)
+- [emergency_locator.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py)
+- [build_offline_bundle.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py)
 </cite>
 
 ## Table of Contents
@@ -78,26 +78,26 @@ Auth_Router --> Schemas
 ```
 
 **Diagram sources**
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [schemas.py:83-161](file://backend/models/schemas.py#L83-L161)
-- [offline.py:11-28](file://backend/api/v1/offline.py#L11-L28)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [schemas.py:83-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L161)
+- [offline.py:11-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L11-L28)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 **Section sources**
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [schemas.py:83-161](file://backend/models/schemas.py#L83-L161)
-- [offline.py:11-28](file://backend/api/v1/offline.py#L11-L28)
-- [emergency_locator.py:161-507](file://backend/services/emergency_locator.py#L161-L507)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [schemas.py:83-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L161)
+- [offline.py:11-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L11-L28)
+- [emergency_locator.py:161-507](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L507)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ## Core Components
 - RoadWatch API: Exposes endpoints to query nearby issues, resolve authority, fetch infrastructure details, and submit reports.
@@ -109,15 +109,15 @@ Auth_Router --> Schemas
 - Frontend Detector UI: Simulated pothole detection UI; offline AI assistant for basic responses.
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [schemas.py:83-161](file://backend/models/schemas.py#L83-L161)
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [schemas.py:83-161](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L161)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
 
 ## Architecture Overview
 RoadWatch orchestrates spatial queries, authority routing, and reporting workflows. At runtime:
@@ -151,10 +151,10 @@ API-->>Client : {complaint_ref, authority, infrastructure, status}
 ```
 
 **Diagram sources**
-- [roadwatch.py:73-97](file://backend/api/v1/roadwatch.py#L73-L97)
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [authority_router.py:48-79](file://backend/services/authority_router.py#L48-L79)
-- [road_issue.py:14-40](file://backend/models/road_issue.py#L14-L40)
+- [roadwatch.py:73-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L97)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [authority_router.py:48-79](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L48-L79)
+- [road_issue.py:14-40](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L40)
 
 ## Detailed Component Analysis
 
@@ -170,7 +170,7 @@ Validation and error handling:
 - Service errors are surfaced as HTTP 422.
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
 
 ### RoadWatch Service
 Responsibilities:
@@ -198,11 +198,11 @@ Invalidate --> Respond["Return RoadReportResponse"]
 ```
 
 **Diagram sources**
-- [roadwatch_service.py:186-253](file://backend/services/roadwatch_service.py#L186-L253)
-- [roadwatch_service.py:275-325](file://backend/services/roadwatch_service.py#L275-L325)
+- [roadwatch_service.py:186-253](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L186-L253)
+- [roadwatch_service.py:275-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L325)
 
 **Section sources**
-- [roadwatch_service.py:56-325](file://backend/services/roadwatch_service.py#L56-L325)
+- [roadwatch_service.py:56-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L325)
 
 ### Authority Routing System
 AuthorityRouter determines jurisdiction based on:
@@ -232,12 +232,12 @@ AuthorityRouter --> AuthorityPreviewResponse : "produces"
 ```
 
 **Diagram sources**
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [schemas.py:83-101](file://backend/models/schemas.py#L83-L101)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [schemas.py:83-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L101)
 
 **Section sources**
-- [authority_router.py:42-143](file://backend/services/authority_router.py#L42-L143)
-- [schemas.py:83-101](file://backend/models/schemas.py#L83-L101)
+- [authority_router.py:42-143](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L143)
+- [schemas.py:83-101](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/schemas.py#L83-L101)
 
 ### Spatial Data Models
 RoadIssue and RoadInfrastructure use PostGIS geography fields for precise spatial indexing and distance calculations. RoadIssue includes:
@@ -298,10 +298,10 @@ text data_source_url
 ```
 
 **Diagram sources**
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
 
 **Section sources**
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
 
 ### Offline Emergency Bundles and Offline AI
 Offline bundle building:
@@ -328,15 +328,15 @@ Out-->>CLI : path and count
 ```
 
 **Diagram sources**
-- [build_offline_bundle.py:14-47](file://backend/scripts/app/build_offline_bundle.py#L14-L47)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [build_offline_bundle.py:14-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L14-L47)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
 
 **Section sources**
-- [offline.py:18-28](file://backend/api/v1/offline.py#L18-L28)
-- [build_offline_bundle.py:14-47](file://backend/scripts/app/build_offline_bundle.py#L14-L47)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
+- [offline.py:18-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L28)
+- [build_offline_bundle.py:14-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/scripts/app/build_offline_bundle.py#L14-L47)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
 
 ## Dependency Analysis
 - API depends on RoadWatchService and Pydantic schemas.
@@ -359,26 +359,26 @@ UI_DET["PotholeDetector.tsx"] -.-> API
 ```
 
 **Diagram sources**
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-69](file://backend/services/roadwatch_service.py#L56-L69)
-- [authority_router.py:42-47](file://backend/services/authority_router.py#L42-L47)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [offline.py:11-28](file://backend/api/v1/offline.py#L11-L28)
-- [emergency_locator.py:161-167](file://backend/services/emergency_locator.py#L161-L167)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L69)
+- [authority_router.py:42-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L47)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [offline.py:11-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L11-L28)
+- [emergency_locator.py:161-167](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L167)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
 
 **Section sources**
-- [roadwatch.py:19-97](file://backend/api/v1/roadwatch.py#L19-L97)
-- [roadwatch_service.py:56-69](file://backend/services/roadwatch_service.py#L56-L69)
-- [authority_router.py:42-47](file://backend/services/authority_router.py#L42-L47)
-- [road_issue.py:14-66](file://backend/models/road_issue.py#L14-L66)
-- [offline.py:11-28](file://backend/api/v1/offline.py#L11-L28)
-- [emergency_locator.py:161-167](file://backend/services/emergency_locator.py#L161-L167)
-- [emergency.py:12-45](file://backend/models/emergency.py#L12-L45)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [PotholeDetector.tsx:11-146](file://frontend/components/PotholeDetector.tsx#L11-L146)
+- [roadwatch.py:19-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L19-L97)
+- [roadwatch_service.py:56-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L56-L69)
+- [authority_router.py:42-47](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/authority_router.py#L42-L47)
+- [road_issue.py:14-66](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/road_issue.py#L14-L66)
+- [offline.py:11-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L11-L28)
+- [emergency_locator.py:161-167](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L161-L167)
+- [emergency.py:12-45](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/models/emergency.py#L12-L45)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [PotholeDetector.tsx:11-146](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L11-L146)
 
 ## Performance Considerations
 - Spatial indexing: PostGIS geography fields and spatial indexes enable efficient ST_DWithin and distance calculations.
@@ -408,11 +408,11 @@ Common issues and resolutions:
   - PotholeDetector UI requires camera permission; handle denied access gracefully.
 
 **Section sources**
-- [roadwatch_service.py:275-325](file://backend/services/roadwatch_service.py#L275-L325)
-- [roadwatch.py:37-42](file://backend/api/v1/roadwatch.py#L37-L42)
-- [offline.py:24-27](file://backend/api/v1/offline.py#L24-L27)
-- [offline-ai.ts:142-154](file://frontend/lib/offline-ai.ts#L142-L154)
-- [PotholeDetector.tsx:18-41](file://frontend/components/PotholeDetector.tsx#L18-L41)
+- [roadwatch_service.py:275-325](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L275-L325)
+- [roadwatch.py:37-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L37-L42)
+- [offline.py:24-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L24-L27)
+- [offline-ai.ts:142-154](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L142-L154)
+- [PotholeDetector.tsx:18-41](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/components/PotholeDetector.tsx#L18-L41)
 
 ## Conclusion
 RoadWatch provides a robust, spatially aware road issue reporting system with automated authority routing and offline capabilities. Its modular design separates concerns between API, services, models, and frontend components, enabling scalability and maintainability. By leveraging PostGIS, caching, and tiered offline strategies, it delivers responsive experiences across connectivity scenarios.
@@ -437,6 +437,6 @@ RoadWatch provides a robust, spatially aware road issue reporting system with au
   2. Server builds a bundle combining database, local catalog, and OSM fallback, caches it, and returns JSON for offline use.
 
 **Section sources**
-- [roadwatch.py:26-97](file://backend/api/v1/roadwatch.py#L26-L97)
-- [roadwatch_service.py:127-184](file://backend/services/roadwatch_service.py#L127-L184)
-- [emergency_locator.py:241-299](file://backend/services/emergency_locator.py#L241-L299)
+- [roadwatch.py:26-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L26-L97)
+- [roadwatch_service.py:127-184](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/roadwatch_service.py#L127-L184)
+- [emergency_locator.py:241-299](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/services/emergency_locator.py#L241-L299)

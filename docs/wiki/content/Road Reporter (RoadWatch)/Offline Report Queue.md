@@ -2,14 +2,14 @@
 
 <cite>
 **Referenced Files in This Document**
-- [offline-sos-queue.ts](file://frontend/lib/offline-sos-queue.ts)
-- [offline-ai.ts](file://frontend/lib/offline-ai.ts)
-- [offline-rag.ts](file://frontend/lib/offline-rag.ts)
-- [roadwatch.py](file://backend/api/v1/roadwatch.py)
-- [emergency.py](file://backend/api/v1/emergency.py)
-- [offline.py](file://backend/api/v1/offline.py)
-- [Offline_Architecture.md](file://docs/Offline_Architecture.md)
-- [Features.md](file://docs/Features.md)
+- [offline-sos-queue.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts)
+- [offline-ai.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts)
+- [offline-rag.ts](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts)
+- [roadwatch.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py)
+- [emergency.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py)
+- [offline.py](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py)
+- [Offline_Architecture.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md)
+- [Features.md](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md)
 </cite>
 
 ## Table of Contents
@@ -59,17 +59,17 @@ UI --> OFFBUNDLE
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 **Section sources**
-- [offline-sos-queue.ts:1-138](file://frontend/lib/offline-sos-queue.ts#L1-L138)
-- [emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
+- [offline-sos-queue.ts:1-138](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L1-L138)
+- [emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
 
 ## Core Components
 - IndexedDB queue for SOS events with timestamp indexing and auto-incremented keys.
@@ -85,14 +85,14 @@ Key responsibilities:
 - Provide a seamless user experience by deferring submission until connectivity returns.
 
 **Section sources**
-- [offline-sos-queue.ts:12-18](file://frontend/lib/offline-sos-queue.ts#L12-L18)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [offline-sos-queue.ts:12-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L12-L18)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 ## Architecture Overview
 The offline-first flow:
@@ -129,10 +129,10 @@ end
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
 
 ## Detailed Component Analysis
 
@@ -165,14 +165,14 @@ Operational behavior:
 - Retry: Stops on first failure to avoid repeated retries during ongoing outages.
 
 **Diagram sources**
-- [offline-sos-queue.ts:12-18](file://frontend/lib/offline-sos-queue.ts#L12-L18)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:12-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L12-L18)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
 
 **Section sources**
-- [offline-sos-queue.ts:12-18](file://frontend/lib/offline-sos-queue.ts#L12-L18)
-- [offline-sos-queue.ts:25-42](file://frontend/lib/offline-sos-queue.ts#L25-L42)
-- [offline-sos-queue.ts:48-69](file://frontend/lib/offline-sos-queue.ts#L48-L69)
+- [offline-sos-queue.ts:12-18](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L12-L18)
+- [offline-sos-queue.ts:25-42](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L25-L42)
+- [offline-sos-queue.ts:48-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L48-L69)
 
 ### Synchronization Mechanism
 The sync routine:
@@ -201,11 +201,11 @@ Stop --> Exit
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
 
 **Section sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
 
 ### Background Sync and Service Worker Integration
 - Optional registration of a background sync tag when Service Worker and SyncManager are available.
@@ -217,8 +217,8 @@ Limitations:
 - The current code does not define a dedicated service worker script or background sync handler.
 
 **Section sources**
-- [offline-sos-queue.ts:60-69](file://frontend/lib/offline-sos-queue.ts#L60-L69)
-- [Offline_Architecture.md:4-6](file://docs/Offline_Architecture.md#L4-L6)
+- [offline-sos-queue.ts:60-69](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L60-L69)
+- [Offline_Architecture.md:4-6](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L4-L6)
 
 ### Relationship Between Offline Queues and Online Workflows
 - Offline queue complements online reporting by deferring submission until connectivity returns.
@@ -227,9 +227,9 @@ Limitations:
 - Batch processing: the sync routine processes items sequentially, stopping on the first failure.
 
 **Section sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
 
 ### Offline AI and RAG Support
 While not part of the queue itself, the offline AI and RAG modules support offline-first experiences:
@@ -239,8 +239,8 @@ While not part of the queue itself, the offline AI and RAG modules support offli
 These components enhance user experience during offline periods and complement the queue by reducing reliance on online resources.
 
 **Section sources**
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
 
 ## Dependency Analysis
 - Frontend queue depends on IndexedDB for persistence and on network events for synchronization.
@@ -255,16 +255,16 @@ B["/api/v1/offline/bundle/{city}"] --> Q
 ```
 
 **Diagram sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 **Section sources**
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [emergency.py:1-83](file://backend/api/v1/emergency.py#L1-L83)
-- [roadwatch.py:1-97](file://backend/api/v1/roadwatch.py#L1-L97)
-- [offline.py:1-28](file://backend/api/v1/offline.py#L1-L28)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [emergency.py:1-83](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L1-L83)
+- [roadwatch.py:1-97](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L1-L97)
+- [offline.py:1-28](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L1-L28)
 
 ## Performance Considerations
 - IndexedDB operations: Batch reads and writes are efficient; however, iterating all items on every sync can be costly with large queues. Consider pruning old items or limiting batch sizes.
@@ -290,9 +290,9 @@ Common issues and remedies:
   - The current architecture persists data in IndexedDB. For enterprise-grade durability, migrate to cloud storage and centralized conflict resolution as outlined in the architecture document.
 
 **Section sources**
-- [offline-sos-queue.ts:130-137](file://frontend/lib/offline-sos-queue.ts#L130-L137)
-- [offline-sos-queue.ts:75-124](file://frontend/lib/offline-sos-queue.ts#L75-L124)
-- [Offline_Architecture.md:8-23](file://docs/Offline_Architecture.md#L8-L23)
+- [offline-sos-queue.ts:130-137](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L130-L137)
+- [offline-sos-queue.ts:75-124](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-sos-queue.ts#L75-L124)
+- [Offline_Architecture.md:8-23](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Offline_Architecture.md#L8-L23)
 
 ## Conclusion
 The offline reporting queue provides a robust offline-first mechanism for SOS and road hazard reporting. IndexedDB ensures persistence, and the online-driven sync routine reliably transmits queued items when connectivity returns. For enterprise-scale deployments, the project’s documentation outlines a migration path toward durable object storage and centralized conflict resolution to eliminate ephemeral disk risks and enable distributed backend scaling.
@@ -307,15 +307,15 @@ The offline reporting queue provides a robust offline-first mechanism for SOS an
 - Offline bundle: GET /api/v1/offline/bundle/{city}
 
 **Section sources**
-- [emergency.py:42-71](file://backend/api/v1/emergency.py#L42-L71)
-- [roadwatch.py:73-96](file://backend/api/v1/roadwatch.py#L73-L96)
-- [offline.py:18-27](file://backend/api/v1/offline.py#L18-L27)
+- [emergency.py:42-71](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/emergency.py#L42-L71)
+- [roadwatch.py:73-96](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/roadwatch.py#L73-L96)
+- [offline.py:18-27](https://github.com/SafeVixAI/SafeVixAI/blob/main/backend/api/v1/offline.py#L18-L27)
 
 ### Offline Features and Capabilities
 - Offline report queue: serializes to IndexedDB, supports background sync, and shows user feedback.
 - Offline AI and RAG: provide localized, multilingual assistance and law citations without online access.
 
 **Section sources**
-- [Features.md:146-150](file://docs/Features.md#L146-L150)
-- [offline-ai.ts:1-256](file://frontend/lib/offline-ai.ts#L1-L256)
-- [offline-rag.ts:1-35](file://frontend/lib/offline-rag.ts#L1-L35)
+- [Features.md:146-150](https://github.com/SafeVixAI/SafeVixAI/blob/main/docs/Features.md#L146-L150)
+- [offline-ai.ts:1-256](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-ai.ts#L1-L256)
+- [offline-rag.ts:1-35](https://github.com/SafeVixAI/SafeVixAI/blob/main/frontend/lib/offline-rag.ts#L1-L35)
