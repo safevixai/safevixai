@@ -16,7 +16,7 @@ jobs:
         env:
           POSTGRES_DB: safevixai
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD || 'postgres' }}
         ports:
           - 5432:5432
         options: >-
@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir -p backups
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-          PGPASSWORD=postgres pg_dump \
+          PGPASSWORD=${{ secrets.POSTGRES_PASSWORD || 'postgres' }} pg_dump \
             -h localhost \
             -U postgres \
             -d safevixai \

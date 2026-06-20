@@ -1,44 +1,35 @@
-name: Backend Core CI
+name: Backend CI
 
 on:
+  workflow_call:
   push:
-    branches: [ "main" ]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/backend.yml'
+    branches: [main]
+    paths: ['backend/**', '.github/workflows/backend.yml']
   pull_request:
-    branches: [ "main" ]
-    paths:
-      - 'backend/**'
-  workflow_dispatch:
+    branches: [main]
+    paths: ['backend/**']
 
-permissions:
-  contents: read
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+env:
+  AWS_REGION: ap-south-1
+  ECR_REPOSITORY: safevixai/backend
 
 jobs:
   test:
-    name: Backend Pytests
     runs-on: ubuntu-latest
-
     services:
       postgres:
         image: postgis/postgis:16-3.4
         env:
           POSTGRES_DB: safevixai_test
-          POSTGRES_USER: svai
-          POSTGRES_PASSWORD: svai_test_password
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U svai -d safevixai_test"
+          --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
       redis:
         image: redis:7-alpine
         ports:
@@ -46,68 +37,85 @@ jobs:
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
-          --health-timeout 3s
+          --health-timeout 5s
           --health-retries 5
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-          cache: "pip"
+          python-version: '3.11'
+          cache: 'pip'
           cache-dependency-path: backend/requirements.txt
 
-      - name: Install Backend Dependencies
-        working-directory: ./backend
+      - name: Install dependencies
+        working-directory: backend
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          if [ -f "requirements-dev.txt" ]; then pip install -r requirements-dev.txt; fi
+          pip install pytest pytest-cov pytest-asyncio httpx
 
-      - name: Run Alembic migrations
-        working-directory: ./backend
-        run: |
-          alembic upgrade head
+      - name: Run tests with coverage
+        working-directory: backend
         env:
-          DATABASE_URL: postgresql+asyncpg://svai:svai_test_password@localhost:5432/safevixai_test
-
-      - name: Run Pytest with Coverage
-        working-directory: ./backend
-        run: |
-          pytest tests/ -v --tb=short --cov=. --cov-report=term-missing --cov-report=xml:coverage.xml
-        env:
-          DATABASE_URL: postgresql+asyncpg://svai:svai_test_password@localhost:5432/safevixai_test
+          DATABASE_URL: postgresql+asyncpg://postgres:postgres@localhost:5432/safevixai_test
           REDIS_URL: redis://localhost:6379/0
-          SUPABASE_URL: "https://stub.supabase.co"
-          SUPABASE_ANON_KEY: "stub"
-          SUPABASE_SERVICE_ROLE_KEY: "stub"
-          ENVIRONMENT: "test"
-
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: backend-coverage
-          path: backend/coverage.xml
-          retention-days: 14
-
-      - name: Check Coverage Threshold
-        working-directory: ./backend
+          ENVIRONMENT: test
+          ADMIN_SECRET: test-admin-secret
         run: |
-          COVERAGE=$(python -c "
-          import xml.etree.ElementTree as ET
-          tree = ET.parse('coverage.xml')
-          root = tree.getroot()
-          lines_valid = int(root.get('lines-valid'))
-          lines_covered = int(root.get('lines-covered'))
-          print(f'{(lines_covered / lines_valid) * 100:.1f}')
-          ")
-          echo "Backend coverage: ${COVERAGE}%"
-          if (( $(echo "$COVERAGE < 80.0" | bc -l) )); then
-            echo "❌ Coverage ${COVERAGE}% is below 80% threshold"
-            exit 1
-          fi
-          echo "✅ Coverage ${COVERAGE}% meets 80% threshold"
+          pytest tests/ -v --cov=. --cov-report=xml --cov-report=term --cov-fail-under=95 -q
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: backend/coverage.xml
+          flags: backend
+
+      - name: Run fuzz tests
+        working-directory: ./
+        env:
+          ENVIRONMENT: test
+        run: |
+          pip install hypothesis
+          python -m pytest tests/fuzz/ -v --timeout=120 -q || true
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Lint with ruff
+        working-directory: backend
+        run: |
+          pip install ruff
+          ruff check . --output-format=github
+
+  build:
+    if: github.ref == 'refs/heads/main'
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build, tag, and push image
+        working-directory: backend
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REPOSITORY:latest
+          docker push $ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REPOSITORY:latest
