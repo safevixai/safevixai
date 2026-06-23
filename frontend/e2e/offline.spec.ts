@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { test, expect, Page } from '@playwright/test';
 
 test.describe('Offline/PWA Tests', () => {

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { test, expect, type Page } from '@playwright/test';
 
 let consoleErrors: string[] = [];

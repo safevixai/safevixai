@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

@@ -1,9 +1,12 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-describe('Accessibility', () => {
-  it('homepage has proper heading structure', () => {
+describe('Accessibility', function() {
+  it('homepage has proper heading structure', function() {
     render(
       <main>
         <h1>SafeVixAI - Road Safety Platform</h1>
@@ -19,7 +22,7 @@ describe('Accessibility', () => {
     expect(screen.getByText('SafeVixAI - Road Safety Platform')).toBeTruthy();
   });
 
-  it('interactive elements have accessible names', () => {
+  it('interactive elements have accessible names', function() {
     render(
       <div>
         <button aria-label="Send SOS">SOS</button>
@@ -33,7 +36,7 @@ describe('Accessibility', () => {
     expect(screen.getByLabelText('Search location')).toBeTruthy();
   });
 
-  it('images have alt text', () => {
+  it('images have alt text', function() {
     render(
       <div>
         <img src="/icon-hospital.png" alt="Hospital icon" />
@@ -41,13 +44,13 @@ describe('Accessibility', () => {
       </div>
     );
 
-    const images = screen.getAllByRole('img');
+    var images = screen.getAllByRole('img');
     expect(images).toHaveLength(2);
     expect(screen.getByAltText('Hospital icon')).toBeTruthy();
     expect(screen.getByAltText('Police station icon')).toBeTruthy();
   });
 
-  it('form inputs have associated labels', () => {
+  it('form inputs have associated labels', function() {
     render(
       <form>
         <label htmlFor="violation">Violation Type</label>
@@ -66,7 +69,7 @@ describe('Accessibility', () => {
     expect(screen.getByLabelText('State')).toBeTruthy();
   });
 
-  it('links have descriptive text', () => {
+  it('links have descriptive text', function() {
     render(
       <nav>
         <a href="/emergency">Emergency Locator</a>
@@ -80,7 +83,7 @@ describe('Accessibility', () => {
     expect(screen.getByText('Report Issue')).toBeTruthy();
   });
 
-  it('color contrast meets minimum requirements', () => {
+  it('color contrast meets minimum requirements', function() {
     render(
       <div>
         <p style={{ color: '#1a1a1a', backgroundColor: '#ffffff' }}>
@@ -92,11 +95,11 @@ describe('Accessibility', () => {
       </div>
     );
 
-    const paragraphs = screen.getAllByText(/contrast text/);
+    var paragraphs = screen.getAllByText(/contrast text/);
     expect(paragraphs).toHaveLength(2);
   });
 
-  it('keyboard navigation is supported', () => {
+  it('keyboard navigation is supported', function() {
     render(
       <div>
         <button tabIndex={0}>Button 1</button>
@@ -106,11 +109,11 @@ describe('Accessibility', () => {
       </div>
     );
 
-    const focusableElements = screen.getAllByRole('button');
+    var focusableElements = screen.getAllByRole('button');
     expect(focusableElements).toHaveLength(2);
   });
 
-  it('aria-live regions for dynamic content', () => {
+  it('aria-live regions for dynamic content', function() {
     render(
       <div>
         <div aria-live="polite" data-testid="status-message">
@@ -126,7 +129,7 @@ describe('Accessibility', () => {
     expect(screen.getByTestId('error-message')).toBeTruthy();
   });
 
-  it('skip navigation link present', () => {
+  it('skip navigation link present', function() {
     render(
       <div>
         <a href="#main-content" className="skip-link">
@@ -139,12 +142,14 @@ describe('Accessibility', () => {
     expect(screen.getByText('Skip to main content')).toBeTruthy();
   });
 
-  it('focus indicators visible', () => {
+  it('focus indicators visible', function() {
     render(
       <button style={{ outline: '2px solid blue' }}>Focusable Button</button>
     );
 
-    const button = screen.getByText('Focusable Button');
+    var button = screen.getByText('Focusable Button');
     expect(button).toBeTruthy();
   });
 });
+
+

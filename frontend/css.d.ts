@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // Ambient module declarations for CSS imports.
 // This file MUST NOT contain any top-level import/export statements,
 // otherwise TypeScript treats it as a module and these declarations
