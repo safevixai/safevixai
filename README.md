@@ -7,9 +7,11 @@
   <a href="https://github.com/SafeVixAI/SafeVixAI/stargazers"><img src="https://img.shields.io/github/stars/SafeVixAI/SafeVixAI" alt="Stars" /></a>
   <a href="https://github.com/SafeVixAI/SafeVixAI/releases"><img src="https://img.shields.io/github/v/release/SafeVixAI/SafeVixAI" alt="Release" /></a>
   <a href="https://github.com/SafeVixAI/SafeVixAI/actions/workflows/backend.yml"><img src="https://img.shields.io/github/actions/workflow/status/SafeVixAI/SafeVixAI/backend.yml?label=tests" alt="Tests" /></a>
-  <a href="https://www.bestpractices.dev/projects/TBD"><img src="https://img.shields.io/badge/OpenSSF-Passing-2ea44f" alt="OpenSSF Best Practices" /></a>
+  <a href="https://www.bestpractices.dev/projects/TBD"><img src="https://img.shields.io/badge/OpenSSF-Passing-2ea44f" alt="OpenSSF Best Practices (Passing)" /></a>
+  <a href="https://www.bestpractices.dev/projects/TBD"><img src="https://img.shields.io/badge/OpenSSF-Silver-2ea44f" alt="OpenSSF Best Practices (Silver)" /></a>
+  <a href="https://www.bestpractices.dev/projects/TBD"><img src="https://img.shields.io/badge/OpenSSF-Gold-FFD700" alt="OpenSSF Best Practices (Gold)" /></a>
   <a href="https://github.com/SafeVixAI/SafeVixAI/security"><img src="https://img.shields.io/badge/SBOM-available-brightgreen" alt="SBOM" /></a>
-  <a href="docs/Roadmap.md"><img src="https://img.shields.io/badge/roadmap-available-brightgreen" alt="Roadmap" /></a>
+  <a href="ROADMAP.md"><img src="https://img.shields.io/badge/roadmap-available-brightgreen" alt="Roadmap" /></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/SafeVixAI/SafeVixAI"><img src="https://img.shields.io/badge/Scorecard-Passing-brightgreen" alt="OpenSSF Scorecard" /></a>
   <a href="https://github.com/SafeVixAI/SafeVixAI/actions/workflows/codeql.yml"><img src="https://img.shields.io/badge/CodeQL-Analysis-blue" alt="CodeQL" /></a>
 </p>

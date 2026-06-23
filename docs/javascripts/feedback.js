@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 document$.subscribe(function () {
   var feedback = document.forms.feedback;
   if (typeof feedback === "undefined") return;

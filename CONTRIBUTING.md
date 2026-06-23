@@ -26,6 +26,16 @@ cd chatbot_service && uvicorn main:app --reload --port 8010
 cd frontend && npm run dev
 ```
 
+### Developer Certificate of Origin
+
+All contributions MUST include a `Signed-off-by` trailer in the commit message to certify acceptance of the [Developer Certificate of Origin](DCO):
+
+```
+Signed-off-by: Your Name <your.email@example.com>
+```
+
+This certifies that you have the right to submit your contribution under the project's MIT license. See the full DCO text in [`DCO`](DCO).
+
 ## Code Standards
 
 ### Python (Backend / Chatbot)
@@ -51,6 +61,8 @@ cd frontend && npm run dev
 - **No nested ternaries** — extract to variables
 
 ## Testing
+
+See [`TESTING_POLICY.md`](TESTING_POLICY.md) for the formal testing policy. In summary:
 
 ```bash
 # Run all tests
@@ -100,10 +112,11 @@ security: add CSP nonce-based script loading
 ### PR Rules
 
 1. PRs need at least one review from the relevant team (see `CODEOWNERS`)
-2. All CI checks must pass
-3. Branch must be up-to-date with `main`
-4. Squash-merge with descriptive message
-5. Delete branch after merge
+2. At least 50% of all modifications MUST be reviewed by a person other than the author (Gold tier requirement). See [`docs/CODE_REVIEW_GUIDE.md`](docs/CODE_REVIEW_GUIDE.md).
+3. All CI checks must pass
+4. Branch must be up-to-date with `main`
+5. Squash-merge with descriptive message
+6. Delete branch after merge
 
 ## Architecture
 
@@ -130,6 +143,14 @@ SafeVixAI/
 └── .github/           CI/CD + governance
 ```
 
+## New Contributors
+
+See [`docs/NEW_CONTRIBUTOR_GUIDE.md`](docs/NEW_CONTRIBUTOR_GUIDE.md) for guidance on finding your first task and making changes.
+
+## Code Review
+
+See [`docs/CODE_REVIEW_GUIDE.md`](docs/CODE_REVIEW_GUIDE.md) for the full code review standards and process.
+
 ## Reviewing Checklist
 
 - [ ] No security regressions (check CSP, headers, auth)
@@ -137,5 +158,8 @@ SafeVixAI/
 - [ ] No accessibility regressions (check aria, focus, contrast)
 - [ ] No new `any` types
 - [ ] Tests added/updated
+- [ ] Coverage maintained or improved
 - [ ] E2E tests pass (if UI change)
 - [ ] Error boundaries in place (if new route)
+- [ ] SPDX license header present in new source files
+- [ ] DCO Signed-off-by in commit message

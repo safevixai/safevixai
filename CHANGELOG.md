@@ -55,8 +55,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Testing & Quality
 - Fuzz tests integrated into backend CI pipeline (tests/fuzz/ runs as non-blocking step)
 - New fuzz test suite: tests/fuzz/test_fuzz_api.py (9 hypothesis-based test cases)
-- Backend coverage threshold raised from 60% to 80% (--cov-fail-under=80)
-- Chatbot coverage threshold raised from 60% to 80% (--cov-fail-under=80)
+- Backend coverage threshold raised to 95% (--cov-fail-under=95 in backend.yml + pyproject.toml fail_under=95)
+- Chatbot coverage threshold raised to 95% (--cov-fail-under=95 in chatbot.yml + pyproject.toml fail_under=95)
+- Frontend coverage thresholds raised: lines 53→60, branches 40→45, functions 50→55, statements 52→58
+- Frontend Jest coverage threshold added: 60% lines, 55% branches/functions
+
+#### Deployment Gating
+- Vercel deployment now gated behind Frontend CI pass via `vercel-deploy.yml`
+- Uses `workflow_run` on Frontend CI — deploy only triggers if tests pass
+- Auto-deployment disabled in `vercel.json` for all branches (workflow-controlled)
+- Production deploy to main + preview deploys on PRs both respect the gate
 
 ## [1.0.0] - 2026-05-18
 

@@ -84,6 +84,20 @@ The Project Lead is responsible for enforcing the Code of Conduct. Reports are s
 | Infra | CI/CD, Docker, Kubernetes, Terraform | TBD |
 | Security | Audit, pentesting, supply chain, vulnerability response | TBD |
 
+## Access Continuity
+
+The project is designed to continue with minimal interruption if any single person leaves:
+
+1. **Source of truth:** All code, documentation, issues, and decisions are recorded in the GitHub repository.
+2. **Service credentials:** CI/CD secrets and cloud provider credentials are stored in GitHub Secrets and can be transferred by organization admins.
+3. **Domain and DNS:** Managed through GitHub organization accounts with shared access.
+4. **Package publishing:** All artifacts are published through automated CI pipelines — no manual publishing dependency.
+5. **Key person risk:** If the Project Lead becomes unavailable, Core Contributors will select an interim lead within 14 days. If all Core Contributors become unavailable, the project enters maintenance mode until new maintainers emerge from the contributor community.
+
+## Bus Factor
+
+The current bus factor is **1** (project relies on a single Project Lead). Efforts are underway to grow the Core Contributor team to achieve a bus factor of **2 or more** by Q4 2026.
+
 ## Governance Changes
 
 Changes to this document require:

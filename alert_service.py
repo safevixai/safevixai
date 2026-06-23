@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """
 SafeVixAI Alert Service — Email notifications for application-level failures.
 

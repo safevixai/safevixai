@@ -79,6 +79,29 @@ docker service update --image ghcr.io/safevixai/backend:vX.Y.Z-1 safevixai_backe
 | Project Lead | Final sign-off on Major releases |
 | Security Team | Sign-off on releases with security fixes |
 
+## Maintenance & Upgrade Path
+
+### Older Version Support
+
+| Version | Status | Security Fixes | EOL |
+|---------|--------|---------------|-----|
+| 1.x | Active | Yes | TBD |
+
+### Upgrade Path
+
+1. Review the [CHANGELOG.md](CHANGELOG.md) for breaking changes between versions.
+2. Check [RELEASE_NOTES.md](RELEASE_NOTES.md) for migration guides specific to your upgrade path.
+3. For database schema changes, run Alembic migrations: `alembic upgrade head` from `backend/`.
+4. Test the upgrade in a staging environment before applying to production.
+5. Rollback via `alembic downgrade -1` if issues arise (schema rollback supported within the same minor version).
+
+### Upgrade Notices
+
+Upgrade notices (including breaking changes, deprecations, and migration guidance) are published as:
+- GitHub Release notes for the affected version
+- `CHANGELOG.md` with clear marking of breaking changes
+- GitHub Issue tagged `upgrade-notice` for critical migrations
+
 ## Verification
 
 Every release MUST verify:

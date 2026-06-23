@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """MkDocs hook: conditionally enable Plausible analytics when env var set.
 
 Usage: set PLAUSIBLE_DOMAIN env var to enable Plausible analytics.

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 # ────────────────────────────────────────────────────────────────
 # Production Docker Compose Override
 # DEVOPS#23 FIX: Separate production config per audit

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 version: "3.9"
 
 # DEVOPS#11 FIX: Isolated networks prevent compromised frontend from reaching DB directly

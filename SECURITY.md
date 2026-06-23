@@ -119,6 +119,16 @@ Encryption: https://github.com/SafeVixAI/SafeVixAI/blob/main/SECURITY.md
 Policy: https://github.com/SafeVixAI/SafeVixAI/security/policy
 ```
 
+## Vulnerability Reporter Credit
+
+SafeVixAI follows responsible disclosure and credits vulnerability reporters unless they explicitly request anonymity. Credits are published in:
+
+- The GitHub Security Advisory for the reported vulnerability
+- The release notes for the fix release
+- `ADOPTERS.md` (if the reporter consents)
+
+Reporters may choose to be credited by name, pseudonym, or remain anonymous.
+
 ## Past Security Advisories
 
 See [GitHub Security Advisories](https://github.com/SafeVixAI/SafeVixAI/security/advisories) for published advisories.
