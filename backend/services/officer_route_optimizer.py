@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Officer route optimization service.
 
 Provides nearest-neighbor TSP route optimization for field officers

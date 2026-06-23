@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Add enterprise workflow tracking columns to road_issues table.
 
 Revision ID: 10012_workflow_cols

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Public Accountability API for SafeVixAI.
 
 No-authentication transparency endpoints for public accountability:

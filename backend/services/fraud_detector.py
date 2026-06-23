@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Fraud Detector for SafeVixAI.
 
 Detects spam patterns, citizen abuse rate limiting, potential bots, and handles PII redaction for DPDP compliance.

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Role-Based Access Control (RBAC) for SafeVixAI Backend.
 
 Defines user roles, permission checks, and FastAPI dependencies for

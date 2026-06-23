@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Enterprise Civic Intelligence Platform — 8 new tables.
 
 Revision ID: 10011_civic_intel_tables

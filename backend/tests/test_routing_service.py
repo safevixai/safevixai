@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Tests for RoutingService — 90%+ coverage."""
 
 from __future__ import annotations

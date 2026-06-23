@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 # c:\Hackathons\IITM\SafeVixAI\backend\i18n\locales.py
 
 # Multi-language lookup dictionary for backend exceptions and validation errors

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Expand municipalities_seed.json with missing cities and fill in missing fields."""
 
 import json

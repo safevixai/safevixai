@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """H7: ORM model for sos_incidents table — replaces raw SQL text() usage."""
 from __future__ import annotations
 

@@ -1,3 +1,5 @@
+-- SPDX-License-Identifier: MIT
+-- Copyright (c) 2026 SafeVixAI Team
 -- ============================================
 -- SafeVixAI / SafeVixAI - Supabase Migration
 -- Paste this entire script into your Supabase

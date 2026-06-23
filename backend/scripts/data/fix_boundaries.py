@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Download all 36 state district boundary GeoJSONs from udit-001/india-maps-data."""
 import httpx
 import json

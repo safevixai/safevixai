@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 # backend/core/audit.py — Tamper-proof audit logging for sensitive operations
 # SECURITY FIX: Audit log for auth events, profile changes, SOS events
 

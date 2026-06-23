@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """OpenTelemetry distributed tracing setup for SafeVixAI backend."""
 from __future__ import annotations
 

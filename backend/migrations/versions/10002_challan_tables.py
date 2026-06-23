@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """create challan reference tables
 
 Revision ID: 10002_challan_tables

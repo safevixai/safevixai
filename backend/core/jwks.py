@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """JWKS-based API key rotation for SafeVixAI Backend.
 
 Implements:

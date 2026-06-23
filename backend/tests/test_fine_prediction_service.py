@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 import re
 import pathlib
 from unittest.mock import patch, mock_open

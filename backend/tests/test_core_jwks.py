@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Core JWKS Manager tests — _fetch_jwks, caching, HTTP error handling, rotation."""
 from __future__ import annotations
 

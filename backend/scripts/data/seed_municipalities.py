@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Seed municipalities from JSON — standalone script (no DB required for dry-run)."""
 
 from __future__ import annotations

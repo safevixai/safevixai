@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Core rate limiter tests — creation, key function, fallback behavior."""
 from __future__ import annotations
 

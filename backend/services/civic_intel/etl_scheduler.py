@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """ETL Scheduler — asyncio background loop for all civic intelligence pipelines."""
 
 from __future__ import annotations

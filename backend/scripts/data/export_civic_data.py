@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """CLI script to export all civic intelligence data to data/civic_intel/ for HuggingFace Hub."""
 
 from __future__ import annotations

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Geo Verifier for SafeVixAI.
 
 Verifies officer location and metadata when submitting evidence or completing work.

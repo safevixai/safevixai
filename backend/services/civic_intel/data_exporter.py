@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Civic Intelligence Data Exporter — dumps PostGIS tables to CSV/JSON/GeoJSON for HuggingFace Hub."""
 
 from __future__ import annotations

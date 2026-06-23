@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """create first aid articles, chat logs, and pgvector support
 
 Revision ID: 10004_chat_logs_vector

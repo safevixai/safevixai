@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """align Supabase RLS policies with backend ownership model
 
 Revision ID: 10003_rls_alignment

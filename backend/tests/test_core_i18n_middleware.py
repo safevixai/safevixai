@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Core i18n middleware tests — locale detection, error localization."""
 from __future__ import annotations
 

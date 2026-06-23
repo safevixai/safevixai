@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Grievance ingestor — pan-India CPGRAMS + all state PGRS portals via plugin architecture."""
 
 from __future__ import annotations

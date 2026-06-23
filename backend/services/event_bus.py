@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Enterprise Event Bus for SafeVixAI.
 
 In-process async event bus with Redis pub/sub fallback for multi-instance deployments.

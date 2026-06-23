@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Data.gov.in ingestor — fetches pan-India road safety and infrastructure datasets."""
 
 from __future__ import annotations

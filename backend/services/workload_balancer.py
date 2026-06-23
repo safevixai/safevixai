@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Workload Balancer for SafeVixAI.
 
 Intelligent officer assignment that considers:

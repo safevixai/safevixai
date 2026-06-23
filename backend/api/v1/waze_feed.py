@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """
 waze_feed.py — Waze CIFS (Closure and Incident Feed Specification) Endpoint
 

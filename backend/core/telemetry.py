@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 import logging
 from fastapi import FastAPI
 from opentelemetry import trace

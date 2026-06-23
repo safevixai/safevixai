@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Enterprise range partitioning for road_issues table.
 
 Revision ID: 10014_road_issues_partitioning

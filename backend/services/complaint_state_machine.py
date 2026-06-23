@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Complaint State Machine for SafeVixAI.
 
 Formal state machine with validated transitions, actor tracking, and event emission.

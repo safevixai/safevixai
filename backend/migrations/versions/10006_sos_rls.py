@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """add sos incidents RLS policies
 
 Revision ID: 10006_sos_rls

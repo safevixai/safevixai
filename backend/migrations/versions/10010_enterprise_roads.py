@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Enterprise Roads, Traffic, and Streetlights expansion.
 
 Revision ID: 10010_enterprise_roads

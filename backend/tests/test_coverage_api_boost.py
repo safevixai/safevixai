@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage boost tests: command_center, analytics, authority, officers,
 user, roadwatch, waze_feed, routing, challan, circuit_breaker_api, wards, tracking.
 """

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from api.v1.tracking import router, _is_valid_location, _is_valid_tracking_payload

@@ -1,4 +1,7 @@
-﻿from __future__ import annotations
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
+from __future__ import annotations
 
 from dataclasses import dataclass
 

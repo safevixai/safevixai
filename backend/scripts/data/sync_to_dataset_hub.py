@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Copy civic intelligence data to SafeVixAI-Dataset-Hub for HuggingFace upload.
 
 Usage:

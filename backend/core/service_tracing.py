@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Custom tracing helpers for SafeVixAI backend services."""
 from __future__ import annotations
 

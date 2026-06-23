@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """API Versioning middleware for SafeVixAI Backend.
 
 Implements API versioning via URL path (/api/v1, /api/v2) with

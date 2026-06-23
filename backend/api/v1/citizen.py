@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Citizen Verification API for SafeVixAI.
 
 Public-facing endpoints for citizens to:

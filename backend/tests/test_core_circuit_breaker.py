@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Core circuit breaker tests — transitions, force methods, edge cases, registry."""
 from __future__ import annotations
 

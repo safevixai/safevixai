@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Streetlight asset management service.
 
 QR code pole lookup, asset registry CRUD, outage tracking,

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Add org_id column to all tables for multi-tenant isolation.
 
 Phase 0.6: Enables tenant-aware queries and data isolation.

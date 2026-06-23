@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """SLA breach notification service.
 
 Sends email/webhook notifications when complaints breach their SLA deadline.

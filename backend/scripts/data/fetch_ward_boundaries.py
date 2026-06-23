@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Fetch ward boundary polygons for major cities from OpenStreetMap.
 
 Usage:

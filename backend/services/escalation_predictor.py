@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """AI Escalation Prediction service.
 
 Rule-based + heuristic prediction for complaint escalation risk scoring.

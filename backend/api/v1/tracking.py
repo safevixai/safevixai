@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 import asyncio
 from fastapi import APIRouter, Path, WebSocket, WebSocketDisconnect
 from typing import Any, Dict, Set

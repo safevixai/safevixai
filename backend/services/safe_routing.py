@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Safe routing — avoids isolated road stretches at night using ORS or OSRM fallback."""
 from __future__ import annotations
 

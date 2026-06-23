@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 from models.schemas import DisputeDraftRequest
 from services.challan_dispute_service import ChallanDisputeService
 

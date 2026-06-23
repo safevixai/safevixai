@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """LGD Directory ingestor — fetches India's admin hierarchy via NAPIX API or CSV fallback."""
 
 from __future__ import annotations

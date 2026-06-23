@@ -1,3 +1,5 @@
+-- SPDX-License-Identifier: MIT
+-- Copyright (c) 2026 SafeVixAI Team
 -- SafeVixAI — Supabase RLS Policies & Indexes
 -- Run this in Supabase SQL Editor after migrations
 

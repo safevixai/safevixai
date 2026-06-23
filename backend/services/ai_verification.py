@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """AI Verification Pipeline for SafeVixAI.
 
 Runs on every new complaint to validate, classify, score confidence,

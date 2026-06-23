@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Core API versioning tests — middleware headers, deprecation, versioning logic."""
 from __future__ import annotations
 

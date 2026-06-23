@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Standalone OSM civic feature fetcher — dumps to data/civic_intel/osm_features/.
 
 No database needed. Reads city_bboxes.json and queries Overpass API for civic

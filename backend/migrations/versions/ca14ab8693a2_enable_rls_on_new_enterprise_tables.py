@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """enable rls on new enterprise tables
 
 Revision ID: ca14ab8693a2

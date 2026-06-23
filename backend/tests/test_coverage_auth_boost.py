@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage boost for auth and admin API routes."""
 from __future__ import annotations
 

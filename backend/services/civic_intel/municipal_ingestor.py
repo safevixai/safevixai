@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Municipal GIS ingestor — pan-India config-driven ArcGIS REST + GeoServer WFS fetcher."""
 
 from __future__ import annotations

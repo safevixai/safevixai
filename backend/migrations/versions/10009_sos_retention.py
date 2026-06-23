@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """reduce SOS data retention from 1 year to 90 days
 
 Revision ID: 10009_sos_retention

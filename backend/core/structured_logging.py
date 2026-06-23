@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Structured logging with correlation IDs for SafeVixAI backend.
 
 Provides:

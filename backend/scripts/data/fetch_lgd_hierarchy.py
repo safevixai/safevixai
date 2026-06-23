@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Standalone LGD hierarchy fetcher — generates district-level data from Census 2011.
 
 Since NAPIX API requires an API key that takes time to approve, this script

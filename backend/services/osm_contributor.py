@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """
 osm_contributor.py — OpenStreetMap Contribution Service
 

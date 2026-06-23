@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Standalone boundary fetcher — downloads GeoJSON from Datameet + India Geodata.
 
 Downloads state and district boundary GeoJSON files from public GitHub repos.

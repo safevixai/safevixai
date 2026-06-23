@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """secure user profiles and create sos incidents
 
 Revision ID: 10001_profiles_sos

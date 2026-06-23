@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Fetches nearby safe public spaces using Overpass API with graceful fallback."""
 from __future__ import annotations
 

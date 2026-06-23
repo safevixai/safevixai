@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Add UserProfile model
 
 Revision ID: 46c1f12f346e

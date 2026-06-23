@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Hypothesis property-based API fuzz tests for SafeVixAI backend."""
 from __future__ import annotations
 

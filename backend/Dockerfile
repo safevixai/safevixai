@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 # ────────────────────────────────────────────────────────────────
 # Backend — FastAPI + PostGIS (multi-stage build)
 # DEVOPS#9 FIX: Converted from single-stage to multi-stage per audit

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Streetlight pole asset registry.
 
 ORM model for tracking individual streetlight poles with QR code support,

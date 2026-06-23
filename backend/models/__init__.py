@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 from core.database import Base
 from models.emergency import EmergencyService
 from models.road_issue import RoadInfrastructure, RoadIssue

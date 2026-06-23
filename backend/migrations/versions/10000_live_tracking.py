@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """create live_tracking table for family tracking
 
 Revision ID: 10000_live_tracking
