@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -21,7 +24,7 @@ jest.mock('@/components/ThemeProvider', () => ({
   useTheme: () => ({ theme: 'dark', setTheme: jest.fn() }),
 }));
 
-const mockDebouncedFn = Object.assign(jest.fn(), { cancel: jest.fn() });
+var mockDebouncedFn = Object.assign(jest.fn(), { cancel: jest.fn() });
 jest.mock('use-debounce', () => ({
   useDebouncedCallback: () => mockDebouncedFn,
 }));
@@ -37,41 +40,44 @@ jest.mock('@/lib/location-utils', () => ({
   isApproximateLocation: jest.fn(() => false),
 }));
 
-describe('TopSearch', () => {
-  beforeEach(() => {
+describe('TopSearch', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
   });
 
-  it('renders search input field', async () => {
-    const TopSearch = (await import('../dashboard/TopSearch')).default;
+  it('renders search input field', async function() {
+    var TopSearch = (await import('../dashboard/TopSearch')).default;
     render(<TopSearch />);
     expect(screen.getByRole('search')).toBeInTheDocument();
   });
 
-  it('has expected placeholder text', async () => {
-    const TopSearch = (await import('../dashboard/TopSearch')).default;
+  it('has expected placeholder text', async function() {
+    var TopSearch = (await import('../dashboard/TopSearch')).default;
     render(<TopSearch />);
-    const input = screen.getByPlaceholderText('Ask Maps or Search');
+    var input = screen.getByPlaceholderText('Ask Maps or Search');
     expect(input).toBeInTheDocument();
   });
 
-  it('fires onChange when typing', async () => {
-    const TopSearch = (await import('../dashboard/TopSearch')).default;
+  it('fires onChange when typing', async function() {
+    var TopSearch = (await import('../dashboard/TopSearch')).default;
     render(<TopSearch />);
-    const input = screen.getByPlaceholderText('Ask Maps or Search');
+    var input = screen.getByPlaceholderText('Ask Maps or Search');
     fireEvent.change(input, { target: { value: 'hospital' } });
     expect(input).toHaveValue('hospital');
   });
 
-  it('has search input with aria-label', async () => {
-    const TopSearch = (await import('../dashboard/TopSearch')).default;
+  it('has search input with aria-label', async function() {
+    var TopSearch = (await import('../dashboard/TopSearch')).default;
     render(<TopSearch />);
     expect(screen.getByLabelText('Search input')).toBeInTheDocument();
   });
 
-  it('has voice search button', async () => {
-    const TopSearch = (await import('../dashboard/TopSearch')).default;
+  it('has voice search button', async function() {
+    var TopSearch = (await import('../dashboard/TopSearch')).default;
     render(<TopSearch />);
     expect(screen.getByLabelText('Voice search')).toBeInTheDocument();
   });
 });
+
+
+

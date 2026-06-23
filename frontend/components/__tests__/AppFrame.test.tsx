@@ -1,8 +1,11 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-const mockStore = {
+var mockStore = {
   isDesktopSidebarCollapsed: false,
   isThinSidebarEnabled: false,
   setDesktopSidebarCollapsed: jest.fn(),
@@ -72,18 +75,18 @@ jest.mock('@/components/auth/AuthGuard', () => ({
 
 import { AppFrame } from '../ui/AppFrame';
 
-describe('AppFrame', () => {
-  it('renders children inside frame', () => {
+describe('AppFrame', function() {
+  it('renders children inside frame', function() {
     render(<AppFrame><span data-testid="child">content</span></AppFrame>);
     expect(screen.getByTestId('child')).toBeInTheDocument();
   });
 
-  it('renders text children', () => {
+  it('renders text children', function() {
     render(<AppFrame>Hello World</AppFrame>);
     expect(screen.getByText('Hello World')).toBeInTheDocument();
   });
 
-  it('has global utility components', () => {
+  it('has global utility components', function() {
     render(<AppFrame>content</AppFrame>);
     expect(screen.getByTestId('network-monitor')).toBeInTheDocument();
     expect(screen.getByTestId('global-sos')).toBeInTheDocument();
@@ -94,7 +97,7 @@ describe('AppFrame', () => {
     expect(screen.getByTestId('server-warming-banner')).toBeInTheDocument();
   });
 
-  it('has sidebar and navigation components', () => {
+  it('has sidebar and navigation components', function() {
     render(<AppFrame>content</AppFrame>);
     expect(screen.getByTestId('app-sidebar')).toBeInTheDocument();
     expect(screen.getByTestId('system-sidebar')).toBeInTheDocument();
@@ -102,21 +105,24 @@ describe('AppFrame', () => {
     expect(screen.getByTestId('right-sidebar')).toBeInTheDocument();
   });
 
-  it('has skip to main content link', () => {
+  it('has skip to main content link', function() {
     render(<AppFrame>content</AppFrame>);
-    const skipLink = screen.getByText('Skip to main content');
+    var skipLink = screen.getByText('Skip to main content');
     expect(skipLink).toBeInTheDocument();
     expect(skipLink).toHaveAttribute('href', '#main');
   });
 
-  it('has main content area with id main', () => {
+  it('has main content area with id main', function() {
     render(<AppFrame>content</AppFrame>);
     expect(document.getElementById('main')).toBeInTheDocument();
   });
 
-  it('has correct wrapper structure', () => {
-    const { container } = render(<AppFrame>content</AppFrame>);
+  it('has correct wrapper structure', function() {
+    var { container } = render(<AppFrame>content</AppFrame>);
     expect(container.firstChild).toHaveClass('flex');
     expect(container.firstChild).toHaveClass('min-h-dvh');
   });
 });
+
+
+

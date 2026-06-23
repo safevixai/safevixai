@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * MapLibre Canvas — Public API
  * Barrel export for clean imports from other components.

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { NextRequest, NextResponse } from 'next/server';
 
 const TOMTOM_BASE = 'https://api.tomtom.com';

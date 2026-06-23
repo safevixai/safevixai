@@ -1,0 +1,101 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
+import { render, screen, fireEvent } from '@testing-library/react'
+import React from 'react'
+import { DataTable, Column } from '../ui/DataTable'
+
+interface TestItem {
+  id: number
+  name: string
+  age: number
+}
+
+var columns: Column<TestItem>[] = [
+  { key: 'name', header: 'Name', sortable: true, filterable: true },
+  { key: 'age', header: 'Age', sortable: true, align: 'right' },
+]
+
+var data: TestItem[] = [
+  { id: 1, name: 'Alice', age: 30 },
+  { id: 2, name: 'Bob', age: 25 },
+  { id: 3, name: 'Charlie', age: 35 },
+]
+
+var keyExtractor = function(item: TestItem) { return String(item.id) }
+
+describe('DataTable', function() {
+  it('renders data rows', function() {
+    render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor }))
+    expect(screen.getByText('Alice')).toBeTruthy()
+    expect(screen.getByText('Bob')).toBeTruthy()
+    expect(screen.getByText('Charlie')).toBeTruthy()
+  })
+
+  it('renders headers', function() {
+    render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor }))
+    expect(screen.getByText('Name')).toBeTruthy()
+    expect(screen.getByText('Age')).toBeTruthy()
+  })
+
+  it('shows loading skeleton when loading', function() {
+    var { container } = render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor, loading: true }))
+    expect(screen.getByRole('status')).toBeTruthy()
+    expect(container.querySelector('.animate-pulse')).toBeTruthy()
+  })
+
+  it('shows empty message when no data', function() {
+    render(React.createElement(DataTable, { columns: columns, data: [], keyExtractor: keyExtractor, emptyMessage: 'Nothing here' }))
+    expect(screen.getByText('Nothing here')).toBeTruthy()
+  })
+
+  it('sets aria-sort on sortable header click', function() {
+    render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor }))
+    var nameHeader = screen.getByText('Name')
+    expect(nameHeader.closest('th')?.getAttribute('aria-sort')).toBeFalsy()
+    fireEvent.click(nameHeader)
+    expect(nameHeader.closest('th')?.getAttribute('aria-sort')).toBe('ascending')
+    fireEvent.click(nameHeader)
+    expect(nameHeader.closest('th')?.getAttribute('aria-sort')).toBe('descending')
+  })
+
+  it('renders filter input when column has filterable', function() {
+    render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor }))
+    expect(screen.getByLabelText('Filter table')).toBeTruthy()
+  })
+
+  it('filters data when typing in filter', function() {
+    render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor }))
+    var input = screen.getByLabelText('Filter table') as HTMLInputElement
+    fireEvent.change(input, { target: { value: 'Bob' } })
+    expect(screen.getByText('Bob')).toBeTruthy()
+    expect(screen.queryByText('Alice')).toBeNull()
+  })
+
+  it('shows pagination when data exceeds pageSize', function() {
+    var manyItems: TestItem[] = Array.from({ length: 25 }, function(_, i) {
+      return { id: i, name: 'Item ' + i, age: 20 + i }
+    })
+    render(React.createElement(DataTable, { columns: columns, data: manyItems, keyExtractor: keyExtractor, pageSize: 10 }))
+    expect(screen.getByLabelText('Pagination')).toBeTruthy()
+    expect(screen.getByText('25 results')).toBeTruthy()
+  })
+
+  it('supports row selection', function() {
+    var selection = new Set<string>()
+    var onSelectionChange = jest.fn(function(keys: Set<string>) { selection = keys })
+    render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor, selectable: true, selectedKeys: selection, onSelectionChange: onSelectionChange }))
+    var checkboxes = screen.getAllByRole('checkbox')
+    expect(checkboxes.length).toBe(4)
+    fireEvent.click(checkboxes[1])
+    expect(selection.size).toBe(1)
+  })
+
+  it('selects all when header checkbox clicked', function() {
+    var selection = new Set<string>()
+    var onSelectionChange = jest.fn(function(keys: Set<string>) { selection = keys })
+    render(React.createElement(DataTable, { columns: columns, data: data, keyExtractor: keyExtractor, selectable: true, selectedKeys: selection, onSelectionChange: onSelectionChange }))
+    fireEvent.click(screen.getByLabelText('Select all rows'))
+    expect(selection.size).toBe(3)
+  })
+})

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 'use client';
 /**
  * SafeVixAI Enterprise Voice Input

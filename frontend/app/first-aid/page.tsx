@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { FirstAidClient } from './FirstAidClient';
 import firstAidData from '@/public/offline-data/first-aid.json';
 

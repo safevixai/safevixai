@@ -1,10 +1,13 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-const mockSubmitReport = jest.fn();
-const mockEnqueueRoadReport = jest.fn();
-const mockTrackReportSubmitted = jest.fn();
+var mockSubmitReport = jest.fn();
+var mockEnqueueRoadReport = jest.fn();
+var mockTrackReportSubmitted = jest.fn();
 
 jest.mock('../../lib/api', () => ({
   submitReport: (...args: unknown[]) => mockSubmitReport(...args),
@@ -22,7 +25,7 @@ jest.mock('sonner', () => ({
   toast: { error: jest.fn(), success: jest.fn() },
 }));
 
-let mockChatStore: Record<string, unknown>;
+var mockChatStore: Record<string, unknown>;
 
 jest.mock('../../lib/store', () => {
   const mockFn: jest.Mock & { getState?: () => unknown } = jest.fn(
@@ -35,7 +38,7 @@ jest.mock('../../lib/store', () => {
   return { useAppStore: mockFn };
 });
 
-beforeEach(() => {
+beforeEach(function() {
   mockChatStore = { gpsLocation: null, connectivity: 'online' };
   mockSubmitReport.mockReset().mockResolvedValue({ uuid: 'test-uuid' });
   mockEnqueueRoadReport.mockReset().mockResolvedValue(undefined);
@@ -44,7 +47,7 @@ beforeEach(() => {
 });
 
 function renderReportForm() {
-  const ReportForm = require('../ReportForm').default;
+  var ReportForm = require('../ReportForm').default;
   return render(<ReportForm />);
 }
 
@@ -52,8 +55,8 @@ function goToStep2() {
   fireEvent.click(screen.getByRole('button', { name: /configure details/i }));
 }
 
-describe('ReportForm', () => {
-  it('shows issue type selection on step 1', () => {
+describe('ReportForm', function() {
+  it('shows issue type selection on step 1', function() {
     renderReportForm();
     expect(screen.getByRole('button', { name: /issue type: pothole/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /issue type: accident/i })).toBeInTheDocument();
@@ -61,47 +64,47 @@ describe('ReportForm', () => {
     expect(screen.getByRole('button', { name: /issue type: signage/i })).toBeInTheDocument();
   });
 
-  it('shows severity slider', () => {
+  it('shows severity slider', function() {
     renderReportForm();
     for (let i = 1; i <= 5; i++) {
       expect(screen.getByRole('button', { name: `Severity level ${i}` })).toBeInTheDocument();
     }
   });
 
-  it('navigates to step 2 on configure details click', () => {
+  it('navigates to step 2 on configure details click', function() {
     renderReportForm();
     goToStep2();
     expect(screen.getByLabelText(/description of the road issue/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/attach evidence photo/i)).toBeInTheDocument();
   });
 
-  it('shows submit button on step 2', () => {
+  it('shows submit button on step 2', function() {
     renderReportForm();
     goToStep2();
     expect(screen.getByRole('button', { name: /broadcast report/i })).toBeInTheDocument();
   });
 
-  it('allows going back to step 1 from step 2', () => {
+  it('allows going back to step 1 from step 2', function() {
     renderReportForm();
     goToStep2();
     fireEvent.click(screen.getByRole('button', { name: /go back to step 1/i }));
     expect(screen.getByRole('button', { name: /issue type: pothole/i })).toBeInTheDocument();
   });
 
-  it('shows toast error when submitting without GPS', async () => {
+  it('shows toast error when submitting without GPS', async function() {
     renderReportForm();
     goToStep2();
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: /broadcast report/i }));
     });
-    const { toast } = require('sonner');
+    var { toast } = require('sonner');
     expect(toast.error).toHaveBeenCalledWith(
       expect.stringContaining('Location')
     );
     expect(mockSubmitReport).not.toHaveBeenCalled();
   });
 
-  it('calls submitReport when GPS exists and form submitted online', async () => {
+  it('calls submitReport when GPS exists and form submitted online', async function() {
     mockChatStore = { gpsLocation: { lat: 13.08, lon: 80.27, accuracy: 10, timestamp: Date.now() }, connectivity: 'online' };
     renderReportForm();
     goToStep2();
@@ -114,7 +117,7 @@ describe('ReportForm', () => {
     );
   });
 
-  it('calls enqueueRoadReport when offline', async () => {
+  it('calls enqueueRoadReport when offline', async function() {
     mockChatStore = { gpsLocation: { lat: 13.08, lon: 80.27, accuracy: 10, timestamp: Date.now() }, connectivity: 'offline' };
     renderReportForm();
     goToStep2();
@@ -128,7 +131,7 @@ describe('ReportForm', () => {
     );
   });
 
-  it('shows success state after submission', async () => {
+  it('shows success state after submission', async function() {
     mockChatStore = { gpsLocation: { lat: 13.08, lon: 80.27, accuracy: 10, timestamp: Date.now() }, connectivity: 'online' };
     renderReportForm();
     goToStep2();
@@ -138,13 +141,13 @@ describe('ReportForm', () => {
     expect(screen.getByRole('alert')).toHaveTextContent(/Report Uplinked/i);
   });
 
-  it('rejects photo larger than 5MB', async () => {
+  it('rejects photo larger than 5MB', async function() {
     mockChatStore = { gpsLocation: { lat: 13.08, lon: 80.27, accuracy: 10, timestamp: Date.now() }, connectivity: 'online' };
     renderReportForm();
     goToStep2();
 
-    const largeFile = new File(['x'.repeat(6 * 1024 * 1024)], 'large.jpg', { type: 'image/jpeg' });
-    const fileInput = screen.getByLabelText(/attach evidence photo/i);
+    var largeFile = new File(['x'.repeat(6 * 1024 * 1024)], 'large.jpg', { type: 'image/jpeg' });
+    var fileInput = screen.getByLabelText(/attach evidence photo/i);
     await act(async () => {
       fireEvent.change(fileInput, { target: { files: [largeFile] } });
     });
@@ -153,18 +156,18 @@ describe('ReportForm', () => {
       fireEvent.click(screen.getByRole('button', { name: /broadcast report/i }));
     });
 
-    const { toast } = require('sonner');
+    var { toast } = require('sonner');
     expect(toast.error).toHaveBeenCalledWith(expect.stringMatching(/5MB|less/i));
     expect(mockSubmitReport).not.toHaveBeenCalled();
   });
 
-  it('rejects unsupported photo type', async () => {
+  it('rejects unsupported photo type', async function() {
     mockChatStore = { gpsLocation: { lat: 13.08, lon: 80.27, accuracy: 10, timestamp: Date.now() }, connectivity: 'online' };
     renderReportForm();
     goToStep2();
 
-    const invalidFile = new File(['x'], 'doc.pdf', { type: 'application/pdf' });
-    const fileInput = screen.getByLabelText(/attach evidence photo/i);
+    var invalidFile = new File(['x'], 'doc.pdf', { type: 'application/pdf' });
+    var fileInput = screen.getByLabelText(/attach evidence photo/i);
     await act(async () => {
       fireEvent.change(fileInput, { target: { files: [invalidFile] } });
     });
@@ -173,8 +176,11 @@ describe('ReportForm', () => {
       fireEvent.click(screen.getByRole('button', { name: /broadcast report/i }));
     });
 
-    const { toast } = require('sonner');
+    var { toast } = require('sonner');
     expect(toast.error).toHaveBeenCalledWith(expect.stringMatching(/JPEG|PNG|WebP/i));
     expect(mockSubmitReport).not.toHaveBeenCalled();
   });
 });
+
+
+

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export default function SosLoading() {
   return (
     <div className="flex min-h-[80vh] flex-col items-center justify-center gap-8 p-6">

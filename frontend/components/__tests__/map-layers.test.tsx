@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -18,20 +21,20 @@ jest.mock('maplibre-gl', () => ({
   GeolocateControl: jest.fn(),
 }));
 
-describe('MapLayers', () => {
-  it('renders hazard heatmap layer', () => {
+describe('MapLayers', function() {
+  it('renders hazard heatmap layer', function() {
     render(
       <div data-testid="map-container">
         <div data-testid="heatmap-layer" />
       </div>
     );
 
-    const heatmap = screen.getByTestId('heatmap-layer');
+    var heatmap = screen.getByTestId('heatmap-layer');
     expect(heatmap).toBeTruthy();
   });
 
-  it('renders emergency service markers', () => {
-    const services = [
+  it('renders emergency service markers', function() {
+    var services = [
       { id: '1', name: 'City Hospital', lat: 13.0827, lon: 80.2707, category: 'hospital' },
       { id: '2', name: 'Police Station', lat: 13.0850, lon: 80.2730, category: 'police' },
     ];
@@ -50,8 +53,8 @@ describe('MapLayers', () => {
     expect(screen.getByTestId('marker-police')).toBeTruthy();
   });
 
-  it('renders road issue markers', () => {
-    const issues = [
+  it('renders road issue markers', function() {
+    var issues = [
       { id: '1', issueType: 'pothole', lat: 13.0827, lon: 80.2707, severity: 3 },
       { id: '2', issueType: 'flooding', lat: 13.0850, lon: 80.2730, severity: 4 },
     ];
@@ -70,7 +73,7 @@ describe('MapLayers', () => {
     expect(screen.getByTestId('issue-flooding')).toBeTruthy();
   });
 
-  it('renders user location marker', () => {
+  it('renders user location marker', function() {
     render(
       <div data-testid="map-container">
         <div data-testid="user-marker" />
@@ -80,13 +83,13 @@ describe('MapLayers', () => {
     expect(screen.getByTestId('user-marker')).toBeTruthy();
   });
 
-  it('toggles heatmap visibility', () => {
-    let showHeatmap = true;
-    const toggle = () => {
+  it('toggles heatmap visibility', function() {
+    var showHeatmap = true;
+    var toggle = () => {
       showHeatmap = !showHeatmap;
     };
 
-    const { rerender } = render(
+    var { rerender } = render(
       <div data-testid="map-container">
         {showHeatmap && <div data-testid="heatmap-layer" />}
         <button data-testid="toggle-heatmap" onClick={toggle}>
@@ -111,8 +114,8 @@ describe('MapLayers', () => {
     expect(screen.queryByTestId('heatmap-layer')).toBeNull();
   });
 
-  it('displays map search results', () => {
-    const searchResults = [
+  it('displays map search results', function() {
+    var searchResults = [
       { id: '1', name: 'Chennai Central', lat: 13.0827, lon: 80.2707 },
     ];
 
@@ -130,3 +133,5 @@ describe('MapLayers', () => {
     expect(screen.getByText('Chennai Central')).toBeTruthy();
   });
 });
+
+

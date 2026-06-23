@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * MapLibreCanvas — Types & Interfaces
  * Shared types used across the map rendering system.

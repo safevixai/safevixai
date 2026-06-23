@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * Locator — Shared UI Components
  * ServiceIcon, EmptyState, RouteStatusCard extracted from page.tsx.

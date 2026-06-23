@@ -1,8 +1,11 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-const onLocationChange = jest.fn();
+var onLocationChange = jest.fn();
 
 jest.mock('next/dynamic', () => {
   const MockLocationPicker = (props: Record<string, unknown>) => (
@@ -11,16 +14,18 @@ jest.mock('next/dynamic', () => {
   return () => MockLocationPicker;
 });
 
-describe('LocationPicker', () => {
-  it('renders dynamically loaded map component', async () => {
-    const LocationPicker = (await import('../report/LocationPicker')).default;
-    const { container } = render(<LocationPicker lat={13.0827} lon={80.2707} onLocationChange={onLocationChange} />);
+describe('LocationPicker', function() {
+  it('renders dynamically loaded map component', async function() {
+    var LocationPicker = (await import('../report/LocationPicker')).default;
+    var { container } = render(<LocationPicker lat={13.0827} lon={80.2707} onLocationChange={onLocationChange} />);
     expect(container.querySelector('[data-testid="location-picker-inner"]')).toBeInTheDocument();
   });
 
-  it('renders without crashing', async () => {
-    const LocationPicker = (await import('../report/LocationPicker')).default;
+  it('renders without crashing', async function() {
+    var LocationPicker = (await import('../report/LocationPicker')).default;
     render(<LocationPicker lat={13.0827} lon={80.2707} onLocationChange={onLocationChange} />);
     expect(screen.getByTestId('location-picker-inner')).toBeInTheDocument();
   });
 });
+
+

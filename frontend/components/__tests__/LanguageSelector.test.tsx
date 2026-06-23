@@ -1,10 +1,13 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-const mockPush = jest.fn();
-const mockSetUserProfile = jest.fn();
-const mockStore = {
+var mockPush = jest.fn();
+var mockSetUserProfile = jest.fn();
+var mockStore = {
   userProfile: { preferredLanguage: 'en' },
   setUserProfile: mockSetUserProfile,
 };
@@ -23,52 +26,55 @@ jest.mock('@/lib/store', () => ({
 
 import { LanguageSelector } from '../ui/LanguageSelector';
 
-describe('LanguageSelector', () => {
-  beforeEach(() => {
+describe('LanguageSelector', function() {
+  beforeEach(function() {
     mockPush.mockClear();
     mockSetUserProfile.mockClear();
   });
 
-  it('renders language options', () => {
+  it('renders language options', function() {
     render(<LanguageSelector />);
     expect(screen.getByText('English')).toBeInTheDocument();
     expect(screen.getByText('हिन्दी (Hindi)')).toBeInTheDocument();
     expect(screen.getByText('தமிழ் (Tamil)')).toBeInTheDocument();
   });
 
-  it('has select with aria-label', () => {
+  it('has select with aria-label', function() {
     render(<LanguageSelector />);
     expect(screen.getByLabelText('Select preferred language')).toBeInTheDocument();
   });
 
-  it('highlights current language', () => {
+  it('highlights current language', function() {
     render(<LanguageSelector />);
-    const select = screen.getByLabelText('Select preferred language') as HTMLSelectElement;
+    var select = screen.getByLabelText('Select preferred language') as HTMLSelectElement;
     expect(select.value).toBe('en');
   });
 
-  it('calls onChangeLanguage when selecting a language', () => {
-    const handleChange = jest.fn();
+  it('calls onChangeLanguage when selecting a language', function() {
+    var handleChange = jest.fn();
     render(<LanguageSelector onChangeLanguage={handleChange} />);
-    const select = screen.getByLabelText('Select preferred language');
+    var select = screen.getByLabelText('Select preferred language');
     fireEvent.change(select, { target: { value: 'hi' } });
     expect(handleChange).toHaveBeenCalledWith('hi');
   });
 
-  it('updates store when language changes', () => {
+  it('updates store when language changes', function() {
     render(<LanguageSelector />);
-    const select = screen.getByLabelText('Select preferred language');
+    var select = screen.getByLabelText('Select preferred language');
     fireEvent.change(select, { target: { value: 'ta' } });
     expect(mockSetUserProfile).toHaveBeenCalledWith({ preferredLanguage: 'ta' });
   });
 
-  it('renders globe icon', () => {
+  it('renders globe icon', function() {
     render(<LanguageSelector />);
     expect(screen.getByTestId('globe-icon')).toBeInTheDocument();
   });
 
-  it('applies custom className', () => {
-    const { container } = render(<LanguageSelector className="my-class" />);
+  it('applies custom className', function() {
+    var { container } = render(<LanguageSelector className="my-class" />);
     expect(container.firstChild).toHaveClass('my-class');
   });
 });
+
+
+

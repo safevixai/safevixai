@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -6,8 +9,8 @@ jest.mock('../../lib/public-env', () => ({
   PUBLIC_API_BASE_URL: 'https://api.safevix.test',
 }));
 
-describe('ChallanCalculator', () => {
-  beforeEach(() => {
+describe('ChallanCalculator', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -20,7 +23,7 @@ describe('ChallanCalculator', () => {
     });
   });
 
-  it('renders calculator form', () => {
+  it('renders calculator form', function() {
     render(
       <div data-testid="challan-form">
         <select data-testid="violation-select">
@@ -45,7 +48,7 @@ describe('ChallanCalculator', () => {
     expect(screen.getByTestId('calculate-button')).toBeTruthy();
   });
 
-  it('allows violation selection', () => {
+  it('allows violation selection', function() {
     render(
       <select data-testid="violation-select">
         <option value="dui">Drunk Driving</option>
@@ -53,13 +56,13 @@ describe('ChallanCalculator', () => {
       </select>
     );
 
-    const select = screen.getByTestId('violation-select');
+    var select = screen.getByTestId('violation-select');
     fireEvent.change(select, { target: { value: 'helmet' } });
 
     expect(select).toHaveValue('helmet');
   });
 
-  it('allows state selection', () => {
+  it('allows state selection', function() {
     render(
       <select data-testid="state-select">
         <option value="TN">Tamil Nadu</option>
@@ -67,13 +70,13 @@ describe('ChallanCalculator', () => {
       </select>
     );
 
-    const select = screen.getByTestId('state-select');
+    var select = screen.getByTestId('state-select');
     fireEvent.change(select, { target: { value: 'MH' } });
 
     expect(select).toHaveValue('MH');
   });
 
-  it('displays calculation result', () => {
+  it('displays calculation result', function() {
     render(
       <div data-testid="result-container">
         <p data-testid="fine-amount">Fine: ₹10,000</p>
@@ -85,7 +88,7 @@ describe('ChallanCalculator', () => {
     expect(screen.getByText('Fine: ₹10,000')).toBeTruthy();
   });
 
-  it('shows loading state during calculation', () => {
+  it('shows loading state during calculation', function() {
     render(
       <div data-testid="loading-state">
         <span>Calculating...</span>
@@ -95,7 +98,7 @@ describe('ChallanCalculator', () => {
     expect(screen.getByText('Calculating...')).toBeTruthy();
   });
 
-  it('shows error state on API failure', () => {
+  it('shows error state on API failure', function() {
     render(
       <div data-testid="error-state">
         <p>Failed to calculate fine. Please try again.</p>
@@ -105,7 +108,7 @@ describe('ChallanCalculator', () => {
     expect(screen.getByText('Failed to calculate fine. Please try again.')).toBeTruthy();
   });
 
-  it('supports repeat offender toggle', () => {
+  it('supports repeat offender toggle', function() {
     render(
       <div>
         <label>
@@ -115,10 +118,12 @@ describe('ChallanCalculator', () => {
       </div>
     );
 
-    const checkbox = screen.getByTestId('repeat-toggle');
+    var checkbox = screen.getByTestId('repeat-toggle');
     expect(checkbox).not.toBeChecked();
 
     fireEvent.click(checkbox);
     expect(checkbox).toBeChecked();
   });
 });
+
+

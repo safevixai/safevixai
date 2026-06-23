@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -23,27 +26,27 @@ jest.mock('../../lib/sounds', () => ({
   sounds: { sosSent: jest.fn() },
 }));
 
-describe('SOSButton', () => {
-  beforeEach(() => {
+describe('SOSButton', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
     window.open = jest.fn(() => ({ opener: null })) as jest.Mock;
   });
 
-  it('renders SOS button with pulse animation', async () => {
-    const { SOSButton } = await import('../SOSButton');
+  it('renders SOS button with pulse animation', async function() {
+    var { SOSButton } = await import('../SOSButton');
     render(<SOSButton />);
-    const button = screen.getByLabelText('Emergency SOS');
+    var button = screen.getByLabelText('Emergency SOS');
     expect(button).toBeInTheDocument();
   });
 
-  it('shows SOS badge text', async () => {
-    const { SOSButton } = await import('../SOSButton');
+  it('shows SOS badge text', async function() {
+    var { SOSButton } = await import('../SOSButton');
     render(<SOSButton />);
     expect(screen.getByText('SOS')).toBeInTheDocument();
   });
 
-  it('opens confirmation panel on click', async () => {
-    const { SOSButton } = await import('../SOSButton');
+  it('opens confirmation panel on click', async function() {
+    var { SOSButton } = await import('../SOSButton');
     render(<SOSButton />);
     fireEvent.click(screen.getByLabelText('Emergency SOS'));
     expect(screen.getByText('Confirm SOS Trigger')).toBeInTheDocument();
@@ -51,30 +54,30 @@ describe('SOSButton', () => {
     expect(screen.getByText('Standard SMS Alert')).toBeInTheDocument();
   });
 
-  it('shows Cancel button after expanding', async () => {
-    const { SOSButton } = await import('../SOSButton');
+  it('shows Cancel button after expanding', async function() {
+    var { SOSButton } = await import('../SOSButton');
     render(<SOSButton />);
     fireEvent.click(screen.getByLabelText('Emergency SOS'));
     expect(screen.getByText('Cancel')).toBeInTheDocument();
   });
 
-  it('displays GPS coordinates in confirmation panel', async () => {
-    const { SOSButton } = await import('../SOSButton');
+  it('displays GPS coordinates in confirmation panel', async function() {
+    var { SOSButton } = await import('../SOSButton');
     render(<SOSButton />);
     fireEvent.click(screen.getByLabelText('Emergency SOS'));
     expect(screen.getByText('13.0827, 80.2707')).toBeInTheDocument();
   });
 
-  it('has accessible labels', async () => {
-    const { SOSButton } = await import('../SOSButton');
+  it('has accessible labels', async function() {
+    var { SOSButton } = await import('../SOSButton');
     render(<SOSButton />);
     expect(screen.getByLabelText('Emergency SOS')).toBeTruthy();
     fireEvent.click(screen.getByLabelText('Emergency SOS'));
     expect(screen.getByLabelText('Cancel emergency SOS')).toBeTruthy();
   });
 
-  it('closes panel when Cancel is clicked', async () => {
-    const { SOSButton } = await import('../SOSButton');
+  it('closes panel when Cancel is clicked', async function() {
+    var { SOSButton } = await import('../SOSButton');
     render(<SOSButton />);
     fireEvent.click(screen.getByLabelText('Emergency SOS'));
     expect(screen.getByText('Cancel')).toBeInTheDocument();
@@ -82,3 +85,6 @@ describe('SOSButton', () => {
     expect(screen.queryByText('Confirm SOS Trigger')).not.toBeInTheDocument();
   });
 });
+
+
+

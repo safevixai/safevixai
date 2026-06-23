@@ -1,9 +1,12 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ServiceCard } from '../ServiceCard';
 
-const mockService = {
+var mockService = {
   id: '1',
   name: 'Apollo Hospital',
   category: 'hospital' as const,
@@ -14,79 +17,79 @@ const mockService = {
   source: 'api' as const,
 };
 
-describe('ServiceCard', () => {
-  beforeEach(() => {
+describe('ServiceCard', function() {
+  beforeEach(function() {
     localStorage.clear();
   });
 
-  it('renders service name', () => {
+  it('renders service name', function() {
     render(<ServiceCard service={mockService} />);
     expect(screen.getByText('Apollo Hospital')).toBeInTheDocument();
   });
 
-  it('renders category label', () => {
+  it('renders category label', function() {
     render(<ServiceCard service={mockService} />);
     expect(screen.getByText('Hospital')).toBeInTheDocument();
   });
 
-  it('renders formatted distance in km', () => {
+  it('renders formatted distance in km', function() {
     render(<ServiceCard service={mockService} />);
     expect(screen.getByText('1.5 km')).toBeInTheDocument();
   });
 
-  it('renders distance in metres when < 1km', () => {
-    const nearbyService = { ...mockService, distance: 500 };
+  it('renders distance in metres when < 1km', function() {
+    var nearbyService = { ...mockService, distance: 500 };
     render(<ServiceCard service={nearbyService} />);
     expect(screen.getByText('500 m')).toBeInTheDocument();
   });
 
-  it('renders distance 0m', () => {
-    const nearbyService = { ...mockService, distance: 0 };
+  it('renders distance 0m', function() {
+    var nearbyService = { ...mockService, distance: 0 };
     render(<ServiceCard service={nearbyService} />);
     expect(screen.getByText('0 m')).toBeInTheDocument();
   });
 
-  it('renders phone call link when phone is provided', () => {
+  it('renders phone call link when phone is provided', function() {
     render(<ServiceCard service={mockService} />);
-    const callLink = screen.getByLabelText('Call Apollo Hospital: +911234567890');
+    var callLink = screen.getByLabelText('Call Apollo Hospital: +911234567890');
     expect(callLink).toBeInTheDocument();
     expect(callLink).toHaveAttribute('href', 'tel:+911234567890');
   });
 
-  it('does not render call link when phone is missing', () => {
-    const noPhoneService = { ...mockService, phone: undefined };
+  it('does not render call link when phone is missing', function() {
+    var noPhoneService = { ...mockService, phone: undefined };
     render(<ServiceCard service={noPhoneService} />);
     expect(screen.queryByText('Call')).not.toBeInTheDocument();
   });
 
-  it('renders directions button', () => {
+  it('renders directions button', function() {
     render(<ServiceCard service={mockService} />);
     expect(screen.getByLabelText('Get directions to Apollo Hospital')).toBeInTheDocument();
   });
 
-  it('renders offline source indicator', () => {
-    const offlineService = { ...mockService, source: 'offline' as const };
-    const { container } = render(<ServiceCard service={offlineService} />);
+  it('renders offline source indicator', function() {
+    var offlineService = { ...mockService, source: 'offline' as const };
+    var { container } = render(<ServiceCard service={offlineService} />);
     expect(container.textContent).toContain('offline cache');
   });
 
-  it('does not show offline indicator for api source', () => {
+  it('does not show offline indicator for api source', function() {
     render(<ServiceCard service={mockService} />);
     expect(screen.queryByText('offline cache')).not.toBeInTheDocument();
   });
 
-  it('has role article with aria-label', () => {
+  it('has role article with aria-label', function() {
     render(<ServiceCard service={mockService} />);
-    const article = screen.getByRole('article');
+    var article = screen.getByRole('article');
     expect(article).toHaveAttribute('aria-label', 'Apollo Hospital');
   });
 
-  it('renders nav app chooser button', () => {
+  it('renders nav app chooser button', function() {
     render(<ServiceCard service={mockService} />);
     expect(screen.getByLabelText('Choose navigation app')).toBeInTheDocument();
   });
 
-  it('shows nav app dropdown on chooser click', () => {
+  it('shows nav app dropdown on chooser click', function() {
     render(<ServiceCard service={mockService} />);
     fireEvent.click(screen.getByLabelText('Choose navigation app'));
     expect(screen.getByText('Google Maps')).toBeInTheDocument();
@@ -94,17 +97,17 @@ describe('ServiceCard', () => {
     expect(screen.getByText('Apple Maps')).toBeInTheDocument();
   });
 
-  it('hides dropdown on second chooser click', () => {
+  it('hides dropdown on second chooser click', function() {
     render(<ServiceCard service={mockService} />);
-    const chooser = screen.getByLabelText('Choose navigation app');
+    var chooser = screen.getByLabelText('Choose navigation app');
     fireEvent.click(chooser);
     expect(screen.getByText('Google Maps')).toBeInTheDocument();
     fireEvent.click(chooser);
     expect(screen.queryByText('Google Maps')).not.toBeInTheDocument();
   });
 
-  it('renders all category labels', () => {
-    const categories = [
+  it('renders all category labels', function() {
+    var categories = [
       { category: 'ambulance' as const, label: 'Ambulance' },
       { category: 'police' as const, label: 'Police Station' },
       { category: 'fire' as const, label: 'Fire Station' },
@@ -114,14 +117,16 @@ describe('ServiceCard', () => {
       { category: 'showroom' as const, label: 'Showroom' },
     ];
     for (const { category, label } of categories) {
-      const { unmount } = render(<ServiceCard service={{ ...mockService, category }} />);
+      var { unmount } = render(<ServiceCard service={{ ...mockService, category }} />);
       expect(screen.getByText(label)).toBeInTheDocument();
       unmount();
     }
   });
 
-  it('applies custom className', () => {
-    const { container } = render(<ServiceCard service={mockService} className="my-class" />);
+  it('applies custom className', function() {
+    var { container } = render(<ServiceCard service={mockService} className="my-class" />);
     expect(container.firstChild).toHaveClass('my-class');
   });
 });
+
+

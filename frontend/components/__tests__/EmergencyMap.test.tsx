@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -17,24 +20,26 @@ jest.mock('next/dynamic', () => {
 
 import { EmergencyMap } from '../EmergencyMap';
 
-const defaultProps = {
+var defaultProps = {
   center: [13.0827, 80.2707] as [number, number],
   facilities: [],
 };
 
-describe('EmergencyMap', () => {
-  it('shows loading state with Loader2', () => {
+describe('EmergencyMap', function() {
+  it('shows loading state with Loader2', function() {
     render(<EmergencyMap {...defaultProps} />);
     expect(screen.getByTestId('loader2')).toBeInTheDocument();
   });
 
-  it('has Initializing Map Subsystem text', () => {
+  it('has Initializing Map Subsystem text', function() {
     render(<EmergencyMap {...defaultProps} />);
     expect(screen.getByText('Initializing Map Subsystem...')).toBeInTheDocument();
   });
 
-  it('dynamically imports EmergencyMapInner', () => {
+  it('dynamically imports EmergencyMapInner', function() {
     render(<EmergencyMap {...defaultProps} />);
     expect(screen.getByText('Initializing Map Subsystem...')).toBeInTheDocument();
   });
 });
+
+

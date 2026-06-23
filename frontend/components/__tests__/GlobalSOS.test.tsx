@@ -1,8 +1,11 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-const mockUsePathname = jest.fn();
+var mockUsePathname = jest.fn();
 
 jest.mock('next/navigation', () => ({
   usePathname: () => mockUsePathname(),
@@ -18,99 +21,102 @@ jest.mock('@/lib/haptics', () => ({
 
 import { GlobalSOS } from '../GlobalSOS';
 
-describe('GlobalSOS', () => {
-  beforeEach(() => {
+describe('GlobalSOS', function() {
+  beforeEach(function() {
     mockUsePathname.mockReset();
   });
 
-  it('renders null on hidden route /sos', () => {
+  it('renders null on hidden route /sos', function() {
     mockUsePathname.mockReturnValue('/sos');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders null on root / route', () => {
+  it('renders null on root / route', function() {
     mockUsePathname.mockReturnValue('/');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders null on /emergency route', () => {
+  it('renders null on /emergency route', function() {
     mockUsePathname.mockReturnValue('/emergency');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders null on /first-aid route', () => {
+  it('renders null on /first-aid route', function() {
     mockUsePathname.mockReturnValue('/first-aid');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders null on /report route', () => {
+  it('renders null on /report route', function() {
     mockUsePathname.mockReturnValue('/report');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders null on /challan route', () => {
+  it('renders null on /challan route', function() {
     mockUsePathname.mockReturnValue('/challan');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders null on /profile route', () => {
+  it('renders null on /profile route', function() {
     mockUsePathname.mockReturnValue('/profile');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders null on /settings route', () => {
+  it('renders null on /settings route', function() {
     mockUsePathname.mockReturnValue('/settings');
-    const { container } = render(<GlobalSOS />);
+    var { container } = render(<GlobalSOS />);
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders SOS buttons on non-hidden route /assistant', () => {
+  it('renders SOS buttons on non-hidden route /assistant', function() {
     mockUsePathname.mockReturnValue('/assistant');
     render(<GlobalSOS />);
-    const buttons = screen.getAllByLabelText('Emergency SOS');
+    var buttons = screen.getAllByLabelText('Emergency SOS');
     expect(buttons.length).toBe(2);
   });
 
-  it('has aria-label "Emergency SOS" on buttons', () => {
+  it('has aria-label "Emergency SOS" on buttons', function() {
     mockUsePathname.mockReturnValue('/assistant');
     render(<GlobalSOS />);
-    const buttons = screen.getAllByLabelText('Emergency SOS');
+    var buttons = screen.getAllByLabelText('Emergency SOS');
     expect(buttons.length).toBe(2);
     buttons.forEach(btn => {
       expect(btn).toHaveAttribute('aria-label', 'Emergency SOS');
     });
   });
 
-  it('links point to /sos', () => {
+  it('links point to /sos', function() {
     mockUsePathname.mockReturnValue('/assistant');
     render(<GlobalSOS />);
-    const links = screen.getAllByRole('link');
+    var links = screen.getAllByRole('link');
     links.forEach(link => {
       expect(link).toHaveAttribute('href', '/sos');
     });
   });
 
-  it('renders mobile variant with lg:hidden class', () => {
+  it('renders mobile variant with lg:hidden class', function() {
     mockUsePathname.mockReturnValue('/assistant');
-    const { container } = render(<GlobalSOS />);
-    const divs = container.querySelectorAll('div.fixed');
+    var { container } = render(<GlobalSOS />);
+    var divs = container.querySelectorAll('div.fixed');
     expect(divs.length).toBe(2);
     expect(divs[0]).toHaveClass('lg:hidden');
   });
 
-  it('renders desktop variant with hidden lg:block classes', () => {
+  it('renders desktop variant with hidden lg:block classes', function() {
     mockUsePathname.mockReturnValue('/assistant');
-    const { container } = render(<GlobalSOS />);
-    const divs = container.querySelectorAll('div.fixed');
+    var { container } = render(<GlobalSOS />);
+    var divs = container.querySelectorAll('div.fixed');
     expect(divs.length).toBe(2);
     expect(divs[1]).toHaveClass('hidden');
     expect(divs[1]).toHaveClass('lg:block');
   });
 });
+
+
+

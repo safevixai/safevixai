@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * Locator — Shared Types, Utilities & Constants
  * Extracted from locator/page.tsx for clean modular architecture.

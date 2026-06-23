@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { NextRequest, NextResponse } from 'next/server';
 
 const MAPTILER_BASE = 'https://api.maptiler.com';

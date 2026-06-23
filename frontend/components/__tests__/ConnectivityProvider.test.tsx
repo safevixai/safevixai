@@ -1,9 +1,12 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-const mockSetConnectivity = jest.fn();
-const mockUseAppStore = jest.fn();
+var mockSetConnectivity = jest.fn();
+var mockUseAppStore = jest.fn();
 
 jest.mock('@/lib/store', () => ({
   useAppStore: (selector: any) => mockUseAppStore(selector),
@@ -15,14 +18,14 @@ jest.mock('zustand/react/shallow', () => ({
 
 import { ConnectivityProvider } from '../ConnectivityProvider';
 
-describe('ConnectivityProvider', () => {
-  beforeEach(() => {
+describe('ConnectivityProvider', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
     mockUseAppStore.mockReturnValue({ setConnectivity: mockSetConnectivity });
     Object.defineProperty(navigator, 'onLine', { configurable: true, value: true });
   });
 
-  it('renders children', () => {
+  it('renders children', function() {
     render(
       <ConnectivityProvider>
         <div data-testid="child">Hello</div>
@@ -32,8 +35,8 @@ describe('ConnectivityProvider', () => {
     expect(screen.getByText('Hello')).toBeInTheDocument();
   });
 
-  it('wraps children in a fragment provider structure', () => {
-    const { container } = render(
+  it('wraps children in a fragment provider structure', function() {
+    var { container } = render(
       <ConnectivityProvider>
         <span>foo</span>
         <span>bar</span>
@@ -45,3 +48,6 @@ describe('ConnectivityProvider', () => {
     expect(container.children[1].textContent).toBe('bar');
   });
 });
+
+
+

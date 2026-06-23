@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';

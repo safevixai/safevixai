@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -19,12 +22,12 @@ jest.mock('@/lib/gsap', () => ({
 
 import { SystemStatusBar } from '../ui/SystemStatusBar';
 
-describe('SystemStatusBar', () => {
-  beforeEach(() => {
+describe('SystemStatusBar', function() {
+  beforeEach(function() {
     sessionStorage.clear();
   });
 
-  it('does not render when services are operational', async () => {
+  it('does not render when services are operational', async function() {
     global.fetch = jest.fn().mockResolvedValue({ ok: true });
     render(<SystemStatusBar />);
     await act(async () => {
@@ -33,31 +36,34 @@ describe('SystemStatusBar', () => {
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
   });
 
-  it('renders degraded status when one service is down', async () => {
+  it('renders degraded status when one service is down', async function() {
     global.fetch = jest.fn()
       .mockResolvedValueOnce({ ok: false })
       .mockResolvedValueOnce({ ok: true });
     render(<SystemStatusBar />);
-    const statusEl = await screen.findByRole('status');
+    var statusEl = await screen.findByRole('status');
     expect(statusEl).toBeInTheDocument();
   });
 
-  it('renders down status when all services are down', async () => {
+  it('renders down status when all services are down', async function() {
     global.fetch = jest.fn().mockRejectedValue(new Error('network error'));
     render(<SystemStatusBar />);
     expect(await screen.findByText(/waking up/i)).toBeInTheDocument();
   });
 
-  it('shows connection status message', async () => {
+  it('shows connection status message', async function() {
     global.fetch = jest.fn().mockRejectedValue(new Error('network error'));
     render(<SystemStatusBar />);
     expect(await screen.findByText(/SafeVixAI/i)).toBeInTheDocument();
   });
 
-  it('has dismiss button', async () => {
+  it('has dismiss button', async function() {
     global.fetch = jest.fn().mockRejectedValue(new Error('network error'));
     render(<SystemStatusBar />);
     await screen.findByRole('status');
     expect(screen.getByLabelText('Dismiss System Status')).toBeInTheDocument();
   });
 });
+
+
+

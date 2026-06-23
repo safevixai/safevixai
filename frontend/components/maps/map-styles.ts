@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * MapLibreCanvas — Map Styles
  * Google Maps raster styles, MapTiler vector, OpenFreeMap fallback.

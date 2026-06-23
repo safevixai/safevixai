@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { EmergencyMap } from '@/components/EmergencyMap';
 import { LocatorService } from '../locator-utils';
 import { RouteOption } from '@/lib/api';

@@ -1,9 +1,12 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThemeProvider, useTheme } from '../ThemeProvider';
 
-beforeEach(() => {
+beforeEach(function() {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: jest.fn().mockImplementation((query) => ({
@@ -18,7 +21,7 @@ beforeEach(() => {
 });
 
 function TestConsumer() {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  var { theme, resolvedTheme, setTheme } = useTheme();
   return (
     <div>
       <span data-testid="theme">{theme}</span>
@@ -34,73 +37,75 @@ function renderWithTheme(ui: React.ReactElement) {
   return render(<ThemeProvider>{ui}</ThemeProvider>);
 }
 
-describe('ThemeProvider', () => {
-  beforeEach(() => {
+describe('ThemeProvider', function() {
+  beforeEach(function() {
     localStorage.clear();
     document.documentElement.removeAttribute('data-theme');
     document.documentElement.classList.remove('dark', 'light');
   });
 
-  it('renders children', () => {
+  it('renders children', function() {
     renderWithTheme(<div data-testid="child">hello</div>);
     expect(screen.getByTestId('child')).toBeInTheDocument();
   });
 
-  it('provides default theme as system', () => {
+  it('provides default theme as system', function() {
     renderWithTheme(<TestConsumer />);
     expect(screen.getByTestId('theme')).toHaveTextContent('system');
   });
 
-  it('sets theme to dark via setTheme', () => {
+  it('sets theme to dark via setTheme', function() {
     renderWithTheme(<TestConsumer />);
     act(() => { fireEvent.click(screen.getByTestId('set-dark')); });
     expect(screen.getByTestId('theme')).toHaveTextContent('dark');
     expect(localStorage.getItem('svai-theme')).toBe('dark');
   });
 
-  it('sets theme to light via setTheme', () => {
+  it('sets theme to light via setTheme', function() {
     renderWithTheme(<TestConsumer />);
     act(() => { fireEvent.click(screen.getByTestId('set-light')); });
     expect(screen.getByTestId('theme')).toHaveTextContent('light');
     expect(localStorage.getItem('svai-theme')).toBe('light');
   });
 
-  it('sets theme to system via setTheme', () => {
+  it('sets theme to system via setTheme', function() {
     renderWithTheme(<TestConsumer />);
     act(() => { fireEvent.click(screen.getByTestId('set-system')); });
     expect(screen.getByTestId('theme')).toHaveTextContent('system');
     expect(localStorage.getItem('svai-theme')).toBe('system');
   });
 
-  it('updates data-theme attribute on root', () => {
+  it('updates data-theme attribute on root', function() {
     renderWithTheme(<TestConsumer />);
     act(() => { fireEvent.click(screen.getByTestId('set-dark')); });
     expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
   });
 
-  it('toggles dark class on root', () => {
+  it('toggles dark class on root', function() {
     renderWithTheme(<TestConsumer />);
     act(() => { fireEvent.click(screen.getByTestId('set-dark')); });
     expect(document.documentElement.classList.contains('dark')).toBe(true);
     expect(document.documentElement.classList.contains('light')).toBe(false);
   });
 
-  it('toggles light class on root', () => {
+  it('toggles light class on root', function() {
     renderWithTheme(<TestConsumer />);
     act(() => { fireEvent.click(screen.getByTestId('set-light')); });
     expect(document.documentElement.classList.contains('light')).toBe(true);
     expect(document.documentElement.classList.contains('dark')).toBe(false);
   });
 
-  it('resolves theme correctly', () => {
+  it('resolves theme correctly', function() {
     renderWithTheme(<TestConsumer />);
     act(() => { fireEvent.click(screen.getByTestId('set-dark')); });
     expect(screen.getByTestId('resolved')).toHaveTextContent('dark');
   });
 
-  it('loads saved theme from localStorage', () => {
+  it('loads saved theme from localStorage', function() {
     localStorage.setItem('svai-theme', 'light');
     renderWithTheme(<TestConsumer />);
     expect(screen.getByTestId('theme')).toHaveTextContent('light');
   });
 });
+
+

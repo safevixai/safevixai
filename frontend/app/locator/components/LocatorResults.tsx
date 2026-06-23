@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import Link from 'next/link';
 import { useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';

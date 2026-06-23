@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export default function AssistantLoading() {
   return (
     <div className="flex min-h-[80vh] flex-col p-4 md:p-6">

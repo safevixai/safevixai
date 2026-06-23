@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { act, render, waitFor } from '@testing-library/react';
 import maplibregl from 'maplibre-gl';
 import { toggleTrafficLayer } from '@/lib/traffic-layer';
@@ -110,8 +113,8 @@ jest.mock('maplibre-gl', () => {
   };
 });
 
-describe('MapLibreCanvas', () => {
-  beforeEach(() => {
+describe('MapLibreCanvas', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
     useAppStore.setState({
       mapStatus: 'loading',
@@ -120,12 +123,12 @@ describe('MapLibreCanvas', () => {
     });
   });
 
-  it('removes the map on unmount without owning GPS tracking', async () => {
-    const { unmount } = render(
+  it('removes the map on unmount without owning GPS tracking', async function() {
+    var { unmount } = render(
       <MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />
     );
 
-    const maplibreMock = maplibregl as typeof maplibregl & {
+    var maplibreMock = maplibregl as typeof maplibregl & {
       __mapRemove: jest.Mock;
       Map: jest.Mock;
     };
@@ -137,12 +140,12 @@ describe('MapLibreCanvas', () => {
     expect(maplibreMock.__mapRemove).toHaveBeenCalledTimes(1);
   });
 
-  it('keeps the same map instance when the center changes', async () => {
-    const { rerender } = render(
+  it('keeps the same map instance when the center changes', async function() {
+    var { rerender } = render(
       <MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />
     );
 
-    const maplibreMock = maplibregl as typeof maplibregl & {
+    var maplibreMock = maplibregl as typeof maplibregl & {
       __mapInstance: { easeTo: jest.Mock };
       Map: jest.Mock;
     };
@@ -155,12 +158,12 @@ describe('MapLibreCanvas', () => {
     expect(maplibreMock.Map).toHaveBeenCalledTimes(1);
   });
 
-  it('keeps the same map instance when facilities update', async () => {
-    const { rerender } = render(
+  it('keeps the same map instance when facilities update', async function() {
+    var { rerender } = render(
       <MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} facilities={[]} />
     );
 
-    const maplibreMock = maplibregl as typeof maplibregl & {
+    var maplibreMock = maplibregl as typeof maplibregl & {
       Map: jest.Mock;
     };
 
@@ -185,13 +188,13 @@ describe('MapLibreCanvas', () => {
     expect(maplibreMock.Map).toHaveBeenCalledTimes(1);
   });
 
-  it('toggles traffic without recreating the map', async () => {
-    const { rerender } = render(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
+  it('toggles traffic without recreating the map', async function() {
+    var { rerender } = render(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
 
-    const maplibreMock = maplibregl as typeof maplibregl & {
+    var maplibreMock = maplibregl as typeof maplibregl & {
       Map: jest.Mock;
     };
-    const toggleTrafficLayerMock = toggleTrafficLayer as jest.Mock;
+    var toggleTrafficLayerMock = toggleTrafficLayer as jest.Mock;
 
     await act(async () => {
       useAppStore.setState({ showTraffic: true });
@@ -206,7 +209,7 @@ describe('MapLibreCanvas', () => {
     expect(maplibreMock.Map).toHaveBeenCalledTimes(1);
   });
 
-  it('publishes frontend map status when the style is ready', async () => {
+  it('publishes frontend map status when the style is ready', async function() {
     render(<MapLibreCanvas center={[13.0827, 80.2707]} currentLocation={null} />);
 
     await waitFor(() => {
@@ -216,3 +219,6 @@ describe('MapLibreCanvas', () => {
     });
   });
 });
+
+
+

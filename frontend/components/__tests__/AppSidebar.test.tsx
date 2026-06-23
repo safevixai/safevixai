@@ -1,0 +1,76 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
+var mockPathname = '/'
+jest.mock('next/navigation', function() {
+  return { usePathname: function() { return mockPathname } }
+})
+
+var mockState: any = { isDesktopSidebarCollapsed: true, setDesktopSidebarCollapsed: jest.fn(), isThinSidebarEnabled: false, setThinSidebarEnabled: jest.fn() }
+jest.mock('@/lib/store', function() {
+  return {
+    useAppStore: function(selector: any) {
+      if (typeof selector === 'function') return selector(mockState)
+      return mockState
+    },
+  }
+})
+
+import { render, screen, fireEvent } from '@testing-library/react'
+import React from 'react'
+import { AppSidebar } from '../AppSidebar'
+
+describe('AppSidebar', function() {
+  beforeEach(function() {
+    jest.clearAllMocks()
+    mockPathname = '/'
+    mockState = { isDesktopSidebarCollapsed: true, setDesktopSidebarCollapsed: jest.fn(), isThinSidebarEnabled: false, setThinSidebarEnabled: jest.fn() }
+  })
+
+  it('renders hamburger when collapsed', function() {
+    render(React.createElement(AppSidebar))
+    expect(screen.getByLabelText('Expand sidebar')).toBeTruthy()
+    expect(screen.queryByText('SAFEVIX_AI')).toBeNull()
+  })
+
+  it('renders full content when expanded', function() {
+    mockState.isDesktopSidebarCollapsed = false
+    render(React.createElement(AppSidebar))
+    expect(screen.getByText('SAFEVIX_AI')).toBeTruthy()
+    expect(screen.getByText('System SOS')).toBeTruthy()
+  })
+
+  it('renders navigation items when expanded', function() {
+    mockState.isDesktopSidebarCollapsed = false
+    render(React.createElement(AppSidebar))
+    expect(screen.getByText('Map')).toBeTruthy()
+    expect(screen.getByText('AI Assistant')).toBeTruthy()
+    expect(screen.getByText('Locator')).toBeTruthy()
+  })
+
+  it('shows emergency dials when expanded', function() {
+    mockState.isDesktopSidebarCollapsed = false
+    render(React.createElement(AppSidebar))
+    expect(screen.getByText('112')).toBeTruthy()
+    expect(screen.getByText('100')).toBeTruthy()
+  })
+
+  it('calls setDesktopSidebarCollapsed when hamburger clicked', function() {
+    render(React.createElement(AppSidebar))
+    fireEvent.click(screen.getByLabelText('Expand sidebar'))
+    expect(mockState.setDesktopSidebarCollapsed).toHaveBeenCalledWith(false)
+  })
+
+  it('calls setDesktopSidebarCollapsed when X clicked', function() {
+    mockState.isDesktopSidebarCollapsed = false
+    render(React.createElement(AppSidebar))
+    fireEvent.click(screen.getByLabelText('Close sidebar'))
+    expect(mockState.setDesktopSidebarCollapsed).toHaveBeenCalledWith(true)
+  })
+
+  it('shows SYSTEM ONLINE indicator when expanded', function() {
+    mockState.isDesktopSidebarCollapsed = false
+    render(React.createElement(AppSidebar))
+    expect(screen.getByText('SYSTEM ONLINE')).toBeTruthy()
+  })
+})

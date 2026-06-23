@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * MapLibreCanvas — Geometry & DOM Helpers
  * Pure utility functions for building GeoJSON, markers, popups, accuracy circles.

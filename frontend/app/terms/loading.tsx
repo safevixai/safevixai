@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export default function Loading() {
   return (
     <div role="status" aria-live="polite" className="flex min-h-screen flex-col items-center justify-center bg-bg gap-4 px-6">

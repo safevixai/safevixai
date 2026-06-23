@@ -1,8 +1,11 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-const mockOnResult = jest.fn();
+var mockOnResult = jest.fn();
 
 jest.mock('../../lib/languages', () => ({
   getLanguageByCode: jest.fn((code: string) => {
@@ -15,10 +18,10 @@ jest.mock('../../lib/client-logger', () => ({
   logClientWarning: jest.fn(),
 }));
 
-let mockRecognitionInstance: Record<string, unknown>;
-let recognitionConstructor: jest.Mock;
+var mockRecognitionInstance: Record<string, unknown>;
+var recognitionConstructor: jest.Mock;
 
-beforeEach(() => {
+beforeEach(function() {
   mockOnResult.mockClear();
   jest.clearAllMocks();
 
@@ -42,17 +45,17 @@ beforeEach(() => {
 });
 
 function renderVoiceInput(props: Record<string, unknown> = {}) {
-  const { VoiceInput } = require('../VoiceInput');
+  var { VoiceInput } = require('../VoiceInput');
   return render(<VoiceInput onResult={mockOnResult} {...props} />);
 }
 
-describe('VoiceInput', () => {
-  it('renders mic button', () => {
+describe('VoiceInput', function() {
+  it('renders mic button', function() {
     renderVoiceInput();
     expect(screen.getByRole('button', { name: /start voice input/i })).toBeInTheDocument();
   });
 
-  it('starts recording on click and shows stop button after onstart', async () => {
+  it('starts recording on click and shows stop button after onstart', async function() {
     renderVoiceInput();
     fireEvent.click(screen.getByRole('button', { name: /start voice input/i }));
     expect(mockRecognitionInstance.start).toHaveBeenCalledTimes(1);
@@ -64,14 +67,14 @@ describe('VoiceInput', () => {
     expect(screen.getByRole('button', { name: /stop recording/i })).toBeInTheDocument();
   });
 
-  it('shows loading state while starting recognition', () => {
+  it('shows loading state while starting recognition', function() {
     renderVoiceInput();
-    const button = screen.getByRole('button', { name: /start voice input/i });
+    var button = screen.getByRole('button', { name: /start voice input/i });
     fireEvent.click(button);
     expect(screen.getByRole('button', { name: /start voice input/i })).toBeDisabled();
   });
 
-  it('calls onResult when speech result arrives', async () => {
+  it('calls onResult when speech result arrives', async function() {
     renderVoiceInput();
     fireEvent.click(screen.getByRole('button', { name: /start voice input/i }));
     await act(async () => { (mockRecognitionInstance.onstart as () => void)(); });
@@ -84,18 +87,18 @@ describe('VoiceInput', () => {
     expect(screen.getByRole('button', { name: /start voice input/i })).toBeInTheDocument();
   });
 
-  it('sets recognition.lang based on language prop', () => {
+  it('sets recognition.lang based on language prop', function() {
     renderVoiceInput({ language: 'hi' });
     expect(mockRecognitionInstance.lang).toBe('hi-IN');
   });
 
-  it('cleans up recognition on unmount', () => {
-    const { unmount } = renderVoiceInput();
+  it('cleans up recognition on unmount', function() {
+    var { unmount } = renderVoiceInput();
     unmount();
     expect(mockRecognitionInstance.abort).toHaveBeenCalledTimes(1);
   });
 
-  it('handles recognition error gracefully', async () => {
+  it('handles recognition error gracefully', async function() {
     renderVoiceInput();
     fireEvent.click(screen.getByRole('button', { name: /start voice input/i }));
     await act(async () => {
@@ -104,3 +107,6 @@ describe('VoiceInput', () => {
     expect(screen.getByRole('button', { name: /start voice input/i })).toBeInTheDocument();
   });
 });
+
+
+

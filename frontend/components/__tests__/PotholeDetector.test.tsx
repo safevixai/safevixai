@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import React from 'react';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -11,7 +14,7 @@ jest.mock('sonner', () => ({
 }));
 
 // Mock useRef so the component gets a valid video element for camera setup
-const mockVideoElement = document.createElement('video');
+var mockVideoElement = document.createElement('video');
 jest.mock('react', () => {
   const actual = jest.requireActual('react');
   return {
@@ -20,11 +23,11 @@ jest.mock('react', () => {
   };
 });
 
-const mockTrack = { stop: jest.fn() };
-const mockStream = { getTracks: () => [mockTrack] };
-let getUserMediaMock: jest.Mock;
+var mockTrack = { stop: jest.fn() };
+var mockStream = { getTracks: () => [mockTrack] };
+var getUserMediaMock: jest.Mock;
 
-beforeEach(() => {
+beforeEach(function() {
   jest.clearAllMocks();
   mockTrack.stop.mockReset();
 
@@ -37,26 +40,26 @@ beforeEach(() => {
 });
 
 function renderPotholeDetector() {
-  const PotholeDetector = require('../PotholeDetector').default;
+  var PotholeDetector = require('../PotholeDetector').default;
   return render(<PotholeDetector />);
 }
 
-describe('PotholeDetector', () => {
-  it('starts camera on mount', () => {
+describe('PotholeDetector', function() {
+  it('starts camera on mount', function() {
     renderPotholeDetector();
     expect(getUserMediaMock).toHaveBeenCalledWith(
       expect.objectContaining({ video: { facingMode: 'environment' } })
     );
   });
 
-  it('hasCamera state becomes true after camera starts', async () => {
+  it('hasCamera state becomes true after camera starts', async function() {
     renderPotholeDetector();
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /initiate ai scan/i })).toBeEnabled();
     });
   });
 
-  it('scanning toggle changes button text immediately', async () => {
+  it('scanning toggle changes button text immediately', async function() {
     renderPotholeDetector();
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /initiate ai scan/i })).toBeEnabled();
@@ -65,15 +68,15 @@ describe('PotholeDetector', () => {
     expect(screen.getByRole('button', { name: /processing sensor grid/i })).toBeDisabled();
   });
 
-  it('shows camera-unavailable state when getUserMedia rejects', async () => {
+  it('shows camera-unavailable state when getUserMedia rejects', async function() {
     getUserMediaMock.mockRejectedValue(new Error('Permission denied'));
     renderPotholeDetector();
     await act(async () => {});
     expect(screen.getByText(/active sensor required/i)).toBeInTheDocument();
   });
 
-  it('stops camera tracks on unmount', async () => {
-    const { unmount } = renderPotholeDetector();
+  it('stops camera tracks on unmount', async function() {
+    var { unmount } = renderPotholeDetector();
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /initiate ai scan/i })).toBeEnabled();
     });
@@ -81,3 +84,6 @@ describe('PotholeDetector', () => {
     expect(mockTrack.stop).toHaveBeenCalledTimes(1);
   });
 });
+
+
+

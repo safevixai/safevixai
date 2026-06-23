@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { EmergencyCardClient, type EmergencyCardData } from './EmergencyCardClient';
 
 interface PageProps {
