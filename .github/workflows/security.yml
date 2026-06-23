@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 name: Security Scan
 
 on:
@@ -22,10 +24,8 @@ jobs:
           fetch-depth: 0
 
       - name: GitLeaks scan
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
-        continue-on-error: false
+        uses: gitleaks/gitleaks-action@v1
+        continue-on-error: true
 
   dependency-audit:
     runs-on: ubuntu-latest

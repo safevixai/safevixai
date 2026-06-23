@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 name: Deploy Enterprise Docs
 on:
   push:
@@ -63,7 +65,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          mike deploy --push --update-aliases ${{ steps.version.outputs.version }} latest
+          mike deploy --push --update-aliases --init ${{ steps.version.outputs.version }} latest
         env:
           PLAUSIBLE_DOMAIN: ${{ secrets.PLAUSIBLE_DOMAIN || '' }}
           PLAUSIBLE_SRC: ${{ secrets.PLAUSIBLE_SRC || '' }}

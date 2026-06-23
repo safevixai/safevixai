@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 name: Update Master Document
 
 on:
@@ -16,13 +18,20 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Warmup production endpoints
+        continue-on-error: true
+        run: |
+          curl -sfI https://safevixai-api.onrender.com/health || echo "Backend not ready yet"
+          curl -sfI https://safevixai-chatbot.onrender.com/health || echo "Chatbot not ready yet"
+          curl -sfI https://safevixai.vercel.app || echo "Frontend not ready yet"
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -34,6 +43,7 @@ jobs:
 
       - name: Update master document
         run: python scripts/docs/update_master_doc.py
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}

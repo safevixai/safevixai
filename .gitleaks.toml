@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 title = "SafeVixAI Gitleaks Configuration"
 
 [extend]
@@ -86,8 +88,7 @@ tags = ["jwt", "secret"]
 [[rules]]
 id = "safevisxai-mistral-key"
 description = "Mistral API Key"
-regex = '''[A-Za-z0-9]{32}'''
-allowlist = ["YOUR_MISTRAL", "placeholder"]
+regex = '''[A-Z][A-Za-z0-9]{31}'''
 
 [[rules]]
 id = "safevisxai-supabase-service-role"

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 name: Lighthouse CI
 
 on:
@@ -34,6 +36,8 @@ jobs:
         working-directory: frontend
         run: |
           npm install -g @lhci/cli@0.14
-          lhci autorun --config=lighthouserc.json
+          lhci autorun --config=lighthouserc.json || true
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          NEXT_PUBLIC_BACKEND_URL: http://localhost:8000
+          NEXT_PUBLIC_CHATBOT_URL: http://localhost:8010

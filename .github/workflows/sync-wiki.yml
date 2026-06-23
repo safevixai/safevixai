@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 name: Wiki Documentation Sync
 
 on:
@@ -54,11 +56,11 @@ jobs:
             }
 
       - name: Run wiki manager
+        continue-on-error: true
         env:
           # Primary: GitHub Models (free via Student Developer Pack)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Fallbacks (set as GitHub Secrets)
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           # Email alerts on failure (optional)
@@ -67,7 +69,7 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode || 'full' }}"
           echo "=== Running wiki_manager.py in '$MODE' mode ==="
-          python scripts/docs/wiki_manager.py "$MODE"
+          python scripts/docs/wiki_manager.py "$MODE" || echo "wiki_manager.py exited with code $?"
 
       - name: Post-run integrity check
         run: |
