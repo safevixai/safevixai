@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """NVIDIA NIM provider — GPU-optimized inference via NVIDIA cloud.
 Free tier: 1,000 API credits on sign-up. Sign up: build.nvidia.com
 Env vars: NVIDIA_NIM_API_KEY, NVIDIA_NIM_MODEL (optional)

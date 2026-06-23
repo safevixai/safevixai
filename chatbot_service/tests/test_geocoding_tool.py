@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for tools/geocoding.py — GeocodingClient reverse_geocode edge cases."""
 from __future__ import annotations
 

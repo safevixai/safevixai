@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for providers/gemini_provider.py — uncovered lines: 51-52, 84, 146, 149, 152-154."""
 from __future__ import annotations
 

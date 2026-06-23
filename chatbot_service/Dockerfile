@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 # ── Stage 1: Build dependencies ──────────────────────────────────────────────
 FROM python:3.11-slim AS builder
 

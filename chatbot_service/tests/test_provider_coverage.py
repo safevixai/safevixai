@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for provider files: groq_provider, sarvam_provider, base."""
 from __future__ import annotations
 

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """What3Words API — convert GPS to 3-word address for SOS messages.
 
 Requires W3W_API_KEY (free signup at developer.what3words.com).

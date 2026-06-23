@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Open-Meteo Weather API — free, no key, unlimited.
 
 Used as the PRIMARY weather source. OpenWeatherMap becomes fallback.

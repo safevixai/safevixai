@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Geocoding Utility — Nominatim (primary) + OpenCage (fallback).
 
 Central geocoding for the chatbot service:

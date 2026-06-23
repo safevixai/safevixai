@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Verify ChromaDB RAG is populated and queryable."""
 import os
 import sys

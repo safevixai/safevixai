@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for tools: submit_report_tool, first_aid_tool."""
 from __future__ import annotations
 

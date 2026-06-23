@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 from agent.safety_checker import SafetyChecker, _normalize_text
 
 def test_normalize_text():

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for core/queue.py — TaskQueue, BackgroundWorker, Job."""
 from __future__ import annotations
 

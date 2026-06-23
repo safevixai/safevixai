@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """OpenRouter provider — gateway to 20+ models with one API key.
 Free tier: 50 req/day free. $10 gives 1K req. Sign up: openrouter.ai
 Env vars: OPENROUTER_API_KEY, OPENROUTER_MODEL (optional)

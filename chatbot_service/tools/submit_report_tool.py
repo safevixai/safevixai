@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """SubmitReportTool — wires chat assistant road reports directly to the backend API.
 
 The assistant calls this tool when the user wants to report a road hazard

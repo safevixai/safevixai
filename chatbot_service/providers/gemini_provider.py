@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Google Gemini provider — gemini-1.5-flash with 1M token context window.
 Free tier: 1,500 req/day, 1M tok/min. Sign up: aistudio.google.com
 Env vars: GEMINI_API_KEY, GEMINI_MODEL (optional, default: gemini-1.5-flash)

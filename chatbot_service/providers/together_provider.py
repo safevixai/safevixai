@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Together AI provider — $25 free credit on sign-up.
 Free tier: $25 credits (thousands of queries). Sign up: api.together.xyz
 Env vars: TOGETHER_API_KEY, TOGETHER_MODEL (optional)

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """C9: LLM response cache with Redis backend.
 
 Caches identical queries to avoid redundant LLM API calls.

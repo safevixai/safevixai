@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Provider base classes — shared httpx transport + prompt builder for all LLM providers."""
 from __future__ import annotations
 

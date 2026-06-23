@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Groq Cloud provider — llama-3.1-8b-instant at 300+ tok/s.
 Free tier: 14,400 req/day, 500K tok/day, 6,000 TPM. Sign up: console.groq.com
 Env vars: GROQ_API_KEY, GROQ_MODEL (optional, default: llama-3.1-8b-instant)

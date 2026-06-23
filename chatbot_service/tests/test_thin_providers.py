@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Tests for all 6 thin HttpProvider subclasses.
 
 All coverage goals:

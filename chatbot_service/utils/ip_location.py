@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """ip-api.com State Detection — FREE, no key, 45 req/min.
 
 Auto-detects the user's Indian state from their IP address.

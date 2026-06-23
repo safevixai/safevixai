@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 from agent.graph import ChatEngine
 from agent.intent_detector import IntentDetector
 from agent.safety_checker import SafetyChecker

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Weather Tool — Open-Meteo (primary) + OpenWeatherMap (fallback).
 
 Provides weather data for risk assessment and chatbot context.

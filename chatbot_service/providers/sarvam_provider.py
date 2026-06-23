@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Sarvam AI provider — India's sovereign language model.
 
 Routing priority for Indian languages:

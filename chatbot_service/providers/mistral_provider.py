@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Mistral AI provider — mistral-small at 1B tokens/month free.
 Free tier: 1B tok/month (La Plateforme). Sign up: console.mistral.ai
 Env vars: MISTRAL_API_KEY, MISTRAL_MODEL (optional)

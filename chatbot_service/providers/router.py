@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Provider Router — 11-provider fallback chain with Indian language routing.
 
 Auto-routing rules (in priority order):

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for providers/base.py — lines 111, 204-208, 312, 329, 333, 337."""
 from __future__ import annotations
 

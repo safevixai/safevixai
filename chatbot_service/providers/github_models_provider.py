@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """GitHub Models provider — free with a GitHub account (PAT token).
 Free tier: 150K tokens/day per model. Sign up: github.com/marketplace/models
 Env vars: GITHUB_MODELS_API_KEY (your PAT), GITHUB_MODELS_MODEL (optional)

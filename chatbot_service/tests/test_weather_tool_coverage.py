@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for tools/weather_tool.py — OWM fallback error paths (lines 68-74)."""
 from __future__ import annotations
 

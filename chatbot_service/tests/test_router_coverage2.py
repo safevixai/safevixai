@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for providers/router.py — uncovered lines: 245, 300-301, 312-317, 379, 440-445, 470, 472, 519-522, 544-551."""
 from __future__ import annotations
 

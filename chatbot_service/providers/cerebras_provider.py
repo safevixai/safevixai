@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Cerebras Cloud provider — llama-3.3-70b at 2000+ tok/s. Fastest LLM on earth.
 Free tier: 1M tokens/day, 30 RPM. Sign up: cloud.cerebras.ai
 Env vars: CEREBRAS_API_KEY, CEREBRAS_MODEL (optional)

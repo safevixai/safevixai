@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 try:
     from slowapi import Limiter
     from slowapi.util import get_remote_address

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Open FDA Drug Info Tool — FREE, no API key.
 
 Provides medication information for the first-aid chatbot context.

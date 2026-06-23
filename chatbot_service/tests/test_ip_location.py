@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
+
 """Coverage tests for utils/ip_location.py — detect_state_from_ip edge cases."""
 from __future__ import annotations
 
