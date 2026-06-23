@@ -1,7 +1,10 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { useAppStore } from '../store';
 
-describe('app store persistence', () => {
-  beforeEach(() => {
+describe('app store persistence', function() {
+  beforeEach(function() {
     localStorage.clear();
     useAppStore.setState({
       isAuthenticated: false,
@@ -24,17 +27,17 @@ describe('app store persistence', () => {
     });
   });
 
-  it('persists operator auth state across sessions', () => {
+  it('persists operator auth state across sessions', function() {
     useAppStore.getState().setAuth('Operator');
 
-    const persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
+    var persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
 
     expect(useAppStore.getState().operatorName).toBe('Operator');
     expect(persisted.state?.operatorName).toBe('Operator');
     expect(persisted.state?.isAuthenticated).toBe(true);
   });
 
-  it('persists non-sensitive emergency profile fields', () => {
+  it('persists non-sensitive emergency profile fields', function() {
     useAppStore.getState().setUserProfile({
       name: 'Demo User',
       bloodGroup: 'O+',
@@ -42,7 +45,7 @@ describe('app store persistence', () => {
       vehicleNumber: 'TN01AB1234',
     });
 
-    const persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
+    var persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
 
     // userProfile is intentionally excluded from localStorage (stored in IndexedDB for privacy)
     expect(persisted.state?.userProfile).toBeUndefined();
@@ -56,7 +59,7 @@ describe('app store persistence', () => {
     );
   });
 
-  it('keeps transient map state out of persisted storage', () => {
+  it('keeps transient map state out of persisted storage', function() {
     useAppStore.getState().setMapState({
       mapStatus: 'ready',
       mapProvider: 'maptiler-vector',
@@ -69,7 +72,7 @@ describe('app store persistence', () => {
       timestamp: 123,
     });
 
-    const persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
+    var persisted = JSON.parse(localStorage.getItem('svai-storage') ?? '{}');
 
     expect(useAppStore.getState().mapProvider).toBe('maptiler-vector');
     expect(useAppStore.getState().mapSearchTarget?.label).toBe('Chennai');
@@ -78,3 +81,5 @@ describe('app store persistence', () => {
     expect(persisted.state?.mapSearchTarget).toBeUndefined();
   });
 });
+
+

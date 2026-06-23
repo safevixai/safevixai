@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 let client: SupabaseClient | null = null;

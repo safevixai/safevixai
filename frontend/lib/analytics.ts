@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/lib/analytics.ts — Typed PostHog event tracking
 // Centralized event definitions for SafeVixAI business metrics
 // PostHog client is lazily set via initAnalyticsClient() after GDPR opt-in

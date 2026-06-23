@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { resources } from '@/i18n/config/resources';

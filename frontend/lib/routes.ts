@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import type { Permission } from './auth/roles';
 
 export interface RouteConfig {

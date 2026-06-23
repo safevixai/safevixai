@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 type LogDetail = unknown;
 
 const isDevelopment = process.env.NODE_ENV !== 'production';

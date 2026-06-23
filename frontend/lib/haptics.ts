@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/lib/haptics.ts
 // Haptic feedback utility - surgical vibration for safety-critical moments only
 

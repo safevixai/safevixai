@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { ValidationRule } from './use-form-validation';
 
 export const EMAIL_RULE: ValidationRule = {

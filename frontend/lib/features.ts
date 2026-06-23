@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export const FEATURES = {
   webllmOffline: process.env.NEXT_PUBLIC_ENABLE_WEBLLM_OFFLINE === 'true',
   crashDetection: process.env.NEXT_PUBLIC_ENABLE_CRASH_DETECTION !== 'false',

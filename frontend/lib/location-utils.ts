@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import type { GpsLocation } from '@/lib/store';
 
 const APPROXIMATE_LOCATION_THRESHOLD_METERS = 2500;

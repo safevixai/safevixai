@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // SafeVixAI Service Worker - offline cache plus queued SOS/report replay.
 
 const CACHE_NAME = 'safevixai-v3';

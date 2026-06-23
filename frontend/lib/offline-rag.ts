@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * Offline RAG Logic — Local document retrieval for MV Act citations.
  * Simulates a vector-similarity search using a local keyword index and embeddings.

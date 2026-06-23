@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 'use client';
 
 import { useTranslation as useTrans } from 'react-i18next';

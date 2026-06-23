@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { GpsLocation, UserProfile } from './store';
 import { getAddressFromGPS } from './reverse-geocode';
 import { AMBULANCE_NUMBER, EMERGENCY_NUMBER, W3W_LOOKUP_TIMEOUT_MS } from './safety-constants';

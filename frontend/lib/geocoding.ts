@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * Photon Geocoding — FREE search autocomplete from Komoot.
  *

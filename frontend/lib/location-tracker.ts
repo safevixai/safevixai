@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import type maplibregl from 'maplibre-gl';
 import { logClientError } from './client-logger';
 

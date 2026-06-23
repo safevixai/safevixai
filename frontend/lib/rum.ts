@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/lib/rum.ts — Real User Monitoring (Core Web Vitals + custom metrics)
 // Logs performance data to console in dev; can be wired to analytics in prod.
 'use client';

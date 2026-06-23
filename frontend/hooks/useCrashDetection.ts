@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/hooks/useCrashDetection.ts
 // React hook wrapper around lib/crash-detection.ts
 // Provides a clean React lifecycle integration for crash detection

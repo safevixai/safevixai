@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * Edge AI Engine — simulates an on-device Large Language Model (Phi-3 or Gemma-2B).
  * In production, it loads via WebLLM when the browser is idle.

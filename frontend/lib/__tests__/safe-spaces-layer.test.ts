@@ -1,17 +1,20 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { addSafeSpacesLayer } from '../safe-spaces-layer';
 
 jest.mock('../public-env', () => ({
   PUBLIC_API_BASE_URL: 'https://api.safevix.test',
 }));
 
-describe('addSafeSpacesLayer', () => {
-  beforeEach(() => {
+describe('addSafeSpacesLayer', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
     global.fetch = jest.fn();
   });
 
-  it('loads backend places response and adds a map layer', async () => {
-    const fetchMock = global.fetch as jest.Mock;
+  it('loads backend places response and adds a map layer', async function() {
+    var fetchMock = global.fetch as jest.Mock;
     fetchMock.mockResolvedValue({
       ok: true,
       json: async () => ({
@@ -29,7 +32,7 @@ describe('addSafeSpacesLayer', () => {
       }),
     });
 
-    const map = {
+    var map = {
       getSource: jest.fn(() => undefined),
       addSource: jest.fn(),
       addLayer: jest.fn(),
@@ -57,3 +60,6 @@ describe('addSafeSpacesLayer', () => {
     expect(map.addLayer).toHaveBeenCalledWith(expect.objectContaining({ id: 'safe-spaces-labels' }));
   });
 });
+
+
+

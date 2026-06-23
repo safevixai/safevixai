@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 jest.mock('axios', () => ({
   __esModule: true,
   default: (() => {
@@ -32,14 +35,14 @@ jest.mock('../../lib/reverse-geocode', () => ({
 
 import { triggerSos } from '../../lib/api';
 
-const axiosMock = jest.requireMock('axios').default;
+var axiosMock = jest.requireMock('axios').default;
 
-describe('SOS API helper', () => {
-  beforeEach(() => {
+describe('SOS API helper', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
   });
 
-  it('dispatches SOS with an authenticated-safe POST request', async () => {
+  it('dispatches SOS with an authenticated-safe POST request', async function() {
     axiosMock.__post.mockResolvedValueOnce({
       data: {
         services: [],
@@ -52,7 +55,7 @@ describe('SOS API helper', () => {
       },
     });
 
-    const response = await triggerSos({ lat: 13.0827, lon: 80.2707 });
+    var response = await triggerSos({ lat: 13.0827, lon: 80.2707 });
 
     expect(axiosMock.__post).toHaveBeenCalledWith('/api/v1/emergency/sos', null, {
       params: { lat: 13.0827, lon: 80.2707 },
@@ -60,3 +63,6 @@ describe('SOS API helper', () => {
     expect(response.numbers.universal.service).toBe('112');
   });
 });
+
+
+

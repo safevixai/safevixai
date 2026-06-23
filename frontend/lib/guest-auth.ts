@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 const GUEST_ID_KEY = 'safevixai_guest_id';
 const GUEST_PROFILE_KEY = 'safevixai_guest_profile';
 

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import axios from 'axios';
 import { toast } from 'sonner';
 import { getAddressFromGPS } from './reverse-geocode';

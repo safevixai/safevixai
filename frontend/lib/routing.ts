@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * OSRM Routing — FREE open-source routing, no API key.
  *

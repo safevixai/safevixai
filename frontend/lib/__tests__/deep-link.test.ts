@@ -1,67 +1,68 @@
-/**
- * @jest-environment jsdom
- */
-import { describe, it, expect } from '@jest/globals'
-import { parseDeepLink } from '@/lib/deep-link'
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+describe('deep-link', function () {
+  describe('parseDeepLink', function () {
+    it('parses lat and lon correctly', async function () {
+      var mod = await import('../deep-link')
+      var result = mod.parseDeepLink('https://example.com?lat=13.08&lon=80.27')
+      expect(result.lat).toBe(13.08)
+      expect(result.lon).toBe(80.27)
+      expect(result.hasLocation).toBe(true)
+    })
 
-describe('parseDeepLink', () => {
-  it('extracts lat/lon from URL', () => {
-    const result = parseDeepLink('https://example.com/emergency?lat=13.08&lon=80.27')
-    expect(result.lat).toBeCloseTo(13.08, 2)
-    expect(result.lon).toBeCloseTo(80.27, 2)
-    expect(result.hasLocation).toBe(true)
-  })
+    it('returns null for invalid lat', async function () {
+      var mod = await import('../deep-link')
+      var result = mod.parseDeepLink('https://example.com?lat=999&lon=80.27')
+      expect(result.lat).toBeNull()
+      expect(result.hasLocation).toBe(false)
+    })
 
-  it('returns null lat/lon when params missing', () => {
-    const result = parseDeepLink('https://example.com/')
-    expect(result.lat).toBeNull()
-    expect(result.lon).toBeNull()
-    expect(result.hasLocation).toBe(false)
-  })
+    it('returns null for invalid lon', async function () {
+      var mod = await import('../deep-link')
+      var result = mod.parseDeepLink('https://example.com?lat=13.08&lon=999')
+      expect(result.lon).toBeNull()
+      expect(result.hasLocation).toBe(false)
+    })
 
-  it('validates lat/lon out of range', () => {
-    const result = parseDeepLink('https://example.com/?lat=100&lon=200')
-    expect(result.lat).toBeNull()
-    expect(result.lon).toBeNull()
-    expect(result.hasLocation).toBe(false)
-  })
+    it('parses mode', async function () {
+      var mod = await import('../deep-link')
+      expect(mod.parseDeepLink('https://example.com?mode=sos').mode).toBe('sos')
+      expect(mod.parseDeepLink('https://example.com?mode=track').mode).toBe('track')
+      expect(mod.parseDeepLink('https://example.com?mode=report').mode).toBe('report')
+      expect(mod.parseDeepLink('https://example.com?mode=locator').mode).toBe('locator')
+      expect(mod.parseDeepLink('https://example.com?mode=invalid').mode).toBeNull()
+    })
 
-  it('parses activation mode from URL', () => {
-    const result = parseDeepLink('https://example.com/?mode=sos')
-    expect(result.mode).toBe('sos')
-  })
+    it('parses source', async function () {
+      var mod = await import('../deep-link')
+      expect(mod.parseDeepLink('https://example.com?source=share').source).toBe('share')
+      expect(mod.parseDeepLink('https://example.com?source=deeplink').source).toBe('deeplink')
+      expect(mod.parseDeepLink('https://example.com?source=qr').source).toBe('qr')
+      expect(mod.parseDeepLink('https://example.com?source=shortcut').source).toBe('shortcut')
+      expect(mod.parseDeepLink('https://example.com?source=unknown').source).toBeNull()
+    })
 
-  it('rejects invalid mode', () => {
-    const result = parseDeepLink('https://example.com/?mode=invalid')
-    expect(result.mode).toBeNull()
-  })
+    it('parses state and section', async function () {
+      var mod = await import('../deep-link')
+      var result = mod.parseDeepLink('https://example.com?state=TN&section=MVA_185')
+      expect(result.state).toBe('TN')
+      expect(result.section).toBe('MVA_185')
+    })
 
-  it('parses source attribution', () => {
-    const result = parseDeepLink('https://example.com/?source=qr')
-    expect(result.source).toBe('qr')
-  })
+    it('parses sessionId', async function () {
+      var mod = await import('../deep-link')
+      var result = mod.parseDeepLink('https://example.com?session=abc123')
+      expect(result.sessionId).toBe('abc123')
+    })
 
-  it('rejects invalid source', () => {
-    const result = parseDeepLink('https://example.com/?source=invalid')
-    expect(result.source).toBeNull()
-  })
-
-  it('parses session ID', () => {
-    const result = parseDeepLink('https://example.com/?session=abc-123-def')
-    expect(result.sessionId).toBe('abc-123-def')
-  })
-
-  it('parses state and section for challan', () => {
-    const result = parseDeepLink('https://example.com/?state=TN&section=MVA_185')
-    expect(result.state).toBe('TN')
-    expect(result.section).toBe('MVA_185')
-  })
-
-  it('handles relative URL', () => {
-    process.env.NEXT_PUBLIC_APP_URL = 'https://app.example.com'
-    const result = parseDeepLink('/emergency?lat=12.97&lon=77.59')
-    expect(result.lat).toBeCloseTo(12.97, 2)
-    expect(result.lon).toBeCloseTo(77.59, 2)
-    delete process.env.NEXT_PUBLIC_APP_URL
+    it('returns nulls for missing params', async function () {
+      var mod = await import('../deep-link')
+      var result = mod.parseDeepLink('https://example.com')
+      expect(result.lat).toBeNull()
+      expect(result.lon).toBeNull()
+      expect(result.mode).toBeNull()
+      expect(result.source).toBeNull()
+      expect(result.hasLocation).toBe(false)
+    })
   })
 })

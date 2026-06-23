@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * navigation-launch.ts — Enterprise Navigation App Launcher
  *

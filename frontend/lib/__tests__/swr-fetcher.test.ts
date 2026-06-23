@@ -1,42 +1,59 @@
-import { SWRConfig } from '../swr-fetcher';
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+jest.mock('../api', function () {
+  var mockGet = jest.fn().mockResolvedValue({ data: {} })
+  return {
+    client: {
+      get: mockGet,
+      post: jest.fn(),
+    },
+    fetchMunicipalities: jest.fn().mockResolvedValue({ municipalities: [] }),
+    fetchNearbyServices: jest.fn().mockResolvedValue([]),
+  }
+})
 
-describe('SWR Fetcher exports', () => {
-  it('should export SWRConfig', () => {
-    expect(SWRConfig).toBeDefined();
-  });
+var mockClient = require('../api').client
+var React = require('react')
 
-  it('fetcher should be a function', async () => {
-    const mod = await import('../swr-fetcher');
-    expect(typeof mod.fetcher).toBe('function');
-  });
+describe('swr-fetcher', function () {
+  it('exports fetcher functions', async function () {
+    var mod = await import('../swr-fetcher')
+    expect(typeof mod.fetcher).toBe('function')
+    expect(typeof mod.fetcherNoCache).toBe('function')
+  })
 
-  it('useEmergencyNumbers should be a function', async () => {
-    const mod = await import('../swr-fetcher');
-    expect(typeof mod.useEmergencyNumbers).toBe('function');
-  });
+  it('exports SWR hooks', async function () {
+    var mod = await import('../swr-fetcher')
+    expect(typeof mod.useEmergencyServices).toBe('function')
+    expect(typeof mod.useEmergencyNumbers).toBe('function')
+    expect(typeof mod.useFetchSos).toBe('function')
+    expect(typeof mod.useRoadwatchFeed).toBe('function')
+    expect(typeof mod.useChallanCalculation).toBe('function')
+    expect(typeof mod.useUserProfile).toBe('function')
+  })
 
-  it('useEmergencyServices should be a function', async () => {
-    const mod = await import('../swr-fetcher');
-    expect(typeof mod.useEmergencyServices).toBe('function');
-  });
+  it('fetcher calls client.get with params', async function () {
+    mockClient.get.mockResolvedValue({ data: { result: 'ok' } })
+    var mod = await import('../swr-fetcher')
+    var result = await mod.fetcher('/test', { key: 'val' })
+    expect(mockClient.get).toHaveBeenCalledWith('/test', { params: { key: 'val' } })
+    expect(result).toEqual({ result: 'ok' })
+  })
 
-  it('useRoadwatchFeed should be a function', async () => {
-    const mod = await import('../swr-fetcher');
-    expect(typeof mod.useRoadwatchFeed).toBe('function');
-  });
+  it('fetcher calls client.get without params', async function () {
+    mockClient.get.mockResolvedValue({ data: { result: 'ok' } })
+    var mod = await import('../swr-fetcher')
+    var result = await mod.fetcher('/test')
+    expect(mockClient.get).toHaveBeenCalledWith('/test', { params: undefined })
+    expect(result).toEqual({ result: 'ok' })
+  })
 
-  it('useChallanCalculation should be a function', async () => {
-    const mod = await import('../swr-fetcher');
-    expect(typeof mod.useChallanCalculation).toBe('function');
-  });
+  it('fetcherNoCache adds cache-busting header', async function () {
+    mockClient.get.mockResolvedValue({ data: { result: 'ok' } })
+    var mod = await import('../swr-fetcher')
+    var result = await mod.fetcherNoCache('/test', { key: 'val' })
+    expect(mockClient.get).toHaveBeenCalledWith('/test', { params: { key: 'val' }, headers: { 'Cache-Control': 'no-cache' } })
+    expect(result).toEqual({ result: 'ok' })
+  })
 
-  it('useUserProfile should be a function', async () => {
-    const mod = await import('../swr-fetcher');
-    expect(typeof mod.useUserProfile).toBe('function');
-  });
-
-  it('useFetchSos should be a function', async () => {
-    const mod = await import('../swr-fetcher');
-    expect(typeof mod.useFetchSos).toBe('function');
-  });
-});
+})

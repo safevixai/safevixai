@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import type { AuthSlice } from './auth-slice';
 import type { MapSlice, MapSearchTarget, MapProvider, MapStatus } from './map-slice';
 import type { SettingsSlice } from './settings-slice';

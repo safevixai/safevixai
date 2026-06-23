@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/lib/gsap.ts - ONE file, registered once, imported everywhere
 // Based on BSMNT + Thomas Augot Next.js 15 best practices
 'use client';

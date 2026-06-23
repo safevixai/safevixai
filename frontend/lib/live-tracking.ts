@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/lib/live-tracking.ts
 import { useAppStore } from './store';
 import { PUBLIC_API_BASE_URL } from './public-env';

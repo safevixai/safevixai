@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 import { renderHook, waitFor } from '@testing-library/react';
 import { useGeolocation } from '../geolocation';
 import { useAppStore } from '../store';
@@ -28,8 +33,8 @@ function setBrowserLocationSupport({
   });
 }
 
-describe('useGeolocation', () => {
-  beforeEach(() => {
+describe('useGeolocation', function() {
+  beforeEach(function() {
     jest.clearAllMocks();
     useAppStore.setState({
       gpsLocation: null,
@@ -37,7 +42,7 @@ describe('useGeolocation', () => {
     });
   });
 
-  it('reports unsupported browsers clearly', async () => {
+  it('reports unsupported browsers clearly', async function() {
     setBrowserLocationSupport({ geolocation: null });
 
     renderHook(() => useGeolocation());
@@ -47,7 +52,7 @@ describe('useGeolocation', () => {
     });
   });
 
-  it('reports denied browser permission clearly', async () => {
+  it('reports denied browser permission clearly', async function() {
     setBrowserLocationSupport({
       permissionState: 'denied',
       geolocation: {
@@ -64,8 +69,8 @@ describe('useGeolocation', () => {
     });
   });
 
-  it('reports geolocation timeout clearly', async () => {
-    const timeoutError = { code: 3 } as GeolocationPositionError;
+  it('reports geolocation timeout clearly', async function() {
+    var timeoutError = { code: 3 } as GeolocationPositionError;
     setBrowserLocationSupport({
       geolocation: {
         getCurrentPosition: jest.fn((_success, error) => error?.(timeoutError)),
@@ -84,3 +89,5 @@ describe('useGeolocation', () => {
     });
   });
 });
+
+

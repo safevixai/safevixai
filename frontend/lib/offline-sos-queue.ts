@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { openDB, DBSchema, IDBPDatabase } from 'idb';
 import { PUBLIC_API_BASE_URL } from './public-env';
 import { OFFLINE_SOS_SYNC_TIMEOUT_MS } from './safety-constants';

@@ -1,17 +1,20 @@
-const mockRecords: Array<Record<string, unknown>> = [];
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 
-const mockStore = {
+var mockRecords: Array<Record<string, unknown>> = [];
+
+var mockStore = {
   getAllKeys: jest.fn(async () => mockRecords.map((record) => record.id as number)),
   getAll: jest.fn(async () => [...mockRecords]),
   delete: jest.fn(async (key: number) => {
-    const index = mockRecords.findIndex((record) => record.id === key);
+    var index = mockRecords.findIndex((record) => record.id === key);
     if (index >= 0) {
       mockRecords.splice(index, 1);
     }
   }),
 };
 
-const mockDb = {
+var mockDb = {
   add: jest.fn(async (_storeName: string, value: Record<string, unknown>) => {
     mockRecords.push({ ...value, id: mockRecords.length + 1 });
   }),
@@ -22,7 +25,7 @@ const mockDb = {
   })),
 };
 
-const mockOpenDB = jest.fn(async () => mockDb);
+var mockOpenDB = jest.fn(async () => mockDb);
 
 jest.mock('idb', () => ({
   openDB: () => mockOpenDB(),
@@ -38,15 +41,15 @@ jest.mock('../safety-constants', () => ({
 
 import { enqueueSOS, syncOfflineSOSQueue } from '../offline-sos-queue';
 
-describe('offline SOS queue', () => {
-  beforeEach(() => {
+describe('offline SOS queue', function() {
+  beforeEach(function() {
     mockRecords.length = 0;
     jest.clearAllMocks();
     Object.defineProperty(navigator, 'onLine', { value: true, configurable: true });
     global.fetch = jest.fn(async () => ({ ok: true })) as jest.Mock;
   });
 
-  it('stores SOS records with the configured public API URL', async () => {
+  it('stores SOS records with the configured public API URL', async function() {
     await enqueueSOS({ lat: 13.0827, lon: 80.2707 });
 
     expect(mockDb.add).toHaveBeenCalledWith(
@@ -60,7 +63,7 @@ describe('offline SOS queue', () => {
     );
   });
 
-  it('replays queued SOS records with POST and removes successful records', async () => {
+  it('replays queued SOS records with POST and removes successful records', async function() {
     await enqueueSOS({ lat: 13.0827, lon: 80.2707 });
 
     await syncOfflineSOSQueue();
@@ -72,7 +75,7 @@ describe('offline SOS queue', () => {
     expect(mockRecords).toHaveLength(0);
   });
 
-  it('queues SOS when offline and flushes when online', async () => {
+  it('queues SOS when offline and flushes when online', async function() {
     Object.defineProperty(navigator, 'onLine', { value: false, configurable: true });
 
     await enqueueSOS({ lat: 13.0827, lon: 80.2707 });
@@ -85,7 +88,7 @@ describe('offline SOS queue', () => {
     expect(mockRecords).toHaveLength(0);
   });
 
-  it('retries failed flush on next online event', async () => {
+  it('retries failed flush on next online event', async function() {
     (global.fetch as jest.Mock).mockResolvedValueOnce({ ok: false });
 
     await enqueueSOS({ lat: 13.0827, lon: 80.2707 });
@@ -100,3 +103,5 @@ describe('offline SOS queue', () => {
   });
 
 });
+
+

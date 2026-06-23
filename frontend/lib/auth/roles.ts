@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export type Role = 'citizen' | 'officer' | 'admin' | 'super_admin';
 
 export type Permission =

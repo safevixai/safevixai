@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export const STANDARD_GRAVITY_MS2 = 9.81;
 export const CRASH_THRESHOLD_G = 15;
 export const CRASH_DEBOUNCE_MS = 60_000;

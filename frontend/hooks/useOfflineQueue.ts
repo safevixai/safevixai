@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/hooks/useOfflineQueue.ts
 // React hook wrapper around lib/offline-sos-queue.ts
 // Provides reactive queue state and sync controls

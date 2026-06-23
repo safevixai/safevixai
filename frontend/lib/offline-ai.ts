@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 /**
  * offline-ai.ts — Gemma 4 E2B Offline AI Engine
  *

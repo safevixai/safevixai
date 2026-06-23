@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/hooks/useGSAPAnimation.ts
 // Based on Thomas Augot's Next.js 15 optimization pattern
 'use client';

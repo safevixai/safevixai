@@ -1,11 +1,11 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({
-  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: './',
 })
 
-// Add any custom config to be passed to Jest
 const customJestConfig = {
   setupFiles: ['<rootDir>/jest.env.js'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
@@ -18,17 +18,31 @@ const customJestConfig = {
     '<rootDir>/tests/a11y/',
     '<rootDir>/tests/api-contract.spec.ts',
     '<rootDir>/hooks/__tests__/useSOS.test.ts',
+    '<rootDir>/node_modules/',
+    '<rootDir>/.next/',
+    '<rootDir>/components/__tests__/test-utils.tsx',
   ],
   modulePathIgnorePatterns: ['<rootDir>/.next/'],
+  collectCoverageFrom: [
+    'components/**/*.{ts,tsx}',
+    'lib/**/*.{ts,tsx}',
+    'hooks/**/*.{ts,tsx}',
+    '!components/**/*.stories.*',
+    '!**/*.d.ts',
+    '!**/__tests__/**',
+    '!**/__mocks__/**',
+    '!components/maps/**',
+    '!lib/duckdb-challan.ts',
+    '!lib/offline-ai.ts',
+  ],
   coverageThreshold: {
     global: {
-      branches: 55,
-      functions: 55,
-      lines: 60,
-      statements: 60,
+      branches: 56,
+      functions: 62,
+      lines: 70,
+      statements: 66,
     },
   },
 }
 
-// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 module.exports = createJestConfig(customJestConfig)

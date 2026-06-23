@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { defineConfig, devices } from '@playwright/test';
 import { existsSync } from 'fs';
 import { join } from 'path';

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import type { StateCreator } from 'zustand';
 import { saveUserProfileToIndexedDB } from '@/lib/profile-storage';
 

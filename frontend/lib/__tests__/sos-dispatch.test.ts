@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { triggerSos, fetchSosPayload } from '../api';
 import { enqueueSOS } from '../offline-sos-queue';
 
@@ -16,57 +19,60 @@ jest.mock('../offline-sos-queue', () => {
   };
 });
 
-describe('SOS Dispatch — Safety-Critical Tests', () => {
-  beforeEach(() => {
+describe('SOS Dispatch — Safety-Critical Tests', function() {
+  beforeEach(function() {
     jest.restoreAllMocks();
     jest.clearAllMocks();
   });
 
-  it('triggerSos POST should accept lat/lon params', async () => {
-    const mockResponse = {
+  it('triggerSos POST should accept lat/lon params', async function() {
+    var mockResponse = {
       services: [],
       numbers: { police: '100', ambulance: '108', fire: '101' },
     };
     (triggerSos as jest.Mock).mockResolvedValue(mockResponse);
-    const result = await triggerSos({ lat: 13.0827, lon: 80.2707 });
+    var result = await triggerSos({ lat: 13.0827, lon: 80.2707 });
     expect(result.numbers.police).toBe('100');
     expect(result.numbers.ambulance).toBe('108');
   });
 
-  it('triggerSos should fail without params', async () => {
+  it('triggerSos should fail without params', async function() {
     (triggerSos as jest.Mock).mockRejectedValue(new Error('Missing lat/lon'));
     await expect(triggerSos({} as any)).rejects.toThrow('Missing lat/lon');
   });
 
-  it('fetchSosPayload GET should return services + numbers', async () => {
-    const mockPayload = {
+  it('fetchSosPayload GET should return services + numbers', async function() {
+    var mockPayload = {
       services: [{ name: 'Test Hospital', distance: 500, lat: 13.0, lon: 80.2, category: 'hospital' }],
       numbers: { police: '100' },
     };
     (fetchSosPayload as jest.Mock).mockResolvedValue(mockPayload);
-    const result = await fetchSosPayload({ lat: 13.0827, lon: 80.2707 });
+    var result = await fetchSosPayload({ lat: 13.0827, lon: 80.2707 });
     expect(result.services).toHaveLength(1);
     expect(result.services[0].name).toBe('Test Hospital');
   });
 
-  it('offline SOS queue should store and retrieve entries', async () => {
-    const entry = { lat: 13.0, lon: 80.0, timestamp: Date.now() };
+  it('offline SOS queue should store and retrieve entries', async function() {
+    var entry = { lat: 13.0, lon: 80.0, timestamp: Date.now() };
     (enqueueSOS as jest.Mock).mockResolvedValue(undefined);
 
     await enqueueSOS(entry);
     expect(enqueueSOS).toHaveBeenCalledWith(entry);
   });
 
-  it('SOS numbers should include 112 (pan-India emergency)', async () => {
-    const mockNumbers = { police: '100', ambulance: '108', fire: '101', emergency: '112' };
+  it('SOS numbers should include 112 (pan-India emergency)', async function() {
+    var mockNumbers = { police: '100', ambulance: '108', fire: '101', emergency: '112' };
     (fetchSosPayload as jest.Mock).mockResolvedValue({ services: [], numbers: mockNumbers });
-    const result = await fetchSosPayload({ lat: 13.0827, lon: 80.2707 });
+    var result = await fetchSosPayload({ lat: 13.0827, lon: 80.2707 });
     expect(result.numbers.emergency).toBe('112');
   });
 
-  it('SOS should handle empty services gracefully', async () => {
+  it('SOS should handle empty services gracefully', async function() {
     (fetchSosPayload as jest.Mock).mockResolvedValue({ services: [], numbers: {} });
-    const result = await fetchSosPayload({ lat: 13.0827, lon: 80.2707 });
+    var result = await fetchSosPayload({ lat: 13.0827, lon: 80.2707 });
     expect(result.services).toEqual([]);
   });
 });
+
+
+

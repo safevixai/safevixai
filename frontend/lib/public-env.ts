@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 function requiredPublicUrl(name: string, value: string | undefined, fallback: string): string {
   const normalized = value?.trim().replace(/\/+$/, '');
   if (!normalized) {

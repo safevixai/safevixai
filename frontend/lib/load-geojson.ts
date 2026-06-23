@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 const COMPRESSION_ENABLED = true;
 
 export async function loadGeoJSON(url: string): Promise<GeoJSON.GeoJSON> {

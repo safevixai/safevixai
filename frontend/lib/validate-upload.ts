@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 export const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 export const VALID_MAGIC_BYTES: Record<string, Uint8Array> = {

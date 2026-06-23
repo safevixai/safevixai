@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 export const FALLBACK_MAP_CENTER: [number, number] = [
   Number(process.env.NEXT_PUBLIC_MAP_FALLBACK_LAT ?? 20.5937),
   Number(process.env.NEXT_PUBLIC_MAP_FALLBACK_LON ?? 78.9629),

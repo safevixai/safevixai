@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { CRASH_DEBOUNCE_MS, CRASH_THRESHOLD_G, STANDARD_GRAVITY_MS2 } from './safety-constants';
 
 /**

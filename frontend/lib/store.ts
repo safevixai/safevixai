@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { loadUserProfileFromIndexedDB } from './profile-storage';

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 import type { AsyncDuckDB } from '@duckdb/duckdb-wasm';
 import { OFFLINE_CHALLAN_LOOKUP_DELAY_MS } from './safety-constants';
 

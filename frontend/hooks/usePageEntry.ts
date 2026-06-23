@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/hooks/usePageEntry.ts - applies to every page on mount
 // Uses dynamic GSAP import to avoid pulling 50KB bundle into non-animated pages
 'use client';

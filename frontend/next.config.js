@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 let withBundleAnalyzer = (cfg) => cfg;
 try {
   withBundleAnalyzer = require('@next/bundle-analyzer')({

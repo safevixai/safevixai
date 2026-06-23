@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
+
 // frontend/lib/sounds.ts - Web Audio API (no library needed)
 // Subtle audio feedback for critical moments. Optional in Settings.
 
