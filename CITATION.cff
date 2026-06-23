@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software in your research, please cite it using these metadata.
+title: SafeVixAI
+abstract: >-
+  AI-powered road safety PWA for IIT Madras Road Safety Hackathon 2026.
+  Features emergency locator, AI chatbot, challan calculator, and road reporter.
+  Three services: Next.js 15 frontend, FastAPI backend, FastAPI chatbot with 9-provider LLM fallback.
+authors:
+  - family-names: "SafeVixAI Team"
+    affiliation: "IIT Madras"
+    orcid: ""
+version: 1.0.0
+date-released: 2026-06-17
+repository-code: "https://github.com/SafeVixAI/SafeVixAI"
+license: MIT
+keywords:
+  - road-safety
+  - emergency-response
+  - ai-chatbot
+  - pwa
+  - hackathon
