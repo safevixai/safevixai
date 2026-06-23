@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 #!/bin/bash
 # SafeVixAI devcontainer post-create setup
 set -e
