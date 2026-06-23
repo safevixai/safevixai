@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 #!/usr/bin/env python3
 """
 Batch upgrade AST stubs to LLM docs with email alerts on failure.

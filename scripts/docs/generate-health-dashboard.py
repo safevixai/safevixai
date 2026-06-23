@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Generate docs-health.json with key metrics for enterprise dashboard.
 
 Produces docs/wiki/meta/docs-health.json consumed by MkDocs extras.

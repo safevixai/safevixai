@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Generate API changelog by diffing OpenAPI specs against the main branch.
 
 Compares current backend/openapi.json and chatbot_service/openapi.json with

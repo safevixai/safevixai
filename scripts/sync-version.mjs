@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 #!/usr/bin/env node
 
 import { readFileSync, writeFileSync } from "fs";

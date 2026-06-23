@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 import { check, sleep } from 'k6';
 import http from 'k6/http';
 

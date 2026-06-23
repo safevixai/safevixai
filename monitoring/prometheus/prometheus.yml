@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 global:
   scrape_interval: 15s
   evaluation_interval: 15s

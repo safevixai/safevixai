@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Check all internal markdown links in wiki content resolve to existing files.
 
 Usage: python scripts/docs/check-links.py

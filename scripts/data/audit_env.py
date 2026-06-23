@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Full audit of all .env files vs what the configs actually expect."""
 import re
 from pathlib import Path

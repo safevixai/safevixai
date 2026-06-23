@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 SafeVixAI Team
 export const K6_OPTIONS = {
   cloud: {
     name: 'SafeVixAI Load Test',

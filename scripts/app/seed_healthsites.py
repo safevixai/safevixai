@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Healthsites.io Hospital Seeder — ONE-TIME script.
 
 Pulls hospital data from Healthsites.io API to supplement OSM Overpass data.

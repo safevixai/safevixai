@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 #!/usr/bin/env python3
 """
 One-time script to generate the initial SafeVixAI_MASTER.docx

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Lightweight mock API server for E2E and API contract tests."""
 from __future__ import annotations
 

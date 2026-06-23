@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Auto-generate MkDocs nav entries for wiki content.
 
 Scans docs/wiki/content/ and outputs YAML nav entries.

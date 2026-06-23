@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 """Convert file:// links to GitHub blob links in wiki documentation.
 
 Windows-safe: uses pure pathlib, no shell commands.

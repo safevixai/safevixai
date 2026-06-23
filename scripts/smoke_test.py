@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 #!/usr/bin/env python3
 """
 smoke_test.py — SafeVixAI Deployment Smoke Test

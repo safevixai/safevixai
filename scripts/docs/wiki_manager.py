@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SafeVixAI Team
 #!/usr/bin/env python3
 """
 SafeVixAI Wiki Manager v3 — Multi-LLM Documentation Generator with Email Alerts
